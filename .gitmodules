@@ -1,0 +1,3 @@
+[submodule "resources/protobufs"]
+	path = resources/protobufs
+	url = https://github.com/SteamDatabase/Protobufs

@@ -1,0 +1,12 @@
+build/
+*.exe
+*.ilk
+*.pdb
+fns.txt
+.vs
+*.exp
+*.lib
+*.bin
+a.out
+.vscode/
+secrets.json
