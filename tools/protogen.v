@@ -14,7 +14,7 @@ import v.ast
 
 fn format_file(path string) {
 	table := table.new_table()
-	ast_file := parser.parse_file(path, table, .parse_comments, &pref.Preferences{}, &ast.Scope{
+	ast_file := parser.parse_file(path, table, .parse_comments, &pref.Preferences{ is_fmt: true }, &ast.Scope{
 		parent: 0
 	})
 
@@ -34,6 +34,7 @@ fn main() {
 	out_folder := os.real_path('$exe_path/../proto/')
 
 	mut paths := os.ls(protobufs_location)?
+	// mut paths := []string{}
 	paths << os.real_path('$protobufs_location/../google/protobuf/descriptor.proto')
 	
 	imports := ['$protobufs_location', os.real_path('$protobufs_location/..')]
@@ -68,7 +69,6 @@ fn main() {
 		filename := os.real_path(f.filename).all_after_last(os.path_separator).all_before_last('.') + '_pb.v'
 		out_path := os.join_path(os.real_path(out_folder), filename)
 		os.write_file(out_path, g.gen_file_text(f))
-		// TODO reenable
-		// format_file(out_path)
+		format_file(out_path)
 	}
 }
