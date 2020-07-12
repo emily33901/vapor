@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct COfflineGetOfflineLogonTicketRequest {
+pub struct COffline_GetOfflineLogonTicket_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11,7 +11,7 @@ pub mut:
 	has_priority   bool
 }
 
-pub fn (o &COfflineGetOfflineLogonTicketRequest) pack() []byte {
+pub fn (o &COffline_GetOfflineLogonTicket_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_priority {
 		res << vproto.pack_uint32_field(o.priority, 1)
@@ -19,8 +19,8 @@ pub fn (o &COfflineGetOfflineLogonTicketRequest) pack() []byte {
 	return res
 }
 
-pub fn cofflinegetofflinelogonticketrequest_unpack(buf []byte) ?COfflineGetOfflineLogonTicketRequest {
-	mut res := COfflineGetOfflineLogonTicketRequest{}
+pub fn coffline_getofflinelogonticket_request_unpack(buf []byte) ?COffline_GetOfflineLogonTicket_Request {
+	mut res := COffline_GetOfflineLogonTicket_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -52,23 +52,23 @@ pub fn cofflinegetofflinelogonticketrequest_unpack(buf []byte) ?COfflineGetOffli
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cofflinegetofflinelogonticketrequest() COfflineGetOfflineLogonTicketRequest {
-	return COfflineGetOfflineLogonTicketRequest{}
+pub fn zzz_vproto_internal_new_coffline_getofflinelogonticket_request() COffline_GetOfflineLogonTicket_Request {
+	return COffline_GetOfflineLogonTicket_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cofflinegetofflinelogonticketrequest(o COfflineGetOfflineLogonTicketRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_coffline_getofflinelogonticket_request(o COffline_GetOfflineLogonTicket_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cofflinegetofflinelogonticketrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, COfflineGetOfflineLogonTicketRequest) {
+pub fn zzz_vproto_internal_unpack_coffline_getofflinelogonticket_request(buf []byte, tag_wiretype vproto.WireType) ?(int, COffline_GetOfflineLogonTicket_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cofflinegetofflinelogonticketrequest_unpack(v)?
+	mut unpacked := coffline_getofflinelogonticket_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct COfflineGetOfflineLogonTicketResponse {
+pub struct COffline_GetOfflineLogonTicket_Response {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -78,7 +78,7 @@ pub mut:
 	has_signature         bool
 }
 
-pub fn (o &COfflineGetOfflineLogonTicketResponse) pack() []byte {
+pub fn (o &COffline_GetOfflineLogonTicket_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_serialized_ticket {
 		res << vproto.pack_bytes_field(o.serialized_ticket, 1)
@@ -89,8 +89,8 @@ pub fn (o &COfflineGetOfflineLogonTicketResponse) pack() []byte {
 	return res
 }
 
-pub fn cofflinegetofflinelogonticketresponse_unpack(buf []byte) ?COfflineGetOfflineLogonTicketResponse {
-	mut res := COfflineGetOfflineLogonTicketResponse{}
+pub fn coffline_getofflinelogonticket_response_unpack(buf []byte) ?COffline_GetOfflineLogonTicket_Response {
+	mut res := COffline_GetOfflineLogonTicket_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -128,55 +128,55 @@ pub fn cofflinegetofflinelogonticketresponse_unpack(buf []byte) ?COfflineGetOffl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cofflinegetofflinelogonticketresponse() COfflineGetOfflineLogonTicketResponse {
-	return COfflineGetOfflineLogonTicketResponse{}
+pub fn zzz_vproto_internal_new_coffline_getofflinelogonticket_response() COffline_GetOfflineLogonTicket_Response {
+	return COffline_GetOfflineLogonTicket_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cofflinegetofflinelogonticketresponse(o COfflineGetOfflineLogonTicketResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_coffline_getofflinelogonticket_response(o COffline_GetOfflineLogonTicket_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cofflinegetofflinelogonticketresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, COfflineGetOfflineLogonTicketResponse) {
+pub fn zzz_vproto_internal_unpack_coffline_getofflinelogonticket_response(buf []byte, tag_wiretype vproto.WireType) ?(int, COffline_GetOfflineLogonTicket_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cofflinegetofflinelogonticketresponse_unpack(v)?
+	mut unpacked := coffline_getofflinelogonticket_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct COfflineGetUnsignedOfflineLogonTicketRequest {
+pub struct COffline_GetUnsignedOfflineLogonTicket_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &COfflineGetUnsignedOfflineLogonTicketRequest) pack() []byte {
+pub fn (o &COffline_GetUnsignedOfflineLogonTicket_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cofflinegetunsignedofflinelogonticketrequest_unpack(buf []byte) ?COfflineGetUnsignedOfflineLogonTicketRequest {
-	res := COfflineGetUnsignedOfflineLogonTicketRequest{}
+pub fn coffline_getunsignedofflinelogonticket_request_unpack(buf []byte) ?COffline_GetUnsignedOfflineLogonTicket_Request {
+	res := COffline_GetUnsignedOfflineLogonTicket_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cofflinegetunsignedofflinelogonticketrequest() COfflineGetUnsignedOfflineLogonTicketRequest {
-	return COfflineGetUnsignedOfflineLogonTicketRequest{}
+pub fn zzz_vproto_internal_new_coffline_getunsignedofflinelogonticket_request() COffline_GetUnsignedOfflineLogonTicket_Request {
+	return COffline_GetUnsignedOfflineLogonTicket_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cofflinegetunsignedofflinelogonticketrequest(o COfflineGetUnsignedOfflineLogonTicketRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_coffline_getunsignedofflinelogonticket_request(o COffline_GetUnsignedOfflineLogonTicket_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cofflinegetunsignedofflinelogonticketrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, COfflineGetUnsignedOfflineLogonTicketRequest) {
+pub fn zzz_vproto_internal_unpack_coffline_getunsignedofflinelogonticket_request(buf []byte, tag_wiretype vproto.WireType) ?(int, COffline_GetUnsignedOfflineLogonTicket_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cofflinegetunsignedofflinelogonticketrequest_unpack(v)?
+	mut unpacked := coffline_getunsignedofflinelogonticket_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct COfflineOfflineLogonTicket {
+pub struct COffline_OfflineLogonTicket {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -186,7 +186,7 @@ pub mut:
 	has_rtime32_creation_time bool
 }
 
-pub fn (o &COfflineOfflineLogonTicket) pack() []byte {
+pub fn (o &COffline_OfflineLogonTicket) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_uint32_field(o.accountid, 1)
@@ -197,8 +197,8 @@ pub fn (o &COfflineOfflineLogonTicket) pack() []byte {
 	return res
 }
 
-pub fn cofflineofflinelogonticket_unpack(buf []byte) ?COfflineOfflineLogonTicket {
-	mut res := COfflineOfflineLogonTicket{}
+pub fn coffline_offlinelogonticket_unpack(buf []byte) ?COffline_OfflineLogonTicket {
+	mut res := COffline_OfflineLogonTicket{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -236,40 +236,40 @@ pub fn cofflineofflinelogonticket_unpack(buf []byte) ?COfflineOfflineLogonTicket
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cofflineofflinelogonticket() COfflineOfflineLogonTicket {
-	return COfflineOfflineLogonTicket{}
+pub fn zzz_vproto_internal_new_coffline_offlinelogonticket() COffline_OfflineLogonTicket {
+	return COffline_OfflineLogonTicket{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cofflineofflinelogonticket(o COfflineOfflineLogonTicket, num u32) []byte {
+pub fn zzz_vproto_internal_pack_coffline_offlinelogonticket(o COffline_OfflineLogonTicket, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cofflineofflinelogonticket(buf []byte, tag_wiretype vproto.WireType) ?(int, COfflineOfflineLogonTicket) {
+pub fn zzz_vproto_internal_unpack_coffline_offlinelogonticket(buf []byte, tag_wiretype vproto.WireType) ?(int, COffline_OfflineLogonTicket) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cofflineofflinelogonticket_unpack(v)?
+	mut unpacked := coffline_offlinelogonticket_unpack(v)?
 	return i, unpacked
 }
 
-pub struct COfflineGetUnsignedOfflineLogonTicketResponse {
+pub struct COffline_GetUnsignedOfflineLogonTicket_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	ticket         COfflineOfflineLogonTicket
+	ticket         COffline_OfflineLogonTicket
 	has_ticket     bool
 }
 
-pub fn (o &COfflineGetUnsignedOfflineLogonTicketResponse) pack() []byte {
+pub fn (o &COffline_GetUnsignedOfflineLogonTicket_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_ticket {
-		res << zzz_vproto_internal_pack_cofflineofflinelogonticket(o.ticket, 1)
+		res << zzz_vproto_internal_pack_coffline_offlinelogonticket(o.ticket, 1)
 	}
 	return res
 }
 
-pub fn cofflinegetunsignedofflinelogonticketresponse_unpack(buf []byte) ?COfflineGetUnsignedOfflineLogonTicketResponse {
-	mut res := COfflineGetUnsignedOfflineLogonTicketResponse{}
+pub fn coffline_getunsignedofflinelogonticket_response_unpack(buf []byte) ?COffline_GetUnsignedOfflineLogonTicket_Response {
+	mut res := COffline_GetUnsignedOfflineLogonTicket_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -281,7 +281,7 @@ pub fn cofflinegetunsignedofflinelogonticketresponse_unpack(buf []byte) ?COfflin
 		match tag_wiretype.tag {
 			1 {
 				res.has_ticket = true
-				ii, v := zzz_vproto_internal_unpack_cofflineofflinelogonticket(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_coffline_offlinelogonticket(cur_buf,
 					tag_wiretype.wire_type)?
 				res.ticket = v
 				i = ii
@@ -302,18 +302,18 @@ pub fn cofflinegetunsignedofflinelogonticketresponse_unpack(buf []byte) ?COfflin
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cofflinegetunsignedofflinelogonticketresponse() COfflineGetUnsignedOfflineLogonTicketResponse {
-	return COfflineGetUnsignedOfflineLogonTicketResponse{}
+pub fn zzz_vproto_internal_new_coffline_getunsignedofflinelogonticket_response() COffline_GetUnsignedOfflineLogonTicket_Response {
+	return COffline_GetUnsignedOfflineLogonTicket_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cofflinegetunsignedofflinelogonticketresponse(o COfflineGetUnsignedOfflineLogonTicketResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_coffline_getunsignedofflinelogonticket_response(o COffline_GetUnsignedOfflineLogonTicket_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cofflinegetunsignedofflinelogonticketresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, COfflineGetUnsignedOfflineLogonTicketResponse) {
+pub fn zzz_vproto_internal_unpack_coffline_getunsignedofflinelogonticket_response(buf []byte, tag_wiretype vproto.WireType) ?(int, COffline_GetUnsignedOfflineLogonTicket_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cofflinegetunsignedofflinelogonticketresponse_unpack(v)?
+	mut unpacked := coffline_getunsignedofflinelogonticket_response_unpack(v)?
 	return i, unpacked
 }

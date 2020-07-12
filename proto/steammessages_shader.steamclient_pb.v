@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CShaderRegisterShaderRequestShader {
+pub struct CShader_RegisterShader_Request_Shader {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -13,7 +13,7 @@ pub mut:
 	has_shader_code_sha bool
 }
 
-pub fn (o &CShaderRegisterShaderRequestShader) pack() []byte {
+pub fn (o &CShader_RegisterShader_Request_Shader) pack() []byte {
 	mut res := []byte{}
 	if o.has_cache_key_sha {
 		res << vproto.pack_bytes_field(o.cache_key_sha, 1)
@@ -24,8 +24,8 @@ pub fn (o &CShaderRegisterShaderRequestShader) pack() []byte {
 	return res
 }
 
-pub fn cshaderregistershaderrequestshader_unpack(buf []byte) ?CShaderRegisterShaderRequestShader {
-	mut res := CShaderRegisterShaderRequestShader{}
+pub fn cshader_registershader_request_shader_unpack(buf []byte) ?CShader_RegisterShader_Request_Shader {
+	mut res := CShader_RegisterShader_Request_Shader{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,23 +63,23 @@ pub fn cshaderregistershaderrequestshader_unpack(buf []byte) ?CShaderRegisterSha
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshaderregistershaderrequestshader() CShaderRegisterShaderRequestShader {
-	return CShaderRegisterShaderRequestShader{}
+pub fn zzz_vproto_internal_new_cshader_registershader_request_shader() CShader_RegisterShader_Request_Shader {
+	return CShader_RegisterShader_Request_Shader{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshaderregistershaderrequestshader(o CShaderRegisterShaderRequestShader, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_registershader_request_shader(o CShader_RegisterShader_Request_Shader, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshaderregistershaderrequestshader(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderRegisterShaderRequestShader) {
+pub fn zzz_vproto_internal_unpack_cshader_registershader_request_shader(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_RegisterShader_Request_Shader) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshaderregistershaderrequestshader_unpack(v)?
+	mut unpacked := cshader_registershader_request_shader_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderRegisterShaderRequest {
+pub struct CShader_RegisterShader_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -89,10 +89,10 @@ pub mut:
 	has_gpu_desc    bool
 	driver_desc     string
 	has_driver_desc bool
-	shaders         []CShaderRegisterShaderRequestShader
+	shaders         []CShader_RegisterShader_Request_Shader
 }
 
-pub fn (o &CShaderRegisterShaderRequest) pack() []byte {
+pub fn (o &CShader_RegisterShader_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -105,13 +105,13 @@ pub fn (o &CShaderRegisterShaderRequest) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.shaders {
-		res << zzz_vproto_internal_pack_cshaderregistershaderrequestshader(x, 4)
+		res << zzz_vproto_internal_pack_cshader_registershader_request_shader(x, 4)
 	}
 	return res
 }
 
-pub fn cshaderregistershaderrequest_unpack(buf []byte) ?CShaderRegisterShaderRequest {
-	mut res := CShaderRegisterShaderRequest{}
+pub fn cshader_registershader_request_unpack(buf []byte) ?CShader_RegisterShader_Request {
+	mut res := CShader_RegisterShader_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -141,7 +141,7 @@ pub fn cshaderregistershaderrequest_unpack(buf []byte) ?CShaderRegisterShaderReq
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cshaderregistershaderrequestshader(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cshader_registershader_request_shader(cur_buf,
 					tag_wiretype.wire_type)?
 				res.shaders << v
 				i = ii
@@ -162,30 +162,30 @@ pub fn cshaderregistershaderrequest_unpack(buf []byte) ?CShaderRegisterShaderReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshaderregistershaderrequest() CShaderRegisterShaderRequest {
-	return CShaderRegisterShaderRequest{}
+pub fn zzz_vproto_internal_new_cshader_registershader_request() CShader_RegisterShader_Request {
+	return CShader_RegisterShader_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshaderregistershaderrequest(o CShaderRegisterShaderRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_registershader_request(o CShader_RegisterShader_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshaderregistershaderrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderRegisterShaderRequest) {
+pub fn zzz_vproto_internal_unpack_cshader_registershader_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_RegisterShader_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshaderregistershaderrequest_unpack(v)?
+	mut unpacked := cshader_registershader_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderRegisterShaderResponse {
+pub struct CShader_RegisterShader_Response {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
 	requested_codeids []u32
 }
 
-pub fn (o &CShaderRegisterShaderResponse) pack() []byte {
+pub fn (o &CShader_RegisterShader_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.requested_codeids {
@@ -194,8 +194,8 @@ pub fn (o &CShaderRegisterShaderResponse) pack() []byte {
 	return res
 }
 
-pub fn cshaderregistershaderresponse_unpack(buf []byte) ?CShaderRegisterShaderResponse {
-	mut res := CShaderRegisterShaderResponse{}
+pub fn cshader_registershader_response_unpack(buf []byte) ?CShader_RegisterShader_Response {
+	mut res := CShader_RegisterShader_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -227,23 +227,23 @@ pub fn cshaderregistershaderresponse_unpack(buf []byte) ?CShaderRegisterShaderRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshaderregistershaderresponse() CShaderRegisterShaderResponse {
-	return CShaderRegisterShaderResponse{}
+pub fn zzz_vproto_internal_new_cshader_registershader_response() CShader_RegisterShader_Response {
+	return CShader_RegisterShader_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshaderregistershaderresponse(o CShaderRegisterShaderResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_registershader_response(o CShader_RegisterShader_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshaderregistershaderresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderRegisterShaderResponse) {
+pub fn zzz_vproto_internal_unpack_cshader_registershader_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_RegisterShader_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshaderregistershaderresponse_unpack(v)?
+	mut unpacked := cshader_registershader_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderSendShaderRequestShaderCode {
+pub struct CShader_SendShader_Request_ShaderCode {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -253,7 +253,7 @@ pub mut:
 	has_shader_code     bool
 }
 
-pub fn (o &CShaderSendShaderRequestShaderCode) pack() []byte {
+pub fn (o &CShader_SendShader_Request_ShaderCode) pack() []byte {
 	mut res := []byte{}
 	if o.has_shader_code_sha {
 		res << vproto.pack_bytes_field(o.shader_code_sha, 1)
@@ -264,8 +264,8 @@ pub fn (o &CShaderSendShaderRequestShaderCode) pack() []byte {
 	return res
 }
 
-pub fn cshadersendshaderrequestshadercode_unpack(buf []byte) ?CShaderSendShaderRequestShaderCode {
-	mut res := CShaderSendShaderRequestShaderCode{}
+pub fn cshader_sendshader_request_shadercode_unpack(buf []byte) ?CShader_SendShader_Request_ShaderCode {
+	mut res := CShader_SendShader_Request_ShaderCode{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -303,45 +303,45 @@ pub fn cshadersendshaderrequestshadercode_unpack(buf []byte) ?CShaderSendShaderR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshadersendshaderrequestshadercode() CShaderSendShaderRequestShaderCode {
-	return CShaderSendShaderRequestShaderCode{}
+pub fn zzz_vproto_internal_new_cshader_sendshader_request_shadercode() CShader_SendShader_Request_ShaderCode {
+	return CShader_SendShader_Request_ShaderCode{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshadersendshaderrequestshadercode(o CShaderSendShaderRequestShaderCode, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_sendshader_request_shadercode(o CShader_SendShader_Request_ShaderCode, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshadersendshaderrequestshadercode(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderSendShaderRequestShaderCode) {
+pub fn zzz_vproto_internal_unpack_cshader_sendshader_request_shadercode(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_SendShader_Request_ShaderCode) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshadersendshaderrequestshadercode_unpack(v)?
+	mut unpacked := cshader_sendshader_request_shadercode_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderSendShaderRequest {
+pub struct CShader_SendShader_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
 	has_appid      bool
-	shaders        []CShaderSendShaderRequestShaderCode
+	shaders        []CShader_SendShader_Request_ShaderCode
 }
 
-pub fn (o &CShaderSendShaderRequest) pack() []byte {
+pub fn (o &CShader_SendShader_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
 	for _, x in o.shaders {
-		res << zzz_vproto_internal_pack_cshadersendshaderrequestshadercode(x, 2)
+		res << zzz_vproto_internal_pack_cshader_sendshader_request_shadercode(x, 2)
 	}
 	return res
 }
 
-pub fn cshadersendshaderrequest_unpack(buf []byte) ?CShaderSendShaderRequest {
-	mut res := CShaderSendShaderRequest{}
+pub fn cshader_sendshader_request_unpack(buf []byte) ?CShader_SendShader_Request {
+	mut res := CShader_SendShader_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -359,7 +359,7 @@ pub fn cshadersendshaderrequest_unpack(buf []byte) ?CShaderSendShaderRequest {
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cshadersendshaderrequestshadercode(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cshader_sendshader_request_shadercode(cur_buf,
 					tag_wiretype.wire_type)?
 				res.shaders << v
 				i = ii
@@ -380,55 +380,55 @@ pub fn cshadersendshaderrequest_unpack(buf []byte) ?CShaderSendShaderRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshadersendshaderrequest() CShaderSendShaderRequest {
-	return CShaderSendShaderRequest{}
+pub fn zzz_vproto_internal_new_cshader_sendshader_request() CShader_SendShader_Request {
+	return CShader_SendShader_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshadersendshaderrequest(o CShaderSendShaderRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_sendshader_request(o CShader_SendShader_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshadersendshaderrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderSendShaderRequest) {
+pub fn zzz_vproto_internal_unpack_cshader_sendshader_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_SendShader_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshadersendshaderrequest_unpack(v)?
+	mut unpacked := cshader_sendshader_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderSendShaderResponse {
+pub struct CShader_SendShader_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CShaderSendShaderResponse) pack() []byte {
+pub fn (o &CShader_SendShader_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cshadersendshaderresponse_unpack(buf []byte) ?CShaderSendShaderResponse {
-	res := CShaderSendShaderResponse{}
+pub fn cshader_sendshader_response_unpack(buf []byte) ?CShader_SendShader_Response {
+	res := CShader_SendShader_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshadersendshaderresponse() CShaderSendShaderResponse {
-	return CShaderSendShaderResponse{}
+pub fn zzz_vproto_internal_new_cshader_sendshader_response() CShader_SendShader_Response {
+	return CShader_SendShader_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshadersendshaderresponse(o CShaderSendShaderResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_sendshader_response(o CShader_SendShader_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshadersendshaderresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderSendShaderResponse) {
+pub fn zzz_vproto_internal_unpack_cshader_sendshader_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_SendShader_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshadersendshaderresponse_unpack(v)?
+	mut unpacked := cshader_sendshader_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderGetBucketManifestRequest {
+pub struct CShader_GetBucketManifest_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -440,7 +440,7 @@ pub mut:
 	has_driver_desc bool
 }
 
-pub fn (o &CShaderGetBucketManifestRequest) pack() []byte {
+pub fn (o &CShader_GetBucketManifest_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -454,8 +454,8 @@ pub fn (o &CShaderGetBucketManifestRequest) pack() []byte {
 	return res
 }
 
-pub fn cshadergetbucketmanifestrequest_unpack(buf []byte) ?CShaderGetBucketManifestRequest {
-	mut res := CShaderGetBucketManifestRequest{}
+pub fn cshader_getbucketmanifest_request_unpack(buf []byte) ?CShader_GetBucketManifest_Request {
+	mut res := CShader_GetBucketManifest_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -499,23 +499,23 @@ pub fn cshadergetbucketmanifestrequest_unpack(buf []byte) ?CShaderGetBucketManif
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshadergetbucketmanifestrequest() CShaderGetBucketManifestRequest {
-	return CShaderGetBucketManifestRequest{}
+pub fn zzz_vproto_internal_new_cshader_getbucketmanifest_request() CShader_GetBucketManifest_Request {
+	return CShader_GetBucketManifest_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshadergetbucketmanifestrequest(o CShaderGetBucketManifestRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_getbucketmanifest_request(o CShader_GetBucketManifest_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshadergetbucketmanifestrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderGetBucketManifestRequest) {
+pub fn zzz_vproto_internal_unpack_cshader_getbucketmanifest_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_GetBucketManifest_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshadergetbucketmanifestrequest_unpack(v)?
+	mut unpacked := cshader_getbucketmanifest_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CShaderGetBucketManifestResponse {
+pub struct CShader_GetBucketManifest_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -527,7 +527,7 @@ pub mut:
 	has_bucketid   bool
 }
 
-pub fn (o &CShaderGetBucketManifestResponse) pack() []byte {
+pub fn (o &CShader_GetBucketManifest_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_manifestid {
 		res << vproto.pack_uint64_field(o.manifestid, 1)
@@ -541,8 +541,8 @@ pub fn (o &CShaderGetBucketManifestResponse) pack() []byte {
 	return res
 }
 
-pub fn cshadergetbucketmanifestresponse_unpack(buf []byte) ?CShaderGetBucketManifestResponse {
-	mut res := CShaderGetBucketManifestResponse{}
+pub fn cshader_getbucketmanifest_response_unpack(buf []byte) ?CShader_GetBucketManifest_Response {
+	mut res := CShader_GetBucketManifest_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -586,18 +586,18 @@ pub fn cshadergetbucketmanifestresponse_unpack(buf []byte) ?CShaderGetBucketMani
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cshadergetbucketmanifestresponse() CShaderGetBucketManifestResponse {
-	return CShaderGetBucketManifestResponse{}
+pub fn zzz_vproto_internal_new_cshader_getbucketmanifest_response() CShader_GetBucketManifest_Response {
+	return CShader_GetBucketManifest_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cshadergetbucketmanifestresponse(o CShaderGetBucketManifestResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cshader_getbucketmanifest_response(o CShader_GetBucketManifest_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cshadergetbucketmanifestresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CShaderGetBucketManifestResponse) {
+pub fn zzz_vproto_internal_unpack_cshader_getbucketmanifest_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CShader_GetBucketManifest_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cshadergetbucketmanifestresponse_unpack(v)?
+	mut unpacked := cshader_getbucketmanifest_response_unpack(v)?
 	return i, unpacked
 }

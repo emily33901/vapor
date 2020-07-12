@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CContentBuilderInitDepotBuildRequest {
+pub struct CContentBuilder_InitDepotBuild_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -17,7 +17,7 @@ pub mut:
 	has_for_local_cs    bool
 }
 
-pub fn (o &CContentBuilderInitDepotBuildRequest) pack() []byte {
+pub fn (o &CContentBuilder_InitDepotBuild_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -34,8 +34,8 @@ pub fn (o &CContentBuilderInitDepotBuildRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuilderinitdepotbuildrequest_unpack(buf []byte) ?CContentBuilderInitDepotBuildRequest {
-	mut res := CContentBuilderInitDepotBuildRequest{}
+pub fn ccontentbuilder_initdepotbuild_request_unpack(buf []byte) ?CContentBuilder_InitDepotBuild_Request {
+	mut res := CContentBuilder_InitDepotBuild_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -85,23 +85,23 @@ pub fn ccontentbuilderinitdepotbuildrequest_unpack(buf []byte) ?CContentBuilderI
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuilderinitdepotbuildrequest() CContentBuilderInitDepotBuildRequest {
-	return CContentBuilderInitDepotBuildRequest{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_initdepotbuild_request() CContentBuilder_InitDepotBuild_Request {
+	return CContentBuilder_InitDepotBuild_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuilderinitdepotbuildrequest(o CContentBuilderInitDepotBuildRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_initdepotbuild_request(o CContentBuilder_InitDepotBuild_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuilderinitdepotbuildrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderInitDepotBuildRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_initdepotbuild_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_InitDepotBuild_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuilderinitdepotbuildrequest_unpack(v)?
+	mut unpacked := ccontentbuilder_initdepotbuild_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderInitDepotBuildResponse {
+pub struct CContentBuilder_InitDepotBuild_Response {
 mut:
 	unknown_fields                         []vproto.UnknownField
 pub mut:
@@ -129,7 +129,7 @@ pub mut:
 	has_offset_detection_max_distance_post bool
 }
 
-pub fn (o &CContentBuilderInitDepotBuildResponse) pack() []byte {
+pub fn (o &CContentBuilder_InitDepotBuild_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_baseline_manifestid {
 		res << vproto.pack_uint64_field(o.baseline_manifestid, 1)
@@ -167,8 +167,8 @@ pub fn (o &CContentBuilderInitDepotBuildResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuilderinitdepotbuildresponse_unpack(buf []byte) ?CContentBuilderInitDepotBuildResponse {
-	mut res := CContentBuilderInitDepotBuildResponse{}
+pub fn ccontentbuilder_initdepotbuild_response_unpack(buf []byte) ?CContentBuilder_InitDepotBuild_Response {
+	mut res := CContentBuilder_InitDepotBuild_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -260,23 +260,23 @@ pub fn ccontentbuilderinitdepotbuildresponse_unpack(buf []byte) ?CContentBuilder
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuilderinitdepotbuildresponse() CContentBuilderInitDepotBuildResponse {
-	return CContentBuilderInitDepotBuildResponse{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_initdepotbuild_response() CContentBuilder_InitDepotBuild_Response {
+	return CContentBuilder_InitDepotBuild_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuilderinitdepotbuildresponse(o CContentBuilderInitDepotBuildResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_initdepotbuild_response(o CContentBuilder_InitDepotBuild_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuilderinitdepotbuildresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderInitDepotBuildResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_initdepotbuild_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_InitDepotBuild_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuilderinitdepotbuildresponse_unpack(v)?
+	mut unpacked := ccontentbuilder_initdepotbuild_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderStartDepotUploadRequest {
+pub struct CContentBuilder_StartDepotUpload_Request {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -294,7 +294,7 @@ pub mut:
 	has_manifest_size       bool
 }
 
-pub fn (o &CContentBuilderStartDepotUploadRequest) pack() []byte {
+pub fn (o &CContentBuilder_StartDepotUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -317,8 +317,8 @@ pub fn (o &CContentBuilderStartDepotUploadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuilderstartdepotuploadrequest_unpack(buf []byte) ?CContentBuilderStartDepotUploadRequest {
-	mut res := CContentBuilderStartDepotUploadRequest{}
+pub fn ccontentbuilder_startdepotupload_request_unpack(buf []byte) ?CContentBuilder_StartDepotUpload_Request {
+	mut res := CContentBuilder_StartDepotUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -380,23 +380,23 @@ pub fn ccontentbuilderstartdepotuploadrequest_unpack(buf []byte) ?CContentBuilde
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuilderstartdepotuploadrequest() CContentBuilderStartDepotUploadRequest {
-	return CContentBuilderStartDepotUploadRequest{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_startdepotupload_request() CContentBuilder_StartDepotUpload_Request {
+	return CContentBuilder_StartDepotUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuilderstartdepotuploadrequest(o CContentBuilderStartDepotUploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_startdepotupload_request(o CContentBuilder_StartDepotUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuilderstartdepotuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderStartDepotUploadRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_startdepotupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_StartDepotUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuilderstartdepotuploadrequest_unpack(v)?
+	mut unpacked := ccontentbuilder_startdepotupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderStartDepotUploadResponse {
+pub struct CContentBuilder_StartDepotUpload_Response {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -404,7 +404,7 @@ pub mut:
 	has_depot_build_handle bool
 }
 
-pub fn (o &CContentBuilderStartDepotUploadResponse) pack() []byte {
+pub fn (o &CContentBuilder_StartDepotUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_depot_build_handle {
 		res << vproto.pack_uint64_field(o.depot_build_handle, 1)
@@ -412,8 +412,8 @@ pub fn (o &CContentBuilderStartDepotUploadResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuilderstartdepotuploadresponse_unpack(buf []byte) ?CContentBuilderStartDepotUploadResponse {
-	mut res := CContentBuilderStartDepotUploadResponse{}
+pub fn ccontentbuilder_startdepotupload_response_unpack(buf []byte) ?CContentBuilder_StartDepotUpload_Response {
+	mut res := CContentBuilder_StartDepotUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -445,23 +445,23 @@ pub fn ccontentbuilderstartdepotuploadresponse_unpack(buf []byte) ?CContentBuild
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuilderstartdepotuploadresponse() CContentBuilderStartDepotUploadResponse {
-	return CContentBuilderStartDepotUploadResponse{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_startdepotupload_response() CContentBuilder_StartDepotUpload_Response {
+	return CContentBuilder_StartDepotUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuilderstartdepotuploadresponse(o CContentBuilderStartDepotUploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_startdepotupload_response(o CContentBuilder_StartDepotUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuilderstartdepotuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderStartDepotUploadResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_startdepotupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_StartDepotUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuilderstartdepotuploadresponse_unpack(v)?
+	mut unpacked := ccontentbuilder_startdepotupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderGetMissingDepotChunksRequest {
+pub struct CContentBuilder_GetMissingDepotChunks_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -471,7 +471,7 @@ pub mut:
 	has_depot_build_handle bool
 }
 
-pub fn (o &CContentBuilderGetMissingDepotChunksRequest) pack() []byte {
+pub fn (o &CContentBuilder_GetMissingDepotChunks_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -482,8 +482,8 @@ pub fn (o &CContentBuilderGetMissingDepotChunksRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildergetmissingdepotchunksrequest_unpack(buf []byte) ?CContentBuilderGetMissingDepotChunksRequest {
-	mut res := CContentBuilderGetMissingDepotChunksRequest{}
+pub fn ccontentbuilder_getmissingdepotchunks_request_unpack(buf []byte) ?CContentBuilder_GetMissingDepotChunks_Request {
+	mut res := CContentBuilder_GetMissingDepotChunks_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -521,23 +521,23 @@ pub fn ccontentbuildergetmissingdepotchunksrequest_unpack(buf []byte) ?CContentB
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildergetmissingdepotchunksrequest() CContentBuilderGetMissingDepotChunksRequest {
-	return CContentBuilderGetMissingDepotChunksRequest{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_getmissingdepotchunks_request() CContentBuilder_GetMissingDepotChunks_Request {
+	return CContentBuilder_GetMissingDepotChunks_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildergetmissingdepotchunksrequest(o CContentBuilderGetMissingDepotChunksRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_getmissingdepotchunks_request(o CContentBuilder_GetMissingDepotChunks_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildergetmissingdepotchunksrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderGetMissingDepotChunksRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_getmissingdepotchunks_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_GetMissingDepotChunks_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildergetmissingdepotchunksrequest_unpack(v)?
+	mut unpacked := ccontentbuilder_getmissingdepotchunks_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderGetMissingDepotChunksResponseChunks {
+pub struct CContentBuilder_GetMissingDepotChunks_Response_Chunks {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -545,7 +545,7 @@ pub mut:
 	has_sha        bool
 }
 
-pub fn (o &CContentBuilderGetMissingDepotChunksResponseChunks) pack() []byte {
+pub fn (o &CContentBuilder_GetMissingDepotChunks_Response_Chunks) pack() []byte {
 	mut res := []byte{}
 	if o.has_sha {
 		res << vproto.pack_bytes_field(o.sha, 1)
@@ -553,8 +553,8 @@ pub fn (o &CContentBuilderGetMissingDepotChunksResponseChunks) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildergetmissingdepotchunksresponsechunks_unpack(buf []byte) ?CContentBuilderGetMissingDepotChunksResponseChunks {
-	mut res := CContentBuilderGetMissingDepotChunksResponseChunks{}
+pub fn ccontentbuilder_getmissingdepotchunks_response_chunks_unpack(buf []byte) ?CContentBuilder_GetMissingDepotChunks_Response_Chunks {
+	mut res := CContentBuilder_GetMissingDepotChunks_Response_Chunks{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -586,38 +586,38 @@ pub fn ccontentbuildergetmissingdepotchunksresponsechunks_unpack(buf []byte) ?CC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildergetmissingdepotchunksresponsechunks() CContentBuilderGetMissingDepotChunksResponseChunks {
-	return CContentBuilderGetMissingDepotChunksResponseChunks{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_getmissingdepotchunks_response_chunks() CContentBuilder_GetMissingDepotChunks_Response_Chunks {
+	return CContentBuilder_GetMissingDepotChunks_Response_Chunks{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildergetmissingdepotchunksresponsechunks(o CContentBuilderGetMissingDepotChunksResponseChunks, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_getmissingdepotchunks_response_chunks(o CContentBuilder_GetMissingDepotChunks_Response_Chunks, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildergetmissingdepotchunksresponsechunks(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderGetMissingDepotChunksResponseChunks) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_getmissingdepotchunks_response_chunks(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_GetMissingDepotChunks_Response_Chunks) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildergetmissingdepotchunksresponsechunks_unpack(v)?
+	mut unpacked := ccontentbuilder_getmissingdepotchunks_response_chunks_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderGetMissingDepotChunksResponse {
+pub struct CContentBuilder_GetMissingDepotChunks_Response {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
-	missing_chunks           []CContentBuilderGetMissingDepotChunksResponseChunks
+	missing_chunks           []CContentBuilder_GetMissingDepotChunks_Response_Chunks
 	total_missing_chunks     u32
 	has_total_missing_chunks bool
 	total_missing_bytes      u64
 	has_total_missing_bytes  bool
 }
 
-pub fn (o &CContentBuilderGetMissingDepotChunksResponse) pack() []byte {
+pub fn (o &CContentBuilder_GetMissingDepotChunks_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.missing_chunks {
-		res << zzz_vproto_internal_pack_ccontentbuildergetmissingdepotchunksresponsechunks(x, 1)
+		res << zzz_vproto_internal_pack_ccontentbuilder_getmissingdepotchunks_response_chunks(x, 1)
 	}
 	if o.has_total_missing_chunks {
 		res << vproto.pack_uint32_field(o.total_missing_chunks, 2)
@@ -628,8 +628,8 @@ pub fn (o &CContentBuilderGetMissingDepotChunksResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildergetmissingdepotchunksresponse_unpack(buf []byte) ?CContentBuilderGetMissingDepotChunksResponse {
-	mut res := CContentBuilderGetMissingDepotChunksResponse{}
+pub fn ccontentbuilder_getmissingdepotchunks_response_unpack(buf []byte) ?CContentBuilder_GetMissingDepotChunks_Response {
+	mut res := CContentBuilder_GetMissingDepotChunks_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -641,7 +641,7 @@ pub fn ccontentbuildergetmissingdepotchunksresponse_unpack(buf []byte) ?CContent
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccontentbuildergetmissingdepotchunksresponsechunks(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccontentbuilder_getmissingdepotchunks_response_chunks(cur_buf,
 					tag_wiretype.wire_type)?
 				res.missing_chunks << v
 				i = ii
@@ -674,23 +674,23 @@ pub fn ccontentbuildergetmissingdepotchunksresponse_unpack(buf []byte) ?CContent
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildergetmissingdepotchunksresponse() CContentBuilderGetMissingDepotChunksResponse {
-	return CContentBuilderGetMissingDepotChunksResponse{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_getmissingdepotchunks_response() CContentBuilder_GetMissingDepotChunks_Response {
+	return CContentBuilder_GetMissingDepotChunks_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildergetmissingdepotchunksresponse(o CContentBuilderGetMissingDepotChunksResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_getmissingdepotchunks_response(o CContentBuilder_GetMissingDepotChunks_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildergetmissingdepotchunksresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderGetMissingDepotChunksResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_getmissingdepotchunks_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_GetMissingDepotChunks_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildergetmissingdepotchunksresponse_unpack(v)?
+	mut unpacked := ccontentbuilder_getmissingdepotchunks_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderFinishDepotUploadRequest {
+pub struct CContentBuilder_FinishDepotUpload_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -700,7 +700,7 @@ pub mut:
 	has_depot_build_handle bool
 }
 
-pub fn (o &CContentBuilderFinishDepotUploadRequest) pack() []byte {
+pub fn (o &CContentBuilder_FinishDepotUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -711,8 +711,8 @@ pub fn (o &CContentBuilderFinishDepotUploadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuilderfinishdepotuploadrequest_unpack(buf []byte) ?CContentBuilderFinishDepotUploadRequest {
-	mut res := CContentBuilderFinishDepotUploadRequest{}
+pub fn ccontentbuilder_finishdepotupload_request_unpack(buf []byte) ?CContentBuilder_FinishDepotUpload_Request {
+	mut res := CContentBuilder_FinishDepotUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -750,23 +750,23 @@ pub fn ccontentbuilderfinishdepotuploadrequest_unpack(buf []byte) ?CContentBuild
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuilderfinishdepotuploadrequest() CContentBuilderFinishDepotUploadRequest {
-	return CContentBuilderFinishDepotUploadRequest{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_finishdepotupload_request() CContentBuilder_FinishDepotUpload_Request {
+	return CContentBuilder_FinishDepotUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuilderfinishdepotuploadrequest(o CContentBuilderFinishDepotUploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_finishdepotupload_request(o CContentBuilder_FinishDepotUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuilderfinishdepotuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderFinishDepotUploadRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_finishdepotupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_FinishDepotUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuilderfinishdepotuploadrequest_unpack(v)?
+	mut unpacked := ccontentbuilder_finishdepotupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderFinishDepotUploadResponse {
+pub struct CContentBuilder_FinishDepotUpload_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -776,7 +776,7 @@ pub mut:
 	has_prev_reused bool
 }
 
-pub fn (o &CContentBuilderFinishDepotUploadResponse) pack() []byte {
+pub fn (o &CContentBuilder_FinishDepotUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_manifestid {
 		res << vproto.pack_uint64_field(o.manifestid, 1)
@@ -787,8 +787,8 @@ pub fn (o &CContentBuilderFinishDepotUploadResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuilderfinishdepotuploadresponse_unpack(buf []byte) ?CContentBuilderFinishDepotUploadResponse {
-	mut res := CContentBuilderFinishDepotUploadResponse{}
+pub fn ccontentbuilder_finishdepotupload_response_unpack(buf []byte) ?CContentBuilder_FinishDepotUpload_Response {
+	mut res := CContentBuilder_FinishDepotUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -826,23 +826,23 @@ pub fn ccontentbuilderfinishdepotuploadresponse_unpack(buf []byte) ?CContentBuil
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuilderfinishdepotuploadresponse() CContentBuilderFinishDepotUploadResponse {
-	return CContentBuilderFinishDepotUploadResponse{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_finishdepotupload_response() CContentBuilder_FinishDepotUpload_Response {
+	return CContentBuilder_FinishDepotUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuilderfinishdepotuploadresponse(o CContentBuilderFinishDepotUploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_finishdepotupload_response(o CContentBuilder_FinishDepotUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuilderfinishdepotuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderFinishDepotUploadResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_finishdepotupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_FinishDepotUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuilderfinishdepotuploadresponse_unpack(v)?
+	mut unpacked := ccontentbuilder_finishdepotupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderCommitAppBuildRequestDepots {
+pub struct CContentBuilder_CommitAppBuild_Request_Depots {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -852,7 +852,7 @@ pub mut:
 	has_manifestid bool
 }
 
-pub fn (o &CContentBuilderCommitAppBuildRequestDepots) pack() []byte {
+pub fn (o &CContentBuilder_CommitAppBuild_Request_Depots) pack() []byte {
 	mut res := []byte{}
 	if o.has_depotid {
 		res << vproto.pack_uint32_field(o.depotid, 1)
@@ -863,8 +863,8 @@ pub fn (o &CContentBuilderCommitAppBuildRequestDepots) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildercommitappbuildrequestdepots_unpack(buf []byte) ?CContentBuilderCommitAppBuildRequestDepots {
-	mut res := CContentBuilderCommitAppBuildRequestDepots{}
+pub fn ccontentbuilder_commitappbuild_request_depots_unpack(buf []byte) ?CContentBuilder_CommitAppBuild_Request_Depots {
+	mut res := CContentBuilder_CommitAppBuild_Request_Depots{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -902,43 +902,43 @@ pub fn ccontentbuildercommitappbuildrequestdepots_unpack(buf []byte) ?CContentBu
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildercommitappbuildrequestdepots() CContentBuilderCommitAppBuildRequestDepots {
-	return CContentBuilderCommitAppBuildRequestDepots{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_commitappbuild_request_depots() CContentBuilder_CommitAppBuild_Request_Depots {
+	return CContentBuilder_CommitAppBuild_Request_Depots{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildercommitappbuildrequestdepots(o CContentBuilderCommitAppBuildRequestDepots, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_commitappbuild_request_depots(o CContentBuilder_CommitAppBuild_Request_Depots, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildercommitappbuildrequestdepots(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderCommitAppBuildRequestDepots) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_commitappbuild_request_depots(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_CommitAppBuild_Request_Depots) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildercommitappbuildrequestdepots_unpack(v)?
+	mut unpacked := ccontentbuilder_commitappbuild_request_depots_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderCommitAppBuildRequest {
+pub struct CContentBuilder_CommitAppBuild_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
 	appid           u32
 	has_appid       bool
-	depot_manifests []CContentBuilderCommitAppBuildRequestDepots
+	depot_manifests []CContentBuilder_CommitAppBuild_Request_Depots
 	build_notes     string
 	has_build_notes bool
 	live_branch     string
 	has_live_branch bool
 }
 
-pub fn (o &CContentBuilderCommitAppBuildRequest) pack() []byte {
+pub fn (o &CContentBuilder_CommitAppBuild_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
 	for _, x in o.depot_manifests {
-		res << zzz_vproto_internal_pack_ccontentbuildercommitappbuildrequestdepots(x, 2)
+		res << zzz_vproto_internal_pack_ccontentbuilder_commitappbuild_request_depots(x, 2)
 	}
 	if o.has_build_notes {
 		res << vproto.pack_string_field(o.build_notes, 4)
@@ -949,8 +949,8 @@ pub fn (o &CContentBuilderCommitAppBuildRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildercommitappbuildrequest_unpack(buf []byte) ?CContentBuilderCommitAppBuildRequest {
-	mut res := CContentBuilderCommitAppBuildRequest{}
+pub fn ccontentbuilder_commitappbuild_request_unpack(buf []byte) ?CContentBuilder_CommitAppBuild_Request {
+	mut res := CContentBuilder_CommitAppBuild_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -968,7 +968,7 @@ pub fn ccontentbuildercommitappbuildrequest_unpack(buf []byte) ?CContentBuilderC
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccontentbuildercommitappbuildrequestdepots(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccontentbuilder_commitappbuild_request_depots(cur_buf,
 					tag_wiretype.wire_type)?
 				res.depot_manifests << v
 				i = ii
@@ -1001,23 +1001,23 @@ pub fn ccontentbuildercommitappbuildrequest_unpack(buf []byte) ?CContentBuilderC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildercommitappbuildrequest() CContentBuilderCommitAppBuildRequest {
-	return CContentBuilderCommitAppBuildRequest{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_commitappbuild_request() CContentBuilder_CommitAppBuild_Request {
+	return CContentBuilder_CommitAppBuild_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildercommitappbuildrequest(o CContentBuilderCommitAppBuildRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_commitappbuild_request(o CContentBuilder_CommitAppBuild_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildercommitappbuildrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderCommitAppBuildRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_commitappbuild_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_CommitAppBuild_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildercommitappbuildrequest_unpack(v)?
+	mut unpacked := ccontentbuilder_commitappbuild_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderCommitAppBuildResponse {
+pub struct CContentBuilder_CommitAppBuild_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1025,7 +1025,7 @@ pub mut:
 	has_buildid    bool
 }
 
-pub fn (o &CContentBuilderCommitAppBuildResponse) pack() []byte {
+pub fn (o &CContentBuilder_CommitAppBuild_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_buildid {
 		res << vproto.pack_uint32_field(o.buildid, 1)
@@ -1033,8 +1033,8 @@ pub fn (o &CContentBuilderCommitAppBuildResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildercommitappbuildresponse_unpack(buf []byte) ?CContentBuilderCommitAppBuildResponse {
-	mut res := CContentBuilderCommitAppBuildResponse{}
+pub fn ccontentbuilder_commitappbuild_response_unpack(buf []byte) ?CContentBuilder_CommitAppBuild_Response {
+	mut res := CContentBuilder_CommitAppBuild_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1066,23 +1066,23 @@ pub fn ccontentbuildercommitappbuildresponse_unpack(buf []byte) ?CContentBuilder
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildercommitappbuildresponse() CContentBuilderCommitAppBuildResponse {
-	return CContentBuilderCommitAppBuildResponse{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_commitappbuild_response() CContentBuilder_CommitAppBuild_Response {
+	return CContentBuilder_CommitAppBuild_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildercommitappbuildresponse(o CContentBuilderCommitAppBuildResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_commitappbuild_response(o CContentBuilder_CommitAppBuild_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildercommitappbuildresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderCommitAppBuildResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_commitappbuild_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_CommitAppBuild_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildercommitappbuildresponse_unpack(v)?
+	mut unpacked := ccontentbuilder_commitappbuild_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderSignInstallScriptRequest {
+pub struct CContentBuilder_SignInstallScript_Request {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -1094,7 +1094,7 @@ pub mut:
 	has_install_script bool
 }
 
-pub fn (o &CContentBuilderSignInstallScriptRequest) pack() []byte {
+pub fn (o &CContentBuilder_SignInstallScript_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -1108,8 +1108,8 @@ pub fn (o &CContentBuilderSignInstallScriptRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildersigninstallscriptrequest_unpack(buf []byte) ?CContentBuilderSignInstallScriptRequest {
-	mut res := CContentBuilderSignInstallScriptRequest{}
+pub fn ccontentbuilder_signinstallscript_request_unpack(buf []byte) ?CContentBuilder_SignInstallScript_Request {
+	mut res := CContentBuilder_SignInstallScript_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1153,23 +1153,23 @@ pub fn ccontentbuildersigninstallscriptrequest_unpack(buf []byte) ?CContentBuild
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildersigninstallscriptrequest() CContentBuilderSignInstallScriptRequest {
-	return CContentBuilderSignInstallScriptRequest{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_signinstallscript_request() CContentBuilder_SignInstallScript_Request {
+	return CContentBuilder_SignInstallScript_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildersigninstallscriptrequest(o CContentBuilderSignInstallScriptRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_signinstallscript_request(o CContentBuilder_SignInstallScript_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildersigninstallscriptrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderSignInstallScriptRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_signinstallscript_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_SignInstallScript_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildersigninstallscriptrequest_unpack(v)?
+	mut unpacked := ccontentbuilder_signinstallscript_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentBuilderSignInstallScriptResponse {
+pub struct CContentBuilder_SignInstallScript_Response {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -1177,7 +1177,7 @@ pub mut:
 	has_signed_install_script bool
 }
 
-pub fn (o &CContentBuilderSignInstallScriptResponse) pack() []byte {
+pub fn (o &CContentBuilder_SignInstallScript_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_signed_install_script {
 		res << vproto.pack_string_field(o.signed_install_script, 1)
@@ -1185,8 +1185,8 @@ pub fn (o &CContentBuilderSignInstallScriptResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentbuildersigninstallscriptresponse_unpack(buf []byte) ?CContentBuilderSignInstallScriptResponse {
-	mut res := CContentBuilderSignInstallScriptResponse{}
+pub fn ccontentbuilder_signinstallscript_response_unpack(buf []byte) ?CContentBuilder_SignInstallScript_Response {
+	mut res := CContentBuilder_SignInstallScript_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1218,18 +1218,18 @@ pub fn ccontentbuildersigninstallscriptresponse_unpack(buf []byte) ?CContentBuil
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentbuildersigninstallscriptresponse() CContentBuilderSignInstallScriptResponse {
-	return CContentBuilderSignInstallScriptResponse{}
+pub fn zzz_vproto_internal_new_ccontentbuilder_signinstallscript_response() CContentBuilder_SignInstallScript_Response {
+	return CContentBuilder_SignInstallScript_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentbuildersigninstallscriptresponse(o CContentBuilderSignInstallScriptResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentbuilder_signinstallscript_response(o CContentBuilder_SignInstallScript_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentbuildersigninstallscriptresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilderSignInstallScriptResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentbuilder_signinstallscript_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentBuilder_SignInstallScript_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentbuildersigninstallscriptresponse_unpack(v)?
+	mut unpacked := ccontentbuilder_signinstallscript_response_unpack(v)?
 	return i, unpacked
 }

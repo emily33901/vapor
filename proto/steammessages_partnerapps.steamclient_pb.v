@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CPartnerAppsRequestUploadTokenRequest {
+pub struct CPartnerApps_RequestUploadToken_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -13,7 +13,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CPartnerAppsRequestUploadTokenRequest) pack() []byte {
+pub fn (o &CPartnerApps_RequestUploadToken_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_filename {
 		res << vproto.pack_string_field(o.filename, 1)
@@ -24,8 +24,8 @@ pub fn (o &CPartnerAppsRequestUploadTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsrequestuploadtokenrequest_unpack(buf []byte) ?CPartnerAppsRequestUploadTokenRequest {
-	mut res := CPartnerAppsRequestUploadTokenRequest{}
+pub fn cpartnerapps_requestuploadtoken_request_unpack(buf []byte) ?CPartnerApps_RequestUploadToken_Request {
+	mut res := CPartnerApps_RequestUploadToken_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,23 +63,23 @@ pub fn cpartnerappsrequestuploadtokenrequest_unpack(buf []byte) ?CPartnerAppsReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsrequestuploadtokenrequest() CPartnerAppsRequestUploadTokenRequest {
-	return CPartnerAppsRequestUploadTokenRequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_requestuploadtoken_request() CPartnerApps_RequestUploadToken_Request {
+	return CPartnerApps_RequestUploadToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsrequestuploadtokenrequest(o CPartnerAppsRequestUploadTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_requestuploadtoken_request(o CPartnerApps_RequestUploadToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsrequestuploadtokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsRequestUploadTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_requestuploadtoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_RequestUploadToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsrequestuploadtokenrequest_unpack(v)?
+	mut unpacked := cpartnerapps_requestuploadtoken_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsRequestUploadTokenResponse {
+pub struct CPartnerApps_RequestUploadToken_Response {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -91,7 +91,7 @@ pub mut:
 	has_routing_id   bool
 }
 
-pub fn (o &CPartnerAppsRequestUploadTokenResponse) pack() []byte {
+pub fn (o &CPartnerApps_RequestUploadToken_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_token {
 		res << vproto.pack_uint64_field(o.upload_token, 1)
@@ -105,8 +105,8 @@ pub fn (o &CPartnerAppsRequestUploadTokenResponse) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsrequestuploadtokenresponse_unpack(buf []byte) ?CPartnerAppsRequestUploadTokenResponse {
-	mut res := CPartnerAppsRequestUploadTokenResponse{}
+pub fn cpartnerapps_requestuploadtoken_response_unpack(buf []byte) ?CPartnerApps_RequestUploadToken_Response {
+	mut res := CPartnerApps_RequestUploadToken_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -150,23 +150,23 @@ pub fn cpartnerappsrequestuploadtokenresponse_unpack(buf []byte) ?CPartnerAppsRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsrequestuploadtokenresponse() CPartnerAppsRequestUploadTokenResponse {
-	return CPartnerAppsRequestUploadTokenResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_requestuploadtoken_response() CPartnerApps_RequestUploadToken_Response {
+	return CPartnerApps_RequestUploadToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsrequestuploadtokenresponse(o CPartnerAppsRequestUploadTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_requestuploadtoken_response(o CPartnerApps_RequestUploadToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsrequestuploadtokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsRequestUploadTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_requestuploadtoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_RequestUploadToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsrequestuploadtokenresponse_unpack(v)?
+	mut unpacked := cpartnerapps_requestuploadtoken_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadRequest {
+pub struct CPartnerApps_FinishUpload_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -178,7 +178,7 @@ pub mut:
 	has_app_id       bool
 }
 
-pub fn (o &CPartnerAppsFinishUploadRequest) pack() []byte {
+pub fn (o &CPartnerApps_FinishUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_token {
 		res << vproto.pack_uint64_field(o.upload_token, 1)
@@ -192,8 +192,8 @@ pub fn (o &CPartnerAppsFinishUploadRequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsfinishuploadrequest_unpack(buf []byte) ?CPartnerAppsFinishUploadRequest {
-	mut res := CPartnerAppsFinishUploadRequest{}
+pub fn cpartnerapps_finishupload_request_unpack(buf []byte) ?CPartnerApps_FinishUpload_Request {
+	mut res := CPartnerApps_FinishUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -237,23 +237,23 @@ pub fn cpartnerappsfinishuploadrequest_unpack(buf []byte) ?CPartnerAppsFinishUpl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploadrequest() CPartnerAppsFinishUploadRequest {
-	return CPartnerAppsFinishUploadRequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishupload_request() CPartnerApps_FinishUpload_Request {
+	return CPartnerApps_FinishUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploadrequest(o CPartnerAppsFinishUploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishupload_request(o CPartnerApps_FinishUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadRequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploadrequest_unpack(v)?
+	mut unpacked := cpartnerapps_finishupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadKVsignResponse {
+pub struct CPartnerApps_FinishUploadKVSign_Response {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -261,7 +261,7 @@ pub mut:
 	has_signed_installscript bool
 }
 
-pub fn (o &CPartnerAppsFinishUploadKVsignResponse) pack() []byte {
+pub fn (o &CPartnerApps_FinishUploadKVSign_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_signed_installscript {
 		res << vproto.pack_string_field(o.signed_installscript, 1)
@@ -269,8 +269,8 @@ pub fn (o &CPartnerAppsFinishUploadKVsignResponse) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsfinishuploadkvsignresponse_unpack(buf []byte) ?CPartnerAppsFinishUploadKVsignResponse {
-	mut res := CPartnerAppsFinishUploadKVsignResponse{}
+pub fn cpartnerapps_finishuploadkvsign_response_unpack(buf []byte) ?CPartnerApps_FinishUploadKVSign_Response {
+	mut res := CPartnerApps_FinishUploadKVSign_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -302,23 +302,23 @@ pub fn cpartnerappsfinishuploadkvsignresponse_unpack(buf []byte) ?CPartnerAppsFi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploadkvsignresponse() CPartnerAppsFinishUploadKVsignResponse {
-	return CPartnerAppsFinishUploadKVsignResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishuploadkvsign_response() CPartnerApps_FinishUploadKVSign_Response {
+	return CPartnerApps_FinishUploadKVSign_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploadkvsignresponse(o CPartnerAppsFinishUploadKVsignResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploadkvsign_response(o CPartnerApps_FinishUploadKVSign_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploadkvsignresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadKVsignResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploadkvsign_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadKVSign_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploadkvsignresponse_unpack(v)?
+	mut unpacked := cpartnerapps_finishuploadkvsign_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadLegacyDRmrequest {
+pub struct CPartnerApps_FinishUploadLegacyDRM_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -334,7 +334,7 @@ pub mut:
 	has_tool_name    bool
 }
 
-pub fn (o &CPartnerAppsFinishUploadLegacyDRmrequest) pack() []byte {
+pub fn (o &CPartnerApps_FinishUploadLegacyDRM_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_token {
 		res << vproto.pack_uint64_field(o.upload_token, 1)
@@ -354,8 +354,8 @@ pub fn (o &CPartnerAppsFinishUploadLegacyDRmrequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsfinishuploadlegacydrmrequest_unpack(buf []byte) ?CPartnerAppsFinishUploadLegacyDRmrequest {
-	mut res := CPartnerAppsFinishUploadLegacyDRmrequest{}
+pub fn cpartnerapps_finishuploadlegacydrm_request_unpack(buf []byte) ?CPartnerApps_FinishUploadLegacyDRM_Request {
+	mut res := CPartnerApps_FinishUploadLegacyDRM_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -411,23 +411,23 @@ pub fn cpartnerappsfinishuploadlegacydrmrequest_unpack(buf []byte) ?CPartnerApps
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploadlegacydrmrequest() CPartnerAppsFinishUploadLegacyDRmrequest {
-	return CPartnerAppsFinishUploadLegacyDRmrequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishuploadlegacydrm_request() CPartnerApps_FinishUploadLegacyDRM_Request {
+	return CPartnerApps_FinishUploadLegacyDRM_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploadlegacydrmrequest(o CPartnerAppsFinishUploadLegacyDRmrequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploadlegacydrm_request(o CPartnerApps_FinishUploadLegacyDRM_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploadlegacydrmrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadLegacyDRmrequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploadlegacydrm_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadLegacyDRM_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploadlegacydrmrequest_unpack(v)?
+	mut unpacked := cpartnerapps_finishuploadlegacydrm_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadLegacyDRmresponse {
+pub struct CPartnerApps_FinishUploadLegacyDRM_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -435,7 +435,7 @@ pub mut:
 	has_file_id    bool
 }
 
-pub fn (o &CPartnerAppsFinishUploadLegacyDRmresponse) pack() []byte {
+pub fn (o &CPartnerApps_FinishUploadLegacyDRM_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_file_id {
 		res << vproto.pack_string_field(o.file_id, 1)
@@ -443,8 +443,8 @@ pub fn (o &CPartnerAppsFinishUploadLegacyDRmresponse) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsfinishuploadlegacydrmresponse_unpack(buf []byte) ?CPartnerAppsFinishUploadLegacyDRmresponse {
-	mut res := CPartnerAppsFinishUploadLegacyDRmresponse{}
+pub fn cpartnerapps_finishuploadlegacydrm_response_unpack(buf []byte) ?CPartnerApps_FinishUploadLegacyDRM_Response {
+	mut res := CPartnerApps_FinishUploadLegacyDRM_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -476,55 +476,55 @@ pub fn cpartnerappsfinishuploadlegacydrmresponse_unpack(buf []byte) ?CPartnerApp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploadlegacydrmresponse() CPartnerAppsFinishUploadLegacyDRmresponse {
-	return CPartnerAppsFinishUploadLegacyDRmresponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishuploadlegacydrm_response() CPartnerApps_FinishUploadLegacyDRM_Response {
+	return CPartnerApps_FinishUploadLegacyDRM_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploadlegacydrmresponse(o CPartnerAppsFinishUploadLegacyDRmresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploadlegacydrm_response(o CPartnerApps_FinishUploadLegacyDRM_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploadlegacydrmresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadLegacyDRmresponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploadlegacydrm_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadLegacyDRM_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploadlegacydrmresponse_unpack(v)?
+	mut unpacked := cpartnerapps_finishuploadlegacydrm_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadResponse {
+pub struct CPartnerApps_FinishUpload_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPartnerAppsFinishUploadResponse) pack() []byte {
+pub fn (o &CPartnerApps_FinishUpload_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cpartnerappsfinishuploadresponse_unpack(buf []byte) ?CPartnerAppsFinishUploadResponse {
-	res := CPartnerAppsFinishUploadResponse{}
+pub fn cpartnerapps_finishupload_response_unpack(buf []byte) ?CPartnerApps_FinishUpload_Response {
+	res := CPartnerApps_FinishUpload_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploadresponse() CPartnerAppsFinishUploadResponse {
-	return CPartnerAppsFinishUploadResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishupload_response() CPartnerApps_FinishUpload_Response {
+	return CPartnerApps_FinishUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploadresponse(o CPartnerAppsFinishUploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishupload_response(o CPartnerApps_FinishUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploadresponse_unpack(v)?
+	mut unpacked := cpartnerapps_finishupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadDepotRequest {
+pub struct CPartnerApps_FinishUploadDepot_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -540,7 +540,7 @@ pub mut:
 	has_build_flags  bool
 }
 
-pub fn (o &CPartnerAppsFinishUploadDepotRequest) pack() []byte {
+pub fn (o &CPartnerApps_FinishUploadDepot_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_token {
 		res << vproto.pack_uint64_field(o.upload_token, 1)
@@ -560,8 +560,8 @@ pub fn (o &CPartnerAppsFinishUploadDepotRequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsfinishuploaddepotrequest_unpack(buf []byte) ?CPartnerAppsFinishUploadDepotRequest {
-	mut res := CPartnerAppsFinishUploadDepotRequest{}
+pub fn cpartnerapps_finishuploaddepot_request_unpack(buf []byte) ?CPartnerApps_FinishUploadDepot_Request {
+	mut res := CPartnerApps_FinishUploadDepot_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -617,55 +617,55 @@ pub fn cpartnerappsfinishuploaddepotrequest_unpack(buf []byte) ?CPartnerAppsFini
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploaddepotrequest() CPartnerAppsFinishUploadDepotRequest {
-	return CPartnerAppsFinishUploadDepotRequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishuploaddepot_request() CPartnerApps_FinishUploadDepot_Request {
+	return CPartnerApps_FinishUploadDepot_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploaddepotrequest(o CPartnerAppsFinishUploadDepotRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploaddepot_request(o CPartnerApps_FinishUploadDepot_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploaddepotrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadDepotRequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploaddepot_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadDepot_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploaddepotrequest_unpack(v)?
+	mut unpacked := cpartnerapps_finishuploaddepot_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFinishUploadDepotResponse {
+pub struct CPartnerApps_FinishUploadDepot_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPartnerAppsFinishUploadDepotResponse) pack() []byte {
+pub fn (o &CPartnerApps_FinishUploadDepot_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cpartnerappsfinishuploaddepotresponse_unpack(buf []byte) ?CPartnerAppsFinishUploadDepotResponse {
-	res := CPartnerAppsFinishUploadDepotResponse{}
+pub fn cpartnerapps_finishuploaddepot_response_unpack(buf []byte) ?CPartnerApps_FinishUploadDepot_Response {
+	res := CPartnerApps_FinishUploadDepot_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinishuploaddepotresponse() CPartnerAppsFinishUploadDepotResponse {
-	return CPartnerAppsFinishUploadDepotResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finishuploaddepot_response() CPartnerApps_FinishUploadDepot_Response {
+	return CPartnerApps_FinishUploadDepot_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinishuploaddepotresponse(o CPartnerAppsFinishUploadDepotResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploaddepot_response(o CPartnerApps_FinishUploadDepot_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinishuploaddepotresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFinishUploadDepotResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploaddepot_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadDepot_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinishuploaddepotresponse_unpack(v)?
+	mut unpacked := cpartnerapps_finishuploaddepot_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsGetDepotBuildResultRequest {
+pub struct CPartnerApps_GetDepotBuildResult_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -675,7 +675,7 @@ pub mut:
 	has_routing_id   bool
 }
 
-pub fn (o &CPartnerAppsGetDepotBuildResultRequest) pack() []byte {
+pub fn (o &CPartnerApps_GetDepotBuildResult_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_token {
 		res << vproto.pack_uint64_field(o.upload_token, 1)
@@ -686,8 +686,8 @@ pub fn (o &CPartnerAppsGetDepotBuildResultRequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsgetdepotbuildresultrequest_unpack(buf []byte) ?CPartnerAppsGetDepotBuildResultRequest {
-	mut res := CPartnerAppsGetDepotBuildResultRequest{}
+pub fn cpartnerapps_getdepotbuildresult_request_unpack(buf []byte) ?CPartnerApps_GetDepotBuildResult_Request {
+	mut res := CPartnerApps_GetDepotBuildResult_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -725,23 +725,23 @@ pub fn cpartnerappsgetdepotbuildresultrequest_unpack(buf []byte) ?CPartnerAppsGe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsgetdepotbuildresultrequest() CPartnerAppsGetDepotBuildResultRequest {
-	return CPartnerAppsGetDepotBuildResultRequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_getdepotbuildresult_request() CPartnerApps_GetDepotBuildResult_Request {
+	return CPartnerApps_GetDepotBuildResult_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsgetdepotbuildresultrequest(o CPartnerAppsGetDepotBuildResultRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_getdepotbuildresult_request(o CPartnerApps_GetDepotBuildResult_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsgetdepotbuildresultrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsGetDepotBuildResultRequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_getdepotbuildresult_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_GetDepotBuildResult_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsgetdepotbuildresultrequest_unpack(v)?
+	mut unpacked := cpartnerapps_getdepotbuildresult_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsGetDepotBuildResultResponse {
+pub struct CPartnerApps_GetDepotBuildResult_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -751,7 +751,7 @@ pub mut:
 	has_error_msg   bool
 }
 
-pub fn (o &CPartnerAppsGetDepotBuildResultResponse) pack() []byte {
+pub fn (o &CPartnerApps_GetDepotBuildResult_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_manifest_id {
 		res << vproto.pack_uint64_field(o.manifest_id, 1)
@@ -762,8 +762,8 @@ pub fn (o &CPartnerAppsGetDepotBuildResultResponse) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsgetdepotbuildresultresponse_unpack(buf []byte) ?CPartnerAppsGetDepotBuildResultResponse {
-	mut res := CPartnerAppsGetDepotBuildResultResponse{}
+pub fn cpartnerapps_getdepotbuildresult_response_unpack(buf []byte) ?CPartnerApps_GetDepotBuildResult_Response {
+	mut res := CPartnerApps_GetDepotBuildResult_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -801,23 +801,23 @@ pub fn cpartnerappsgetdepotbuildresultresponse_unpack(buf []byte) ?CPartnerAppsG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsgetdepotbuildresultresponse() CPartnerAppsGetDepotBuildResultResponse {
-	return CPartnerAppsGetDepotBuildResultResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_getdepotbuildresult_response() CPartnerApps_GetDepotBuildResult_Response {
+	return CPartnerApps_GetDepotBuildResult_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsgetdepotbuildresultresponse(o CPartnerAppsGetDepotBuildResultResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_getdepotbuildresult_response(o CPartnerApps_GetDepotBuildResult_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsgetdepotbuildresultresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsGetDepotBuildResultResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_getdepotbuildresult_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_GetDepotBuildResult_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsgetdepotbuildresultresponse_unpack(v)?
+	mut unpacked := cpartnerapps_getdepotbuildresult_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFindDRmuploadsRequest {
+pub struct CPartnerApps_FindDRMUploads_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -825,7 +825,7 @@ pub mut:
 	has_app_id     bool
 }
 
-pub fn (o &CPartnerAppsFindDRmuploadsRequest) pack() []byte {
+pub fn (o &CPartnerApps_FindDRMUploads_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_int32_field(o.app_id, 1)
@@ -833,8 +833,8 @@ pub fn (o &CPartnerAppsFindDRmuploadsRequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsfinddrmuploadsrequest_unpack(buf []byte) ?CPartnerAppsFindDRmuploadsRequest {
-	mut res := CPartnerAppsFindDRmuploadsRequest{}
+pub fn cpartnerapps_finddrmuploads_request_unpack(buf []byte) ?CPartnerApps_FindDRMUploads_Request {
+	mut res := CPartnerApps_FindDRMUploads_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -866,23 +866,23 @@ pub fn cpartnerappsfinddrmuploadsrequest_unpack(buf []byte) ?CPartnerAppsFindDRm
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinddrmuploadsrequest() CPartnerAppsFindDRmuploadsRequest {
-	return CPartnerAppsFindDRmuploadsRequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finddrmuploads_request() CPartnerApps_FindDRMUploads_Request {
+	return CPartnerApps_FindDRMUploads_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinddrmuploadsrequest(o CPartnerAppsFindDRmuploadsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finddrmuploads_request(o CPartnerApps_FindDRMUploads_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinddrmuploadsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFindDRmuploadsRequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finddrmuploads_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FindDRMUploads_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinddrmuploadsrequest_unpack(v)?
+	mut unpacked := cpartnerapps_finddrmuploads_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsExistingDRmupload {
+pub struct CPartnerApps_ExistingDRMUpload {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -904,7 +904,7 @@ pub mut:
 	has_orig_file_id  bool
 }
 
-pub fn (o &CPartnerAppsExistingDRmupload) pack() []byte {
+pub fn (o &CPartnerApps_ExistingDRMUpload) pack() []byte {
 	mut res := []byte{}
 	if o.has_file_id {
 		res << vproto.pack_string_field(o.file_id, 1)
@@ -933,8 +933,8 @@ pub fn (o &CPartnerAppsExistingDRmupload) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsexistingdrmupload_unpack(buf []byte) ?CPartnerAppsExistingDRmupload {
-	mut res := CPartnerAppsExistingDRmupload{}
+pub fn cpartnerapps_existingdrmupload_unpack(buf []byte) ?CPartnerApps_ExistingDRMUpload {
+	mut res := CPartnerApps_ExistingDRMUpload{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1008,40 +1008,40 @@ pub fn cpartnerappsexistingdrmupload_unpack(buf []byte) ?CPartnerAppsExistingDRm
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsexistingdrmupload() CPartnerAppsExistingDRmupload {
-	return CPartnerAppsExistingDRmupload{}
+pub fn zzz_vproto_internal_new_cpartnerapps_existingdrmupload() CPartnerApps_ExistingDRMUpload {
+	return CPartnerApps_ExistingDRMUpload{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsexistingdrmupload(o CPartnerAppsExistingDRmupload, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_existingdrmupload(o CPartnerApps_ExistingDRMUpload, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsexistingdrmupload(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsExistingDRmupload) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_existingdrmupload(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_ExistingDRMUpload) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsexistingdrmupload_unpack(v)?
+	mut unpacked := cpartnerapps_existingdrmupload_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsFindDRmuploadsResponse {
+pub struct CPartnerApps_FindDRMUploads_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	uploads        []CPartnerAppsExistingDRmupload
+	uploads        []CPartnerApps_ExistingDRMUpload
 }
 
-pub fn (o &CPartnerAppsFindDRmuploadsResponse) pack() []byte {
+pub fn (o &CPartnerApps_FindDRMUploads_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.uploads {
-		res << zzz_vproto_internal_pack_cpartnerappsexistingdrmupload(x, 1)
+		res << zzz_vproto_internal_pack_cpartnerapps_existingdrmupload(x, 1)
 	}
 	return res
 }
 
-pub fn cpartnerappsfinddrmuploadsresponse_unpack(buf []byte) ?CPartnerAppsFindDRmuploadsResponse {
-	mut res := CPartnerAppsFindDRmuploadsResponse{}
+pub fn cpartnerapps_finddrmuploads_response_unpack(buf []byte) ?CPartnerApps_FindDRMUploads_Response {
+	mut res := CPartnerApps_FindDRMUploads_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1053,7 +1053,7 @@ pub fn cpartnerappsfinddrmuploadsresponse_unpack(buf []byte) ?CPartnerAppsFindDR
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cpartnerappsexistingdrmupload(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cpartnerapps_existingdrmupload(cur_buf,
 					tag_wiretype.wire_type)?
 				res.uploads << v
 				i = ii
@@ -1074,23 +1074,23 @@ pub fn cpartnerappsfinddrmuploadsresponse_unpack(buf []byte) ?CPartnerAppsFindDR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsfinddrmuploadsresponse() CPartnerAppsFindDRmuploadsResponse {
-	return CPartnerAppsFindDRmuploadsResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_finddrmuploads_response() CPartnerApps_FindDRMUploads_Response {
+	return CPartnerApps_FindDRMUploads_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsfinddrmuploadsresponse(o CPartnerAppsFindDRmuploadsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_finddrmuploads_response(o CPartnerApps_FindDRMUploads_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsfinddrmuploadsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsFindDRmuploadsResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_finddrmuploads_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FindDRMUploads_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsfinddrmuploadsresponse_unpack(v)?
+	mut unpacked := cpartnerapps_finddrmuploads_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsDownloadRequest {
+pub struct CPartnerApps_Download_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1100,7 +1100,7 @@ pub mut:
 	has_app_id     bool
 }
 
-pub fn (o &CPartnerAppsDownloadRequest) pack() []byte {
+pub fn (o &CPartnerApps_Download_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_file_id {
 		res << vproto.pack_string_field(o.file_id, 1)
@@ -1111,8 +1111,8 @@ pub fn (o &CPartnerAppsDownloadRequest) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsdownloadrequest_unpack(buf []byte) ?CPartnerAppsDownloadRequest {
-	mut res := CPartnerAppsDownloadRequest{}
+pub fn cpartnerapps_download_request_unpack(buf []byte) ?CPartnerApps_Download_Request {
+	mut res := CPartnerApps_Download_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1150,23 +1150,23 @@ pub fn cpartnerappsdownloadrequest_unpack(buf []byte) ?CPartnerAppsDownloadReque
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsdownloadrequest() CPartnerAppsDownloadRequest {
-	return CPartnerAppsDownloadRequest{}
+pub fn zzz_vproto_internal_new_cpartnerapps_download_request() CPartnerApps_Download_Request {
+	return CPartnerApps_Download_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsdownloadrequest(o CPartnerAppsDownloadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_download_request(o CPartnerApps_Download_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsdownloadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsDownloadRequest) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_download_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_Download_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsdownloadrequest_unpack(v)?
+	mut unpacked := cpartnerapps_download_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPartnerAppsDownloadResponse {
+pub struct CPartnerApps_Download_Response {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1176,7 +1176,7 @@ pub mut:
 	has_app_id       bool
 }
 
-pub fn (o &CPartnerAppsDownloadResponse) pack() []byte {
+pub fn (o &CPartnerApps_Download_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_download_url {
 		res << vproto.pack_string_field(o.download_url, 1)
@@ -1187,8 +1187,8 @@ pub fn (o &CPartnerAppsDownloadResponse) pack() []byte {
 	return res
 }
 
-pub fn cpartnerappsdownloadresponse_unpack(buf []byte) ?CPartnerAppsDownloadResponse {
-	mut res := CPartnerAppsDownloadResponse{}
+pub fn cpartnerapps_download_response_unpack(buf []byte) ?CPartnerApps_Download_Response {
+	mut res := CPartnerApps_Download_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1226,18 +1226,18 @@ pub fn cpartnerappsdownloadresponse_unpack(buf []byte) ?CPartnerAppsDownloadResp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cpartnerappsdownloadresponse() CPartnerAppsDownloadResponse {
-	return CPartnerAppsDownloadResponse{}
+pub fn zzz_vproto_internal_new_cpartnerapps_download_response() CPartnerApps_Download_Response {
+	return CPartnerApps_Download_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cpartnerappsdownloadresponse(o CPartnerAppsDownloadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cpartnerapps_download_response(o CPartnerApps_Download_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cpartnerappsdownloadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerAppsDownloadResponse) {
+pub fn zzz_vproto_internal_unpack_cpartnerapps_download_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_Download_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerappsdownloadresponse_unpack(v)?
+	mut unpacked := cpartnerapps_download_response_unpack(v)?
 	return i, unpacked
 }

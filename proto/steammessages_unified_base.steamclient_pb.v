@@ -16,9 +16,31 @@ fn zzz_vproto_internal_pack_eprotoexecutionsite(e EProtoExecutionSite, num u32) 
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eprotoexecutionsite_packed(e []EProtoExecutionSite, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eprotoexecutionsite(buf []byte, tag_wiretype vproto.WireType) ?(int, EProtoExecutionSite) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EProtoExecutionSite(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eprotoexecutionsite_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EProtoExecutionSite) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct NoResponse {

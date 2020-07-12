@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CMsgTestMessageToClientRequest {
+pub struct CMsgTest_MessageToClient_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11,7 +11,7 @@ pub mut:
 	has_some_text  bool
 }
 
-pub fn (o &CMsgTestMessageToClientRequest) pack() []byte {
+pub fn (o &CMsgTest_MessageToClient_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_some_text {
 		res << vproto.pack_string_field(o.some_text, 1)
@@ -19,8 +19,8 @@ pub fn (o &CMsgTestMessageToClientRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgtestmessagetoclientrequest_unpack(buf []byte) ?CMsgTestMessageToClientRequest {
-	mut res := CMsgTestMessageToClientRequest{}
+pub fn cmsgtest_messagetoclient_request_unpack(buf []byte) ?CMsgTest_MessageToClient_Request {
+	mut res := CMsgTest_MessageToClient_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -52,23 +52,23 @@ pub fn cmsgtestmessagetoclientrequest_unpack(buf []byte) ?CMsgTestMessageToClien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgtestmessagetoclientrequest() CMsgTestMessageToClientRequest {
-	return CMsgTestMessageToClientRequest{}
+pub fn zzz_vproto_internal_new_cmsgtest_messagetoclient_request() CMsgTest_MessageToClient_Request {
+	return CMsgTest_MessageToClient_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgtestmessagetoclientrequest(o CMsgTestMessageToClientRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgtest_messagetoclient_request(o CMsgTest_MessageToClient_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgtestmessagetoclientrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTestMessageToClientRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoclient_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToClient_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtestmessagetoclientrequest_unpack(v)?
+	mut unpacked := cmsgtest_messagetoclient_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgTestMessageToClientResponse {
+pub struct CMsgTest_MessageToClient_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -76,7 +76,7 @@ pub mut:
 	has_some_text  bool
 }
 
-pub fn (o &CMsgTestMessageToClientResponse) pack() []byte {
+pub fn (o &CMsgTest_MessageToClient_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_some_text {
 		res << vproto.pack_string_field(o.some_text, 1)
@@ -84,8 +84,8 @@ pub fn (o &CMsgTestMessageToClientResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgtestmessagetoclientresponse_unpack(buf []byte) ?CMsgTestMessageToClientResponse {
-	mut res := CMsgTestMessageToClientResponse{}
+pub fn cmsgtest_messagetoclient_response_unpack(buf []byte) ?CMsgTest_MessageToClient_Response {
+	mut res := CMsgTest_MessageToClient_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -117,23 +117,23 @@ pub fn cmsgtestmessagetoclientresponse_unpack(buf []byte) ?CMsgTestMessageToClie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgtestmessagetoclientresponse() CMsgTestMessageToClientResponse {
-	return CMsgTestMessageToClientResponse{}
+pub fn zzz_vproto_internal_new_cmsgtest_messagetoclient_response() CMsgTest_MessageToClient_Response {
+	return CMsgTest_MessageToClient_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgtestmessagetoclientresponse(o CMsgTestMessageToClientResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgtest_messagetoclient_response(o CMsgTest_MessageToClient_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgtestmessagetoclientresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTestMessageToClientResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoclient_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToClient_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtestmessagetoclientresponse_unpack(v)?
+	mut unpacked := cmsgtest_messagetoclient_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgTestNotifyClientNotification {
+pub struct CMsgTest_NotifyClient_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -141,7 +141,7 @@ pub mut:
 	has_some_text  bool
 }
 
-pub fn (o &CMsgTestNotifyClientNotification) pack() []byte {
+pub fn (o &CMsgTest_NotifyClient_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_some_text {
 		res << vproto.pack_string_field(o.some_text, 1)
@@ -149,8 +149,8 @@ pub fn (o &CMsgTestNotifyClientNotification) pack() []byte {
 	return res
 }
 
-pub fn cmsgtestnotifyclientnotification_unpack(buf []byte) ?CMsgTestNotifyClientNotification {
-	mut res := CMsgTestNotifyClientNotification{}
+pub fn cmsgtest_notifyclient_notification_unpack(buf []byte) ?CMsgTest_NotifyClient_Notification {
+	mut res := CMsgTest_NotifyClient_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -182,23 +182,23 @@ pub fn cmsgtestnotifyclientnotification_unpack(buf []byte) ?CMsgTestNotifyClient
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgtestnotifyclientnotification() CMsgTestNotifyClientNotification {
-	return CMsgTestNotifyClientNotification{}
+pub fn zzz_vproto_internal_new_cmsgtest_notifyclient_notification() CMsgTest_NotifyClient_Notification {
+	return CMsgTest_NotifyClient_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgtestnotifyclientnotification(o CMsgTestNotifyClientNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgtest_notifyclient_notification(o CMsgTest_NotifyClient_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgtestnotifyclientnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTestNotifyClientNotification) {
+pub fn zzz_vproto_internal_unpack_cmsgtest_notifyclient_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_NotifyClient_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtestnotifyclientnotification_unpack(v)?
+	mut unpacked := cmsgtest_notifyclient_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgTestMessageToServerRequest {
+pub struct CMsgTest_MessageToServer_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -206,7 +206,7 @@ pub mut:
 	has_some_text  bool
 }
 
-pub fn (o &CMsgTestMessageToServerRequest) pack() []byte {
+pub fn (o &CMsgTest_MessageToServer_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_some_text {
 		res << vproto.pack_string_field(o.some_text, 1)
@@ -214,8 +214,8 @@ pub fn (o &CMsgTestMessageToServerRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgtestmessagetoserverrequest_unpack(buf []byte) ?CMsgTestMessageToServerRequest {
-	mut res := CMsgTestMessageToServerRequest{}
+pub fn cmsgtest_messagetoserver_request_unpack(buf []byte) ?CMsgTest_MessageToServer_Request {
+	mut res := CMsgTest_MessageToServer_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -247,23 +247,23 @@ pub fn cmsgtestmessagetoserverrequest_unpack(buf []byte) ?CMsgTestMessageToServe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgtestmessagetoserverrequest() CMsgTestMessageToServerRequest {
-	return CMsgTestMessageToServerRequest{}
+pub fn zzz_vproto_internal_new_cmsgtest_messagetoserver_request() CMsgTest_MessageToServer_Request {
+	return CMsgTest_MessageToServer_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgtestmessagetoserverrequest(o CMsgTestMessageToServerRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgtest_messagetoserver_request(o CMsgTest_MessageToServer_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgtestmessagetoserverrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTestMessageToServerRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoserver_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToServer_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtestmessagetoserverrequest_unpack(v)?
+	mut unpacked := cmsgtest_messagetoserver_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgTestMessageToServerResponse {
+pub struct CMsgTest_MessageToServer_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -271,7 +271,7 @@ pub mut:
 	has_some_text  bool
 }
 
-pub fn (o &CMsgTestMessageToServerResponse) pack() []byte {
+pub fn (o &CMsgTest_MessageToServer_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_some_text {
 		res << vproto.pack_string_field(o.some_text, 1)
@@ -279,8 +279,8 @@ pub fn (o &CMsgTestMessageToServerResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgtestmessagetoserverresponse_unpack(buf []byte) ?CMsgTestMessageToServerResponse {
-	mut res := CMsgTestMessageToServerResponse{}
+pub fn cmsgtest_messagetoserver_response_unpack(buf []byte) ?CMsgTest_MessageToServer_Response {
+	mut res := CMsgTest_MessageToServer_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -312,23 +312,23 @@ pub fn cmsgtestmessagetoserverresponse_unpack(buf []byte) ?CMsgTestMessageToServ
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgtestmessagetoserverresponse() CMsgTestMessageToServerResponse {
-	return CMsgTestMessageToServerResponse{}
+pub fn zzz_vproto_internal_new_cmsgtest_messagetoserver_response() CMsgTest_MessageToServer_Response {
+	return CMsgTest_MessageToServer_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgtestmessagetoserverresponse(o CMsgTestMessageToServerResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgtest_messagetoserver_response(o CMsgTest_MessageToServer_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgtestmessagetoserverresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTestMessageToServerResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoserver_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToServer_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtestmessagetoserverresponse_unpack(v)?
+	mut unpacked := cmsgtest_messagetoserver_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgTestNotifyServerNotification {
+pub struct CMsgTest_NotifyServer_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -336,7 +336,7 @@ pub mut:
 	has_some_text  bool
 }
 
-pub fn (o &CMsgTestNotifyServerNotification) pack() []byte {
+pub fn (o &CMsgTest_NotifyServer_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_some_text {
 		res << vproto.pack_string_field(o.some_text, 1)
@@ -344,8 +344,8 @@ pub fn (o &CMsgTestNotifyServerNotification) pack() []byte {
 	return res
 }
 
-pub fn cmsgtestnotifyservernotification_unpack(buf []byte) ?CMsgTestNotifyServerNotification {
-	mut res := CMsgTestNotifyServerNotification{}
+pub fn cmsgtest_notifyserver_notification_unpack(buf []byte) ?CMsgTest_NotifyServer_Notification {
+	mut res := CMsgTest_NotifyServer_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -377,18 +377,18 @@ pub fn cmsgtestnotifyservernotification_unpack(buf []byte) ?CMsgTestNotifyServer
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgtestnotifyservernotification() CMsgTestNotifyServerNotification {
-	return CMsgTestNotifyServerNotification{}
+pub fn zzz_vproto_internal_new_cmsgtest_notifyserver_notification() CMsgTest_NotifyServer_Notification {
+	return CMsgTest_NotifyServer_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgtestnotifyservernotification(o CMsgTestNotifyServerNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgtest_notifyserver_notification(o CMsgTest_NotifyServer_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgtestnotifyservernotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTestNotifyServerNotification) {
+pub fn zzz_vproto_internal_unpack_cmsgtest_notifyserver_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_NotifyServer_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtestnotifyservernotification_unpack(v)?
+	mut unpacked := cmsgtest_notifyserver_notification_unpack(v)?
 	return i, unpacked
 }

@@ -4,7 +4,7 @@ module proto
 import emily33901.vproto
 
 [_allow_multiple_values]
-enum EMmslobbyStatus {
+enum EMMSLobbyStatus {
 	k_emmslobbystatusinvalid = 0
 	k_emmslobbystatusexists = 1
 	k_emmslobbystatusdoesnotexist = 2
@@ -12,17 +12,39 @@ enum EMmslobbyStatus {
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_emmslobbystatus(e EMmslobbyStatus, num u32) []byte {
+fn zzz_vproto_internal_pack_emmslobbystatus(e EMMSLobbyStatus, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_emmslobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, EMmslobbyStatus) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, EMmslobbyStatus(v)
+fn zzz_vproto_internal_pack_emmslobbystatus_packed(e []EMMSLobbyStatus, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
 }
 
-pub struct CMsgClientUDsp2PSessionStarted {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_emmslobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, EMMSLobbyStatus) {
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	return i, EMMSLobbyStatus(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_emmslobbystatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EMMSLobbyStatus) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CMsgClientUDSP2PSessionStarted {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -32,7 +54,7 @@ pub mut:
 	has_appid          bool
 }
 
-pub fn (o &CMsgClientUDsp2PSessionStarted) pack() []byte {
+pub fn (o &CMsgClientUDSP2PSessionStarted) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid_remote {
 		res << vproto.pack_64bit_field(o.steamid_remote, 1)
@@ -43,8 +65,8 @@ pub fn (o &CMsgClientUDsp2PSessionStarted) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientudsp2psessionstarted_unpack(buf []byte) ?CMsgClientUDsp2PSessionStarted {
-	mut res := CMsgClientUDsp2PSessionStarted{}
+pub fn cmsgclientudsp2psessionstarted_unpack(buf []byte) ?CMsgClientUDSP2PSessionStarted {
+	mut res := CMsgClientUDSP2PSessionStarted{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -82,23 +104,23 @@ pub fn cmsgclientudsp2psessionstarted_unpack(buf []byte) ?CMsgClientUDsp2PSessio
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientudsp2psessionstarted() CMsgClientUDsp2PSessionStarted {
-	return CMsgClientUDsp2PSessionStarted{}
+pub fn zzz_vproto_internal_new_cmsgclientudsp2psessionstarted() CMsgClientUDSP2PSessionStarted {
+	return CMsgClientUDSP2PSessionStarted{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientudsp2psessionstarted(o CMsgClientUDsp2PSessionStarted, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientudsp2psessionstarted(o CMsgClientUDSP2PSessionStarted, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientudsp2psessionstarted(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUDsp2PSessionStarted) {
+pub fn zzz_vproto_internal_unpack_cmsgclientudsp2psessionstarted(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUDSP2PSessionStarted) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientudsp2psessionstarted_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUDsp2PSessionEnded {
+pub struct CMsgClientUDSP2PSessionEnded {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -124,7 +146,7 @@ pub mut:
 	has_time_to_connect_ms bool
 }
 
-pub fn (o &CMsgClientUDsp2PSessionEnded) pack() []byte {
+pub fn (o &CMsgClientUDSP2PSessionEnded) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid_remote {
 		res << vproto.pack_64bit_field(o.steamid_remote, 1)
@@ -159,8 +181,8 @@ pub fn (o &CMsgClientUDsp2PSessionEnded) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientudsp2psessionended_unpack(buf []byte) ?CMsgClientUDsp2PSessionEnded {
-	mut res := CMsgClientUDsp2PSessionEnded{}
+pub fn cmsgclientudsp2psessionended_unpack(buf []byte) ?CMsgClientUDSP2PSessionEnded {
+	mut res := CMsgClientUDSP2PSessionEnded{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -246,17 +268,17 @@ pub fn cmsgclientudsp2psessionended_unpack(buf []byte) ?CMsgClientUDsp2PSessionE
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientudsp2psessionended() CMsgClientUDsp2PSessionEnded {
-	return CMsgClientUDsp2PSessionEnded{}
+pub fn zzz_vproto_internal_new_cmsgclientudsp2psessionended() CMsgClientUDSP2PSessionEnded {
+	return CMsgClientUDSP2PSessionEnded{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientudsp2psessionended(o CMsgClientUDsp2PSessionEnded, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientudsp2psessionended(o CMsgClientUDSP2PSessionEnded, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientudsp2psessionended(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUDsp2PSessionEnded) {
+pub fn zzz_vproto_internal_unpack_cmsgclientudsp2psessionended(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUDSP2PSessionEnded) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientudsp2psessionended_unpack(v)?
 	return i, unpacked
@@ -491,7 +513,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientticketauthcomplete(buf []byte, tag_w
 	return i, unpacked
 }
 
-pub struct CMsgClientCMlist {
+pub struct CMsgClientCMList {
 mut:
 	unknown_fields                   []vproto.UnknownField
 pub mut:
@@ -502,7 +524,7 @@ pub mut:
 	has_percent_default_to_websocket bool
 }
 
-pub fn (o &CMsgClientCMlist) pack() []byte {
+pub fn (o &CMsgClientCMList) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.cm_addresses {
@@ -522,8 +544,8 @@ pub fn (o &CMsgClientCMlist) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientcmlist_unpack(buf []byte) ?CMsgClientCMlist {
-	mut res := CMsgClientCMlist{}
+pub fn cmsgclientcmlist_unpack(buf []byte) ?CMsgClientCMList {
+	mut res := CMsgClientCMList{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -573,17 +595,17 @@ pub fn cmsgclientcmlist_unpack(buf []byte) ?CMsgClientCMlist {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientcmlist() CMsgClientCMlist {
-	return CMsgClientCMlist{}
+pub fn zzz_vproto_internal_new_cmsgclientcmlist() CMsgClientCMList {
+	return CMsgClientCMList{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientcmlist(o CMsgClientCMlist, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientcmlist(o CMsgClientCMList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientcmlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientCMlist) {
+pub fn zzz_vproto_internal_unpack_cmsgclientcmlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientCMList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientcmlist_unpack(v)?
 	return i, unpacked
@@ -1426,7 +1448,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientgameconnecttokens(buf []byte, tag_wi
 	return i, unpacked
 }
 
-pub struct CMsgGSserverType {
+pub struct CMsgGSServerType {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
@@ -1446,7 +1468,7 @@ pub mut:
 	has_game_query_port            bool
 }
 
-pub fn (o &CMsgGSserverType) pack() []byte {
+pub fn (o &CMsgGSServerType) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id_served {
 		res << vproto.pack_uint32_field(o.app_id_served, 1)
@@ -1472,8 +1494,8 @@ pub fn (o &CMsgGSserverType) pack() []byte {
 	return res
 }
 
-pub fn cmsggsservertype_unpack(buf []byte) ?CMsgGSserverType {
-	mut res := CMsgGSserverType{}
+pub fn cmsggsservertype_unpack(buf []byte) ?CMsgGSServerType {
+	mut res := CMsgGSServerType{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1541,23 +1563,23 @@ pub fn cmsggsservertype_unpack(buf []byte) ?CMsgGSserverType {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsservertype() CMsgGSserverType {
-	return CMsgGSserverType{}
+pub fn zzz_vproto_internal_new_cmsggsservertype() CMsgGSServerType {
+	return CMsgGSServerType{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsservertype(o CMsgGSserverType, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsservertype(o CMsgGSServerType, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsservertype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSserverType) {
+pub fn zzz_vproto_internal_unpack_cmsggsservertype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSServerType) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsservertype_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSstatusReply {
+pub struct CMsgGSStatusReply {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1565,7 +1587,7 @@ pub mut:
 	has_is_secure  bool
 }
 
-pub fn (o &CMsgGSstatusReply) pack() []byte {
+pub fn (o &CMsgGSStatusReply) pack() []byte {
 	mut res := []byte{}
 	if o.has_is_secure {
 		res << vproto.pack_bool_field(o.is_secure, 1)
@@ -1573,8 +1595,8 @@ pub fn (o &CMsgGSstatusReply) pack() []byte {
 	return res
 }
 
-pub fn cmsggsstatusreply_unpack(buf []byte) ?CMsgGSstatusReply {
-	mut res := CMsgGSstatusReply{}
+pub fn cmsggsstatusreply_unpack(buf []byte) ?CMsgGSStatusReply {
+	mut res := CMsgGSStatusReply{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1606,23 +1628,23 @@ pub fn cmsggsstatusreply_unpack(buf []byte) ?CMsgGSstatusReply {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsstatusreply() CMsgGSstatusReply {
-	return CMsgGSstatusReply{}
+pub fn zzz_vproto_internal_new_cmsggsstatusreply() CMsgGSStatusReply {
+	return CMsgGSStatusReply{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsstatusreply(o CMsgGSstatusReply, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsstatusreply(o CMsgGSStatusReply, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsstatusreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSstatusReply) {
+pub fn zzz_vproto_internal_unpack_cmsggsstatusreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSStatusReply) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsstatusreply_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSplayerListPlayer {
+pub struct CMsgGSPlayerList_Player {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -1632,11 +1654,11 @@ pub mut:
 	has_deprecated_public_ip bool
 	token                    []byte
 	has_token                bool
-	public_ip                CMsgIPaddress
+	public_ip                CMsgIPAddress
 	has_public_ip            bool
 }
 
-pub fn (o &CMsgGSplayerListPlayer) pack() []byte {
+pub fn (o &CMsgGSPlayerList_Player) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_uint64_field(o.steam_id, 1)
@@ -1653,8 +1675,8 @@ pub fn (o &CMsgGSplayerListPlayer) pack() []byte {
 	return res
 }
 
-pub fn cmsggsplayerlistplayer_unpack(buf []byte) ?CMsgGSplayerListPlayer {
-	mut res := CMsgGSplayerListPlayer{}
+pub fn cmsggsplayerlist_player_unpack(buf []byte) ?CMsgGSPlayerList_Player {
+	mut res := CMsgGSPlayerList_Player{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1704,40 +1726,40 @@ pub fn cmsggsplayerlistplayer_unpack(buf []byte) ?CMsgGSplayerListPlayer {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsplayerlistplayer() CMsgGSplayerListPlayer {
-	return CMsgGSplayerListPlayer{}
+pub fn zzz_vproto_internal_new_cmsggsplayerlist_player() CMsgGSPlayerList_Player {
+	return CMsgGSPlayerList_Player{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsplayerlistplayer(o CMsgGSplayerListPlayer, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsplayerlist_player(o CMsgGSPlayerList_Player, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsplayerlistplayer(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSplayerListPlayer) {
+pub fn zzz_vproto_internal_unpack_cmsggsplayerlist_player(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSPlayerList_Player) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsplayerlistplayer_unpack(v)?
+	mut unpacked := cmsggsplayerlist_player_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSplayerList {
+pub struct CMsgGSPlayerList {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	players        []CMsgGSplayerListPlayer
+	players        []CMsgGSPlayerList_Player
 }
 
-pub fn (o &CMsgGSplayerList) pack() []byte {
+pub fn (o &CMsgGSPlayerList) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.players {
-		res << zzz_vproto_internal_pack_cmsggsplayerlistplayer(x, 1)
+		res << zzz_vproto_internal_pack_cmsggsplayerlist_player(x, 1)
 	}
 	return res
 }
 
-pub fn cmsggsplayerlist_unpack(buf []byte) ?CMsgGSplayerList {
-	mut res := CMsgGSplayerList{}
+pub fn cmsggsplayerlist_unpack(buf []byte) ?CMsgGSPlayerList {
+	mut res := CMsgGSPlayerList{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1749,7 +1771,7 @@ pub fn cmsggsplayerlist_unpack(buf []byte) ?CMsgGSplayerList {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsggsplayerlistplayer(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsggsplayerlist_player(cur_buf, tag_wiretype.wire_type)?
 				res.players << v
 				i = ii
 			}
@@ -1769,23 +1791,23 @@ pub fn cmsggsplayerlist_unpack(buf []byte) ?CMsgGSplayerList {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsplayerlist() CMsgGSplayerList {
-	return CMsgGSplayerList{}
+pub fn zzz_vproto_internal_new_cmsggsplayerlist() CMsgGSPlayerList {
+	return CMsgGSPlayerList{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsplayerlist(o CMsgGSplayerList, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsplayerlist(o CMsgGSPlayerList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsplayerlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSplayerList) {
+pub fn zzz_vproto_internal_unpack_cmsggsplayerlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSPlayerList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsplayerlist_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSuserPlaying {
+pub struct CMsgGSUserPlaying {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -1795,11 +1817,11 @@ pub mut:
 	has_deprecated_public_ip bool
 	token                    []byte
 	has_token                bool
-	public_ip                CMsgIPaddress
+	public_ip                CMsgIPAddress
 	has_public_ip            bool
 }
 
-pub fn (o &CMsgGSuserPlaying) pack() []byte {
+pub fn (o &CMsgGSUserPlaying) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -1816,8 +1838,8 @@ pub fn (o &CMsgGSuserPlaying) pack() []byte {
 	return res
 }
 
-pub fn cmsggsuserplaying_unpack(buf []byte) ?CMsgGSuserPlaying {
-	mut res := CMsgGSuserPlaying{}
+pub fn cmsggsuserplaying_unpack(buf []byte) ?CMsgGSUserPlaying {
+	mut res := CMsgGSUserPlaying{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1867,23 +1889,23 @@ pub fn cmsggsuserplaying_unpack(buf []byte) ?CMsgGSuserPlaying {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsuserplaying() CMsgGSuserPlaying {
-	return CMsgGSuserPlaying{}
+pub fn zzz_vproto_internal_new_cmsggsuserplaying() CMsgGSUserPlaying {
+	return CMsgGSUserPlaying{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsuserplaying(o CMsgGSuserPlaying, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsuserplaying(o CMsgGSUserPlaying, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsuserplaying(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSuserPlaying) {
+pub fn zzz_vproto_internal_unpack_cmsggsuserplaying(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSUserPlaying) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsuserplaying_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSdisconnectNotice {
+pub struct CMsgGSDisconnectNotice {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1891,7 +1913,7 @@ pub mut:
 	has_steam_id   bool
 }
 
-pub fn (o &CMsgGSdisconnectNotice) pack() []byte {
+pub fn (o &CMsgGSDisconnectNotice) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -1899,8 +1921,8 @@ pub fn (o &CMsgGSdisconnectNotice) pack() []byte {
 	return res
 }
 
-pub fn cmsggsdisconnectnotice_unpack(buf []byte) ?CMsgGSdisconnectNotice {
-	mut res := CMsgGSdisconnectNotice{}
+pub fn cmsggsdisconnectnotice_unpack(buf []byte) ?CMsgGSDisconnectNotice {
+	mut res := CMsgGSDisconnectNotice{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1932,23 +1954,23 @@ pub fn cmsggsdisconnectnotice_unpack(buf []byte) ?CMsgGSdisconnectNotice {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsdisconnectnotice() CMsgGSdisconnectNotice {
-	return CMsgGSdisconnectNotice{}
+pub fn zzz_vproto_internal_new_cmsggsdisconnectnotice() CMsgGSDisconnectNotice {
+	return CMsgGSDisconnectNotice{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsdisconnectnotice(o CMsgGSdisconnectNotice, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsdisconnectnotice(o CMsgGSDisconnectNotice, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsdisconnectnotice(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSdisconnectNotice) {
+pub fn zzz_vproto_internal_unpack_cmsggsdisconnectnotice(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSDisconnectNotice) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsdisconnectnotice_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientGamesPlayedGamePlayed {
+pub struct CMsgClientGamesPlayed_GamePlayed {
 mut:
 	unknown_fields                       []vproto.UnknownField
 pub mut:
@@ -1996,13 +2018,13 @@ pub mut:
 	has_launch_source                    bool
 	vr_hmd_runtime                       u32
 	has_vr_hmd_runtime                   bool
-	game_ip_address                      CMsgIPaddress
+	game_ip_address                      CMsgIPAddress
 	has_game_ip_address                  bool
 	controller_connection_type           u32
 	has_controller_connection_type       bool
 }
 
-pub fn (o &CMsgClientGamesPlayedGamePlayed) pack() []byte {
+pub fn (o &CMsgClientGamesPlayed_GamePlayed) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id_gs {
 		res << vproto.pack_uint64_field(o.steam_id_gs, 1)
@@ -2079,8 +2101,8 @@ pub fn (o &CMsgClientGamesPlayedGamePlayed) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientgamesplayedgameplayed_unpack(buf []byte) ?CMsgClientGamesPlayedGamePlayed {
-	mut res := CMsgClientGamesPlayedGamePlayed{}
+pub fn cmsgclientgamesplayed_gameplayed_unpack(buf []byte) ?CMsgClientGamesPlayed_GamePlayed {
+	mut res := CMsgClientGamesPlayed_GamePlayed{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2250,19 +2272,19 @@ pub fn cmsgclientgamesplayedgameplayed_unpack(buf []byte) ?CMsgClientGamesPlayed
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientgamesplayedgameplayed() CMsgClientGamesPlayedGamePlayed {
-	return CMsgClientGamesPlayedGamePlayed{}
+pub fn zzz_vproto_internal_new_cmsgclientgamesplayed_gameplayed() CMsgClientGamesPlayed_GamePlayed {
+	return CMsgClientGamesPlayed_GamePlayed{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientgamesplayedgameplayed(o CMsgClientGamesPlayedGamePlayed, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientgamesplayed_gameplayed(o CMsgClientGamesPlayed_GamePlayed, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientgamesplayedgameplayed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGamesPlayedGamePlayed) {
+pub fn zzz_vproto_internal_unpack_cmsgclientgamesplayed_gameplayed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGamesPlayed_GamePlayed) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgamesplayedgameplayed_unpack(v)?
+	mut unpacked := cmsgclientgamesplayed_gameplayed_unpack(v)?
 	return i, unpacked
 }
 
@@ -2270,7 +2292,7 @@ pub struct CMsgClientGamesPlayed {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
-	games_played              []CMsgClientGamesPlayedGamePlayed
+	games_played              []CMsgClientGamesPlayed_GamePlayed
 	client_os_type            u32
 	has_client_os_type        bool
 	cloud_gaming_platform     u32
@@ -2281,7 +2303,7 @@ pub fn (o &CMsgClientGamesPlayed) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.games_played {
-		res << zzz_vproto_internal_pack_cmsgclientgamesplayedgameplayed(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientgamesplayed_gameplayed(x, 1)
 	}
 	if o.has_client_os_type {
 		res << vproto.pack_uint32_field(o.client_os_type, 2)
@@ -2305,7 +2327,7 @@ pub fn cmsgclientgamesplayed_unpack(buf []byte) ?CMsgClientGamesPlayed {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientgamesplayedgameplayed(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientgamesplayed_gameplayed(cur_buf,
 					tag_wiretype.wire_type)?
 				res.games_played << v
 				i = ii
@@ -2354,7 +2376,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientgamesplayed(buf []byte, tag_wiretype
 	return i, unpacked
 }
 
-pub struct CMsgGSapprove {
+pub struct CMsgGSApprove {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -2364,7 +2386,7 @@ pub mut:
 	has_owner_steam_id bool
 }
 
-pub fn (o &CMsgGSapprove) pack() []byte {
+pub fn (o &CMsgGSApprove) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -2375,8 +2397,8 @@ pub fn (o &CMsgGSapprove) pack() []byte {
 	return res
 }
 
-pub fn cmsggsapprove_unpack(buf []byte) ?CMsgGSapprove {
-	mut res := CMsgGSapprove{}
+pub fn cmsggsapprove_unpack(buf []byte) ?CMsgGSApprove {
+	mut res := CMsgGSApprove{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2414,23 +2436,23 @@ pub fn cmsggsapprove_unpack(buf []byte) ?CMsgGSapprove {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsapprove() CMsgGSapprove {
-	return CMsgGSapprove{}
+pub fn zzz_vproto_internal_new_cmsggsapprove() CMsgGSApprove {
+	return CMsgGSApprove{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsapprove(o CMsgGSapprove, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsapprove(o CMsgGSApprove, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsapprove(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSapprove) {
+pub fn zzz_vproto_internal_unpack_cmsggsapprove(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSApprove) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsapprove_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSdeny {
+pub struct CMsgGSDeny {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2442,7 +2464,7 @@ pub mut:
 	has_deny_string  bool
 }
 
-pub fn (o &CMsgGSdeny) pack() []byte {
+pub fn (o &CMsgGSDeny) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -2456,8 +2478,8 @@ pub fn (o &CMsgGSdeny) pack() []byte {
 	return res
 }
 
-pub fn cmsggsdeny_unpack(buf []byte) ?CMsgGSdeny {
-	mut res := CMsgGSdeny{}
+pub fn cmsggsdeny_unpack(buf []byte) ?CMsgGSDeny {
+	mut res := CMsgGSDeny{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2501,23 +2523,23 @@ pub fn cmsggsdeny_unpack(buf []byte) ?CMsgGSdeny {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggsdeny() CMsgGSdeny {
-	return CMsgGSdeny{}
+pub fn zzz_vproto_internal_new_cmsggsdeny() CMsgGSDeny {
+	return CMsgGSDeny{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggsdeny(o CMsgGSdeny, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggsdeny(o CMsgGSDeny, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggsdeny(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSdeny) {
+pub fn zzz_vproto_internal_unpack_cmsggsdeny(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSDeny) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggsdeny_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGSkick {
+pub struct CMsgGSKick {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2527,7 +2549,7 @@ pub mut:
 	has_edeny_reason bool
 }
 
-pub fn (o &CMsgGSkick) pack() []byte {
+pub fn (o &CMsgGSKick) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -2538,8 +2560,8 @@ pub fn (o &CMsgGSkick) pack() []byte {
 	return res
 }
 
-pub fn cmsggskick_unpack(buf []byte) ?CMsgGSkick {
-	mut res := CMsgGSkick{}
+pub fn cmsggskick_unpack(buf []byte) ?CMsgGSKick {
+	mut res := CMsgGSKick{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2577,17 +2599,17 @@ pub fn cmsggskick_unpack(buf []byte) ?CMsgGSkick {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggskick() CMsgGSkick {
-	return CMsgGSkick{}
+pub fn zzz_vproto_internal_new_cmsggskick() CMsgGSKick {
+	return CMsgGSKick{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggskick(o CMsgGSkick, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggskick(o CMsgGSKick, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggskick(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSkick) {
+pub fn zzz_vproto_internal_unpack_cmsggskick(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSKick) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggskick_unpack(v)?
 	return i, unpacked
@@ -2800,7 +2822,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientauthlistack(buf []byte, tag_wiretype
 	return i, unpacked
 }
 
-pub struct CMsgClientLicenseListLicense {
+pub struct CMsgClientLicenseList_License {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -2842,7 +2864,7 @@ pub mut:
 	has_master_package_id     bool
 }
 
-pub fn (o &CMsgClientLicenseListLicense) pack() []byte {
+pub fn (o &CMsgClientLicenseList_License) pack() []byte {
 	mut res := []byte{}
 	if o.has_package_id {
 		res << vproto.pack_uint32_field(o.package_id, 1)
@@ -2901,8 +2923,8 @@ pub fn (o &CMsgClientLicenseListLicense) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlicenselistlicense_unpack(buf []byte) ?CMsgClientLicenseListLicense {
-	mut res := CMsgClientLicenseListLicense{}
+pub fn cmsgclientlicenselist_license_unpack(buf []byte) ?CMsgClientLicenseList_License {
+	mut res := CMsgClientLicenseList_License{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3036,19 +3058,19 @@ pub fn cmsgclientlicenselistlicense_unpack(buf []byte) ?CMsgClientLicenseListLic
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlicenselistlicense() CMsgClientLicenseListLicense {
-	return CMsgClientLicenseListLicense{}
+pub fn zzz_vproto_internal_new_cmsgclientlicenselist_license() CMsgClientLicenseList_License {
+	return CMsgClientLicenseList_License{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlicenselistlicense(o CMsgClientLicenseListLicense, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlicenselist_license(o CMsgClientLicenseList_License, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlicenselistlicense(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLicenseListLicense) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlicenselist_license(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLicenseList_License) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlicenselistlicense_unpack(v)?
+	mut unpacked := cmsgclientlicenselist_license_unpack(v)?
 	return i, unpacked
 }
 
@@ -3058,7 +3080,7 @@ mut:
 pub mut:
 	eresult        int
 	has_eresult    bool
-	licenses       []CMsgClientLicenseListLicense
+	licenses       []CMsgClientLicenseList_License
 }
 
 pub fn (o &CMsgClientLicenseList) pack() []byte {
@@ -3068,7 +3090,7 @@ pub fn (o &CMsgClientLicenseList) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.licenses {
-		res << zzz_vproto_internal_pack_cmsgclientlicenselistlicense(x, 2)
+		res << zzz_vproto_internal_pack_cmsgclientlicenselist_license(x, 2)
 	}
 	return res
 }
@@ -3092,7 +3114,7 @@ pub fn cmsgclientlicenselist_unpack(buf []byte) ?CMsgClientLicenseList {
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientlicenselistlicense(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientlicenselist_license(cur_buf,
 					tag_wiretype.wire_type)?
 				res.licenses << v
 				i = ii
@@ -3129,7 +3151,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientlicenselist(buf []byte, tag_wiretype
 	return i, unpacked
 }
 
-pub struct CMsgClientLBssetScore {
+pub struct CMsgClientLBSSetScore {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -3145,7 +3167,7 @@ pub mut:
 	has_upload_score_method bool
 }
 
-pub fn (o &CMsgClientLBssetScore) pack() []byte {
+pub fn (o &CMsgClientLBSSetScore) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -3165,8 +3187,8 @@ pub fn (o &CMsgClientLBssetScore) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbssetscore_unpack(buf []byte) ?CMsgClientLBssetScore {
-	mut res := CMsgClientLBssetScore{}
+pub fn cmsgclientlbssetscore_unpack(buf []byte) ?CMsgClientLBSSetScore {
+	mut res := CMsgClientLBSSetScore{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3222,23 +3244,23 @@ pub fn cmsgclientlbssetscore_unpack(buf []byte) ?CMsgClientLBssetScore {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbssetscore() CMsgClientLBssetScore {
-	return CMsgClientLBssetScore{}
+pub fn zzz_vproto_internal_new_cmsgclientlbssetscore() CMsgClientLBSSetScore {
+	return CMsgClientLBSSetScore{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbssetscore(o CMsgClientLBssetScore, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbssetscore(o CMsgClientLBSSetScore, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbssetscore(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBssetScore) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbssetscore(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetScore) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbssetscore_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBssetScoreResponse {
+pub struct CMsgClientLBSSetScoreResponse {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -3254,7 +3276,7 @@ pub mut:
 	has_global_rank_new         bool
 }
 
-pub fn (o &CMsgClientLBssetScoreResponse) pack() []byte {
+pub fn (o &CMsgClientLBSSetScoreResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -3274,8 +3296,8 @@ pub fn (o &CMsgClientLBssetScoreResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbssetscoreresponse_unpack(buf []byte) ?CMsgClientLBssetScoreResponse {
-	mut res := CMsgClientLBssetScoreResponse{}
+pub fn cmsgclientlbssetscoreresponse_unpack(buf []byte) ?CMsgClientLBSSetScoreResponse {
+	mut res := CMsgClientLBSSetScoreResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3331,23 +3353,23 @@ pub fn cmsgclientlbssetscoreresponse_unpack(buf []byte) ?CMsgClientLBssetScoreRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbssetscoreresponse() CMsgClientLBssetScoreResponse {
-	return CMsgClientLBssetScoreResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientlbssetscoreresponse() CMsgClientLBSSetScoreResponse {
+	return CMsgClientLBSSetScoreResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbssetscoreresponse(o CMsgClientLBssetScoreResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbssetscoreresponse(o CMsgClientLBSSetScoreResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbssetscoreresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBssetScoreResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbssetscoreresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetScoreResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbssetscoreresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBssetUGc {
+pub struct CMsgClientLBSSetUGC {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -3359,7 +3381,7 @@ pub mut:
 	has_ugc_id         bool
 }
 
-pub fn (o &CMsgClientLBssetUGc) pack() []byte {
+pub fn (o &CMsgClientLBSSetUGC) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -3373,8 +3395,8 @@ pub fn (o &CMsgClientLBssetUGc) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbssetugc_unpack(buf []byte) ?CMsgClientLBssetUGc {
-	mut res := CMsgClientLBssetUGc{}
+pub fn cmsgclientlbssetugc_unpack(buf []byte) ?CMsgClientLBSSetUGC {
+	mut res := CMsgClientLBSSetUGC{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3418,23 +3440,23 @@ pub fn cmsgclientlbssetugc_unpack(buf []byte) ?CMsgClientLBssetUGc {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbssetugc() CMsgClientLBssetUGc {
-	return CMsgClientLBssetUGc{}
+pub fn zzz_vproto_internal_new_cmsgclientlbssetugc() CMsgClientLBSSetUGC {
+	return CMsgClientLBSSetUGC{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbssetugc(o CMsgClientLBssetUGc, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbssetugc(o CMsgClientLBSSetUGC, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbssetugc(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBssetUGc) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbssetugc(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetUGC) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbssetugc_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBssetUGcresponse {
+pub struct CMsgClientLBSSetUGCResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3442,7 +3464,7 @@ pub mut:
 	has_eresult    bool
 }
 
-pub fn (o &CMsgClientLBssetUGcresponse) pack() []byte {
+pub fn (o &CMsgClientLBSSetUGCResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -3450,8 +3472,8 @@ pub fn (o &CMsgClientLBssetUGcresponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbssetugcresponse_unpack(buf []byte) ?CMsgClientLBssetUGcresponse {
-	mut res := CMsgClientLBssetUGcresponse{}
+pub fn cmsgclientlbssetugcresponse_unpack(buf []byte) ?CMsgClientLBSSetUGCResponse {
+	mut res := CMsgClientLBSSetUGCResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3483,23 +3505,23 @@ pub fn cmsgclientlbssetugcresponse_unpack(buf []byte) ?CMsgClientLBssetUGcrespon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbssetugcresponse() CMsgClientLBssetUGcresponse {
-	return CMsgClientLBssetUGcresponse{}
+pub fn zzz_vproto_internal_new_cmsgclientlbssetugcresponse() CMsgClientLBSSetUGCResponse {
+	return CMsgClientLBSSetUGCResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbssetugcresponse(o CMsgClientLBssetUGcresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbssetugcresponse(o CMsgClientLBSSetUGCResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbssetugcresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBssetUGcresponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbssetugcresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetUGCResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbssetugcresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBsfindOrCreateLB {
+pub struct CMsgClientLBSFindOrCreateLB {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -3515,7 +3537,7 @@ pub mut:
 	has_leaderboard_name         bool
 }
 
-pub fn (o &CMsgClientLBsfindOrCreateLB) pack() []byte {
+pub fn (o &CMsgClientLBSFindOrCreateLB) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -3535,8 +3557,8 @@ pub fn (o &CMsgClientLBsfindOrCreateLB) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbsfindorcreatelb_unpack(buf []byte) ?CMsgClientLBsfindOrCreateLB {
-	mut res := CMsgClientLBsfindOrCreateLB{}
+pub fn cmsgclientlbsfindorcreatelb_unpack(buf []byte) ?CMsgClientLBSFindOrCreateLB {
+	mut res := CMsgClientLBSFindOrCreateLB{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3592,23 +3614,23 @@ pub fn cmsgclientlbsfindorcreatelb_unpack(buf []byte) ?CMsgClientLBsfindOrCreate
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbsfindorcreatelb() CMsgClientLBsfindOrCreateLB {
-	return CMsgClientLBsfindOrCreateLB{}
+pub fn zzz_vproto_internal_new_cmsgclientlbsfindorcreatelb() CMsgClientLBSFindOrCreateLB {
+	return CMsgClientLBSFindOrCreateLB{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbsfindorcreatelb(o CMsgClientLBsfindOrCreateLB, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbsfindorcreatelb(o CMsgClientLBSFindOrCreateLB, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbsfindorcreatelb(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBsfindOrCreateLB) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbsfindorcreatelb(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSFindOrCreateLB) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbsfindorcreatelb_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBsfindOrCreateLBresponse {
+pub struct CMsgClientLBSFindOrCreateLBResponse {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -3626,7 +3648,7 @@ pub mut:
 	has_leaderboard_name         bool
 }
 
-pub fn (o &CMsgClientLBsfindOrCreateLBresponse) pack() []byte {
+pub fn (o &CMsgClientLBSFindOrCreateLBResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -3649,8 +3671,8 @@ pub fn (o &CMsgClientLBsfindOrCreateLBresponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbsfindorcreatelbresponse_unpack(buf []byte) ?CMsgClientLBsfindOrCreateLBresponse {
-	mut res := CMsgClientLBsfindOrCreateLBresponse{}
+pub fn cmsgclientlbsfindorcreatelbresponse_unpack(buf []byte) ?CMsgClientLBSFindOrCreateLBResponse {
+	mut res := CMsgClientLBSFindOrCreateLBResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3712,23 +3734,23 @@ pub fn cmsgclientlbsfindorcreatelbresponse_unpack(buf []byte) ?CMsgClientLBsfind
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbsfindorcreatelbresponse() CMsgClientLBsfindOrCreateLBresponse {
-	return CMsgClientLBsfindOrCreateLBresponse{}
+pub fn zzz_vproto_internal_new_cmsgclientlbsfindorcreatelbresponse() CMsgClientLBSFindOrCreateLBResponse {
+	return CMsgClientLBSFindOrCreateLBResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbsfindorcreatelbresponse(o CMsgClientLBsfindOrCreateLBresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbsfindorcreatelbresponse(o CMsgClientLBSFindOrCreateLBResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbsfindorcreatelbresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBsfindOrCreateLBresponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbsfindorcreatelbresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSFindOrCreateLBResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbsfindorcreatelbresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBsgetLBentries {
+pub struct CMsgClientLBSGetLBEntries {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -3745,7 +3767,7 @@ pub mut:
 	steamids                     []u64
 }
 
-pub fn (o &CMsgClientLBsgetLBentries) pack() []byte {
+pub fn (o &CMsgClientLBSGetLBEntries) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_int32_field(o.app_id, 1)
@@ -3769,8 +3791,8 @@ pub fn (o &CMsgClientLBsgetLBentries) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbsgetlbentries_unpack(buf []byte) ?CMsgClientLBsgetLBentries {
-	mut res := CMsgClientLBsgetLBentries{}
+pub fn cmsgclientlbsgetlbentries_unpack(buf []byte) ?CMsgClientLBSGetLBEntries {
+	mut res := CMsgClientLBSGetLBEntries{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3832,23 +3854,23 @@ pub fn cmsgclientlbsgetlbentries_unpack(buf []byte) ?CMsgClientLBsgetLBentries {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbsgetlbentries() CMsgClientLBsgetLBentries {
-	return CMsgClientLBsgetLBentries{}
+pub fn zzz_vproto_internal_new_cmsgclientlbsgetlbentries() CMsgClientLBSGetLBEntries {
+	return CMsgClientLBSGetLBEntries{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentries(o CMsgClientLBsgetLBentries, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentries(o CMsgClientLBSGetLBEntries, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentries(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBsgetLBentries) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentries(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSGetLBEntries) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbsgetlbentries_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBsgetLBentriesResponseEntry {
+pub struct CMsgClientLBSGetLBEntriesResponse_Entry {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -3864,7 +3886,7 @@ pub mut:
 	has_ugc_id        bool
 }
 
-pub fn (o &CMsgClientLBsgetLBentriesResponseEntry) pack() []byte {
+pub fn (o &CMsgClientLBSGetLBEntriesResponse_Entry) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id_user {
 		res << vproto.pack_64bit_field(o.steam_id_user, 1)
@@ -3884,8 +3906,8 @@ pub fn (o &CMsgClientLBsgetLBentriesResponseEntry) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlbsgetlbentriesresponseentry_unpack(buf []byte) ?CMsgClientLBsgetLBentriesResponseEntry {
-	mut res := CMsgClientLBsgetLBentriesResponseEntry{}
+pub fn cmsgclientlbsgetlbentriesresponse_entry_unpack(buf []byte) ?CMsgClientLBSGetLBEntriesResponse_Entry {
+	mut res := CMsgClientLBSGetLBEntriesResponse_Entry{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3941,23 +3963,23 @@ pub fn cmsgclientlbsgetlbentriesresponseentry_unpack(buf []byte) ?CMsgClientLBsg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbsgetlbentriesresponseentry() CMsgClientLBsgetLBentriesResponseEntry {
-	return CMsgClientLBsgetLBentriesResponseEntry{}
+pub fn zzz_vproto_internal_new_cmsgclientlbsgetlbentriesresponse_entry() CMsgClientLBSGetLBEntriesResponse_Entry {
+	return CMsgClientLBSGetLBEntriesResponse_Entry{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponseentry(o CMsgClientLBsgetLBentriesResponseEntry, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponse_entry(o CMsgClientLBSGetLBEntriesResponse_Entry, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponseentry(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBsgetLBentriesResponseEntry) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse_entry(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSGetLBEntriesResponse_Entry) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbsgetlbentriesresponseentry_unpack(v)?
+	mut unpacked := cmsgclientlbsgetlbentriesresponse_entry_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLBsgetLBentriesResponse {
+pub struct CMsgClientLBSGetLBEntriesResponse {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -3965,10 +3987,10 @@ pub mut:
 	has_eresult                 bool
 	leaderboard_entry_count     int
 	has_leaderboard_entry_count bool
-	entries                     []CMsgClientLBsgetLBentriesResponseEntry
+	entries                     []CMsgClientLBSGetLBEntriesResponse_Entry
 }
 
-pub fn (o &CMsgClientLBsgetLBentriesResponse) pack() []byte {
+pub fn (o &CMsgClientLBSGetLBEntriesResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -3978,13 +4000,13 @@ pub fn (o &CMsgClientLBsgetLBentriesResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.entries {
-		res << zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponseentry(x, 3)
+		res << zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponse_entry(x, 3)
 	}
 	return res
 }
 
-pub fn cmsgclientlbsgetlbentriesresponse_unpack(buf []byte) ?CMsgClientLBsgetLBentriesResponse {
-	mut res := CMsgClientLBsgetLBentriesResponse{}
+pub fn cmsgclientlbsgetlbentriesresponse_unpack(buf []byte) ?CMsgClientLBSGetLBEntriesResponse {
+	mut res := CMsgClientLBSGetLBEntriesResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4008,7 +4030,7 @@ pub fn cmsgclientlbsgetlbentriesresponse_unpack(buf []byte) ?CMsgClientLBsgetLBe
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponseentry(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse_entry(cur_buf,
 					tag_wiretype.wire_type)?
 				res.entries << v
 				i = ii
@@ -4029,23 +4051,23 @@ pub fn cmsgclientlbsgetlbentriesresponse_unpack(buf []byte) ?CMsgClientLBsgetLBe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlbsgetlbentriesresponse() CMsgClientLBsgetLBentriesResponse {
-	return CMsgClientLBsgetLBentriesResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientlbsgetlbentriesresponse() CMsgClientLBSGetLBEntriesResponse {
+	return CMsgClientLBSGetLBEntriesResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponse(o CMsgClientLBsgetLBentriesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponse(o CMsgClientLBSGetLBEntriesResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBsgetLBentriesResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSGetLBEntriesResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlbsgetlbentriesresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAppMinutesPlayedDataAppMinutesPlayedData {
+pub struct CMsgClientAppMinutesPlayedData_AppMinutesPlayedData {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -4057,7 +4079,7 @@ pub mut:
 	has_last_two_weeks bool
 }
 
-pub fn (o &CMsgClientAppMinutesPlayedDataAppMinutesPlayedData) pack() []byte {
+pub fn (o &CMsgClientAppMinutesPlayedData_AppMinutesPlayedData) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -4071,8 +4093,8 @@ pub fn (o &CMsgClientAppMinutesPlayedDataAppMinutesPlayedData) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientappminutesplayeddataappminutesplayeddata_unpack(buf []byte) ?CMsgClientAppMinutesPlayedDataAppMinutesPlayedData {
-	mut res := CMsgClientAppMinutesPlayedDataAppMinutesPlayedData{}
+pub fn cmsgclientappminutesplayeddata_appminutesplayeddata_unpack(buf []byte) ?CMsgClientAppMinutesPlayedData_AppMinutesPlayedData {
+	mut res := CMsgClientAppMinutesPlayedData_AppMinutesPlayedData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4116,19 +4138,19 @@ pub fn cmsgclientappminutesplayeddataappminutesplayeddata_unpack(buf []byte) ?CM
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientappminutesplayeddataappminutesplayeddata() CMsgClientAppMinutesPlayedDataAppMinutesPlayedData {
-	return CMsgClientAppMinutesPlayedDataAppMinutesPlayedData{}
+pub fn zzz_vproto_internal_new_cmsgclientappminutesplayeddata_appminutesplayeddata() CMsgClientAppMinutesPlayedData_AppMinutesPlayedData {
+	return CMsgClientAppMinutesPlayedData_AppMinutesPlayedData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientappminutesplayeddataappminutesplayeddata(o CMsgClientAppMinutesPlayedDataAppMinutesPlayedData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientappminutesplayeddata_appminutesplayeddata(o CMsgClientAppMinutesPlayedData_AppMinutesPlayedData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientappminutesplayeddataappminutesplayeddata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppMinutesPlayedDataAppMinutesPlayedData) {
+pub fn zzz_vproto_internal_unpack_cmsgclientappminutesplayeddata_appminutesplayeddata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppMinutesPlayedData_AppMinutesPlayedData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappminutesplayeddataappminutesplayeddata_unpack(v)?
+	mut unpacked := cmsgclientappminutesplayeddata_appminutesplayeddata_unpack(v)?
 	return i, unpacked
 }
 
@@ -4136,14 +4158,14 @@ pub struct CMsgClientAppMinutesPlayedData {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	minutes_played []CMsgClientAppMinutesPlayedDataAppMinutesPlayedData
+	minutes_played []CMsgClientAppMinutesPlayedData_AppMinutesPlayedData
 }
 
 pub fn (o &CMsgClientAppMinutesPlayedData) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.minutes_played {
-		res << zzz_vproto_internal_pack_cmsgclientappminutesplayeddataappminutesplayeddata(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientappminutesplayeddata_appminutesplayeddata(x, 1)
 	}
 	return res
 }
@@ -4161,7 +4183,7 @@ pub fn cmsgclientappminutesplayeddata_unpack(buf []byte) ?CMsgClientAppMinutesPl
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientappminutesplayeddataappminutesplayeddata(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientappminutesplayeddata_appminutesplayeddata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.minutes_played << v
 				i = ii
@@ -4296,7 +4318,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientislimitedaccount(buf []byte, tag_wir
 	return i, unpacked
 }
 
-pub struct CMsgClientRequestedClientStatsStatsToSend {
+pub struct CMsgClientRequestedClientStats_StatsToSend {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -4306,7 +4328,7 @@ pub mut:
 	has_stat_aggregate_method bool
 }
 
-pub fn (o &CMsgClientRequestedClientStatsStatsToSend) pack() []byte {
+pub fn (o &CMsgClientRequestedClientStats_StatsToSend) pack() []byte {
 	mut res := []byte{}
 	if o.has_client_stat {
 		res << vproto.pack_uint32_field(o.client_stat, 1)
@@ -4317,8 +4339,8 @@ pub fn (o &CMsgClientRequestedClientStatsStatsToSend) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientrequestedclientstatsstatstosend_unpack(buf []byte) ?CMsgClientRequestedClientStatsStatsToSend {
-	mut res := CMsgClientRequestedClientStatsStatsToSend{}
+pub fn cmsgclientrequestedclientstats_statstosend_unpack(buf []byte) ?CMsgClientRequestedClientStats_StatsToSend {
+	mut res := CMsgClientRequestedClientStats_StatsToSend{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4356,19 +4378,19 @@ pub fn cmsgclientrequestedclientstatsstatstosend_unpack(buf []byte) ?CMsgClientR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientrequestedclientstatsstatstosend() CMsgClientRequestedClientStatsStatsToSend {
-	return CMsgClientRequestedClientStatsStatsToSend{}
+pub fn zzz_vproto_internal_new_cmsgclientrequestedclientstats_statstosend() CMsgClientRequestedClientStats_StatsToSend {
+	return CMsgClientRequestedClientStats_StatsToSend{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientrequestedclientstatsstatstosend(o CMsgClientRequestedClientStatsStatsToSend, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientrequestedclientstats_statstosend(o CMsgClientRequestedClientStats_StatsToSend, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientrequestedclientstatsstatstosend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestedClientStatsStatsToSend) {
+pub fn zzz_vproto_internal_unpack_cmsgclientrequestedclientstats_statstosend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestedClientStats_StatsToSend) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientrequestedclientstatsstatstosend_unpack(v)?
+	mut unpacked := cmsgclientrequestedclientstats_statstosend_unpack(v)?
 	return i, unpacked
 }
 
@@ -4376,14 +4398,14 @@ pub struct CMsgClientRequestedClientStats {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	stats_to_send  []CMsgClientRequestedClientStatsStatsToSend
+	stats_to_send  []CMsgClientRequestedClientStats_StatsToSend
 }
 
 pub fn (o &CMsgClientRequestedClientStats) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.stats_to_send {
-		res << zzz_vproto_internal_pack_cmsgclientrequestedclientstatsstatstosend(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientrequestedclientstats_statstosend(x, 1)
 	}
 	return res
 }
@@ -4401,7 +4423,7 @@ pub fn cmsgclientrequestedclientstats_unpack(buf []byte) ?CMsgClientRequestedCli
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientrequestedclientstatsstatstosend(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientrequestedclientstats_statstosend(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats_to_send << v
 				i = ii
@@ -4438,7 +4460,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientrequestedclientstats(buf []byte, tag
 	return i, unpacked
 }
 
-pub struct CMsgClientStat2StatDetail {
+pub struct CMsgClientStat2_StatDetail {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -4456,7 +4478,7 @@ pub mut:
 	has_app_id      bool
 }
 
-pub fn (o &CMsgClientStat2StatDetail) pack() []byte {
+pub fn (o &CMsgClientStat2_StatDetail) pack() []byte {
 	mut res := []byte{}
 	if o.has_client_stat {
 		res << vproto.pack_uint32_field(o.client_stat, 1)
@@ -4479,8 +4501,8 @@ pub fn (o &CMsgClientStat2StatDetail) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientstat2statdetail_unpack(buf []byte) ?CMsgClientStat2StatDetail {
-	mut res := CMsgClientStat2StatDetail{}
+pub fn cmsgclientstat2_statdetail_unpack(buf []byte) ?CMsgClientStat2_StatDetail {
+	mut res := CMsgClientStat2_StatDetail{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4542,19 +4564,19 @@ pub fn cmsgclientstat2statdetail_unpack(buf []byte) ?CMsgClientStat2StatDetail {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientstat2statdetail() CMsgClientStat2StatDetail {
-	return CMsgClientStat2StatDetail{}
+pub fn zzz_vproto_internal_new_cmsgclientstat2_statdetail() CMsgClientStat2_StatDetail {
+	return CMsgClientStat2_StatDetail{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientstat2statdetail(o CMsgClientStat2StatDetail, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientstat2_statdetail(o CMsgClientStat2_StatDetail, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientstat2statdetail(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStat2StatDetail) {
+pub fn zzz_vproto_internal_unpack_cmsgclientstat2_statdetail(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStat2_StatDetail) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstat2statdetail_unpack(v)?
+	mut unpacked := cmsgclientstat2_statdetail_unpack(v)?
 	return i, unpacked
 }
 
@@ -4562,14 +4584,14 @@ pub struct CMsgClientStat2 {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	stat_detail    []CMsgClientStat2StatDetail
+	stat_detail    []CMsgClientStat2_StatDetail
 }
 
 pub fn (o &CMsgClientStat2) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.stat_detail {
-		res << zzz_vproto_internal_pack_cmsgclientstat2statdetail(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientstat2_statdetail(x, 1)
 	}
 	return res
 }
@@ -4587,7 +4609,7 @@ pub fn cmsgclientstat2_unpack(buf []byte) ?CMsgClientStat2 {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientstat2statdetail(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientstat2_statdetail(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stat_detail << v
 				i = ii
@@ -4624,7 +4646,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientstat2(buf []byte, tag_wiretype vprot
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetRatelimitPolicyOnClient {
+pub struct CMsgClientMMSSetRatelimitPolicyOnClient {
 mut:
 	unknown_fields                   []vproto.UnknownField
 pub mut:
@@ -4638,7 +4660,7 @@ pub mut:
 	has_milliseconds_per_data_update bool
 }
 
-pub fn (o &CMsgClientMMssetRatelimitPolicyOnClient) pack() []byte {
+pub fn (o &CMsgClientMMSSetRatelimitPolicyOnClient) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -4655,8 +4677,8 @@ pub fn (o &CMsgClientMMssetRatelimitPolicyOnClient) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetratelimitpolicyonclient_unpack(buf []byte) ?CMsgClientMMssetRatelimitPolicyOnClient {
-	mut res := CMsgClientMMssetRatelimitPolicyOnClient{}
+pub fn cmsgclientmmssetratelimitpolicyonclient_unpack(buf []byte) ?CMsgClientMMSSetRatelimitPolicyOnClient {
+	mut res := CMsgClientMMSSetRatelimitPolicyOnClient{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4706,23 +4728,23 @@ pub fn cmsgclientmmssetratelimitpolicyonclient_unpack(buf []byte) ?CMsgClientMMs
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetratelimitpolicyonclient() CMsgClientMMssetRatelimitPolicyOnClient {
-	return CMsgClientMMssetRatelimitPolicyOnClient{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetratelimitpolicyonclient() CMsgClientMMSSetRatelimitPolicyOnClient {
+	return CMsgClientMMSSetRatelimitPolicyOnClient{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetratelimitpolicyonclient(o CMsgClientMMssetRatelimitPolicyOnClient, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetratelimitpolicyonclient(o CMsgClientMMSSetRatelimitPolicyOnClient, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetratelimitpolicyonclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetRatelimitPolicyOnClient) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetratelimitpolicyonclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetRatelimitPolicyOnClient) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetratelimitpolicyonclient_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMscreateLobby {
+pub struct CMsgClientMMSCreateLobby {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -4742,11 +4764,11 @@ pub mut:
 	has_metadata             bool
 	persona_name_owner       string
 	has_persona_name_owner   bool
-	public_ip                CMsgIPaddress
+	public_ip                CMsgIPAddress
 	has_public_ip            bool
 }
 
-pub fn (o &CMsgClientMMscreateLobby) pack() []byte {
+pub fn (o &CMsgClientMMSCreateLobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -4778,8 +4800,8 @@ pub fn (o &CMsgClientMMscreateLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmscreatelobby_unpack(buf []byte) ?CMsgClientMMscreateLobby {
-	mut res := CMsgClientMMscreateLobby{}
+pub fn cmsgclientmmscreatelobby_unpack(buf []byte) ?CMsgClientMMSCreateLobby {
+	mut res := CMsgClientMMSCreateLobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4859,23 +4881,23 @@ pub fn cmsgclientmmscreatelobby_unpack(buf []byte) ?CMsgClientMMscreateLobby {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmscreatelobby() CMsgClientMMscreateLobby {
-	return CMsgClientMMscreateLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmscreatelobby() CMsgClientMMSCreateLobby {
+	return CMsgClientMMSCreateLobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmscreatelobby(o CMsgClientMMscreateLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmscreatelobby(o CMsgClientMMSCreateLobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmscreatelobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMscreateLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmscreatelobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSCreateLobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmscreatelobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMscreateLobbyResponse {
+pub struct CMsgClientMMSCreateLobbyResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -4887,7 +4909,7 @@ pub mut:
 	has_eresult        bool
 }
 
-pub fn (o &CMsgClientMMscreateLobbyResponse) pack() []byte {
+pub fn (o &CMsgClientMMSCreateLobbyResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -4901,8 +4923,8 @@ pub fn (o &CMsgClientMMscreateLobbyResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmscreatelobbyresponse_unpack(buf []byte) ?CMsgClientMMscreateLobbyResponse {
-	mut res := CMsgClientMMscreateLobbyResponse{}
+pub fn cmsgclientmmscreatelobbyresponse_unpack(buf []byte) ?CMsgClientMMSCreateLobbyResponse {
+	mut res := CMsgClientMMSCreateLobbyResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4946,23 +4968,23 @@ pub fn cmsgclientmmscreatelobbyresponse_unpack(buf []byte) ?CMsgClientMMscreateL
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmscreatelobbyresponse() CMsgClientMMscreateLobbyResponse {
-	return CMsgClientMMscreateLobbyResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmscreatelobbyresponse() CMsgClientMMSCreateLobbyResponse {
+	return CMsgClientMMSCreateLobbyResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmscreatelobbyresponse(o CMsgClientMMscreateLobbyResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmscreatelobbyresponse(o CMsgClientMMSCreateLobbyResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmscreatelobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMscreateLobbyResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmscreatelobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSCreateLobbyResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmscreatelobbyresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsjoinLobby {
+pub struct CMsgClientMMSJoinLobby {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -4974,7 +4996,7 @@ pub mut:
 	has_persona_name   bool
 }
 
-pub fn (o &CMsgClientMMsjoinLobby) pack() []byte {
+pub fn (o &CMsgClientMMSJoinLobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -4988,8 +5010,8 @@ pub fn (o &CMsgClientMMsjoinLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsjoinlobby_unpack(buf []byte) ?CMsgClientMMsjoinLobby {
-	mut res := CMsgClientMMsjoinLobby{}
+pub fn cmsgclientmmsjoinlobby_unpack(buf []byte) ?CMsgClientMMSJoinLobby {
+	mut res := CMsgClientMMSJoinLobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5033,23 +5055,23 @@ pub fn cmsgclientmmsjoinlobby_unpack(buf []byte) ?CMsgClientMMsjoinLobby {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsjoinlobby() CMsgClientMMsjoinLobby {
-	return CMsgClientMMsjoinLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsjoinlobby() CMsgClientMMSJoinLobby {
+	return CMsgClientMMSJoinLobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobby(o CMsgClientMMsjoinLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobby(o CMsgClientMMSJoinLobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsjoinLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSJoinLobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsjoinlobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsjoinLobbyResponseMember {
+pub struct CMsgClientMMSJoinLobbyResponse_Member {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -5061,7 +5083,7 @@ pub mut:
 	has_metadata     bool
 }
 
-pub fn (o &CMsgClientMMsjoinLobbyResponseMember) pack() []byte {
+pub fn (o &CMsgClientMMSJoinLobbyResponse_Member) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -5075,8 +5097,8 @@ pub fn (o &CMsgClientMMsjoinLobbyResponseMember) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsjoinlobbyresponsemember_unpack(buf []byte) ?CMsgClientMMsjoinLobbyResponseMember {
-	mut res := CMsgClientMMsjoinLobbyResponseMember{}
+pub fn cmsgclientmmsjoinlobbyresponse_member_unpack(buf []byte) ?CMsgClientMMSJoinLobbyResponse_Member {
+	mut res := CMsgClientMMSJoinLobbyResponse_Member{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5120,23 +5142,23 @@ pub fn cmsgclientmmsjoinlobbyresponsemember_unpack(buf []byte) ?CMsgClientMMsjoi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsjoinlobbyresponsemember() CMsgClientMMsjoinLobbyResponseMember {
-	return CMsgClientMMsjoinLobbyResponseMember{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsjoinlobbyresponse_member() CMsgClientMMSJoinLobbyResponse_Member {
+	return CMsgClientMMSJoinLobbyResponse_Member{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponsemember(o CMsgClientMMsjoinLobbyResponseMember, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponse_member(o CMsgClientMMSJoinLobbyResponse_Member, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponsemember(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsjoinLobbyResponseMember) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse_member(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSJoinLobbyResponse_Member) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsjoinlobbyresponsemember_unpack(v)?
+	mut unpacked := cmsgclientmmsjoinlobbyresponse_member_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsjoinLobbyResponse {
+pub struct CMsgClientMMSJoinLobbyResponse {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -5156,10 +5178,10 @@ pub mut:
 	has_steam_id_owner           bool
 	metadata                     []byte
 	has_metadata                 bool
-	members                      []CMsgClientMMsjoinLobbyResponseMember
+	members                      []CMsgClientMMSJoinLobbyResponse_Member
 }
 
-pub fn (o &CMsgClientMMsjoinLobbyResponse) pack() []byte {
+pub fn (o &CMsgClientMMSJoinLobbyResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -5187,13 +5209,13 @@ pub fn (o &CMsgClientMMsjoinLobbyResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.members {
-		res << zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponsemember(x, 9)
+		res << zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponse_member(x, 9)
 	}
 	return res
 }
 
-pub fn cmsgclientmmsjoinlobbyresponse_unpack(buf []byte) ?CMsgClientMMsjoinLobbyResponse {
-	mut res := CMsgClientMMsjoinLobbyResponse{}
+pub fn cmsgclientmmsjoinlobbyresponse_unpack(buf []byte) ?CMsgClientMMSJoinLobbyResponse {
+	mut res := CMsgClientMMSJoinLobbyResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5253,7 +5275,7 @@ pub fn cmsgclientmmsjoinlobbyresponse_unpack(buf []byte) ?CMsgClientMMsjoinLobby
 			}
 			9 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponsemember(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse_member(cur_buf,
 					tag_wiretype.wire_type)?
 				res.members << v
 				i = ii
@@ -5274,23 +5296,23 @@ pub fn cmsgclientmmsjoinlobbyresponse_unpack(buf []byte) ?CMsgClientMMsjoinLobby
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsjoinlobbyresponse() CMsgClientMMsjoinLobbyResponse {
-	return CMsgClientMMsjoinLobbyResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsjoinlobbyresponse() CMsgClientMMSJoinLobbyResponse {
+	return CMsgClientMMSJoinLobbyResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponse(o CMsgClientMMsjoinLobbyResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponse(o CMsgClientMMSJoinLobbyResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsjoinLobbyResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSJoinLobbyResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsjoinlobbyresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsleaveLobby {
+pub struct CMsgClientMMSLeaveLobby {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -5300,7 +5322,7 @@ pub mut:
 	has_steam_id_lobby bool
 }
 
-pub fn (o &CMsgClientMMsleaveLobby) pack() []byte {
+pub fn (o &CMsgClientMMSLeaveLobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -5311,8 +5333,8 @@ pub fn (o &CMsgClientMMsleaveLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsleavelobby_unpack(buf []byte) ?CMsgClientMMsleaveLobby {
-	mut res := CMsgClientMMsleaveLobby{}
+pub fn cmsgclientmmsleavelobby_unpack(buf []byte) ?CMsgClientMMSLeaveLobby {
+	mut res := CMsgClientMMSLeaveLobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5350,23 +5372,23 @@ pub fn cmsgclientmmsleavelobby_unpack(buf []byte) ?CMsgClientMMsleaveLobby {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsleavelobby() CMsgClientMMsleaveLobby {
-	return CMsgClientMMsleaveLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsleavelobby() CMsgClientMMSLeaveLobby {
+	return CMsgClientMMSLeaveLobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsleavelobby(o CMsgClientMMsleaveLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsleavelobby(o CMsgClientMMSLeaveLobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsleavelobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsleaveLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsleavelobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLeaveLobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsleavelobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsleaveLobbyResponse {
+pub struct CMsgClientMMSLeaveLobbyResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -5378,7 +5400,7 @@ pub mut:
 	has_eresult        bool
 }
 
-pub fn (o &CMsgClientMMsleaveLobbyResponse) pack() []byte {
+pub fn (o &CMsgClientMMSLeaveLobbyResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -5392,8 +5414,8 @@ pub fn (o &CMsgClientMMsleaveLobbyResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsleavelobbyresponse_unpack(buf []byte) ?CMsgClientMMsleaveLobbyResponse {
-	mut res := CMsgClientMMsleaveLobbyResponse{}
+pub fn cmsgclientmmsleavelobbyresponse_unpack(buf []byte) ?CMsgClientMMSLeaveLobbyResponse {
+	mut res := CMsgClientMMSLeaveLobbyResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5437,23 +5459,23 @@ pub fn cmsgclientmmsleavelobbyresponse_unpack(buf []byte) ?CMsgClientMMsleaveLob
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsleavelobbyresponse() CMsgClientMMsleaveLobbyResponse {
-	return CMsgClientMMsleaveLobbyResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsleavelobbyresponse() CMsgClientMMSLeaveLobbyResponse {
+	return CMsgClientMMSLeaveLobbyResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsleavelobbyresponse(o CMsgClientMMsleaveLobbyResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsleavelobbyresponse(o CMsgClientMMSLeaveLobbyResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsleavelobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsleaveLobbyResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsleavelobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLeaveLobbyResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsleavelobbyresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyListFilter {
+pub struct CMsgClientMMSGetLobbyList_Filter {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -5467,7 +5489,7 @@ pub mut:
 	has_filter_type bool
 }
 
-pub fn (o &CMsgClientMMsgetLobbyListFilter) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyList_Filter) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_string_field(o.key, 1)
@@ -5484,8 +5506,8 @@ pub fn (o &CMsgClientMMsgetLobbyListFilter) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbylistfilter_unpack(buf []byte) ?CMsgClientMMsgetLobbyListFilter {
-	mut res := CMsgClientMMsgetLobbyListFilter{}
+pub fn cmsgclientmmsgetlobbylist_filter_unpack(buf []byte) ?CMsgClientMMSGetLobbyList_Filter {
+	mut res := CMsgClientMMSGetLobbyList_Filter{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5535,23 +5557,23 @@ pub fn cmsgclientmmsgetlobbylistfilter_unpack(buf []byte) ?CMsgClientMMsgetLobby
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylistfilter() CMsgClientMMsgetLobbyListFilter {
-	return CMsgClientMMsgetLobbyListFilter{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylist_filter() CMsgClientMMSGetLobbyList_Filter {
+	return CMsgClientMMSGetLobbyList_Filter{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistfilter(o CMsgClientMMsgetLobbyListFilter, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylist_filter(o CMsgClientMMSGetLobbyList_Filter, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistfilter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyListFilter) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist_filter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyList_Filter) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbylistfilter_unpack(v)?
+	mut unpacked := cmsgclientmmsgetlobbylist_filter_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyList {
+pub struct CMsgClientMMSGetLobbyList {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -5563,12 +5585,12 @@ pub mut:
 	has_cell_id               bool
 	deprecated_public_ip      u32
 	has_deprecated_public_ip  bool
-	filters                   []CMsgClientMMsgetLobbyListFilter
-	public_ip                 CMsgIPaddress
+	filters                   []CMsgClientMMSGetLobbyList_Filter
+	public_ip                 CMsgIPAddress
 	has_public_ip             bool
 }
 
-pub fn (o &CMsgClientMMsgetLobbyList) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyList) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -5584,7 +5606,7 @@ pub fn (o &CMsgClientMMsgetLobbyList) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.filters {
-		res << zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistfilter(x, 6)
+		res << zzz_vproto_internal_pack_cmsgclientmmsgetlobbylist_filter(x, 6)
 	}
 	if o.has_public_ip {
 		res << zzz_vproto_internal_pack_cmsgipaddress(o.public_ip, 7)
@@ -5592,8 +5614,8 @@ pub fn (o &CMsgClientMMsgetLobbyList) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbylist_unpack(buf []byte) ?CMsgClientMMsgetLobbyList {
-	mut res := CMsgClientMMsgetLobbyList{}
+pub fn cmsgclientmmsgetlobbylist_unpack(buf []byte) ?CMsgClientMMSGetLobbyList {
+	mut res := CMsgClientMMSGetLobbyList{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5629,7 +5651,7 @@ pub fn cmsgclientmmsgetlobbylist_unpack(buf []byte) ?CMsgClientMMsgetLobbyList {
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistfilter(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist_filter(cur_buf,
 					tag_wiretype.wire_type)?
 				res.filters << v
 				i = ii
@@ -5656,23 +5678,23 @@ pub fn cmsgclientmmsgetlobbylist_unpack(buf []byte) ?CMsgClientMMsgetLobbyList {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylist() CMsgClientMMsgetLobbyList {
-	return CMsgClientMMsgetLobbyList{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylist() CMsgClientMMSGetLobbyList {
+	return CMsgClientMMSGetLobbyList{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylist(o CMsgClientMMsgetLobbyList, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylist(o CMsgClientMMSGetLobbyList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyList) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsgetlobbylist_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyListResponseLobby {
+pub struct CMsgClientMMSGetLobbyListResponse_Lobby {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -5694,7 +5716,7 @@ pub mut:
 	has_weight      bool
 }
 
-pub fn (o &CMsgClientMMsgetLobbyListResponseLobby) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyListResponse_Lobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -5723,8 +5745,8 @@ pub fn (o &CMsgClientMMsgetLobbyListResponseLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbylistresponselobby_unpack(buf []byte) ?CMsgClientMMsgetLobbyListResponseLobby {
-	mut res := CMsgClientMMsgetLobbyListResponseLobby{}
+pub fn cmsgclientmmsgetlobbylistresponse_lobby_unpack(buf []byte) ?CMsgClientMMSGetLobbyListResponse_Lobby {
+	mut res := CMsgClientMMSGetLobbyListResponse_Lobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5798,23 +5820,23 @@ pub fn cmsgclientmmsgetlobbylistresponselobby_unpack(buf []byte) ?CMsgClientMMsg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylistresponselobby() CMsgClientMMsgetLobbyListResponseLobby {
-	return CMsgClientMMsgetLobbyListResponseLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylistresponse_lobby() CMsgClientMMSGetLobbyListResponse_Lobby {
+	return CMsgClientMMSGetLobbyListResponse_Lobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponselobby(o CMsgClientMMsgetLobbyListResponseLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponse_lobby(o CMsgClientMMSGetLobbyListResponse_Lobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponselobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyListResponseLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse_lobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyListResponse_Lobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbylistresponselobby_unpack(v)?
+	mut unpacked := cmsgclientmmsgetlobbylistresponse_lobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyListResponse {
+pub struct CMsgClientMMSGetLobbyListResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5822,10 +5844,10 @@ pub mut:
 	has_app_id     bool
 	eresult        int
 	has_eresult    bool
-	lobbies        []CMsgClientMMsgetLobbyListResponseLobby
+	lobbies        []CMsgClientMMSGetLobbyListResponse_Lobby
 }
 
-pub fn (o &CMsgClientMMsgetLobbyListResponse) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyListResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -5835,13 +5857,13 @@ pub fn (o &CMsgClientMMsgetLobbyListResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.lobbies {
-		res << zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponselobby(x, 4)
+		res << zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponse_lobby(x, 4)
 	}
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbylistresponse_unpack(buf []byte) ?CMsgClientMMsgetLobbyListResponse {
-	mut res := CMsgClientMMsgetLobbyListResponse{}
+pub fn cmsgclientmmsgetlobbylistresponse_unpack(buf []byte) ?CMsgClientMMSGetLobbyListResponse {
+	mut res := CMsgClientMMSGetLobbyListResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5865,7 +5887,7 @@ pub fn cmsgclientmmsgetlobbylistresponse_unpack(buf []byte) ?CMsgClientMMsgetLob
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponselobby(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse_lobby(cur_buf,
 					tag_wiretype.wire_type)?
 				res.lobbies << v
 				i = ii
@@ -5886,23 +5908,23 @@ pub fn cmsgclientmmsgetlobbylistresponse_unpack(buf []byte) ?CMsgClientMMsgetLob
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylistresponse() CMsgClientMMsgetLobbyListResponse {
-	return CMsgClientMMsgetLobbyListResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbylistresponse() CMsgClientMMSGetLobbyListResponse {
+	return CMsgClientMMSGetLobbyListResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponse(o CMsgClientMMsgetLobbyListResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponse(o CMsgClientMMSGetLobbyListResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyListResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyListResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsgetlobbylistresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetLobbyData {
+pub struct CMsgClientMMSSetLobbyData {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -5922,7 +5944,7 @@ pub mut:
 	has_metadata        bool
 }
 
-pub fn (o &CMsgClientMMssetLobbyData) pack() []byte {
+pub fn (o &CMsgClientMMSSetLobbyData) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -5948,8 +5970,8 @@ pub fn (o &CMsgClientMMssetLobbyData) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetlobbydata_unpack(buf []byte) ?CMsgClientMMssetLobbyData {
-	mut res := CMsgClientMMssetLobbyData{}
+pub fn cmsgclientmmssetlobbydata_unpack(buf []byte) ?CMsgClientMMSSetLobbyData {
+	mut res := CMsgClientMMSSetLobbyData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6017,23 +6039,23 @@ pub fn cmsgclientmmssetlobbydata_unpack(buf []byte) ?CMsgClientMMssetLobbyData {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbydata() CMsgClientMMssetLobbyData {
-	return CMsgClientMMssetLobbyData{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbydata() CMsgClientMMSSetLobbyData {
+	return CMsgClientMMSSetLobbyData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbydata(o CMsgClientMMssetLobbyData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbydata(o CMsgClientMMSSetLobbyData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetLobbyData) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetlobbydata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetLobbyDataResponse {
+pub struct CMsgClientMMSSetLobbyDataResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -6045,7 +6067,7 @@ pub mut:
 	has_eresult        bool
 }
 
-pub fn (o &CMsgClientMMssetLobbyDataResponse) pack() []byte {
+pub fn (o &CMsgClientMMSSetLobbyDataResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6059,8 +6081,8 @@ pub fn (o &CMsgClientMMssetLobbyDataResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetlobbydataresponse_unpack(buf []byte) ?CMsgClientMMssetLobbyDataResponse {
-	mut res := CMsgClientMMssetLobbyDataResponse{}
+pub fn cmsgclientmmssetlobbydataresponse_unpack(buf []byte) ?CMsgClientMMSSetLobbyDataResponse {
+	mut res := CMsgClientMMSSetLobbyDataResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6104,23 +6126,23 @@ pub fn cmsgclientmmssetlobbydataresponse_unpack(buf []byte) ?CMsgClientMMssetLob
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbydataresponse() CMsgClientMMssetLobbyDataResponse {
-	return CMsgClientMMssetLobbyDataResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbydataresponse() CMsgClientMMSSetLobbyDataResponse {
+	return CMsgClientMMSSetLobbyDataResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbydataresponse(o CMsgClientMMssetLobbyDataResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbydataresponse(o CMsgClientMMSSetLobbyDataResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbydataresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetLobbyDataResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbydataresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyDataResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetlobbydataresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyData {
+pub struct CMsgClientMMSGetLobbyData {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -6130,7 +6152,7 @@ pub mut:
 	has_steam_id_lobby bool
 }
 
-pub fn (o &CMsgClientMMsgetLobbyData) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyData) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6141,8 +6163,8 @@ pub fn (o &CMsgClientMMsgetLobbyData) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbydata_unpack(buf []byte) ?CMsgClientMMsgetLobbyData {
-	mut res := CMsgClientMMsgetLobbyData{}
+pub fn cmsgclientmmsgetlobbydata_unpack(buf []byte) ?CMsgClientMMSGetLobbyData {
+	mut res := CMsgClientMMSGetLobbyData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6180,23 +6202,23 @@ pub fn cmsgclientmmsgetlobbydata_unpack(buf []byte) ?CMsgClientMMsgetLobbyData {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbydata() CMsgClientMMsgetLobbyData {
-	return CMsgClientMMsgetLobbyData{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbydata() CMsgClientMMSGetLobbyData {
+	return CMsgClientMMSGetLobbyData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbydata(o CMsgClientMMsgetLobbyData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbydata(o CMsgClientMMSGetLobbyData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyData) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsgetlobbydata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMslobbyDataMember {
+pub struct CMsgClientMMSLobbyData_Member {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -6208,7 +6230,7 @@ pub mut:
 	has_metadata     bool
 }
 
-pub fn (o &CMsgClientMMslobbyDataMember) pack() []byte {
+pub fn (o &CMsgClientMMSLobbyData_Member) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -6222,8 +6244,8 @@ pub fn (o &CMsgClientMMslobbyDataMember) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmslobbydatamember_unpack(buf []byte) ?CMsgClientMMslobbyDataMember {
-	mut res := CMsgClientMMslobbyDataMember{}
+pub fn cmsgclientmmslobbydata_member_unpack(buf []byte) ?CMsgClientMMSLobbyData_Member {
+	mut res := CMsgClientMMSLobbyData_Member{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6267,23 +6289,23 @@ pub fn cmsgclientmmslobbydatamember_unpack(buf []byte) ?CMsgClientMMslobbyDataMe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmslobbydatamember() CMsgClientMMslobbyDataMember {
-	return CMsgClientMMslobbyDataMember{}
+pub fn zzz_vproto_internal_new_cmsgclientmmslobbydata_member() CMsgClientMMSLobbyData_Member {
+	return CMsgClientMMSLobbyData_Member{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmslobbydatamember(o CMsgClientMMslobbyDataMember, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmslobbydata_member(o CMsgClientMMSLobbyData_Member, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbydatamember(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMslobbyDataMember) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbydata_member(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyData_Member) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmslobbydatamember_unpack(v)?
+	mut unpacked := cmsgclientmmslobbydata_member_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMslobbyData {
+pub struct CMsgClientMMSLobbyData {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
@@ -6303,14 +6325,14 @@ pub mut:
 	has_steam_id_owner              bool
 	metadata                        []byte
 	has_metadata                    bool
-	members                         []CMsgClientMMslobbyDataMember
+	members                         []CMsgClientMMSLobbyData_Member
 	lobby_cellid                    u32
 	has_lobby_cellid                bool
 	owner_should_accept_changes     bool
 	has_owner_should_accept_changes bool
 }
 
-pub fn (o &CMsgClientMMslobbyData) pack() []byte {
+pub fn (o &CMsgClientMMSLobbyData) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6338,7 +6360,7 @@ pub fn (o &CMsgClientMMslobbyData) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.members {
-		res << zzz_vproto_internal_pack_cmsgclientmmslobbydatamember(x, 9)
+		res << zzz_vproto_internal_pack_cmsgclientmmslobbydata_member(x, 9)
 	}
 	if o.has_lobby_cellid {
 		res << vproto.pack_uint32_field(o.lobby_cellid, 10)
@@ -6349,8 +6371,8 @@ pub fn (o &CMsgClientMMslobbyData) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmslobbydata_unpack(buf []byte) ?CMsgClientMMslobbyData {
-	mut res := CMsgClientMMslobbyData{}
+pub fn cmsgclientmmslobbydata_unpack(buf []byte) ?CMsgClientMMSLobbyData {
+	mut res := CMsgClientMMSLobbyData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6410,7 +6432,7 @@ pub fn cmsgclientmmslobbydata_unpack(buf []byte) ?CMsgClientMMslobbyData {
 			}
 			9 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientmmslobbydatamember(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientmmslobbydata_member(cur_buf,
 					tag_wiretype.wire_type)?
 				res.members << v
 				i = ii
@@ -6443,23 +6465,23 @@ pub fn cmsgclientmmslobbydata_unpack(buf []byte) ?CMsgClientMMslobbyData {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmslobbydata() CMsgClientMMslobbyData {
-	return CMsgClientMMslobbyData{}
+pub fn zzz_vproto_internal_new_cmsgclientmmslobbydata() CMsgClientMMSLobbyData {
+	return CMsgClientMMSLobbyData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmslobbydata(o CMsgClientMMslobbyData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmslobbydata(o CMsgClientMMSLobbyData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMslobbyData) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmslobbydata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssendLobbyChatMsg {
+pub struct CMsgClientMMSSendLobbyChatMsg {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -6473,7 +6495,7 @@ pub mut:
 	has_lobby_message   bool
 }
 
-pub fn (o &CMsgClientMMssendLobbyChatMsg) pack() []byte {
+pub fn (o &CMsgClientMMSSendLobbyChatMsg) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6490,8 +6512,8 @@ pub fn (o &CMsgClientMMssendLobbyChatMsg) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssendlobbychatmsg_unpack(buf []byte) ?CMsgClientMMssendLobbyChatMsg {
-	mut res := CMsgClientMMssendLobbyChatMsg{}
+pub fn cmsgclientmmssendlobbychatmsg_unpack(buf []byte) ?CMsgClientMMSSendLobbyChatMsg {
+	mut res := CMsgClientMMSSendLobbyChatMsg{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6541,23 +6563,23 @@ pub fn cmsgclientmmssendlobbychatmsg_unpack(buf []byte) ?CMsgClientMMssendLobbyC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssendlobbychatmsg() CMsgClientMMssendLobbyChatMsg {
-	return CMsgClientMMssendLobbyChatMsg{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssendlobbychatmsg() CMsgClientMMSSendLobbyChatMsg {
+	return CMsgClientMMSSendLobbyChatMsg{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssendlobbychatmsg(o CMsgClientMMssendLobbyChatMsg, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssendlobbychatmsg(o CMsgClientMMSSendLobbyChatMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssendlobbychatmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssendLobbyChatMsg) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssendlobbychatmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSendLobbyChatMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssendlobbychatmsg_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMslobbyChatMsg {
+pub struct CMsgClientMMSLobbyChatMsg {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -6571,7 +6593,7 @@ pub mut:
 	has_lobby_message   bool
 }
 
-pub fn (o &CMsgClientMMslobbyChatMsg) pack() []byte {
+pub fn (o &CMsgClientMMSLobbyChatMsg) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6588,8 +6610,8 @@ pub fn (o &CMsgClientMMslobbyChatMsg) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmslobbychatmsg_unpack(buf []byte) ?CMsgClientMMslobbyChatMsg {
-	mut res := CMsgClientMMslobbyChatMsg{}
+pub fn cmsgclientmmslobbychatmsg_unpack(buf []byte) ?CMsgClientMMSLobbyChatMsg {
+	mut res := CMsgClientMMSLobbyChatMsg{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6639,23 +6661,23 @@ pub fn cmsgclientmmslobbychatmsg_unpack(buf []byte) ?CMsgClientMMslobbyChatMsg {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmslobbychatmsg() CMsgClientMMslobbyChatMsg {
-	return CMsgClientMMslobbyChatMsg{}
+pub fn zzz_vproto_internal_new_cmsgclientmmslobbychatmsg() CMsgClientMMSLobbyChatMsg {
+	return CMsgClientMMSLobbyChatMsg{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmslobbychatmsg(o CMsgClientMMslobbyChatMsg, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmslobbychatmsg(o CMsgClientMMSLobbyChatMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbychatmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMslobbyChatMsg) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbychatmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyChatMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmslobbychatmsg_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetLobbyOwner {
+pub struct CMsgClientMMSSetLobbyOwner {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -6667,7 +6689,7 @@ pub mut:
 	has_steam_id_new_owner bool
 }
 
-pub fn (o &CMsgClientMMssetLobbyOwner) pack() []byte {
+pub fn (o &CMsgClientMMSSetLobbyOwner) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6681,8 +6703,8 @@ pub fn (o &CMsgClientMMssetLobbyOwner) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetlobbyowner_unpack(buf []byte) ?CMsgClientMMssetLobbyOwner {
-	mut res := CMsgClientMMssetLobbyOwner{}
+pub fn cmsgclientmmssetlobbyowner_unpack(buf []byte) ?CMsgClientMMSSetLobbyOwner {
+	mut res := CMsgClientMMSSetLobbyOwner{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6726,23 +6748,23 @@ pub fn cmsgclientmmssetlobbyowner_unpack(buf []byte) ?CMsgClientMMssetLobbyOwner
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbyowner() CMsgClientMMssetLobbyOwner {
-	return CMsgClientMMssetLobbyOwner{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbyowner() CMsgClientMMSSetLobbyOwner {
+	return CMsgClientMMSSetLobbyOwner{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbyowner(o CMsgClientMMssetLobbyOwner, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbyowner(o CMsgClientMMSSetLobbyOwner, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbyowner(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetLobbyOwner) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbyowner(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyOwner) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetlobbyowner_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetLobbyOwnerResponse {
+pub struct CMsgClientMMSSetLobbyOwnerResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -6754,7 +6776,7 @@ pub mut:
 	has_eresult        bool
 }
 
-pub fn (o &CMsgClientMMssetLobbyOwnerResponse) pack() []byte {
+pub fn (o &CMsgClientMMSSetLobbyOwnerResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6768,8 +6790,8 @@ pub fn (o &CMsgClientMMssetLobbyOwnerResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetlobbyownerresponse_unpack(buf []byte) ?CMsgClientMMssetLobbyOwnerResponse {
-	mut res := CMsgClientMMssetLobbyOwnerResponse{}
+pub fn cmsgclientmmssetlobbyownerresponse_unpack(buf []byte) ?CMsgClientMMSSetLobbyOwnerResponse {
+	mut res := CMsgClientMMSSetLobbyOwnerResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6813,23 +6835,23 @@ pub fn cmsgclientmmssetlobbyownerresponse_unpack(buf []byte) ?CMsgClientMMssetLo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbyownerresponse() CMsgClientMMssetLobbyOwnerResponse {
-	return CMsgClientMMssetLobbyOwnerResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbyownerresponse() CMsgClientMMSSetLobbyOwnerResponse {
+	return CMsgClientMMSSetLobbyOwnerResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbyownerresponse(o CMsgClientMMssetLobbyOwnerResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbyownerresponse(o CMsgClientMMSSetLobbyOwnerResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbyownerresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetLobbyOwnerResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbyownerresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyOwnerResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetlobbyownerresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetLobbyLinked {
+pub struct CMsgClientMMSSetLobbyLinked {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -6841,7 +6863,7 @@ pub mut:
 	has_steam_id_lobby2 bool
 }
 
-pub fn (o &CMsgClientMMssetLobbyLinked) pack() []byte {
+pub fn (o &CMsgClientMMSSetLobbyLinked) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6855,8 +6877,8 @@ pub fn (o &CMsgClientMMssetLobbyLinked) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetlobbylinked_unpack(buf []byte) ?CMsgClientMMssetLobbyLinked {
-	mut res := CMsgClientMMssetLobbyLinked{}
+pub fn cmsgclientmmssetlobbylinked_unpack(buf []byte) ?CMsgClientMMSSetLobbyLinked {
+	mut res := CMsgClientMMSSetLobbyLinked{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6900,23 +6922,23 @@ pub fn cmsgclientmmssetlobbylinked_unpack(buf []byte) ?CMsgClientMMssetLobbyLink
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbylinked() CMsgClientMMssetLobbyLinked {
-	return CMsgClientMMssetLobbyLinked{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbylinked() CMsgClientMMSSetLobbyLinked {
+	return CMsgClientMMSSetLobbyLinked{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbylinked(o CMsgClientMMssetLobbyLinked, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbylinked(o CMsgClientMMSSetLobbyLinked, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbylinked(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetLobbyLinked) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbylinked(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyLinked) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetlobbylinked_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMssetLobbyGameServer {
+pub struct CMsgClientMMSSetLobbyGameServer {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -6930,11 +6952,11 @@ pub mut:
 	has_game_server_port          bool
 	game_server_steam_id          u64
 	has_game_server_steam_id      bool
-	game_server_ip                CMsgIPaddress
+	game_server_ip                CMsgIPAddress
 	has_game_server_ip            bool
 }
 
-pub fn (o &CMsgClientMMssetLobbyGameServer) pack() []byte {
+pub fn (o &CMsgClientMMSSetLobbyGameServer) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -6957,8 +6979,8 @@ pub fn (o &CMsgClientMMssetLobbyGameServer) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmssetlobbygameserver_unpack(buf []byte) ?CMsgClientMMssetLobbyGameServer {
-	mut res := CMsgClientMMssetLobbyGameServer{}
+pub fn cmsgclientmmssetlobbygameserver_unpack(buf []byte) ?CMsgClientMMSSetLobbyGameServer {
+	mut res := CMsgClientMMSSetLobbyGameServer{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7020,23 +7042,23 @@ pub fn cmsgclientmmssetlobbygameserver_unpack(buf []byte) ?CMsgClientMMssetLobby
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbygameserver() CMsgClientMMssetLobbyGameServer {
-	return CMsgClientMMssetLobbyGameServer{}
+pub fn zzz_vproto_internal_new_cmsgclientmmssetlobbygameserver() CMsgClientMMSSetLobbyGameServer {
+	return CMsgClientMMSSetLobbyGameServer{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbygameserver(o CMsgClientMMssetLobbyGameServer, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbygameserver(o CMsgClientMMSSetLobbyGameServer, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbygameserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMssetLobbyGameServer) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbygameserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyGameServer) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmssetlobbygameserver_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMslobbyGameServerSet {
+pub struct CMsgClientMMSLobbyGameServerSet {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -7050,11 +7072,11 @@ pub mut:
 	has_game_server_port          bool
 	game_server_steam_id          u64
 	has_game_server_steam_id      bool
-	game_server_ip                CMsgIPaddress
+	game_server_ip                CMsgIPAddress
 	has_game_server_ip            bool
 }
 
-pub fn (o &CMsgClientMMslobbyGameServerSet) pack() []byte {
+pub fn (o &CMsgClientMMSLobbyGameServerSet) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -7077,8 +7099,8 @@ pub fn (o &CMsgClientMMslobbyGameServerSet) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmslobbygameserverset_unpack(buf []byte) ?CMsgClientMMslobbyGameServerSet {
-	mut res := CMsgClientMMslobbyGameServerSet{}
+pub fn cmsgclientmmslobbygameserverset_unpack(buf []byte) ?CMsgClientMMSLobbyGameServerSet {
+	mut res := CMsgClientMMSLobbyGameServerSet{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7140,23 +7162,23 @@ pub fn cmsgclientmmslobbygameserverset_unpack(buf []byte) ?CMsgClientMMslobbyGam
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmslobbygameserverset() CMsgClientMMslobbyGameServerSet {
-	return CMsgClientMMslobbyGameServerSet{}
+pub fn zzz_vproto_internal_new_cmsgclientmmslobbygameserverset() CMsgClientMMSLobbyGameServerSet {
+	return CMsgClientMMSLobbyGameServerSet{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmslobbygameserverset(o CMsgClientMMslobbyGameServerSet, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmslobbygameserverset(o CMsgClientMMSLobbyGameServerSet, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbygameserverset(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMslobbyGameServerSet) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbygameserverset(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyGameServerSet) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmslobbygameserverset_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsuserJoinedLobby {
+pub struct CMsgClientMMSUserJoinedLobby {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7170,7 +7192,7 @@ pub mut:
 	has_persona_name   bool
 }
 
-pub fn (o &CMsgClientMMsuserJoinedLobby) pack() []byte {
+pub fn (o &CMsgClientMMSUserJoinedLobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -7187,8 +7209,8 @@ pub fn (o &CMsgClientMMsuserJoinedLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsuserjoinedlobby_unpack(buf []byte) ?CMsgClientMMsuserJoinedLobby {
-	mut res := CMsgClientMMsuserJoinedLobby{}
+pub fn cmsgclientmmsuserjoinedlobby_unpack(buf []byte) ?CMsgClientMMSUserJoinedLobby {
+	mut res := CMsgClientMMSUserJoinedLobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7238,23 +7260,23 @@ pub fn cmsgclientmmsuserjoinedlobby_unpack(buf []byte) ?CMsgClientMMsuserJoinedL
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsuserjoinedlobby() CMsgClientMMsuserJoinedLobby {
-	return CMsgClientMMsuserJoinedLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsuserjoinedlobby() CMsgClientMMSUserJoinedLobby {
+	return CMsgClientMMSUserJoinedLobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsuserjoinedlobby(o CMsgClientMMsuserJoinedLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsuserjoinedlobby(o CMsgClientMMSUserJoinedLobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsuserjoinedlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsuserJoinedLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsuserjoinedlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSUserJoinedLobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsuserjoinedlobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsuserLeftLobby {
+pub struct CMsgClientMMSUserLeftLobby {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7268,7 +7290,7 @@ pub mut:
 	has_persona_name   bool
 }
 
-pub fn (o &CMsgClientMMsuserLeftLobby) pack() []byte {
+pub fn (o &CMsgClientMMSUserLeftLobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -7285,8 +7307,8 @@ pub fn (o &CMsgClientMMsuserLeftLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsuserleftlobby_unpack(buf []byte) ?CMsgClientMMsuserLeftLobby {
-	mut res := CMsgClientMMsuserLeftLobby{}
+pub fn cmsgclientmmsuserleftlobby_unpack(buf []byte) ?CMsgClientMMSUserLeftLobby {
+	mut res := CMsgClientMMSUserLeftLobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7336,23 +7358,23 @@ pub fn cmsgclientmmsuserleftlobby_unpack(buf []byte) ?CMsgClientMMsuserLeftLobby
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsuserleftlobby() CMsgClientMMsuserLeftLobby {
-	return CMsgClientMMsuserLeftLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsuserleftlobby() CMsgClientMMSUserLeftLobby {
+	return CMsgClientMMSUserLeftLobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsuserleftlobby(o CMsgClientMMsuserLeftLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsuserleftlobby(o CMsgClientMMSUserLeftLobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsuserleftlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsuserLeftLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsuserleftlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSUserLeftLobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsuserleftlobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsinviteToLobby {
+pub struct CMsgClientMMSInviteToLobby {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -7364,7 +7386,7 @@ pub mut:
 	has_steam_id_user_invited bool
 }
 
-pub fn (o &CMsgClientMMsinviteToLobby) pack() []byte {
+pub fn (o &CMsgClientMMSInviteToLobby) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -7378,8 +7400,8 @@ pub fn (o &CMsgClientMMsinviteToLobby) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsinvitetolobby_unpack(buf []byte) ?CMsgClientMMsinviteToLobby {
-	mut res := CMsgClientMMsinviteToLobby{}
+pub fn cmsgclientmmsinvitetolobby_unpack(buf []byte) ?CMsgClientMMSInviteToLobby {
+	mut res := CMsgClientMMSInviteToLobby{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7423,23 +7445,23 @@ pub fn cmsgclientmmsinvitetolobby_unpack(buf []byte) ?CMsgClientMMsinviteToLobby
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsinvitetolobby() CMsgClientMMsinviteToLobby {
-	return CMsgClientMMsinviteToLobby{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsinvitetolobby() CMsgClientMMSInviteToLobby {
+	return CMsgClientMMSInviteToLobby{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsinvitetolobby(o CMsgClientMMsinviteToLobby, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsinvitetolobby(o CMsgClientMMSInviteToLobby, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsinvitetolobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsinviteToLobby) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsinvitetolobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSInviteToLobby) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsinvitetolobby_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyStatus {
+pub struct CMsgClientMMSGetLobbyStatus {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -7453,7 +7475,7 @@ pub mut:
 	has_claim_ownership  bool
 }
 
-pub fn (o &CMsgClientMMsgetLobbyStatus) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyStatus) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -7470,8 +7492,8 @@ pub fn (o &CMsgClientMMsgetLobbyStatus) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbystatus_unpack(buf []byte) ?CMsgClientMMsgetLobbyStatus {
-	mut res := CMsgClientMMsgetLobbyStatus{}
+pub fn cmsgclientmmsgetlobbystatus_unpack(buf []byte) ?CMsgClientMMSGetLobbyStatus {
+	mut res := CMsgClientMMSGetLobbyStatus{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7521,23 +7543,23 @@ pub fn cmsgclientmmsgetlobbystatus_unpack(buf []byte) ?CMsgClientMMsgetLobbyStat
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbystatus() CMsgClientMMsgetLobbyStatus {
-	return CMsgClientMMsgetLobbyStatus{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbystatus() CMsgClientMMSGetLobbyStatus {
+	return CMsgClientMMSGetLobbyStatus{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbystatus(o CMsgClientMMsgetLobbyStatus, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbystatus(o CMsgClientMMSGetLobbyStatus, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyStatus) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyStatus) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsgetlobbystatus_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientMMsgetLobbyStatusResponse {
+pub struct CMsgClientMMSGetLobbyStatusResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7545,11 +7567,11 @@ pub mut:
 	has_app_id         bool
 	steam_id_lobby     u64
 	has_steam_id_lobby bool
-	lobby_status       EMmslobbyStatus
+	lobby_status       EMMSLobbyStatus
 	has_lobby_status   bool
 }
 
-pub fn (o &CMsgClientMMsgetLobbyStatusResponse) pack() []byte {
+pub fn (o &CMsgClientMMSGetLobbyStatusResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -7563,8 +7585,8 @@ pub fn (o &CMsgClientMMsgetLobbyStatusResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientmmsgetlobbystatusresponse_unpack(buf []byte) ?CMsgClientMMsgetLobbyStatusResponse {
-	mut res := CMsgClientMMsgetLobbyStatusResponse{}
+pub fn cmsgclientmmsgetlobbystatusresponse_unpack(buf []byte) ?CMsgClientMMSGetLobbyStatusResponse {
+	mut res := CMsgClientMMSGetLobbyStatusResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7608,17 +7630,17 @@ pub fn cmsgclientmmsgetlobbystatusresponse_unpack(buf []byte) ?CMsgClientMMsgetL
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbystatusresponse() CMsgClientMMsgetLobbyStatusResponse {
-	return CMsgClientMMsgetLobbyStatusResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientmmsgetlobbystatusresponse() CMsgClientMMSGetLobbyStatusResponse {
+	return CMsgClientMMSGetLobbyStatusResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbystatusresponse(o CMsgClientMMsgetLobbyStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbystatusresponse(o CMsgClientMMSGetLobbyStatusResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbystatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMsgetLobbyStatusResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbystatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyStatusResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmmsgetlobbystatusresponse_unpack(v)?
 	return i, unpacked
@@ -7853,7 +7875,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientchatinvite(buf []byte, tag_wiretype 
 	return i, unpacked
 }
 
-pub struct CMsgClientConnectionStatsStatsLogon {
+pub struct CMsgClientConnectionStats_Stats_Logon {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -7873,7 +7895,7 @@ pub mut:
 	has_count_bad_cms        bool
 }
 
-pub fn (o &CMsgClientConnectionStatsStatsLogon) pack() []byte {
+pub fn (o &CMsgClientConnectionStats_Stats_Logon) pack() []byte {
 	mut res := []byte{}
 	if o.has_connect_attempts {
 		res << vproto.pack_int32_field(o.connect_attempts, 1)
@@ -7899,8 +7921,8 @@ pub fn (o &CMsgClientConnectionStatsStatsLogon) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientconnectionstatsstatslogon_unpack(buf []byte) ?CMsgClientConnectionStatsStatsLogon {
-	mut res := CMsgClientConnectionStatsStatsLogon{}
+pub fn cmsgclientconnectionstats_stats_logon_unpack(buf []byte) ?CMsgClientConnectionStats_Stats_Logon {
+	mut res := CMsgClientConnectionStats_Stats_Logon{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7968,23 +7990,23 @@ pub fn cmsgclientconnectionstatsstatslogon_unpack(buf []byte) ?CMsgClientConnect
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientconnectionstatsstatslogon() CMsgClientConnectionStatsStatsLogon {
-	return CMsgClientConnectionStatsStatsLogon{}
+pub fn zzz_vproto_internal_new_cmsgclientconnectionstats_stats_logon() CMsgClientConnectionStats_Stats_Logon {
+	return CMsgClientConnectionStats_Stats_Logon{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientconnectionstatsstatslogon(o CMsgClientConnectionStatsStatsLogon, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_logon(o CMsgClientConnectionStats_Stats_Logon, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstatsstatslogon(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStatsStatsLogon) {
+pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_logon(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats_Stats_Logon) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstatsstatslogon_unpack(v)?
+	mut unpacked := cmsgclientconnectionstats_stats_logon_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientConnectionStatsStatsUDp {
+pub struct CMsgClientConnectionStats_Stats_UDP {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -8000,7 +8022,7 @@ pub mut:
 	has_bytes_recv     bool
 }
 
-pub fn (o &CMsgClientConnectionStatsStatsUDp) pack() []byte {
+pub fn (o &CMsgClientConnectionStats_Stats_UDP) pack() []byte {
 	mut res := []byte{}
 	if o.has_pkts_sent {
 		res << vproto.pack_uint64_field(o.pkts_sent, 1)
@@ -8020,8 +8042,8 @@ pub fn (o &CMsgClientConnectionStatsStatsUDp) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientconnectionstatsstatsudp_unpack(buf []byte) ?CMsgClientConnectionStatsStatsUDp {
-	mut res := CMsgClientConnectionStatsStatsUDp{}
+pub fn cmsgclientconnectionstats_stats_udp_unpack(buf []byte) ?CMsgClientConnectionStats_Stats_UDP {
+	mut res := CMsgClientConnectionStats_Stats_UDP{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8077,23 +8099,23 @@ pub fn cmsgclientconnectionstatsstatsudp_unpack(buf []byte) ?CMsgClientConnectio
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientconnectionstatsstatsudp() CMsgClientConnectionStatsStatsUDp {
-	return CMsgClientConnectionStatsStatsUDp{}
+pub fn zzz_vproto_internal_new_cmsgclientconnectionstats_stats_udp() CMsgClientConnectionStats_Stats_UDP {
+	return CMsgClientConnectionStats_Stats_UDP{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientconnectionstatsstatsudp(o CMsgClientConnectionStatsStatsUDp, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_udp(o CMsgClientConnectionStats_Stats_UDP, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstatsstatsudp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStatsStatsUDp) {
+pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_udp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats_Stats_UDP) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstatsstatsudp_unpack(v)?
+	mut unpacked := cmsgclientconnectionstats_stats_udp_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientConnectionStatsStatsVConn {
+pub struct CMsgClientConnectionStats_Stats_VConn {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -8101,7 +8123,7 @@ pub mut:
 	has_connections_udp           bool
 	connections_tcp               u32
 	has_connections_tcp           bool
-	stats_udp                     CMsgClientConnectionStatsStatsUDp
+	stats_udp                     CMsgClientConnectionStats_Stats_UDP
 	has_stats_udp                 bool
 	pkts_abandoned                u64
 	has_pkts_abandoned            bool
@@ -8139,7 +8161,7 @@ pub mut:
 	has_mem_pool_msg_in_use       bool
 }
 
-pub fn (o &CMsgClientConnectionStatsStatsVConn) pack() []byte {
+pub fn (o &CMsgClientConnectionStats_Stats_VConn) pack() []byte {
 	mut res := []byte{}
 	if o.has_connections_udp {
 		res << vproto.pack_uint32_field(o.connections_udp, 1)
@@ -8148,7 +8170,7 @@ pub fn (o &CMsgClientConnectionStatsStatsVConn) pack() []byte {
 		res << vproto.pack_uint32_field(o.connections_tcp, 2)
 	}
 	if o.has_stats_udp {
-		res << zzz_vproto_internal_pack_cmsgclientconnectionstatsstatsudp(o.stats_udp, 3)
+		res << zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_udp(o.stats_udp, 3)
 	}
 	if o.has_pkts_abandoned {
 		res << vproto.pack_uint64_field(o.pkts_abandoned, 4)
@@ -8204,8 +8226,8 @@ pub fn (o &CMsgClientConnectionStatsStatsVConn) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientconnectionstatsstatsvconn_unpack(buf []byte) ?CMsgClientConnectionStatsStatsVConn {
-	mut res := CMsgClientConnectionStatsStatsVConn{}
+pub fn cmsgclientconnectionstats_stats_vconn_unpack(buf []byte) ?CMsgClientConnectionStats_Stats_VConn {
+	mut res := CMsgClientConnectionStats_Stats_VConn{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8229,7 +8251,7 @@ pub fn cmsgclientconnectionstatsstatsvconn_unpack(buf []byte) ?CMsgClientConnect
 			}
 			3 {
 				res.has_stats_udp = true
-				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstatsstatsudp(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_udp(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats_udp = v
 				i = ii
@@ -8352,19 +8374,19 @@ pub fn cmsgclientconnectionstatsstatsvconn_unpack(buf []byte) ?CMsgClientConnect
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientconnectionstatsstatsvconn() CMsgClientConnectionStatsStatsVConn {
-	return CMsgClientConnectionStatsStatsVConn{}
+pub fn zzz_vproto_internal_new_cmsgclientconnectionstats_stats_vconn() CMsgClientConnectionStats_Stats_VConn {
+	return CMsgClientConnectionStats_Stats_VConn{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientconnectionstatsstatsvconn(o CMsgClientConnectionStatsStatsVConn, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_vconn(o CMsgClientConnectionStats_Stats_VConn, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstatsstatsvconn(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStatsStatsVConn) {
+pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_vconn(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats_Stats_VConn) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstatsstatsvconn_unpack(v)?
+	mut unpacked := cmsgclientconnectionstats_stats_vconn_unpack(v)?
 	return i, unpacked
 }
 
@@ -8372,19 +8394,19 @@ pub struct CMsgClientConnectionStats {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	stats_logon     CMsgClientConnectionStatsStatsLogon
+	stats_logon     CMsgClientConnectionStats_Stats_Logon
 	has_stats_logon bool
-	stats_vconn     CMsgClientConnectionStatsStatsVConn
+	stats_vconn     CMsgClientConnectionStats_Stats_VConn
 	has_stats_vconn bool
 }
 
 pub fn (o &CMsgClientConnectionStats) pack() []byte {
 	mut res := []byte{}
 	if o.has_stats_logon {
-		res << zzz_vproto_internal_pack_cmsgclientconnectionstatsstatslogon(o.stats_logon, 1)
+		res << zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_logon(o.stats_logon, 1)
 	}
 	if o.has_stats_vconn {
-		res << zzz_vproto_internal_pack_cmsgclientconnectionstatsstatsvconn(o.stats_vconn, 2)
+		res << zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_vconn(o.stats_vconn, 2)
 	}
 	return res
 }
@@ -8402,14 +8424,14 @@ pub fn cmsgclientconnectionstats_unpack(buf []byte) ?CMsgClientConnectionStats {
 		match tag_wiretype.tag {
 			1 {
 				res.has_stats_logon = true
-				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstatsstatslogon(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_logon(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats_logon = v
 				i = ii
 			}
 			2 {
 				res.has_stats_vconn = true
-				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstatsstatsvconn(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_vconn(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats_vconn = v
 				i = ii
@@ -8446,7 +8468,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats(buf []byte, tag_wire
 	return i, unpacked
 }
 
-pub struct CMsgClientServersAvailableServerTypesAvailable {
+pub struct CMsgClientServersAvailable_Server_Types_Available {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -8456,7 +8478,7 @@ pub mut:
 	has_changed    bool
 }
 
-pub fn (o &CMsgClientServersAvailableServerTypesAvailable) pack() []byte {
+pub fn (o &CMsgClientServersAvailable_Server_Types_Available) pack() []byte {
 	mut res := []byte{}
 	if o.has_server {
 		res << vproto.pack_uint32_field(o.server, 1)
@@ -8467,8 +8489,8 @@ pub fn (o &CMsgClientServersAvailableServerTypesAvailable) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientserversavailableservertypesavailable_unpack(buf []byte) ?CMsgClientServersAvailableServerTypesAvailable {
-	mut res := CMsgClientServersAvailableServerTypesAvailable{}
+pub fn cmsgclientserversavailable_server_types_available_unpack(buf []byte) ?CMsgClientServersAvailable_Server_Types_Available {
+	mut res := CMsgClientServersAvailable_Server_Types_Available{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8506,19 +8528,19 @@ pub fn cmsgclientserversavailableservertypesavailable_unpack(buf []byte) ?CMsgCl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientserversavailableservertypesavailable() CMsgClientServersAvailableServerTypesAvailable {
-	return CMsgClientServersAvailableServerTypesAvailable{}
+pub fn zzz_vproto_internal_new_cmsgclientserversavailable_server_types_available() CMsgClientServersAvailable_Server_Types_Available {
+	return CMsgClientServersAvailable_Server_Types_Available{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientserversavailableservertypesavailable(o CMsgClientServersAvailableServerTypesAvailable, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientserversavailable_server_types_available(o CMsgClientServersAvailable_Server_Types_Available, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientserversavailableservertypesavailable(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientServersAvailableServerTypesAvailable) {
+pub fn zzz_vproto_internal_unpack_cmsgclientserversavailable_server_types_available(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientServersAvailable_Server_Types_Available) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientserversavailableservertypesavailable_unpack(v)?
+	mut unpacked := cmsgclientserversavailable_server_types_available_unpack(v)?
 	return i, unpacked
 }
 
@@ -8526,7 +8548,7 @@ pub struct CMsgClientServersAvailable {
 mut:
 	unknown_fields                    []vproto.UnknownField
 pub mut:
-	server_types_available            []CMsgClientServersAvailableServerTypesAvailable
+	server_types_available            []CMsgClientServersAvailable_Server_Types_Available
 	server_type_for_auth_services     u32
 	has_server_type_for_auth_services bool
 }
@@ -8535,7 +8557,7 @@ pub fn (o &CMsgClientServersAvailable) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.server_types_available {
-		res << zzz_vproto_internal_pack_cmsgclientserversavailableservertypesavailable(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientserversavailable_server_types_available(x, 1)
 	}
 	if o.has_server_type_for_auth_services {
 		res << vproto.pack_uint32_field(o.server_type_for_auth_services, 2)
@@ -8556,7 +8578,7 @@ pub fn cmsgclientserversavailable_unpack(buf []byte) ?CMsgClientServersAvailable
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientserversavailableservertypesavailable(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientserversavailable_server_types_available(cur_buf,
 					tag_wiretype.wire_type)?
 				res.server_types_available << v
 				i = ii
@@ -8697,7 +8719,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstats(buf []byte, tag_wiretyp
 	return i, unpacked
 }
 
-pub struct CMsgClientGetUserStatsResponseStats {
+pub struct CMsgClientGetUserStatsResponse_Stats {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -8707,7 +8729,7 @@ pub mut:
 	has_stat_value bool
 }
 
-pub fn (o &CMsgClientGetUserStatsResponseStats) pack() []byte {
+pub fn (o &CMsgClientGetUserStatsResponse_Stats) pack() []byte {
 	mut res := []byte{}
 	if o.has_stat_id {
 		res << vproto.pack_uint32_field(o.stat_id, 1)
@@ -8718,8 +8740,8 @@ pub fn (o &CMsgClientGetUserStatsResponseStats) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientgetuserstatsresponsestats_unpack(buf []byte) ?CMsgClientGetUserStatsResponseStats {
-	mut res := CMsgClientGetUserStatsResponseStats{}
+pub fn cmsgclientgetuserstatsresponse_stats_unpack(buf []byte) ?CMsgClientGetUserStatsResponse_Stats {
+	mut res := CMsgClientGetUserStatsResponse_Stats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8757,23 +8779,23 @@ pub fn cmsgclientgetuserstatsresponsestats_unpack(buf []byte) ?CMsgClientGetUser
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientgetuserstatsresponsestats() CMsgClientGetUserStatsResponseStats {
-	return CMsgClientGetUserStatsResponseStats{}
+pub fn zzz_vproto_internal_new_cmsgclientgetuserstatsresponse_stats() CMsgClientGetUserStatsResponse_Stats {
+	return CMsgClientGetUserStatsResponse_Stats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponsestats(o CMsgClientGetUserStatsResponseStats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_stats(o CMsgClientGetUserStatsResponse_Stats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponsestats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponseStats) {
+pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponse_Stats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetuserstatsresponsestats_unpack(v)?
+	mut unpacked := cmsgclientgetuserstatsresponse_stats_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientGetUserStatsResponseAchievementBlocks {
+pub struct CMsgClientGetUserStatsResponse_Achievement_Blocks {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -8782,7 +8804,7 @@ pub mut:
 	unlock_time        []u32
 }
 
-pub fn (o &CMsgClientGetUserStatsResponseAchievementBlocks) pack() []byte {
+pub fn (o &CMsgClientGetUserStatsResponse_Achievement_Blocks) pack() []byte {
 	mut res := []byte{}
 	if o.has_achievement_id {
 		res << vproto.pack_uint32_field(o.achievement_id, 1)
@@ -8794,8 +8816,8 @@ pub fn (o &CMsgClientGetUserStatsResponseAchievementBlocks) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientgetuserstatsresponseachievementblocks_unpack(buf []byte) ?CMsgClientGetUserStatsResponseAchievementBlocks {
-	mut res := CMsgClientGetUserStatsResponseAchievementBlocks{}
+pub fn cmsgclientgetuserstatsresponse_achievement_blocks_unpack(buf []byte) ?CMsgClientGetUserStatsResponse_Achievement_Blocks {
+	mut res := CMsgClientGetUserStatsResponse_Achievement_Blocks{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8833,19 +8855,19 @@ pub fn cmsgclientgetuserstatsresponseachievementblocks_unpack(buf []byte) ?CMsgC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientgetuserstatsresponseachievementblocks() CMsgClientGetUserStatsResponseAchievementBlocks {
-	return CMsgClientGetUserStatsResponseAchievementBlocks{}
+pub fn zzz_vproto_internal_new_cmsgclientgetuserstatsresponse_achievement_blocks() CMsgClientGetUserStatsResponse_Achievement_Blocks {
+	return CMsgClientGetUserStatsResponse_Achievement_Blocks{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponseachievementblocks(o CMsgClientGetUserStatsResponseAchievementBlocks, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_achievement_blocks(o CMsgClientGetUserStatsResponse_Achievement_Blocks, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponseachievementblocks(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponseAchievementBlocks) {
+pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_achievement_blocks(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponse_Achievement_Blocks) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetuserstatsresponseachievementblocks_unpack(v)?
+	mut unpacked := cmsgclientgetuserstatsresponse_achievement_blocks_unpack(v)?
 	return i, unpacked
 }
 
@@ -8861,8 +8883,8 @@ pub mut:
 	has_crc_stats      bool
 	schema             []byte
 	has_schema         bool
-	stats              []CMsgClientGetUserStatsResponseStats
-	achievement_blocks []CMsgClientGetUserStatsResponseAchievementBlocks
+	stats              []CMsgClientGetUserStatsResponse_Stats
+	achievement_blocks []CMsgClientGetUserStatsResponse_Achievement_Blocks
 }
 
 pub fn (o &CMsgClientGetUserStatsResponse) pack() []byte {
@@ -8881,11 +8903,11 @@ pub fn (o &CMsgClientGetUserStatsResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.stats {
-		res << zzz_vproto_internal_pack_cmsgclientgetuserstatsresponsestats(x, 5)
+		res << zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_stats(x, 5)
 	}
 	// [packed=false]
 	for _, x in o.achievement_blocks {
-		res << zzz_vproto_internal_pack_cmsgclientgetuserstatsresponseachievementblocks(x, 6)
+		res << zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_achievement_blocks(x, 6)
 	}
 	return res
 }
@@ -8927,14 +8949,14 @@ pub fn cmsgclientgetuserstatsresponse_unpack(buf []byte) ?CMsgClientGetUserStats
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponsestats(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_stats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats << v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponseachievementblocks(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_achievement_blocks(cur_buf,
 					tag_wiretype.wire_type)?
 				res.achievement_blocks << v
 				i = ii
@@ -8971,7 +8993,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse(buf []byte, tag
 	return i, unpacked
 }
 
-pub struct CMsgClientStoreUserStatsResponseStatsFailedValidation {
+pub struct CMsgClientStoreUserStatsResponse_Stats_Failed_Validation {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -8981,7 +9003,7 @@ pub mut:
 	has_reverted_stat_value bool
 }
 
-pub fn (o &CMsgClientStoreUserStatsResponseStatsFailedValidation) pack() []byte {
+pub fn (o &CMsgClientStoreUserStatsResponse_Stats_Failed_Validation) pack() []byte {
 	mut res := []byte{}
 	if o.has_stat_id {
 		res << vproto.pack_uint32_field(o.stat_id, 1)
@@ -8992,8 +9014,8 @@ pub fn (o &CMsgClientStoreUserStatsResponseStatsFailedValidation) pack() []byte 
 	return res
 }
 
-pub fn cmsgclientstoreuserstatsresponsestatsfailedvalidation_unpack(buf []byte) ?CMsgClientStoreUserStatsResponseStatsFailedValidation {
-	mut res := CMsgClientStoreUserStatsResponseStatsFailedValidation{}
+pub fn cmsgclientstoreuserstatsresponse_stats_failed_validation_unpack(buf []byte) ?CMsgClientStoreUserStatsResponse_Stats_Failed_Validation {
+	mut res := CMsgClientStoreUserStatsResponse_Stats_Failed_Validation{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -9031,19 +9053,19 @@ pub fn cmsgclientstoreuserstatsresponsestatsfailedvalidation_unpack(buf []byte) 
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientstoreuserstatsresponsestatsfailedvalidation() CMsgClientStoreUserStatsResponseStatsFailedValidation {
-	return CMsgClientStoreUserStatsResponseStatsFailedValidation{}
+pub fn zzz_vproto_internal_new_cmsgclientstoreuserstatsresponse_stats_failed_validation() CMsgClientStoreUserStatsResponse_Stats_Failed_Validation {
+	return CMsgClientStoreUserStatsResponse_Stats_Failed_Validation{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponsestatsfailedvalidation(o CMsgClientStoreUserStatsResponseStatsFailedValidation, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponse_stats_failed_validation(o CMsgClientStoreUserStatsResponse_Stats_Failed_Validation, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponsestatsfailedvalidation(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStatsResponseStatsFailedValidation) {
+pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponse_stats_failed_validation(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStatsResponse_Stats_Failed_Validation) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstatsresponsestatsfailedvalidation_unpack(v)?
+	mut unpacked := cmsgclientstoreuserstatsresponse_stats_failed_validation_unpack(v)?
 	return i, unpacked
 }
 
@@ -9057,7 +9079,7 @@ pub mut:
 	has_eresult             bool
 	crc_stats               u32
 	has_crc_stats           bool
-	stats_failed_validation []CMsgClientStoreUserStatsResponseStatsFailedValidation
+	stats_failed_validation []CMsgClientStoreUserStatsResponse_Stats_Failed_Validation
 	stats_out_of_date       bool
 	has_stats_out_of_date   bool
 }
@@ -9075,7 +9097,8 @@ pub fn (o &CMsgClientStoreUserStatsResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.stats_failed_validation {
-		res << zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponsestatsfailedvalidation(x, 4)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponse_stats_failed_validation(x, 4)
 	}
 	if o.has_stats_out_of_date {
 		res << vproto.pack_bool_field(o.stats_out_of_date, 5)
@@ -9114,7 +9137,7 @@ pub fn cmsgclientstoreuserstatsresponse_unpack(buf []byte) ?CMsgClientStoreUserS
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponsestatsfailedvalidation(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponse_stats_failed_validation(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats_failed_validation << v
 				i = ii
@@ -9157,7 +9180,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponse(buf []byte, t
 	return i, unpacked
 }
 
-pub struct CMsgClientStoreUserStats2Stats {
+pub struct CMsgClientStoreUserStats2_Stats {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -9167,7 +9190,7 @@ pub mut:
 	has_stat_value bool
 }
 
-pub fn (o &CMsgClientStoreUserStats2Stats) pack() []byte {
+pub fn (o &CMsgClientStoreUserStats2_Stats) pack() []byte {
 	mut res := []byte{}
 	if o.has_stat_id {
 		res << vproto.pack_uint32_field(o.stat_id, 1)
@@ -9178,8 +9201,8 @@ pub fn (o &CMsgClientStoreUserStats2Stats) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientstoreuserstats2stats_unpack(buf []byte) ?CMsgClientStoreUserStats2Stats {
-	mut res := CMsgClientStoreUserStats2Stats{}
+pub fn cmsgclientstoreuserstats2_stats_unpack(buf []byte) ?CMsgClientStoreUserStats2_Stats {
+	mut res := CMsgClientStoreUserStats2_Stats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -9217,19 +9240,19 @@ pub fn cmsgclientstoreuserstats2stats_unpack(buf []byte) ?CMsgClientStoreUserSta
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientstoreuserstats2stats() CMsgClientStoreUserStats2Stats {
-	return CMsgClientStoreUserStats2Stats{}
+pub fn zzz_vproto_internal_new_cmsgclientstoreuserstats2_stats() CMsgClientStoreUserStats2_Stats {
+	return CMsgClientStoreUserStats2_Stats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats2stats(o CMsgClientStoreUserStats2Stats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats2_stats(o CMsgClientStoreUserStats2_Stats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats2stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats2Stats) {
+pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats2_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats2_Stats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstats2stats_unpack(v)?
+	mut unpacked := cmsgclientstoreuserstats2_stats_unpack(v)?
 	return i, unpacked
 }
 
@@ -9247,7 +9270,7 @@ pub mut:
 	has_crc_stats       bool
 	explicit_reset      bool
 	has_explicit_reset  bool
-	stats               []CMsgClientStoreUserStats2Stats
+	stats               []CMsgClientStoreUserStats2_Stats
 }
 
 pub fn (o &CMsgClientStoreUserStats2) pack() []byte {
@@ -9269,7 +9292,7 @@ pub fn (o &CMsgClientStoreUserStats2) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.stats {
-		res << zzz_vproto_internal_pack_cmsgclientstoreuserstats2stats(x, 6)
+		res << zzz_vproto_internal_pack_cmsgclientstoreuserstats2_stats(x, 6)
 	}
 	return res
 }
@@ -9317,7 +9340,7 @@ pub fn cmsgclientstoreuserstats2_unpack(buf []byte) ?CMsgClientStoreUserStats2 {
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstats2stats(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstats2_stats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats << v
 				i = ii
@@ -9354,7 +9377,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats2(buf []byte, tag_wire
 	return i, unpacked
 }
 
-pub struct CMsgClientStatsUpdatedUpdatedStats {
+pub struct CMsgClientStatsUpdated_Updated_Stats {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -9364,7 +9387,7 @@ pub mut:
 	has_stat_value bool
 }
 
-pub fn (o &CMsgClientStatsUpdatedUpdatedStats) pack() []byte {
+pub fn (o &CMsgClientStatsUpdated_Updated_Stats) pack() []byte {
 	mut res := []byte{}
 	if o.has_stat_id {
 		res << vproto.pack_uint32_field(o.stat_id, 1)
@@ -9375,8 +9398,8 @@ pub fn (o &CMsgClientStatsUpdatedUpdatedStats) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientstatsupdatedupdatedstats_unpack(buf []byte) ?CMsgClientStatsUpdatedUpdatedStats {
-	mut res := CMsgClientStatsUpdatedUpdatedStats{}
+pub fn cmsgclientstatsupdated_updated_stats_unpack(buf []byte) ?CMsgClientStatsUpdated_Updated_Stats {
+	mut res := CMsgClientStatsUpdated_Updated_Stats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -9414,19 +9437,19 @@ pub fn cmsgclientstatsupdatedupdatedstats_unpack(buf []byte) ?CMsgClientStatsUpd
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientstatsupdatedupdatedstats() CMsgClientStatsUpdatedUpdatedStats {
-	return CMsgClientStatsUpdatedUpdatedStats{}
+pub fn zzz_vproto_internal_new_cmsgclientstatsupdated_updated_stats() CMsgClientStatsUpdated_Updated_Stats {
+	return CMsgClientStatsUpdated_Updated_Stats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientstatsupdatedupdatedstats(o CMsgClientStatsUpdatedUpdatedStats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientstatsupdated_updated_stats(o CMsgClientStatsUpdated_Updated_Stats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientstatsupdatedupdatedstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStatsUpdatedUpdatedStats) {
+pub fn zzz_vproto_internal_unpack_cmsgclientstatsupdated_updated_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStatsUpdated_Updated_Stats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstatsupdatedupdatedstats_unpack(v)?
+	mut unpacked := cmsgclientstatsupdated_updated_stats_unpack(v)?
 	return i, unpacked
 }
 
@@ -9440,7 +9463,7 @@ pub mut:
 	has_game_id    bool
 	crc_stats      u32
 	has_crc_stats  bool
-	updated_stats  []CMsgClientStatsUpdatedUpdatedStats
+	updated_stats  []CMsgClientStatsUpdated_Updated_Stats
 }
 
 pub fn (o &CMsgClientStatsUpdated) pack() []byte {
@@ -9456,7 +9479,7 @@ pub fn (o &CMsgClientStatsUpdated) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.updated_stats {
-		res << zzz_vproto_internal_pack_cmsgclientstatsupdatedupdatedstats(x, 4)
+		res << zzz_vproto_internal_pack_cmsgclientstatsupdated_updated_stats(x, 4)
 	}
 	return res
 }
@@ -9492,7 +9515,7 @@ pub fn cmsgclientstatsupdated_unpack(buf []byte) ?CMsgClientStatsUpdated {
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientstatsupdatedupdatedstats(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientstatsupdated_updated_stats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.updated_stats << v
 				i = ii
@@ -9529,7 +9552,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientstatsupdated(buf []byte, tag_wiretyp
 	return i, unpacked
 }
 
-pub struct CMsgClientStoreUserStatsStatsToStore {
+pub struct CMsgClientStoreUserStats_Stats_To_Store {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -9539,7 +9562,7 @@ pub mut:
 	has_stat_value bool
 }
 
-pub fn (o &CMsgClientStoreUserStatsStatsToStore) pack() []byte {
+pub fn (o &CMsgClientStoreUserStats_Stats_To_Store) pack() []byte {
 	mut res := []byte{}
 	if o.has_stat_id {
 		res << vproto.pack_uint32_field(o.stat_id, 1)
@@ -9550,8 +9573,8 @@ pub fn (o &CMsgClientStoreUserStatsStatsToStore) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientstoreuserstatsstatstostore_unpack(buf []byte) ?CMsgClientStoreUserStatsStatsToStore {
-	mut res := CMsgClientStoreUserStatsStatsToStore{}
+pub fn cmsgclientstoreuserstats_stats_to_store_unpack(buf []byte) ?CMsgClientStoreUserStats_Stats_To_Store {
+	mut res := CMsgClientStoreUserStats_Stats_To_Store{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -9589,19 +9612,19 @@ pub fn cmsgclientstoreuserstatsstatstostore_unpack(buf []byte) ?CMsgClientStoreU
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientstoreuserstatsstatstostore() CMsgClientStoreUserStatsStatsToStore {
-	return CMsgClientStoreUserStatsStatsToStore{}
+pub fn zzz_vproto_internal_new_cmsgclientstoreuserstats_stats_to_store() CMsgClientStoreUserStats_Stats_To_Store {
+	return CMsgClientStoreUserStats_Stats_To_Store{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstatsstatstostore(o CMsgClientStoreUserStatsStatsToStore, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats_stats_to_store(o CMsgClientStoreUserStats_Stats_To_Store, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstatsstatstostore(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStatsStatsToStore) {
+pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats_stats_to_store(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats_Stats_To_Store) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstatsstatstostore_unpack(v)?
+	mut unpacked := cmsgclientstoreuserstats_stats_to_store_unpack(v)?
 	return i, unpacked
 }
 
@@ -9613,7 +9636,7 @@ pub mut:
 	has_game_id        bool
 	explicit_reset     bool
 	has_explicit_reset bool
-	stats_to_store     []CMsgClientStoreUserStatsStatsToStore
+	stats_to_store     []CMsgClientStoreUserStats_Stats_To_Store
 }
 
 pub fn (o &CMsgClientStoreUserStats) pack() []byte {
@@ -9626,7 +9649,7 @@ pub fn (o &CMsgClientStoreUserStats) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.stats_to_store {
-		res << zzz_vproto_internal_pack_cmsgclientstoreuserstatsstatstostore(x, 3)
+		res << zzz_vproto_internal_pack_cmsgclientstoreuserstats_stats_to_store(x, 3)
 	}
 	return res
 }
@@ -9656,7 +9679,7 @@ pub fn cmsgclientstoreuserstats_unpack(buf []byte) ?CMsgClientStoreUserStats {
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstatsstatstostore(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstats_stats_to_store(cur_buf,
 					tag_wiretype.wire_type)?
 				res.stats_to_store << v
 				i = ii
@@ -9790,7 +9813,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientreportoverlaydetourfailure(buf []byt
 	return i, unpacked
 }
 
-pub struct CMsgClientGetClientDetailsResponseGame {
+pub struct CMsgClientGetClientDetailsResponse_Game {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -9802,7 +9825,7 @@ pub mut:
 	has_time_running_sec bool
 }
 
-pub fn (o &CMsgClientGetClientDetailsResponseGame) pack() []byte {
+pub fn (o &CMsgClientGetClientDetailsResponse_Game) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -9816,8 +9839,8 @@ pub fn (o &CMsgClientGetClientDetailsResponseGame) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientgetclientdetailsresponsegame_unpack(buf []byte) ?CMsgClientGetClientDetailsResponseGame {
-	mut res := CMsgClientGetClientDetailsResponseGame{}
+pub fn cmsgclientgetclientdetailsresponse_game_unpack(buf []byte) ?CMsgClientGetClientDetailsResponse_Game {
+	mut res := CMsgClientGetClientDetailsResponse_Game{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -9861,19 +9884,19 @@ pub fn cmsgclientgetclientdetailsresponsegame_unpack(buf []byte) ?CMsgClientGetC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientgetclientdetailsresponsegame() CMsgClientGetClientDetailsResponseGame {
-	return CMsgClientGetClientDetailsResponseGame{}
+pub fn zzz_vproto_internal_new_cmsgclientgetclientdetailsresponse_game() CMsgClientGetClientDetailsResponse_Game {
+	return CMsgClientGetClientDetailsResponse_Game{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientgetclientdetailsresponsegame(o CMsgClientGetClientDetailsResponseGame, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientgetclientdetailsresponse_game(o CMsgClientGetClientDetailsResponse_Game, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponsegame(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientDetailsResponseGame) {
+pub fn zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponse_game(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientDetailsResponse_Game) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientdetailsresponsegame_unpack(v)?
+	mut unpacked := cmsgclientgetclientdetailsresponse_game_unpack(v)?
 	return i, unpacked
 }
 
@@ -9895,7 +9918,7 @@ pub mut:
 	has_ip_private       bool
 	bytes_available      u64
 	has_bytes_available  bool
-	games_running        []CMsgClientGetClientDetailsResponseGame
+	games_running        []CMsgClientGetClientDetailsResponse_Game
 }
 
 pub fn (o &CMsgClientGetClientDetailsResponse) pack() []byte {
@@ -9923,7 +9946,7 @@ pub fn (o &CMsgClientGetClientDetailsResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.games_running {
-		res << zzz_vproto_internal_pack_cmsgclientgetclientdetailsresponsegame(x, 6)
+		res << zzz_vproto_internal_pack_cmsgclientgetclientdetailsresponse_game(x, 6)
 	}
 	return res
 }
@@ -9983,7 +10006,7 @@ pub fn cmsgclientgetclientdetailsresponse_unpack(buf []byte) ?CMsgClientGetClien
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponsegame(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponse_game(cur_buf,
 					tag_wiretype.wire_type)?
 				res.games_running << v
 				i = ii
@@ -10140,7 +10163,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplist(buf []byte, tag_wir
 	return i, unpacked
 }
 
-pub struct CMsgClientGetClientAppListResponseAppDLc {
+pub struct CMsgClientGetClientAppListResponseApp_DLC {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -10150,7 +10173,7 @@ pub mut:
 	has_installed  bool
 }
 
-pub fn (o &CMsgClientGetClientAppListResponseAppDLc) pack() []byte {
+pub fn (o &CMsgClientGetClientAppListResponseApp_DLC) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -10161,8 +10184,8 @@ pub fn (o &CMsgClientGetClientAppListResponseAppDLc) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientgetclientapplistresponseappdlc_unpack(buf []byte) ?CMsgClientGetClientAppListResponseAppDLc {
-	mut res := CMsgClientGetClientAppListResponseAppDLc{}
+pub fn cmsgclientgetclientapplistresponseapp_dlc_unpack(buf []byte) ?CMsgClientGetClientAppListResponseApp_DLC {
+	mut res := CMsgClientGetClientAppListResponseApp_DLC{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10200,23 +10223,23 @@ pub fn cmsgclientgetclientapplistresponseappdlc_unpack(buf []byte) ?CMsgClientGe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientgetclientapplistresponseappdlc() CMsgClientGetClientAppListResponseAppDLc {
-	return CMsgClientGetClientAppListResponseAppDLc{}
+pub fn zzz_vproto_internal_new_cmsgclientgetclientapplistresponseapp_dlc() CMsgClientGetClientAppListResponseApp_DLC {
+	return CMsgClientGetClientAppListResponseApp_DLC{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseappdlc(o CMsgClientGetClientAppListResponseAppDLc, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp_dlc(o CMsgClientGetClientAppListResponseApp_DLC, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseappdlc(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponseAppDLc) {
+pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseapp_dlc(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponseApp_DLC) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientapplistresponseappdlc_unpack(v)?
+	mut unpacked := cmsgclientgetclientapplistresponseapp_dlc_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientGetClientAppListResponseApp {
+pub struct CMsgClientGetClientAppListResponse_App {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -10248,10 +10271,10 @@ pub mut:
 	has_changing              bool
 	available_on_platform     bool
 	has_available_on_platform bool
-	dlcs                      []CMsgClientGetClientAppListResponseAppDLc
+	dlcs                      []CMsgClientGetClientAppListResponseApp_DLC
 }
 
-pub fn (o &CMsgClientGetClientAppListResponseApp) pack() []byte {
+pub fn (o &CMsgClientGetClientAppListResponse_App) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -10297,13 +10320,13 @@ pub fn (o &CMsgClientGetClientAppListResponseApp) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.dlcs {
-		res << zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseappdlc(x, 9)
+		res << zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp_dlc(x, 9)
 	}
 	return res
 }
 
-pub fn cmsgclientgetclientapplistresponseapp_unpack(buf []byte) ?CMsgClientGetClientAppListResponseApp {
-	mut res := CMsgClientGetClientAppListResponseApp{}
+pub fn cmsgclientgetclientapplistresponse_app_unpack(buf []byte) ?CMsgClientGetClientAppListResponse_App {
+	mut res := CMsgClientGetClientAppListResponse_App{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10399,7 +10422,7 @@ pub fn cmsgclientgetclientapplistresponseapp_unpack(buf []byte) ?CMsgClientGetCl
 			}
 			9 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseappdlc(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseapp_dlc(cur_buf,
 					tag_wiretype.wire_type)?
 				res.dlcs << v
 				i = ii
@@ -10420,19 +10443,19 @@ pub fn cmsgclientgetclientapplistresponseapp_unpack(buf []byte) ?CMsgClientGetCl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientgetclientapplistresponseapp() CMsgClientGetClientAppListResponseApp {
-	return CMsgClientGetClientAppListResponseApp{}
+pub fn zzz_vproto_internal_new_cmsgclientgetclientapplistresponse_app() CMsgClientGetClientAppListResponse_App {
+	return CMsgClientGetClientAppListResponse_App{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp(o CMsgClientGetClientAppListResponseApp, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponse_app(o CMsgClientGetClientAppListResponse_App, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponseApp) {
+pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponse_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponse_App) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientapplistresponseapp_unpack(v)?
+	mut unpacked := cmsgclientgetclientapplistresponse_app_unpack(v)?
 	return i, unpacked
 }
 
@@ -10440,7 +10463,7 @@ pub struct CMsgClientGetClientAppListResponse {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
-	apps                []CMsgClientGetClientAppListResponseApp
+	apps                []CMsgClientGetClientAppListResponse_App
 	bytes_available     u64
 	has_bytes_available bool
 }
@@ -10449,7 +10472,7 @@ pub fn (o &CMsgClientGetClientAppListResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientgetclientapplistresponse_app(x, 1)
 	}
 	if o.has_bytes_available {
 		res << vproto.pack_uint64_field(o.bytes_available, 2)
@@ -10470,7 +10493,7 @@ pub fn cmsgclientgetclientapplistresponse_unpack(buf []byte) ?CMsgClientGetClien
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseapp(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponse_app(cur_buf,
 					tag_wiretype.wire_type)?
 				res.apps << v
 				i = ii
@@ -10914,7 +10937,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientsetclientappupdatestateresponse(buf 
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadFileRequest {
+pub struct CMsgClientUFSUploadFileRequest {
 mut:
 	unknown_fields                   []vproto.UnknownField
 pub mut:
@@ -10940,7 +10963,7 @@ pub mut:
 	has_can_encrypt                  bool
 }
 
-pub fn (o &CMsgClientUFsuploadFileRequest) pack() []byte {
+pub fn (o &CMsgClientUFSUploadFileRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -10975,8 +10998,8 @@ pub fn (o &CMsgClientUFsuploadFileRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsuploadfilerequest_unpack(buf []byte) ?CMsgClientUFsuploadFileRequest {
-	mut res := CMsgClientUFsuploadFileRequest{}
+pub fn cmsgclientufsuploadfilerequest_unpack(buf []byte) ?CMsgClientUFSUploadFileRequest {
+	mut res := CMsgClientUFSUploadFileRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11062,23 +11085,23 @@ pub fn cmsgclientufsuploadfilerequest_unpack(buf []byte) ?CMsgClientUFsuploadFil
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadfilerequest() CMsgClientUFsuploadFileRequest {
-	return CMsgClientUFsuploadFileRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadfilerequest() CMsgClientUFSUploadFileRequest {
+	return CMsgClientUFSUploadFileRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfilerequest(o CMsgClientUFsuploadFileRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfilerequest(o CMsgClientUFSUploadFileRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadFileRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadFileRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsuploadfilerequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadFileResponse {
+pub struct CMsgClientUFSUploadFileResponse {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -11100,7 +11123,7 @@ pub mut:
 	has_encrypt_file bool
 }
 
-pub fn (o &CMsgClientUFsuploadFileResponse) pack() []byte {
+pub fn (o &CMsgClientUFSUploadFileResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -11129,8 +11152,8 @@ pub fn (o &CMsgClientUFsuploadFileResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsuploadfileresponse_unpack(buf []byte) ?CMsgClientUFsuploadFileResponse {
-	mut res := CMsgClientUFsuploadFileResponse{}
+pub fn cmsgclientufsuploadfileresponse_unpack(buf []byte) ?CMsgClientUFSUploadFileResponse {
+	mut res := CMsgClientUFSUploadFileResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11204,23 +11227,23 @@ pub fn cmsgclientufsuploadfileresponse_unpack(buf []byte) ?CMsgClientUFsuploadFi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadfileresponse() CMsgClientUFsuploadFileResponse {
-	return CMsgClientUFsuploadFileResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadfileresponse() CMsgClientUFSUploadFileResponse {
+	return CMsgClientUFSUploadFileResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfileresponse(o CMsgClientUFsuploadFileResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfileresponse(o CMsgClientUFSUploadFileResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadFileResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadFileResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsuploadfileresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadCommitFile {
+pub struct CMsgClientUFSUploadCommit_File {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11236,7 +11259,7 @@ pub mut:
 	has_file_name  bool
 }
 
-pub fn (o &CMsgClientUFsuploadCommitFile) pack() []byte {
+pub fn (o &CMsgClientUFSUploadCommit_File) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -11256,8 +11279,8 @@ pub fn (o &CMsgClientUFsuploadCommitFile) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsuploadcommitfile_unpack(buf []byte) ?CMsgClientUFsuploadCommitFile {
-	mut res := CMsgClientUFsuploadCommitFile{}
+pub fn cmsgclientufsuploadcommit_file_unpack(buf []byte) ?CMsgClientUFSUploadCommit_File {
+	mut res := CMsgClientUFSUploadCommit_File{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11313,40 +11336,40 @@ pub fn cmsgclientufsuploadcommitfile_unpack(buf []byte) ?CMsgClientUFsuploadComm
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommitfile() CMsgClientUFsuploadCommitFile {
-	return CMsgClientUFsuploadCommitFile{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommit_file() CMsgClientUFSUploadCommit_File {
+	return CMsgClientUFSUploadCommit_File{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitfile(o CMsgClientUFsuploadCommitFile, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommit_file(o CMsgClientUFSUploadCommit_File, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitfile(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadCommitFile) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommit_file(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommit_File) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadcommitfile_unpack(v)?
+	mut unpacked := cmsgclientufsuploadcommit_file_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadCommit {
+pub struct CMsgClientUFSUploadCommit {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	files          []CMsgClientUFsuploadCommitFile
+	files          []CMsgClientUFSUploadCommit_File
 }
 
-pub fn (o &CMsgClientUFsuploadCommit) pack() []byte {
+pub fn (o &CMsgClientUFSUploadCommit) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.files {
-		res << zzz_vproto_internal_pack_cmsgclientufsuploadcommitfile(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientufsuploadcommit_file(x, 1)
 	}
 	return res
 }
 
-pub fn cmsgclientufsuploadcommit_unpack(buf []byte) ?CMsgClientUFsuploadCommit {
-	mut res := CMsgClientUFsuploadCommit{}
+pub fn cmsgclientufsuploadcommit_unpack(buf []byte) ?CMsgClientUFSUploadCommit {
+	mut res := CMsgClientUFSUploadCommit{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11358,7 +11381,7 @@ pub fn cmsgclientufsuploadcommit_unpack(buf []byte) ?CMsgClientUFsuploadCommit {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientufsuploadcommitfile(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientufsuploadcommit_file(cur_buf,
 					tag_wiretype.wire_type)?
 				res.files << v
 				i = ii
@@ -11379,23 +11402,23 @@ pub fn cmsgclientufsuploadcommit_unpack(buf []byte) ?CMsgClientUFsuploadCommit {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommit() CMsgClientUFsuploadCommit {
-	return CMsgClientUFsuploadCommit{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommit() CMsgClientUFSUploadCommit {
+	return CMsgClientUFSUploadCommit{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommit(o CMsgClientUFsuploadCommit, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommit(o CMsgClientUFSUploadCommit, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommit(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadCommit) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommit(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommit) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsuploadcommit_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadCommitResponseFile {
+pub struct CMsgClientUFSUploadCommitResponse_File {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11407,7 +11430,7 @@ pub mut:
 	has_sha_file   bool
 }
 
-pub fn (o &CMsgClientUFsuploadCommitResponseFile) pack() []byte {
+pub fn (o &CMsgClientUFSUploadCommitResponse_File) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -11421,8 +11444,8 @@ pub fn (o &CMsgClientUFsuploadCommitResponseFile) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsuploadcommitresponsefile_unpack(buf []byte) ?CMsgClientUFsuploadCommitResponseFile {
-	mut res := CMsgClientUFsuploadCommitResponseFile{}
+pub fn cmsgclientufsuploadcommitresponse_file_unpack(buf []byte) ?CMsgClientUFSUploadCommitResponse_File {
+	mut res := CMsgClientUFSUploadCommitResponse_File{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11466,40 +11489,40 @@ pub fn cmsgclientufsuploadcommitresponsefile_unpack(buf []byte) ?CMsgClientUFsup
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommitresponsefile() CMsgClientUFsuploadCommitResponseFile {
-	return CMsgClientUFsuploadCommitResponseFile{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommitresponse_file() CMsgClientUFSUploadCommitResponse_File {
+	return CMsgClientUFSUploadCommitResponse_File{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponsefile(o CMsgClientUFsuploadCommitResponseFile, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponse_file(o CMsgClientUFSUploadCommitResponse_File, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponsefile(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadCommitResponseFile) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse_file(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommitResponse_File) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadcommitresponsefile_unpack(v)?
+	mut unpacked := cmsgclientufsuploadcommitresponse_file_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadCommitResponse {
+pub struct CMsgClientUFSUploadCommitResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	files          []CMsgClientUFsuploadCommitResponseFile
+	files          []CMsgClientUFSUploadCommitResponse_File
 }
 
-pub fn (o &CMsgClientUFsuploadCommitResponse) pack() []byte {
+pub fn (o &CMsgClientUFSUploadCommitResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.files {
-		res << zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponsefile(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponse_file(x, 1)
 	}
 	return res
 }
 
-pub fn cmsgclientufsuploadcommitresponse_unpack(buf []byte) ?CMsgClientUFsuploadCommitResponse {
-	mut res := CMsgClientUFsuploadCommitResponse{}
+pub fn cmsgclientufsuploadcommitresponse_unpack(buf []byte) ?CMsgClientUFSUploadCommitResponse {
+	mut res := CMsgClientUFSUploadCommitResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11511,7 +11534,7 @@ pub fn cmsgclientufsuploadcommitresponse_unpack(buf []byte) ?CMsgClientUFsupload
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponsefile(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse_file(cur_buf,
 					tag_wiretype.wire_type)?
 				res.files << v
 				i = ii
@@ -11532,23 +11555,23 @@ pub fn cmsgclientufsuploadcommitresponse_unpack(buf []byte) ?CMsgClientUFsupload
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommitresponse() CMsgClientUFsuploadCommitResponse {
-	return CMsgClientUFsuploadCommitResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadcommitresponse() CMsgClientUFSUploadCommitResponse {
+	return CMsgClientUFSUploadCommitResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponse(o CMsgClientUFsuploadCommitResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponse(o CMsgClientUFSUploadCommitResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadCommitResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommitResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsuploadcommitresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsfileChunk {
+pub struct CMsgClientUFSFileChunk {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11560,7 +11583,7 @@ pub mut:
 	has_data       bool
 }
 
-pub fn (o &CMsgClientUFsfileChunk) pack() []byte {
+pub fn (o &CMsgClientUFSFileChunk) pack() []byte {
 	mut res := []byte{}
 	if o.has_sha_file {
 		res << vproto.pack_bytes_field(o.sha_file, 1)
@@ -11574,8 +11597,8 @@ pub fn (o &CMsgClientUFsfileChunk) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsfilechunk_unpack(buf []byte) ?CMsgClientUFsfileChunk {
-	mut res := CMsgClientUFsfileChunk{}
+pub fn cmsgclientufsfilechunk_unpack(buf []byte) ?CMsgClientUFSFileChunk {
+	mut res := CMsgClientUFSFileChunk{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11619,55 +11642,55 @@ pub fn cmsgclientufsfilechunk_unpack(buf []byte) ?CMsgClientUFsfileChunk {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsfilechunk() CMsgClientUFsfileChunk {
-	return CMsgClientUFsfileChunk{}
+pub fn zzz_vproto_internal_new_cmsgclientufsfilechunk() CMsgClientUFSFileChunk {
+	return CMsgClientUFSFileChunk{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsfilechunk(o CMsgClientUFsfileChunk, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsfilechunk(o CMsgClientUFSFileChunk, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsfilechunk(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsfileChunk) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsfilechunk(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSFileChunk) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsfilechunk_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFstransferHeartbeat {
+pub struct CMsgClientUFSTransferHeartbeat {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CMsgClientUFstransferHeartbeat) pack() []byte {
+pub fn (o &CMsgClientUFSTransferHeartbeat) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cmsgclientufstransferheartbeat_unpack(buf []byte) ?CMsgClientUFstransferHeartbeat {
-	res := CMsgClientUFstransferHeartbeat{}
+pub fn cmsgclientufstransferheartbeat_unpack(buf []byte) ?CMsgClientUFSTransferHeartbeat {
+	res := CMsgClientUFSTransferHeartbeat{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufstransferheartbeat() CMsgClientUFstransferHeartbeat {
-	return CMsgClientUFstransferHeartbeat{}
+pub fn zzz_vproto_internal_new_cmsgclientufstransferheartbeat() CMsgClientUFSTransferHeartbeat {
+	return CMsgClientUFSTransferHeartbeat{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufstransferheartbeat(o CMsgClientUFstransferHeartbeat, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufstransferheartbeat(o CMsgClientUFSTransferHeartbeat, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufstransferheartbeat(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFstransferHeartbeat) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufstransferheartbeat(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSTransferHeartbeat) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufstransferheartbeat_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsuploadFileFinished {
+pub struct CMsgClientUFSUploadFileFinished {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11677,7 +11700,7 @@ pub mut:
 	has_sha_file   bool
 }
 
-pub fn (o &CMsgClientUFsuploadFileFinished) pack() []byte {
+pub fn (o &CMsgClientUFSUploadFileFinished) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -11688,8 +11711,8 @@ pub fn (o &CMsgClientUFsuploadFileFinished) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsuploadfilefinished_unpack(buf []byte) ?CMsgClientUFsuploadFileFinished {
-	mut res := CMsgClientUFsuploadFileFinished{}
+pub fn cmsgclientufsuploadfilefinished_unpack(buf []byte) ?CMsgClientUFSUploadFileFinished {
+	mut res := CMsgClientUFSUploadFileFinished{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11727,23 +11750,23 @@ pub fn cmsgclientufsuploadfilefinished_unpack(buf []byte) ?CMsgClientUFsuploadFi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsuploadfilefinished() CMsgClientUFsuploadFileFinished {
-	return CMsgClientUFsuploadFileFinished{}
+pub fn zzz_vproto_internal_new_cmsgclientufsuploadfilefinished() CMsgClientUFSUploadFileFinished {
+	return CMsgClientUFSUploadFileFinished{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfilefinished(o CMsgClientUFsuploadFileFinished, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfilefinished(o CMsgClientUFSUploadFileFinished, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfilefinished(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsuploadFileFinished) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfilefinished(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadFileFinished) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsuploadfilefinished_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsdeleteFileRequest {
+pub struct CMsgClientUFSDeleteFileRequest {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -11755,7 +11778,7 @@ pub mut:
 	has_is_explicit_delete bool
 }
 
-pub fn (o &CMsgClientUFsdeleteFileRequest) pack() []byte {
+pub fn (o &CMsgClientUFSDeleteFileRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -11769,8 +11792,8 @@ pub fn (o &CMsgClientUFsdeleteFileRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsdeletefilerequest_unpack(buf []byte) ?CMsgClientUFsdeleteFileRequest {
-	mut res := CMsgClientUFsdeleteFileRequest{}
+pub fn cmsgclientufsdeletefilerequest_unpack(buf []byte) ?CMsgClientUFSDeleteFileRequest {
+	mut res := CMsgClientUFSDeleteFileRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11814,23 +11837,23 @@ pub fn cmsgclientufsdeletefilerequest_unpack(buf []byte) ?CMsgClientUFsdeleteFil
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsdeletefilerequest() CMsgClientUFsdeleteFileRequest {
-	return CMsgClientUFsdeleteFileRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientufsdeletefilerequest() CMsgClientUFSDeleteFileRequest {
+	return CMsgClientUFSDeleteFileRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsdeletefilerequest(o CMsgClientUFsdeleteFileRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsdeletefilerequest(o CMsgClientUFSDeleteFileRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsdeletefilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsdeleteFileRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsdeletefilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDeleteFileRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsdeletefilerequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsdeleteFileResponse {
+pub struct CMsgClientUFSDeleteFileResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11840,7 +11863,7 @@ pub mut:
 	has_file_name  bool
 }
 
-pub fn (o &CMsgClientUFsdeleteFileResponse) pack() []byte {
+pub fn (o &CMsgClientUFSDeleteFileResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -11851,8 +11874,8 @@ pub fn (o &CMsgClientUFsdeleteFileResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsdeletefileresponse_unpack(buf []byte) ?CMsgClientUFsdeleteFileResponse {
-	mut res := CMsgClientUFsdeleteFileResponse{}
+pub fn cmsgclientufsdeletefileresponse_unpack(buf []byte) ?CMsgClientUFSDeleteFileResponse {
+	mut res := CMsgClientUFSDeleteFileResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11890,23 +11913,23 @@ pub fn cmsgclientufsdeletefileresponse_unpack(buf []byte) ?CMsgClientUFsdeleteFi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsdeletefileresponse() CMsgClientUFsdeleteFileResponse {
-	return CMsgClientUFsdeleteFileResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsdeletefileresponse() CMsgClientUFSDeleteFileResponse {
+	return CMsgClientUFSDeleteFileResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsdeletefileresponse(o CMsgClientUFsdeleteFileResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsdeletefileresponse(o CMsgClientUFSDeleteFileResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsdeletefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsdeleteFileResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsdeletefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDeleteFileResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsdeletefileresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetFileListForApp {
+pub struct CMsgClientUFSGetFileListForApp {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -11915,7 +11938,7 @@ pub mut:
 	has_send_path_prefixes bool
 }
 
-pub fn (o &CMsgClientUFsgetFileListForApp) pack() []byte {
+pub fn (o &CMsgClientUFSGetFileListForApp) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps_to_query {
@@ -11927,8 +11950,8 @@ pub fn (o &CMsgClientUFsgetFileListForApp) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetfilelistforapp_unpack(buf []byte) ?CMsgClientUFsgetFileListForApp {
-	mut res := CMsgClientUFsgetFileListForApp{}
+pub fn cmsgclientufsgetfilelistforapp_unpack(buf []byte) ?CMsgClientUFSGetFileListForApp {
+	mut res := CMsgClientUFSGetFileListForApp{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11966,23 +11989,23 @@ pub fn cmsgclientufsgetfilelistforapp_unpack(buf []byte) ?CMsgClientUFsgetFileLi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetfilelistforapp() CMsgClientUFsgetFileListForApp {
-	return CMsgClientUFsgetFileListForApp{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetfilelistforapp() CMsgClientUFSGetFileListForApp {
+	return CMsgClientUFSGetFileListForApp{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforapp(o CMsgClientUFsgetFileListForApp, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforapp(o CMsgClientUFSGetFileListForApp, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetFileListForApp) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetFileListForApp) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsgetfilelistforapp_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetFileListForAppResponseFile {
+pub struct CMsgClientUFSGetFileListForAppResponse_File {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -12004,7 +12027,7 @@ pub mut:
 	has_path_prefix_index  bool
 }
 
-pub fn (o &CMsgClientUFsgetFileListForAppResponseFile) pack() []byte {
+pub fn (o &CMsgClientUFSGetFileListForAppResponse_File) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -12033,8 +12056,8 @@ pub fn (o &CMsgClientUFsgetFileListForAppResponseFile) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetfilelistforappresponsefile_unpack(buf []byte) ?CMsgClientUFsgetFileListForAppResponseFile {
-	mut res := CMsgClientUFsgetFileListForAppResponseFile{}
+pub fn cmsgclientufsgetfilelistforappresponse_file_unpack(buf []byte) ?CMsgClientUFSGetFileListForAppResponse_File {
+	mut res := CMsgClientUFSGetFileListForAppResponse_File{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -12108,35 +12131,35 @@ pub fn cmsgclientufsgetfilelistforappresponsefile_unpack(buf []byte) ?CMsgClient
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetfilelistforappresponsefile() CMsgClientUFsgetFileListForAppResponseFile {
-	return CMsgClientUFsgetFileListForAppResponseFile{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetfilelistforappresponse_file() CMsgClientUFSGetFileListForAppResponse_File {
+	return CMsgClientUFSGetFileListForAppResponse_File{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponsefile(o CMsgClientUFsgetFileListForAppResponseFile, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse_file(o CMsgClientUFSGetFileListForAppResponse_File, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponsefile(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetFileListForAppResponseFile) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse_file(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetFileListForAppResponse_File) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetfilelistforappresponsefile_unpack(v)?
+	mut unpacked := cmsgclientufsgetfilelistforappresponse_file_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetFileListForAppResponse {
+pub struct CMsgClientUFSGetFileListForAppResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	files          []CMsgClientUFsgetFileListForAppResponseFile
+	files          []CMsgClientUFSGetFileListForAppResponse_File
 	path_prefixes  []string
 }
 
-pub fn (o &CMsgClientUFsgetFileListForAppResponse) pack() []byte {
+pub fn (o &CMsgClientUFSGetFileListForAppResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.files {
-		res << zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponsefile(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse_file(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.path_prefixes {
@@ -12145,8 +12168,8 @@ pub fn (o &CMsgClientUFsgetFileListForAppResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetfilelistforappresponse_unpack(buf []byte) ?CMsgClientUFsgetFileListForAppResponse {
-	mut res := CMsgClientUFsgetFileListForAppResponse{}
+pub fn cmsgclientufsgetfilelistforappresponse_unpack(buf []byte) ?CMsgClientUFSGetFileListForAppResponse {
+	mut res := CMsgClientUFSGetFileListForAppResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -12158,7 +12181,7 @@ pub fn cmsgclientufsgetfilelistforappresponse_unpack(buf []byte) ?CMsgClientUFsg
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponsefile(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse_file(cur_buf,
 					tag_wiretype.wire_type)?
 				res.files << v
 				i = ii
@@ -12185,23 +12208,23 @@ pub fn cmsgclientufsgetfilelistforappresponse_unpack(buf []byte) ?CMsgClientUFsg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetfilelistforappresponse() CMsgClientUFsgetFileListForAppResponse {
-	return CMsgClientUFsgetFileListForAppResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetfilelistforappresponse() CMsgClientUFSGetFileListForAppResponse {
+	return CMsgClientUFSGetFileListForAppResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse(o CMsgClientUFsgetFileListForAppResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse(o CMsgClientUFSGetFileListForAppResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetFileListForAppResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetFileListForAppResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsgetfilelistforappresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsdownloadRequest {
+pub struct CMsgClientUFSDownloadRequest {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -12213,7 +12236,7 @@ pub mut:
 	has_can_handle_http bool
 }
 
-pub fn (o &CMsgClientUFsdownloadRequest) pack() []byte {
+pub fn (o &CMsgClientUFSDownloadRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -12227,8 +12250,8 @@ pub fn (o &CMsgClientUFsdownloadRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsdownloadrequest_unpack(buf []byte) ?CMsgClientUFsdownloadRequest {
-	mut res := CMsgClientUFsdownloadRequest{}
+pub fn cmsgclientufsdownloadrequest_unpack(buf []byte) ?CMsgClientUFSDownloadRequest {
+	mut res := CMsgClientUFSDownloadRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -12272,23 +12295,23 @@ pub fn cmsgclientufsdownloadrequest_unpack(buf []byte) ?CMsgClientUFsdownloadReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsdownloadrequest() CMsgClientUFsdownloadRequest {
-	return CMsgClientUFsdownloadRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientufsdownloadrequest() CMsgClientUFSDownloadRequest {
+	return CMsgClientUFSDownloadRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsdownloadrequest(o CMsgClientUFsdownloadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsdownloadrequest(o CMsgClientUFSDownloadRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsdownloadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsdownloadRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsdownloadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDownloadRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsdownloadrequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsdownloadResponse {
+pub struct CMsgClientUFSDownloadResponse {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -12320,7 +12343,7 @@ pub mut:
 	has_encrypted          bool
 }
 
-pub fn (o &CMsgClientUFsdownloadResponse) pack() []byte {
+pub fn (o &CMsgClientUFSDownloadResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -12364,8 +12387,8 @@ pub fn (o &CMsgClientUFsdownloadResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsdownloadresponse_unpack(buf []byte) ?CMsgClientUFsdownloadResponse {
-	mut res := CMsgClientUFsdownloadResponse{}
+pub fn cmsgclientufsdownloadresponse_unpack(buf []byte) ?CMsgClientUFSDownloadResponse {
+	mut res := CMsgClientUFSDownloadResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -12469,23 +12492,23 @@ pub fn cmsgclientufsdownloadresponse_unpack(buf []byte) ?CMsgClientUFsdownloadRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsdownloadresponse() CMsgClientUFsdownloadResponse {
-	return CMsgClientUFsdownloadResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsdownloadresponse() CMsgClientUFSDownloadResponse {
+	return CMsgClientUFSDownloadResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsdownloadresponse(o CMsgClientUFsdownloadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsdownloadresponse(o CMsgClientUFSDownloadResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsdownloadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsdownloadResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsdownloadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDownloadResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsdownloadresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsloginRequest {
+pub struct CMsgClientUFSLoginRequest {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -12496,7 +12519,7 @@ pub mut:
 	apps                 []u32
 }
 
-pub fn (o &CMsgClientUFsloginRequest) pack() []byte {
+pub fn (o &CMsgClientUFSLoginRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_protocol_version {
 		res << vproto.pack_uint32_field(o.protocol_version, 1)
@@ -12511,8 +12534,8 @@ pub fn (o &CMsgClientUFsloginRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsloginrequest_unpack(buf []byte) ?CMsgClientUFsloginRequest {
-	mut res := CMsgClientUFsloginRequest{}
+pub fn cmsgclientufsloginrequest_unpack(buf []byte) ?CMsgClientUFSLoginRequest {
+	mut res := CMsgClientUFSLoginRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -12556,23 +12579,23 @@ pub fn cmsgclientufsloginrequest_unpack(buf []byte) ?CMsgClientUFsloginRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsloginrequest() CMsgClientUFsloginRequest {
-	return CMsgClientUFsloginRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientufsloginrequest() CMsgClientUFSLoginRequest {
+	return CMsgClientUFSLoginRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsloginrequest(o CMsgClientUFsloginRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsloginrequest(o CMsgClientUFSLoginRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsloginrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsloginRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsloginrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSLoginRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsloginrequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsloginResponse {
+pub struct CMsgClientUFSLoginResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -12580,7 +12603,7 @@ pub mut:
 	has_eresult    bool
 }
 
-pub fn (o &CMsgClientUFsloginResponse) pack() []byte {
+pub fn (o &CMsgClientUFSLoginResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -12588,8 +12611,8 @@ pub fn (o &CMsgClientUFsloginResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsloginresponse_unpack(buf []byte) ?CMsgClientUFsloginResponse {
-	mut res := CMsgClientUFsloginResponse{}
+pub fn cmsgclientufsloginresponse_unpack(buf []byte) ?CMsgClientUFSLoginResponse {
+	mut res := CMsgClientUFSLoginResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -12621,17 +12644,17 @@ pub fn cmsgclientufsloginresponse_unpack(buf []byte) ?CMsgClientUFsloginResponse
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsloginresponse() CMsgClientUFsloginResponse {
-	return CMsgClientUFsloginResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsloginresponse() CMsgClientUFSLoginResponse {
+	return CMsgClientUFSLoginResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsloginresponse(o CMsgClientUFsloginResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsloginresponse(o CMsgClientUFSLoginResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsloginresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsloginResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsloginresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSLoginResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsloginresponse_unpack(v)?
 	return i, unpacked
@@ -13083,7 +13106,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientappinfochanges(buf []byte, tag_wiret
 	return i, unpacked
 }
 
-pub struct CMsgClientAppInfoRequestApp {
+pub struct CMsgClientAppInfoRequest_App {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -13094,7 +13117,7 @@ pub mut:
 	section_crc       []u32
 }
 
-pub fn (o &CMsgClientAppInfoRequestApp) pack() []byte {
+pub fn (o &CMsgClientAppInfoRequest_App) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -13109,8 +13132,8 @@ pub fn (o &CMsgClientAppInfoRequestApp) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientappinforequestapp_unpack(buf []byte) ?CMsgClientAppInfoRequestApp {
-	mut res := CMsgClientAppInfoRequestApp{}
+pub fn cmsgclientappinforequest_app_unpack(buf []byte) ?CMsgClientAppInfoRequest_App {
+	mut res := CMsgClientAppInfoRequest_App{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -13154,19 +13177,19 @@ pub fn cmsgclientappinforequestapp_unpack(buf []byte) ?CMsgClientAppInfoRequestA
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientappinforequestapp() CMsgClientAppInfoRequestApp {
-	return CMsgClientAppInfoRequestApp{}
+pub fn zzz_vproto_internal_new_cmsgclientappinforequest_app() CMsgClientAppInfoRequest_App {
+	return CMsgClientAppInfoRequest_App{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientappinforequestapp(o CMsgClientAppInfoRequestApp, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientappinforequest_app(o CMsgClientAppInfoRequest_App, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientappinforequestapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoRequestApp) {
+pub fn zzz_vproto_internal_unpack_cmsgclientappinforequest_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoRequest_App) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforequestapp_unpack(v)?
+	mut unpacked := cmsgclientappinforequest_app_unpack(v)?
 	return i, unpacked
 }
 
@@ -13174,7 +13197,7 @@ pub struct CMsgClientAppInfoRequest {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	apps                 []CMsgClientAppInfoRequestApp
+	apps                 []CMsgClientAppInfoRequest_App
 	supports_batches     bool
 	has_supports_batches bool
 }
@@ -13183,7 +13206,7 @@ pub fn (o &CMsgClientAppInfoRequest) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_cmsgclientappinforequestapp(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientappinforequest_app(x, 1)
 	}
 	if o.has_supports_batches {
 		res << vproto.pack_bool_field(o.supports_batches, 2)
@@ -13204,7 +13227,7 @@ pub fn cmsgclientappinforequest_unpack(buf []byte) ?CMsgClientAppInfoRequest {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforequestapp(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforequest_app(cur_buf,
 					tag_wiretype.wire_type)?
 				res.apps << v
 				i = ii
@@ -13247,7 +13270,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientappinforequest(buf []byte, tag_wiret
 	return i, unpacked
 }
 
-pub struct CMsgClientAppInfoResponseAppSection {
+pub struct CMsgClientAppInfoResponseApp_Section {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -13257,7 +13280,7 @@ pub mut:
 	has_section_kv bool
 }
 
-pub fn (o &CMsgClientAppInfoResponseAppSection) pack() []byte {
+pub fn (o &CMsgClientAppInfoResponseApp_Section) pack() []byte {
 	mut res := []byte{}
 	if o.has_section_id {
 		res << vproto.pack_uint32_field(o.section_id, 1)
@@ -13268,8 +13291,8 @@ pub fn (o &CMsgClientAppInfoResponseAppSection) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientappinforesponseappsection_unpack(buf []byte) ?CMsgClientAppInfoResponseAppSection {
-	mut res := CMsgClientAppInfoResponseAppSection{}
+pub fn cmsgclientappinforesponseapp_section_unpack(buf []byte) ?CMsgClientAppInfoResponseApp_Section {
+	mut res := CMsgClientAppInfoResponseApp_Section{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -13307,23 +13330,23 @@ pub fn cmsgclientappinforesponseappsection_unpack(buf []byte) ?CMsgClientAppInfo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientappinforesponseappsection() CMsgClientAppInfoResponseAppSection {
-	return CMsgClientAppInfoResponseAppSection{}
+pub fn zzz_vproto_internal_new_cmsgclientappinforesponseapp_section() CMsgClientAppInfoResponseApp_Section {
+	return CMsgClientAppInfoResponseApp_Section{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientappinforesponseappsection(o CMsgClientAppInfoResponseAppSection, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientappinforesponseapp_section(o CMsgClientAppInfoResponseApp_Section, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponseappsection(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponseAppSection) {
+pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponseapp_section(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponseApp_Section) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforesponseappsection_unpack(v)?
+	mut unpacked := cmsgclientappinforesponseapp_section_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAppInfoResponseApp {
+pub struct CMsgClientAppInfoResponse_App {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -13331,10 +13354,10 @@ pub mut:
 	has_app_id        bool
 	change_number     u32
 	has_change_number bool
-	sections          []CMsgClientAppInfoResponseAppSection
+	sections          []CMsgClientAppInfoResponseApp_Section
 }
 
-pub fn (o &CMsgClientAppInfoResponseApp) pack() []byte {
+pub fn (o &CMsgClientAppInfoResponse_App) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -13344,13 +13367,13 @@ pub fn (o &CMsgClientAppInfoResponseApp) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.sections {
-		res << zzz_vproto_internal_pack_cmsgclientappinforesponseappsection(x, 3)
+		res << zzz_vproto_internal_pack_cmsgclientappinforesponseapp_section(x, 3)
 	}
 	return res
 }
 
-pub fn cmsgclientappinforesponseapp_unpack(buf []byte) ?CMsgClientAppInfoResponseApp {
-	mut res := CMsgClientAppInfoResponseApp{}
+pub fn cmsgclientappinforesponse_app_unpack(buf []byte) ?CMsgClientAppInfoResponse_App {
+	mut res := CMsgClientAppInfoResponse_App{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -13374,7 +13397,7 @@ pub fn cmsgclientappinforesponseapp_unpack(buf []byte) ?CMsgClientAppInfoRespons
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforesponseappsection(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforesponseapp_section(cur_buf,
 					tag_wiretype.wire_type)?
 				res.sections << v
 				i = ii
@@ -13395,19 +13418,19 @@ pub fn cmsgclientappinforesponseapp_unpack(buf []byte) ?CMsgClientAppInfoRespons
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientappinforesponseapp() CMsgClientAppInfoResponseApp {
-	return CMsgClientAppInfoResponseApp{}
+pub fn zzz_vproto_internal_new_cmsgclientappinforesponse_app() CMsgClientAppInfoResponse_App {
+	return CMsgClientAppInfoResponse_App{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientappinforesponseapp(o CMsgClientAppInfoResponseApp, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientappinforesponse_app(o CMsgClientAppInfoResponse_App, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponseapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponseApp) {
+pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponse_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponse_App) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforesponseapp_unpack(v)?
+	mut unpacked := cmsgclientappinforesponse_app_unpack(v)?
 	return i, unpacked
 }
 
@@ -13415,7 +13438,7 @@ pub struct CMsgClientAppInfoResponse {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
-	apps             []CMsgClientAppInfoResponseApp
+	apps             []CMsgClientAppInfoResponse_App
 	apps_unknown     []u32
 	apps_pending     u32
 	has_apps_pending bool
@@ -13425,7 +13448,7 @@ pub fn (o &CMsgClientAppInfoResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_cmsgclientappinforesponseapp(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientappinforesponse_app(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.apps_unknown {
@@ -13450,7 +13473,7 @@ pub fn cmsgclientappinforesponse_unpack(buf []byte) ?CMsgClientAppInfoResponse {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforesponseapp(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforesponse_app(cur_buf,
 					tag_wiretype.wire_type)?
 				res.apps << v
 				i = ii
@@ -13575,7 +13598,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforequest(buf []byte, tag_w
 	return i, unpacked
 }
 
-pub struct CMsgClientPackageInfoResponsePackage {
+pub struct CMsgClientPackageInfoResponse_Package {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -13589,7 +13612,7 @@ pub mut:
 	has_buffer        bool
 }
 
-pub fn (o &CMsgClientPackageInfoResponsePackage) pack() []byte {
+pub fn (o &CMsgClientPackageInfoResponse_Package) pack() []byte {
 	mut res := []byte{}
 	if o.has_package_id {
 		res << vproto.pack_uint32_field(o.package_id, 1)
@@ -13606,8 +13629,8 @@ pub fn (o &CMsgClientPackageInfoResponsePackage) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpackageinforesponsepackage_unpack(buf []byte) ?CMsgClientPackageInfoResponsePackage {
-	mut res := CMsgClientPackageInfoResponsePackage{}
+pub fn cmsgclientpackageinforesponse_package_unpack(buf []byte) ?CMsgClientPackageInfoResponse_Package {
+	mut res := CMsgClientPackageInfoResponse_Package{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -13657,19 +13680,19 @@ pub fn cmsgclientpackageinforesponsepackage_unpack(buf []byte) ?CMsgClientPackag
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpackageinforesponsepackage() CMsgClientPackageInfoResponsePackage {
-	return CMsgClientPackageInfoResponsePackage{}
+pub fn zzz_vproto_internal_new_cmsgclientpackageinforesponse_package() CMsgClientPackageInfoResponse_Package {
+	return CMsgClientPackageInfoResponse_Package{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpackageinforesponsepackage(o CMsgClientPackageInfoResponsePackage, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpackageinforesponse_package(o CMsgClientPackageInfoResponse_Package, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforesponsepackage(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPackageInfoResponsePackage) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforesponse_package(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPackageInfoResponse_Package) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpackageinforesponsepackage_unpack(v)?
+	mut unpacked := cmsgclientpackageinforesponse_package_unpack(v)?
 	return i, unpacked
 }
 
@@ -13677,7 +13700,7 @@ pub struct CMsgClientPackageInfoResponse {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	packages             []CMsgClientPackageInfoResponsePackage
+	packages             []CMsgClientPackageInfoResponse_Package
 	packages_unknown     []u32
 	packages_pending     u32
 	has_packages_pending bool
@@ -13687,7 +13710,7 @@ pub fn (o &CMsgClientPackageInfoResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.packages {
-		res << zzz_vproto_internal_pack_cmsgclientpackageinforesponsepackage(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientpackageinforesponse_package(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.packages_unknown {
@@ -13712,7 +13735,7 @@ pub fn cmsgclientpackageinforesponse_unpack(buf []byte) ?CMsgClientPackageInfoRe
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpackageinforesponsepackage(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpackageinforesponse_package(cur_buf,
 					tag_wiretype.wire_type)?
 				res.packages << v
 				i = ii
@@ -13761,7 +13784,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforesponse(buf []byte, tag_
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcschangesSinceRequest {
+pub struct CMsgClientPICSChangesSinceRequest {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -13777,7 +13800,7 @@ pub mut:
 	has_num_package_info_cached   bool
 }
 
-pub fn (o &CMsgClientPIcschangesSinceRequest) pack() []byte {
+pub fn (o &CMsgClientPICSChangesSinceRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_since_change_number {
 		res << vproto.pack_uint32_field(o.since_change_number, 1)
@@ -13797,8 +13820,8 @@ pub fn (o &CMsgClientPIcschangesSinceRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicschangessincerequest_unpack(buf []byte) ?CMsgClientPIcschangesSinceRequest {
-	mut res := CMsgClientPIcschangesSinceRequest{}
+pub fn cmsgclientpicschangessincerequest_unpack(buf []byte) ?CMsgClientPICSChangesSinceRequest {
+	mut res := CMsgClientPICSChangesSinceRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -13854,23 +13877,23 @@ pub fn cmsgclientpicschangessincerequest_unpack(buf []byte) ?CMsgClientPIcschang
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicschangessincerequest() CMsgClientPIcschangesSinceRequest {
-	return CMsgClientPIcschangesSinceRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientpicschangessincerequest() CMsgClientPICSChangesSinceRequest {
+	return CMsgClientPICSChangesSinceRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicschangessincerequest(o CMsgClientPIcschangesSinceRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicschangessincerequest(o CMsgClientPICSChangesSinceRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessincerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcschangesSinceRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessincerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpicschangessincerequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcschangesSinceResponsePackageChange {
+pub struct CMsgClientPICSChangesSinceResponse_PackageChange {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -13882,7 +13905,7 @@ pub mut:
 	has_needs_token   bool
 }
 
-pub fn (o &CMsgClientPIcschangesSinceResponsePackageChange) pack() []byte {
+pub fn (o &CMsgClientPICSChangesSinceResponse_PackageChange) pack() []byte {
 	mut res := []byte{}
 	if o.has_packageid {
 		res << vproto.pack_uint32_field(o.packageid, 1)
@@ -13896,8 +13919,8 @@ pub fn (o &CMsgClientPIcschangesSinceResponsePackageChange) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicschangessinceresponsepackagechange_unpack(buf []byte) ?CMsgClientPIcschangesSinceResponsePackageChange {
-	mut res := CMsgClientPIcschangesSinceResponsePackageChange{}
+pub fn cmsgclientpicschangessinceresponse_packagechange_unpack(buf []byte) ?CMsgClientPICSChangesSinceResponse_PackageChange {
+	mut res := CMsgClientPICSChangesSinceResponse_PackageChange{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -13941,23 +13964,23 @@ pub fn cmsgclientpicschangessinceresponsepackagechange_unpack(buf []byte) ?CMsgC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicschangessinceresponsepackagechange() CMsgClientPIcschangesSinceResponsePackageChange {
-	return CMsgClientPIcschangesSinceResponsePackageChange{}
+pub fn zzz_vproto_internal_new_cmsgclientpicschangessinceresponse_packagechange() CMsgClientPICSChangesSinceResponse_PackageChange {
+	return CMsgClientPICSChangesSinceResponse_PackageChange{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponsepackagechange(o CMsgClientPIcschangesSinceResponsePackageChange, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_packagechange(o CMsgClientPICSChangesSinceResponse_PackageChange, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponsepackagechange(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcschangesSinceResponsePackageChange) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_packagechange(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceResponse_PackageChange) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicschangessinceresponsepackagechange_unpack(v)?
+	mut unpacked := cmsgclientpicschangessinceresponse_packagechange_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcschangesSinceResponseAppChange {
+pub struct CMsgClientPICSChangesSinceResponse_AppChange {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -13969,7 +13992,7 @@ pub mut:
 	has_needs_token   bool
 }
 
-pub fn (o &CMsgClientPIcschangesSinceResponseAppChange) pack() []byte {
+pub fn (o &CMsgClientPICSChangesSinceResponse_AppChange) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -13983,8 +14006,8 @@ pub fn (o &CMsgClientPIcschangesSinceResponseAppChange) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicschangessinceresponseappchange_unpack(buf []byte) ?CMsgClientPIcschangesSinceResponseAppChange {
-	mut res := CMsgClientPIcschangesSinceResponseAppChange{}
+pub fn cmsgclientpicschangessinceresponse_appchange_unpack(buf []byte) ?CMsgClientPICSChangesSinceResponse_AppChange {
+	mut res := CMsgClientPICSChangesSinceResponse_AppChange{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14028,23 +14051,23 @@ pub fn cmsgclientpicschangessinceresponseappchange_unpack(buf []byte) ?CMsgClien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicschangessinceresponseappchange() CMsgClientPIcschangesSinceResponseAppChange {
-	return CMsgClientPIcschangesSinceResponseAppChange{}
+pub fn zzz_vproto_internal_new_cmsgclientpicschangessinceresponse_appchange() CMsgClientPICSChangesSinceResponse_AppChange {
+	return CMsgClientPICSChangesSinceResponse_AppChange{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponseappchange(o CMsgClientPIcschangesSinceResponseAppChange, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_appchange(o CMsgClientPICSChangesSinceResponse_AppChange, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponseappchange(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcschangesSinceResponseAppChange) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_appchange(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceResponse_AppChange) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicschangessinceresponseappchange_unpack(v)?
+	mut unpacked := cmsgclientpicschangessinceresponse_appchange_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcschangesSinceResponse {
+pub struct CMsgClientPICSChangesSinceResponse {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -14054,15 +14077,15 @@ pub mut:
 	has_since_change_number       bool
 	force_full_update             bool
 	has_force_full_update         bool
-	package_changes               []CMsgClientPIcschangesSinceResponsePackageChange
-	app_changes                   []CMsgClientPIcschangesSinceResponseAppChange
+	package_changes               []CMsgClientPICSChangesSinceResponse_PackageChange
+	app_changes                   []CMsgClientPICSChangesSinceResponse_AppChange
 	force_full_app_update         bool
 	has_force_full_app_update     bool
 	force_full_package_update     bool
 	has_force_full_package_update bool
 }
 
-pub fn (o &CMsgClientPIcschangesSinceResponse) pack() []byte {
+pub fn (o &CMsgClientPICSChangesSinceResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_current_change_number {
 		res << vproto.pack_uint32_field(o.current_change_number, 1)
@@ -14075,11 +14098,11 @@ pub fn (o &CMsgClientPIcschangesSinceResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.package_changes {
-		res << zzz_vproto_internal_pack_cmsgclientpicschangessinceresponsepackagechange(x, 4)
+		res << zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_packagechange(x, 4)
 	}
 	// [packed=false]
 	for _, x in o.app_changes {
-		res << zzz_vproto_internal_pack_cmsgclientpicschangessinceresponseappchange(x, 5)
+		res << zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_appchange(x, 5)
 	}
 	if o.has_force_full_app_update {
 		res << vproto.pack_bool_field(o.force_full_app_update, 6)
@@ -14090,8 +14113,8 @@ pub fn (o &CMsgClientPIcschangesSinceResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicschangessinceresponse_unpack(buf []byte) ?CMsgClientPIcschangesSinceResponse {
-	mut res := CMsgClientPIcschangesSinceResponse{}
+pub fn cmsgclientpicschangessinceresponse_unpack(buf []byte) ?CMsgClientPICSChangesSinceResponse {
+	mut res := CMsgClientPICSChangesSinceResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14121,14 +14144,14 @@ pub fn cmsgclientpicschangessinceresponse_unpack(buf []byte) ?CMsgClientPIcschan
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponsepackagechange(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_packagechange(cur_buf,
 					tag_wiretype.wire_type)?
 				res.package_changes << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponseappchange(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_appchange(cur_buf,
 					tag_wiretype.wire_type)?
 				res.app_changes << v
 				i = ii
@@ -14161,23 +14184,23 @@ pub fn cmsgclientpicschangessinceresponse_unpack(buf []byte) ?CMsgClientPIcschan
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicschangessinceresponse() CMsgClientPIcschangesSinceResponse {
-	return CMsgClientPIcschangesSinceResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientpicschangessinceresponse() CMsgClientPICSChangesSinceResponse {
+	return CMsgClientPICSChangesSinceResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse(o CMsgClientPIcschangesSinceResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse(o CMsgClientPICSChangesSinceResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcschangesSinceResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpicschangessinceresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsproductInfoRequestAppInfo {
+pub struct CMsgClientPICSProductInfoRequest_AppInfo {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -14189,7 +14212,7 @@ pub mut:
 	has_only_public  bool
 }
 
-pub fn (o &CMsgClientPIcsproductInfoRequestAppInfo) pack() []byte {
+pub fn (o &CMsgClientPICSProductInfoRequest_AppInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -14203,8 +14226,8 @@ pub fn (o &CMsgClientPIcsproductInfoRequestAppInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsproductinforequestappinfo_unpack(buf []byte) ?CMsgClientPIcsproductInfoRequestAppInfo {
-	mut res := CMsgClientPIcsproductInfoRequestAppInfo{}
+pub fn cmsgclientpicsproductinforequest_appinfo_unpack(buf []byte) ?CMsgClientPICSProductInfoRequest_AppInfo {
+	mut res := CMsgClientPICSProductInfoRequest_AppInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14248,23 +14271,23 @@ pub fn cmsgclientpicsproductinforequestappinfo_unpack(buf []byte) ?CMsgClientPIc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforequestappinfo() CMsgClientPIcsproductInfoRequestAppInfo {
-	return CMsgClientPIcsproductInfoRequestAppInfo{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforequest_appinfo() CMsgClientPICSProductInfoRequest_AppInfo {
+	return CMsgClientPICSProductInfoRequest_AppInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequestappinfo(o CMsgClientPIcsproductInfoRequestAppInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_appinfo(o CMsgClientPICSProductInfoRequest_AppInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequestappinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsproductInfoRequestAppInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_appinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoRequest_AppInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforequestappinfo_unpack(v)?
+	mut unpacked := cmsgclientpicsproductinforequest_appinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsproductInfoRequestPackageInfo {
+pub struct CMsgClientPICSProductInfoRequest_PackageInfo {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -14274,7 +14297,7 @@ pub mut:
 	has_access_token bool
 }
 
-pub fn (o &CMsgClientPIcsproductInfoRequestPackageInfo) pack() []byte {
+pub fn (o &CMsgClientPICSProductInfoRequest_PackageInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_packageid {
 		res << vproto.pack_uint32_field(o.packageid, 1)
@@ -14285,8 +14308,8 @@ pub fn (o &CMsgClientPIcsproductInfoRequestPackageInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsproductinforequestpackageinfo_unpack(buf []byte) ?CMsgClientPIcsproductInfoRequestPackageInfo {
-	mut res := CMsgClientPIcsproductInfoRequestPackageInfo{}
+pub fn cmsgclientpicsproductinforequest_packageinfo_unpack(buf []byte) ?CMsgClientPICSProductInfoRequest_PackageInfo {
+	mut res := CMsgClientPICSProductInfoRequest_PackageInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14324,28 +14347,28 @@ pub fn cmsgclientpicsproductinforequestpackageinfo_unpack(buf []byte) ?CMsgClien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforequestpackageinfo() CMsgClientPIcsproductInfoRequestPackageInfo {
-	return CMsgClientPIcsproductInfoRequestPackageInfo{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforequest_packageinfo() CMsgClientPICSProductInfoRequest_PackageInfo {
+	return CMsgClientPICSProductInfoRequest_PackageInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequestpackageinfo(o CMsgClientPIcsproductInfoRequestPackageInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_packageinfo(o CMsgClientPICSProductInfoRequest_PackageInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequestpackageinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsproductInfoRequestPackageInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_packageinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoRequest_PackageInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforequestpackageinfo_unpack(v)?
+	mut unpacked := cmsgclientpicsproductinforequest_packageinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsproductInfoRequest {
+pub struct CMsgClientPICSProductInfoRequest {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
-	packages                    []CMsgClientPIcsproductInfoRequestPackageInfo
-	apps                        []CMsgClientPIcsproductInfoRequestAppInfo
+	packages                    []CMsgClientPICSProductInfoRequest_PackageInfo
+	apps                        []CMsgClientPICSProductInfoRequest_AppInfo
 	meta_data_only              bool
 	has_meta_data_only          bool
 	num_prev_failed             u32
@@ -14354,15 +14377,15 @@ pub mut:
 	has_supports_package_tokens bool
 }
 
-pub fn (o &CMsgClientPIcsproductInfoRequest) pack() []byte {
+pub fn (o &CMsgClientPICSProductInfoRequest) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.packages {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforequestpackageinfo(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_packageinfo(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforequestappinfo(x, 2)
+		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_appinfo(x, 2)
 	}
 	if o.has_meta_data_only {
 		res << vproto.pack_bool_field(o.meta_data_only, 3)
@@ -14376,8 +14399,8 @@ pub fn (o &CMsgClientPIcsproductInfoRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsproductinforequest_unpack(buf []byte) ?CMsgClientPIcsproductInfoRequest {
-	mut res := CMsgClientPIcsproductInfoRequest{}
+pub fn cmsgclientpicsproductinforequest_unpack(buf []byte) ?CMsgClientPICSProductInfoRequest {
+	mut res := CMsgClientPICSProductInfoRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14389,14 +14412,14 @@ pub fn cmsgclientpicsproductinforequest_unpack(buf []byte) ?CMsgClientPIcsproduc
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforequestpackageinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_packageinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.packages << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforequestappinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_appinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.apps << v
 				i = ii
@@ -14435,23 +14458,23 @@ pub fn cmsgclientpicsproductinforequest_unpack(buf []byte) ?CMsgClientPIcsproduc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforequest() CMsgClientPIcsproductInfoRequest {
-	return CMsgClientPIcsproductInfoRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforequest() CMsgClientPICSProductInfoRequest {
+	return CMsgClientPICSProductInfoRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest(o CMsgClientPIcsproductInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest(o CMsgClientPICSProductInfoRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsproductInfoRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpicsproductinforequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsproductInfoResponseAppInfo {
+pub struct CMsgClientPICSProductInfoResponse_AppInfo {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -14471,7 +14494,7 @@ pub mut:
 	has_size          bool
 }
 
-pub fn (o &CMsgClientPIcsproductInfoResponseAppInfo) pack() []byte {
+pub fn (o &CMsgClientPICSProductInfoResponse_AppInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -14497,8 +14520,8 @@ pub fn (o &CMsgClientPIcsproductInfoResponseAppInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsproductinforesponseappinfo_unpack(buf []byte) ?CMsgClientPIcsproductInfoResponseAppInfo {
-	mut res := CMsgClientPIcsproductInfoResponseAppInfo{}
+pub fn cmsgclientpicsproductinforesponse_appinfo_unpack(buf []byte) ?CMsgClientPICSProductInfoResponse_AppInfo {
+	mut res := CMsgClientPICSProductInfoResponse_AppInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14566,23 +14589,23 @@ pub fn cmsgclientpicsproductinforesponseappinfo_unpack(buf []byte) ?CMsgClientPI
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforesponseappinfo() CMsgClientPIcsproductInfoResponseAppInfo {
-	return CMsgClientPIcsproductInfoResponseAppInfo{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforesponse_appinfo() CMsgClientPICSProductInfoResponse_AppInfo {
+	return CMsgClientPICSProductInfoResponse_AppInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponseappinfo(o CMsgClientPIcsproductInfoResponseAppInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_appinfo(o CMsgClientPICSProductInfoResponse_AppInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponseappinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsproductInfoResponseAppInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_appinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoResponse_AppInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforesponseappinfo_unpack(v)?
+	mut unpacked := cmsgclientpicsproductinforesponse_appinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsproductInfoResponsePackageInfo {
+pub struct CMsgClientPICSProductInfoResponse_PackageInfo {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -14600,7 +14623,7 @@ pub mut:
 	has_size          bool
 }
 
-pub fn (o &CMsgClientPIcsproductInfoResponsePackageInfo) pack() []byte {
+pub fn (o &CMsgClientPICSProductInfoResponse_PackageInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_packageid {
 		res << vproto.pack_uint32_field(o.packageid, 1)
@@ -14623,8 +14646,8 @@ pub fn (o &CMsgClientPIcsproductInfoResponsePackageInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsproductinforesponsepackageinfo_unpack(buf []byte) ?CMsgClientPIcsproductInfoResponsePackageInfo {
-	mut res := CMsgClientPIcsproductInfoResponsePackageInfo{}
+pub fn cmsgclientpicsproductinforesponse_packageinfo_unpack(buf []byte) ?CMsgClientPICSProductInfoResponse_PackageInfo {
+	mut res := CMsgClientPICSProductInfoResponse_PackageInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14686,29 +14709,29 @@ pub fn cmsgclientpicsproductinforesponsepackageinfo_unpack(buf []byte) ?CMsgClie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforesponsepackageinfo() CMsgClientPIcsproductInfoResponsePackageInfo {
-	return CMsgClientPIcsproductInfoResponsePackageInfo{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforesponse_packageinfo() CMsgClientPICSProductInfoResponse_PackageInfo {
+	return CMsgClientPICSProductInfoResponse_PackageInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponsepackageinfo(o CMsgClientPIcsproductInfoResponsePackageInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_packageinfo(o CMsgClientPICSProductInfoResponse_PackageInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponsepackageinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsproductInfoResponsePackageInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_packageinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoResponse_PackageInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforesponsepackageinfo_unpack(v)?
+	mut unpacked := cmsgclientpicsproductinforesponse_packageinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsproductInfoResponse {
+pub struct CMsgClientPICSProductInfoResponse {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	apps                 []CMsgClientPIcsproductInfoResponseAppInfo
+	apps                 []CMsgClientPICSProductInfoResponse_AppInfo
 	unknown_appids       []u32
-	packages             []CMsgClientPIcsproductInfoResponsePackageInfo
+	packages             []CMsgClientPICSProductInfoResponse_PackageInfo
 	unknown_packageids   []u32
 	meta_data_only       bool
 	has_meta_data_only   bool
@@ -14720,11 +14743,11 @@ pub mut:
 	has_http_host        bool
 }
 
-pub fn (o &CMsgClientPIcsproductInfoResponse) pack() []byte {
+pub fn (o &CMsgClientPICSProductInfoResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforesponseappinfo(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_appinfo(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.unknown_appids {
@@ -14732,7 +14755,7 @@ pub fn (o &CMsgClientPIcsproductInfoResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.packages {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforesponsepackageinfo(x, 3)
+		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_packageinfo(x, 3)
 	}
 	// [packed=false]
 	for _, x in o.unknown_packageids {
@@ -14753,8 +14776,8 @@ pub fn (o &CMsgClientPIcsproductInfoResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPIcsproductInfoResponse {
-	mut res := CMsgClientPIcsproductInfoResponse{}
+pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPICSProductInfoResponse {
+	mut res := CMsgClientPICSProductInfoResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14766,7 +14789,7 @@ pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPIcsprodu
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponseappinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_appinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.apps << v
 				i = ii
@@ -14779,7 +14802,7 @@ pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPIcsprodu
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponsepackageinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_packageinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.packages << v
 				i = ii
@@ -14830,23 +14853,23 @@ pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPIcsprodu
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforesponse() CMsgClientPIcsproductInfoResponse {
-	return CMsgClientPIcsproductInfoResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsproductinforesponse() CMsgClientPICSProductInfoResponse {
+	return CMsgClientPICSProductInfoResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse(o CMsgClientPIcsproductInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse(o CMsgClientPICSProductInfoResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsproductInfoResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpicsproductinforesponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsaccessTokenRequest {
+pub struct CMsgClientPICSAccessTokenRequest {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -14854,7 +14877,7 @@ pub mut:
 	appids         []u32
 }
 
-pub fn (o &CMsgClientPIcsaccessTokenRequest) pack() []byte {
+pub fn (o &CMsgClientPICSAccessTokenRequest) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.packageids {
@@ -14867,8 +14890,8 @@ pub fn (o &CMsgClientPIcsaccessTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsaccesstokenrequest_unpack(buf []byte) ?CMsgClientPIcsaccessTokenRequest {
-	mut res := CMsgClientPIcsaccessTokenRequest{}
+pub fn cmsgclientpicsaccesstokenrequest_unpack(buf []byte) ?CMsgClientPICSAccessTokenRequest {
+	mut res := CMsgClientPICSAccessTokenRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14906,23 +14929,23 @@ pub fn cmsgclientpicsaccesstokenrequest_unpack(buf []byte) ?CMsgClientPIcsaccess
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenrequest() CMsgClientPIcsaccessTokenRequest {
-	return CMsgClientPIcsaccessTokenRequest{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenrequest() CMsgClientPICSAccessTokenRequest {
+	return CMsgClientPICSAccessTokenRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenrequest(o CMsgClientPIcsaccessTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenrequest(o CMsgClientPICSAccessTokenRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsaccessTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpicsaccesstokenrequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsaccessTokenResponsePackageToken {
+pub struct CMsgClientPICSAccessTokenResponse_PackageToken {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -14932,7 +14955,7 @@ pub mut:
 	has_access_token bool
 }
 
-pub fn (o &CMsgClientPIcsaccessTokenResponsePackageToken) pack() []byte {
+pub fn (o &CMsgClientPICSAccessTokenResponse_PackageToken) pack() []byte {
 	mut res := []byte{}
 	if o.has_packageid {
 		res << vproto.pack_uint32_field(o.packageid, 1)
@@ -14943,8 +14966,8 @@ pub fn (o &CMsgClientPIcsaccessTokenResponsePackageToken) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsaccesstokenresponsepackagetoken_unpack(buf []byte) ?CMsgClientPIcsaccessTokenResponsePackageToken {
-	mut res := CMsgClientPIcsaccessTokenResponsePackageToken{}
+pub fn cmsgclientpicsaccesstokenresponse_packagetoken_unpack(buf []byte) ?CMsgClientPICSAccessTokenResponse_PackageToken {
+	mut res := CMsgClientPICSAccessTokenResponse_PackageToken{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -14982,23 +15005,23 @@ pub fn cmsgclientpicsaccesstokenresponsepackagetoken_unpack(buf []byte) ?CMsgCli
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenresponsepackagetoken() CMsgClientPIcsaccessTokenResponsePackageToken {
-	return CMsgClientPIcsaccessTokenResponsePackageToken{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenresponse_packagetoken() CMsgClientPICSAccessTokenResponse_PackageToken {
+	return CMsgClientPICSAccessTokenResponse_PackageToken{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponsepackagetoken(o CMsgClientPIcsaccessTokenResponsePackageToken, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_packagetoken(o CMsgClientPICSAccessTokenResponse_PackageToken, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponsepackagetoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsaccessTokenResponsePackageToken) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_packagetoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenResponse_PackageToken) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsaccesstokenresponsepackagetoken_unpack(v)?
+	mut unpacked := cmsgclientpicsaccesstokenresponse_packagetoken_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsaccessTokenResponseAppToken {
+pub struct CMsgClientPICSAccessTokenResponse_AppToken {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -15008,7 +15031,7 @@ pub mut:
 	has_access_token bool
 }
 
-pub fn (o &CMsgClientPIcsaccessTokenResponseAppToken) pack() []byte {
+pub fn (o &CMsgClientPICSAccessTokenResponse_AppToken) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -15019,8 +15042,8 @@ pub fn (o &CMsgClientPIcsaccessTokenResponseAppToken) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsaccesstokenresponseapptoken_unpack(buf []byte) ?CMsgClientPIcsaccessTokenResponseAppToken {
-	mut res := CMsgClientPIcsaccessTokenResponseAppToken{}
+pub fn cmsgclientpicsaccesstokenresponse_apptoken_unpack(buf []byte) ?CMsgClientPICSAccessTokenResponse_AppToken {
+	mut res := CMsgClientPICSAccessTokenResponse_AppToken{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15058,37 +15081,37 @@ pub fn cmsgclientpicsaccesstokenresponseapptoken_unpack(buf []byte) ?CMsgClientP
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenresponseapptoken() CMsgClientPIcsaccessTokenResponseAppToken {
-	return CMsgClientPIcsaccessTokenResponseAppToken{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenresponse_apptoken() CMsgClientPICSAccessTokenResponse_AppToken {
+	return CMsgClientPICSAccessTokenResponse_AppToken{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponseapptoken(o CMsgClientPIcsaccessTokenResponseAppToken, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_apptoken(o CMsgClientPICSAccessTokenResponse_AppToken, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponseapptoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsaccessTokenResponseAppToken) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_apptoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenResponse_AppToken) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsaccesstokenresponseapptoken_unpack(v)?
+	mut unpacked := cmsgclientpicsaccesstokenresponse_apptoken_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientPIcsaccessTokenResponse {
+pub struct CMsgClientPICSAccessTokenResponse {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
-	package_access_tokens []CMsgClientPIcsaccessTokenResponsePackageToken
+	package_access_tokens []CMsgClientPICSAccessTokenResponse_PackageToken
 	package_denied_tokens []u32
-	app_access_tokens     []CMsgClientPIcsaccessTokenResponseAppToken
+	app_access_tokens     []CMsgClientPICSAccessTokenResponse_AppToken
 	app_denied_tokens     []u32
 }
 
-pub fn (o &CMsgClientPIcsaccessTokenResponse) pack() []byte {
+pub fn (o &CMsgClientPICSAccessTokenResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.package_access_tokens {
-		res << zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponsepackagetoken(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_packagetoken(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.package_denied_tokens {
@@ -15096,7 +15119,7 @@ pub fn (o &CMsgClientPIcsaccessTokenResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.app_access_tokens {
-		res << zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponseapptoken(x, 3)
+		res << zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_apptoken(x, 3)
 	}
 	// [packed=false]
 	for _, x in o.app_denied_tokens {
@@ -15105,8 +15128,8 @@ pub fn (o &CMsgClientPIcsaccessTokenResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPIcsaccessTokenResponse {
-	mut res := CMsgClientPIcsaccessTokenResponse{}
+pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPICSAccessTokenResponse {
+	mut res := CMsgClientPICSAccessTokenResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15118,7 +15141,7 @@ pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPIcsacces
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponsepackagetoken(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_packagetoken(cur_buf,
 					tag_wiretype.wire_type)?
 				res.package_access_tokens << v
 				i = ii
@@ -15131,7 +15154,7 @@ pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPIcsacces
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponseapptoken(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_apptoken(cur_buf,
 					tag_wiretype.wire_type)?
 				res.app_access_tokens << v
 				i = ii
@@ -15158,23 +15181,23 @@ pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPIcsacces
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenresponse() CMsgClientPIcsaccessTokenResponse {
-	return CMsgClientPIcsaccessTokenResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientpicsaccesstokenresponse() CMsgClientPICSAccessTokenResponse {
+	return CMsgClientPICSAccessTokenResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse(o CMsgClientPIcsaccessTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse(o CMsgClientPICSAccessTokenResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPIcsaccessTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpicsaccesstokenresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetUGcdetails {
+pub struct CMsgClientUFSGetUGCDetails {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -15182,7 +15205,7 @@ pub mut:
 	has_hcontent   bool
 }
 
-pub fn (o &CMsgClientUFsgetUGcdetails) pack() []byte {
+pub fn (o &CMsgClientUFSGetUGCDetails) pack() []byte {
 	mut res := []byte{}
 	if o.has_hcontent {
 		res << vproto.pack_64bit_field(o.hcontent, 1)
@@ -15190,8 +15213,8 @@ pub fn (o &CMsgClientUFsgetUGcdetails) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetugcdetails_unpack(buf []byte) ?CMsgClientUFsgetUGcdetails {
-	mut res := CMsgClientUFsgetUGcdetails{}
+pub fn cmsgclientufsgetugcdetails_unpack(buf []byte) ?CMsgClientUFSGetUGCDetails {
+	mut res := CMsgClientUFSGetUGCDetails{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15223,23 +15246,23 @@ pub fn cmsgclientufsgetugcdetails_unpack(buf []byte) ?CMsgClientUFsgetUGcdetails
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetugcdetails() CMsgClientUFsgetUGcdetails {
-	return CMsgClientUFsgetUGcdetails{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetugcdetails() CMsgClientUFSGetUGCDetails {
+	return CMsgClientUFSGetUGCDetails{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetugcdetails(o CMsgClientUFsgetUGcdetails, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetugcdetails(o CMsgClientUFSGetUGCDetails, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetugcdetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetUGcdetails) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetugcdetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetUGCDetails) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsgetugcdetails_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetUGcdetailsResponse {
+pub struct CMsgClientUFSGetUGCDetailsResponse {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -15263,7 +15286,7 @@ pub mut:
 	has_file_encoded_sha1    bool
 }
 
-pub fn (o &CMsgClientUFsgetUGcdetailsResponse) pack() []byte {
+pub fn (o &CMsgClientUFSGetUGCDetailsResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -15295,8 +15318,8 @@ pub fn (o &CMsgClientUFsgetUGcdetailsResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetugcdetailsresponse_unpack(buf []byte) ?CMsgClientUFsgetUGcdetailsResponse {
-	mut res := CMsgClientUFsgetUGcdetailsResponse{}
+pub fn cmsgclientufsgetugcdetailsresponse_unpack(buf []byte) ?CMsgClientUFSGetUGCDetailsResponse {
+	mut res := CMsgClientUFSGetUGCDetailsResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15376,23 +15399,23 @@ pub fn cmsgclientufsgetugcdetailsresponse_unpack(buf []byte) ?CMsgClientUFsgetUG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetugcdetailsresponse() CMsgClientUFsgetUGcdetailsResponse {
-	return CMsgClientUFsgetUGcdetailsResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetugcdetailsresponse() CMsgClientUFSGetUGCDetailsResponse {
+	return CMsgClientUFSGetUGCDetailsResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetugcdetailsresponse(o CMsgClientUFsgetUGcdetailsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetugcdetailsresponse(o CMsgClientUFSGetUGCDetailsResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetugcdetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetUGcdetailsResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetugcdetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetUGCDetailsResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsgetugcdetailsresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetSingleFileInfo {
+pub struct CMsgClientUFSGetSingleFileInfo {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -15402,7 +15425,7 @@ pub mut:
 	has_file_name  bool
 }
 
-pub fn (o &CMsgClientUFsgetSingleFileInfo) pack() []byte {
+pub fn (o &CMsgClientUFSGetSingleFileInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -15413,8 +15436,8 @@ pub fn (o &CMsgClientUFsgetSingleFileInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetsinglefileinfo_unpack(buf []byte) ?CMsgClientUFsgetSingleFileInfo {
-	mut res := CMsgClientUFsgetSingleFileInfo{}
+pub fn cmsgclientufsgetsinglefileinfo_unpack(buf []byte) ?CMsgClientUFSGetSingleFileInfo {
+	mut res := CMsgClientUFSGetSingleFileInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15452,23 +15475,23 @@ pub fn cmsgclientufsgetsinglefileinfo_unpack(buf []byte) ?CMsgClientUFsgetSingle
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetsinglefileinfo() CMsgClientUFsgetSingleFileInfo {
-	return CMsgClientUFsgetSingleFileInfo{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetsinglefileinfo() CMsgClientUFSGetSingleFileInfo {
+	return CMsgClientUFSGetSingleFileInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetsinglefileinfo(o CMsgClientUFsgetSingleFileInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetsinglefileinfo(o CMsgClientUFSGetSingleFileInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetsinglefileinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetSingleFileInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetsinglefileinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetSingleFileInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsgetsinglefileinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsgetSingleFileInfoResponse {
+pub struct CMsgClientUFSGetSingleFileInfoResponse {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -15488,7 +15511,7 @@ pub mut:
 	has_is_explicit_delete bool
 }
 
-pub fn (o &CMsgClientUFsgetSingleFileInfoResponse) pack() []byte {
+pub fn (o &CMsgClientUFSGetSingleFileInfoResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -15514,8 +15537,8 @@ pub fn (o &CMsgClientUFsgetSingleFileInfoResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufsgetsinglefileinforesponse_unpack(buf []byte) ?CMsgClientUFsgetSingleFileInfoResponse {
-	mut res := CMsgClientUFsgetSingleFileInfoResponse{}
+pub fn cmsgclientufsgetsinglefileinforesponse_unpack(buf []byte) ?CMsgClientUFSGetSingleFileInfoResponse {
+	mut res := CMsgClientUFSGetSingleFileInfoResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15583,23 +15606,23 @@ pub fn cmsgclientufsgetsinglefileinforesponse_unpack(buf []byte) ?CMsgClientUFsg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufsgetsinglefileinforesponse() CMsgClientUFsgetSingleFileInfoResponse {
-	return CMsgClientUFsgetSingleFileInfoResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufsgetsinglefileinforesponse() CMsgClientUFSGetSingleFileInfoResponse {
+	return CMsgClientUFSGetSingleFileInfoResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufsgetsinglefileinforesponse(o CMsgClientUFsgetSingleFileInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufsgetsinglefileinforesponse(o CMsgClientUFSGetSingleFileInfoResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufsgetsinglefileinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsgetSingleFileInfoResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufsgetsinglefileinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetSingleFileInfoResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufsgetsinglefileinforesponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsshareFile {
+pub struct CMsgClientUFSShareFile {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -15609,7 +15632,7 @@ pub mut:
 	has_file_name  bool
 }
 
-pub fn (o &CMsgClientUFsshareFile) pack() []byte {
+pub fn (o &CMsgClientUFSShareFile) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -15620,8 +15643,8 @@ pub fn (o &CMsgClientUFsshareFile) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufssharefile_unpack(buf []byte) ?CMsgClientUFsshareFile {
-	mut res := CMsgClientUFsshareFile{}
+pub fn cmsgclientufssharefile_unpack(buf []byte) ?CMsgClientUFSShareFile {
+	mut res := CMsgClientUFSShareFile{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15659,23 +15682,23 @@ pub fn cmsgclientufssharefile_unpack(buf []byte) ?CMsgClientUFsshareFile {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufssharefile() CMsgClientUFsshareFile {
-	return CMsgClientUFsshareFile{}
+pub fn zzz_vproto_internal_new_cmsgclientufssharefile() CMsgClientUFSShareFile {
+	return CMsgClientUFSShareFile{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufssharefile(o CMsgClientUFsshareFile, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufssharefile(o CMsgClientUFSShareFile, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufssharefile(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsshareFile) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufssharefile(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSShareFile) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufssharefile_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientUFsshareFileResponse {
+pub struct CMsgClientUFSShareFileResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -15685,7 +15708,7 @@ pub mut:
 	has_hcontent   bool
 }
 
-pub fn (o &CMsgClientUFsshareFileResponse) pack() []byte {
+pub fn (o &CMsgClientUFSShareFileResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -15696,8 +15719,8 @@ pub fn (o &CMsgClientUFsshareFileResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientufssharefileresponse_unpack(buf []byte) ?CMsgClientUFsshareFileResponse {
-	mut res := CMsgClientUFsshareFileResponse{}
+pub fn cmsgclientufssharefileresponse_unpack(buf []byte) ?CMsgClientUFSShareFileResponse {
+	mut res := CMsgClientUFSShareFileResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15735,23 +15758,23 @@ pub fn cmsgclientufssharefileresponse_unpack(buf []byte) ?CMsgClientUFsshareFile
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientufssharefileresponse() CMsgClientUFsshareFileResponse {
-	return CMsgClientUFsshareFileResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientufssharefileresponse() CMsgClientUFSShareFileResponse {
+	return CMsgClientUFSShareFileResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientufssharefileresponse(o CMsgClientUFsshareFileResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientufssharefileresponse(o CMsgClientUFSShareFileResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientufssharefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFsshareFileResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientufssharefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSShareFileResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientufssharefileresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetClanOfficers {
+pub struct CMsgClientAMGetClanOfficers {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -15759,7 +15782,7 @@ pub mut:
 	has_steamid_clan bool
 }
 
-pub fn (o &CMsgClientAMgetClanOfficers) pack() []byte {
+pub fn (o &CMsgClientAMGetClanOfficers) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid_clan {
 		res << vproto.pack_64bit_field(o.steamid_clan, 1)
@@ -15767,8 +15790,8 @@ pub fn (o &CMsgClientAMgetClanOfficers) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientamgetclanofficers_unpack(buf []byte) ?CMsgClientAMgetClanOfficers {
-	mut res := CMsgClientAMgetClanOfficers{}
+pub fn cmsgclientamgetclanofficers_unpack(buf []byte) ?CMsgClientAMGetClanOfficers {
+	mut res := CMsgClientAMGetClanOfficers{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15800,23 +15823,23 @@ pub fn cmsgclientamgetclanofficers_unpack(buf []byte) ?CMsgClientAMgetClanOffice
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetclanofficers() CMsgClientAMgetClanOfficers {
-	return CMsgClientAMgetClanOfficers{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetclanofficers() CMsgClientAMGetClanOfficers {
+	return CMsgClientAMGetClanOfficers{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetclanofficers(o CMsgClientAMgetClanOfficers, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetclanofficers(o CMsgClientAMGetClanOfficers, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetclanofficers(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetClanOfficers) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetclanofficers(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetClanOfficers) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientamgetclanofficers_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetClanOfficersResponse {
+pub struct CMsgClientAMGetClanOfficersResponse {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -15828,7 +15851,7 @@ pub mut:
 	has_officer_count bool
 }
 
-pub fn (o &CMsgClientAMgetClanOfficersResponse) pack() []byte {
+pub fn (o &CMsgClientAMGetClanOfficersResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -15842,8 +15865,8 @@ pub fn (o &CMsgClientAMgetClanOfficersResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientamgetclanofficersresponse_unpack(buf []byte) ?CMsgClientAMgetClanOfficersResponse {
-	mut res := CMsgClientAMgetClanOfficersResponse{}
+pub fn cmsgclientamgetclanofficersresponse_unpack(buf []byte) ?CMsgClientAMGetClanOfficersResponse {
+	mut res := CMsgClientAMGetClanOfficersResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15887,23 +15910,23 @@ pub fn cmsgclientamgetclanofficersresponse_unpack(buf []byte) ?CMsgClientAMgetCl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetclanofficersresponse() CMsgClientAMgetClanOfficersResponse {
-	return CMsgClientAMgetClanOfficersResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetclanofficersresponse() CMsgClientAMGetClanOfficersResponse {
+	return CMsgClientAMGetClanOfficersResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetclanofficersresponse(o CMsgClientAMgetClanOfficersResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetclanofficersresponse(o CMsgClientAMGetClanOfficersResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetclanofficersresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetClanOfficersResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetclanofficersresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetClanOfficersResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientamgetclanofficersresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetPersonaNameHistoryIdInstance {
+pub struct CMsgClientAMGetPersonaNameHistory_IdInstance {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -15911,7 +15934,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CMsgClientAMgetPersonaNameHistoryIdInstance) pack() []byte {
+pub fn (o &CMsgClientAMGetPersonaNameHistory_IdInstance) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -15919,8 +15942,8 @@ pub fn (o &CMsgClientAMgetPersonaNameHistoryIdInstance) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientamgetpersonanamehistoryidinstance_unpack(buf []byte) ?CMsgClientAMgetPersonaNameHistoryIdInstance {
-	mut res := CMsgClientAMgetPersonaNameHistoryIdInstance{}
+pub fn cmsgclientamgetpersonanamehistory_idinstance_unpack(buf []byte) ?CMsgClientAMGetPersonaNameHistory_IdInstance {
+	mut res := CMsgClientAMGetPersonaNameHistory_IdInstance{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -15952,45 +15975,45 @@ pub fn cmsgclientamgetpersonanamehistoryidinstance_unpack(buf []byte) ?CMsgClien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryidinstance() CMsgClientAMgetPersonaNameHistoryIdInstance {
-	return CMsgClientAMgetPersonaNameHistoryIdInstance{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistory_idinstance() CMsgClientAMGetPersonaNameHistory_IdInstance {
+	return CMsgClientAMGetPersonaNameHistory_IdInstance{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryidinstance(o CMsgClientAMgetPersonaNameHistoryIdInstance, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory_idinstance(o CMsgClientAMGetPersonaNameHistory_IdInstance, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryidinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetPersonaNameHistoryIdInstance) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory_idinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistory_IdInstance) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistoryidinstance_unpack(v)?
+	mut unpacked := cmsgclientamgetpersonanamehistory_idinstance_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetPersonaNameHistory {
+pub struct CMsgClientAMGetPersonaNameHistory {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	id_count       int
 	has_id_count   bool
-	ids            []CMsgClientAMgetPersonaNameHistoryIdInstance
+	ids            []CMsgClientAMGetPersonaNameHistory_IdInstance
 }
 
-pub fn (o &CMsgClientAMgetPersonaNameHistory) pack() []byte {
+pub fn (o &CMsgClientAMGetPersonaNameHistory) pack() []byte {
 	mut res := []byte{}
 	if o.has_id_count {
 		res << vproto.pack_int32_field(o.id_count, 1)
 	}
 	// [packed=false]
 	for _, x in o.ids {
-		res << zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryidinstance(x, 2)
+		res << zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory_idinstance(x, 2)
 	}
 	return res
 }
 
-pub fn cmsgclientamgetpersonanamehistory_unpack(buf []byte) ?CMsgClientAMgetPersonaNameHistory {
-	mut res := CMsgClientAMgetPersonaNameHistory{}
+pub fn cmsgclientamgetpersonanamehistory_unpack(buf []byte) ?CMsgClientAMGetPersonaNameHistory {
+	mut res := CMsgClientAMGetPersonaNameHistory{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16008,7 +16031,7 @@ pub fn cmsgclientamgetpersonanamehistory_unpack(buf []byte) ?CMsgClientAMgetPers
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryidinstance(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory_idinstance(cur_buf,
 					tag_wiretype.wire_type)?
 				res.ids << v
 				i = ii
@@ -16029,23 +16052,23 @@ pub fn cmsgclientamgetpersonanamehistory_unpack(buf []byte) ?CMsgClientAMgetPers
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistory() CMsgClientAMgetPersonaNameHistory {
-	return CMsgClientAMgetPersonaNameHistory{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistory() CMsgClientAMGetPersonaNameHistory {
+	return CMsgClientAMGetPersonaNameHistory{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory(o CMsgClientAMgetPersonaNameHistory, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory(o CMsgClientAMGetPersonaNameHistory, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetPersonaNameHistory) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistory) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientamgetpersonanamehistory_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance {
+pub struct CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -16055,7 +16078,7 @@ pub mut:
 	has_name       bool
 }
 
-pub fn (o &CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance) pack() []byte {
+pub fn (o &CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance) pack() []byte {
 	mut res := []byte{}
 	if o.has_name_since {
 		res << vproto.pack_32bit_field(o.name_since, 1)
@@ -16066,8 +16089,8 @@ pub fn (o &CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstanc
 	return res
 }
 
-pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance_unpack(buf []byte) ?CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance {
-	mut res := CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance{}
+pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance_unpack(buf []byte) ?CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance {
+	mut res := CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16105,23 +16128,23 @@ pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance_un
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance() CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance {
-	return CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance() CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance {
+	return CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance(o CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance(o CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance_unpack(v)?
+	mut unpacked := cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance {
+pub struct CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -16129,10 +16152,10 @@ pub mut:
 	has_eresult    bool
 	steamid        u64
 	has_steamid    bool
-	names          []CMsgClientAMgetPersonaNameHistoryResponseNameTableInstanceNameInstance
+	names          []CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance
 }
 
-pub fn (o &CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance) pack() []byte {
+pub fn (o &CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -16143,13 +16166,13 @@ pub fn (o &CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance) pack() []
 	// [packed=false]
 	for _, x in o.names {
 		res <<
-			zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance(x, 3)
+			zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance(x, 3)
 	}
 	return res
 }
 
-pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstance_unpack(buf []byte) ?CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance {
-	mut res := CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance{}
+pub fn cmsgclientamgetpersonanamehistoryresponse_nametableinstance_unpack(buf []byte) ?CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance {
+	mut res := CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16173,7 +16196,7 @@ pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstance_unpack(buf []b
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstancenameinstance(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance(cur_buf,
 					tag_wiretype.wire_type)?
 				res.names << v
 				i = ii
@@ -16194,41 +16217,41 @@ pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstance_unpack(buf []b
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryresponsenametableinstance() CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance {
-	return CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryresponse_nametableinstance() CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance {
+	return CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametableinstance(o CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponse_nametableinstance(o CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse_nametableinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistoryresponsenametableinstance_unpack(v)?
+	mut unpacked := cmsgclientamgetpersonanamehistoryresponse_nametableinstance_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientAMgetPersonaNameHistoryResponse {
+pub struct CMsgClientAMGetPersonaNameHistoryResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	responses      []CMsgClientAMgetPersonaNameHistoryResponseNameTableInstance
+	responses      []CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance
 }
 
-pub fn (o &CMsgClientAMgetPersonaNameHistoryResponse) pack() []byte {
+pub fn (o &CMsgClientAMGetPersonaNameHistoryResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.responses {
 		res <<
-			zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametableinstance(x, 2)
+			zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponse_nametableinstance(x, 2)
 	}
 	return res
 }
 
-pub fn cmsgclientamgetpersonanamehistoryresponse_unpack(buf []byte) ?CMsgClientAMgetPersonaNameHistoryResponse {
-	mut res := CMsgClientAMgetPersonaNameHistoryResponse{}
+pub fn cmsgclientamgetpersonanamehistoryresponse_unpack(buf []byte) ?CMsgClientAMGetPersonaNameHistoryResponse {
+	mut res := CMsgClientAMGetPersonaNameHistoryResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16240,7 +16263,7 @@ pub fn cmsgclientamgetpersonanamehistoryresponse_unpack(buf []byte) ?CMsgClientA
 		match tag_wiretype.tag {
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstance(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse_nametableinstance(cur_buf,
 					tag_wiretype.wire_type)?
 				res.responses << v
 				i = ii
@@ -16261,17 +16284,17 @@ pub fn cmsgclientamgetpersonanamehistoryresponse_unpack(buf []byte) ?CMsgClientA
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryresponse() CMsgClientAMgetPersonaNameHistoryResponse {
-	return CMsgClientAMgetPersonaNameHistoryResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientamgetpersonanamehistoryresponse() CMsgClientAMGetPersonaNameHistoryResponse {
+	return CMsgClientAMGetPersonaNameHistoryResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponse(o CMsgClientAMgetPersonaNameHistoryResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponse(o CMsgClientAMGetPersonaNameHistoryResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMgetPersonaNameHistoryResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistoryResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientamgetpersonanamehistoryresponse_unpack(v)?
 	return i, unpacked
@@ -16353,7 +16376,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientderegisterwithserver(buf []byte, tag
 	return i, unpacked
 }
 
-pub struct CMsgClientClanStateNameInfo {
+pub struct CMsgClientClanState_NameInfo {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -16363,7 +16386,7 @@ pub mut:
 	has_sha_avatar bool
 }
 
-pub fn (o &CMsgClientClanStateNameInfo) pack() []byte {
+pub fn (o &CMsgClientClanState_NameInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_clan_name {
 		res << vproto.pack_string_field(o.clan_name, 1)
@@ -16374,8 +16397,8 @@ pub fn (o &CMsgClientClanStateNameInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientclanstatenameinfo_unpack(buf []byte) ?CMsgClientClanStateNameInfo {
-	mut res := CMsgClientClanStateNameInfo{}
+pub fn cmsgclientclanstate_nameinfo_unpack(buf []byte) ?CMsgClientClanState_NameInfo {
+	mut res := CMsgClientClanState_NameInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16413,23 +16436,23 @@ pub fn cmsgclientclanstatenameinfo_unpack(buf []byte) ?CMsgClientClanStateNameIn
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientclanstatenameinfo() CMsgClientClanStateNameInfo {
-	return CMsgClientClanStateNameInfo{}
+pub fn zzz_vproto_internal_new_cmsgclientclanstate_nameinfo() CMsgClientClanState_NameInfo {
+	return CMsgClientClanState_NameInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientclanstatenameinfo(o CMsgClientClanStateNameInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientclanstate_nameinfo(o CMsgClientClanState_NameInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientclanstatenameinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanStateNameInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgclientclanstate_nameinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState_NameInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstatenameinfo_unpack(v)?
+	mut unpacked := cmsgclientclanstate_nameinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientClanStateUserCounts {
+pub struct CMsgClientClanState_UserCounts {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -16445,7 +16468,7 @@ pub mut:
 	has_chat_room_members bool
 }
 
-pub fn (o &CMsgClientClanStateUserCounts) pack() []byte {
+pub fn (o &CMsgClientClanState_UserCounts) pack() []byte {
 	mut res := []byte{}
 	if o.has_members {
 		res << vproto.pack_uint32_field(o.members, 1)
@@ -16465,8 +16488,8 @@ pub fn (o &CMsgClientClanStateUserCounts) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientclanstateusercounts_unpack(buf []byte) ?CMsgClientClanStateUserCounts {
-	mut res := CMsgClientClanStateUserCounts{}
+pub fn cmsgclientclanstate_usercounts_unpack(buf []byte) ?CMsgClientClanState_UserCounts {
+	mut res := CMsgClientClanState_UserCounts{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16522,23 +16545,23 @@ pub fn cmsgclientclanstateusercounts_unpack(buf []byte) ?CMsgClientClanStateUser
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientclanstateusercounts() CMsgClientClanStateUserCounts {
-	return CMsgClientClanStateUserCounts{}
+pub fn zzz_vproto_internal_new_cmsgclientclanstate_usercounts() CMsgClientClanState_UserCounts {
+	return CMsgClientClanState_UserCounts{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientclanstateusercounts(o CMsgClientClanStateUserCounts, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientclanstate_usercounts(o CMsgClientClanState_UserCounts, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientclanstateusercounts(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanStateUserCounts) {
+pub fn zzz_vproto_internal_unpack_cmsgclientclanstate_usercounts(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState_UserCounts) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstateusercounts_unpack(v)?
+	mut unpacked := cmsgclientclanstate_usercounts_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientClanStateEvent {
+pub struct CMsgClientClanState_Event {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -16554,7 +16577,7 @@ pub mut:
 	has_just_posted bool
 }
 
-pub fn (o &CMsgClientClanStateEvent) pack() []byte {
+pub fn (o &CMsgClientClanState_Event) pack() []byte {
 	mut res := []byte{}
 	if o.has_gid {
 		res << vproto.pack_64bit_field(o.gid, 1)
@@ -16574,8 +16597,8 @@ pub fn (o &CMsgClientClanStateEvent) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientclanstateevent_unpack(buf []byte) ?CMsgClientClanStateEvent {
-	mut res := CMsgClientClanStateEvent{}
+pub fn cmsgclientclanstate_event_unpack(buf []byte) ?CMsgClientClanState_Event {
+	mut res := CMsgClientClanState_Event{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -16631,19 +16654,19 @@ pub fn cmsgclientclanstateevent_unpack(buf []byte) ?CMsgClientClanStateEvent {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientclanstateevent() CMsgClientClanStateEvent {
-	return CMsgClientClanStateEvent{}
+pub fn zzz_vproto_internal_new_cmsgclientclanstate_event() CMsgClientClanState_Event {
+	return CMsgClientClanState_Event{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientclanstateevent(o CMsgClientClanStateEvent, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientclanstate_event(o CMsgClientClanState_Event, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientclanstateevent(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanStateEvent) {
+pub fn zzz_vproto_internal_unpack_cmsgclientclanstate_event(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState_Event) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstateevent_unpack(v)?
+	mut unpacked := cmsgclientclanstate_event_unpack(v)?
 	return i, unpacked
 }
 
@@ -16655,12 +16678,12 @@ pub mut:
 	has_steamid_clan       bool
 	clan_account_flags     u32
 	has_clan_account_flags bool
-	name_info              CMsgClientClanStateNameInfo
+	name_info              CMsgClientClanState_NameInfo
 	has_name_info          bool
-	user_counts            CMsgClientClanStateUserCounts
+	user_counts            CMsgClientClanState_UserCounts
 	has_user_counts        bool
-	events                 []CMsgClientClanStateEvent
-	announcements          []CMsgClientClanStateEvent
+	events                 []CMsgClientClanState_Event
+	announcements          []CMsgClientClanState_Event
 	chat_room_private      bool
 	has_chat_room_private  bool
 }
@@ -16674,18 +16697,18 @@ pub fn (o &CMsgClientClanState) pack() []byte {
 		res << vproto.pack_uint32_field(o.clan_account_flags, 3)
 	}
 	if o.has_name_info {
-		res << zzz_vproto_internal_pack_cmsgclientclanstatenameinfo(o.name_info, 4)
+		res << zzz_vproto_internal_pack_cmsgclientclanstate_nameinfo(o.name_info, 4)
 	}
 	if o.has_user_counts {
-		res << zzz_vproto_internal_pack_cmsgclientclanstateusercounts(o.user_counts, 5)
+		res << zzz_vproto_internal_pack_cmsgclientclanstate_usercounts(o.user_counts, 5)
 	}
 	// [packed=false]
 	for _, x in o.events {
-		res << zzz_vproto_internal_pack_cmsgclientclanstateevent(x, 6)
+		res << zzz_vproto_internal_pack_cmsgclientclanstate_event(x, 6)
 	}
 	// [packed=false]
 	for _, x in o.announcements {
-		res << zzz_vproto_internal_pack_cmsgclientclanstateevent(x, 7)
+		res << zzz_vproto_internal_pack_cmsgclientclanstate_event(x, 7)
 	}
 	if o.has_chat_room_private {
 		res << vproto.pack_bool_field(o.chat_room_private, 8)
@@ -16718,28 +16741,28 @@ pub fn cmsgclientclanstate_unpack(buf []byte) ?CMsgClientClanState {
 			}
 			4 {
 				res.has_name_info = true
-				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstatenameinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_nameinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.name_info = v
 				i = ii
 			}
 			5 {
 				res.has_user_counts = true
-				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstateusercounts(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_usercounts(cur_buf,
 					tag_wiretype.wire_type)?
 				res.user_counts = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstateevent(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_event(cur_buf,
 					tag_wiretype.wire_type)?
 				res.events << v
 				i = ii
 			}
 			7 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstateevent(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_event(cur_buf,
 					tag_wiretype.wire_type)?
 				res.announcements << v
 				i = ii

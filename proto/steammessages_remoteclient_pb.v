@@ -91,7 +91,7 @@ pub fn zzz_vproto_internal_unpack_cmsgremoteclientstatus(buf []byte, tag_wiretyp
 	return i, unpacked
 }
 
-pub struct CMsgRemoteClientAppStatusAppUpdateInfo {
+pub struct CMsgRemoteClientAppStatus_AppUpdateInfo {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
@@ -113,7 +113,7 @@ pub mut:
 	has_update_state                bool
 }
 
-pub fn (o &CMsgRemoteClientAppStatusAppUpdateInfo) pack() []byte {
+pub fn (o &CMsgRemoteClientAppStatus_AppUpdateInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_time_update_start {
 		res << vproto.pack_32bit_field(o.time_update_start, 1)
@@ -142,8 +142,8 @@ pub fn (o &CMsgRemoteClientAppStatusAppUpdateInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgremoteclientappstatusappupdateinfo_unpack(buf []byte) ?CMsgRemoteClientAppStatusAppUpdateInfo {
-	mut res := CMsgRemoteClientAppStatusAppUpdateInfo{}
+pub fn cmsgremoteclientappstatus_appupdateinfo_unpack(buf []byte) ?CMsgRemoteClientAppStatus_AppUpdateInfo {
+	mut res := CMsgRemoteClientAppStatus_AppUpdateInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -217,23 +217,23 @@ pub fn cmsgremoteclientappstatusappupdateinfo_unpack(buf []byte) ?CMsgRemoteClie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgremoteclientappstatusappupdateinfo() CMsgRemoteClientAppStatusAppUpdateInfo {
-	return CMsgRemoteClientAppStatusAppUpdateInfo{}
+pub fn zzz_vproto_internal_new_cmsgremoteclientappstatus_appupdateinfo() CMsgRemoteClientAppStatus_AppUpdateInfo {
+	return CMsgRemoteClientAppStatus_AppUpdateInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgremoteclientappstatusappupdateinfo(o CMsgRemoteClientAppStatusAppUpdateInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgremoteclientappstatus_appupdateinfo(o CMsgRemoteClientAppStatus_AppUpdateInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatusappupdateinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAppStatusAppUpdateInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatus_appupdateinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAppStatus_AppUpdateInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgremoteclientappstatusappupdateinfo_unpack(v)?
+	mut unpacked := cmsgremoteclientappstatus_appupdateinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgRemoteClientAppStatusShortcutInfo {
+pub struct CMsgRemoteClientAppStatus_ShortcutInfo {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -246,7 +246,7 @@ pub mut:
 	has_exepath    bool
 }
 
-pub fn (o &CMsgRemoteClientAppStatusShortcutInfo) pack() []byte {
+pub fn (o &CMsgRemoteClientAppStatus_ShortcutInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -264,8 +264,8 @@ pub fn (o &CMsgRemoteClientAppStatusShortcutInfo) pack() []byte {
 	return res
 }
 
-pub fn cmsgremoteclientappstatusshortcutinfo_unpack(buf []byte) ?CMsgRemoteClientAppStatusShortcutInfo {
-	mut res := CMsgRemoteClientAppStatusShortcutInfo{}
+pub fn cmsgremoteclientappstatus_shortcutinfo_unpack(buf []byte) ?CMsgRemoteClientAppStatus_ShortcutInfo {
+	mut res := CMsgRemoteClientAppStatus_ShortcutInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -315,23 +315,23 @@ pub fn cmsgremoteclientappstatusshortcutinfo_unpack(buf []byte) ?CMsgRemoteClien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgremoteclientappstatusshortcutinfo() CMsgRemoteClientAppStatusShortcutInfo {
-	return CMsgRemoteClientAppStatusShortcutInfo{}
+pub fn zzz_vproto_internal_new_cmsgremoteclientappstatus_shortcutinfo() CMsgRemoteClientAppStatus_ShortcutInfo {
+	return CMsgRemoteClientAppStatus_ShortcutInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgremoteclientappstatusshortcutinfo(o CMsgRemoteClientAppStatusShortcutInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgremoteclientappstatus_shortcutinfo(o CMsgRemoteClientAppStatus_ShortcutInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatusshortcutinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAppStatusShortcutInfo) {
+pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatus_shortcutinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAppStatus_ShortcutInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgremoteclientappstatusshortcutinfo_unpack(v)?
+	mut unpacked := cmsgremoteclientappstatus_shortcutinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgRemoteClientAppStatusAppStatus {
+pub struct CMsgRemoteClientAppStatus_AppStatus {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -339,15 +339,15 @@ pub mut:
 	has_app_id           bool
 	app_state            u32
 	has_app_state        bool
-	update_info          CMsgRemoteClientAppStatusAppUpdateInfo
+	update_info          CMsgRemoteClientAppStatus_AppUpdateInfo
 	has_update_info      bool
-	shortcut_info        CMsgRemoteClientAppStatusShortcutInfo
+	shortcut_info        CMsgRemoteClientAppStatus_ShortcutInfo
 	has_shortcut_info    bool
 	launch_available     bool
 	has_launch_available bool
 }
 
-pub fn (o &CMsgRemoteClientAppStatusAppStatus) pack() []byte {
+pub fn (o &CMsgRemoteClientAppStatus_AppStatus) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -356,10 +356,10 @@ pub fn (o &CMsgRemoteClientAppStatusAppStatus) pack() []byte {
 		res << vproto.pack_uint32_field(o.app_state, 2)
 	}
 	if o.has_update_info {
-		res << zzz_vproto_internal_pack_cmsgremoteclientappstatusappupdateinfo(o.update_info, 3)
+		res << zzz_vproto_internal_pack_cmsgremoteclientappstatus_appupdateinfo(o.update_info, 3)
 	}
 	if o.has_shortcut_info {
-		res << zzz_vproto_internal_pack_cmsgremoteclientappstatusshortcutinfo(o.shortcut_info, 4)
+		res << zzz_vproto_internal_pack_cmsgremoteclientappstatus_shortcutinfo(o.shortcut_info, 4)
 	}
 	if o.has_launch_available {
 		res << vproto.pack_bool_field(o.launch_available, 5)
@@ -367,8 +367,8 @@ pub fn (o &CMsgRemoteClientAppStatusAppStatus) pack() []byte {
 	return res
 }
 
-pub fn cmsgremoteclientappstatusappstatus_unpack(buf []byte) ?CMsgRemoteClientAppStatusAppStatus {
-	mut res := CMsgRemoteClientAppStatusAppStatus{}
+pub fn cmsgremoteclientappstatus_appstatus_unpack(buf []byte) ?CMsgRemoteClientAppStatus_AppStatus {
+	mut res := CMsgRemoteClientAppStatus_AppStatus{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -392,14 +392,14 @@ pub fn cmsgremoteclientappstatusappstatus_unpack(buf []byte) ?CMsgRemoteClientAp
 			}
 			3 {
 				res.has_update_info = true
-				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientappstatusappupdateinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientappstatus_appupdateinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.update_info = v
 				i = ii
 			}
 			4 {
 				res.has_shortcut_info = true
-				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientappstatusshortcutinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientappstatus_shortcutinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.shortcut_info = v
 				i = ii
@@ -426,19 +426,19 @@ pub fn cmsgremoteclientappstatusappstatus_unpack(buf []byte) ?CMsgRemoteClientAp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgremoteclientappstatusappstatus() CMsgRemoteClientAppStatusAppStatus {
-	return CMsgRemoteClientAppStatusAppStatus{}
+pub fn zzz_vproto_internal_new_cmsgremoteclientappstatus_appstatus() CMsgRemoteClientAppStatus_AppStatus {
+	return CMsgRemoteClientAppStatus_AppStatus{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgremoteclientappstatusappstatus(o CMsgRemoteClientAppStatusAppStatus, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgremoteclientappstatus_appstatus(o CMsgRemoteClientAppStatus_AppStatus, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatusappstatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAppStatusAppStatus) {
+pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatus_appstatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAppStatus_AppStatus) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgremoteclientappstatusappstatus_unpack(v)?
+	mut unpacked := cmsgremoteclientappstatus_appstatus_unpack(v)?
 	return i, unpacked
 }
 
@@ -446,14 +446,14 @@ pub struct CMsgRemoteClientAppStatus {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	status_updates []CMsgRemoteClientAppStatusAppStatus
+	status_updates []CMsgRemoteClientAppStatus_AppStatus
 }
 
 pub fn (o &CMsgRemoteClientAppStatus) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.status_updates {
-		res << zzz_vproto_internal_pack_cmsgremoteclientappstatusappstatus(x, 1)
+		res << zzz_vproto_internal_pack_cmsgremoteclientappstatus_appstatus(x, 1)
 	}
 	return res
 }
@@ -471,7 +471,7 @@ pub fn cmsgremoteclientappstatus_unpack(buf []byte) ?CMsgRemoteClientAppStatus {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientappstatusappstatus(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientappstatus_appstatus(cur_buf,
 					tag_wiretype.wire_type)?
 				res.status_updates << v
 				i = ii
@@ -508,7 +508,7 @@ pub fn zzz_vproto_internal_unpack_cmsgremoteclientappstatus(buf []byte, tag_wire
 	return i, unpacked
 }
 
-pub struct CMsgRemoteClientStartStreamReservedGamepad {
+pub struct CMsgRemoteClientStartStream_ReservedGamepad {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -518,7 +518,7 @@ pub mut:
 	has_controller_subtype bool
 }
 
-pub fn (o &CMsgRemoteClientStartStreamReservedGamepad) pack() []byte {
+pub fn (o &CMsgRemoteClientStartStream_ReservedGamepad) pack() []byte {
 	mut res := []byte{}
 	if o.has_controller_type {
 		res << vproto.pack_uint32_field(o.controller_type, 1)
@@ -529,8 +529,8 @@ pub fn (o &CMsgRemoteClientStartStreamReservedGamepad) pack() []byte {
 	return res
 }
 
-pub fn cmsgremoteclientstartstreamreservedgamepad_unpack(buf []byte) ?CMsgRemoteClientStartStreamReservedGamepad {
-	mut res := CMsgRemoteClientStartStreamReservedGamepad{}
+pub fn cmsgremoteclientstartstream_reservedgamepad_unpack(buf []byte) ?CMsgRemoteClientStartStream_ReservedGamepad {
+	mut res := CMsgRemoteClientStartStream_ReservedGamepad{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -568,19 +568,19 @@ pub fn cmsgremoteclientstartstreamreservedgamepad_unpack(buf []byte) ?CMsgRemote
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgremoteclientstartstreamreservedgamepad() CMsgRemoteClientStartStreamReservedGamepad {
-	return CMsgRemoteClientStartStreamReservedGamepad{}
+pub fn zzz_vproto_internal_new_cmsgremoteclientstartstream_reservedgamepad() CMsgRemoteClientStartStream_ReservedGamepad {
+	return CMsgRemoteClientStartStream_ReservedGamepad{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgremoteclientstartstreamreservedgamepad(o CMsgRemoteClientStartStreamReservedGamepad, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgremoteclientstartstream_reservedgamepad(o CMsgRemoteClientStartStream_ReservedGamepad, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgremoteclientstartstreamreservedgamepad(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientStartStreamReservedGamepad) {
+pub fn zzz_vproto_internal_unpack_cmsgremoteclientstartstream_reservedgamepad(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientStartStream_ReservedGamepad) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgremoteclientstartstreamreservedgamepad_unpack(v)?
+	mut unpacked := cmsgremoteclientstartstream_reservedgamepad_unpack(v)?
 	return i, unpacked
 }
 
@@ -604,7 +604,7 @@ pub mut:
 	has_maximum_resolution_x bool
 	maximum_resolution_y     int
 	has_maximum_resolution_y bool
-	gamepads                 []CMsgRemoteClientStartStreamReservedGamepad
+	gamepads                 []CMsgRemoteClientStartStream_ReservedGamepad
 	audio_channel_count      int
 	has_audio_channel_count  bool
 	supported_transport      []EStreamTransport
@@ -638,7 +638,7 @@ pub fn (o &CMsgRemoteClientStartStream) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.gamepads {
-		res << zzz_vproto_internal_pack_cmsgremoteclientstartstreamreservedgamepad(x, 9)
+		res << zzz_vproto_internal_pack_cmsgremoteclientstartstream_reservedgamepad(x, 9)
 	}
 	if o.has_audio_channel_count {
 		res << vproto.pack_int32_field(o.audio_channel_count, 10)
@@ -711,7 +711,7 @@ pub fn cmsgremoteclientstartstream_unpack(buf []byte) ?CMsgRemoteClientStartStre
 			}
 			9 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientstartstreamreservedgamepad(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgremoteclientstartstream_reservedgamepad(cur_buf,
 					tag_wiretype.wire_type)?
 				res.gamepads << v
 				i = ii
@@ -988,14 +988,14 @@ pub fn zzz_vproto_internal_unpack_cmsgremoteclientpingresponse(buf []byte, tag_w
 	return i, unpacked
 }
 
-pub struct CMsgRemoteClientAcceptEUla {
+pub struct CMsgRemoteClientAcceptEULA {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	app_id         []u32
 }
 
-pub fn (o &CMsgRemoteClientAcceptEUla) pack() []byte {
+pub fn (o &CMsgRemoteClientAcceptEULA) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.app_id {
@@ -1004,8 +1004,8 @@ pub fn (o &CMsgRemoteClientAcceptEUla) pack() []byte {
 	return res
 }
 
-pub fn cmsgremoteclientaccepteula_unpack(buf []byte) ?CMsgRemoteClientAcceptEUla {
-	mut res := CMsgRemoteClientAcceptEUla{}
+pub fn cmsgremoteclientaccepteula_unpack(buf []byte) ?CMsgRemoteClientAcceptEULA {
+	mut res := CMsgRemoteClientAcceptEULA{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1037,17 +1037,17 @@ pub fn cmsgremoteclientaccepteula_unpack(buf []byte) ?CMsgRemoteClientAcceptEUla
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgremoteclientaccepteula() CMsgRemoteClientAcceptEUla {
-	return CMsgRemoteClientAcceptEUla{}
+pub fn zzz_vproto_internal_new_cmsgremoteclientaccepteula() CMsgRemoteClientAcceptEULA {
+	return CMsgRemoteClientAcceptEULA{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgremoteclientaccepteula(o CMsgRemoteClientAcceptEUla, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgremoteclientaccepteula(o CMsgRemoteClientAcceptEULA, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgremoteclientaccepteula(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAcceptEUla) {
+pub fn zzz_vproto_internal_unpack_cmsgremoteclientaccepteula(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientAcceptEULA) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremoteclientaccepteula_unpack(v)?
 	return i, unpacked

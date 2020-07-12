@@ -17,9 +17,31 @@ fn zzz_vproto_internal_pack_einputmode(e EInputMode, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_einputmode_packed(e []EInputMode, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_einputmode(buf []byte, tag_wiretype vproto.WireType) ?(int, EInputMode) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EInputMode(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_einputmode_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EInputMode) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -37,9 +59,31 @@ fn zzz_vproto_internal_pack_emousemode(e EMouseMode, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_emousemode_packed(e []EMouseMode, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_emousemode(buf []byte, tag_wiretype vproto.WireType) ?(int, EMouseMode) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EMouseMode(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_emousemode_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EMouseMode) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -89,9 +133,31 @@ fn zzz_vproto_internal_pack_econtrollerelementtype(e EControllerElementType, num
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_econtrollerelementtype_packed(e []EControllerElementType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_econtrollerelementtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EControllerElementType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EControllerElementType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_econtrollerelementtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EControllerElementType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct CVirtualControllerElement {
@@ -576,7 +642,7 @@ pub fn zzz_vproto_internal_unpack_cvirtualcontrollerlayouts(buf []byte, tag_wire
 	return i, unpacked
 }
 
-pub struct CVirtualControllerConfigControl {
+pub struct CVirtualControllerConfig_Control {
 mut:
 	unknown_fields                       []vproto.UnknownField
 pub mut:
@@ -612,7 +678,7 @@ pub mut:
 	has_double_press_ms                  bool
 }
 
-pub fn (o &CVirtualControllerConfigControl) pack() []byte {
+pub fn (o &CVirtualControllerConfig_Control) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -662,8 +728,8 @@ pub fn (o &CVirtualControllerConfigControl) pack() []byte {
 	return res
 }
 
-pub fn cvirtualcontrollerconfigcontrol_unpack(buf []byte) ?CVirtualControllerConfigControl {
-	mut res := CVirtualControllerConfigControl{}
+pub fn cvirtualcontrollerconfig_control_unpack(buf []byte) ?CVirtualControllerConfig_Control {
+	mut res := CVirtualControllerConfig_Control{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -779,23 +845,23 @@ pub fn cvirtualcontrollerconfigcontrol_unpack(buf []byte) ?CVirtualControllerCon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cvirtualcontrollerconfigcontrol() CVirtualControllerConfigControl {
-	return CVirtualControllerConfigControl{}
+pub fn zzz_vproto_internal_new_cvirtualcontrollerconfig_control() CVirtualControllerConfig_Control {
+	return CVirtualControllerConfig_Control{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfigcontrol(o CVirtualControllerConfigControl, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfig_control(o CVirtualControllerConfig_Control, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfigcontrol(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfigControl) {
+pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfig_control(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfig_Control) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerconfigcontrol_unpack(v)?
+	mut unpacked := cvirtualcontrollerconfig_control_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CVirtualControllerConfigActionSet {
+pub struct CVirtualControllerConfig_ActionSet {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -805,10 +871,10 @@ pub mut:
 	has_parent_id  bool
 	name           string
 	has_name       bool
-	controls       []CVirtualControllerConfigControl
+	controls       []CVirtualControllerConfig_Control
 }
 
-pub fn (o &CVirtualControllerConfigActionSet) pack() []byte {
+pub fn (o &CVirtualControllerConfig_ActionSet) pack() []byte {
 	mut res := []byte{}
 	if o.has_id {
 		res << vproto.pack_int32_field(o.id, 1)
@@ -821,13 +887,13 @@ pub fn (o &CVirtualControllerConfigActionSet) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.controls {
-		res << zzz_vproto_internal_pack_cvirtualcontrollerconfigcontrol(x, 4)
+		res << zzz_vproto_internal_pack_cvirtualcontrollerconfig_control(x, 4)
 	}
 	return res
 }
 
-pub fn cvirtualcontrollerconfigactionset_unpack(buf []byte) ?CVirtualControllerConfigActionSet {
-	mut res := CVirtualControllerConfigActionSet{}
+pub fn cvirtualcontrollerconfig_actionset_unpack(buf []byte) ?CVirtualControllerConfig_ActionSet {
+	mut res := CVirtualControllerConfig_ActionSet{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -857,7 +923,7 @@ pub fn cvirtualcontrollerconfigactionset_unpack(buf []byte) ?CVirtualControllerC
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfigcontrol(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfig_control(cur_buf,
 					tag_wiretype.wire_type)?
 				res.controls << v
 				i = ii
@@ -878,19 +944,19 @@ pub fn cvirtualcontrollerconfigactionset_unpack(buf []byte) ?CVirtualControllerC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cvirtualcontrollerconfigactionset() CVirtualControllerConfigActionSet {
-	return CVirtualControllerConfigActionSet{}
+pub fn zzz_vproto_internal_new_cvirtualcontrollerconfig_actionset() CVirtualControllerConfig_ActionSet {
+	return CVirtualControllerConfig_ActionSet{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfigactionset(o CVirtualControllerConfigActionSet, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfig_actionset(o CVirtualControllerConfig_ActionSet, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfigactionset(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfigActionSet) {
+pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfig_actionset(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfig_ActionSet) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerconfigactionset_unpack(v)?
+	mut unpacked := cvirtualcontrollerconfig_actionset_unpack(v)?
 	return i, unpacked
 }
 
@@ -900,7 +966,7 @@ mut:
 pub mut:
 	name                   string
 	has_name               bool
-	actionsets             []CVirtualControllerConfigActionSet
+	actionsets             []CVirtualControllerConfig_ActionSet
 	default_mouse_mode     EMouseMode
 	has_default_mouse_mode bool
 }
@@ -912,7 +978,7 @@ pub fn (o &CVirtualControllerConfig) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.actionsets {
-		res << zzz_vproto_internal_pack_cvirtualcontrollerconfigactionset(x, 2)
+		res << zzz_vproto_internal_pack_cvirtualcontrollerconfig_actionset(x, 2)
 	}
 	if o.has_default_mouse_mode {
 		res << zzz_vproto_internal_pack_emousemode(o.default_mouse_mode, 3)
@@ -939,7 +1005,7 @@ pub fn cvirtualcontrollerconfig_unpack(buf []byte) ?CVirtualControllerConfig {
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfigactionset(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfig_actionset(cur_buf,
 					tag_wiretype.wire_type)?
 				res.actionsets << v
 				i = ii

@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CEconGetTradeOfferAccessTokenRequest {
+pub struct CEcon_GetTradeOfferAccessToken_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -11,7 +11,7 @@ pub mut:
 	has_generate_new_token bool
 }
 
-pub fn (o &CEconGetTradeOfferAccessTokenRequest) pack() []byte {
+pub fn (o &CEcon_GetTradeOfferAccessToken_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_generate_new_token {
 		res << vproto.pack_bool_field(o.generate_new_token, 1)
@@ -19,8 +19,8 @@ pub fn (o &CEconGetTradeOfferAccessTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cecongettradeofferaccesstokenrequest_unpack(buf []byte) ?CEconGetTradeOfferAccessTokenRequest {
-	mut res := CEconGetTradeOfferAccessTokenRequest{}
+pub fn cecon_gettradeofferaccesstoken_request_unpack(buf []byte) ?CEcon_GetTradeOfferAccessToken_Request {
+	mut res := CEcon_GetTradeOfferAccessToken_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -52,23 +52,23 @@ pub fn cecongettradeofferaccesstokenrequest_unpack(buf []byte) ?CEconGetTradeOff
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cecongettradeofferaccesstokenrequest() CEconGetTradeOfferAccessTokenRequest {
-	return CEconGetTradeOfferAccessTokenRequest{}
+pub fn zzz_vproto_internal_new_cecon_gettradeofferaccesstoken_request() CEcon_GetTradeOfferAccessToken_Request {
+	return CEcon_GetTradeOfferAccessToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cecongettradeofferaccesstokenrequest(o CEconGetTradeOfferAccessTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_gettradeofferaccesstoken_request(o CEcon_GetTradeOfferAccessToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cecongettradeofferaccesstokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconGetTradeOfferAccessTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cecon_gettradeofferaccesstoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetTradeOfferAccessToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecongettradeofferaccesstokenrequest_unpack(v)?
+	mut unpacked := cecon_gettradeofferaccesstoken_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconGetTradeOfferAccessTokenResponse {
+pub struct CEcon_GetTradeOfferAccessToken_Response {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -76,7 +76,7 @@ pub mut:
 	has_trade_offer_access_token bool
 }
 
-pub fn (o &CEconGetTradeOfferAccessTokenResponse) pack() []byte {
+pub fn (o &CEcon_GetTradeOfferAccessToken_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_trade_offer_access_token {
 		res << vproto.pack_string_field(o.trade_offer_access_token, 1)
@@ -84,8 +84,8 @@ pub fn (o &CEconGetTradeOfferAccessTokenResponse) pack() []byte {
 	return res
 }
 
-pub fn cecongettradeofferaccesstokenresponse_unpack(buf []byte) ?CEconGetTradeOfferAccessTokenResponse {
-	mut res := CEconGetTradeOfferAccessTokenResponse{}
+pub fn cecon_gettradeofferaccesstoken_response_unpack(buf []byte) ?CEcon_GetTradeOfferAccessToken_Response {
+	mut res := CEcon_GetTradeOfferAccessToken_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -117,23 +117,23 @@ pub fn cecongettradeofferaccesstokenresponse_unpack(buf []byte) ?CEconGetTradeOf
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cecongettradeofferaccesstokenresponse() CEconGetTradeOfferAccessTokenResponse {
-	return CEconGetTradeOfferAccessTokenResponse{}
+pub fn zzz_vproto_internal_new_cecon_gettradeofferaccesstoken_response() CEcon_GetTradeOfferAccessToken_Response {
+	return CEcon_GetTradeOfferAccessToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cecongettradeofferaccesstokenresponse(o CEconGetTradeOfferAccessTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_gettradeofferaccesstoken_response(o CEcon_GetTradeOfferAccessToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cecongettradeofferaccesstokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconGetTradeOfferAccessTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cecon_gettradeofferaccesstoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetTradeOfferAccessToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecongettradeofferaccesstokenresponse_unpack(v)?
+	mut unpacked := cecon_gettradeofferaccesstoken_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconClientGetItemShopOverlayAuthURlrequest {
+pub struct CEcon_ClientGetItemShopOverlayAuthURL_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -141,7 +141,7 @@ pub mut:
 	has_return_url bool
 }
 
-pub fn (o &CEconClientGetItemShopOverlayAuthURlrequest) pack() []byte {
+pub fn (o &CEcon_ClientGetItemShopOverlayAuthURL_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_return_url {
 		res << vproto.pack_string_field(o.return_url, 1)
@@ -149,8 +149,8 @@ pub fn (o &CEconClientGetItemShopOverlayAuthURlrequest) pack() []byte {
 	return res
 }
 
-pub fn ceconclientgetitemshopoverlayauthurlrequest_unpack(buf []byte) ?CEconClientGetItemShopOverlayAuthURlrequest {
-	mut res := CEconClientGetItemShopOverlayAuthURlrequest{}
+pub fn cecon_clientgetitemshopoverlayauthurl_request_unpack(buf []byte) ?CEcon_ClientGetItemShopOverlayAuthURL_Request {
+	mut res := CEcon_ClientGetItemShopOverlayAuthURL_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -182,23 +182,23 @@ pub fn ceconclientgetitemshopoverlayauthurlrequest_unpack(buf []byte) ?CEconClie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconclientgetitemshopoverlayauthurlrequest() CEconClientGetItemShopOverlayAuthURlrequest {
-	return CEconClientGetItemShopOverlayAuthURlrequest{}
+pub fn zzz_vproto_internal_new_cecon_clientgetitemshopoverlayauthurl_request() CEcon_ClientGetItemShopOverlayAuthURL_Request {
+	return CEcon_ClientGetItemShopOverlayAuthURL_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconclientgetitemshopoverlayauthurlrequest(o CEconClientGetItemShopOverlayAuthURlrequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_clientgetitemshopoverlayauthurl_request(o CEcon_ClientGetItemShopOverlayAuthURL_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconclientgetitemshopoverlayauthurlrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconClientGetItemShopOverlayAuthURlrequest) {
+pub fn zzz_vproto_internal_unpack_cecon_clientgetitemshopoverlayauthurl_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_ClientGetItemShopOverlayAuthURL_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconclientgetitemshopoverlayauthurlrequest_unpack(v)?
+	mut unpacked := cecon_clientgetitemshopoverlayauthurl_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconClientGetItemShopOverlayAuthURlresponse {
+pub struct CEcon_ClientGetItemShopOverlayAuthURL_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -206,7 +206,7 @@ pub mut:
 	has_url        bool
 }
 
-pub fn (o &CEconClientGetItemShopOverlayAuthURlresponse) pack() []byte {
+pub fn (o &CEcon_ClientGetItemShopOverlayAuthURL_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_url {
 		res << vproto.pack_string_field(o.url, 1)
@@ -214,8 +214,8 @@ pub fn (o &CEconClientGetItemShopOverlayAuthURlresponse) pack() []byte {
 	return res
 }
 
-pub fn ceconclientgetitemshopoverlayauthurlresponse_unpack(buf []byte) ?CEconClientGetItemShopOverlayAuthURlresponse {
-	mut res := CEconClientGetItemShopOverlayAuthURlresponse{}
+pub fn cecon_clientgetitemshopoverlayauthurl_response_unpack(buf []byte) ?CEcon_ClientGetItemShopOverlayAuthURL_Response {
+	mut res := CEcon_ClientGetItemShopOverlayAuthURL_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -247,23 +247,23 @@ pub fn ceconclientgetitemshopoverlayauthurlresponse_unpack(buf []byte) ?CEconCli
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconclientgetitemshopoverlayauthurlresponse() CEconClientGetItemShopOverlayAuthURlresponse {
-	return CEconClientGetItemShopOverlayAuthURlresponse{}
+pub fn zzz_vproto_internal_new_cecon_clientgetitemshopoverlayauthurl_response() CEcon_ClientGetItemShopOverlayAuthURL_Response {
+	return CEcon_ClientGetItemShopOverlayAuthURL_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconclientgetitemshopoverlayauthurlresponse(o CEconClientGetItemShopOverlayAuthURlresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_clientgetitemshopoverlayauthurl_response(o CEcon_ClientGetItemShopOverlayAuthURL_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconclientgetitemshopoverlayauthurlresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconClientGetItemShopOverlayAuthURlresponse) {
+pub fn zzz_vproto_internal_unpack_cecon_clientgetitemshopoverlayauthurl_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_ClientGetItemShopOverlayAuthURL_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconclientgetitemshopoverlayauthurlresponse_unpack(v)?
+	mut unpacked := cecon_clientgetitemshopoverlayauthurl_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconGetAssetClassInfoRequestClass {
+pub struct CEcon_GetAssetClassInfo_Request_Class {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -273,7 +273,7 @@ pub mut:
 	has_instanceid bool
 }
 
-pub fn (o &CEconGetAssetClassInfoRequestClass) pack() []byte {
+pub fn (o &CEcon_GetAssetClassInfo_Request_Class) pack() []byte {
 	mut res := []byte{}
 	if o.has_classid {
 		res << vproto.pack_uint64_field(o.classid, 1)
@@ -284,8 +284,8 @@ pub fn (o &CEconGetAssetClassInfoRequestClass) pack() []byte {
 	return res
 }
 
-pub fn cecongetassetclassinforequestclass_unpack(buf []byte) ?CEconGetAssetClassInfoRequestClass {
-	mut res := CEconGetAssetClassInfoRequestClass{}
+pub fn cecon_getassetclassinfo_request_class_unpack(buf []byte) ?CEcon_GetAssetClassInfo_Request_Class {
+	mut res := CEcon_GetAssetClassInfo_Request_Class{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -323,23 +323,23 @@ pub fn cecongetassetclassinforequestclass_unpack(buf []byte) ?CEconGetAssetClass
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cecongetassetclassinforequestclass() CEconGetAssetClassInfoRequestClass {
-	return CEconGetAssetClassInfoRequestClass{}
+pub fn zzz_vproto_internal_new_cecon_getassetclassinfo_request_class() CEcon_GetAssetClassInfo_Request_Class {
+	return CEcon_GetAssetClassInfo_Request_Class{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cecongetassetclassinforequestclass(o CEconGetAssetClassInfoRequestClass, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_getassetclassinfo_request_class(o CEcon_GetAssetClassInfo_Request_Class, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cecongetassetclassinforequestclass(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconGetAssetClassInfoRequestClass) {
+pub fn zzz_vproto_internal_unpack_cecon_getassetclassinfo_request_class(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetAssetClassInfo_Request_Class) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecongetassetclassinforequestclass_unpack(v)?
+	mut unpacked := cecon_getassetclassinfo_request_class_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconGetAssetClassInfoRequest {
+pub struct CEcon_GetAssetClassInfo_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -347,10 +347,10 @@ pub mut:
 	has_language   bool
 	appid          u32
 	has_appid      bool
-	classes        []CEconGetAssetClassInfoRequestClass
+	classes        []CEcon_GetAssetClassInfo_Request_Class
 }
 
-pub fn (o &CEconGetAssetClassInfoRequest) pack() []byte {
+pub fn (o &CEcon_GetAssetClassInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_language {
 		res << vproto.pack_string_field(o.language, 1)
@@ -360,13 +360,13 @@ pub fn (o &CEconGetAssetClassInfoRequest) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.classes {
-		res << zzz_vproto_internal_pack_cecongetassetclassinforequestclass(x, 3)
+		res << zzz_vproto_internal_pack_cecon_getassetclassinfo_request_class(x, 3)
 	}
 	return res
 }
 
-pub fn cecongetassetclassinforequest_unpack(buf []byte) ?CEconGetAssetClassInfoRequest {
-	mut res := CEconGetAssetClassInfoRequest{}
+pub fn cecon_getassetclassinfo_request_unpack(buf []byte) ?CEcon_GetAssetClassInfo_Request {
+	mut res := CEcon_GetAssetClassInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -390,7 +390,7 @@ pub fn cecongetassetclassinforequest_unpack(buf []byte) ?CEconGetAssetClassInfoR
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cecongetassetclassinforequestclass(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cecon_getassetclassinfo_request_class(cur_buf,
 					tag_wiretype.wire_type)?
 				res.classes << v
 				i = ii
@@ -411,23 +411,23 @@ pub fn cecongetassetclassinforequest_unpack(buf []byte) ?CEconGetAssetClassInfoR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cecongetassetclassinforequest() CEconGetAssetClassInfoRequest {
-	return CEconGetAssetClassInfoRequest{}
+pub fn zzz_vproto_internal_new_cecon_getassetclassinfo_request() CEcon_GetAssetClassInfo_Request {
+	return CEcon_GetAssetClassInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cecongetassetclassinforequest(o CEconGetAssetClassInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_getassetclassinfo_request(o CEcon_GetAssetClassInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cecongetassetclassinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconGetAssetClassInfoRequest) {
+pub fn zzz_vproto_internal_unpack_cecon_getassetclassinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetAssetClassInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecongetassetclassinforequest_unpack(v)?
+	mut unpacked := cecon_getassetclassinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconItemDescriptionLine {
+pub struct CEconItem_DescriptionLine {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -441,7 +441,7 @@ pub mut:
 	has_label      bool
 }
 
-pub fn (o &CEconItemDescriptionLine) pack() []byte {
+pub fn (o &CEconItem_DescriptionLine) pack() []byte {
 	mut res := []byte{}
 	if o.has_type {
 		res << vproto.pack_string_field(o.@type, 1)
@@ -458,8 +458,8 @@ pub fn (o &CEconItemDescriptionLine) pack() []byte {
 	return res
 }
 
-pub fn ceconitemdescriptionline_unpack(buf []byte) ?CEconItemDescriptionLine {
-	mut res := CEconItemDescriptionLine{}
+pub fn ceconitem_descriptionline_unpack(buf []byte) ?CEconItem_DescriptionLine {
+	mut res := CEconItem_DescriptionLine{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -509,23 +509,23 @@ pub fn ceconitemdescriptionline_unpack(buf []byte) ?CEconItemDescriptionLine {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconitemdescriptionline() CEconItemDescriptionLine {
-	return CEconItemDescriptionLine{}
+pub fn zzz_vproto_internal_new_ceconitem_descriptionline() CEconItem_DescriptionLine {
+	return CEconItem_DescriptionLine{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconitemdescriptionline(o CEconItemDescriptionLine, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ceconitem_descriptionline(o CEconItem_DescriptionLine, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconitemdescriptionline(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItemDescriptionLine) {
+pub fn zzz_vproto_internal_unpack_ceconitem_descriptionline(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_DescriptionLine) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitemdescriptionline_unpack(v)?
+	mut unpacked := ceconitem_descriptionline_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconItemAction {
+pub struct CEconItem_Action {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -535,7 +535,7 @@ pub mut:
 	has_name       bool
 }
 
-pub fn (o &CEconItemAction) pack() []byte {
+pub fn (o &CEconItem_Action) pack() []byte {
 	mut res := []byte{}
 	if o.has_link {
 		res << vproto.pack_string_field(o.link, 1)
@@ -546,8 +546,8 @@ pub fn (o &CEconItemAction) pack() []byte {
 	return res
 }
 
-pub fn ceconitemaction_unpack(buf []byte) ?CEconItemAction {
-	mut res := CEconItemAction{}
+pub fn ceconitem_action_unpack(buf []byte) ?CEconItem_Action {
+	mut res := CEconItem_Action{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -585,23 +585,23 @@ pub fn ceconitemaction_unpack(buf []byte) ?CEconItemAction {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconitemaction() CEconItemAction {
-	return CEconItemAction{}
+pub fn zzz_vproto_internal_new_ceconitem_action() CEconItem_Action {
+	return CEconItem_Action{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconitemaction(o CEconItemAction, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ceconitem_action(o CEconItem_Action, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconitemaction(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItemAction) {
+pub fn zzz_vproto_internal_unpack_ceconitem_action(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_Action) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitemaction_unpack(v)?
+	mut unpacked := ceconitem_action_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconItemDescription {
+pub struct CEconItem_Description {
 mut:
 	unknown_fields                      []vproto.UnknownField
 pub mut:
@@ -619,12 +619,12 @@ pub mut:
 	has_icon_url                        bool
 	icon_url_large                      string
 	has_icon_url_large                  bool
-	descriptions                        []CEconItemDescriptionLine
+	descriptions                        []CEconItem_DescriptionLine
 	tradable                            bool
 	has_tradable                        bool
-	actions                             []CEconItemAction
-	owner_descriptions                  []CEconItemDescriptionLine
-	owner_actions                       []CEconItemAction
+	actions                             []CEconItem_Action
+	owner_descriptions                  []CEconItem_DescriptionLine
+	owner_actions                       []CEconItem_Action
 	fraudwarnings                       []string
 	name                                string
 	has_name                            bool
@@ -640,9 +640,9 @@ pub mut:
 	has_market_fee                      bool
 	market_fee_app                      int
 	has_market_fee_app                  bool
-	contained_item                      CEconItemDescription
+	contained_item                      &CEconItem_Description
 	has_contained_item                  bool
-	market_actions                      []CEconItemAction
+	market_actions                      []CEconItem_Action
 	commodity                           bool
 	has_commodity                       bool
 	market_tradable_restriction         int
@@ -651,7 +651,7 @@ pub mut:
 	has_market_marketable_restriction   bool
 	marketable                          bool
 	has_marketable                      bool
-	tags                                []CEconItemTag
+	tags                                []CEconItem_Tag
 	item_expiration                     string
 	has_item_expiration                 bool
 	market_buy_country_restriction      string
@@ -660,7 +660,7 @@ pub mut:
 	has_market_sell_country_restriction bool
 }
 
-pub fn (o &CEconItemDescription) pack() []byte {
+pub fn (o &CEconItem_Description) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_int32_field(o.appid, 1)
@@ -685,22 +685,22 @@ pub fn (o &CEconItemDescription) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.descriptions {
-		res << zzz_vproto_internal_pack_ceconitemdescriptionline(x, 8)
+		res << zzz_vproto_internal_pack_ceconitem_descriptionline(x, 8)
 	}
 	if o.has_tradable {
 		res << vproto.pack_bool_field(o.tradable, 9)
 	}
 	// [packed=false]
 	for _, x in o.actions {
-		res << zzz_vproto_internal_pack_ceconitemaction(x, 10)
+		res << zzz_vproto_internal_pack_ceconitem_action(x, 10)
 	}
 	// [packed=false]
 	for _, x in o.owner_descriptions {
-		res << zzz_vproto_internal_pack_ceconitemdescriptionline(x, 11)
+		res << zzz_vproto_internal_pack_ceconitem_descriptionline(x, 11)
 	}
 	// [packed=false]
 	for _, x in o.owner_actions {
-		res << zzz_vproto_internal_pack_ceconitemaction(x, 12)
+		res << zzz_vproto_internal_pack_ceconitem_action(x, 12)
 	}
 	// [packed=false]
 	for _, x in o.fraudwarnings {
@@ -728,11 +728,11 @@ pub fn (o &CEconItemDescription) pack() []byte {
 		res << vproto.pack_int32_field(o.market_fee_app, 28)
 	}
 	if o.has_contained_item {
-		res << zzz_vproto_internal_pack_ceconitemdescription(o.contained_item, 20)
+		res << zzz_vproto_internal_pack_ceconitem_description(o.contained_item, 20)
 	}
 	// [packed=false]
 	for _, x in o.market_actions {
-		res << zzz_vproto_internal_pack_ceconitemaction(x, 21)
+		res << zzz_vproto_internal_pack_ceconitem_action(x, 21)
 	}
 	if o.has_commodity {
 		res << vproto.pack_bool_field(o.commodity, 22)
@@ -748,7 +748,7 @@ pub fn (o &CEconItemDescription) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.tags {
-		res << zzz_vproto_internal_pack_ceconitemtag(x, 26)
+		res << zzz_vproto_internal_pack_ceconitem_tag(x, 26)
 	}
 	if o.has_item_expiration {
 		res << vproto.pack_string_field(o.item_expiration, 27)
@@ -762,8 +762,8 @@ pub fn (o &CEconItemDescription) pack() []byte {
 	return res
 }
 
-pub fn ceconitemdescription_unpack(buf []byte) ?CEconItemDescription {
-	mut res := CEconItemDescription{}
+pub fn ceconitem_description_unpack(buf []byte) ?CEconItem_Description {
+	mut res := CEconItem_Description{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -817,7 +817,7 @@ pub fn ceconitemdescription_unpack(buf []byte) ?CEconItemDescription {
 			}
 			8 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemdescriptionline(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ceconitem_descriptionline(cur_buf,
 					tag_wiretype.wire_type)?
 				res.descriptions << v
 				i = ii
@@ -830,20 +830,20 @@ pub fn ceconitemdescription_unpack(buf []byte) ?CEconItemDescription {
 			}
 			10 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemaction(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type)?
 				res.actions << v
 				i = ii
 			}
 			11 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemdescriptionline(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ceconitem_descriptionline(cur_buf,
 					tag_wiretype.wire_type)?
 				res.owner_descriptions << v
 				i = ii
 			}
 			12 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemaction(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type)?
 				res.owner_actions << v
 				i = ii
 			}
@@ -897,13 +897,13 @@ pub fn ceconitemdescription_unpack(buf []byte) ?CEconItemDescription {
 			}
 			20 {
 				res.has_contained_item = true
-				ii, v := zzz_vproto_internal_unpack_ceconitemdescription(cur_buf, tag_wiretype.wire_type)?
-				res.contained_item = v
+				ii, v := zzz_vproto_internal_unpack_ceconitem_description(cur_buf, tag_wiretype.wire_type)?
+				res.contained_item = memdup(&v, int(sizeof(ceconitem_description)))
 				i = ii
 			}
 			21 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemaction(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type)?
 				res.market_actions << v
 				i = ii
 			}
@@ -933,7 +933,7 @@ pub fn ceconitemdescription_unpack(buf []byte) ?CEconItemDescription {
 			}
 			26 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemtag(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_tag(cur_buf, tag_wiretype.wire_type)?
 				res.tags << v
 				i = ii
 			}
@@ -971,23 +971,23 @@ pub fn ceconitemdescription_unpack(buf []byte) ?CEconItemDescription {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconitemdescription() CEconItemDescription {
-	return CEconItemDescription{}
+pub fn zzz_vproto_internal_new_ceconitem_description() CEconItem_Description {
+	return CEconItem_Description{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconitemdescription(o CEconItemDescription, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ceconitem_description(o CEconItem_Description, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconitemdescription(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItemDescription) {
+pub fn zzz_vproto_internal_unpack_ceconitem_description(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_Description) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitemdescription_unpack(v)?
+	mut unpacked := ceconitem_description_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconItemTag {
+pub struct CEconItem_Tag {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -1005,7 +1005,7 @@ pub mut:
 	has_color                   bool
 }
 
-pub fn (o &CEconItemTag) pack() []byte {
+pub fn (o &CEconItem_Tag) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -1028,8 +1028,8 @@ pub fn (o &CEconItemTag) pack() []byte {
 	return res
 }
 
-pub fn ceconitemtag_unpack(buf []byte) ?CEconItemTag {
-	mut res := CEconItemTag{}
+pub fn ceconitem_tag_unpack(buf []byte) ?CEconItem_Tag {
+	mut res := CEconItem_Tag{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1091,40 +1091,40 @@ pub fn ceconitemtag_unpack(buf []byte) ?CEconItemTag {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconitemtag() CEconItemTag {
-	return CEconItemTag{}
+pub fn zzz_vproto_internal_new_ceconitem_tag() CEconItem_Tag {
+	return CEconItem_Tag{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconitemtag(o CEconItemTag, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ceconitem_tag(o CEconItem_Tag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconitemtag(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItemTag) {
+pub fn zzz_vproto_internal_unpack_ceconitem_tag(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_Tag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitemtag_unpack(v)?
+	mut unpacked := ceconitem_tag_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconGetAssetClassInfoResponse {
+pub struct CEcon_GetAssetClassInfo_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	descriptions   []CEconItemDescription
+	descriptions   []CEconItem_Description
 }
 
-pub fn (o &CEconGetAssetClassInfoResponse) pack() []byte {
+pub fn (o &CEcon_GetAssetClassInfo_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.descriptions {
-		res << zzz_vproto_internal_pack_ceconitemdescription(x, 1)
+		res << zzz_vproto_internal_pack_ceconitem_description(x, 1)
 	}
 	return res
 }
 
-pub fn cecongetassetclassinforesponse_unpack(buf []byte) ?CEconGetAssetClassInfoResponse {
-	mut res := CEconGetAssetClassInfoResponse{}
+pub fn cecon_getassetclassinfo_response_unpack(buf []byte) ?CEcon_GetAssetClassInfo_Response {
+	mut res := CEcon_GetAssetClassInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1136,7 +1136,7 @@ pub fn cecongetassetclassinforesponse_unpack(buf []byte) ?CEconGetAssetClassInfo
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitemdescription(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_description(cur_buf, tag_wiretype.wire_type)?
 				res.descriptions << v
 				i = ii
 			}
@@ -1156,18 +1156,18 @@ pub fn cecongetassetclassinforesponse_unpack(buf []byte) ?CEconGetAssetClassInfo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cecongetassetclassinforesponse() CEconGetAssetClassInfoResponse {
-	return CEconGetAssetClassInfoResponse{}
+pub fn zzz_vproto_internal_new_cecon_getassetclassinfo_response() CEcon_GetAssetClassInfo_Response {
+	return CEcon_GetAssetClassInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cecongetassetclassinforesponse(o CEconGetAssetClassInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cecon_getassetclassinfo_response(o CEcon_GetAssetClassInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cecongetassetclassinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconGetAssetClassInfoResponse) {
+pub fn zzz_vproto_internal_unpack_cecon_getassetclassinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetAssetClassInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecongetassetclassinforesponse_unpack(v)?
+	mut unpacked := cecon_getassetclassinfo_response_unpack(v)?
 	return i, unpacked
 }

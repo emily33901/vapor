@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CEconMarketIsMarketplaceAllowedRequest {
+pub struct CEconMarket_IsMarketplaceAllowed_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11,7 +11,7 @@ pub mut:
 	has_webcookie  bool
 }
 
-pub fn (o &CEconMarketIsMarketplaceAllowedRequest) pack() []byte {
+pub fn (o &CEconMarket_IsMarketplaceAllowed_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_webcookie {
 		res << vproto.pack_string_field(o.webcookie, 1)
@@ -19,8 +19,8 @@ pub fn (o &CEconMarketIsMarketplaceAllowedRequest) pack() []byte {
 	return res
 }
 
-pub fn ceconmarketismarketplaceallowedrequest_unpack(buf []byte) ?CEconMarketIsMarketplaceAllowedRequest {
-	mut res := CEconMarketIsMarketplaceAllowedRequest{}
+pub fn ceconmarket_ismarketplaceallowed_request_unpack(buf []byte) ?CEconMarket_IsMarketplaceAllowed_Request {
+	mut res := CEconMarket_IsMarketplaceAllowed_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -52,23 +52,23 @@ pub fn ceconmarketismarketplaceallowedrequest_unpack(buf []byte) ?CEconMarketIsM
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconmarketismarketplaceallowedrequest() CEconMarketIsMarketplaceAllowedRequest {
-	return CEconMarketIsMarketplaceAllowedRequest{}
+pub fn zzz_vproto_internal_new_ceconmarket_ismarketplaceallowed_request() CEconMarket_IsMarketplaceAllowed_Request {
+	return CEconMarket_IsMarketplaceAllowed_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconmarketismarketplaceallowedrequest(o CEconMarketIsMarketplaceAllowedRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ceconmarket_ismarketplaceallowed_request(o CEconMarket_IsMarketplaceAllowed_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconmarketismarketplaceallowedrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarketIsMarketplaceAllowedRequest) {
+pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarket_IsMarketplaceAllowed_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconmarketismarketplaceallowedrequest_unpack(v)?
+	mut unpacked := ceconmarket_ismarketplaceallowed_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEconMarketIsMarketplaceAllowedResponse {
+pub struct CEconMarket_IsMarketplaceAllowed_Response {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
@@ -88,7 +88,7 @@ pub mut:
 	has_new_device_cooldown_days   bool
 }
 
-pub fn (o &CEconMarketIsMarketplaceAllowedResponse) pack() []byte {
+pub fn (o &CEconMarket_IsMarketplaceAllowed_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_allowed {
 		res << vproto.pack_bool_field(o.allowed, 1)
@@ -114,8 +114,8 @@ pub fn (o &CEconMarketIsMarketplaceAllowedResponse) pack() []byte {
 	return res
 }
 
-pub fn ceconmarketismarketplaceallowedresponse_unpack(buf []byte) ?CEconMarketIsMarketplaceAllowedResponse {
-	mut res := CEconMarketIsMarketplaceAllowedResponse{}
+pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket_IsMarketplaceAllowed_Response {
+	mut res := CEconMarket_IsMarketplaceAllowed_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -183,18 +183,18 @@ pub fn ceconmarketismarketplaceallowedresponse_unpack(buf []byte) ?CEconMarketIs
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ceconmarketismarketplaceallowedresponse() CEconMarketIsMarketplaceAllowedResponse {
-	return CEconMarketIsMarketplaceAllowedResponse{}
+pub fn zzz_vproto_internal_new_ceconmarket_ismarketplaceallowed_response() CEconMarket_IsMarketplaceAllowed_Response {
+	return CEconMarket_IsMarketplaceAllowed_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ceconmarketismarketplaceallowedresponse(o CEconMarketIsMarketplaceAllowedResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ceconmarket_ismarketplaceallowed_response(o CEconMarket_IsMarketplaceAllowed_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ceconmarketismarketplaceallowedresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarketIsMarketplaceAllowedResponse) {
+pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarket_IsMarketplaceAllowed_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconmarketismarketplaceallowedresponse_unpack(v)?
+	mut unpacked := ceconmarket_ismarketplaceallowed_response_unpack(v)?
 	return i, unpacked
 }

@@ -16,12 +16,34 @@ fn zzz_vproto_internal_pack_euserreviewscorepreference(e EUserReviewScorePrefere
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_euserreviewscorepreference_packed(e []EUserReviewScorePreference, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_euserreviewscorepreference(buf []byte, tag_wiretype vproto.WireType) ?(int, EUserReviewScorePreference) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EUserReviewScorePreference(v)
 }
 
-pub struct CStoreGetLocalizedNameForTagsRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_euserreviewscorepreference_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EUserReviewScorePreference) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CStore_GetLocalizedNameForTags_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -30,7 +52,7 @@ pub mut:
 	tagids         []u32
 }
 
-pub fn (o &CStoreGetLocalizedNameForTagsRequest) pack() []byte {
+pub fn (o &CStore_GetLocalizedNameForTags_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_language {
 		res << vproto.pack_string_field(o.language, 1)
@@ -42,8 +64,8 @@ pub fn (o &CStoreGetLocalizedNameForTagsRequest) pack() []byte {
 	return res
 }
 
-pub fn cstoregetlocalizednamefortagsrequest_unpack(buf []byte) ?CStoreGetLocalizedNameForTagsRequest {
-	mut res := CStoreGetLocalizedNameForTagsRequest{}
+pub fn cstore_getlocalizednamefortags_request_unpack(buf []byte) ?CStore_GetLocalizedNameForTags_Request {
+	mut res := CStore_GetLocalizedNameForTags_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -81,23 +103,23 @@ pub fn cstoregetlocalizednamefortagsrequest_unpack(buf []byte) ?CStoreGetLocaliz
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoregetlocalizednamefortagsrequest() CStoreGetLocalizedNameForTagsRequest {
-	return CStoreGetLocalizedNameForTagsRequest{}
+pub fn zzz_vproto_internal_new_cstore_getlocalizednamefortags_request() CStore_GetLocalizedNameForTags_Request {
+	return CStore_GetLocalizedNameForTags_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoregetlocalizednamefortagsrequest(o CStoreGetLocalizedNameForTagsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_getlocalizednamefortags_request(o CStore_GetLocalizedNameForTags_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoregetlocalizednamefortagsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreGetLocalizedNameForTagsRequest) {
+pub fn zzz_vproto_internal_unpack_cstore_getlocalizednamefortags_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_GetLocalizedNameForTags_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoregetlocalizednamefortagsrequest_unpack(v)?
+	mut unpacked := cstore_getlocalizednamefortags_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreGetLocalizedNameForTagsResponseTag {
+pub struct CStore_GetLocalizedNameForTags_Response_Tag {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -109,7 +131,7 @@ pub mut:
 	has_name         bool
 }
 
-pub fn (o &CStoreGetLocalizedNameForTagsResponseTag) pack() []byte {
+pub fn (o &CStore_GetLocalizedNameForTags_Response_Tag) pack() []byte {
 	mut res := []byte{}
 	if o.has_tagid {
 		res << vproto.pack_uint32_field(o.tagid, 1)
@@ -123,8 +145,8 @@ pub fn (o &CStoreGetLocalizedNameForTagsResponseTag) pack() []byte {
 	return res
 }
 
-pub fn cstoregetlocalizednamefortagsresponsetag_unpack(buf []byte) ?CStoreGetLocalizedNameForTagsResponseTag {
-	mut res := CStoreGetLocalizedNameForTagsResponseTag{}
+pub fn cstore_getlocalizednamefortags_response_tag_unpack(buf []byte) ?CStore_GetLocalizedNameForTags_Response_Tag {
+	mut res := CStore_GetLocalizedNameForTags_Response_Tag{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -168,40 +190,40 @@ pub fn cstoregetlocalizednamefortagsresponsetag_unpack(buf []byte) ?CStoreGetLoc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoregetlocalizednamefortagsresponsetag() CStoreGetLocalizedNameForTagsResponseTag {
-	return CStoreGetLocalizedNameForTagsResponseTag{}
+pub fn zzz_vproto_internal_new_cstore_getlocalizednamefortags_response_tag() CStore_GetLocalizedNameForTags_Response_Tag {
+	return CStore_GetLocalizedNameForTags_Response_Tag{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoregetlocalizednamefortagsresponsetag(o CStoreGetLocalizedNameForTagsResponseTag, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_getlocalizednamefortags_response_tag(o CStore_GetLocalizedNameForTags_Response_Tag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoregetlocalizednamefortagsresponsetag(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreGetLocalizedNameForTagsResponseTag) {
+pub fn zzz_vproto_internal_unpack_cstore_getlocalizednamefortags_response_tag(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_GetLocalizedNameForTags_Response_Tag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoregetlocalizednamefortagsresponsetag_unpack(v)?
+	mut unpacked := cstore_getlocalizednamefortags_response_tag_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreGetLocalizedNameForTagsResponse {
+pub struct CStore_GetLocalizedNameForTags_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	tags           []CStoreGetLocalizedNameForTagsResponseTag
+	tags           []CStore_GetLocalizedNameForTags_Response_Tag
 }
 
-pub fn (o &CStoreGetLocalizedNameForTagsResponse) pack() []byte {
+pub fn (o &CStore_GetLocalizedNameForTags_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.tags {
-		res << zzz_vproto_internal_pack_cstoregetlocalizednamefortagsresponsetag(x, 1)
+		res << zzz_vproto_internal_pack_cstore_getlocalizednamefortags_response_tag(x, 1)
 	}
 	return res
 }
 
-pub fn cstoregetlocalizednamefortagsresponse_unpack(buf []byte) ?CStoreGetLocalizedNameForTagsResponse {
-	mut res := CStoreGetLocalizedNameForTagsResponse{}
+pub fn cstore_getlocalizednamefortags_response_unpack(buf []byte) ?CStore_GetLocalizedNameForTags_Response {
+	mut res := CStore_GetLocalizedNameForTags_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -213,7 +235,7 @@ pub fn cstoregetlocalizednamefortagsresponse_unpack(buf []byte) ?CStoreGetLocali
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cstoregetlocalizednamefortagsresponsetag(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_getlocalizednamefortags_response_tag(cur_buf,
 					tag_wiretype.wire_type)?
 				res.tags << v
 				i = ii
@@ -234,55 +256,55 @@ pub fn cstoregetlocalizednamefortagsresponse_unpack(buf []byte) ?CStoreGetLocali
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoregetlocalizednamefortagsresponse() CStoreGetLocalizedNameForTagsResponse {
-	return CStoreGetLocalizedNameForTagsResponse{}
+pub fn zzz_vproto_internal_new_cstore_getlocalizednamefortags_response() CStore_GetLocalizedNameForTags_Response {
+	return CStore_GetLocalizedNameForTags_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoregetlocalizednamefortagsresponse(o CStoreGetLocalizedNameForTagsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_getlocalizednamefortags_response(o CStore_GetLocalizedNameForTags_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoregetlocalizednamefortagsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreGetLocalizedNameForTagsResponse) {
+pub fn zzz_vproto_internal_unpack_cstore_getlocalizednamefortags_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_GetLocalizedNameForTags_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoregetlocalizednamefortagsresponse_unpack(v)?
+	mut unpacked := cstore_getlocalizednamefortags_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreGetStorePreferencesRequest {
+pub struct CStore_GetStorePreferences_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CStoreGetStorePreferencesRequest) pack() []byte {
+pub fn (o &CStore_GetStorePreferences_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cstoregetstorepreferencesrequest_unpack(buf []byte) ?CStoreGetStorePreferencesRequest {
-	res := CStoreGetStorePreferencesRequest{}
+pub fn cstore_getstorepreferences_request_unpack(buf []byte) ?CStore_GetStorePreferences_Request {
+	res := CStore_GetStorePreferences_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoregetstorepreferencesrequest() CStoreGetStorePreferencesRequest {
-	return CStoreGetStorePreferencesRequest{}
+pub fn zzz_vproto_internal_new_cstore_getstorepreferences_request() CStore_GetStorePreferences_Request {
+	return CStore_GetStorePreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoregetstorepreferencesrequest(o CStoreGetStorePreferencesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_getstorepreferences_request(o CStore_GetStorePreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoregetstorepreferencesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreGetStorePreferencesRequest) {
+pub fn zzz_vproto_internal_unpack_cstore_getstorepreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_GetStorePreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoregetstorepreferencesrequest_unpack(v)?
+	mut unpacked := cstore_getstorepreferences_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreUserPreferences {
+pub struct CStore_UserPreferences {
 mut:
 	unknown_fields                                       []vproto.UnknownField
 pub mut:
@@ -310,7 +332,7 @@ pub mut:
 	has_timestamp_content_descriptor_preferences_updated bool
 }
 
-pub fn (o &CStoreUserPreferences) pack() []byte {
+pub fn (o &CStore_UserPreferences) pack() []byte {
 	mut res := []byte{}
 	if o.has_primary_language {
 		res << vproto.pack_uint32_field(o.primary_language, 1)
@@ -348,8 +370,8 @@ pub fn (o &CStoreUserPreferences) pack() []byte {
 	return res
 }
 
-pub fn cstoreuserpreferences_unpack(buf []byte) ?CStoreUserPreferences {
-	mut res := CStoreUserPreferences{}
+pub fn cstore_userpreferences_unpack(buf []byte) ?CStore_UserPreferences {
+	mut res := CStore_UserPreferences{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -442,23 +464,23 @@ pub fn cstoreuserpreferences_unpack(buf []byte) ?CStoreUserPreferences {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoreuserpreferences() CStoreUserPreferences {
-	return CStoreUserPreferences{}
+pub fn zzz_vproto_internal_new_cstore_userpreferences() CStore_UserPreferences {
+	return CStore_UserPreferences{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoreuserpreferences(o CStoreUserPreferences, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_userpreferences(o CStore_UserPreferences, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoreuserpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreUserPreferences) {
+pub fn zzz_vproto_internal_unpack_cstore_userpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_UserPreferences) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoreuserpreferences_unpack(v)?
+	mut unpacked := cstore_userpreferences_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreUserTagPreferencesTag {
+pub struct CStore_UserTagPreferences_Tag {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -470,7 +492,7 @@ pub mut:
 	has_timestamp_added bool
 }
 
-pub fn (o &CStoreUserTagPreferencesTag) pack() []byte {
+pub fn (o &CStore_UserTagPreferences_Tag) pack() []byte {
 	mut res := []byte{}
 	if o.has_tagid {
 		res << vproto.pack_uint32_field(o.tagid, 1)
@@ -484,8 +506,8 @@ pub fn (o &CStoreUserTagPreferencesTag) pack() []byte {
 	return res
 }
 
-pub fn cstoreusertagpreferencestag_unpack(buf []byte) ?CStoreUserTagPreferencesTag {
-	mut res := CStoreUserTagPreferencesTag{}
+pub fn cstore_usertagpreferences_tag_unpack(buf []byte) ?CStore_UserTagPreferences_Tag {
+	mut res := CStore_UserTagPreferences_Tag{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -529,40 +551,40 @@ pub fn cstoreusertagpreferencestag_unpack(buf []byte) ?CStoreUserTagPreferencesT
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoreusertagpreferencestag() CStoreUserTagPreferencesTag {
-	return CStoreUserTagPreferencesTag{}
+pub fn zzz_vproto_internal_new_cstore_usertagpreferences_tag() CStore_UserTagPreferences_Tag {
+	return CStore_UserTagPreferences_Tag{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoreusertagpreferencestag(o CStoreUserTagPreferencesTag, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_usertagpreferences_tag(o CStore_UserTagPreferences_Tag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoreusertagpreferencestag(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreUserTagPreferencesTag) {
+pub fn zzz_vproto_internal_unpack_cstore_usertagpreferences_tag(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_UserTagPreferences_Tag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoreusertagpreferencestag_unpack(v)?
+	mut unpacked := cstore_usertagpreferences_tag_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreUserTagPreferences {
+pub struct CStore_UserTagPreferences {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	tags_to_exclude []CStoreUserTagPreferencesTag
+	tags_to_exclude []CStore_UserTagPreferences_Tag
 }
 
-pub fn (o &CStoreUserTagPreferences) pack() []byte {
+pub fn (o &CStore_UserTagPreferences) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.tags_to_exclude {
-		res << zzz_vproto_internal_pack_cstoreusertagpreferencestag(x, 1)
+		res << zzz_vproto_internal_pack_cstore_usertagpreferences_tag(x, 1)
 	}
 	return res
 }
 
-pub fn cstoreusertagpreferences_unpack(buf []byte) ?CStoreUserTagPreferences {
-	mut res := CStoreUserTagPreferences{}
+pub fn cstore_usertagpreferences_unpack(buf []byte) ?CStore_UserTagPreferences {
+	mut res := CStore_UserTagPreferences{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -574,7 +596,7 @@ pub fn cstoreusertagpreferences_unpack(buf []byte) ?CStoreUserTagPreferences {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cstoreusertagpreferencestag(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_usertagpreferences_tag(cur_buf,
 					tag_wiretype.wire_type)?
 				res.tags_to_exclude << v
 				i = ii
@@ -595,23 +617,23 @@ pub fn cstoreusertagpreferences_unpack(buf []byte) ?CStoreUserTagPreferences {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoreusertagpreferences() CStoreUserTagPreferences {
-	return CStoreUserTagPreferences{}
+pub fn zzz_vproto_internal_new_cstore_usertagpreferences() CStore_UserTagPreferences {
+	return CStore_UserTagPreferences{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoreusertagpreferences(o CStoreUserTagPreferences, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_usertagpreferences(o CStore_UserTagPreferences, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoreusertagpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreUserTagPreferences) {
+pub fn zzz_vproto_internal_unpack_cstore_usertagpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_UserTagPreferences) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoreusertagpreferences_unpack(v)?
+	mut unpacked := cstore_usertagpreferences_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreUserContentDescriptorPreferencesContentDescriptor {
+pub struct CStore_UserContentDescriptorPreferences_ContentDescriptor {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -621,7 +643,7 @@ pub mut:
 	has_timestamp_added      bool
 }
 
-pub fn (o &CStoreUserContentDescriptorPreferencesContentDescriptor) pack() []byte {
+pub fn (o &CStore_UserContentDescriptorPreferences_ContentDescriptor) pack() []byte {
 	mut res := []byte{}
 	if o.has_content_descriptorid {
 		res << vproto.pack_uint32_field(o.content_descriptorid, 1)
@@ -632,8 +654,8 @@ pub fn (o &CStoreUserContentDescriptorPreferencesContentDescriptor) pack() []byt
 	return res
 }
 
-pub fn cstoreusercontentdescriptorpreferencescontentdescriptor_unpack(buf []byte) ?CStoreUserContentDescriptorPreferencesContentDescriptor {
-	mut res := CStoreUserContentDescriptorPreferencesContentDescriptor{}
+pub fn cstore_usercontentdescriptorpreferences_contentdescriptor_unpack(buf []byte) ?CStore_UserContentDescriptorPreferences_ContentDescriptor {
+	mut res := CStore_UserContentDescriptorPreferences_ContentDescriptor{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -671,41 +693,41 @@ pub fn cstoreusercontentdescriptorpreferencescontentdescriptor_unpack(buf []byte
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoreusercontentdescriptorpreferencescontentdescriptor() CStoreUserContentDescriptorPreferencesContentDescriptor {
-	return CStoreUserContentDescriptorPreferencesContentDescriptor{}
+pub fn zzz_vproto_internal_new_cstore_usercontentdescriptorpreferences_contentdescriptor() CStore_UserContentDescriptorPreferences_ContentDescriptor {
+	return CStore_UserContentDescriptorPreferences_ContentDescriptor{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoreusercontentdescriptorpreferencescontentdescriptor(o CStoreUserContentDescriptorPreferencesContentDescriptor, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_usercontentdescriptorpreferences_contentdescriptor(o CStore_UserContentDescriptorPreferences_ContentDescriptor, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoreusercontentdescriptorpreferencescontentdescriptor(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreUserContentDescriptorPreferencesContentDescriptor) {
+pub fn zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences_contentdescriptor(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_UserContentDescriptorPreferences_ContentDescriptor) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoreusercontentdescriptorpreferencescontentdescriptor_unpack(v)?
+	mut unpacked := cstore_usercontentdescriptorpreferences_contentdescriptor_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreUserContentDescriptorPreferences {
+pub struct CStore_UserContentDescriptorPreferences {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
-	content_descriptors_to_exclude []CStoreUserContentDescriptorPreferencesContentDescriptor
+	content_descriptors_to_exclude []CStore_UserContentDescriptorPreferences_ContentDescriptor
 }
 
-pub fn (o &CStoreUserContentDescriptorPreferences) pack() []byte {
+pub fn (o &CStore_UserContentDescriptorPreferences) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.content_descriptors_to_exclude {
 		res <<
-			zzz_vproto_internal_pack_cstoreusercontentdescriptorpreferencescontentdescriptor(x, 1)
+			zzz_vproto_internal_pack_cstore_usercontentdescriptorpreferences_contentdescriptor(x, 1)
 	}
 	return res
 }
 
-pub fn cstoreusercontentdescriptorpreferences_unpack(buf []byte) ?CStoreUserContentDescriptorPreferences {
-	mut res := CStoreUserContentDescriptorPreferences{}
+pub fn cstore_usercontentdescriptorpreferences_unpack(buf []byte) ?CStore_UserContentDescriptorPreferences {
+	mut res := CStore_UserContentDescriptorPreferences{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -717,7 +739,7 @@ pub fn cstoreusercontentdescriptorpreferences_unpack(buf []byte) ?CStoreUserCont
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cstoreusercontentdescriptorpreferencescontentdescriptor(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences_contentdescriptor(cur_buf,
 					tag_wiretype.wire_type)?
 				res.content_descriptors_to_exclude << v
 				i = ii
@@ -738,51 +760,51 @@ pub fn cstoreusercontentdescriptorpreferences_unpack(buf []byte) ?CStoreUserCont
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoreusercontentdescriptorpreferences() CStoreUserContentDescriptorPreferences {
-	return CStoreUserContentDescriptorPreferences{}
+pub fn zzz_vproto_internal_new_cstore_usercontentdescriptorpreferences() CStore_UserContentDescriptorPreferences {
+	return CStore_UserContentDescriptorPreferences{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoreusercontentdescriptorpreferences(o CStoreUserContentDescriptorPreferences, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_usercontentdescriptorpreferences(o CStore_UserContentDescriptorPreferences, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoreusercontentdescriptorpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreUserContentDescriptorPreferences) {
+pub fn zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_UserContentDescriptorPreferences) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoreusercontentdescriptorpreferences_unpack(v)?
+	mut unpacked := cstore_usercontentdescriptorpreferences_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreGetStorePreferencesResponse {
+pub struct CStore_GetStorePreferences_Response {
 mut:
 	unknown_fields                     []vproto.UnknownField
 pub mut:
-	preferences                        CStoreUserPreferences
+	preferences                        CStore_UserPreferences
 	has_preferences                    bool
-	tag_preferences                    CStoreUserTagPreferences
+	tag_preferences                    CStore_UserTagPreferences
 	has_tag_preferences                bool
-	content_descriptor_preferences     CStoreUserContentDescriptorPreferences
+	content_descriptor_preferences     CStore_UserContentDescriptorPreferences
 	has_content_descriptor_preferences bool
 }
 
-pub fn (o &CStoreGetStorePreferencesResponse) pack() []byte {
+pub fn (o &CStore_GetStorePreferences_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_preferences {
-		res << zzz_vproto_internal_pack_cstoreuserpreferences(o.preferences, 1)
+		res << zzz_vproto_internal_pack_cstore_userpreferences(o.preferences, 1)
 	}
 	if o.has_tag_preferences {
-		res << zzz_vproto_internal_pack_cstoreusertagpreferences(o.tag_preferences, 2)
+		res << zzz_vproto_internal_pack_cstore_usertagpreferences(o.tag_preferences, 2)
 	}
 	if o.has_content_descriptor_preferences {
 		res <<
-			zzz_vproto_internal_pack_cstoreusercontentdescriptorpreferences(o.content_descriptor_preferences, 3)
+			zzz_vproto_internal_pack_cstore_usercontentdescriptorpreferences(o.content_descriptor_preferences, 3)
 	}
 	return res
 }
 
-pub fn cstoregetstorepreferencesresponse_unpack(buf []byte) ?CStoreGetStorePreferencesResponse {
-	mut res := CStoreGetStorePreferencesResponse{}
+pub fn cstore_getstorepreferences_response_unpack(buf []byte) ?CStore_GetStorePreferences_Response {
+	mut res := CStore_GetStorePreferences_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -794,20 +816,20 @@ pub fn cstoregetstorepreferencesresponse_unpack(buf []byte) ?CStoreGetStorePrefe
 		match tag_wiretype.tag {
 			1 {
 				res.has_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cstoreuserpreferences(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cstore_userpreferences(cur_buf, tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
 			}
 			2 {
 				res.has_tag_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cstoreusertagpreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_usertagpreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.tag_preferences = v
 				i = ii
 			}
 			3 {
 				res.has_content_descriptor_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cstoreusercontentdescriptorpreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.content_descriptor_preferences = v
 				i = ii
@@ -828,51 +850,51 @@ pub fn cstoregetstorepreferencesresponse_unpack(buf []byte) ?CStoreGetStorePrefe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstoregetstorepreferencesresponse() CStoreGetStorePreferencesResponse {
-	return CStoreGetStorePreferencesResponse{}
+pub fn zzz_vproto_internal_new_cstore_getstorepreferences_response() CStore_GetStorePreferences_Response {
+	return CStore_GetStorePreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstoregetstorepreferencesresponse(o CStoreGetStorePreferencesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_getstorepreferences_response(o CStore_GetStorePreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstoregetstorepreferencesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreGetStorePreferencesResponse) {
+pub fn zzz_vproto_internal_unpack_cstore_getstorepreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_GetStorePreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstoregetstorepreferencesresponse_unpack(v)?
+	mut unpacked := cstore_getstorepreferences_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStoreStorePreferencesChangedNotification {
+pub struct CStore_StorePreferencesChanged_Notification {
 mut:
 	unknown_fields                     []vproto.UnknownField
 pub mut:
-	preferences                        CStoreUserPreferences
+	preferences                        CStore_UserPreferences
 	has_preferences                    bool
-	tag_preferences                    CStoreUserTagPreferences
+	tag_preferences                    CStore_UserTagPreferences
 	has_tag_preferences                bool
-	content_descriptor_preferences     CStoreUserContentDescriptorPreferences
+	content_descriptor_preferences     CStore_UserContentDescriptorPreferences
 	has_content_descriptor_preferences bool
 }
 
-pub fn (o &CStoreStorePreferencesChangedNotification) pack() []byte {
+pub fn (o &CStore_StorePreferencesChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_preferences {
-		res << zzz_vproto_internal_pack_cstoreuserpreferences(o.preferences, 1)
+		res << zzz_vproto_internal_pack_cstore_userpreferences(o.preferences, 1)
 	}
 	if o.has_tag_preferences {
-		res << zzz_vproto_internal_pack_cstoreusertagpreferences(o.tag_preferences, 2)
+		res << zzz_vproto_internal_pack_cstore_usertagpreferences(o.tag_preferences, 2)
 	}
 	if o.has_content_descriptor_preferences {
 		res <<
-			zzz_vproto_internal_pack_cstoreusercontentdescriptorpreferences(o.content_descriptor_preferences, 3)
+			zzz_vproto_internal_pack_cstore_usercontentdescriptorpreferences(o.content_descriptor_preferences, 3)
 	}
 	return res
 }
 
-pub fn cstorestorepreferenceschangednotification_unpack(buf []byte) ?CStoreStorePreferencesChangedNotification {
-	mut res := CStoreStorePreferencesChangedNotification{}
+pub fn cstore_storepreferenceschanged_notification_unpack(buf []byte) ?CStore_StorePreferencesChanged_Notification {
+	mut res := CStore_StorePreferencesChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -884,20 +906,20 @@ pub fn cstorestorepreferenceschangednotification_unpack(buf []byte) ?CStoreStore
 		match tag_wiretype.tag {
 			1 {
 				res.has_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cstoreuserpreferences(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cstore_userpreferences(cur_buf, tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
 			}
 			2 {
 				res.has_tag_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cstoreusertagpreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_usertagpreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.tag_preferences = v
 				i = ii
 			}
 			3 {
 				res.has_content_descriptor_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cstoreusercontentdescriptorpreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.content_descriptor_preferences = v
 				i = ii
@@ -918,18 +940,18 @@ pub fn cstorestorepreferenceschangednotification_unpack(buf []byte) ?CStoreStore
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstorestorepreferenceschangednotification() CStoreStorePreferencesChangedNotification {
-	return CStoreStorePreferencesChangedNotification{}
+pub fn zzz_vproto_internal_new_cstore_storepreferenceschanged_notification() CStore_StorePreferencesChanged_Notification {
+	return CStore_StorePreferencesChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstorestorepreferenceschangednotification(o CStoreStorePreferencesChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstore_storepreferenceschanged_notification(o CStore_StorePreferencesChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstorestorepreferenceschangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CStoreStorePreferencesChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cstore_storepreferenceschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CStore_StorePreferencesChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstorestorepreferenceschangednotification_unpack(v)?
+	mut unpacked := cstore_storepreferenceschanged_notification_unpack(v)?
 	return i, unpacked
 }

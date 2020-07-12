@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CCloudGetUploadServerInfoRequest {
+pub struct CCloud_GetUploadServerInfo_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11,7 +11,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CCloudGetUploadServerInfoRequest) pack() []byte {
+pub fn (o &CCloud_GetUploadServerInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -19,8 +19,8 @@ pub fn (o &CCloudGetUploadServerInfoRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudgetuploadserverinforequest_unpack(buf []byte) ?CCloudGetUploadServerInfoRequest {
-	mut res := CCloudGetUploadServerInfoRequest{}
+pub fn ccloud_getuploadserverinfo_request_unpack(buf []byte) ?CCloud_GetUploadServerInfo_Request {
+	mut res := CCloud_GetUploadServerInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -52,23 +52,23 @@ pub fn ccloudgetuploadserverinforequest_unpack(buf []byte) ?CCloudGetUploadServe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgetuploadserverinforequest() CCloudGetUploadServerInfoRequest {
-	return CCloudGetUploadServerInfoRequest{}
+pub fn zzz_vproto_internal_new_ccloud_getuploadserverinfo_request() CCloud_GetUploadServerInfo_Request {
+	return CCloud_GetUploadServerInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgetuploadserverinforequest(o CCloudGetUploadServerInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_getuploadserverinfo_request(o CCloud_GetUploadServerInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgetuploadserverinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGetUploadServerInfoRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_getuploadserverinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_GetUploadServerInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgetuploadserverinforequest_unpack(v)?
+	mut unpacked := ccloud_getuploadserverinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGetUploadServerInfoResponse {
+pub struct CCloud_GetUploadServerInfo_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -76,7 +76,7 @@ pub mut:
 	has_server_url bool
 }
 
-pub fn (o &CCloudGetUploadServerInfoResponse) pack() []byte {
+pub fn (o &CCloud_GetUploadServerInfo_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_server_url {
 		res << vproto.pack_string_field(o.server_url, 1)
@@ -84,8 +84,8 @@ pub fn (o &CCloudGetUploadServerInfoResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudgetuploadserverinforesponse_unpack(buf []byte) ?CCloudGetUploadServerInfoResponse {
-	mut res := CCloudGetUploadServerInfoResponse{}
+pub fn ccloud_getuploadserverinfo_response_unpack(buf []byte) ?CCloud_GetUploadServerInfo_Response {
+	mut res := CCloud_GetUploadServerInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -117,23 +117,23 @@ pub fn ccloudgetuploadserverinforesponse_unpack(buf []byte) ?CCloudGetUploadServ
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgetuploadserverinforesponse() CCloudGetUploadServerInfoResponse {
-	return CCloudGetUploadServerInfoResponse{}
+pub fn zzz_vproto_internal_new_ccloud_getuploadserverinfo_response() CCloud_GetUploadServerInfo_Response {
+	return CCloud_GetUploadServerInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgetuploadserverinforesponse(o CCloudGetUploadServerInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_getuploadserverinfo_response(o CCloud_GetUploadServerInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgetuploadserverinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGetUploadServerInfoResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_getuploadserverinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_GetUploadServerInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgetuploadserverinforesponse_unpack(v)?
+	mut unpacked := ccloud_getuploadserverinfo_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudBeginHTtpuploadRequest {
+pub struct CCloud_BeginHTTPUpload_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -152,7 +152,7 @@ pub mut:
 	request_headers_values []string
 }
 
-pub fn (o &CCloudBeginHTtpuploadRequest) pack() []byte {
+pub fn (o &CCloud_BeginHTTPUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -184,8 +184,8 @@ pub fn (o &CCloudBeginHTtpuploadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudbeginhttpuploadrequest_unpack(buf []byte) ?CCloudBeginHTtpuploadRequest {
-	mut res := CCloudBeginHTtpuploadRequest{}
+pub fn ccloud_beginhttpupload_request_unpack(buf []byte) ?CCloud_BeginHTTPUpload_Request {
+	mut res := CCloud_BeginHTTPUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -259,23 +259,23 @@ pub fn ccloudbeginhttpuploadrequest_unpack(buf []byte) ?CCloudBeginHTtpuploadReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudbeginhttpuploadrequest() CCloudBeginHTtpuploadRequest {
-	return CCloudBeginHTtpuploadRequest{}
+pub fn zzz_vproto_internal_new_ccloud_beginhttpupload_request() CCloud_BeginHTTPUpload_Request {
+	return CCloud_BeginHTTPUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudbeginhttpuploadrequest(o CCloudBeginHTtpuploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_beginhttpupload_request(o CCloud_BeginHTTPUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudbeginhttpuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudBeginHTtpuploadRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_beginhttpupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_BeginHTTPUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudbeginhttpuploadrequest_unpack(v)?
+	mut unpacked := ccloud_beginhttpupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudBeginHTtpuploadResponseHTtpheaders {
+pub struct CCloud_BeginHTTPUpload_Response_HTTPHeaders {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -285,7 +285,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CCloudBeginHTtpuploadResponseHTtpheaders) pack() []byte {
+pub fn (o &CCloud_BeginHTTPUpload_Response_HTTPHeaders) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -296,8 +296,8 @@ pub fn (o &CCloudBeginHTtpuploadResponseHTtpheaders) pack() []byte {
 	return res
 }
 
-pub fn ccloudbeginhttpuploadresponsehttpheaders_unpack(buf []byte) ?CCloudBeginHTtpuploadResponseHTtpheaders {
-	mut res := CCloudBeginHTtpuploadResponseHTtpheaders{}
+pub fn ccloud_beginhttpupload_response_httpheaders_unpack(buf []byte) ?CCloud_BeginHTTPUpload_Response_HTTPHeaders {
+	mut res := CCloud_BeginHTTPUpload_Response_HTTPHeaders{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -335,23 +335,23 @@ pub fn ccloudbeginhttpuploadresponsehttpheaders_unpack(buf []byte) ?CCloudBeginH
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudbeginhttpuploadresponsehttpheaders() CCloudBeginHTtpuploadResponseHTtpheaders {
-	return CCloudBeginHTtpuploadResponseHTtpheaders{}
+pub fn zzz_vproto_internal_new_ccloud_beginhttpupload_response_httpheaders() CCloud_BeginHTTPUpload_Response_HTTPHeaders {
+	return CCloud_BeginHTTPUpload_Response_HTTPHeaders{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudbeginhttpuploadresponsehttpheaders(o CCloudBeginHTtpuploadResponseHTtpheaders, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_beginhttpupload_response_httpheaders(o CCloud_BeginHTTPUpload_Response_HTTPHeaders, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudbeginhttpuploadresponsehttpheaders(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudBeginHTtpuploadResponseHTtpheaders) {
+pub fn zzz_vproto_internal_unpack_ccloud_beginhttpupload_response_httpheaders(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_BeginHTTPUpload_Response_HTTPHeaders) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudbeginhttpuploadresponsehttpheaders_unpack(v)?
+	mut unpacked := ccloud_beginhttpupload_response_httpheaders_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudBeginHTtpuploadResponse {
+pub struct CCloud_BeginHTTPUpload_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -365,10 +365,10 @@ pub mut:
 	has_url_path    bool
 	use_https       bool
 	has_use_https   bool
-	request_headers []CCloudBeginHTtpuploadResponseHTtpheaders
+	request_headers []CCloud_BeginHTTPUpload_Response_HTTPHeaders
 }
 
-pub fn (o &CCloudBeginHTtpuploadResponse) pack() []byte {
+pub fn (o &CCloud_BeginHTTPUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_ugcid {
 		res << vproto.pack_64bit_field(o.ugcid, 1)
@@ -387,13 +387,13 @@ pub fn (o &CCloudBeginHTtpuploadResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.request_headers {
-		res << zzz_vproto_internal_pack_ccloudbeginhttpuploadresponsehttpheaders(x, 6)
+		res << zzz_vproto_internal_pack_ccloud_beginhttpupload_response_httpheaders(x, 6)
 	}
 	return res
 }
 
-pub fn ccloudbeginhttpuploadresponse_unpack(buf []byte) ?CCloudBeginHTtpuploadResponse {
-	mut res := CCloudBeginHTtpuploadResponse{}
+pub fn ccloud_beginhttpupload_response_unpack(buf []byte) ?CCloud_BeginHTTPUpload_Response {
+	mut res := CCloud_BeginHTTPUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -435,7 +435,7 @@ pub fn ccloudbeginhttpuploadresponse_unpack(buf []byte) ?CCloudBeginHTtpuploadRe
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccloudbeginhttpuploadresponsehttpheaders(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccloud_beginhttpupload_response_httpheaders(cur_buf,
 					tag_wiretype.wire_type)?
 				res.request_headers << v
 				i = ii
@@ -456,23 +456,23 @@ pub fn ccloudbeginhttpuploadresponse_unpack(buf []byte) ?CCloudBeginHTtpuploadRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudbeginhttpuploadresponse() CCloudBeginHTtpuploadResponse {
-	return CCloudBeginHTtpuploadResponse{}
+pub fn zzz_vproto_internal_new_ccloud_beginhttpupload_response() CCloud_BeginHTTPUpload_Response {
+	return CCloud_BeginHTTPUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudbeginhttpuploadresponse(o CCloudBeginHTtpuploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_beginhttpupload_response(o CCloud_BeginHTTPUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudbeginhttpuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudBeginHTtpuploadResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_beginhttpupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_BeginHTTPUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudbeginhttpuploadresponse_unpack(v)?
+	mut unpacked := ccloud_beginhttpupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudCommitHTtpuploadRequest {
+pub struct CCloud_CommitHTTPUpload_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -486,7 +486,7 @@ pub mut:
 	has_filename           bool
 }
 
-pub fn (o &CCloudCommitHTtpuploadRequest) pack() []byte {
+pub fn (o &CCloud_CommitHTTPUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_transfer_succeeded {
 		res << vproto.pack_bool_field(o.transfer_succeeded, 1)
@@ -503,8 +503,8 @@ pub fn (o &CCloudCommitHTtpuploadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudcommithttpuploadrequest_unpack(buf []byte) ?CCloudCommitHTtpuploadRequest {
-	mut res := CCloudCommitHTtpuploadRequest{}
+pub fn ccloud_commithttpupload_request_unpack(buf []byte) ?CCloud_CommitHTTPUpload_Request {
+	mut res := CCloud_CommitHTTPUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -554,23 +554,23 @@ pub fn ccloudcommithttpuploadrequest_unpack(buf []byte) ?CCloudCommitHTtpuploadR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudcommithttpuploadrequest() CCloudCommitHTtpuploadRequest {
-	return CCloudCommitHTtpuploadRequest{}
+pub fn zzz_vproto_internal_new_ccloud_commithttpupload_request() CCloud_CommitHTTPUpload_Request {
+	return CCloud_CommitHTTPUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudcommithttpuploadrequest(o CCloudCommitHTtpuploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_commithttpupload_request(o CCloud_CommitHTTPUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudcommithttpuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudCommitHTtpuploadRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_commithttpupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_CommitHTTPUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudcommithttpuploadrequest_unpack(v)?
+	mut unpacked := ccloud_commithttpupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudCommitHTtpuploadResponse {
+pub struct CCloud_CommitHTTPUpload_Response {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -578,7 +578,7 @@ pub mut:
 	has_file_committed bool
 }
 
-pub fn (o &CCloudCommitHTtpuploadResponse) pack() []byte {
+pub fn (o &CCloud_CommitHTTPUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_file_committed {
 		res << vproto.pack_bool_field(o.file_committed, 1)
@@ -586,8 +586,8 @@ pub fn (o &CCloudCommitHTtpuploadResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudcommithttpuploadresponse_unpack(buf []byte) ?CCloudCommitHTtpuploadResponse {
-	mut res := CCloudCommitHTtpuploadResponse{}
+pub fn ccloud_commithttpupload_response_unpack(buf []byte) ?CCloud_CommitHTTPUpload_Response {
+	mut res := CCloud_CommitHTTPUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -619,23 +619,23 @@ pub fn ccloudcommithttpuploadresponse_unpack(buf []byte) ?CCloudCommitHTtpupload
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudcommithttpuploadresponse() CCloudCommitHTtpuploadResponse {
-	return CCloudCommitHTtpuploadResponse{}
+pub fn zzz_vproto_internal_new_ccloud_commithttpupload_response() CCloud_CommitHTTPUpload_Response {
+	return CCloud_CommitHTTPUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudcommithttpuploadresponse(o CCloudCommitHTtpuploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_commithttpupload_response(o CCloud_CommitHTTPUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudcommithttpuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudCommitHTtpuploadResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_commithttpupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_CommitHTTPUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudcommithttpuploadresponse_unpack(v)?
+	mut unpacked := ccloud_commithttpupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGetFileDetailsRequest {
+pub struct CCloud_GetFileDetails_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -645,7 +645,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CCloudGetFileDetailsRequest) pack() []byte {
+pub fn (o &CCloud_GetFileDetails_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_ugcid {
 		res << vproto.pack_uint64_field(o.ugcid, 1)
@@ -656,8 +656,8 @@ pub fn (o &CCloudGetFileDetailsRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudgetfiledetailsrequest_unpack(buf []byte) ?CCloudGetFileDetailsRequest {
-	mut res := CCloudGetFileDetailsRequest{}
+pub fn ccloud_getfiledetails_request_unpack(buf []byte) ?CCloud_GetFileDetails_Request {
+	mut res := CCloud_GetFileDetails_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -695,23 +695,23 @@ pub fn ccloudgetfiledetailsrequest_unpack(buf []byte) ?CCloudGetFileDetailsReque
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgetfiledetailsrequest() CCloudGetFileDetailsRequest {
-	return CCloudGetFileDetailsRequest{}
+pub fn zzz_vproto_internal_new_ccloud_getfiledetails_request() CCloud_GetFileDetails_Request {
+	return CCloud_GetFileDetails_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgetfiledetailsrequest(o CCloudGetFileDetailsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_getfiledetails_request(o CCloud_GetFileDetails_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgetfiledetailsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGetFileDetailsRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_getfiledetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_GetFileDetails_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgetfiledetailsrequest_unpack(v)?
+	mut unpacked := ccloud_getfiledetails_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudUserFile {
+pub struct CCloud_UserFile {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -736,7 +736,7 @@ pub mut:
 	has_file_sha        bool
 }
 
-pub fn (o &CCloudUserFile) pack() []byte {
+pub fn (o &CCloud_UserFile) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -772,8 +772,8 @@ pub fn (o &CCloudUserFile) pack() []byte {
 	return res
 }
 
-pub fn cclouduserfile_unpack(buf []byte) ?CCloudUserFile {
-	mut res := CCloudUserFile{}
+pub fn ccloud_userfile_unpack(buf []byte) ?CCloud_UserFile {
+	mut res := CCloud_UserFile{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -859,40 +859,40 @@ pub fn cclouduserfile_unpack(buf []byte) ?CCloudUserFile {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cclouduserfile() CCloudUserFile {
-	return CCloudUserFile{}
+pub fn zzz_vproto_internal_new_ccloud_userfile() CCloud_UserFile {
+	return CCloud_UserFile{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cclouduserfile(o CCloudUserFile, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_userfile(o CCloud_UserFile, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cclouduserfile(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudUserFile) {
+pub fn zzz_vproto_internal_unpack_ccloud_userfile(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_UserFile) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cclouduserfile_unpack(v)?
+	mut unpacked := ccloud_userfile_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGetFileDetailsResponse {
+pub struct CCloud_GetFileDetails_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	details        CCloudUserFile
+	details        CCloud_UserFile
 	has_details    bool
 }
 
-pub fn (o &CCloudGetFileDetailsResponse) pack() []byte {
+pub fn (o &CCloud_GetFileDetails_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_details {
-		res << zzz_vproto_internal_pack_cclouduserfile(o.details, 1)
+		res << zzz_vproto_internal_pack_ccloud_userfile(o.details, 1)
 	}
 	return res
 }
 
-pub fn ccloudgetfiledetailsresponse_unpack(buf []byte) ?CCloudGetFileDetailsResponse {
-	mut res := CCloudGetFileDetailsResponse{}
+pub fn ccloud_getfiledetails_response_unpack(buf []byte) ?CCloud_GetFileDetails_Response {
+	mut res := CCloud_GetFileDetails_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -904,7 +904,7 @@ pub fn ccloudgetfiledetailsresponse_unpack(buf []byte) ?CCloudGetFileDetailsResp
 		match tag_wiretype.tag {
 			1 {
 				res.has_details = true
-				ii, v := zzz_vproto_internal_unpack_cclouduserfile(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ccloud_userfile(cur_buf, tag_wiretype.wire_type)?
 				res.details = v
 				i = ii
 			}
@@ -924,23 +924,23 @@ pub fn ccloudgetfiledetailsresponse_unpack(buf []byte) ?CCloudGetFileDetailsResp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgetfiledetailsresponse() CCloudGetFileDetailsResponse {
-	return CCloudGetFileDetailsResponse{}
+pub fn zzz_vproto_internal_new_ccloud_getfiledetails_response() CCloud_GetFileDetails_Response {
+	return CCloud_GetFileDetails_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgetfiledetailsresponse(o CCloudGetFileDetailsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_getfiledetails_response(o CCloud_GetFileDetails_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgetfiledetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGetFileDetailsResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_getfiledetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_GetFileDetails_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgetfiledetailsresponse_unpack(v)?
+	mut unpacked := ccloud_getfiledetails_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudEnumerateUserFilesRequest {
+pub struct CCloud_EnumerateUserFiles_Request {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -954,7 +954,7 @@ pub mut:
 	has_start_index      bool
 }
 
-pub fn (o &CCloudEnumerateUserFilesRequest) pack() []byte {
+pub fn (o &CCloud_EnumerateUserFiles_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -971,8 +971,8 @@ pub fn (o &CCloudEnumerateUserFilesRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudenumerateuserfilesrequest_unpack(buf []byte) ?CCloudEnumerateUserFilesRequest {
-	mut res := CCloudEnumerateUserFilesRequest{}
+pub fn ccloud_enumerateuserfiles_request_unpack(buf []byte) ?CCloud_EnumerateUserFiles_Request {
+	mut res := CCloud_EnumerateUserFiles_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1022,36 +1022,36 @@ pub fn ccloudenumerateuserfilesrequest_unpack(buf []byte) ?CCloudEnumerateUserFi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudenumerateuserfilesrequest() CCloudEnumerateUserFilesRequest {
-	return CCloudEnumerateUserFilesRequest{}
+pub fn zzz_vproto_internal_new_ccloud_enumerateuserfiles_request() CCloud_EnumerateUserFiles_Request {
+	return CCloud_EnumerateUserFiles_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudenumerateuserfilesrequest(o CCloudEnumerateUserFilesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_enumerateuserfiles_request(o CCloud_EnumerateUserFiles_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudenumerateuserfilesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudEnumerateUserFilesRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_enumerateuserfiles_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_EnumerateUserFiles_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudenumerateuserfilesrequest_unpack(v)?
+	mut unpacked := ccloud_enumerateuserfiles_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudEnumerateUserFilesResponse {
+pub struct CCloud_EnumerateUserFiles_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	files           []CCloudUserFile
+	files           []CCloud_UserFile
 	total_files     u32
 	has_total_files bool
 }
 
-pub fn (o &CCloudEnumerateUserFilesResponse) pack() []byte {
+pub fn (o &CCloud_EnumerateUserFiles_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.files {
-		res << zzz_vproto_internal_pack_cclouduserfile(x, 1)
+		res << zzz_vproto_internal_pack_ccloud_userfile(x, 1)
 	}
 	if o.has_total_files {
 		res << vproto.pack_uint32_field(o.total_files, 2)
@@ -1059,8 +1059,8 @@ pub fn (o &CCloudEnumerateUserFilesResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudenumerateuserfilesresponse_unpack(buf []byte) ?CCloudEnumerateUserFilesResponse {
-	mut res := CCloudEnumerateUserFilesResponse{}
+pub fn ccloud_enumerateuserfiles_response_unpack(buf []byte) ?CCloud_EnumerateUserFiles_Response {
+	mut res := CCloud_EnumerateUserFiles_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1072,7 +1072,7 @@ pub fn ccloudenumerateuserfilesresponse_unpack(buf []byte) ?CCloudEnumerateUserF
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cclouduserfile(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ccloud_userfile(cur_buf, tag_wiretype.wire_type)?
 				res.files << v
 				i = ii
 			}
@@ -1098,23 +1098,23 @@ pub fn ccloudenumerateuserfilesresponse_unpack(buf []byte) ?CCloudEnumerateUserF
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudenumerateuserfilesresponse() CCloudEnumerateUserFilesResponse {
-	return CCloudEnumerateUserFilesResponse{}
+pub fn zzz_vproto_internal_new_ccloud_enumerateuserfiles_response() CCloud_EnumerateUserFiles_Response {
+	return CCloud_EnumerateUserFiles_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudenumerateuserfilesresponse(o CCloudEnumerateUserFilesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_enumerateuserfiles_response(o CCloud_EnumerateUserFiles_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudenumerateuserfilesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudEnumerateUserFilesResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_enumerateuserfiles_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_EnumerateUserFiles_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudenumerateuserfilesresponse_unpack(v)?
+	mut unpacked := ccloud_enumerateuserfiles_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudDeleteRequest {
+pub struct CCloud_Delete_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1124,7 +1124,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CCloudDeleteRequest) pack() []byte {
+pub fn (o &CCloud_Delete_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_filename {
 		res << vproto.pack_string_field(o.filename, 1)
@@ -1135,8 +1135,8 @@ pub fn (o &CCloudDeleteRequest) pack() []byte {
 	return res
 }
 
-pub fn cclouddeleterequest_unpack(buf []byte) ?CCloudDeleteRequest {
-	mut res := CCloudDeleteRequest{}
+pub fn ccloud_delete_request_unpack(buf []byte) ?CCloud_Delete_Request {
+	mut res := CCloud_Delete_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1174,87 +1174,87 @@ pub fn cclouddeleterequest_unpack(buf []byte) ?CCloudDeleteRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cclouddeleterequest() CCloudDeleteRequest {
-	return CCloudDeleteRequest{}
+pub fn zzz_vproto_internal_new_ccloud_delete_request() CCloud_Delete_Request {
+	return CCloud_Delete_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cclouddeleterequest(o CCloudDeleteRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_delete_request(o CCloud_Delete_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cclouddeleterequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudDeleteRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_delete_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_Delete_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cclouddeleterequest_unpack(v)?
+	mut unpacked := ccloud_delete_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudDeleteResponse {
+pub struct CCloud_Delete_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CCloudDeleteResponse) pack() []byte {
+pub fn (o &CCloud_Delete_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cclouddeleteresponse_unpack(buf []byte) ?CCloudDeleteResponse {
-	res := CCloudDeleteResponse{}
+pub fn ccloud_delete_response_unpack(buf []byte) ?CCloud_Delete_Response {
+	res := CCloud_Delete_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cclouddeleteresponse() CCloudDeleteResponse {
-	return CCloudDeleteResponse{}
+pub fn zzz_vproto_internal_new_ccloud_delete_response() CCloud_Delete_Response {
+	return CCloud_Delete_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cclouddeleteresponse(o CCloudDeleteResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_delete_response(o CCloud_Delete_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cclouddeleteresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudDeleteResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_delete_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_Delete_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cclouddeleteresponse_unpack(v)?
+	mut unpacked := ccloud_delete_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGetClientEncryptionKeyRequest {
+pub struct CCloud_GetClientEncryptionKey_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CCloudGetClientEncryptionKeyRequest) pack() []byte {
+pub fn (o &CCloud_GetClientEncryptionKey_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn ccloudgetclientencryptionkeyrequest_unpack(buf []byte) ?CCloudGetClientEncryptionKeyRequest {
-	res := CCloudGetClientEncryptionKeyRequest{}
+pub fn ccloud_getclientencryptionkey_request_unpack(buf []byte) ?CCloud_GetClientEncryptionKey_Request {
+	res := CCloud_GetClientEncryptionKey_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgetclientencryptionkeyrequest() CCloudGetClientEncryptionKeyRequest {
-	return CCloudGetClientEncryptionKeyRequest{}
+pub fn zzz_vproto_internal_new_ccloud_getclientencryptionkey_request() CCloud_GetClientEncryptionKey_Request {
+	return CCloud_GetClientEncryptionKey_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgetclientencryptionkeyrequest(o CCloudGetClientEncryptionKeyRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_getclientencryptionkey_request(o CCloud_GetClientEncryptionKey_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgetclientencryptionkeyrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGetClientEncryptionKeyRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_getclientencryptionkey_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_GetClientEncryptionKey_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgetclientencryptionkeyrequest_unpack(v)?
+	mut unpacked := ccloud_getclientencryptionkey_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGetClientEncryptionKeyResponse {
+pub struct CCloud_GetClientEncryptionKey_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1264,7 +1264,7 @@ pub mut:
 	has_crc        bool
 }
 
-pub fn (o &CCloudGetClientEncryptionKeyResponse) pack() []byte {
+pub fn (o &CCloud_GetClientEncryptionKey_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_bytes_field(o.key, 1)
@@ -1275,8 +1275,8 @@ pub fn (o &CCloudGetClientEncryptionKeyResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudgetclientencryptionkeyresponse_unpack(buf []byte) ?CCloudGetClientEncryptionKeyResponse {
-	mut res := CCloudGetClientEncryptionKeyResponse{}
+pub fn ccloud_getclientencryptionkey_response_unpack(buf []byte) ?CCloud_GetClientEncryptionKey_Response {
+	mut res := CCloud_GetClientEncryptionKey_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1314,23 +1314,23 @@ pub fn ccloudgetclientencryptionkeyresponse_unpack(buf []byte) ?CCloudGetClientE
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgetclientencryptionkeyresponse() CCloudGetClientEncryptionKeyResponse {
-	return CCloudGetClientEncryptionKeyResponse{}
+pub fn zzz_vproto_internal_new_ccloud_getclientencryptionkey_response() CCloud_GetClientEncryptionKey_Response {
+	return CCloud_GetClientEncryptionKey_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgetclientencryptionkeyresponse(o CCloudGetClientEncryptionKeyResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_getclientencryptionkey_response(o CCloud_GetClientEncryptionKey_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgetclientencryptionkeyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGetClientEncryptionKeyResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_getclientencryptionkey_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_GetClientEncryptionKey_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgetclientencryptionkeyresponse_unpack(v)?
+	mut unpacked := ccloud_getclientencryptionkey_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudCDnreportNotification {
+pub struct CCloud_CDNReport_Notification {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -1350,7 +1350,7 @@ pub mut:
 	has_duration         bool
 }
 
-pub fn (o &CCloudCDnreportNotification) pack() []byte {
+pub fn (o &CCloud_CDNReport_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1376,8 +1376,8 @@ pub fn (o &CCloudCDnreportNotification) pack() []byte {
 	return res
 }
 
-pub fn ccloudcdnreportnotification_unpack(buf []byte) ?CCloudCDnreportNotification {
-	mut res := CCloudCDnreportNotification{}
+pub fn ccloud_cdnreport_notification_unpack(buf []byte) ?CCloud_CDNReport_Notification {
+	mut res := CCloud_CDNReport_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1445,23 +1445,23 @@ pub fn ccloudcdnreportnotification_unpack(buf []byte) ?CCloudCDnreportNotificati
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudcdnreportnotification() CCloudCDnreportNotification {
-	return CCloudCDnreportNotification{}
+pub fn zzz_vproto_internal_new_ccloud_cdnreport_notification() CCloud_CDNReport_Notification {
+	return CCloud_CDNReport_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudcdnreportnotification(o CCloudCDnreportNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_cdnreport_notification(o CCloud_CDNReport_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudcdnreportnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudCDnreportNotification) {
+pub fn zzz_vproto_internal_unpack_ccloud_cdnreport_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_CDNReport_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudcdnreportnotification_unpack(v)?
+	mut unpacked := ccloud_cdnreport_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudExternalStorageTransferReportNotification {
+pub struct CCloud_ExternalStorageTransferReport_Notification {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -1491,7 +1491,7 @@ pub mut:
 	has_ipv6_remote      bool
 }
 
-pub fn (o &CCloudExternalStorageTransferReportNotification) pack() []byte {
+pub fn (o &CCloud_ExternalStorageTransferReport_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_host {
 		res << vproto.pack_string_field(o.host, 1)
@@ -1532,8 +1532,8 @@ pub fn (o &CCloudExternalStorageTransferReportNotification) pack() []byte {
 	return res
 }
 
-pub fn ccloudexternalstoragetransferreportnotification_unpack(buf []byte) ?CCloudExternalStorageTransferReportNotification {
-	mut res := CCloudExternalStorageTransferReportNotification{}
+pub fn ccloud_externalstoragetransferreport_notification_unpack(buf []byte) ?CCloud_ExternalStorageTransferReport_Notification {
+	mut res := CCloud_ExternalStorageTransferReport_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1631,23 +1631,23 @@ pub fn ccloudexternalstoragetransferreportnotification_unpack(buf []byte) ?CClou
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudexternalstoragetransferreportnotification() CCloudExternalStorageTransferReportNotification {
-	return CCloudExternalStorageTransferReportNotification{}
+pub fn zzz_vproto_internal_new_ccloud_externalstoragetransferreport_notification() CCloud_ExternalStorageTransferReport_Notification {
+	return CCloud_ExternalStorageTransferReport_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudexternalstoragetransferreportnotification(o CCloudExternalStorageTransferReportNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_externalstoragetransferreport_notification(o CCloud_ExternalStorageTransferReport_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudexternalstoragetransferreportnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudExternalStorageTransferReportNotification) {
+pub fn zzz_vproto_internal_unpack_ccloud_externalstoragetransferreport_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ExternalStorageTransferReport_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudexternalstoragetransferreportnotification_unpack(v)?
+	mut unpacked := ccloud_externalstoragetransferreport_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientBeginFileUploadRequest {
+pub struct CCloud_ClientBeginFileUpload_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -1675,7 +1675,7 @@ pub mut:
 	has_realm             bool
 }
 
-pub fn (o &CCloudClientBeginFileUploadRequest) pack() []byte {
+pub fn (o &CCloud_ClientBeginFileUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -1713,8 +1713,8 @@ pub fn (o &CCloudClientBeginFileUploadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientbeginfileuploadrequest_unpack(buf []byte) ?CCloudClientBeginFileUploadRequest {
-	mut res := CCloudClientBeginFileUploadRequest{}
+pub fn ccloud_clientbeginfileupload_request_unpack(buf []byte) ?CCloud_ClientBeginFileUpload_Request {
+	mut res := CCloud_ClientBeginFileUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1806,23 +1806,23 @@ pub fn ccloudclientbeginfileuploadrequest_unpack(buf []byte) ?CCloudClientBeginF
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientbeginfileuploadrequest() CCloudClientBeginFileUploadRequest {
-	return CCloudClientBeginFileUploadRequest{}
+pub fn zzz_vproto_internal_new_ccloud_clientbeginfileupload_request() CCloud_ClientBeginFileUpload_Request {
+	return CCloud_ClientBeginFileUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientbeginfileuploadrequest(o CCloudClientBeginFileUploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientbeginfileupload_request(o CCloud_ClientBeginFileUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientbeginfileuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientBeginFileUploadRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientbeginfileupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientBeginFileUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientbeginfileuploadrequest_unpack(v)?
+	mut unpacked := ccloud_clientbeginfileupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct ClientCloudFileUploadBlockDetailsHTtpheaders {
+pub struct ClientCloudFileUploadBlockDetails_HTTPHeaders {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1832,7 +1832,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &ClientCloudFileUploadBlockDetailsHTtpheaders) pack() []byte {
+pub fn (o &ClientCloudFileUploadBlockDetails_HTTPHeaders) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -1843,8 +1843,8 @@ pub fn (o &ClientCloudFileUploadBlockDetailsHTtpheaders) pack() []byte {
 	return res
 }
 
-pub fn clientcloudfileuploadblockdetailshttpheaders_unpack(buf []byte) ?ClientCloudFileUploadBlockDetailsHTtpheaders {
-	mut res := ClientCloudFileUploadBlockDetailsHTtpheaders{}
+pub fn clientcloudfileuploadblockdetails_httpheaders_unpack(buf []byte) ?ClientCloudFileUploadBlockDetails_HTTPHeaders {
+	mut res := ClientCloudFileUploadBlockDetails_HTTPHeaders{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1882,19 +1882,19 @@ pub fn clientcloudfileuploadblockdetailshttpheaders_unpack(buf []byte) ?ClientCl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_clientcloudfileuploadblockdetailshttpheaders() ClientCloudFileUploadBlockDetailsHTtpheaders {
-	return ClientCloudFileUploadBlockDetailsHTtpheaders{}
+pub fn zzz_vproto_internal_new_clientcloudfileuploadblockdetails_httpheaders() ClientCloudFileUploadBlockDetails_HTTPHeaders {
+	return ClientCloudFileUploadBlockDetails_HTTPHeaders{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_clientcloudfileuploadblockdetailshttpheaders(o ClientCloudFileUploadBlockDetailsHTtpheaders, num u32) []byte {
+pub fn zzz_vproto_internal_pack_clientcloudfileuploadblockdetails_httpheaders(o ClientCloudFileUploadBlockDetails_HTTPHeaders, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_clientcloudfileuploadblockdetailshttpheaders(buf []byte, tag_wiretype vproto.WireType) ?(int, ClientCloudFileUploadBlockDetailsHTtpheaders) {
+pub fn zzz_vproto_internal_unpack_clientcloudfileuploadblockdetails_httpheaders(buf []byte, tag_wiretype vproto.WireType) ?(int, ClientCloudFileUploadBlockDetails_HTTPHeaders) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := clientcloudfileuploadblockdetailshttpheaders_unpack(v)?
+	mut unpacked := clientcloudfileuploadblockdetails_httpheaders_unpack(v)?
 	return i, unpacked
 }
 
@@ -1910,7 +1910,7 @@ pub mut:
 	has_use_https          bool
 	http_method            int
 	has_http_method        bool
-	request_headers        []ClientCloudFileUploadBlockDetailsHTtpheaders
+	request_headers        []ClientCloudFileUploadBlockDetails_HTTPHeaders
 	block_offset           u64
 	has_block_offset       bool
 	block_length           u32
@@ -1937,7 +1937,7 @@ pub fn (o &ClientCloudFileUploadBlockDetails) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.request_headers {
-		res << zzz_vproto_internal_pack_clientcloudfileuploadblockdetailshttpheaders(x, 5)
+		res << zzz_vproto_internal_pack_clientcloudfileuploadblockdetails_httpheaders(x, 5)
 	}
 	if o.has_block_offset {
 		res << vproto.pack_uint64_field(o.block_offset, 6)
@@ -1991,7 +1991,7 @@ pub fn clientcloudfileuploadblockdetails_unpack(buf []byte) ?ClientCloudFileUplo
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_clientcloudfileuploadblockdetailshttpheaders(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_clientcloudfileuploadblockdetails_httpheaders(cur_buf,
 					tag_wiretype.wire_type)?
 				res.request_headers << v
 				i = ii
@@ -2052,7 +2052,7 @@ pub fn zzz_vproto_internal_unpack_clientcloudfileuploadblockdetails(buf []byte, 
 	return i, unpacked
 }
 
-pub struct CCloudClientBeginFileUploadResponse {
+pub struct CCloud_ClientBeginFileUpload_Response {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2061,7 +2061,7 @@ pub mut:
 	block_requests   []ClientCloudFileUploadBlockDetails
 }
 
-pub fn (o &CCloudClientBeginFileUploadResponse) pack() []byte {
+pub fn (o &CCloud_ClientBeginFileUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_encrypt_file {
 		res << vproto.pack_bool_field(o.encrypt_file, 1)
@@ -2073,8 +2073,8 @@ pub fn (o &CCloudClientBeginFileUploadResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientbeginfileuploadresponse_unpack(buf []byte) ?CCloudClientBeginFileUploadResponse {
-	mut res := CCloudClientBeginFileUploadResponse{}
+pub fn ccloud_clientbeginfileupload_response_unpack(buf []byte) ?CCloud_ClientBeginFileUpload_Response {
+	mut res := CCloud_ClientBeginFileUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2113,23 +2113,23 @@ pub fn ccloudclientbeginfileuploadresponse_unpack(buf []byte) ?CCloudClientBegin
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientbeginfileuploadresponse() CCloudClientBeginFileUploadResponse {
-	return CCloudClientBeginFileUploadResponse{}
+pub fn zzz_vproto_internal_new_ccloud_clientbeginfileupload_response() CCloud_ClientBeginFileUpload_Response {
+	return CCloud_ClientBeginFileUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientbeginfileuploadresponse(o CCloudClientBeginFileUploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientbeginfileupload_response(o CCloud_ClientBeginFileUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientbeginfileuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientBeginFileUploadResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientbeginfileupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientBeginFileUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientbeginfileuploadresponse_unpack(v)?
+	mut unpacked := ccloud_clientbeginfileupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientCommitFileUploadRequest {
+pub struct CCloud_ClientCommitFileUpload_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -2143,7 +2143,7 @@ pub mut:
 	has_filename           bool
 }
 
-pub fn (o &CCloudClientCommitFileUploadRequest) pack() []byte {
+pub fn (o &CCloud_ClientCommitFileUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_transfer_succeeded {
 		res << vproto.pack_bool_field(o.transfer_succeeded, 1)
@@ -2160,8 +2160,8 @@ pub fn (o &CCloudClientCommitFileUploadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientcommitfileuploadrequest_unpack(buf []byte) ?CCloudClientCommitFileUploadRequest {
-	mut res := CCloudClientCommitFileUploadRequest{}
+pub fn ccloud_clientcommitfileupload_request_unpack(buf []byte) ?CCloud_ClientCommitFileUpload_Request {
+	mut res := CCloud_ClientCommitFileUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2211,23 +2211,23 @@ pub fn ccloudclientcommitfileuploadrequest_unpack(buf []byte) ?CCloudClientCommi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientcommitfileuploadrequest() CCloudClientCommitFileUploadRequest {
-	return CCloudClientCommitFileUploadRequest{}
+pub fn zzz_vproto_internal_new_ccloud_clientcommitfileupload_request() CCloud_ClientCommitFileUpload_Request {
+	return CCloud_ClientCommitFileUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientcommitfileuploadrequest(o CCloudClientCommitFileUploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientcommitfileupload_request(o CCloud_ClientCommitFileUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientcommitfileuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientCommitFileUploadRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientcommitfileupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientCommitFileUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientcommitfileuploadrequest_unpack(v)?
+	mut unpacked := ccloud_clientcommitfileupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientCommitFileUploadResponse {
+pub struct CCloud_ClientCommitFileUpload_Response {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -2235,7 +2235,7 @@ pub mut:
 	has_file_committed bool
 }
 
-pub fn (o &CCloudClientCommitFileUploadResponse) pack() []byte {
+pub fn (o &CCloud_ClientCommitFileUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_file_committed {
 		res << vproto.pack_bool_field(o.file_committed, 1)
@@ -2243,8 +2243,8 @@ pub fn (o &CCloudClientCommitFileUploadResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientcommitfileuploadresponse_unpack(buf []byte) ?CCloudClientCommitFileUploadResponse {
-	mut res := CCloudClientCommitFileUploadResponse{}
+pub fn ccloud_clientcommitfileupload_response_unpack(buf []byte) ?CCloud_ClientCommitFileUpload_Response {
+	mut res := CCloud_ClientCommitFileUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2276,23 +2276,23 @@ pub fn ccloudclientcommitfileuploadresponse_unpack(buf []byte) ?CCloudClientComm
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientcommitfileuploadresponse() CCloudClientCommitFileUploadResponse {
-	return CCloudClientCommitFileUploadResponse{}
+pub fn zzz_vproto_internal_new_ccloud_clientcommitfileupload_response() CCloud_ClientCommitFileUpload_Response {
+	return CCloud_ClientCommitFileUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientcommitfileuploadresponse(o CCloudClientCommitFileUploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientcommitfileupload_response(o CCloud_ClientCommitFileUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientcommitfileuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientCommitFileUploadResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientcommitfileupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientCommitFileUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientcommitfileuploadresponse_unpack(v)?
+	mut unpacked := ccloud_clientcommitfileupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientFileDownloadRequest {
+pub struct CCloud_ClientFileDownload_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2304,7 +2304,7 @@ pub mut:
 	has_realm      bool
 }
 
-pub fn (o &CCloudClientFileDownloadRequest) pack() []byte {
+pub fn (o &CCloud_ClientFileDownload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -2318,8 +2318,8 @@ pub fn (o &CCloudClientFileDownloadRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientfiledownloadrequest_unpack(buf []byte) ?CCloudClientFileDownloadRequest {
-	mut res := CCloudClientFileDownloadRequest{}
+pub fn ccloud_clientfiledownload_request_unpack(buf []byte) ?CCloud_ClientFileDownload_Request {
+	mut res := CCloud_ClientFileDownload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2363,23 +2363,23 @@ pub fn ccloudclientfiledownloadrequest_unpack(buf []byte) ?CCloudClientFileDownl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientfiledownloadrequest() CCloudClientFileDownloadRequest {
-	return CCloudClientFileDownloadRequest{}
+pub fn zzz_vproto_internal_new_ccloud_clientfiledownload_request() CCloud_ClientFileDownload_Request {
+	return CCloud_ClientFileDownload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientfiledownloadrequest(o CCloudClientFileDownloadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientfiledownload_request(o CCloud_ClientFileDownload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientfiledownloadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientFileDownloadRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientfiledownload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientFileDownload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientfiledownloadrequest_unpack(v)?
+	mut unpacked := ccloud_clientfiledownload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientFileDownloadResponseHTtpheaders {
+pub struct CCloud_ClientFileDownload_Response_HTTPHeaders {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2389,7 +2389,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CCloudClientFileDownloadResponseHTtpheaders) pack() []byte {
+pub fn (o &CCloud_ClientFileDownload_Response_HTTPHeaders) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -2400,8 +2400,8 @@ pub fn (o &CCloudClientFileDownloadResponseHTtpheaders) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientfiledownloadresponsehttpheaders_unpack(buf []byte) ?CCloudClientFileDownloadResponseHTtpheaders {
-	mut res := CCloudClientFileDownloadResponseHTtpheaders{}
+pub fn ccloud_clientfiledownload_response_httpheaders_unpack(buf []byte) ?CCloud_ClientFileDownload_Response_HTTPHeaders {
+	mut res := CCloud_ClientFileDownload_Response_HTTPHeaders{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2439,23 +2439,23 @@ pub fn ccloudclientfiledownloadresponsehttpheaders_unpack(buf []byte) ?CCloudCli
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientfiledownloadresponsehttpheaders() CCloudClientFileDownloadResponseHTtpheaders {
-	return CCloudClientFileDownloadResponseHTtpheaders{}
+pub fn zzz_vproto_internal_new_ccloud_clientfiledownload_response_httpheaders() CCloud_ClientFileDownload_Response_HTTPHeaders {
+	return CCloud_ClientFileDownload_Response_HTTPHeaders{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientfiledownloadresponsehttpheaders(o CCloudClientFileDownloadResponseHTtpheaders, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientfiledownload_response_httpheaders(o CCloud_ClientFileDownload_Response_HTTPHeaders, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientfiledownloadresponsehttpheaders(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientFileDownloadResponseHTtpheaders) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientfiledownload_response_httpheaders(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientFileDownload_Response_HTTPHeaders) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientfiledownloadresponsehttpheaders_unpack(v)?
+	mut unpacked := ccloud_clientfiledownload_response_httpheaders_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientFileDownloadResponse {
+pub struct CCloud_ClientFileDownload_Response {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -2477,12 +2477,12 @@ pub mut:
 	has_url_path           bool
 	use_https              bool
 	has_use_https          bool
-	request_headers        []CCloudClientFileDownloadResponseHTtpheaders
+	request_headers        []CCloud_ClientFileDownload_Response_HTTPHeaders
 	encrypted              bool
 	has_encrypted          bool
 }
 
-pub fn (o &CCloudClientFileDownloadResponse) pack() []byte {
+pub fn (o &CCloud_ClientFileDownload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -2513,7 +2513,7 @@ pub fn (o &CCloudClientFileDownloadResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.request_headers {
-		res << zzz_vproto_internal_pack_ccloudclientfiledownloadresponsehttpheaders(x, 10)
+		res << zzz_vproto_internal_pack_ccloud_clientfiledownload_response_httpheaders(x, 10)
 	}
 	if o.has_encrypted {
 		res << vproto.pack_bool_field(o.encrypted, 11)
@@ -2521,8 +2521,8 @@ pub fn (o &CCloudClientFileDownloadResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientfiledownloadresponse_unpack(buf []byte) ?CCloudClientFileDownloadResponse {
-	mut res := CCloudClientFileDownloadResponse{}
+pub fn ccloud_clientfiledownload_response_unpack(buf []byte) ?CCloud_ClientFileDownload_Response {
+	mut res := CCloud_ClientFileDownload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2588,7 +2588,7 @@ pub fn ccloudclientfiledownloadresponse_unpack(buf []byte) ?CCloudClientFileDown
 			}
 			10 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccloudclientfiledownloadresponsehttpheaders(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccloud_clientfiledownload_response_httpheaders(cur_buf,
 					tag_wiretype.wire_type)?
 				res.request_headers << v
 				i = ii
@@ -2615,23 +2615,23 @@ pub fn ccloudclientfiledownloadresponse_unpack(buf []byte) ?CCloudClientFileDown
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientfiledownloadresponse() CCloudClientFileDownloadResponse {
-	return CCloudClientFileDownloadResponse{}
+pub fn zzz_vproto_internal_new_ccloud_clientfiledownload_response() CCloud_ClientFileDownload_Response {
+	return CCloud_ClientFileDownload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientfiledownloadresponse(o CCloudClientFileDownloadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientfiledownload_response(o CCloud_ClientFileDownload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientfiledownloadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientFileDownloadResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientfiledownload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientFileDownload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientfiledownloadresponse_unpack(v)?
+	mut unpacked := ccloud_clientfiledownload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientDeleteFileRequest {
+pub struct CCloud_ClientDeleteFile_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -2643,7 +2643,7 @@ pub mut:
 	has_is_explicit_delete bool
 }
 
-pub fn (o &CCloudClientDeleteFileRequest) pack() []byte {
+pub fn (o &CCloud_ClientDeleteFile_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -2657,8 +2657,8 @@ pub fn (o &CCloudClientDeleteFileRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientdeletefilerequest_unpack(buf []byte) ?CCloudClientDeleteFileRequest {
-	mut res := CCloudClientDeleteFileRequest{}
+pub fn ccloud_clientdeletefile_request_unpack(buf []byte) ?CCloud_ClientDeleteFile_Request {
+	mut res := CCloud_ClientDeleteFile_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2702,55 +2702,55 @@ pub fn ccloudclientdeletefilerequest_unpack(buf []byte) ?CCloudClientDeleteFileR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientdeletefilerequest() CCloudClientDeleteFileRequest {
-	return CCloudClientDeleteFileRequest{}
+pub fn zzz_vproto_internal_new_ccloud_clientdeletefile_request() CCloud_ClientDeleteFile_Request {
+	return CCloud_ClientDeleteFile_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientdeletefilerequest(o CCloudClientDeleteFileRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientdeletefile_request(o CCloud_ClientDeleteFile_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientdeletefilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientDeleteFileRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientdeletefile_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientDeleteFile_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientdeletefilerequest_unpack(v)?
+	mut unpacked := ccloud_clientdeletefile_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientDeleteFileResponse {
+pub struct CCloud_ClientDeleteFile_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CCloudClientDeleteFileResponse) pack() []byte {
+pub fn (o &CCloud_ClientDeleteFile_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn ccloudclientdeletefileresponse_unpack(buf []byte) ?CCloudClientDeleteFileResponse {
-	res := CCloudClientDeleteFileResponse{}
+pub fn ccloud_clientdeletefile_response_unpack(buf []byte) ?CCloud_ClientDeleteFile_Response {
+	res := CCloud_ClientDeleteFile_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientdeletefileresponse() CCloudClientDeleteFileResponse {
-	return CCloudClientDeleteFileResponse{}
+pub fn zzz_vproto_internal_new_ccloud_clientdeletefile_response() CCloud_ClientDeleteFile_Response {
+	return CCloud_ClientDeleteFile_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientdeletefileresponse(o CCloudClientDeleteFileResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientdeletefile_response(o CCloud_ClientDeleteFile_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientdeletefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientDeleteFileResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientdeletefile_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientDeleteFile_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientdeletefileresponse_unpack(v)?
+	mut unpacked := ccloud_clientdeletefile_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudClientConflictResolutionNotification {
+pub struct CCloud_ClientConflictResolution_Notification {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -2760,7 +2760,7 @@ pub mut:
 	has_chose_local_files bool
 }
 
-pub fn (o &CCloudClientConflictResolutionNotification) pack() []byte {
+pub fn (o &CCloud_ClientConflictResolution_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -2771,8 +2771,8 @@ pub fn (o &CCloudClientConflictResolutionNotification) pack() []byte {
 	return res
 }
 
-pub fn ccloudclientconflictresolutionnotification_unpack(buf []byte) ?CCloudClientConflictResolutionNotification {
-	mut res := CCloudClientConflictResolutionNotification{}
+pub fn ccloud_clientconflictresolution_notification_unpack(buf []byte) ?CCloud_ClientConflictResolution_Notification {
+	mut res := CCloud_ClientConflictResolution_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2810,55 +2810,55 @@ pub fn ccloudclientconflictresolutionnotification_unpack(buf []byte) ?CCloudClie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudclientconflictresolutionnotification() CCloudClientConflictResolutionNotification {
-	return CCloudClientConflictResolutionNotification{}
+pub fn zzz_vproto_internal_new_ccloud_clientconflictresolution_notification() CCloud_ClientConflictResolution_Notification {
+	return CCloud_ClientConflictResolution_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudclientconflictresolutionnotification(o CCloudClientConflictResolutionNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_clientconflictresolution_notification(o CCloud_ClientConflictResolution_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudclientconflictresolutionnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudClientConflictResolutionNotification) {
+pub fn zzz_vproto_internal_unpack_ccloud_clientconflictresolution_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_ClientConflictResolution_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudclientconflictresolutionnotification_unpack(v)?
+	mut unpacked := ccloud_clientconflictresolution_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudEnumerateUserAppsRequest {
+pub struct CCloud_EnumerateUserApps_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CCloudEnumerateUserAppsRequest) pack() []byte {
+pub fn (o &CCloud_EnumerateUserApps_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn ccloudenumerateuserappsrequest_unpack(buf []byte) ?CCloudEnumerateUserAppsRequest {
-	res := CCloudEnumerateUserAppsRequest{}
+pub fn ccloud_enumerateuserapps_request_unpack(buf []byte) ?CCloud_EnumerateUserApps_Request {
+	res := CCloud_EnumerateUserApps_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudenumerateuserappsrequest() CCloudEnumerateUserAppsRequest {
-	return CCloudEnumerateUserAppsRequest{}
+pub fn zzz_vproto_internal_new_ccloud_enumerateuserapps_request() CCloud_EnumerateUserApps_Request {
+	return CCloud_EnumerateUserApps_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudenumerateuserappsrequest(o CCloudEnumerateUserAppsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_enumerateuserapps_request(o CCloud_EnumerateUserApps_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudenumerateuserappsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudEnumerateUserAppsRequest) {
+pub fn zzz_vproto_internal_unpack_ccloud_enumerateuserapps_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_EnumerateUserApps_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudenumerateuserappsrequest_unpack(v)?
+	mut unpacked := ccloud_enumerateuserapps_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudEnumerateUserAppsResponseApps {
+pub struct CCloud_EnumerateUserApps_Response_Apps {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2870,7 +2870,7 @@ pub mut:
 	has_totalsize  bool
 }
 
-pub fn (o &CCloudEnumerateUserAppsResponseApps) pack() []byte {
+pub fn (o &CCloud_EnumerateUserApps_Response_Apps) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -2884,8 +2884,8 @@ pub fn (o &CCloudEnumerateUserAppsResponseApps) pack() []byte {
 	return res
 }
 
-pub fn ccloudenumerateuserappsresponseapps_unpack(buf []byte) ?CCloudEnumerateUserAppsResponseApps {
-	mut res := CCloudEnumerateUserAppsResponseApps{}
+pub fn ccloud_enumerateuserapps_response_apps_unpack(buf []byte) ?CCloud_EnumerateUserApps_Response_Apps {
+	mut res := CCloud_EnumerateUserApps_Response_Apps{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2929,40 +2929,40 @@ pub fn ccloudenumerateuserappsresponseapps_unpack(buf []byte) ?CCloudEnumerateUs
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudenumerateuserappsresponseapps() CCloudEnumerateUserAppsResponseApps {
-	return CCloudEnumerateUserAppsResponseApps{}
+pub fn zzz_vproto_internal_new_ccloud_enumerateuserapps_response_apps() CCloud_EnumerateUserApps_Response_Apps {
+	return CCloud_EnumerateUserApps_Response_Apps{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudenumerateuserappsresponseapps(o CCloudEnumerateUserAppsResponseApps, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_enumerateuserapps_response_apps(o CCloud_EnumerateUserApps_Response_Apps, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudenumerateuserappsresponseapps(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudEnumerateUserAppsResponseApps) {
+pub fn zzz_vproto_internal_unpack_ccloud_enumerateuserapps_response_apps(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_EnumerateUserApps_Response_Apps) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudenumerateuserappsresponseapps_unpack(v)?
+	mut unpacked := ccloud_enumerateuserapps_response_apps_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudEnumerateUserAppsResponse {
+pub struct CCloud_EnumerateUserApps_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	apps           []CCloudEnumerateUserAppsResponseApps
+	apps           []CCloud_EnumerateUserApps_Response_Apps
 }
 
-pub fn (o &CCloudEnumerateUserAppsResponse) pack() []byte {
+pub fn (o &CCloud_EnumerateUserApps_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_ccloudenumerateuserappsresponseapps(x, 1)
+		res << zzz_vproto_internal_pack_ccloud_enumerateuserapps_response_apps(x, 1)
 	}
 	return res
 }
 
-pub fn ccloudenumerateuserappsresponse_unpack(buf []byte) ?CCloudEnumerateUserAppsResponse {
-	mut res := CCloudEnumerateUserAppsResponse{}
+pub fn ccloud_enumerateuserapps_response_unpack(buf []byte) ?CCloud_EnumerateUserApps_Response {
+	mut res := CCloud_EnumerateUserApps_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2974,7 +2974,7 @@ pub fn ccloudenumerateuserappsresponse_unpack(buf []byte) ?CCloudEnumerateUserAp
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccloudenumerateuserappsresponseapps(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccloud_enumerateuserapps_response_apps(cur_buf,
 					tag_wiretype.wire_type)?
 				res.apps << v
 				i = ii
@@ -2995,18 +2995,18 @@ pub fn ccloudenumerateuserappsresponse_unpack(buf []byte) ?CCloudEnumerateUserAp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudenumerateuserappsresponse() CCloudEnumerateUserAppsResponse {
-	return CCloudEnumerateUserAppsResponse{}
+pub fn zzz_vproto_internal_new_ccloud_enumerateuserapps_response() CCloud_EnumerateUserApps_Response {
+	return CCloud_EnumerateUserApps_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudenumerateuserappsresponse(o CCloudEnumerateUserAppsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloud_enumerateuserapps_response(o CCloud_EnumerateUserApps_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudenumerateuserappsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudEnumerateUserAppsResponse) {
+pub fn zzz_vproto_internal_unpack_ccloud_enumerateuserapps_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloud_EnumerateUserApps_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudenumerateuserappsresponse_unpack(v)?
+	mut unpacked := ccloud_enumerateuserapps_response_unpack(v)?
 	return i, unpacked
 }

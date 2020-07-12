@@ -16,33 +16,77 @@ fn zzz_vproto_internal_pack_esteamnetworkingsocketscipher(e ESteamNetworkingSock
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_esteamnetworkingsocketscipher_packed(e []ESteamNetworkingSocketsCipher, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_esteamnetworkingsocketscipher(buf []byte, tag_wiretype vproto.WireType) ?(int, ESteamNetworkingSocketsCipher) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ESteamNetworkingSocketsCipher(v)
 }
 
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_esteamnetworkingsocketscipher_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ESteamNetworkingSocketsCipher) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
 [_allow_multiple_values]
-enum CMsgSteamDatagramSessionCryptInfoEKeyType {
+enum CMsgSteamDatagramSessionCryptInfo_EKeyType {
 	invalid = 0
 	curve25519 = 1
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfoekeytype(e CMsgSteamDatagramSessionCryptInfoEKeyType, num u32) []byte {
+fn zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfo_ekeytype(e CMsgSteamDatagramSessionCryptInfo_EKeyType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfoekeytype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramSessionCryptInfoEKeyType) {
+fn zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfo_ekeytype_packed(e []CMsgSteamDatagramSessionCryptInfo_EKeyType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfo_ekeytype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramSessionCryptInfo_EKeyType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, CMsgSteamDatagramSessionCryptInfoEKeyType(v)
+	return i, CMsgSteamDatagramSessionCryptInfo_EKeyType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfo_ekeytype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramSessionCryptInfo_EKeyType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct CMsgSteamDatagramSessionCryptInfo {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	key_type             CMsgSteamDatagramSessionCryptInfoEKeyType
+	key_type             CMsgSteamDatagramSessionCryptInfo_EKeyType
 	has_key_type         bool
 	key_data             []byte
 	has_key_data         bool
@@ -56,7 +100,7 @@ pub mut:
 pub fn (o &CMsgSteamDatagramSessionCryptInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_key_type {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfoekeytype(o.key_type, 1)
+		res << zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfo_ekeytype(o.key_type, 1)
 	}
 	if o.has_key_data {
 		res << vproto.pack_bytes_field(o.key_data, 2)
@@ -87,7 +131,7 @@ pub fn cmsgsteamdatagramsessioncryptinfo_unpack(buf []byte) ?CMsgSteamDatagramSe
 		match tag_wiretype.tag {
 			1 {
 				res.has_key_type = true
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfoekeytype(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfo_ekeytype(cur_buf,
 					tag_wiretype.wire_type)?
 				res.key_type = v
 				i = ii
@@ -1356,7 +1400,7 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(buf []byte,
 	return i, unpacked
 }
 
-pub struct CMsgICerendezvousAuth {
+pub struct CMsgICERendezvous_Auth {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1364,7 +1408,7 @@ pub mut:
 	has_pwd_frag   bool
 }
 
-pub fn (o &CMsgICerendezvousAuth) pack() []byte {
+pub fn (o &CMsgICERendezvous_Auth) pack() []byte {
 	mut res := []byte{}
 	if o.has_pwd_frag {
 		res << vproto.pack_string_field(o.pwd_frag, 1)
@@ -1372,8 +1416,8 @@ pub fn (o &CMsgICerendezvousAuth) pack() []byte {
 	return res
 }
 
-pub fn cmsgicerendezvousauth_unpack(buf []byte) ?CMsgICerendezvousAuth {
-	mut res := CMsgICerendezvousAuth{}
+pub fn cmsgicerendezvous_auth_unpack(buf []byte) ?CMsgICERendezvous_Auth {
+	mut res := CMsgICERendezvous_Auth{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1405,23 +1449,23 @@ pub fn cmsgicerendezvousauth_unpack(buf []byte) ?CMsgICerendezvousAuth {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgicerendezvousauth() CMsgICerendezvousAuth {
-	return CMsgICerendezvousAuth{}
+pub fn zzz_vproto_internal_new_cmsgicerendezvous_auth() CMsgICERendezvous_Auth {
+	return CMsgICERendezvous_Auth{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgicerendezvousauth(o CMsgICerendezvousAuth, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgicerendezvous_auth(o CMsgICERendezvous_Auth, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgicerendezvousauth(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgICerendezvousAuth) {
+pub fn zzz_vproto_internal_unpack_cmsgicerendezvous_auth(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgICERendezvous_Auth) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgicerendezvousauth_unpack(v)?
+	mut unpacked := cmsgicerendezvous_auth_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgICerendezvousCandidate {
+pub struct CMsgICERendezvous_Candidate {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1429,7 +1473,7 @@ pub mut:
 	has_candidate  bool
 }
 
-pub fn (o &CMsgICerendezvousCandidate) pack() []byte {
+pub fn (o &CMsgICERendezvous_Candidate) pack() []byte {
 	mut res := []byte{}
 	if o.has_candidate {
 		res << vproto.pack_string_field(o.candidate, 3)
@@ -1437,8 +1481,8 @@ pub fn (o &CMsgICerendezvousCandidate) pack() []byte {
 	return res
 }
 
-pub fn cmsgicerendezvouscandidate_unpack(buf []byte) ?CMsgICerendezvousCandidate {
-	mut res := CMsgICerendezvousCandidate{}
+pub fn cmsgicerendezvous_candidate_unpack(buf []byte) ?CMsgICERendezvous_Candidate {
+	mut res := CMsgICERendezvous_Candidate{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1470,45 +1514,45 @@ pub fn cmsgicerendezvouscandidate_unpack(buf []byte) ?CMsgICerendezvousCandidate
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgicerendezvouscandidate() CMsgICerendezvousCandidate {
-	return CMsgICerendezvousCandidate{}
+pub fn zzz_vproto_internal_new_cmsgicerendezvous_candidate() CMsgICERendezvous_Candidate {
+	return CMsgICERendezvous_Candidate{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgicerendezvouscandidate(o CMsgICerendezvousCandidate, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgicerendezvous_candidate(o CMsgICERendezvous_Candidate, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgicerendezvouscandidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgICerendezvousCandidate) {
+pub fn zzz_vproto_internal_unpack_cmsgicerendezvous_candidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgICERendezvous_Candidate) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgicerendezvouscandidate_unpack(v)?
+	mut unpacked := cmsgicerendezvous_candidate_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgICerendezvous {
+pub struct CMsgICERendezvous {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
-	auth              CMsgICerendezvousAuth
+	auth              CMsgICERendezvous_Auth
 	has_auth          bool
-	add_candidate     CMsgICerendezvousCandidate
+	add_candidate     CMsgICERendezvous_Candidate
 	has_add_candidate bool
 }
 
-pub fn (o &CMsgICerendezvous) pack() []byte {
+pub fn (o &CMsgICERendezvous) pack() []byte {
 	mut res := []byte{}
 	if o.has_auth {
-		res << zzz_vproto_internal_pack_cmsgicerendezvousauth(o.auth, 2)
+		res << zzz_vproto_internal_pack_cmsgicerendezvous_auth(o.auth, 2)
 	}
 	if o.has_add_candidate {
-		res << zzz_vproto_internal_pack_cmsgicerendezvouscandidate(o.add_candidate, 1)
+		res << zzz_vproto_internal_pack_cmsgicerendezvous_candidate(o.add_candidate, 1)
 	}
 	return res
 }
 
-pub fn cmsgicerendezvous_unpack(buf []byte) ?CMsgICerendezvous {
-	mut res := CMsgICerendezvous{}
+pub fn cmsgicerendezvous_unpack(buf []byte) ?CMsgICERendezvous {
+	mut res := CMsgICERendezvous{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1520,13 +1564,13 @@ pub fn cmsgicerendezvous_unpack(buf []byte) ?CMsgICerendezvous {
 		match tag_wiretype.tag {
 			2 {
 				res.has_auth = true
-				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvousauth(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvous_auth(cur_buf, tag_wiretype.wire_type)?
 				res.auth = v
 				i = ii
 			}
 			1 {
 				res.has_add_candidate = true
-				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvouscandidate(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvous_candidate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.add_candidate = v
 				i = ii
@@ -1547,23 +1591,23 @@ pub fn cmsgicerendezvous_unpack(buf []byte) ?CMsgICerendezvous {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgicerendezvous() CMsgICerendezvous {
-	return CMsgICerendezvous{}
+pub fn zzz_vproto_internal_new_cmsgicerendezvous() CMsgICERendezvous {
+	return CMsgICERendezvous{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgicerendezvous(o CMsgICerendezvous, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgicerendezvous(o CMsgICERendezvous, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgicerendezvous(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgICerendezvous) {
+pub fn zzz_vproto_internal_unpack_cmsgicerendezvous(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgICERendezvous) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgicerendezvous_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamNetworkingP2PRendezvousConnectRequest {
+pub struct CMsgSteamNetworkingP2PRendezvous_ConnectRequest {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1575,7 +1619,7 @@ pub mut:
 	has_virtual_port bool
 }
 
-pub fn (o &CMsgSteamNetworkingP2PRendezvousConnectRequest) pack() []byte {
+pub fn (o &CMsgSteamNetworkingP2PRendezvous_ConnectRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_crypt {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfosigned(o.crypt, 6)
@@ -1589,8 +1633,8 @@ pub fn (o &CMsgSteamNetworkingP2PRendezvousConnectRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamnetworkingp2prendezvousconnectrequest_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvousConnectRequest {
-	mut res := CMsgSteamNetworkingP2PRendezvousConnectRequest{}
+pub fn cmsgsteamnetworkingp2prendezvous_connectrequest_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvous_ConnectRequest {
+	mut res := CMsgSteamNetworkingP2PRendezvous_ConnectRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1636,23 +1680,23 @@ pub fn cmsgsteamnetworkingp2prendezvousconnectrequest_unpack(buf []byte) ?CMsgSt
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvousconnectrequest() CMsgSteamNetworkingP2PRendezvousConnectRequest {
-	return CMsgSteamNetworkingP2PRendezvousConnectRequest{}
+pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvous_connectrequest() CMsgSteamNetworkingP2PRendezvous_ConnectRequest {
+	return CMsgSteamNetworkingP2PRendezvous_ConnectRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousconnectrequest(o CMsgSteamNetworkingP2PRendezvousConnectRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_connectrequest(o CMsgSteamNetworkingP2PRendezvous_ConnectRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousconnectrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvousConnectRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvous_ConnectRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamnetworkingp2prendezvousconnectrequest_unpack(v)?
+	mut unpacked := cmsgsteamnetworkingp2prendezvous_connectrequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamNetworkingP2PRendezvousConnectOK {
+pub struct CMsgSteamNetworkingP2PRendezvous_ConnectOK {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1662,7 +1706,7 @@ pub mut:
 	has_cert       bool
 }
 
-pub fn (o &CMsgSteamNetworkingP2PRendezvousConnectOK) pack() []byte {
+pub fn (o &CMsgSteamNetworkingP2PRendezvous_ConnectOK) pack() []byte {
 	mut res := []byte{}
 	if o.has_crypt {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfosigned(o.crypt, 5)
@@ -1673,8 +1717,8 @@ pub fn (o &CMsgSteamNetworkingP2PRendezvousConnectOK) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamnetworkingp2prendezvousconnectok_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvousConnectOK {
-	mut res := CMsgSteamNetworkingP2PRendezvousConnectOK{}
+pub fn cmsgsteamnetworkingp2prendezvous_connectok_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvous_ConnectOK {
+	mut res := CMsgSteamNetworkingP2PRendezvous_ConnectOK{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1714,23 +1758,23 @@ pub fn cmsgsteamnetworkingp2prendezvousconnectok_unpack(buf []byte) ?CMsgSteamNe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvousconnectok() CMsgSteamNetworkingP2PRendezvousConnectOK {
-	return CMsgSteamNetworkingP2PRendezvousConnectOK{}
+pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvous_connectok() CMsgSteamNetworkingP2PRendezvous_ConnectOK {
+	return CMsgSteamNetworkingP2PRendezvous_ConnectOK{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousconnectok(o CMsgSteamNetworkingP2PRendezvousConnectOK, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_connectok(o CMsgSteamNetworkingP2PRendezvous_ConnectOK, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousconnectok(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvousConnectOK) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectok(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvous_ConnectOK) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamnetworkingp2prendezvousconnectok_unpack(v)?
+	mut unpacked := cmsgsteamnetworkingp2prendezvous_connectok_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamNetworkingP2PRendezvousConnectionClosed {
+pub struct CMsgSteamNetworkingP2PRendezvous_ConnectionClosed {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -1740,7 +1784,7 @@ pub mut:
 	has_reason_code bool
 }
 
-pub fn (o &CMsgSteamNetworkingP2PRendezvousConnectionClosed) pack() []byte {
+pub fn (o &CMsgSteamNetworkingP2PRendezvous_ConnectionClosed) pack() []byte {
 	mut res := []byte{}
 	if o.has_debug {
 		res << vproto.pack_string_field(o.debug, 5)
@@ -1751,8 +1795,8 @@ pub fn (o &CMsgSteamNetworkingP2PRendezvousConnectionClosed) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamnetworkingp2prendezvousconnectionclosed_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvousConnectionClosed {
-	mut res := CMsgSteamNetworkingP2PRendezvousConnectionClosed{}
+pub fn cmsgsteamnetworkingp2prendezvous_connectionclosed_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvous_ConnectionClosed {
+	mut res := CMsgSteamNetworkingP2PRendezvous_ConnectionClosed{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1790,31 +1834,31 @@ pub fn cmsgsteamnetworkingp2prendezvousconnectionclosed_unpack(buf []byte) ?CMsg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvousconnectionclosed() CMsgSteamNetworkingP2PRendezvousConnectionClosed {
-	return CMsgSteamNetworkingP2PRendezvousConnectionClosed{}
+pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvous_connectionclosed() CMsgSteamNetworkingP2PRendezvous_ConnectionClosed {
+	return CMsgSteamNetworkingP2PRendezvous_ConnectionClosed{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousconnectionclosed(o CMsgSteamNetworkingP2PRendezvousConnectionClosed, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_connectionclosed(o CMsgSteamNetworkingP2PRendezvous_ConnectionClosed, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousconnectionclosed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvousConnectionClosed) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectionclosed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvous_ConnectionClosed) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamnetworkingp2prendezvousconnectionclosed_unpack(v)?
+	mut unpacked := cmsgsteamnetworkingp2prendezvous_connectionclosed_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamNetworkingP2PRendezvousReliableMessage {
+pub struct CMsgSteamNetworkingP2PRendezvous_ReliableMessage {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	ice            CMsgICerendezvous
+	ice            CMsgICERendezvous
 	has_ice        bool
 }
 
-pub fn (o &CMsgSteamNetworkingP2PRendezvousReliableMessage) pack() []byte {
+pub fn (o &CMsgSteamNetworkingP2PRendezvous_ReliableMessage) pack() []byte {
 	mut res := []byte{}
 	if o.has_ice {
 		res << zzz_vproto_internal_pack_cmsgicerendezvous(o.ice, 1)
@@ -1822,8 +1866,8 @@ pub fn (o &CMsgSteamNetworkingP2PRendezvousReliableMessage) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamnetworkingp2prendezvousreliablemessage_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvousReliableMessage {
-	mut res := CMsgSteamNetworkingP2PRendezvousReliableMessage{}
+pub fn cmsgsteamnetworkingp2prendezvous_reliablemessage_unpack(buf []byte) ?CMsgSteamNetworkingP2PRendezvous_ReliableMessage {
+	mut res := CMsgSteamNetworkingP2PRendezvous_ReliableMessage{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1855,19 +1899,19 @@ pub fn cmsgsteamnetworkingp2prendezvousreliablemessage_unpack(buf []byte) ?CMsgS
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvousreliablemessage() CMsgSteamNetworkingP2PRendezvousReliableMessage {
-	return CMsgSteamNetworkingP2PRendezvousReliableMessage{}
+pub fn zzz_vproto_internal_new_cmsgsteamnetworkingp2prendezvous_reliablemessage() CMsgSteamNetworkingP2PRendezvous_ReliableMessage {
+	return CMsgSteamNetworkingP2PRendezvous_ReliableMessage{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousreliablemessage(o CMsgSteamNetworkingP2PRendezvousReliableMessage, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_reliablemessage(o CMsgSteamNetworkingP2PRendezvous_ReliableMessage, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousreliablemessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvousReliableMessage) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_reliablemessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PRendezvous_ReliableMessage) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamnetworkingp2prendezvousreliablemessage_unpack(v)?
+	mut unpacked := cmsgsteamnetworkingp2prendezvous_reliablemessage_unpack(v)?
 	return i, unpacked
 }
 
@@ -1889,17 +1933,17 @@ pub mut:
 	has_ack_peer_routes_revision bool
 	ice_enabled                  bool
 	has_ice_enabled              bool
-	connect_request              CMsgSteamNetworkingP2PRendezvousConnectRequest
+	connect_request              CMsgSteamNetworkingP2PRendezvous_ConnectRequest
 	has_connect_request          bool
-	connect_ok                   CMsgSteamNetworkingP2PRendezvousConnectOK
+	connect_ok                   CMsgSteamNetworkingP2PRendezvous_ConnectOK
 	has_connect_ok               bool
-	connection_closed            CMsgSteamNetworkingP2PRendezvousConnectionClosed
+	connection_closed            CMsgSteamNetworkingP2PRendezvous_ConnectionClosed
 	has_connection_closed        bool
 	ack_reliable_msg             u32
 	has_ack_reliable_msg         bool
 	first_reliable_msg           u32
 	has_first_reliable_msg       bool
-	reliable_messages            []CMsgSteamNetworkingP2PRendezvousReliableMessage
+	reliable_messages            []CMsgSteamNetworkingP2PRendezvous_ReliableMessage
 }
 
 pub fn (o &CMsgSteamNetworkingP2PRendezvous) pack() []byte {
@@ -1927,14 +1971,14 @@ pub fn (o &CMsgSteamNetworkingP2PRendezvous) pack() []byte {
 	}
 	if o.has_connect_request {
 		res <<
-			zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousconnectrequest(o.connect_request, 4)
+			zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_connectrequest(o.connect_request, 4)
 	}
 	if o.has_connect_ok {
-		res << zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousconnectok(o.connect_ok, 5)
+		res << zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_connectok(o.connect_ok, 5)
 	}
 	if o.has_connection_closed {
 		res <<
-			zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousconnectionclosed(o.connection_closed, 6)
+			zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_connectionclosed(o.connection_closed, 6)
 	}
 	if o.has_ack_reliable_msg {
 		res << vproto.pack_uint32_field(o.ack_reliable_msg, 11)
@@ -1944,7 +1988,7 @@ pub fn (o &CMsgSteamNetworkingP2PRendezvous) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.reliable_messages {
-		res << zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvousreliablemessage(x, 13)
+		res << zzz_vproto_internal_pack_cmsgsteamnetworkingp2prendezvous_reliablemessage(x, 13)
 	}
 	return res
 }
@@ -2004,21 +2048,21 @@ pub fn cmsgsteamnetworkingp2prendezvous_unpack(buf []byte) ?CMsgSteamNetworkingP
 			}
 			4 {
 				res.has_connect_request = true
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousconnectrequest(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectrequest(cur_buf,
 					tag_wiretype.wire_type)?
 				res.connect_request = v
 				i = ii
 			}
 			5 {
 				res.has_connect_ok = true
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousconnectok(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectok(cur_buf,
 					tag_wiretype.wire_type)?
 				res.connect_ok = v
 				i = ii
 			}
 			6 {
 				res.has_connection_closed = true
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousconnectionclosed(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectionclosed(cur_buf,
 					tag_wiretype.wire_type)?
 				res.connection_closed = v
 				i = ii
@@ -2037,7 +2081,7 @@ pub fn cmsgsteamnetworkingp2prendezvous_unpack(buf []byte) ?CMsgSteamNetworkingP
 			}
 			13 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvousreliablemessage(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_reliablemessage(cur_buf,
 					tag_wiretype.wire_type)?
 				res.reliable_messages << v
 				i = ii
@@ -2074,7 +2118,7 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous(buf []byte, t
 	return i, unpacked
 }
 
-pub struct CMsgSteamNetworkingICesessionSummary {
+pub struct CMsgSteamNetworkingICESessionSummary {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -2096,7 +2140,7 @@ pub mut:
 	has_selected_seconds       bool
 }
 
-pub fn (o &CMsgSteamNetworkingICesessionSummary) pack() []byte {
+pub fn (o &CMsgSteamNetworkingICESessionSummary) pack() []byte {
 	mut res := []byte{}
 	if o.has_failure_reason_code {
 		res << vproto.pack_uint32_field(o.failure_reason_code, 7)
@@ -2125,8 +2169,8 @@ pub fn (o &CMsgSteamNetworkingICesessionSummary) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamnetworkingicesessionsummary_unpack(buf []byte) ?CMsgSteamNetworkingICesessionSummary {
-	mut res := CMsgSteamNetworkingICesessionSummary{}
+pub fn cmsgsteamnetworkingicesessionsummary_unpack(buf []byte) ?CMsgSteamNetworkingICESessionSummary {
+	mut res := CMsgSteamNetworkingICESessionSummary{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2200,17 +2244,17 @@ pub fn cmsgsteamnetworkingicesessionsummary_unpack(buf []byte) ?CMsgSteamNetwork
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamnetworkingicesessionsummary() CMsgSteamNetworkingICesessionSummary {
-	return CMsgSteamNetworkingICesessionSummary{}
+pub fn zzz_vproto_internal_new_cmsgsteamnetworkingicesessionsummary() CMsgSteamNetworkingICESessionSummary {
+	return CMsgSteamNetworkingICESessionSummary{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingicesessionsummary(o CMsgSteamNetworkingICesessionSummary, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingicesessionsummary(o CMsgSteamNetworkingICESessionSummary, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingicesessionsummary(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingICesessionSummary) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingicesessionsummary(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingICESessionSummary) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamnetworkingicesessionsummary_unpack(v)?
 	return i, unpacked

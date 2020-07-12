@@ -4,7 +4,7 @@ module proto
 import emily33901.vproto
 
 [_allow_multiple_values]
-enum EJsregisterMethodType {
+enum EJSRegisterMethodType {
 	k_ejsregistermethodtype_invalid = 0
 	k_ejsregistermethodtype_function = 1
 	k_ejsregistermethodtype_callback = 2
@@ -12,14 +12,36 @@ enum EJsregisterMethodType {
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_ejsregistermethodtype(e EJsregisterMethodType, num u32) []byte {
+fn zzz_vproto_internal_pack_ejsregistermethodtype(e EJSRegisterMethodType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_ejsregistermethodtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EJsregisterMethodType) {
+fn zzz_vproto_internal_pack_ejsregistermethodtype_packed(e []EJSRegisterMethodType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_ejsregistermethodtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EJSRegisterMethodType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, EJsregisterMethodType(v)
+	return i, EJSRegisterMethodType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_ejsregistermethodtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EJSRegisterMethodType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct CMsgKeyUp {
@@ -1275,7 +1297,7 @@ pub fn zzz_vproto_internal_unpack_cmsgbrowserremove(buf []byte, tag_wiretype vpr
 	return i, unpacked
 }
 
-pub struct CMsgSetLocalFileRequestMappingAdditionalRoute {
+pub struct CMsgSetLocalFileRequestMapping_AdditionalRoute {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -1287,7 +1309,7 @@ pub mut:
 	has_allowed_extensions bool
 }
 
-pub fn (o &CMsgSetLocalFileRequestMappingAdditionalRoute) pack() []byte {
+pub fn (o &CMsgSetLocalFileRequestMapping_AdditionalRoute) pack() []byte {
 	mut res := []byte{}
 	if o.has_relative_url {
 		res << vproto.pack_string_field(o.relative_url, 1)
@@ -1301,8 +1323,8 @@ pub fn (o &CMsgSetLocalFileRequestMappingAdditionalRoute) pack() []byte {
 	return res
 }
 
-pub fn cmsgsetlocalfilerequestmappingadditionalroute_unpack(buf []byte) ?CMsgSetLocalFileRequestMappingAdditionalRoute {
-	mut res := CMsgSetLocalFileRequestMappingAdditionalRoute{}
+pub fn cmsgsetlocalfilerequestmapping_additionalroute_unpack(buf []byte) ?CMsgSetLocalFileRequestMapping_AdditionalRoute {
+	mut res := CMsgSetLocalFileRequestMapping_AdditionalRoute{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1346,19 +1368,19 @@ pub fn cmsgsetlocalfilerequestmappingadditionalroute_unpack(buf []byte) ?CMsgSet
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsetlocalfilerequestmappingadditionalroute() CMsgSetLocalFileRequestMappingAdditionalRoute {
-	return CMsgSetLocalFileRequestMappingAdditionalRoute{}
+pub fn zzz_vproto_internal_new_cmsgsetlocalfilerequestmapping_additionalroute() CMsgSetLocalFileRequestMapping_AdditionalRoute {
+	return CMsgSetLocalFileRequestMapping_AdditionalRoute{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsetlocalfilerequestmappingadditionalroute(o CMsgSetLocalFileRequestMappingAdditionalRoute, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsetlocalfilerequestmapping_additionalroute(o CMsgSetLocalFileRequestMapping_AdditionalRoute, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmappingadditionalroute(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetLocalFileRequestMappingAdditionalRoute) {
+pub fn zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmapping_additionalroute(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetLocalFileRequestMapping_AdditionalRoute) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetlocalfilerequestmappingadditionalroute_unpack(v)?
+	mut unpacked := cmsgsetlocalfilerequestmapping_additionalroute_unpack(v)?
 	return i, unpacked
 }
 
@@ -1372,7 +1394,7 @@ pub mut:
 	has_request_url        bool
 	default_local_path     string
 	has_default_local_path bool
-	routes                 []CMsgSetLocalFileRequestMappingAdditionalRoute
+	routes                 []CMsgSetLocalFileRequestMapping_AdditionalRoute
 }
 
 pub fn (o &CMsgSetLocalFileRequestMapping) pack() []byte {
@@ -1388,7 +1410,7 @@ pub fn (o &CMsgSetLocalFileRequestMapping) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.routes {
-		res << zzz_vproto_internal_pack_cmsgsetlocalfilerequestmappingadditionalroute(x, 4)
+		res << zzz_vproto_internal_pack_cmsgsetlocalfilerequestmapping_additionalroute(x, 4)
 	}
 	return res
 }
@@ -1424,7 +1446,7 @@ pub fn cmsgsetlocalfilerequestmapping_unpack(buf []byte) ?CMsgSetLocalFileReques
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmappingadditionalroute(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmapping_additionalroute(cur_buf,
 					tag_wiretype.wire_type)?
 				res.routes << v
 				i = ii
@@ -1995,7 +2017,7 @@ pub fn zzz_vproto_internal_unpack_cmsgbrowserresized(buf []byte, tag_wiretype vp
 	return i, unpacked
 }
 
-pub struct CMsgPostURl {
+pub struct CMsgPostURL {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -2009,7 +2031,7 @@ pub mut:
 	has_pageserial     bool
 }
 
-pub fn (o &CMsgPostURl) pack() []byte {
+pub fn (o &CMsgPostURL) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -2026,8 +2048,8 @@ pub fn (o &CMsgPostURl) pack() []byte {
 	return res
 }
 
-pub fn cmsgposturl_unpack(buf []byte) ?CMsgPostURl {
-	mut res := CMsgPostURl{}
+pub fn cmsgposturl_unpack(buf []byte) ?CMsgPostURL {
+	mut res := CMsgPostURL{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2077,17 +2099,17 @@ pub fn cmsgposturl_unpack(buf []byte) ?CMsgPostURl {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgposturl() CMsgPostURl {
-	return CMsgPostURl{}
+pub fn zzz_vproto_internal_new_cmsgposturl() CMsgPostURL {
+	return CMsgPostURL{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgposturl(o CMsgPostURl, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgposturl(o CMsgPostURL, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgposturl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPostURl) {
+pub fn zzz_vproto_internal_unpack_cmsgposturl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPostURL) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgposturl_unpack(v)?
 	return i, unpacked
@@ -3841,7 +3863,7 @@ pub fn zzz_vproto_internal_unpack_cmsgbrowserready(buf []byte, tag_wiretype vpro
 	return i, unpacked
 }
 
-pub struct CMsgURlchanged {
+pub struct CMsgURLChanged {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -3859,7 +3881,7 @@ pub mut:
 	has_bnewnavigation bool
 }
 
-pub fn (o &CMsgURlchanged) pack() []byte {
+pub fn (o &CMsgURLChanged) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -3882,8 +3904,8 @@ pub fn (o &CMsgURlchanged) pack() []byte {
 	return res
 }
 
-pub fn cmsgurlchanged_unpack(buf []byte) ?CMsgURlchanged {
-	mut res := CMsgURlchanged{}
+pub fn cmsgurlchanged_unpack(buf []byte) ?CMsgURLChanged {
+	mut res := CMsgURLChanged{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3945,23 +3967,23 @@ pub fn cmsgurlchanged_unpack(buf []byte) ?CMsgURlchanged {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgurlchanged() CMsgURlchanged {
-	return CMsgURlchanged{}
+pub fn zzz_vproto_internal_new_cmsgurlchanged() CMsgURLChanged {
+	return CMsgURLChanged{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgurlchanged(o CMsgURlchanged, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgurlchanged(o CMsgURLChanged, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgurlchanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgURlchanged) {
+pub fn zzz_vproto_internal_unpack_cmsgurlchanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgURLChanged) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgurlchanged_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CHtmlheader {
+pub struct CHTMLHeader {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3971,7 +3993,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CHtmlheader) pack() []byte {
+pub fn (o &CHTMLHeader) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_string_field(o.key, 1)
@@ -3982,8 +4004,8 @@ pub fn (o &CHtmlheader) pack() []byte {
 	return res
 }
 
-pub fn chtmlheader_unpack(buf []byte) ?CHtmlheader {
-	mut res := CHtmlheader{}
+pub fn chtmlheader_unpack(buf []byte) ?CHTMLHeader {
+	mut res := CHTMLHeader{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4021,23 +4043,23 @@ pub fn chtmlheader_unpack(buf []byte) ?CHtmlheader {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_chtmlheader() CHtmlheader {
-	return CHtmlheader{}
+pub fn zzz_vproto_internal_new_chtmlheader() CHTMLHeader {
+	return CHTMLHeader{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_chtmlheader(o CHtmlheader, num u32) []byte {
+pub fn zzz_vproto_internal_pack_chtmlheader(o CHTMLHeader, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_chtmlheader(buf []byte, tag_wiretype vproto.WireType) ?(int, CHtmlheader) {
+pub fn zzz_vproto_internal_unpack_chtmlheader(buf []byte, tag_wiretype vproto.WireType) ?(int, CHTMLHeader) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chtmlheader_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CHtmlpageSecurityInfo {
+pub struct CHTMLPageSecurityInfo {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -4057,7 +4079,7 @@ pub mut:
 	has_bisevcert     bool
 }
 
-pub fn (o &CHtmlpageSecurityInfo) pack() []byte {
+pub fn (o &CHTMLPageSecurityInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_bissecure {
 		res << vproto.pack_bool_field(o.bissecure, 1)
@@ -4083,8 +4105,8 @@ pub fn (o &CHtmlpageSecurityInfo) pack() []byte {
 	return res
 }
 
-pub fn chtmlpagesecurityinfo_unpack(buf []byte) ?CHtmlpageSecurityInfo {
-	mut res := CHtmlpageSecurityInfo{}
+pub fn chtmlpagesecurityinfo_unpack(buf []byte) ?CHTMLPageSecurityInfo {
+	mut res := CHTMLPageSecurityInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4152,17 +4174,17 @@ pub fn chtmlpagesecurityinfo_unpack(buf []byte) ?CHtmlpageSecurityInfo {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_chtmlpagesecurityinfo() CHtmlpageSecurityInfo {
-	return CHtmlpageSecurityInfo{}
+pub fn zzz_vproto_internal_new_chtmlpagesecurityinfo() CHTMLPageSecurityInfo {
+	return CHTMLPageSecurityInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_chtmlpagesecurityinfo(o CHtmlpageSecurityInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_chtmlpagesecurityinfo(o CHTMLPageSecurityInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_chtmlpagesecurityinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CHtmlpageSecurityInfo) {
+pub fn zzz_vproto_internal_unpack_chtmlpagesecurityinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CHTMLPageSecurityInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chtmlpagesecurityinfo_unpack(v)?
 	return i, unpacked
@@ -4265,7 +4287,7 @@ pub mut:
 	has_url            bool
 	pagetitle          string
 	has_pagetitle      bool
-	headers            []CHtmlheader
+	headers            []CHTMLHeader
 }
 
 pub fn (o &CMsgLoadedRequest) pack() []byte {
@@ -4361,7 +4383,7 @@ pub mut:
 	has_browser_handle bool
 	url                string
 	has_url            bool
-	security_info      CHtmlpageSecurityInfo
+	security_info      CHTMLPageSecurityInfo
 	has_security_info  bool
 }
 
@@ -4951,7 +4973,7 @@ pub fn zzz_vproto_internal_unpack_cmsgopennewtab(buf []byte, tag_wiretype vproto
 	return i, unpacked
 }
 
-pub struct CMsgPopupHTmlwindow {
+pub struct CMsgPopupHTMLWindow {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -4973,7 +4995,7 @@ pub mut:
 	has_trusted_creator bool
 }
 
-pub fn (o &CMsgPopupHTmlwindow) pack() []byte {
+pub fn (o &CMsgPopupHTMLWindow) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -5002,8 +5024,8 @@ pub fn (o &CMsgPopupHTmlwindow) pack() []byte {
 	return res
 }
 
-pub fn cmsgpopuphtmlwindow_unpack(buf []byte) ?CMsgPopupHTmlwindow {
-	mut res := CMsgPopupHTmlwindow{}
+pub fn cmsgpopuphtmlwindow_unpack(buf []byte) ?CMsgPopupHTMLWindow {
+	mut res := CMsgPopupHTMLWindow{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5077,23 +5099,23 @@ pub fn cmsgpopuphtmlwindow_unpack(buf []byte) ?CMsgPopupHTmlwindow {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgpopuphtmlwindow() CMsgPopupHTmlwindow {
-	return CMsgPopupHTmlwindow{}
+pub fn zzz_vproto_internal_new_cmsgpopuphtmlwindow() CMsgPopupHTMLWindow {
+	return CMsgPopupHTMLWindow{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgpopuphtmlwindow(o CMsgPopupHTmlwindow, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgpopuphtmlwindow(o CMsgPopupHTMLWindow, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgpopuphtmlwindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPopupHTmlwindow) {
+pub fn zzz_vproto_internal_unpack_cmsgpopuphtmlwindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPopupHTMLWindow) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgpopuphtmlwindow_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgPopupHTmlwindowResponse {
+pub struct CMsgPopupHTMLWindowResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -5103,7 +5125,7 @@ pub mut:
 	has_ballow         bool
 }
 
-pub fn (o &CMsgPopupHTmlwindowResponse) pack() []byte {
+pub fn (o &CMsgPopupHTMLWindowResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -5114,8 +5136,8 @@ pub fn (o &CMsgPopupHTmlwindowResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgpopuphtmlwindowresponse_unpack(buf []byte) ?CMsgPopupHTmlwindowResponse {
-	mut res := CMsgPopupHTmlwindowResponse{}
+pub fn cmsgpopuphtmlwindowresponse_unpack(buf []byte) ?CMsgPopupHTMLWindowResponse {
+	mut res := CMsgPopupHTMLWindowResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5153,23 +5175,23 @@ pub fn cmsgpopuphtmlwindowresponse_unpack(buf []byte) ?CMsgPopupHTmlwindowRespon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgpopuphtmlwindowresponse() CMsgPopupHTmlwindowResponse {
-	return CMsgPopupHTmlwindowResponse{}
+pub fn zzz_vproto_internal_new_cmsgpopuphtmlwindowresponse() CMsgPopupHTMLWindowResponse {
+	return CMsgPopupHTMLWindowResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgpopuphtmlwindowresponse(o CMsgPopupHTmlwindowResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgpopuphtmlwindowresponse(o CMsgPopupHTMLWindowResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgpopuphtmlwindowresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPopupHTmlwindowResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgpopuphtmlwindowresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPopupHTMLWindowResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgpopuphtmlwindowresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSetHTmltitle {
+pub struct CMsgSetHTMLTitle {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -5179,7 +5201,7 @@ pub mut:
 	has_title          bool
 }
 
-pub fn (o &CMsgSetHTmltitle) pack() []byte {
+pub fn (o &CMsgSetHTMLTitle) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -5190,8 +5212,8 @@ pub fn (o &CMsgSetHTmltitle) pack() []byte {
 	return res
 }
 
-pub fn cmsgsethtmltitle_unpack(buf []byte) ?CMsgSetHTmltitle {
-	mut res := CMsgSetHTmltitle{}
+pub fn cmsgsethtmltitle_unpack(buf []byte) ?CMsgSetHTMLTitle {
+	mut res := CMsgSetHTMLTitle{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5229,17 +5251,17 @@ pub fn cmsgsethtmltitle_unpack(buf []byte) ?CMsgSetHTmltitle {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsethtmltitle() CMsgSetHTmltitle {
-	return CMsgSetHTmltitle{}
+pub fn zzz_vproto_internal_new_cmsgsethtmltitle() CMsgSetHTMLTitle {
+	return CMsgSetHTMLTitle{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsethtmltitle(o CMsgSetHTmltitle, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsethtmltitle(o CMsgSetHTMLTitle, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsethtmltitle(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetHTmltitle) {
+pub fn zzz_vproto_internal_unpack_cmsgsethtmltitle(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetHTMLTitle) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsethtmltitle_unpack(v)?
 	return i, unpacked
@@ -7389,7 +7411,7 @@ pub fn zzz_vproto_internal_unpack_cmsgscalepagetovalue(buf []byte, tag_wiretype 
 	return i, unpacked
 }
 
-pub struct CMsgForcePopupsToDirectHWnd {
+pub struct CMsgForcePopupsToDirectHWND {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -7399,7 +7421,7 @@ pub mut:
 	has_force_direct_hwnd_popups bool
 }
 
-pub fn (o &CMsgForcePopupsToDirectHWnd) pack() []byte {
+pub fn (o &CMsgForcePopupsToDirectHWND) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -7410,8 +7432,8 @@ pub fn (o &CMsgForcePopupsToDirectHWnd) pack() []byte {
 	return res
 }
 
-pub fn cmsgforcepopupstodirecthwnd_unpack(buf []byte) ?CMsgForcePopupsToDirectHWnd {
-	mut res := CMsgForcePopupsToDirectHWnd{}
+pub fn cmsgforcepopupstodirecthwnd_unpack(buf []byte) ?CMsgForcePopupsToDirectHWND {
+	mut res := CMsgForcePopupsToDirectHWND{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7449,17 +7471,17 @@ pub fn cmsgforcepopupstodirecthwnd_unpack(buf []byte) ?CMsgForcePopupsToDirectHW
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgforcepopupstodirecthwnd() CMsgForcePopupsToDirectHWnd {
-	return CMsgForcePopupsToDirectHWnd{}
+pub fn zzz_vproto_internal_new_cmsgforcepopupstodirecthwnd() CMsgForcePopupsToDirectHWND {
+	return CMsgForcePopupsToDirectHWND{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgforcepopupstodirecthwnd(o CMsgForcePopupsToDirectHWnd, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgforcepopupstodirecthwnd(o CMsgForcePopupsToDirectHWND, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgforcepopupstodirecthwnd(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgForcePopupsToDirectHWnd) {
+pub fn zzz_vproto_internal_unpack_cmsgforcepopupstodirecthwnd(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgForcePopupsToDirectHWND) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgforcepopupstodirecthwnd_unpack(v)?
 	return i, unpacked
@@ -7541,7 +7563,7 @@ pub fn zzz_vproto_internal_unpack_cmsgscalepagetovalueresponse(buf []byte, tag_w
 	return i, unpacked
 }
 
-pub struct CMsgSavePageToJPeg {
+pub struct CMsgSavePageToJPEG {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7557,7 +7579,7 @@ pub mut:
 	has_height         bool
 }
 
-pub fn (o &CMsgSavePageToJPeg) pack() []byte {
+pub fn (o &CMsgSavePageToJPEG) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -7577,8 +7599,8 @@ pub fn (o &CMsgSavePageToJPeg) pack() []byte {
 	return res
 }
 
-pub fn cmsgsavepagetojpeg_unpack(buf []byte) ?CMsgSavePageToJPeg {
-	mut res := CMsgSavePageToJPeg{}
+pub fn cmsgsavepagetojpeg_unpack(buf []byte) ?CMsgSavePageToJPEG {
+	mut res := CMsgSavePageToJPEG{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7634,23 +7656,23 @@ pub fn cmsgsavepagetojpeg_unpack(buf []byte) ?CMsgSavePageToJPeg {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsavepagetojpeg() CMsgSavePageToJPeg {
-	return CMsgSavePageToJPeg{}
+pub fn zzz_vproto_internal_new_cmsgsavepagetojpeg() CMsgSavePageToJPEG {
+	return CMsgSavePageToJPEG{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsavepagetojpeg(o CMsgSavePageToJPeg, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsavepagetojpeg(o CMsgSavePageToJPEG, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsavepagetojpeg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSavePageToJPeg) {
+pub fn zzz_vproto_internal_unpack_cmsgsavepagetojpeg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSavePageToJPEG) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsavepagetojpeg_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSavePageToJPegresponse {
+pub struct CMsgSavePageToJPEGResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7662,7 +7684,7 @@ pub mut:
 	has_filename       bool
 }
 
-pub fn (o &CMsgSavePageToJPegresponse) pack() []byte {
+pub fn (o &CMsgSavePageToJPEGResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -7676,8 +7698,8 @@ pub fn (o &CMsgSavePageToJPegresponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgsavepagetojpegresponse_unpack(buf []byte) ?CMsgSavePageToJPegresponse {
-	mut res := CMsgSavePageToJPegresponse{}
+pub fn cmsgsavepagetojpegresponse_unpack(buf []byte) ?CMsgSavePageToJPEGResponse {
+	mut res := CMsgSavePageToJPEGResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7721,23 +7743,23 @@ pub fn cmsgsavepagetojpegresponse_unpack(buf []byte) ?CMsgSavePageToJPegresponse
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsavepagetojpegresponse() CMsgSavePageToJPegresponse {
-	return CMsgSavePageToJPegresponse{}
+pub fn zzz_vproto_internal_new_cmsgsavepagetojpegresponse() CMsgSavePageToJPEGResponse {
+	return CMsgSavePageToJPEGResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsavepagetojpegresponse(o CMsgSavePageToJPegresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsavepagetojpegresponse(o CMsgSavePageToJPEGResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsavepagetojpegresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSavePageToJPegresponse) {
+pub fn zzz_vproto_internal_unpack_cmsgsavepagetojpegresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSavePageToJPEGResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsavepagetojpegresponse_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSalert {
+pub struct CMsgJSAlert {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7747,7 +7769,7 @@ pub mut:
 	has_message        bool
 }
 
-pub fn (o &CMsgJSalert) pack() []byte {
+pub fn (o &CMsgJSAlert) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -7758,8 +7780,8 @@ pub fn (o &CMsgJSalert) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsalert_unpack(buf []byte) ?CMsgJSalert {
-	mut res := CMsgJSalert{}
+pub fn cmsgjsalert_unpack(buf []byte) ?CMsgJSAlert {
+	mut res := CMsgJSAlert{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7797,23 +7819,23 @@ pub fn cmsgjsalert_unpack(buf []byte) ?CMsgJSalert {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsalert() CMsgJSalert {
-	return CMsgJSalert{}
+pub fn zzz_vproto_internal_new_cmsgjsalert() CMsgJSAlert {
+	return CMsgJSAlert{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsalert(o CMsgJSalert, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsalert(o CMsgJSAlert, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsalert(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSalert) {
+pub fn zzz_vproto_internal_unpack_cmsgjsalert(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSAlert) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsalert_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSconfirm {
+pub struct CMsgJSConfirm {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7823,7 +7845,7 @@ pub mut:
 	has_message        bool
 }
 
-pub fn (o &CMsgJSconfirm) pack() []byte {
+pub fn (o &CMsgJSConfirm) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -7834,8 +7856,8 @@ pub fn (o &CMsgJSconfirm) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsconfirm_unpack(buf []byte) ?CMsgJSconfirm {
-	mut res := CMsgJSconfirm{}
+pub fn cmsgjsconfirm_unpack(buf []byte) ?CMsgJSConfirm {
+	mut res := CMsgJSConfirm{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7873,23 +7895,23 @@ pub fn cmsgjsconfirm_unpack(buf []byte) ?CMsgJSconfirm {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsconfirm() CMsgJSconfirm {
-	return CMsgJSconfirm{}
+pub fn zzz_vproto_internal_new_cmsgjsconfirm() CMsgJSConfirm {
+	return CMsgJSConfirm{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsconfirm(o CMsgJSconfirm, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsconfirm(o CMsgJSConfirm, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsconfirm(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSconfirm) {
+pub fn zzz_vproto_internal_unpack_cmsgjsconfirm(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSConfirm) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsconfirm_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSdialogResponse {
+pub struct CMsgJSDialogResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -7899,7 +7921,7 @@ pub mut:
 	has_result         bool
 }
 
-pub fn (o &CMsgJSdialogResponse) pack() []byte {
+pub fn (o &CMsgJSDialogResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -7910,8 +7932,8 @@ pub fn (o &CMsgJSdialogResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsdialogresponse_unpack(buf []byte) ?CMsgJSdialogResponse {
-	mut res := CMsgJSdialogResponse{}
+pub fn cmsgjsdialogresponse_unpack(buf []byte) ?CMsgJSDialogResponse {
+	mut res := CMsgJSDialogResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7949,17 +7971,17 @@ pub fn cmsgjsdialogresponse_unpack(buf []byte) ?CMsgJSdialogResponse {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsdialogresponse() CMsgJSdialogResponse {
-	return CMsgJSdialogResponse{}
+pub fn zzz_vproto_internal_new_cmsgjsdialogresponse() CMsgJSDialogResponse {
+	return CMsgJSDialogResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsdialogresponse(o CMsgJSdialogResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsdialogresponse(o CMsgJSDialogResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsdialogresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSdialogResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgjsdialogresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSDialogResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsdialogresponse_unpack(v)?
 	return i, unpacked
@@ -8052,7 +8074,7 @@ pub fn zzz_vproto_internal_unpack_cmsgcangobackandforward(buf []byte, tag_wirety
 	return i, unpacked
 }
 
-pub struct CMsgOpenSteamURl {
+pub struct CMsgOpenSteamURL {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -8064,7 +8086,7 @@ pub mut:
 	has_referrer       bool
 }
 
-pub fn (o &CMsgOpenSteamURl) pack() []byte {
+pub fn (o &CMsgOpenSteamURL) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -8078,8 +8100,8 @@ pub fn (o &CMsgOpenSteamURl) pack() []byte {
 	return res
 }
 
-pub fn cmsgopensteamurl_unpack(buf []byte) ?CMsgOpenSteamURl {
-	mut res := CMsgOpenSteamURl{}
+pub fn cmsgopensteamurl_unpack(buf []byte) ?CMsgOpenSteamURL {
+	mut res := CMsgOpenSteamURL{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8123,17 +8145,17 @@ pub fn cmsgopensteamurl_unpack(buf []byte) ?CMsgOpenSteamURl {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgopensteamurl() CMsgOpenSteamURl {
-	return CMsgOpenSteamURl{}
+pub fn zzz_vproto_internal_new_cmsgopensteamurl() CMsgOpenSteamURL {
+	return CMsgOpenSteamURL{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgopensteamurl(o CMsgOpenSteamURl, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgopensteamurl(o CMsgOpenSteamURL, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgopensteamurl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgOpenSteamURl) {
+pub fn zzz_vproto_internal_unpack_cmsgopensteamurl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgOpenSteamURL) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgopensteamurl_unpack(v)?
 	return i, unpacked
@@ -8671,7 +8693,7 @@ pub fn zzz_vproto_internal_unpack_cmsgtogglefindinpagedialog(buf []byte, tag_wir
 	return i, unpacked
 }
 
-pub struct CMsgSetPIdshuttingDown {
+pub struct CMsgSetPIDShuttingDown {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -8679,7 +8701,7 @@ pub mut:
 	has_browser_handle bool
 }
 
-pub fn (o &CMsgSetPIdshuttingDown) pack() []byte {
+pub fn (o &CMsgSetPIDShuttingDown) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -8687,8 +8709,8 @@ pub fn (o &CMsgSetPIdshuttingDown) pack() []byte {
 	return res
 }
 
-pub fn cmsgsetpidshuttingdown_unpack(buf []byte) ?CMsgSetPIdshuttingDown {
-	mut res := CMsgSetPIdshuttingDown{}
+pub fn cmsgsetpidshuttingdown_unpack(buf []byte) ?CMsgSetPIDShuttingDown {
+	mut res := CMsgSetPIDShuttingDown{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8720,17 +8742,17 @@ pub fn cmsgsetpidshuttingdown_unpack(buf []byte) ?CMsgSetPIdshuttingDown {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsetpidshuttingdown() CMsgSetPIdshuttingDown {
-	return CMsgSetPIdshuttingDown{}
+pub fn zzz_vproto_internal_new_cmsgsetpidshuttingdown() CMsgSetPIDShuttingDown {
+	return CMsgSetPIDShuttingDown{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsetpidshuttingdown(o CMsgSetPIdshuttingDown, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsetpidshuttingdown(o CMsgSetPIDShuttingDown, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsetpidshuttingdown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetPIdshuttingDown) {
+pub fn zzz_vproto_internal_unpack_cmsgsetpidshuttingdown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetPIDShuttingDown) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsetpidshuttingdown_unpack(v)?
 	return i, unpacked
@@ -8801,7 +8823,7 @@ pub fn zzz_vproto_internal_unpack_cmsgdisablebackgroundthrottling(buf []byte, ta
 	return i, unpacked
 }
 
-pub struct CMsgAckPIdshuttingDown {
+pub struct CMsgAckPIDShuttingDown {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -8809,7 +8831,7 @@ pub mut:
 	has_browser_handle bool
 }
 
-pub fn (o &CMsgAckPIdshuttingDown) pack() []byte {
+pub fn (o &CMsgAckPIDShuttingDown) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -8817,8 +8839,8 @@ pub fn (o &CMsgAckPIdshuttingDown) pack() []byte {
 	return res
 }
 
-pub fn cmsgackpidshuttingdown_unpack(buf []byte) ?CMsgAckPIdshuttingDown {
-	mut res := CMsgAckPIdshuttingDown{}
+pub fn cmsgackpidshuttingdown_unpack(buf []byte) ?CMsgAckPIDShuttingDown {
+	mut res := CMsgAckPIDShuttingDown{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8850,23 +8872,23 @@ pub fn cmsgackpidshuttingdown_unpack(buf []byte) ?CMsgAckPIdshuttingDown {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgackpidshuttingdown() CMsgAckPIdshuttingDown {
-	return CMsgAckPIdshuttingDown{}
+pub fn zzz_vproto_internal_new_cmsgackpidshuttingdown() CMsgAckPIDShuttingDown {
+	return CMsgAckPIDShuttingDown{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgackpidshuttingdown(o CMsgAckPIdshuttingDown, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgackpidshuttingdown(o CMsgAckPIDShuttingDown, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgackpidshuttingdown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAckPIdshuttingDown) {
+pub fn zzz_vproto_internal_unpack_cmsgackpidshuttingdown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAckPIDShuttingDown) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgackpidshuttingdown_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgGetCookiesForURl {
+pub struct CMsgGetCookiesForURL {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -8876,7 +8898,7 @@ pub mut:
 	has_url            bool
 }
 
-pub fn (o &CMsgGetCookiesForURl) pack() []byte {
+pub fn (o &CMsgGetCookiesForURL) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -8887,8 +8909,8 @@ pub fn (o &CMsgGetCookiesForURl) pack() []byte {
 	return res
 }
 
-pub fn cmsggetcookiesforurl_unpack(buf []byte) ?CMsgGetCookiesForURl {
-	mut res := CMsgGetCookiesForURl{}
+pub fn cmsggetcookiesforurl_unpack(buf []byte) ?CMsgGetCookiesForURL {
+	mut res := CMsgGetCookiesForURL{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8926,17 +8948,17 @@ pub fn cmsggetcookiesforurl_unpack(buf []byte) ?CMsgGetCookiesForURl {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggetcookiesforurl() CMsgGetCookiesForURl {
-	return CMsgGetCookiesForURl{}
+pub fn zzz_vproto_internal_new_cmsggetcookiesforurl() CMsgGetCookiesForURL {
+	return CMsgGetCookiesForURL{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggetcookiesforurl(o CMsgGetCookiesForURl, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggetcookiesforurl(o CMsgGetCookiesForURL, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggetcookiesforurl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetCookiesForURl) {
+pub fn zzz_vproto_internal_unpack_cmsggetcookiesforurl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetCookiesForURL) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggetcookiesforurl_unpack(v)?
 	return i, unpacked
@@ -9040,7 +9062,7 @@ pub fn zzz_vproto_internal_unpack_ccookie(buf []byte, tag_wiretype vproto.WireTy
 	return i, unpacked
 }
 
-pub struct CMsgGetCookiesForURlresponse {
+pub struct CMsgGetCookiesForURLResponse {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -9051,7 +9073,7 @@ pub mut:
 	cookies            []CCookie
 }
 
-pub fn (o &CMsgGetCookiesForURlresponse) pack() []byte {
+pub fn (o &CMsgGetCookiesForURLResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -9066,8 +9088,8 @@ pub fn (o &CMsgGetCookiesForURlresponse) pack() []byte {
 	return res
 }
 
-pub fn cmsggetcookiesforurlresponse_unpack(buf []byte) ?CMsgGetCookiesForURlresponse {
-	mut res := CMsgGetCookiesForURlresponse{}
+pub fn cmsggetcookiesforurlresponse_unpack(buf []byte) ?CMsgGetCookiesForURLResponse {
+	mut res := CMsgGetCookiesForURLResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -9111,17 +9133,17 @@ pub fn cmsggetcookiesforurlresponse_unpack(buf []byte) ?CMsgGetCookiesForURlresp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsggetcookiesforurlresponse() CMsgGetCookiesForURlresponse {
-	return CMsgGetCookiesForURlresponse{}
+pub fn zzz_vproto_internal_new_cmsggetcookiesforurlresponse() CMsgGetCookiesForURLResponse {
+	return CMsgGetCookiesForURLResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsggetcookiesforurlresponse(o CMsgGetCookiesForURlresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsggetcookiesforurlresponse(o CMsgGetCookiesForURLResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsggetcookiesforurlresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetCookiesForURlresponse) {
+pub fn zzz_vproto_internal_unpack_cmsggetcookiesforurlresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetCookiesForURLResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsggetcookiesforurlresponse_unpack(v)?
 	return i, unpacked
@@ -10105,7 +10127,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclearallcookies(buf []byte, tag_wiretype v
 	return i, unpacked
 }
 
-pub struct CMsgScreenDPi {
+pub struct CMsgScreenDPI {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -10115,7 +10137,7 @@ pub mut:
 	has_dpi_scaling    bool
 }
 
-pub fn (o &CMsgScreenDPi) pack() []byte {
+pub fn (o &CMsgScreenDPI) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -10126,8 +10148,8 @@ pub fn (o &CMsgScreenDPi) pack() []byte {
 	return res
 }
 
-pub fn cmsgscreendpi_unpack(buf []byte) ?CMsgScreenDPi {
-	mut res := CMsgScreenDPi{}
+pub fn cmsgscreendpi_unpack(buf []byte) ?CMsgScreenDPI {
+	mut res := CMsgScreenDPI{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10165,17 +10187,17 @@ pub fn cmsgscreendpi_unpack(buf []byte) ?CMsgScreenDPi {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgscreendpi() CMsgScreenDPi {
-	return CMsgScreenDPi{}
+pub fn zzz_vproto_internal_new_cmsgscreendpi() CMsgScreenDPI {
+	return CMsgScreenDPI{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgscreendpi(o CMsgScreenDPi, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgscreendpi(o CMsgScreenDPI, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgscreendpi(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgScreenDPi) {
+pub fn zzz_vproto_internal_unpack_cmsgscreendpi(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgScreenDPI) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgscreendpi_unpack(v)?
 	return i, unpacked
@@ -10376,7 +10398,7 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamauthcookiesset(buf []byte, tag_wirety
 	return i, unpacked
 }
 
-pub struct CMsgJSregisterMethod {
+pub struct CMsgJSRegisterMethod {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -10384,11 +10406,11 @@ pub mut:
 	has_browser_handle bool
 	name               string
 	has_name           bool
-	method_type        EJsregisterMethodType
+	method_type        EJSRegisterMethodType
 	has_method_type    bool
 }
 
-pub fn (o &CMsgJSregisterMethod) pack() []byte {
+pub fn (o &CMsgJSRegisterMethod) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -10402,8 +10424,8 @@ pub fn (o &CMsgJSregisterMethod) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsregistermethod_unpack(buf []byte) ?CMsgJSregisterMethod {
-	mut res := CMsgJSregisterMethod{}
+pub fn cmsgjsregistermethod_unpack(buf []byte) ?CMsgJSRegisterMethod {
+	mut res := CMsgJSRegisterMethod{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10447,23 +10469,23 @@ pub fn cmsgjsregistermethod_unpack(buf []byte) ?CMsgJSregisterMethod {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsregistermethod() CMsgJSregisterMethod {
-	return CMsgJSregisterMethod{}
+pub fn zzz_vproto_internal_new_cmsgjsregistermethod() CMsgJSRegisterMethod {
+	return CMsgJSRegisterMethod{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsregistermethod(o CMsgJSregisterMethod, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsregistermethod(o CMsgJSRegisterMethod, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsregistermethod(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSregisterMethod) {
+pub fn zzz_vproto_internal_unpack_cmsgjsregistermethod(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSRegisterMethod) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsregistermethod_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CJsmethodArgument {
+pub struct CJSMethodArgument {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -10473,7 +10495,7 @@ pub mut:
 	has_function_handle bool
 }
 
-pub fn (o &CJsmethodArgument) pack() []byte {
+pub fn (o &CJSMethodArgument) pack() []byte {
 	mut res := []byte{}
 	if o.has_json_data {
 		res << vproto.pack_string_field(o.json_data, 1)
@@ -10484,8 +10506,8 @@ pub fn (o &CJsmethodArgument) pack() []byte {
 	return res
 }
 
-pub fn cjsmethodargument_unpack(buf []byte) ?CJsmethodArgument {
-	mut res := CJsmethodArgument{}
+pub fn cjsmethodargument_unpack(buf []byte) ?CJSMethodArgument {
+	mut res := CJSMethodArgument{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10523,33 +10545,33 @@ pub fn cjsmethodargument_unpack(buf []byte) ?CJsmethodArgument {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cjsmethodargument() CJsmethodArgument {
-	return CJsmethodArgument{}
+pub fn zzz_vproto_internal_new_cjsmethodargument() CJSMethodArgument {
+	return CJSMethodArgument{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cjsmethodargument(o CJsmethodArgument, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cjsmethodargument(o CJSMethodArgument, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cjsmethodargument(buf []byte, tag_wiretype vproto.WireType) ?(int, CJsmethodArgument) {
+pub fn zzz_vproto_internal_unpack_cjsmethodargument(buf []byte, tag_wiretype vproto.WireType) ?(int, CJSMethodArgument) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cjsmethodargument_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSvalueJSobjectProperty {
+pub struct CMsgJSValue_JSObjectProperty {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	name           string
 	has_name       bool
-	value          CMsgJSvalue
+	value          CMsgJSValue
 	has_value      bool
 }
 
-pub fn (o &CMsgJSvalueJSobjectProperty) pack() []byte {
+pub fn (o &CMsgJSValue_JSObjectProperty) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -10560,8 +10582,8 @@ pub fn (o &CMsgJSvalueJSobjectProperty) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsvaluejsobjectproperty_unpack(buf []byte) ?CMsgJSvalueJSobjectProperty {
-	mut res := CMsgJSvalueJSobjectProperty{}
+pub fn cmsgjsvalue_jsobjectproperty_unpack(buf []byte) ?CMsgJSValue_JSObjectProperty {
+	mut res := CMsgJSValue_JSObjectProperty{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10599,23 +10621,23 @@ pub fn cmsgjsvaluejsobjectproperty_unpack(buf []byte) ?CMsgJSvalueJSobjectProper
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsvaluejsobjectproperty() CMsgJSvalueJSobjectProperty {
-	return CMsgJSvalueJSobjectProperty{}
+pub fn zzz_vproto_internal_new_cmsgjsvalue_jsobjectproperty() CMsgJSValue_JSObjectProperty {
+	return CMsgJSValue_JSObjectProperty{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsvaluejsobjectproperty(o CMsgJSvalueJSobjectProperty, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsvalue_jsobjectproperty(o CMsgJSValue_JSObjectProperty, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsvaluejsobjectproperty(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSvalueJSobjectProperty) {
+pub fn zzz_vproto_internal_unpack_cmsgjsvalue_jsobjectproperty(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSValue_JSObjectProperty) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsvaluejsobjectproperty_unpack(v)?
+	mut unpacked := cmsgjsvalue_jsobjectproperty_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSvalue {
+pub struct CMsgJSValue {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -10633,13 +10655,13 @@ pub mut:
 	has_function_handle bool
 	is_array            bool
 	has_is_array        bool
-	array_values        []CMsgJSvalue
+	array_values        []CMsgJSValue
 	is_object           bool
 	has_is_object       bool
-	object_properties   []CMsgJSvalueJSobjectProperty
+	object_properties   []CMsgJSValue_JSObjectProperty
 }
 
-pub fn (o &CMsgJSvalue) pack() []byte {
+pub fn (o &CMsgJSValue) pack() []byte {
 	mut res := []byte{}
 	if o.has_bool_value {
 		res << vproto.pack_bool_field(o.bool_value, 1)
@@ -10671,13 +10693,13 @@ pub fn (o &CMsgJSvalue) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.object_properties {
-		res << zzz_vproto_internal_pack_cmsgjsvaluejsobjectproperty(x, 11)
+		res << zzz_vproto_internal_pack_cmsgjsvalue_jsobjectproperty(x, 11)
 	}
 	return res
 }
 
-pub fn cmsgjsvalue_unpack(buf []byte) ?CMsgJSvalue {
-	mut res := CMsgJSvalue{}
+pub fn cmsgjsvalue_unpack(buf []byte) ?CMsgJSValue {
+	mut res := CMsgJSValue{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10743,7 +10765,7 @@ pub fn cmsgjsvalue_unpack(buf []byte) ?CMsgJSvalue {
 			}
 			11 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgjsvaluejsobjectproperty(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue_jsobjectproperty(cur_buf,
 					tag_wiretype.wire_type)?
 				res.object_properties << v
 				i = ii
@@ -10764,23 +10786,23 @@ pub fn cmsgjsvalue_unpack(buf []byte) ?CMsgJSvalue {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsvalue() CMsgJSvalue {
-	return CMsgJSvalue{}
+pub fn zzz_vproto_internal_new_cmsgjsvalue() CMsgJSValue {
+	return CMsgJSValue{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsvalue(o CMsgJSvalue, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsvalue(o CMsgJSValue, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsvalue(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSvalue) {
+pub fn zzz_vproto_internal_unpack_cmsgjsvalue(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSValue) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsvalue_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSmethodCall {
+pub struct CMsgJSMethodCall {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -10788,10 +10810,10 @@ pub mut:
 	has_browser_handle bool
 	name               string
 	has_name           bool
-	arguments          []CMsgJSvalue
+	arguments          []CMsgJSValue
 }
 
-pub fn (o &CMsgJSmethodCall) pack() []byte {
+pub fn (o &CMsgJSMethodCall) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -10806,8 +10828,8 @@ pub fn (o &CMsgJSmethodCall) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsmethodcall_unpack(buf []byte) ?CMsgJSmethodCall {
-	mut res := CMsgJSmethodCall{}
+pub fn cmsgjsmethodcall_unpack(buf []byte) ?CMsgJSMethodCall {
+	mut res := CMsgJSMethodCall{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10851,23 +10873,23 @@ pub fn cmsgjsmethodcall_unpack(buf []byte) ?CMsgJSmethodCall {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsmethodcall() CMsgJSmethodCall {
-	return CMsgJSmethodCall{}
+pub fn zzz_vproto_internal_new_cmsgjsmethodcall() CMsgJSMethodCall {
+	return CMsgJSMethodCall{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsmethodcall(o CMsgJSmethodCall, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsmethodcall(o CMsgJSMethodCall, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsmethodcall(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSmethodCall) {
+pub fn zzz_vproto_internal_unpack_cmsgjsmethodcall(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSMethodCall) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsmethodcall_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSexecuteCallback {
+pub struct CMsgJSExecuteCallback {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -10875,10 +10897,10 @@ pub mut:
 	has_browser_handle  bool
 	function_handle     u64
 	has_function_handle bool
-	arguments           []CMsgJSvalue
+	arguments           []CMsgJSValue
 }
 
-pub fn (o &CMsgJSexecuteCallback) pack() []byte {
+pub fn (o &CMsgJSExecuteCallback) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -10893,8 +10915,8 @@ pub fn (o &CMsgJSexecuteCallback) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsexecutecallback_unpack(buf []byte) ?CMsgJSexecuteCallback {
-	mut res := CMsgJSexecuteCallback{}
+pub fn cmsgjsexecutecallback_unpack(buf []byte) ?CMsgJSExecuteCallback {
+	mut res := CMsgJSExecuteCallback{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -10938,23 +10960,23 @@ pub fn cmsgjsexecutecallback_unpack(buf []byte) ?CMsgJSexecuteCallback {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsexecutecallback() CMsgJSexecuteCallback {
-	return CMsgJSexecuteCallback{}
+pub fn zzz_vproto_internal_new_cmsgjsexecutecallback() CMsgJSExecuteCallback {
+	return CMsgJSExecuteCallback{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsexecutecallback(o CMsgJSexecuteCallback, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsexecutecallback(o CMsgJSExecuteCallback, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsexecutecallback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSexecuteCallback) {
+pub fn zzz_vproto_internal_unpack_cmsgjsexecutecallback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSExecuteCallback) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsexecutecallback_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSreleaseCallback {
+pub struct CMsgJSReleaseCallback {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -10964,7 +10986,7 @@ pub mut:
 	has_function_handle bool
 }
 
-pub fn (o &CMsgJSreleaseCallback) pack() []byte {
+pub fn (o &CMsgJSReleaseCallback) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -10975,8 +10997,8 @@ pub fn (o &CMsgJSreleaseCallback) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsreleasecallback_unpack(buf []byte) ?CMsgJSreleaseCallback {
-	mut res := CMsgJSreleaseCallback{}
+pub fn cmsgjsreleasecallback_unpack(buf []byte) ?CMsgJSReleaseCallback {
+	mut res := CMsgJSReleaseCallback{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11014,23 +11036,23 @@ pub fn cmsgjsreleasecallback_unpack(buf []byte) ?CMsgJSreleaseCallback {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsreleasecallback() CMsgJSreleaseCallback {
-	return CMsgJSreleaseCallback{}
+pub fn zzz_vproto_internal_new_cmsgjsreleasecallback() CMsgJSReleaseCallback {
+	return CMsgJSReleaseCallback{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsreleasecallback(o CMsgJSreleaseCallback, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsreleasecallback(o CMsgJSReleaseCallback, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsreleasecallback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSreleaseCallback) {
+pub fn zzz_vproto_internal_unpack_cmsgjsreleasecallback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSReleaseCallback) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsreleasecallback_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgJSraiseException {
+pub struct CMsgJSRaiseException {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -11040,7 +11062,7 @@ pub mut:
 	has_exception      bool
 }
 
-pub fn (o &CMsgJSraiseException) pack() []byte {
+pub fn (o &CMsgJSRaiseException) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -11051,8 +11073,8 @@ pub fn (o &CMsgJSraiseException) pack() []byte {
 	return res
 }
 
-pub fn cmsgjsraiseexception_unpack(buf []byte) ?CMsgJSraiseException {
-	mut res := CMsgJSraiseException{}
+pub fn cmsgjsraiseexception_unpack(buf []byte) ?CMsgJSRaiseException {
+	mut res := CMsgJSRaiseException{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11090,17 +11112,17 @@ pub fn cmsgjsraiseexception_unpack(buf []byte) ?CMsgJSraiseException {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjsraiseexception() CMsgJSraiseException {
-	return CMsgJSraiseException{}
+pub fn zzz_vproto_internal_new_cmsgjsraiseexception() CMsgJSRaiseException {
+	return CMsgJSRaiseException{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjsraiseexception(o CMsgJSraiseException, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjsraiseexception(o CMsgJSRaiseException, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjsraiseexception(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSraiseException) {
+pub fn zzz_vproto_internal_unpack_cmsgjsraiseexception(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSRaiseException) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjsraiseexception_unpack(v)?
 	return i, unpacked
@@ -11280,7 +11302,7 @@ pub fn zzz_vproto_internal_unpack_cmsgjumplistlink(buf []byte, tag_wiretype vpro
 	return i, unpacked
 }
 
-pub struct CMsgJumpListMRuapp {
+pub struct CMSgJumpListMRUApp {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -11294,7 +11316,7 @@ pub mut:
 	has_icon_path    bool
 }
 
-pub fn (o &CMsgJumpListMRuapp) pack() []byte {
+pub fn (o &CMSgJumpListMRUApp) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -11311,8 +11333,8 @@ pub fn (o &CMsgJumpListMRuapp) pack() []byte {
 	return res
 }
 
-pub fn cmsgjumplistmruapp_unpack(buf []byte) ?CMsgJumpListMRuapp {
-	mut res := CMsgJumpListMRuapp{}
+pub fn cmsgjumplistmruapp_unpack(buf []byte) ?CMSgJumpListMRUApp {
+	mut res := CMSgJumpListMRUApp{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11362,17 +11384,17 @@ pub fn cmsgjumplistmruapp_unpack(buf []byte) ?CMsgJumpListMRuapp {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgjumplistmruapp() CMsgJumpListMRuapp {
-	return CMsgJumpListMRuapp{}
+pub fn zzz_vproto_internal_new_cmsgjumplistmruapp() CMSgJumpListMRUApp {
+	return CMSgJumpListMRUApp{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgjumplistmruapp(o CMsgJumpListMRuapp, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgjumplistmruapp(o CMSgJumpListMRUApp, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgjumplistmruapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJumpListMRuapp) {
+pub fn zzz_vproto_internal_unpack_cmsgjumplistmruapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMSgJumpListMRUApp) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgjumplistmruapp_unpack(v)?
 	return i, unpacked
@@ -11386,7 +11408,7 @@ pub mut:
 	has_steam_path bool
 	mru_title      string
 	has_mru_title  bool
-	apps           []CMsgJumpListMRuapp
+	apps           []CMSgJumpListMRUApp
 	links          []CMsgJumpListLink
 }
 
@@ -11476,7 +11498,7 @@ pub fn zzz_vproto_internal_unpack_cmsgsetjumplist(buf []byte, tag_wiretype vprot
 	return i, unpacked
 }
 
-pub struct CMsgSetGameOverlayTargetPIds {
+pub struct CMsgSetGameOverlayTargetPIDs {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -11485,7 +11507,7 @@ pub mut:
 	target_pid         []u32
 }
 
-pub fn (o &CMsgSetGameOverlayTargetPIds) pack() []byte {
+pub fn (o &CMsgSetGameOverlayTargetPIDs) pack() []byte {
 	mut res := []byte{}
 	if o.has_browser_handle {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
@@ -11497,8 +11519,8 @@ pub fn (o &CMsgSetGameOverlayTargetPIds) pack() []byte {
 	return res
 }
 
-pub fn cmsgsetgameoverlaytargetpids_unpack(buf []byte) ?CMsgSetGameOverlayTargetPIds {
-	mut res := CMsgSetGameOverlayTargetPIds{}
+pub fn cmsgsetgameoverlaytargetpids_unpack(buf []byte) ?CMsgSetGameOverlayTargetPIDs {
+	mut res := CMsgSetGameOverlayTargetPIDs{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11536,17 +11558,17 @@ pub fn cmsgsetgameoverlaytargetpids_unpack(buf []byte) ?CMsgSetGameOverlayTarget
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsetgameoverlaytargetpids() CMsgSetGameOverlayTargetPIds {
-	return CMsgSetGameOverlayTargetPIds{}
+pub fn zzz_vproto_internal_new_cmsgsetgameoverlaytargetpids() CMsgSetGameOverlayTargetPIDs {
+	return CMsgSetGameOverlayTargetPIDs{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsetgameoverlaytargetpids(o CMsgSetGameOverlayTargetPIds, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsetgameoverlaytargetpids(o CMsgSetGameOverlayTargetPIDs, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsetgameoverlaytargetpids(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetGameOverlayTargetPIds) {
+pub fn zzz_vproto_internal_unpack_cmsgsetgameoverlaytargetpids(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetGameOverlayTargetPIDs) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsetgameoverlaytargetpids_unpack(v)?
 	return i, unpacked
@@ -11639,7 +11661,7 @@ pub fn zzz_vproto_internal_unpack_cmsggameoverlaytargettextureid(buf []byte, tag
 	return i, unpacked
 }
 
-pub struct CMsgDraggableRegionsChangedDraggableRects {
+pub struct CMsgDraggableRegionsChanged_DraggableRects {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -11655,7 +11677,7 @@ pub mut:
 	has_draggable  bool
 }
 
-pub fn (o &CMsgDraggableRegionsChangedDraggableRects) pack() []byte {
+pub fn (o &CMsgDraggableRegionsChanged_DraggableRects) pack() []byte {
 	mut res := []byte{}
 	if o.has_x {
 		res << vproto.pack_int32_field(o.x, 1)
@@ -11675,8 +11697,8 @@ pub fn (o &CMsgDraggableRegionsChangedDraggableRects) pack() []byte {
 	return res
 }
 
-pub fn cmsgdraggableregionschangeddraggablerects_unpack(buf []byte) ?CMsgDraggableRegionsChangedDraggableRects {
-	mut res := CMsgDraggableRegionsChangedDraggableRects{}
+pub fn cmsgdraggableregionschanged_draggablerects_unpack(buf []byte) ?CMsgDraggableRegionsChanged_DraggableRects {
+	mut res := CMsgDraggableRegionsChanged_DraggableRects{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -11732,19 +11754,19 @@ pub fn cmsgdraggableregionschangeddraggablerects_unpack(buf []byte) ?CMsgDraggab
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgdraggableregionschangeddraggablerects() CMsgDraggableRegionsChangedDraggableRects {
-	return CMsgDraggableRegionsChangedDraggableRects{}
+pub fn zzz_vproto_internal_new_cmsgdraggableregionschanged_draggablerects() CMsgDraggableRegionsChanged_DraggableRects {
+	return CMsgDraggableRegionsChanged_DraggableRects{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgdraggableregionschangeddraggablerects(o CMsgDraggableRegionsChangedDraggableRects, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgdraggableregionschanged_draggablerects(o CMsgDraggableRegionsChanged_DraggableRects, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgdraggableregionschangeddraggablerects(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgDraggableRegionsChangedDraggableRects) {
+pub fn zzz_vproto_internal_unpack_cmsgdraggableregionschanged_draggablerects(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgDraggableRegionsChanged_DraggableRects) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgdraggableregionschangeddraggablerects_unpack(v)?
+	mut unpacked := cmsgdraggableregionschanged_draggablerects_unpack(v)?
 	return i, unpacked
 }
 
@@ -11754,7 +11776,7 @@ mut:
 pub mut:
 	browser_handle     u32
 	has_browser_handle bool
-	rects              []CMsgDraggableRegionsChangedDraggableRects
+	rects              []CMsgDraggableRegionsChanged_DraggableRects
 }
 
 pub fn (o &CMsgDraggableRegionsChanged) pack() []byte {
@@ -11764,7 +11786,7 @@ pub fn (o &CMsgDraggableRegionsChanged) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.rects {
-		res << zzz_vproto_internal_pack_cmsgdraggableregionschangeddraggablerects(x, 2)
+		res << zzz_vproto_internal_pack_cmsgdraggableregionschanged_draggablerects(x, 2)
 	}
 	return res
 }
@@ -11788,7 +11810,7 @@ pub fn cmsgdraggableregionschanged_unpack(buf []byte) ?CMsgDraggableRegionsChang
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgdraggableregionschangeddraggablerects(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgdraggableregionschanged_draggablerects(cur_buf,
 					tag_wiretype.wire_type)?
 				res.rects << v
 				i = ii

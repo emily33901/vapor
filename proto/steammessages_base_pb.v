@@ -49,9 +49,31 @@ fn zzz_vproto_internal_pack_eprotoclaneventtype(e EProtoClanEventType, num u32) 
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eprotoclaneventtype_packed(e []EProtoClanEventType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eprotoclaneventtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EProtoClanEventType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EProtoClanEventType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eprotoclaneventtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EProtoClanEventType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -68,54 +90,76 @@ fn zzz_vproto_internal_pack_partnereventnotificationtype(e PartnerEventNotificat
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_partnereventnotificationtype_packed(e []PartnerEventNotificationType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_partnereventnotificationtype(buf []byte, tag_wiretype vproto.WireType) ?(int, PartnerEventNotificationType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, PartnerEventNotificationType(v)
 }
 
-pub struct CMsgIPaddress {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_partnereventnotificationtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []PartnerEventNotificationType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CMsgIPAddress {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CMsgIPaddress) pack() []byte {
+pub fn (o &CMsgIPAddress) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cmsgipaddress_unpack(buf []byte) ?CMsgIPaddress {
-	res := CMsgIPaddress{}
+pub fn cmsgipaddress_unpack(buf []byte) ?CMsgIPAddress {
+	res := CMsgIPAddress{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgipaddress() CMsgIPaddress {
-	return CMsgIPaddress{}
+pub fn zzz_vproto_internal_new_cmsgipaddress() CMsgIPAddress {
+	return CMsgIPAddress{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgipaddress(o CMsgIPaddress, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgipaddress(o CMsgIPAddress, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgipaddress(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgIPaddress) {
+pub fn zzz_vproto_internal_unpack_cmsgipaddress(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgIPAddress) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgipaddress_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgIPaddressBucket {
+pub struct CMsgIPAddressBucket {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
-	original_ip_address     CMsgIPaddress
+	original_ip_address     CMsgIPAddress
 	has_original_ip_address bool
 	bucket                  u64
 	has_bucket              bool
 }
 
-pub fn (o &CMsgIPaddressBucket) pack() []byte {
+pub fn (o &CMsgIPAddressBucket) pack() []byte {
 	mut res := []byte{}
 	if o.has_original_ip_address {
 		res << zzz_vproto_internal_pack_cmsgipaddress(o.original_ip_address, 1)
@@ -126,8 +170,8 @@ pub fn (o &CMsgIPaddressBucket) pack() []byte {
 	return res
 }
 
-pub fn cmsgipaddressbucket_unpack(buf []byte) ?CMsgIPaddressBucket {
-	mut res := CMsgIPaddressBucket{}
+pub fn cmsgipaddressbucket_unpack(buf []byte) ?CMsgIPAddressBucket {
+	mut res := CMsgIPAddressBucket{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -165,17 +209,17 @@ pub fn cmsgipaddressbucket_unpack(buf []byte) ?CMsgIPaddressBucket {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgipaddressbucket() CMsgIPaddressBucket {
-	return CMsgIPaddressBucket{}
+pub fn zzz_vproto_internal_new_cmsgipaddressbucket() CMsgIPAddressBucket {
+	return CMsgIPAddressBucket{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgipaddressbucket(o CMsgIPaddressBucket, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgipaddressbucket(o CMsgIPAddressBucket, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgipaddressbucket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgIPaddressBucket) {
+pub fn zzz_vproto_internal_unpack_cmsgipaddressbucket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgIPAddressBucket) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgipaddressbucket_unpack(v)?
 	return i, unpacked
@@ -771,7 +815,7 @@ pub fn zzz_vproto_internal_unpack_cmsgauthticket(buf []byte, tag_wiretype vproto
 	return i, unpacked
 }
 
-pub struct CCddbappDetailCommon {
+pub struct CCDDBAppDetailCommon {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -801,7 +845,7 @@ pub mut:
 	has_has_adult_content       bool
 }
 
-pub fn (o &CCddbappDetailCommon) pack() []byte {
+pub fn (o &CCDDBAppDetailCommon) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -842,8 +886,8 @@ pub fn (o &CCddbappDetailCommon) pack() []byte {
 	return res
 }
 
-pub fn ccddbappdetailcommon_unpack(buf []byte) ?CCddbappDetailCommon {
-	mut res := CCddbappDetailCommon{}
+pub fn ccddbappdetailcommon_unpack(buf []byte) ?CCDDBAppDetailCommon {
+	mut res := CCDDBAppDetailCommon{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -941,17 +985,17 @@ pub fn ccddbappdetailcommon_unpack(buf []byte) ?CCddbappDetailCommon {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccddbappdetailcommon() CCddbappDetailCommon {
-	return CCddbappDetailCommon{}
+pub fn zzz_vproto_internal_new_ccddbappdetailcommon() CCDDBAppDetailCommon {
+	return CCDDBAppDetailCommon{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccddbappdetailcommon(o CCddbappDetailCommon, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccddbappdetailcommon(o CCDDBAppDetailCommon, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccddbappdetailcommon(buf []byte, tag_wiretype vproto.WireType) ?(int, CCddbappDetailCommon) {
+pub fn zzz_vproto_internal_unpack_ccddbappdetailcommon(buf []byte, tag_wiretype vproto.WireType) ?(int, CCDDBAppDetailCommon) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccddbappdetailcommon_unpack(v)?
 	return i, unpacked
@@ -1733,7 +1777,7 @@ pub fn zzz_vproto_internal_unpack_cclanmatcheventbyrange(buf []byte, tag_wiretyp
 	return i, unpacked
 }
 
-pub struct CCommunityClanAnnouncementInfo {
+pub struct CCommunity_ClanAnnouncementInfo {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -1768,7 +1812,7 @@ pub mut:
 	has_votedowncount  bool
 }
 
-pub fn (o &CCommunityClanAnnouncementInfo) pack() []byte {
+pub fn (o &CCommunity_ClanAnnouncementInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_gid {
 		res << vproto.pack_uint64_field(o.gid, 1)
@@ -1819,8 +1863,8 @@ pub fn (o &CCommunityClanAnnouncementInfo) pack() []byte {
 	return res
 }
 
-pub fn ccommunityclanannouncementinfo_unpack(buf []byte) ?CCommunityClanAnnouncementInfo {
-	mut res := CCommunityClanAnnouncementInfo{}
+pub fn ccommunity_clanannouncementinfo_unpack(buf []byte) ?CCommunity_ClanAnnouncementInfo {
+	mut res := CCommunity_ClanAnnouncementInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1936,19 +1980,19 @@ pub fn ccommunityclanannouncementinfo_unpack(buf []byte) ?CCommunityClanAnnounce
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunityclanannouncementinfo() CCommunityClanAnnouncementInfo {
-	return CCommunityClanAnnouncementInfo{}
+pub fn zzz_vproto_internal_new_ccommunity_clanannouncementinfo() CCommunity_ClanAnnouncementInfo {
+	return CCommunity_ClanAnnouncementInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunityclanannouncementinfo(o CCommunityClanAnnouncementInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_clanannouncementinfo(o CCommunity_ClanAnnouncementInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunityclanannouncementinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityClanAnnouncementInfo) {
+pub fn zzz_vproto_internal_unpack_ccommunity_clanannouncementinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_ClanAnnouncementInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunityclanannouncementinfo_unpack(v)?
+	mut unpacked := ccommunity_clanannouncementinfo_unpack(v)?
 	return i, unpacked
 }
 
@@ -1984,7 +2028,7 @@ pub mut:
 	has_event_notes              bool
 	jsondata                     string
 	has_jsondata                 bool
-	announcement_body            CCommunityClanAnnouncementInfo
+	announcement_body            CCommunity_ClanAnnouncementInfo
 	has_announcement_body        bool
 	published                    bool
 	has_published                bool
@@ -2055,7 +2099,7 @@ pub fn (o &CClanEventData) pack() []byte {
 		res << vproto.pack_string_field(o.jsondata, 14)
 	}
 	if o.has_announcement_body {
-		res << zzz_vproto_internal_pack_ccommunityclanannouncementinfo(o.announcement_body, 15)
+		res << zzz_vproto_internal_pack_ccommunity_clanannouncementinfo(o.announcement_body, 15)
 	}
 	if o.has_published {
 		res << vproto.pack_bool_field(o.published, 16)
@@ -2190,7 +2234,7 @@ pub fn cclaneventdata_unpack(buf []byte) ?CClanEventData {
 			}
 			15 {
 				res.has_announcement_body = true
-				ii, v := zzz_vproto_internal_unpack_ccommunityclanannouncementinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccommunity_clanannouncementinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.announcement_body = v
 				i = ii
@@ -2293,7 +2337,7 @@ pub fn zzz_vproto_internal_unpack_cclaneventdata(buf []byte, tag_wiretype vproto
 	return i, unpacked
 }
 
-pub struct CBillingAddress {
+pub struct CBilling_Address {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2319,7 +2363,7 @@ pub mut:
 	has_phone        bool
 }
 
-pub fn (o &CBillingAddress) pack() []byte {
+pub fn (o &CBilling_Address) pack() []byte {
 	mut res := []byte{}
 	if o.has_first_name {
 		res << vproto.pack_string_field(o.first_name, 1)
@@ -2354,8 +2398,8 @@ pub fn (o &CBillingAddress) pack() []byte {
 	return res
 }
 
-pub fn cbillingaddress_unpack(buf []byte) ?CBillingAddress {
-	mut res := CBillingAddress{}
+pub fn cbilling_address_unpack(buf []byte) ?CBilling_Address {
+	mut res := CBilling_Address{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2441,18 +2485,18 @@ pub fn cbillingaddress_unpack(buf []byte) ?CBillingAddress {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbillingaddress() CBillingAddress {
-	return CBillingAddress{}
+pub fn zzz_vproto_internal_new_cbilling_address() CBilling_Address {
+	return CBilling_Address{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbillingaddress(o CBillingAddress, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbilling_address(o CBilling_Address, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbillingaddress(buf []byte, tag_wiretype vproto.WireType) ?(int, CBillingAddress) {
+pub fn zzz_vproto_internal_unpack_cbilling_address(buf []byte, tag_wiretype vproto.WireType) ?(int, CBilling_Address) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbillingaddress_unpack(v)?
+	mut unpacked := cbilling_address_unpack(v)?
 	return i, unpacked
 }

@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CCloudGamingCreateNonceRequest {
+pub struct CCloudGaming_CreateNonce_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -13,7 +13,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CCloudGamingCreateNonceRequest) pack() []byte {
+pub fn (o &CCloudGaming_CreateNonce_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_platform {
 		res << vproto.pack_string_field(o.platform, 1)
@@ -24,8 +24,8 @@ pub fn (o &CCloudGamingCreateNonceRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudgamingcreatenoncerequest_unpack(buf []byte) ?CCloudGamingCreateNonceRequest {
-	mut res := CCloudGamingCreateNonceRequest{}
+pub fn ccloudgaming_createnonce_request_unpack(buf []byte) ?CCloudGaming_CreateNonce_Request {
+	mut res := CCloudGaming_CreateNonce_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,23 +63,23 @@ pub fn ccloudgamingcreatenoncerequest_unpack(buf []byte) ?CCloudGamingCreateNonc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgamingcreatenoncerequest() CCloudGamingCreateNonceRequest {
-	return CCloudGamingCreateNonceRequest{}
+pub fn zzz_vproto_internal_new_ccloudgaming_createnonce_request() CCloudGaming_CreateNonce_Request {
+	return CCloudGaming_CreateNonce_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgamingcreatenoncerequest(o CCloudGamingCreateNonceRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloudgaming_createnonce_request(o CCloudGaming_CreateNonce_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgamingcreatenoncerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGamingCreateNonceRequest) {
+pub fn zzz_vproto_internal_unpack_ccloudgaming_createnonce_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGaming_CreateNonce_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgamingcreatenoncerequest_unpack(v)?
+	mut unpacked := ccloudgaming_createnonce_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGamingCreateNonceResponse {
+pub struct CCloudGaming_CreateNonce_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -89,7 +89,7 @@ pub mut:
 	has_expiry     bool
 }
 
-pub fn (o &CCloudGamingCreateNonceResponse) pack() []byte {
+pub fn (o &CCloudGaming_CreateNonce_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_nonce {
 		res << vproto.pack_string_field(o.nonce, 1)
@@ -100,8 +100,8 @@ pub fn (o &CCloudGamingCreateNonceResponse) pack() []byte {
 	return res
 }
 
-pub fn ccloudgamingcreatenonceresponse_unpack(buf []byte) ?CCloudGamingCreateNonceResponse {
-	mut res := CCloudGamingCreateNonceResponse{}
+pub fn ccloudgaming_createnonce_response_unpack(buf []byte) ?CCloudGaming_CreateNonce_Response {
+	mut res := CCloudGaming_CreateNonce_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -139,23 +139,23 @@ pub fn ccloudgamingcreatenonceresponse_unpack(buf []byte) ?CCloudGamingCreateNon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgamingcreatenonceresponse() CCloudGamingCreateNonceResponse {
-	return CCloudGamingCreateNonceResponse{}
+pub fn zzz_vproto_internal_new_ccloudgaming_createnonce_response() CCloudGaming_CreateNonce_Response {
+	return CCloudGaming_CreateNonce_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgamingcreatenonceresponse(o CCloudGamingCreateNonceResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloudgaming_createnonce_response(o CCloudGaming_CreateNonce_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgamingcreatenonceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGamingCreateNonceResponse) {
+pub fn zzz_vproto_internal_unpack_ccloudgaming_createnonce_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGaming_CreateNonce_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgamingcreatenonceresponse_unpack(v)?
+	mut unpacked := ccloudgaming_createnonce_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGamingGetTimeRemainingRequest {
+pub struct CCloudGaming_GetTimeRemaining_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -164,7 +164,7 @@ pub mut:
 	appid_list     []u32
 }
 
-pub fn (o &CCloudGamingGetTimeRemainingRequest) pack() []byte {
+pub fn (o &CCloudGaming_GetTimeRemaining_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_platform {
 		res << vproto.pack_string_field(o.platform, 1)
@@ -176,8 +176,8 @@ pub fn (o &CCloudGamingGetTimeRemainingRequest) pack() []byte {
 	return res
 }
 
-pub fn ccloudgaminggettimeremainingrequest_unpack(buf []byte) ?CCloudGamingGetTimeRemainingRequest {
-	mut res := CCloudGamingGetTimeRemainingRequest{}
+pub fn ccloudgaming_gettimeremaining_request_unpack(buf []byte) ?CCloudGaming_GetTimeRemaining_Request {
+	mut res := CCloudGaming_GetTimeRemaining_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -215,23 +215,23 @@ pub fn ccloudgaminggettimeremainingrequest_unpack(buf []byte) ?CCloudGamingGetTi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgaminggettimeremainingrequest() CCloudGamingGetTimeRemainingRequest {
-	return CCloudGamingGetTimeRemainingRequest{}
+pub fn zzz_vproto_internal_new_ccloudgaming_gettimeremaining_request() CCloudGaming_GetTimeRemaining_Request {
+	return CCloudGaming_GetTimeRemaining_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgaminggettimeremainingrequest(o CCloudGamingGetTimeRemainingRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloudgaming_gettimeremaining_request(o CCloudGaming_GetTimeRemaining_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgaminggettimeremainingrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGamingGetTimeRemainingRequest) {
+pub fn zzz_vproto_internal_unpack_ccloudgaming_gettimeremaining_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGaming_GetTimeRemaining_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgaminggettimeremainingrequest_unpack(v)?
+	mut unpacked := ccloudgaming_gettimeremaining_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGamingTimeRemaining {
+pub struct CCloudGaming_TimeRemaining {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -241,7 +241,7 @@ pub mut:
 	has_minutes_remaining bool
 }
 
-pub fn (o &CCloudGamingTimeRemaining) pack() []byte {
+pub fn (o &CCloudGaming_TimeRemaining) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -252,8 +252,8 @@ pub fn (o &CCloudGamingTimeRemaining) pack() []byte {
 	return res
 }
 
-pub fn ccloudgamingtimeremaining_unpack(buf []byte) ?CCloudGamingTimeRemaining {
-	mut res := CCloudGamingTimeRemaining{}
+pub fn ccloudgaming_timeremaining_unpack(buf []byte) ?CCloudGaming_TimeRemaining {
+	mut res := CCloudGaming_TimeRemaining{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -291,40 +291,40 @@ pub fn ccloudgamingtimeremaining_unpack(buf []byte) ?CCloudGamingTimeRemaining {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgamingtimeremaining() CCloudGamingTimeRemaining {
-	return CCloudGamingTimeRemaining{}
+pub fn zzz_vproto_internal_new_ccloudgaming_timeremaining() CCloudGaming_TimeRemaining {
+	return CCloudGaming_TimeRemaining{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgamingtimeremaining(o CCloudGamingTimeRemaining, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloudgaming_timeremaining(o CCloudGaming_TimeRemaining, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgamingtimeremaining(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGamingTimeRemaining) {
+pub fn zzz_vproto_internal_unpack_ccloudgaming_timeremaining(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGaming_TimeRemaining) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgamingtimeremaining_unpack(v)?
+	mut unpacked := ccloudgaming_timeremaining_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCloudGamingGetTimeRemainingResponse {
+pub struct CCloudGaming_GetTimeRemaining_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	entries        []CCloudGamingTimeRemaining
+	entries        []CCloudGaming_TimeRemaining
 }
 
-pub fn (o &CCloudGamingGetTimeRemainingResponse) pack() []byte {
+pub fn (o &CCloudGaming_GetTimeRemaining_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.entries {
-		res << zzz_vproto_internal_pack_ccloudgamingtimeremaining(x, 2)
+		res << zzz_vproto_internal_pack_ccloudgaming_timeremaining(x, 2)
 	}
 	return res
 }
 
-pub fn ccloudgaminggettimeremainingresponse_unpack(buf []byte) ?CCloudGamingGetTimeRemainingResponse {
-	mut res := CCloudGamingGetTimeRemainingResponse{}
+pub fn ccloudgaming_gettimeremaining_response_unpack(buf []byte) ?CCloudGaming_GetTimeRemaining_Response {
+	mut res := CCloudGaming_GetTimeRemaining_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -336,7 +336,7 @@ pub fn ccloudgaminggettimeremainingresponse_unpack(buf []byte) ?CCloudGamingGetT
 		match tag_wiretype.tag {
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccloudgamingtimeremaining(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccloudgaming_timeremaining(cur_buf,
 					tag_wiretype.wire_type)?
 				res.entries << v
 				i = ii
@@ -357,18 +357,18 @@ pub fn ccloudgaminggettimeremainingresponse_unpack(buf []byte) ?CCloudGamingGetT
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccloudgaminggettimeremainingresponse() CCloudGamingGetTimeRemainingResponse {
-	return CCloudGamingGetTimeRemainingResponse{}
+pub fn zzz_vproto_internal_new_ccloudgaming_gettimeremaining_response() CCloudGaming_GetTimeRemaining_Response {
+	return CCloudGaming_GetTimeRemaining_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccloudgaminggettimeremainingresponse(o CCloudGamingGetTimeRemainingResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccloudgaming_gettimeremaining_response(o CCloudGaming_GetTimeRemaining_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccloudgaminggettimeremainingresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGamingGetTimeRemainingResponse) {
+pub fn zzz_vproto_internal_unpack_ccloudgaming_gettimeremaining_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCloudGaming_GetTimeRemaining_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccloudgaminggettimeremainingresponse_unpack(v)?
+	mut unpacked := ccloudgaming_gettimeremaining_response_unpack(v)?
 	return i, unpacked
 }

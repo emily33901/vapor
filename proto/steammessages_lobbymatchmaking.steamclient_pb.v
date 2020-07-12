@@ -17,12 +17,34 @@ fn zzz_vproto_internal_pack_elobbystatus(e ELobbyStatus, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_elobbystatus_packed(e []ELobbyStatus, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_elobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, ELobbyStatus) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ELobbyStatus(v)
 }
 
-pub struct LobbyMatchmakingLegacyGetLobbyStatusRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_elobbystatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ELobbyStatus) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct LobbyMatchmakingLegacy_GetLobbyStatus_Request {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -38,7 +60,7 @@ pub mut:
 	has_version_num      bool
 }
 
-pub fn (o &LobbyMatchmakingLegacyGetLobbyStatusRequest) pack() []byte {
+pub fn (o &LobbyMatchmakingLegacy_GetLobbyStatus_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -58,8 +80,8 @@ pub fn (o &LobbyMatchmakingLegacyGetLobbyStatusRequest) pack() []byte {
 	return res
 }
 
-pub fn lobbymatchmakinglegacygetlobbystatusrequest_unpack(buf []byte) ?LobbyMatchmakingLegacyGetLobbyStatusRequest {
-	mut res := LobbyMatchmakingLegacyGetLobbyStatusRequest{}
+pub fn lobbymatchmakinglegacy_getlobbystatus_request_unpack(buf []byte) ?LobbyMatchmakingLegacy_GetLobbyStatus_Request {
+	mut res := LobbyMatchmakingLegacy_GetLobbyStatus_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -115,23 +137,23 @@ pub fn lobbymatchmakinglegacygetlobbystatusrequest_unpack(buf []byte) ?LobbyMatc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_lobbymatchmakinglegacygetlobbystatusrequest() LobbyMatchmakingLegacyGetLobbyStatusRequest {
-	return LobbyMatchmakingLegacyGetLobbyStatusRequest{}
+pub fn zzz_vproto_internal_new_lobbymatchmakinglegacy_getlobbystatus_request() LobbyMatchmakingLegacy_GetLobbyStatus_Request {
+	return LobbyMatchmakingLegacy_GetLobbyStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_lobbymatchmakinglegacygetlobbystatusrequest(o LobbyMatchmakingLegacyGetLobbyStatusRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_lobbymatchmakinglegacy_getlobbystatus_request(o LobbyMatchmakingLegacy_GetLobbyStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_lobbymatchmakinglegacygetlobbystatusrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, LobbyMatchmakingLegacyGetLobbyStatusRequest) {
+pub fn zzz_vproto_internal_unpack_lobbymatchmakinglegacy_getlobbystatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, LobbyMatchmakingLegacy_GetLobbyStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := lobbymatchmakinglegacygetlobbystatusrequest_unpack(v)?
+	mut unpacked := lobbymatchmakinglegacy_getlobbystatus_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct LobbyMatchmakingLegacyGetLobbyStatusResponse {
+pub struct LobbyMatchmakingLegacy_GetLobbyStatus_Response {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -143,7 +165,7 @@ pub mut:
 	has_lobby_status  bool
 }
 
-pub fn (o &LobbyMatchmakingLegacyGetLobbyStatusResponse) pack() []byte {
+pub fn (o &LobbyMatchmakingLegacy_GetLobbyStatus_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_app_id {
 		res << vproto.pack_uint32_field(o.app_id, 1)
@@ -157,8 +179,8 @@ pub fn (o &LobbyMatchmakingLegacyGetLobbyStatusResponse) pack() []byte {
 	return res
 }
 
-pub fn lobbymatchmakinglegacygetlobbystatusresponse_unpack(buf []byte) ?LobbyMatchmakingLegacyGetLobbyStatusResponse {
-	mut res := LobbyMatchmakingLegacyGetLobbyStatusResponse{}
+pub fn lobbymatchmakinglegacy_getlobbystatus_response_unpack(buf []byte) ?LobbyMatchmakingLegacy_GetLobbyStatus_Response {
+	mut res := LobbyMatchmakingLegacy_GetLobbyStatus_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -202,18 +224,18 @@ pub fn lobbymatchmakinglegacygetlobbystatusresponse_unpack(buf []byte) ?LobbyMat
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_lobbymatchmakinglegacygetlobbystatusresponse() LobbyMatchmakingLegacyGetLobbyStatusResponse {
-	return LobbyMatchmakingLegacyGetLobbyStatusResponse{}
+pub fn zzz_vproto_internal_new_lobbymatchmakinglegacy_getlobbystatus_response() LobbyMatchmakingLegacy_GetLobbyStatus_Response {
+	return LobbyMatchmakingLegacy_GetLobbyStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_lobbymatchmakinglegacygetlobbystatusresponse(o LobbyMatchmakingLegacyGetLobbyStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_lobbymatchmakinglegacy_getlobbystatus_response(o LobbyMatchmakingLegacy_GetLobbyStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_lobbymatchmakinglegacygetlobbystatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, LobbyMatchmakingLegacyGetLobbyStatusResponse) {
+pub fn zzz_vproto_internal_unpack_lobbymatchmakinglegacy_getlobbystatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, LobbyMatchmakingLegacy_GetLobbyStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := lobbymatchmakinglegacygetlobbystatusresponse_unpack(v)?
+	mut unpacked := lobbymatchmakinglegacy_getlobbystatus_response_unpack(v)?
 	return i, unpacked
 }

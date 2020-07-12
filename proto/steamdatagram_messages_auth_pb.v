@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CMsgSteamDatagramRelayAuthTicketExtraField {
+pub struct CMsgSteamDatagramRelayAuthTicket_ExtraField {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -17,7 +17,7 @@ pub mut:
 	has_fixed64_value bool
 }
 
-pub fn (o &CMsgSteamDatagramRelayAuthTicketExtraField) pack() []byte {
+pub fn (o &CMsgSteamDatagramRelayAuthTicket_ExtraField) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -34,8 +34,8 @@ pub fn (o &CMsgSteamDatagramRelayAuthTicketExtraField) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamdatagramrelayauthticketextrafield_unpack(buf []byte) ?CMsgSteamDatagramRelayAuthTicketExtraField {
-	mut res := CMsgSteamDatagramRelayAuthTicketExtraField{}
+pub fn cmsgsteamdatagramrelayauthticket_extrafield_unpack(buf []byte) ?CMsgSteamDatagramRelayAuthTicket_ExtraField {
+	mut res := CMsgSteamDatagramRelayAuthTicket_ExtraField{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -85,19 +85,19 @@ pub fn cmsgsteamdatagramrelayauthticketextrafield_unpack(buf []byte) ?CMsgSteamD
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamdatagramrelayauthticketextrafield() CMsgSteamDatagramRelayAuthTicketExtraField {
-	return CMsgSteamDatagramRelayAuthTicketExtraField{}
+pub fn zzz_vproto_internal_new_cmsgsteamdatagramrelayauthticket_extrafield() CMsgSteamDatagramRelayAuthTicket_ExtraField {
+	return CMsgSteamDatagramRelayAuthTicket_ExtraField{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticketextrafield(o CMsgSteamDatagramRelayAuthTicketExtraField, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticket_extrafield(o CMsgSteamDatagramRelayAuthTicket_ExtraField, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticketextrafield(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRelayAuthTicketExtraField) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticket_extrafield(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRelayAuthTicket_ExtraField) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramrelayauthticketextrafield_unpack(v)?
+	mut unpacked := cmsgsteamdatagramrelayauthticket_extrafield_unpack(v)?
 	return i, unpacked
 }
 
@@ -119,7 +119,7 @@ pub mut:
 	has_app_id                                   bool
 	virtual_port                                 u32
 	has_virtual_port                             bool
-	extra_fields                                 []CMsgSteamDatagramRelayAuthTicketExtraField
+	extra_fields                                 []CMsgSteamDatagramRelayAuthTicket_ExtraField
 	legacy_authorized_steam_id                   u64
 	has_legacy_authorized_steam_id               bool
 	legacy_gameserver_steam_id                   u64
@@ -159,7 +159,7 @@ pub fn (o &CMsgSteamDatagramRelayAuthTicket) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.extra_fields {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticketextrafield(x, 8)
+		res << zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticket_extrafield(x, 8)
 	}
 	if o.has_legacy_authorized_steam_id {
 		res << vproto.pack_64bit_field(o.legacy_authorized_steam_id, 2)
@@ -237,7 +237,7 @@ pub fn cmsgsteamdatagramrelayauthticket_unpack(buf []byte) ?CMsgSteamDatagramRel
 			}
 			8 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticketextrafield(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticket_extrafield(cur_buf,
 					tag_wiretype.wire_type)?
 				res.extra_fields << v
 				i = ii

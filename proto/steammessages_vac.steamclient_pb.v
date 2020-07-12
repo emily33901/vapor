@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CFileVerificationSignatureCheckRequest {
+pub struct CFileVerification_SignatureCheck_Request {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -27,7 +27,7 @@ pub mut:
 	has_sha1hash               bool
 }
 
-pub fn (o &CFileVerificationSignatureCheckRequest) pack() []byte {
+pub fn (o &CFileVerification_SignatureCheck_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -59,8 +59,8 @@ pub fn (o &CFileVerificationSignatureCheckRequest) pack() []byte {
 	return res
 }
 
-pub fn cfileverificationsignaturecheckrequest_unpack(buf []byte) ?CFileVerificationSignatureCheckRequest {
-	mut res := CFileVerificationSignatureCheckRequest{}
+pub fn cfileverification_signaturecheck_request_unpack(buf []byte) ?CFileVerification_SignatureCheck_Request {
+	mut res := CFileVerification_SignatureCheck_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -140,23 +140,23 @@ pub fn cfileverificationsignaturecheckrequest_unpack(buf []byte) ?CFileVerificat
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cfileverificationsignaturecheckrequest() CFileVerificationSignatureCheckRequest {
-	return CFileVerificationSignatureCheckRequest{}
+pub fn zzz_vproto_internal_new_cfileverification_signaturecheck_request() CFileVerification_SignatureCheck_Request {
+	return CFileVerification_SignatureCheck_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cfileverificationsignaturecheckrequest(o CFileVerificationSignatureCheckRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cfileverification_signaturecheck_request(o CFileVerification_SignatureCheck_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cfileverificationsignaturecheckrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerificationSignatureCheckRequest) {
+pub fn zzz_vproto_internal_unpack_cfileverification_signaturecheck_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SignatureCheck_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverificationsignaturecheckrequest_unpack(v)?
+	mut unpacked := cfileverification_signaturecheck_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CFileVerificationSignatureCheckResponse {
+pub struct CFileVerification_SignatureCheck_Response {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -164,7 +164,7 @@ pub mut:
 	has_deny_operation bool
 }
 
-pub fn (o &CFileVerificationSignatureCheckResponse) pack() []byte {
+pub fn (o &CFileVerification_SignatureCheck_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_deny_operation {
 		res << vproto.pack_bool_field(o.deny_operation, 1)
@@ -172,8 +172,8 @@ pub fn (o &CFileVerificationSignatureCheckResponse) pack() []byte {
 	return res
 }
 
-pub fn cfileverificationsignaturecheckresponse_unpack(buf []byte) ?CFileVerificationSignatureCheckResponse {
-	mut res := CFileVerificationSignatureCheckResponse{}
+pub fn cfileverification_signaturecheck_response_unpack(buf []byte) ?CFileVerification_SignatureCheck_Response {
+	mut res := CFileVerification_SignatureCheck_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -205,23 +205,23 @@ pub fn cfileverificationsignaturecheckresponse_unpack(buf []byte) ?CFileVerifica
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cfileverificationsignaturecheckresponse() CFileVerificationSignatureCheckResponse {
-	return CFileVerificationSignatureCheckResponse{}
+pub fn zzz_vproto_internal_new_cfileverification_signaturecheck_response() CFileVerification_SignatureCheck_Response {
+	return CFileVerification_SignatureCheck_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cfileverificationsignaturecheckresponse(o CFileVerificationSignatureCheckResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cfileverification_signaturecheck_response(o CFileVerification_SignatureCheck_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cfileverificationsignaturecheckresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerificationSignatureCheckResponse) {
+pub fn zzz_vproto_internal_unpack_cfileverification_signaturecheck_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SignatureCheck_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverificationsignaturecheckresponse_unpack(v)?
+	mut unpacked := cfileverification_signaturecheck_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CFileVerificationSteamServiceCheckRequest {
+pub struct CFileVerification_SteamServiceCheck_Request {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -237,7 +237,7 @@ pub mut:
 	has_service_repair         bool
 }
 
-pub fn (o &CFileVerificationSteamServiceCheckRequest) pack() []byte {
+pub fn (o &CFileVerification_SteamServiceCheck_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_service_status {
 		res << vproto.pack_uint32_field(o.service_status, 2)
@@ -257,8 +257,8 @@ pub fn (o &CFileVerificationSteamServiceCheckRequest) pack() []byte {
 	return res
 }
 
-pub fn cfileverificationsteamservicecheckrequest_unpack(buf []byte) ?CFileVerificationSteamServiceCheckRequest {
-	mut res := CFileVerificationSteamServiceCheckRequest{}
+pub fn cfileverification_steamservicecheck_request_unpack(buf []byte) ?CFileVerification_SteamServiceCheck_Request {
+	mut res := CFileVerification_SteamServiceCheck_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -314,23 +314,23 @@ pub fn cfileverificationsteamservicecheckrequest_unpack(buf []byte) ?CFileVerifi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cfileverificationsteamservicecheckrequest() CFileVerificationSteamServiceCheckRequest {
-	return CFileVerificationSteamServiceCheckRequest{}
+pub fn zzz_vproto_internal_new_cfileverification_steamservicecheck_request() CFileVerification_SteamServiceCheck_Request {
+	return CFileVerification_SteamServiceCheck_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cfileverificationsteamservicecheckrequest(o CFileVerificationSteamServiceCheckRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cfileverification_steamservicecheck_request(o CFileVerification_SteamServiceCheck_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cfileverificationsteamservicecheckrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerificationSteamServiceCheckRequest) {
+pub fn zzz_vproto_internal_unpack_cfileverification_steamservicecheck_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SteamServiceCheck_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverificationsteamservicecheckrequest_unpack(v)?
+	mut unpacked := cfileverification_steamservicecheck_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CFileVerificationSteamServiceCheckResponse {
+pub struct CFileVerification_SteamServiceCheck_Response {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -338,7 +338,7 @@ pub mut:
 	has_attempt_repair bool
 }
 
-pub fn (o &CFileVerificationSteamServiceCheckResponse) pack() []byte {
+pub fn (o &CFileVerification_SteamServiceCheck_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_attempt_repair {
 		res << vproto.pack_bool_field(o.attempt_repair, 1)
@@ -346,8 +346,8 @@ pub fn (o &CFileVerificationSteamServiceCheckResponse) pack() []byte {
 	return res
 }
 
-pub fn cfileverificationsteamservicecheckresponse_unpack(buf []byte) ?CFileVerificationSteamServiceCheckResponse {
-	mut res := CFileVerificationSteamServiceCheckResponse{}
+pub fn cfileverification_steamservicecheck_response_unpack(buf []byte) ?CFileVerification_SteamServiceCheck_Response {
+	mut res := CFileVerification_SteamServiceCheck_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -379,18 +379,18 @@ pub fn cfileverificationsteamservicecheckresponse_unpack(buf []byte) ?CFileVerif
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cfileverificationsteamservicecheckresponse() CFileVerificationSteamServiceCheckResponse {
-	return CFileVerificationSteamServiceCheckResponse{}
+pub fn zzz_vproto_internal_new_cfileverification_steamservicecheck_response() CFileVerification_SteamServiceCheck_Response {
+	return CFileVerification_SteamServiceCheck_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cfileverificationsteamservicecheckresponse(o CFileVerificationSteamServiceCheckResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cfileverification_steamservicecheck_response(o CFileVerification_SteamServiceCheck_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cfileverificationsteamservicecheckresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerificationSteamServiceCheckResponse) {
+pub fn zzz_vproto_internal_unpack_cfileverification_steamservicecheck_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SteamServiceCheck_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverificationsteamservicecheckresponse_unpack(v)?
+	mut unpacked := cfileverification_steamservicecheck_response_unpack(v)?
 	return i, unpacked
 }

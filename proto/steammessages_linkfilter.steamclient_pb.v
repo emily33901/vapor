@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CCommunityGetLinkFilterHashPrefixesRequest {
+pub struct CCommunity_GetLinkFilterHashPrefixes_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -15,7 +15,7 @@ pub mut:
 	has_start      bool
 }
 
-pub fn (o &CCommunityGetLinkFilterHashPrefixesRequest) pack() []byte {
+pub fn (o &CCommunity_GetLinkFilterHashPrefixes_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_hit_type {
 		res << vproto.pack_uint32_field(o.hit_type, 1)
@@ -29,8 +29,8 @@ pub fn (o &CCommunityGetLinkFilterHashPrefixesRequest) pack() []byte {
 	return res
 }
 
-pub fn ccommunitygetlinkfilterhashprefixesrequest_unpack(buf []byte) ?CCommunityGetLinkFilterHashPrefixesRequest {
-	mut res := CCommunityGetLinkFilterHashPrefixesRequest{}
+pub fn ccommunity_getlinkfilterhashprefixes_request_unpack(buf []byte) ?CCommunity_GetLinkFilterHashPrefixes_Request {
+	mut res := CCommunity_GetLinkFilterHashPrefixes_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -74,30 +74,30 @@ pub fn ccommunitygetlinkfilterhashprefixesrequest_unpack(buf []byte) ?CCommunity
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunitygetlinkfilterhashprefixesrequest() CCommunityGetLinkFilterHashPrefixesRequest {
-	return CCommunityGetLinkFilterHashPrefixesRequest{}
+pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashprefixes_request() CCommunity_GetLinkFilterHashPrefixes_Request {
+	return CCommunity_GetLinkFilterHashPrefixes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunitygetlinkfilterhashprefixesrequest(o CCommunityGetLinkFilterHashPrefixesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashprefixes_request(o CCommunity_GetLinkFilterHashPrefixes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunitygetlinkfilterhashprefixesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityGetLinkFilterHashPrefixesRequest) {
+pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashprefixes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashPrefixes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunitygetlinkfilterhashprefixesrequest_unpack(v)?
+	mut unpacked := ccommunity_getlinkfilterhashprefixes_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCommunityGetLinkFilterHashPrefixesResponse {
+pub struct CCommunity_GetLinkFilterHashPrefixes_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	hash_prefixes  []u32
 }
 
-pub fn (o &CCommunityGetLinkFilterHashPrefixesResponse) pack() []byte {
+pub fn (o &CCommunity_GetLinkFilterHashPrefixes_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.hash_prefixes {
@@ -106,8 +106,8 @@ pub fn (o &CCommunityGetLinkFilterHashPrefixesResponse) pack() []byte {
 	return res
 }
 
-pub fn ccommunitygetlinkfilterhashprefixesresponse_unpack(buf []byte) ?CCommunityGetLinkFilterHashPrefixesResponse {
-	mut res := CCommunityGetLinkFilterHashPrefixesResponse{}
+pub fn ccommunity_getlinkfilterhashprefixes_response_unpack(buf []byte) ?CCommunity_GetLinkFilterHashPrefixes_Response {
+	mut res := CCommunity_GetLinkFilterHashPrefixes_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -139,23 +139,23 @@ pub fn ccommunitygetlinkfilterhashprefixesresponse_unpack(buf []byte) ?CCommunit
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunitygetlinkfilterhashprefixesresponse() CCommunityGetLinkFilterHashPrefixesResponse {
-	return CCommunityGetLinkFilterHashPrefixesResponse{}
+pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashprefixes_response() CCommunity_GetLinkFilterHashPrefixes_Response {
+	return CCommunity_GetLinkFilterHashPrefixes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunitygetlinkfilterhashprefixesresponse(o CCommunityGetLinkFilterHashPrefixesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashprefixes_response(o CCommunity_GetLinkFilterHashPrefixes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunitygetlinkfilterhashprefixesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityGetLinkFilterHashPrefixesResponse) {
+pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashprefixes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashPrefixes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunitygetlinkfilterhashprefixesresponse_unpack(v)?
+	mut unpacked := ccommunity_getlinkfilterhashprefixes_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCommunityGetLinkFilterHashesRequest {
+pub struct CCommunity_GetLinkFilterHashes_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -167,7 +167,7 @@ pub mut:
 	has_start      bool
 }
 
-pub fn (o &CCommunityGetLinkFilterHashesRequest) pack() []byte {
+pub fn (o &CCommunity_GetLinkFilterHashes_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_hit_type {
 		res << vproto.pack_uint32_field(o.hit_type, 1)
@@ -181,8 +181,8 @@ pub fn (o &CCommunityGetLinkFilterHashesRequest) pack() []byte {
 	return res
 }
 
-pub fn ccommunitygetlinkfilterhashesrequest_unpack(buf []byte) ?CCommunityGetLinkFilterHashesRequest {
-	mut res := CCommunityGetLinkFilterHashesRequest{}
+pub fn ccommunity_getlinkfilterhashes_request_unpack(buf []byte) ?CCommunity_GetLinkFilterHashes_Request {
+	mut res := CCommunity_GetLinkFilterHashes_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -226,30 +226,30 @@ pub fn ccommunitygetlinkfilterhashesrequest_unpack(buf []byte) ?CCommunityGetLin
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunitygetlinkfilterhashesrequest() CCommunityGetLinkFilterHashesRequest {
-	return CCommunityGetLinkFilterHashesRequest{}
+pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashes_request() CCommunity_GetLinkFilterHashes_Request {
+	return CCommunity_GetLinkFilterHashes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunitygetlinkfilterhashesrequest(o CCommunityGetLinkFilterHashesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashes_request(o CCommunity_GetLinkFilterHashes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunitygetlinkfilterhashesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityGetLinkFilterHashesRequest) {
+pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunitygetlinkfilterhashesrequest_unpack(v)?
+	mut unpacked := ccommunity_getlinkfilterhashes_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCommunityGetLinkFilterHashesResponse {
+pub struct CCommunity_GetLinkFilterHashes_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	hashes         [][]byte
 }
 
-pub fn (o &CCommunityGetLinkFilterHashesResponse) pack() []byte {
+pub fn (o &CCommunity_GetLinkFilterHashes_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.hashes {
@@ -258,8 +258,8 @@ pub fn (o &CCommunityGetLinkFilterHashesResponse) pack() []byte {
 	return res
 }
 
-pub fn ccommunitygetlinkfilterhashesresponse_unpack(buf []byte) ?CCommunityGetLinkFilterHashesResponse {
-	mut res := CCommunityGetLinkFilterHashesResponse{}
+pub fn ccommunity_getlinkfilterhashes_response_unpack(buf []byte) ?CCommunity_GetLinkFilterHashes_Response {
+	mut res := CCommunity_GetLinkFilterHashes_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -291,23 +291,23 @@ pub fn ccommunitygetlinkfilterhashesresponse_unpack(buf []byte) ?CCommunityGetLi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunitygetlinkfilterhashesresponse() CCommunityGetLinkFilterHashesResponse {
-	return CCommunityGetLinkFilterHashesResponse{}
+pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashes_response() CCommunity_GetLinkFilterHashes_Response {
+	return CCommunity_GetLinkFilterHashes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunitygetlinkfilterhashesresponse(o CCommunityGetLinkFilterHashesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashes_response(o CCommunity_GetLinkFilterHashes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunitygetlinkfilterhashesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityGetLinkFilterHashesResponse) {
+pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunitygetlinkfilterhashesresponse_unpack(v)?
+	mut unpacked := ccommunity_getlinkfilterhashes_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCommunityGetLinkFilterListVersionRequest {
+pub struct CCommunity_GetLinkFilterListVersion_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -315,7 +315,7 @@ pub mut:
 	has_hit_type   bool
 }
 
-pub fn (o &CCommunityGetLinkFilterListVersionRequest) pack() []byte {
+pub fn (o &CCommunity_GetLinkFilterListVersion_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_hit_type {
 		res << vproto.pack_uint32_field(o.hit_type, 1)
@@ -323,8 +323,8 @@ pub fn (o &CCommunityGetLinkFilterListVersionRequest) pack() []byte {
 	return res
 }
 
-pub fn ccommunitygetlinkfilterlistversionrequest_unpack(buf []byte) ?CCommunityGetLinkFilterListVersionRequest {
-	mut res := CCommunityGetLinkFilterListVersionRequest{}
+pub fn ccommunity_getlinkfilterlistversion_request_unpack(buf []byte) ?CCommunity_GetLinkFilterListVersion_Request {
+	mut res := CCommunity_GetLinkFilterListVersion_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -356,23 +356,23 @@ pub fn ccommunitygetlinkfilterlistversionrequest_unpack(buf []byte) ?CCommunityG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunitygetlinkfilterlistversionrequest() CCommunityGetLinkFilterListVersionRequest {
-	return CCommunityGetLinkFilterListVersionRequest{}
+pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterlistversion_request() CCommunity_GetLinkFilterListVersion_Request {
+	return CCommunity_GetLinkFilterListVersion_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunitygetlinkfilterlistversionrequest(o CCommunityGetLinkFilterListVersionRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterlistversion_request(o CCommunity_GetLinkFilterListVersion_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunitygetlinkfilterlistversionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityGetLinkFilterListVersionRequest) {
+pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterlistversion_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterListVersion_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunitygetlinkfilterlistversionrequest_unpack(v)?
+	mut unpacked := ccommunity_getlinkfilterlistversion_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCommunityGetLinkFilterListVersionResponse {
+pub struct CCommunity_GetLinkFilterListVersion_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -382,7 +382,7 @@ pub mut:
 	has_count      bool
 }
 
-pub fn (o &CCommunityGetLinkFilterListVersionResponse) pack() []byte {
+pub fn (o &CCommunity_GetLinkFilterListVersion_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_version {
 		res << vproto.pack_string_field(o.version, 1)
@@ -393,8 +393,8 @@ pub fn (o &CCommunityGetLinkFilterListVersionResponse) pack() []byte {
 	return res
 }
 
-pub fn ccommunitygetlinkfilterlistversionresponse_unpack(buf []byte) ?CCommunityGetLinkFilterListVersionResponse {
-	mut res := CCommunityGetLinkFilterListVersionResponse{}
+pub fn ccommunity_getlinkfilterlistversion_response_unpack(buf []byte) ?CCommunity_GetLinkFilterListVersion_Response {
+	mut res := CCommunity_GetLinkFilterListVersion_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -432,18 +432,18 @@ pub fn ccommunitygetlinkfilterlistversionresponse_unpack(buf []byte) ?CCommunity
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccommunitygetlinkfilterlistversionresponse() CCommunityGetLinkFilterListVersionResponse {
-	return CCommunityGetLinkFilterListVersionResponse{}
+pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterlistversion_response() CCommunity_GetLinkFilterListVersion_Response {
+	return CCommunity_GetLinkFilterListVersion_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccommunitygetlinkfilterlistversionresponse(o CCommunityGetLinkFilterListVersionResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterlistversion_response(o CCommunity_GetLinkFilterListVersion_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccommunitygetlinkfilterlistversionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunityGetLinkFilterListVersionResponse) {
+pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterlistversion_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterListVersion_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunitygetlinkfilterlistversionresponse_unpack(v)?
+	mut unpacked := ccommunity_getlinkfilterlistversion_response_unpack(v)?
 	return i, unpacked
 }

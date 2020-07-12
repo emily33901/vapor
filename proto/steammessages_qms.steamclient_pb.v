@@ -17,9 +17,31 @@ fn zzz_vproto_internal_pack_egamesearchaction(e EGameSearchAction, num u32) []by
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_egamesearchaction_packed(e []EGameSearchAction, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_egamesearchaction(buf []byte, tag_wiretype vproto.WireType) ?(int, EGameSearchAction) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EGameSearchAction(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_egamesearchaction_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EGameSearchAction) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -39,9 +61,31 @@ fn zzz_vproto_internal_pack_egamesearchresult(e EGameSearchResult, num u32) []by
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_egamesearchresult_packed(e []EGameSearchResult, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_egamesearchresult(buf []byte, tag_wiretype vproto.WireType) ?(int, EGameSearchResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EGameSearchResult(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_egamesearchresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EGameSearchResult) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct GameSearchParam {
@@ -120,7 +164,7 @@ pub fn zzz_vproto_internal_unpack_gamesearchparam(buf []byte, tag_wiretype vprot
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingSearchForGameRequest {
+pub struct CQueuedMatchmaking_SearchForGame_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -139,7 +183,7 @@ pub mut:
 	has_searchid     bool
 }
 
-pub fn (o &CQueuedMatchmakingSearchForGameRequest) pack() []byte {
+pub fn (o &CQueuedMatchmaking_SearchForGame_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -166,8 +210,8 @@ pub fn (o &CQueuedMatchmakingSearchForGameRequest) pack() []byte {
 	return res
 }
 
-pub fn cqueuedmatchmakingsearchforgamerequest_unpack(buf []byte) ?CQueuedMatchmakingSearchForGameRequest {
-	mut res := CQueuedMatchmakingSearchForGameRequest{}
+pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatchmaking_SearchForGame_Request {
+	mut res := CQueuedMatchmaking_SearchForGame_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -235,23 +279,23 @@ pub fn cqueuedmatchmakingsearchforgamerequest_unpack(buf []byte) ?CQueuedMatchma
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakingsearchforgamerequest() CQueuedMatchmakingSearchForGameRequest {
-	return CQueuedMatchmakingSearchForGameRequest{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmaking_searchforgame_request() CQueuedMatchmaking_SearchForGame_Request {
+	return CQueuedMatchmaking_SearchForGame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakingsearchforgamerequest(o CQueuedMatchmakingSearchForGameRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmaking_searchforgame_request(o CQueuedMatchmaking_SearchForGame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakingsearchforgamerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingSearchForGameRequest) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmaking_searchforgame_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmaking_SearchForGame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakingsearchforgamerequest_unpack(v)?
+	mut unpacked := cqueuedmatchmaking_searchforgame_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingSearchForGameResponse {
+pub struct CQueuedMatchmaking_SearchForGame_Response {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -281,7 +325,7 @@ pub mut:
 	has_steamid_canceled_search bool
 }
 
-pub fn (o &CQueuedMatchmakingSearchForGameResponse) pack() []byte {
+pub fn (o &CQueuedMatchmaking_SearchForGame_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_gamesearchresult {
 		res << zzz_vproto_internal_pack_egamesearchresult(o.gamesearchresult, 1)
@@ -322,8 +366,8 @@ pub fn (o &CQueuedMatchmakingSearchForGameResponse) pack() []byte {
 	return res
 }
 
-pub fn cqueuedmatchmakingsearchforgameresponse_unpack(buf []byte) ?CQueuedMatchmakingSearchForGameResponse {
-	mut res := CQueuedMatchmakingSearchForGameResponse{}
+pub fn cqueuedmatchmaking_searchforgame_response_unpack(buf []byte) ?CQueuedMatchmaking_SearchForGame_Response {
+	mut res := CQueuedMatchmaking_SearchForGame_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -421,23 +465,23 @@ pub fn cqueuedmatchmakingsearchforgameresponse_unpack(buf []byte) ?CQueuedMatchm
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakingsearchforgameresponse() CQueuedMatchmakingSearchForGameResponse {
-	return CQueuedMatchmakingSearchForGameResponse{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmaking_searchforgame_response() CQueuedMatchmaking_SearchForGame_Response {
+	return CQueuedMatchmaking_SearchForGame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakingsearchforgameresponse(o CQueuedMatchmakingSearchForGameResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmaking_searchforgame_response(o CQueuedMatchmaking_SearchForGame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakingsearchforgameresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingSearchForGameResponse) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmaking_searchforgame_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmaking_SearchForGame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakingsearchforgameresponse_unpack(v)?
+	mut unpacked := cqueuedmatchmaking_searchforgame_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingGameHostSearchForPlayersRequest {
+pub struct CQueuedMatchmakingGameHost_SearchForPlayers_Request {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -458,7 +502,7 @@ pub mut:
 	has_searchid             bool
 }
 
-pub fn (o &CQueuedMatchmakingGameHostSearchForPlayersRequest) pack() []byte {
+pub fn (o &CQueuedMatchmakingGameHost_SearchForPlayers_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -488,8 +532,8 @@ pub fn (o &CQueuedMatchmakingGameHostSearchForPlayersRequest) pack() []byte {
 	return res
 }
 
-pub fn cqueuedmatchmakinggamehostsearchforplayersrequest_unpack(buf []byte) ?CQueuedMatchmakingGameHostSearchForPlayersRequest {
-	mut res := CQueuedMatchmakingGameHostSearchForPlayersRequest{}
+pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SearchForPlayers_Request {
+	mut res := CQueuedMatchmakingGameHost_SearchForPlayers_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -563,19 +607,19 @@ pub fn cqueuedmatchmakinggamehostsearchforplayersrequest_unpack(buf []byte) ?CQu
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehostsearchforplayersrequest() CQueuedMatchmakingGameHostSearchForPlayersRequest {
-	return CQueuedMatchmakingGameHostSearchForPlayersRequest{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_searchforplayers_request() CQueuedMatchmakingGameHost_SearchForPlayers_Request {
+	return CQueuedMatchmakingGameHost_SearchForPlayers_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehostsearchforplayersrequest(o CQueuedMatchmakingGameHostSearchForPlayersRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_searchforplayers_request(o CQueuedMatchmakingGameHost_SearchForPlayers_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehostsearchforplayersrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHostSearchForPlayersRequest) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_searchforplayers_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SearchForPlayers_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakinggamehostsearchforplayersrequest_unpack(v)?
+	mut unpacked := cqueuedmatchmakinggamehost_searchforplayers_request_unpack(v)?
 	return i, unpacked
 }
 
@@ -677,7 +721,7 @@ pub fn zzz_vproto_internal_unpack_playerfound(buf []byte, tag_wiretype vproto.Wi
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingGameHostSearchForPlayersResponse {
+pub struct CQueuedMatchmakingGameHost_SearchForPlayers_Response {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -696,7 +740,7 @@ pub mut:
 	has_rtime_now        bool
 }
 
-pub fn (o &CQueuedMatchmakingGameHostSearchForPlayersResponse) pack() []byte {
+pub fn (o &CQueuedMatchmakingGameHost_SearchForPlayers_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_gamesearchresult {
 		res << zzz_vproto_internal_pack_egamesearchresult(o.gamesearchresult, 1)
@@ -723,8 +767,8 @@ pub fn (o &CQueuedMatchmakingGameHostSearchForPlayersResponse) pack() []byte {
 	return res
 }
 
-pub fn cqueuedmatchmakinggamehostsearchforplayersresponse_unpack(buf []byte) ?CQueuedMatchmakingGameHostSearchForPlayersResponse {
-	mut res := CQueuedMatchmakingGameHostSearchForPlayersResponse{}
+pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SearchForPlayers_Response {
+	mut res := CQueuedMatchmakingGameHost_SearchForPlayers_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -792,19 +836,19 @@ pub fn cqueuedmatchmakinggamehostsearchforplayersresponse_unpack(buf []byte) ?CQ
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehostsearchforplayersresponse() CQueuedMatchmakingGameHostSearchForPlayersResponse {
-	return CQueuedMatchmakingGameHostSearchForPlayersResponse{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_searchforplayers_response() CQueuedMatchmakingGameHost_SearchForPlayers_Response {
+	return CQueuedMatchmakingGameHost_SearchForPlayers_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehostsearchforplayersresponse(o CQueuedMatchmakingGameHostSearchForPlayersResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_searchforplayers_response(o CQueuedMatchmakingGameHost_SearchForPlayers_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehostsearchforplayersresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHostSearchForPlayersResponse) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_searchforplayers_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SearchForPlayers_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakinggamehostsearchforplayersresponse_unpack(v)?
+	mut unpacked := cqueuedmatchmakinggamehost_searchforplayers_response_unpack(v)?
 	return i, unpacked
 }
 
@@ -884,7 +928,7 @@ pub fn zzz_vproto_internal_unpack_playerresult(buf []byte, tag_wiretype vproto.W
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingGameHostSubmitPlayerResultRequest {
+pub struct CQueuedMatchmakingGameHost_SubmitPlayerResult_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -895,7 +939,7 @@ pub mut:
 	player_results []PlayerResult
 }
 
-pub fn (o &CQueuedMatchmakingGameHostSubmitPlayerResultRequest) pack() []byte {
+pub fn (o &CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -910,8 +954,8 @@ pub fn (o &CQueuedMatchmakingGameHostSubmitPlayerResultRequest) pack() []byte {
 	return res
 }
 
-pub fn cqueuedmatchmakinggamehostsubmitplayerresultrequest_unpack(buf []byte) ?CQueuedMatchmakingGameHostSubmitPlayerResultRequest {
-	mut res := CQueuedMatchmakingGameHostSubmitPlayerResultRequest{}
+pub fn cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SubmitPlayerResult_Request {
+	mut res := CQueuedMatchmakingGameHost_SubmitPlayerResult_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -955,55 +999,55 @@ pub fn cqueuedmatchmakinggamehostsubmitplayerresultrequest_unpack(buf []byte) ?C
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehostsubmitplayerresultrequest() CQueuedMatchmakingGameHostSubmitPlayerResultRequest {
-	return CQueuedMatchmakingGameHostSubmitPlayerResultRequest{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_submitplayerresult_request() CQueuedMatchmakingGameHost_SubmitPlayerResult_Request {
+	return CQueuedMatchmakingGameHost_SubmitPlayerResult_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehostsubmitplayerresultrequest(o CQueuedMatchmakingGameHostSubmitPlayerResultRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_submitplayerresult_request(o CQueuedMatchmakingGameHost_SubmitPlayerResult_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehostsubmitplayerresultrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHostSubmitPlayerResultRequest) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_submitplayerresult_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakinggamehostsubmitplayerresultrequest_unpack(v)?
+	mut unpacked := cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingGameHostSubmitPlayerResultResponse {
+pub struct CQueuedMatchmakingGameHost_SubmitPlayerResult_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CQueuedMatchmakingGameHostSubmitPlayerResultResponse) pack() []byte {
+pub fn (o &CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cqueuedmatchmakinggamehostsubmitplayerresultresponse_unpack(buf []byte) ?CQueuedMatchmakingGameHostSubmitPlayerResultResponse {
-	res := CQueuedMatchmakingGameHostSubmitPlayerResultResponse{}
+pub fn cqueuedmatchmakinggamehost_submitplayerresult_response_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SubmitPlayerResult_Response {
+	res := CQueuedMatchmakingGameHost_SubmitPlayerResult_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehostsubmitplayerresultresponse() CQueuedMatchmakingGameHostSubmitPlayerResultResponse {
-	return CQueuedMatchmakingGameHostSubmitPlayerResultResponse{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_submitplayerresult_response() CQueuedMatchmakingGameHost_SubmitPlayerResult_Response {
+	return CQueuedMatchmakingGameHost_SubmitPlayerResult_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehostsubmitplayerresultresponse(o CQueuedMatchmakingGameHostSubmitPlayerResultResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_submitplayerresult_response(o CQueuedMatchmakingGameHost_SubmitPlayerResult_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehostsubmitplayerresultresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHostSubmitPlayerResultResponse) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_submitplayerresult_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakinggamehostsubmitplayerresultresponse_unpack(v)?
+	mut unpacked := cqueuedmatchmakinggamehost_submitplayerresult_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingGameHostEndGameRequest {
+pub struct CQueuedMatchmakingGameHost_EndGame_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1013,7 +1057,7 @@ pub mut:
 	has_matchid    bool
 }
 
-pub fn (o &CQueuedMatchmakingGameHostEndGameRequest) pack() []byte {
+pub fn (o &CQueuedMatchmakingGameHost_EndGame_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -1024,8 +1068,8 @@ pub fn (o &CQueuedMatchmakingGameHostEndGameRequest) pack() []byte {
 	return res
 }
 
-pub fn cqueuedmatchmakinggamehostendgamerequest_unpack(buf []byte) ?CQueuedMatchmakingGameHostEndGameRequest {
-	mut res := CQueuedMatchmakingGameHostEndGameRequest{}
+pub fn cqueuedmatchmakinggamehost_endgame_request_unpack(buf []byte) ?CQueuedMatchmakingGameHost_EndGame_Request {
+	mut res := CQueuedMatchmakingGameHost_EndGame_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1063,50 +1107,50 @@ pub fn cqueuedmatchmakinggamehostendgamerequest_unpack(buf []byte) ?CQueuedMatch
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehostendgamerequest() CQueuedMatchmakingGameHostEndGameRequest {
-	return CQueuedMatchmakingGameHostEndGameRequest{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_endgame_request() CQueuedMatchmakingGameHost_EndGame_Request {
+	return CQueuedMatchmakingGameHost_EndGame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehostendgamerequest(o CQueuedMatchmakingGameHostEndGameRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_endgame_request(o CQueuedMatchmakingGameHost_EndGame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehostendgamerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHostEndGameRequest) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_endgame_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_EndGame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakinggamehostendgamerequest_unpack(v)?
+	mut unpacked := cqueuedmatchmakinggamehost_endgame_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CQueuedMatchmakingGameHostEndGameResponse {
+pub struct CQueuedMatchmakingGameHost_EndGame_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CQueuedMatchmakingGameHostEndGameResponse) pack() []byte {
+pub fn (o &CQueuedMatchmakingGameHost_EndGame_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cqueuedmatchmakinggamehostendgameresponse_unpack(buf []byte) ?CQueuedMatchmakingGameHostEndGameResponse {
-	res := CQueuedMatchmakingGameHostEndGameResponse{}
+pub fn cqueuedmatchmakinggamehost_endgame_response_unpack(buf []byte) ?CQueuedMatchmakingGameHost_EndGame_Response {
+	res := CQueuedMatchmakingGameHost_EndGame_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehostendgameresponse() CQueuedMatchmakingGameHostEndGameResponse {
-	return CQueuedMatchmakingGameHostEndGameResponse{}
+pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_endgame_response() CQueuedMatchmakingGameHost_EndGame_Response {
+	return CQueuedMatchmakingGameHost_EndGame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehostendgameresponse(o CQueuedMatchmakingGameHostEndGameResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_endgame_response(o CQueuedMatchmakingGameHost_EndGame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehostendgameresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHostEndGameResponse) {
+pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_endgame_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_EndGame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cqueuedmatchmakinggamehostendgameresponse_unpack(v)?
+	mut unpacked := cqueuedmatchmakinggamehost_endgame_response_unpack(v)?
 	return i, unpacked
 }

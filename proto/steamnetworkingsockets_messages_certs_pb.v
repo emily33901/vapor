@@ -113,27 +113,49 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingidentitylegacybinary(buf []
 }
 
 [_allow_multiple_values]
-enum CMsgSteamDatagramCertificateEKeyType {
+enum CMsgSteamDatagramCertificate_EKeyType {
 	invalid = 0
 	ed25519 = 1
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificateekeytype(e CMsgSteamDatagramCertificateEKeyType, num u32) []byte {
+fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype(e CMsgSteamDatagramCertificate_EKeyType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificateekeytype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCertificateEKeyType) {
+fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype_packed(e []CMsgSteamDatagramCertificate_EKeyType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCertificate_EKeyType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, CMsgSteamDatagramCertificateEKeyType(v)
+	return i, CMsgSteamDatagramCertificate_EKeyType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramCertificate_EKeyType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct CMsgSteamDatagramCertificate {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
-	key_type                   CMsgSteamDatagramCertificateEKeyType
+	key_type                   CMsgSteamDatagramCertificate_EKeyType
 	has_key_type               bool
 	key_data                   []byte
 	has_key_data               bool
@@ -154,7 +176,7 @@ pub mut:
 pub fn (o &CMsgSteamDatagramCertificate) pack() []byte {
 	mut res := []byte{}
 	if o.has_key_type {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificateekeytype(o.key_type, 1)
+		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype(o.key_type, 1)
 	}
 	if o.has_key_data {
 		res << vproto.pack_bytes_field(o.key_data, 2)
@@ -199,7 +221,7 @@ pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertifi
 		match tag_wiretype.tag {
 			1 {
 				res.has_key_type = true
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificateekeytype(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype(cur_buf,
 					tag_wiretype.wire_type)?
 				res.key_type = v
 				i = ii

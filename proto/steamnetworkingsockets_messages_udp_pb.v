@@ -4,7 +4,7 @@ module proto
 import emily33901.vproto
 
 [_allow_multiple_values]
-enum ESteamNetworkingUDpmsgID {
+enum ESteamNetworkingUDPMsgID {
 	k_esteamnetworkingudpmsg_challengerequest = 32
 	k_esteamnetworkingudpmsg_challengereply = 33
 	k_esteamnetworkingudpmsg_connectrequest = 34
@@ -14,17 +14,39 @@ enum ESteamNetworkingUDpmsgID {
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_esteamnetworkingudpmsgid(e ESteamNetworkingUDpmsgID, num u32) []byte {
+fn zzz_vproto_internal_pack_esteamnetworkingudpmsgid(e ESteamNetworkingUDPMsgID, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_esteamnetworkingudpmsgid(buf []byte, tag_wiretype vproto.WireType) ?(int, ESteamNetworkingUDpmsgID) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, ESteamNetworkingUDpmsgID(v)
+fn zzz_vproto_internal_pack_esteamnetworkingudpmsgid_packed(e []ESteamNetworkingUDPMsgID, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
 }
 
-pub struct CMsgSteamSocketsUDpchallengeRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_esteamnetworkingudpmsgid(buf []byte, tag_wiretype vproto.WireType) ?(int, ESteamNetworkingUDPMsgID) {
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	return i, ESteamNetworkingUDPMsgID(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_esteamnetworkingudpmsgid_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ESteamNetworkingUDPMsgID) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CMsgSteamSockets_UDP_ChallengeRequest {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -36,7 +58,7 @@ pub mut:
 	has_protocol_version bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpchallengeRequest) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_ChallengeRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_connection_id {
 		res << vproto.pack_32bit_field(o.connection_id, 1)
@@ -50,8 +72,8 @@ pub fn (o &CMsgSteamSocketsUDpchallengeRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpchallengerequest_unpack(buf []byte) ?CMsgSteamSocketsUDpchallengeRequest {
-	mut res := CMsgSteamSocketsUDpchallengeRequest{}
+pub fn cmsgsteamsockets_udp_challengerequest_unpack(buf []byte) ?CMsgSteamSockets_UDP_ChallengeRequest {
+	mut res := CMsgSteamSockets_UDP_ChallengeRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -95,23 +117,23 @@ pub fn cmsgsteamsocketsudpchallengerequest_unpack(buf []byte) ?CMsgSteamSocketsU
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpchallengerequest() CMsgSteamSocketsUDpchallengeRequest {
-	return CMsgSteamSocketsUDpchallengeRequest{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_challengerequest() CMsgSteamSockets_UDP_ChallengeRequest {
+	return CMsgSteamSockets_UDP_ChallengeRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpchallengerequest(o CMsgSteamSocketsUDpchallengeRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_challengerequest(o CMsgSteamSockets_UDP_ChallengeRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpchallengerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpchallengeRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_challengerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_ChallengeRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpchallengerequest_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_challengerequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamSocketsUDpchallengeReply {
+pub struct CMsgSteamSockets_UDP_ChallengeReply {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -125,7 +147,7 @@ pub mut:
 	has_protocol_version bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpchallengeReply) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_ChallengeReply) pack() []byte {
 	mut res := []byte{}
 	if o.has_connection_id {
 		res << vproto.pack_32bit_field(o.connection_id, 1)
@@ -142,8 +164,8 @@ pub fn (o &CMsgSteamSocketsUDpchallengeReply) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpchallengereply_unpack(buf []byte) ?CMsgSteamSocketsUDpchallengeReply {
-	mut res := CMsgSteamSocketsUDpchallengeReply{}
+pub fn cmsgsteamsockets_udp_challengereply_unpack(buf []byte) ?CMsgSteamSockets_UDP_ChallengeReply {
+	mut res := CMsgSteamSockets_UDP_ChallengeReply{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -193,23 +215,23 @@ pub fn cmsgsteamsocketsudpchallengereply_unpack(buf []byte) ?CMsgSteamSocketsUDp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpchallengereply() CMsgSteamSocketsUDpchallengeReply {
-	return CMsgSteamSocketsUDpchallengeReply{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_challengereply() CMsgSteamSockets_UDP_ChallengeReply {
+	return CMsgSteamSockets_UDP_ChallengeReply{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpchallengereply(o CMsgSteamSocketsUDpchallengeReply, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_challengereply(o CMsgSteamSockets_UDP_ChallengeReply, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpchallengereply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpchallengeReply) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_challengereply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_ChallengeReply) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpchallengereply_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_challengereply_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamSocketsUDpconnectRequest {
+pub struct CMsgSteamSockets_UDP_ConnectRequest {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -235,7 +257,7 @@ pub mut:
 	has_legacy_identity_binary  bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpconnectRequest) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_ConnectRequest) pack() []byte {
 	mut res := []byte{}
 	if o.has_client_connection_id {
 		res << vproto.pack_32bit_field(o.client_connection_id, 1)
@@ -271,8 +293,8 @@ pub fn (o &CMsgSteamSocketsUDpconnectRequest) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpconnectrequest_unpack(buf []byte) ?CMsgSteamSocketsUDpconnectRequest {
-	mut res := CMsgSteamSocketsUDpconnectRequest{}
+pub fn cmsgsteamsockets_udp_connectrequest_unpack(buf []byte) ?CMsgSteamSockets_UDP_ConnectRequest {
+	mut res := CMsgSteamSockets_UDP_ConnectRequest{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -361,23 +383,23 @@ pub fn cmsgsteamsocketsudpconnectrequest_unpack(buf []byte) ?CMsgSteamSocketsUDp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpconnectrequest() CMsgSteamSocketsUDpconnectRequest {
-	return CMsgSteamSocketsUDpconnectRequest{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_connectrequest() CMsgSteamSockets_UDP_ConnectRequest {
+	return CMsgSteamSockets_UDP_ConnectRequest{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpconnectrequest(o CMsgSteamSocketsUDpconnectRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_connectrequest(o CMsgSteamSockets_UDP_ConnectRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpconnectrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpconnectRequest) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_connectrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_ConnectRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpconnectrequest_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_connectrequest_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamSocketsUDpconnectOK {
+pub struct CMsgSteamSockets_UDP_ConnectOK {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -401,7 +423,7 @@ pub mut:
 	has_legacy_identity_binary bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpconnectOK) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_ConnectOK) pack() []byte {
 	mut res := []byte{}
 	if o.has_client_connection_id {
 		res << vproto.pack_32bit_field(o.client_connection_id, 1)
@@ -434,8 +456,8 @@ pub fn (o &CMsgSteamSocketsUDpconnectOK) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpconnectok_unpack(buf []byte) ?CMsgSteamSocketsUDpconnectOK {
-	mut res := CMsgSteamSocketsUDpconnectOK{}
+pub fn cmsgsteamsockets_udp_connectok_unpack(buf []byte) ?CMsgSteamSockets_UDP_ConnectOK {
+	mut res := CMsgSteamSockets_UDP_ConnectOK{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -518,23 +540,23 @@ pub fn cmsgsteamsocketsudpconnectok_unpack(buf []byte) ?CMsgSteamSocketsUDpconne
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpconnectok() CMsgSteamSocketsUDpconnectOK {
-	return CMsgSteamSocketsUDpconnectOK{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_connectok() CMsgSteamSockets_UDP_ConnectOK {
+	return CMsgSteamSockets_UDP_ConnectOK{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpconnectok(o CMsgSteamSocketsUDpconnectOK, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_connectok(o CMsgSteamSockets_UDP_ConnectOK, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpconnectok(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpconnectOK) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_connectok(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_ConnectOK) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpconnectok_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_connectok_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamSocketsUDpconnectionClosed {
+pub struct CMsgSteamSockets_UDP_ConnectionClosed {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -548,7 +570,7 @@ pub mut:
 	has_reason_code        bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpconnectionClosed) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_ConnectionClosed) pack() []byte {
 	mut res := []byte{}
 	if o.has_to_connection_id {
 		res << vproto.pack_32bit_field(o.to_connection_id, 4)
@@ -565,8 +587,8 @@ pub fn (o &CMsgSteamSocketsUDpconnectionClosed) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpconnectionclosed_unpack(buf []byte) ?CMsgSteamSocketsUDpconnectionClosed {
-	mut res := CMsgSteamSocketsUDpconnectionClosed{}
+pub fn cmsgsteamsockets_udp_connectionclosed_unpack(buf []byte) ?CMsgSteamSockets_UDP_ConnectionClosed {
+	mut res := CMsgSteamSockets_UDP_ConnectionClosed{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -616,23 +638,23 @@ pub fn cmsgsteamsocketsudpconnectionclosed_unpack(buf []byte) ?CMsgSteamSocketsU
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpconnectionclosed() CMsgSteamSocketsUDpconnectionClosed {
-	return CMsgSteamSocketsUDpconnectionClosed{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_connectionclosed() CMsgSteamSockets_UDP_ConnectionClosed {
+	return CMsgSteamSockets_UDP_ConnectionClosed{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpconnectionclosed(o CMsgSteamSocketsUDpconnectionClosed, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_connectionclosed(o CMsgSteamSockets_UDP_ConnectionClosed, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpconnectionclosed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpconnectionClosed) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_connectionclosed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_ConnectionClosed) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpconnectionclosed_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_connectionclosed_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgSteamSocketsUDpnoConnection {
+pub struct CMsgSteamSockets_UDP_NoConnection {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -642,7 +664,7 @@ pub mut:
 	has_to_connection_id   bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpnoConnection) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_NoConnection) pack() []byte {
 	mut res := []byte{}
 	if o.has_from_connection_id {
 		res << vproto.pack_32bit_field(o.from_connection_id, 2)
@@ -653,8 +675,8 @@ pub fn (o &CMsgSteamSocketsUDpnoConnection) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpnoconnection_unpack(buf []byte) ?CMsgSteamSocketsUDpnoConnection {
-	mut res := CMsgSteamSocketsUDpnoConnection{}
+pub fn cmsgsteamsockets_udp_noconnection_unpack(buf []byte) ?CMsgSteamSockets_UDP_NoConnection {
+	mut res := CMsgSteamSockets_UDP_NoConnection{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -692,41 +714,63 @@ pub fn cmsgsteamsocketsudpnoconnection_unpack(buf []byte) ?CMsgSteamSocketsUDpno
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpnoconnection() CMsgSteamSocketsUDpnoConnection {
-	return CMsgSteamSocketsUDpnoConnection{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_noconnection() CMsgSteamSockets_UDP_NoConnection {
+	return CMsgSteamSockets_UDP_NoConnection{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpnoconnection(o CMsgSteamSocketsUDpnoConnection, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_noconnection(o CMsgSteamSockets_UDP_NoConnection, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpnoconnection(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpnoConnection) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_noconnection(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_NoConnection) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpnoconnection_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_noconnection_unpack(v)?
 	return i, unpacked
 }
 
 [_allow_multiple_values]
-enum CMsgSteamSocketsUDpstatsFlags {
+enum CMsgSteamSockets_UDP_Stats_Flags {
 	ack_request_e2e = 2
 	ack_request_immediate = 4
 	not_primary_transport_e2e = 16
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_cmsgsteamsocketsudpstatsflags(e CMsgSteamSocketsUDpstatsFlags, num u32) []byte {
+fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_stats_flags(e CMsgSteamSockets_UDP_Stats_Flags, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpstatsflags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpstatsFlags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, CMsgSteamSocketsUDpstatsFlags(v)
+fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_stats_flags_packed(e []CMsgSteamSockets_UDP_Stats_Flags, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
 }
 
-pub struct CMsgSteamSocketsUDpstats {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_stats_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_Stats_Flags) {
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	return i, CMsgSteamSockets_UDP_Stats_Flags(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_stats_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamSockets_UDP_Stats_Flags) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CMsgSteamSockets_UDP_Stats {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -736,7 +780,7 @@ pub mut:
 	has_flags      bool
 }
 
-pub fn (o &CMsgSteamSocketsUDpstats) pack() []byte {
+pub fn (o &CMsgSteamSockets_UDP_Stats) pack() []byte {
 	mut res := []byte{}
 	if o.has_stats {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.stats, 1)
@@ -747,8 +791,8 @@ pub fn (o &CMsgSteamSocketsUDpstats) pack() []byte {
 	return res
 }
 
-pub fn cmsgsteamsocketsudpstats_unpack(buf []byte) ?CMsgSteamSocketsUDpstats {
-	mut res := CMsgSteamSocketsUDpstats{}
+pub fn cmsgsteamsockets_udp_stats_unpack(buf []byte) ?CMsgSteamSockets_UDP_Stats {
+	mut res := CMsgSteamSockets_UDP_Stats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -787,18 +831,18 @@ pub fn cmsgsteamsocketsudpstats_unpack(buf []byte) ?CMsgSteamSocketsUDpstats {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgsteamsocketsudpstats() CMsgSteamSocketsUDpstats {
-	return CMsgSteamSocketsUDpstats{}
+pub fn zzz_vproto_internal_new_cmsgsteamsockets_udp_stats() CMsgSteamSockets_UDP_Stats {
+	return CMsgSteamSockets_UDP_Stats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgsteamsocketsudpstats(o CMsgSteamSocketsUDpstats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgsteamsockets_udp_stats(o CMsgSteamSockets_UDP_Stats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgsteamsocketsudpstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSocketsUDpstats) {
+pub fn zzz_vproto_internal_unpack_cmsgsteamsockets_udp_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamSockets_UDP_Stats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamsocketsudpstats_unpack(v)?
+	mut unpacked := cmsgsteamsockets_udp_stats_unpack(v)?
 	return i, unpacked
 }

@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CGameServersGetServerListRequest {
+pub struct CGameServers_GetServerList_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -13,7 +13,7 @@ pub mut:
 	has_limit      bool
 }
 
-pub fn (o &CGameServersGetServerListRequest) pack() []byte {
+pub fn (o &CGameServers_GetServerList_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_filter {
 		res << vproto.pack_string_field(o.filter, 1)
@@ -24,8 +24,8 @@ pub fn (o &CGameServersGetServerListRequest) pack() []byte {
 	return res
 }
 
-pub fn cgameserversgetserverlistrequest_unpack(buf []byte) ?CGameServersGetServerListRequest {
-	mut res := CGameServersGetServerListRequest{}
+pub fn cgameservers_getserverlist_request_unpack(buf []byte) ?CGameServers_GetServerList_Request {
+	mut res := CGameServers_GetServerList_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,23 +63,23 @@ pub fn cgameserversgetserverlistrequest_unpack(buf []byte) ?CGameServersGetServe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversgetserverlistrequest() CGameServersGetServerListRequest {
-	return CGameServersGetServerListRequest{}
+pub fn zzz_vproto_internal_new_cgameservers_getserverlist_request() CGameServers_GetServerList_Request {
+	return CGameServers_GetServerList_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversgetserverlistrequest(o CGameServersGetServerListRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_getserverlist_request(o CGameServers_GetServerList_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversgetserverlistrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersGetServerListRequest) {
+pub fn zzz_vproto_internal_unpack_cgameservers_getserverlist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerList_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversgetserverlistrequest_unpack(v)?
+	mut unpacked := cgameservers_getserverlist_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameServersGetServerListResponseServer {
+pub struct CGameServers_GetServerList_Response_Server {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -121,7 +121,7 @@ pub mut:
 	has_gametype    bool
 }
 
-pub fn (o &CGameServersGetServerListResponseServer) pack() []byte {
+pub fn (o &CGameServers_GetServerList_Response_Server) pack() []byte {
 	mut res := []byte{}
 	if o.has_addr {
 		res << vproto.pack_string_field(o.addr, 1)
@@ -180,8 +180,8 @@ pub fn (o &CGameServersGetServerListResponseServer) pack() []byte {
 	return res
 }
 
-pub fn cgameserversgetserverlistresponseserver_unpack(buf []byte) ?CGameServersGetServerListResponseServer {
-	mut res := CGameServersGetServerListResponseServer{}
+pub fn cgameservers_getserverlist_response_server_unpack(buf []byte) ?CGameServers_GetServerList_Response_Server {
+	mut res := CGameServers_GetServerList_Response_Server{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -315,40 +315,40 @@ pub fn cgameserversgetserverlistresponseserver_unpack(buf []byte) ?CGameServersG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversgetserverlistresponseserver() CGameServersGetServerListResponseServer {
-	return CGameServersGetServerListResponseServer{}
+pub fn zzz_vproto_internal_new_cgameservers_getserverlist_response_server() CGameServers_GetServerList_Response_Server {
+	return CGameServers_GetServerList_Response_Server{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversgetserverlistresponseserver(o CGameServersGetServerListResponseServer, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_getserverlist_response_server(o CGameServers_GetServerList_Response_Server, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversgetserverlistresponseserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersGetServerListResponseServer) {
+pub fn zzz_vproto_internal_unpack_cgameservers_getserverlist_response_server(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerList_Response_Server) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversgetserverlistresponseserver_unpack(v)?
+	mut unpacked := cgameservers_getserverlist_response_server_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameServersGetServerListResponse {
+pub struct CGameServers_GetServerList_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	servers        []CGameServersGetServerListResponseServer
+	servers        []CGameServers_GetServerList_Response_Server
 }
 
-pub fn (o &CGameServersGetServerListResponse) pack() []byte {
+pub fn (o &CGameServers_GetServerList_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.servers {
-		res << zzz_vproto_internal_pack_cgameserversgetserverlistresponseserver(x, 1)
+		res << zzz_vproto_internal_pack_cgameservers_getserverlist_response_server(x, 1)
 	}
 	return res
 }
 
-pub fn cgameserversgetserverlistresponse_unpack(buf []byte) ?CGameServersGetServerListResponse {
-	mut res := CGameServersGetServerListResponse{}
+pub fn cgameservers_getserverlist_response_unpack(buf []byte) ?CGameServers_GetServerList_Response {
+	mut res := CGameServers_GetServerList_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -360,7 +360,7 @@ pub fn cgameserversgetserverlistresponse_unpack(buf []byte) ?CGameServersGetServ
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgameserversgetserverlistresponseserver(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgameservers_getserverlist_response_server(cur_buf,
 					tag_wiretype.wire_type)?
 				res.servers << v
 				i = ii
@@ -381,30 +381,30 @@ pub fn cgameserversgetserverlistresponse_unpack(buf []byte) ?CGameServersGetServ
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversgetserverlistresponse() CGameServersGetServerListResponse {
-	return CGameServersGetServerListResponse{}
+pub fn zzz_vproto_internal_new_cgameservers_getserverlist_response() CGameServers_GetServerList_Response {
+	return CGameServers_GetServerList_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversgetserverlistresponse(o CGameServersGetServerListResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_getserverlist_response(o CGameServers_GetServerList_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversgetserverlistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersGetServerListResponse) {
+pub fn zzz_vproto_internal_unpack_cgameservers_getserverlist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerList_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversgetserverlistresponse_unpack(v)?
+	mut unpacked := cgameservers_getserverlist_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameServersGetServerSteamIDsByIPrequest {
+pub struct CGameServers_GetServerSteamIDsByIP_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	server_ips     []string
 }
 
-pub fn (o &CGameServersGetServerSteamIDsByIPrequest) pack() []byte {
+pub fn (o &CGameServers_GetServerSteamIDsByIP_Request) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.server_ips {
@@ -413,8 +413,8 @@ pub fn (o &CGameServersGetServerSteamIDsByIPrequest) pack() []byte {
 	return res
 }
 
-pub fn cgameserversgetserversteamidsbyiprequest_unpack(buf []byte) ?CGameServersGetServerSteamIDsByIPrequest {
-	mut res := CGameServersGetServerSteamIDsByIPrequest{}
+pub fn cgameservers_getserversteamidsbyip_request_unpack(buf []byte) ?CGameServers_GetServerSteamIDsByIP_Request {
+	mut res := CGameServers_GetServerSteamIDsByIP_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -446,23 +446,23 @@ pub fn cgameserversgetserversteamidsbyiprequest_unpack(buf []byte) ?CGameServers
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversgetserversteamidsbyiprequest() CGameServersGetServerSteamIDsByIPrequest {
-	return CGameServersGetServerSteamIDsByIPrequest{}
+pub fn zzz_vproto_internal_new_cgameservers_getserversteamidsbyip_request() CGameServers_GetServerSteamIDsByIP_Request {
+	return CGameServers_GetServerSteamIDsByIP_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversgetserversteamidsbyiprequest(o CGameServersGetServerSteamIDsByIPrequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_getserversteamidsbyip_request(o CGameServers_GetServerSteamIDsByIP_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversgetserversteamidsbyiprequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersGetServerSteamIDsByIPrequest) {
+pub fn zzz_vproto_internal_unpack_cgameservers_getserversteamidsbyip_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerSteamIDsByIP_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversgetserversteamidsbyiprequest_unpack(v)?
+	mut unpacked := cgameservers_getserversteamidsbyip_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameServersIPsWithSteamIDsResponseServer {
+pub struct CGameServers_IPsWithSteamIDs_Response_Server {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -472,7 +472,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CGameServersIPsWithSteamIDsResponseServer) pack() []byte {
+pub fn (o &CGameServers_IPsWithSteamIDs_Response_Server) pack() []byte {
 	mut res := []byte{}
 	if o.has_addr {
 		res << vproto.pack_string_field(o.addr, 1)
@@ -483,8 +483,8 @@ pub fn (o &CGameServersIPsWithSteamIDsResponseServer) pack() []byte {
 	return res
 }
 
-pub fn cgameserversipswithsteamidsresponseserver_unpack(buf []byte) ?CGameServersIPsWithSteamIDsResponseServer {
-	mut res := CGameServersIPsWithSteamIDsResponseServer{}
+pub fn cgameservers_ipswithsteamids_response_server_unpack(buf []byte) ?CGameServers_IPsWithSteamIDs_Response_Server {
+	mut res := CGameServers_IPsWithSteamIDs_Response_Server{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -522,40 +522,40 @@ pub fn cgameserversipswithsteamidsresponseserver_unpack(buf []byte) ?CGameServer
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversipswithsteamidsresponseserver() CGameServersIPsWithSteamIDsResponseServer {
-	return CGameServersIPsWithSteamIDsResponseServer{}
+pub fn zzz_vproto_internal_new_cgameservers_ipswithsteamids_response_server() CGameServers_IPsWithSteamIDs_Response_Server {
+	return CGameServers_IPsWithSteamIDs_Response_Server{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversipswithsteamidsresponseserver(o CGameServersIPsWithSteamIDsResponseServer, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response_server(o CGameServers_IPsWithSteamIDs_Response_Server, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversipswithsteamidsresponseserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersIPsWithSteamIDsResponseServer) {
+pub fn zzz_vproto_internal_unpack_cgameservers_ipswithsteamids_response_server(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_IPsWithSteamIDs_Response_Server) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversipswithsteamidsresponseserver_unpack(v)?
+	mut unpacked := cgameservers_ipswithsteamids_response_server_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameServersIPsWithSteamIDsResponse {
+pub struct CGameServers_IPsWithSteamIDs_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	servers        []CGameServersIPsWithSteamIDsResponseServer
+	servers        []CGameServers_IPsWithSteamIDs_Response_Server
 }
 
-pub fn (o &CGameServersIPsWithSteamIDsResponse) pack() []byte {
+pub fn (o &CGameServers_IPsWithSteamIDs_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.servers {
-		res << zzz_vproto_internal_pack_cgameserversipswithsteamidsresponseserver(x, 1)
+		res << zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response_server(x, 1)
 	}
 	return res
 }
 
-pub fn cgameserversipswithsteamidsresponse_unpack(buf []byte) ?CGameServersIPsWithSteamIDsResponse {
-	mut res := CGameServersIPsWithSteamIDsResponse{}
+pub fn cgameservers_ipswithsteamids_response_unpack(buf []byte) ?CGameServers_IPsWithSteamIDs_Response {
+	mut res := CGameServers_IPsWithSteamIDs_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -567,7 +567,7 @@ pub fn cgameserversipswithsteamidsresponse_unpack(buf []byte) ?CGameServersIPsWi
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgameserversipswithsteamidsresponseserver(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgameservers_ipswithsteamids_response_server(cur_buf,
 					tag_wiretype.wire_type)?
 				res.servers << v
 				i = ii
@@ -588,30 +588,30 @@ pub fn cgameserversipswithsteamidsresponse_unpack(buf []byte) ?CGameServersIPsWi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversipswithsteamidsresponse() CGameServersIPsWithSteamIDsResponse {
-	return CGameServersIPsWithSteamIDsResponse{}
+pub fn zzz_vproto_internal_new_cgameservers_ipswithsteamids_response() CGameServers_IPsWithSteamIDs_Response {
+	return CGameServers_IPsWithSteamIDs_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversipswithsteamidsresponse(o CGameServersIPsWithSteamIDsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response(o CGameServers_IPsWithSteamIDs_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversipswithsteamidsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersIPsWithSteamIDsResponse) {
+pub fn zzz_vproto_internal_unpack_cgameservers_ipswithsteamids_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_IPsWithSteamIDs_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversipswithsteamidsresponse_unpack(v)?
+	mut unpacked := cgameservers_ipswithsteamids_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameServersGetServerIPsBySteamIDrequest {
+pub struct CGameServers_GetServerIPsBySteamID_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
 	server_steamids []u64
 }
 
-pub fn (o &CGameServersGetServerIPsBySteamIDrequest) pack() []byte {
+pub fn (o &CGameServers_GetServerIPsBySteamID_Request) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.server_steamids {
@@ -620,8 +620,8 @@ pub fn (o &CGameServersGetServerIPsBySteamIDrequest) pack() []byte {
 	return res
 }
 
-pub fn cgameserversgetserveripsbysteamidrequest_unpack(buf []byte) ?CGameServersGetServerIPsBySteamIDrequest {
-	mut res := CGameServersGetServerIPsBySteamIDrequest{}
+pub fn cgameservers_getserveripsbysteamid_request_unpack(buf []byte) ?CGameServers_GetServerIPsBySteamID_Request {
+	mut res := CGameServers_GetServerIPsBySteamID_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -653,18 +653,18 @@ pub fn cgameserversgetserveripsbysteamidrequest_unpack(buf []byte) ?CGameServers
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgameserversgetserveripsbysteamidrequest() CGameServersGetServerIPsBySteamIDrequest {
-	return CGameServersGetServerIPsBySteamIDrequest{}
+pub fn zzz_vproto_internal_new_cgameservers_getserveripsbysteamid_request() CGameServers_GetServerIPsBySteamID_Request {
+	return CGameServers_GetServerIPsBySteamID_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgameserversgetserveripsbysteamidrequest(o CGameServersGetServerIPsBySteamIDrequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgameservers_getserveripsbysteamid_request(o CGameServers_GetServerIPsBySteamID_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgameserversgetserveripsbysteamidrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServersGetServerIPsBySteamIDrequest) {
+pub fn zzz_vproto_internal_unpack_cgameservers_getserveripsbysteamid_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerIPsBySteamID_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameserversgetserveripsbysteamidrequest_unpack(v)?
+	mut unpacked := cgameservers_getserveripsbysteamid_request_unpack(v)?
 	return i, unpacked
 }

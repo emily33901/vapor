@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CMsgClientLAnp2PRequestChunksChunkKey {
+pub struct CMsgClientLANP2PRequestChunks_ChunkKey {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -13,7 +13,7 @@ pub mut:
 	has_sha        bool
 }
 
-pub fn (o &CMsgClientLAnp2PRequestChunksChunkKey) pack() []byte {
+pub fn (o &CMsgClientLANP2PRequestChunks_ChunkKey) pack() []byte {
 	mut res := []byte{}
 	if o.has_depot_id {
 		res << vproto.pack_uint32_field(o.depot_id, 1)
@@ -24,8 +24,8 @@ pub fn (o &CMsgClientLAnp2PRequestChunksChunkKey) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlanp2prequestchunkschunkkey_unpack(buf []byte) ?CMsgClientLAnp2PRequestChunksChunkKey {
-	mut res := CMsgClientLAnp2PRequestChunksChunkKey{}
+pub fn cmsgclientlanp2prequestchunks_chunkkey_unpack(buf []byte) ?CMsgClientLANP2PRequestChunks_ChunkKey {
+	mut res := CMsgClientLANP2PRequestChunks_ChunkKey{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,40 +63,40 @@ pub fn cmsgclientlanp2prequestchunkschunkkey_unpack(buf []byte) ?CMsgClientLAnp2
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunkschunkkey() CMsgClientLAnp2PRequestChunksChunkKey {
-	return CMsgClientLAnp2PRequestChunksChunkKey{}
+pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunks_chunkkey() CMsgClientLANP2PRequestChunks_ChunkKey {
+	return CMsgClientLANP2PRequestChunks_ChunkKey{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunkschunkkey(o CMsgClientLAnp2PRequestChunksChunkKey, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunks_chunkkey(o CMsgClientLANP2PRequestChunks_ChunkKey, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunkschunkkey(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLAnp2PRequestChunksChunkKey) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunks_chunkkey(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLANP2PRequestChunks_ChunkKey) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlanp2prequestchunkschunkkey_unpack(v)?
+	mut unpacked := cmsgclientlanp2prequestchunks_chunkkey_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLAnp2PRequestChunks {
+pub struct CMsgClientLANP2PRequestChunks {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	chunk_keys     []CMsgClientLAnp2PRequestChunksChunkKey
+	chunk_keys     []CMsgClientLANP2PRequestChunks_ChunkKey
 }
 
-pub fn (o &CMsgClientLAnp2PRequestChunks) pack() []byte {
+pub fn (o &CMsgClientLANP2PRequestChunks) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.chunk_keys {
-		res << zzz_vproto_internal_pack_cmsgclientlanp2prequestchunkschunkkey(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientlanp2prequestchunks_chunkkey(x, 1)
 	}
 	return res
 }
 
-pub fn cmsgclientlanp2prequestchunks_unpack(buf []byte) ?CMsgClientLAnp2PRequestChunks {
-	mut res := CMsgClientLAnp2PRequestChunks{}
+pub fn cmsgclientlanp2prequestchunks_unpack(buf []byte) ?CMsgClientLANP2PRequestChunks {
+	mut res := CMsgClientLANP2PRequestChunks{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -108,7 +108,7 @@ pub fn cmsgclientlanp2prequestchunks_unpack(buf []byte) ?CMsgClientLAnp2PRequest
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunkschunkkey(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunks_chunkkey(cur_buf,
 					tag_wiretype.wire_type)?
 				res.chunk_keys << v
 				i = ii
@@ -129,23 +129,23 @@ pub fn cmsgclientlanp2prequestchunks_unpack(buf []byte) ?CMsgClientLAnp2PRequest
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunks() CMsgClientLAnp2PRequestChunks {
-	return CMsgClientLAnp2PRequestChunks{}
+pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunks() CMsgClientLANP2PRequestChunks {
+	return CMsgClientLANP2PRequestChunks{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunks(o CMsgClientLAnp2PRequestChunks, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunks(o CMsgClientLANP2PRequestChunks, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunks(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLAnp2PRequestChunks) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunks(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLANP2PRequestChunks) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlanp2prequestchunks_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLAnp2PRequestChunksResponseChunkData {
+pub struct CMsgClientLANP2PRequestChunksResponse_ChunkData {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -163,7 +163,7 @@ pub mut:
 	has_compressed bool
 }
 
-pub fn (o &CMsgClientLAnp2PRequestChunksResponseChunkData) pack() []byte {
+pub fn (o &CMsgClientLANP2PRequestChunksResponse_ChunkData) pack() []byte {
 	mut res := []byte{}
 	if o.has_result {
 		res << vproto.pack_uint32_field(o.result, 1)
@@ -186,8 +186,8 @@ pub fn (o &CMsgClientLAnp2PRequestChunksResponseChunkData) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientlanp2prequestchunksresponsechunkdata_unpack(buf []byte) ?CMsgClientLAnp2PRequestChunksResponseChunkData {
-	mut res := CMsgClientLAnp2PRequestChunksResponseChunkData{}
+pub fn cmsgclientlanp2prequestchunksresponse_chunkdata_unpack(buf []byte) ?CMsgClientLANP2PRequestChunksResponse_ChunkData {
+	mut res := CMsgClientLANP2PRequestChunksResponse_ChunkData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -249,40 +249,40 @@ pub fn cmsgclientlanp2prequestchunksresponsechunkdata_unpack(buf []byte) ?CMsgCl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunksresponsechunkdata() CMsgClientLAnp2PRequestChunksResponseChunkData {
-	return CMsgClientLAnp2PRequestChunksResponseChunkData{}
+pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunksresponse_chunkdata() CMsgClientLANP2PRequestChunksResponse_ChunkData {
+	return CMsgClientLANP2PRequestChunksResponse_ChunkData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunksresponsechunkdata(o CMsgClientLAnp2PRequestChunksResponseChunkData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunksresponse_chunkdata(o CMsgClientLANP2PRequestChunksResponse_ChunkData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunksresponsechunkdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLAnp2PRequestChunksResponseChunkData) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunksresponse_chunkdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLANP2PRequestChunksResponse_ChunkData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlanp2prequestchunksresponsechunkdata_unpack(v)?
+	mut unpacked := cmsgclientlanp2prequestchunksresponse_chunkdata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientLAnp2PRequestChunksResponse {
+pub struct CMsgClientLANP2PRequestChunksResponse {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	chunk_responses []CMsgClientLAnp2PRequestChunksResponseChunkData
+	chunk_responses []CMsgClientLANP2PRequestChunksResponse_ChunkData
 }
 
-pub fn (o &CMsgClientLAnp2PRequestChunksResponse) pack() []byte {
+pub fn (o &CMsgClientLANP2PRequestChunksResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.chunk_responses {
-		res << zzz_vproto_internal_pack_cmsgclientlanp2prequestchunksresponsechunkdata(x, 1)
+		res << zzz_vproto_internal_pack_cmsgclientlanp2prequestchunksresponse_chunkdata(x, 1)
 	}
 	return res
 }
 
-pub fn cmsgclientlanp2prequestchunksresponse_unpack(buf []byte) ?CMsgClientLAnp2PRequestChunksResponse {
-	mut res := CMsgClientLAnp2PRequestChunksResponse{}
+pub fn cmsgclientlanp2prequestchunksresponse_unpack(buf []byte) ?CMsgClientLANP2PRequestChunksResponse {
+	mut res := CMsgClientLANP2PRequestChunksResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -294,7 +294,7 @@ pub fn cmsgclientlanp2prequestchunksresponse_unpack(buf []byte) ?CMsgClientLAnp2
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunksresponsechunkdata(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunksresponse_chunkdata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.chunk_responses << v
 				i = ii
@@ -315,17 +315,17 @@ pub fn cmsgclientlanp2prequestchunksresponse_unpack(buf []byte) ?CMsgClientLAnp2
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunksresponse() CMsgClientLAnp2PRequestChunksResponse {
-	return CMsgClientLAnp2PRequestChunksResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientlanp2prequestchunksresponse() CMsgClientLANP2PRequestChunksResponse {
+	return CMsgClientLANP2PRequestChunksResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunksresponse(o CMsgClientLAnp2PRequestChunksResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientlanp2prequestchunksresponse(o CMsgClientLANP2PRequestChunksResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunksresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLAnp2PRequestChunksResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientlanp2prequestchunksresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLANP2PRequestChunksResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlanp2prequestchunksresponse_unpack(v)?
 	return i, unpacked

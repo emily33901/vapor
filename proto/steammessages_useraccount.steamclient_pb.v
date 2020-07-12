@@ -17,9 +17,31 @@ fn zzz_vproto_internal_pack_einternalaccounttype(e EInternalAccountType, num u32
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_einternalaccounttype_packed(e []EInternalAccountType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_einternalaccounttype(buf []byte, tag_wiretype vproto.WireType) ?(int, EInternalAccountType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EInternalAccountType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_einternalaccounttype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EInternalAccountType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -40,12 +62,34 @@ fn zzz_vproto_internal_pack_eexternalaccounttype(e EExternalAccountType, num u32
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eexternalaccounttype_packed(e []EExternalAccountType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eexternalaccounttype(buf []byte, tag_wiretype vproto.WireType) ?(int, EExternalAccountType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EExternalAccountType(v)
 }
 
-pub struct CUserAccountGetAvailableValveDiscountPromotionsRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eexternalaccounttype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EExternalAccountType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CUserAccount_GetAvailableValveDiscountPromotions_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -53,7 +97,7 @@ pub mut:
 	has_country_code bool
 }
 
-pub fn (o &CUserAccountGetAvailableValveDiscountPromotionsRequest) pack() []byte {
+pub fn (o &CUserAccount_GetAvailableValveDiscountPromotions_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_country_code {
 		res << vproto.pack_string_field(o.country_code, 1)
@@ -61,8 +105,8 @@ pub fn (o &CUserAccountGetAvailableValveDiscountPromotionsRequest) pack() []byte
 	return res
 }
 
-pub fn cuseraccountgetavailablevalvediscountpromotionsrequest_unpack(buf []byte) ?CUserAccountGetAvailableValveDiscountPromotionsRequest {
-	mut res := CUserAccountGetAvailableValveDiscountPromotionsRequest{}
+pub fn cuseraccount_getavailablevalvediscountpromotions_request_unpack(buf []byte) ?CUserAccount_GetAvailableValveDiscountPromotions_Request {
+	mut res := CUserAccount_GetAvailableValveDiscountPromotions_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -94,23 +138,23 @@ pub fn cuseraccountgetavailablevalvediscountpromotionsrequest_unpack(buf []byte)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetavailablevalvediscountpromotionsrequest() CUserAccountGetAvailableValveDiscountPromotionsRequest {
-	return CUserAccountGetAvailableValveDiscountPromotionsRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_request() CUserAccount_GetAvailableValveDiscountPromotions_Request {
+	return CUserAccount_GetAvailableValveDiscountPromotions_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetavailablevalvediscountpromotionsrequest(o CUserAccountGetAvailableValveDiscountPromotionsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_request(o CUserAccount_GetAvailableValveDiscountPromotions_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetavailablevalvediscountpromotionsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetAvailableValveDiscountPromotionsRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAvailableValveDiscountPromotions_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetavailablevalvediscountpromotionsrequest_unpack(v)?
+	mut unpacked := cuseraccount_getavailablevalvediscountpromotions_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails {
+pub struct CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails {
 mut:
 	unknown_fields                      []vproto.UnknownField
 pub mut:
@@ -138,7 +182,7 @@ pub mut:
 	has_max_use_count                   bool
 }
 
-pub fn (o &CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails) pack() []byte {
+pub fn (o &CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) pack() []byte {
 	mut res := []byte{}
 	if o.has_promotionid {
 		res << vproto.pack_uint32_field(o.promotionid, 1)
@@ -176,8 +220,8 @@ pub fn (o &CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountP
 	return res
 }
 
-pub fn cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails_unpack(buf []byte) ?CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails {
-	mut res := CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails{}
+pub fn cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails_unpack(buf []byte) ?CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails {
+	mut res := CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -269,41 +313,41 @@ pub fn cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails() CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails {
-	return CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails{}
+pub fn zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails() CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails {
+	return CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails(o CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails(o CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails_unpack(v)?
+	mut unpacked := cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountGetAvailableValveDiscountPromotionsResponse {
+pub struct CUserAccount_GetAvailableValveDiscountPromotions_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	promotions     []CUserAccountGetAvailableValveDiscountPromotionsResponseValveDiscountPromotionDetails
+	promotions     []CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails
 }
 
-pub fn (o &CUserAccountGetAvailableValveDiscountPromotionsResponse) pack() []byte {
+pub fn (o &CUserAccount_GetAvailableValveDiscountPromotions_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.promotions {
 		res <<
-			zzz_vproto_internal_pack_cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails(x, 1)
+			zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails(x, 1)
 	}
 	return res
 }
 
-pub fn cuseraccountgetavailablevalvediscountpromotionsresponse_unpack(buf []byte) ?CUserAccountGetAvailableValveDiscountPromotionsResponse {
-	mut res := CUserAccountGetAvailableValveDiscountPromotionsResponse{}
+pub fn cuseraccount_getavailablevalvediscountpromotions_response_unpack(buf []byte) ?CUserAccount_GetAvailableValveDiscountPromotions_Response {
+	mut res := CUserAccount_GetAvailableValveDiscountPromotions_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -315,7 +359,7 @@ pub fn cuseraccountgetavailablevalvediscountpromotionsresponse_unpack(buf []byte
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cuseraccountgetavailablevalvediscountpromotionsresponsevalvediscountpromotiondetails(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails(cur_buf,
 					tag_wiretype.wire_type)?
 				res.promotions << v
 				i = ii
@@ -336,55 +380,55 @@ pub fn cuseraccountgetavailablevalvediscountpromotionsresponse_unpack(buf []byte
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetavailablevalvediscountpromotionsresponse() CUserAccountGetAvailableValveDiscountPromotionsResponse {
-	return CUserAccountGetAvailableValveDiscountPromotionsResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_response() CUserAccount_GetAvailableValveDiscountPromotions_Response {
+	return CUserAccount_GetAvailableValveDiscountPromotions_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetavailablevalvediscountpromotionsresponse(o CUserAccountGetAvailableValveDiscountPromotionsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_response(o CUserAccount_GetAvailableValveDiscountPromotions_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetavailablevalvediscountpromotionsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetAvailableValveDiscountPromotionsResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAvailableValveDiscountPromotions_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetavailablevalvediscountpromotionsresponse_unpack(v)?
+	mut unpacked := cuseraccount_getavailablevalvediscountpromotions_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountGetAccountLinkStatusRequest {
+pub struct CUserAccount_GetAccountLinkStatus_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CUserAccountGetAccountLinkStatusRequest) pack() []byte {
+pub fn (o &CUserAccount_GetAccountLinkStatus_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cuseraccountgetaccountlinkstatusrequest_unpack(buf []byte) ?CUserAccountGetAccountLinkStatusRequest {
-	res := CUserAccountGetAccountLinkStatusRequest{}
+pub fn cuseraccount_getaccountlinkstatus_request_unpack(buf []byte) ?CUserAccount_GetAccountLinkStatus_Request {
+	res := CUserAccount_GetAccountLinkStatus_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetaccountlinkstatusrequest() CUserAccountGetAccountLinkStatusRequest {
-	return CUserAccountGetAccountLinkStatusRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_getaccountlinkstatus_request() CUserAccount_GetAccountLinkStatus_Request {
+	return CUserAccount_GetAccountLinkStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetaccountlinkstatusrequest(o CUserAccountGetAccountLinkStatusRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getaccountlinkstatus_request(o CUserAccount_GetAccountLinkStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetaccountlinkstatusrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetAccountLinkStatusRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getaccountlinkstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAccountLinkStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetaccountlinkstatusrequest_unpack(v)?
+	mut unpacked := cuseraccount_getaccountlinkstatus_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountGetAccountLinkStatusResponse {
+pub struct CUserAccount_GetAccountLinkStatus_Response {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
@@ -396,7 +440,7 @@ pub mut:
 	has_performed_age_verification bool
 }
 
-pub fn (o &CUserAccountGetAccountLinkStatusResponse) pack() []byte {
+pub fn (o &CUserAccount_GetAccountLinkStatus_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_pwid {
 		res << vproto.pack_uint32_field(o.pwid, 1)
@@ -410,8 +454,8 @@ pub fn (o &CUserAccountGetAccountLinkStatusResponse) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountgetaccountlinkstatusresponse_unpack(buf []byte) ?CUserAccountGetAccountLinkStatusResponse {
-	mut res := CUserAccountGetAccountLinkStatusResponse{}
+pub fn cuseraccount_getaccountlinkstatus_response_unpack(buf []byte) ?CUserAccount_GetAccountLinkStatus_Response {
+	mut res := CUserAccount_GetAccountLinkStatus_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -455,23 +499,23 @@ pub fn cuseraccountgetaccountlinkstatusresponse_unpack(buf []byte) ?CUserAccount
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetaccountlinkstatusresponse() CUserAccountGetAccountLinkStatusResponse {
-	return CUserAccountGetAccountLinkStatusResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_getaccountlinkstatus_response() CUserAccount_GetAccountLinkStatus_Response {
+	return CUserAccount_GetAccountLinkStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetaccountlinkstatusresponse(o CUserAccountGetAccountLinkStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getaccountlinkstatus_response(o CUserAccount_GetAccountLinkStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetaccountlinkstatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetAccountLinkStatusResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getaccountlinkstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAccountLinkStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetaccountlinkstatusresponse_unpack(v)?
+	mut unpacked := cuseraccount_getaccountlinkstatus_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountCancelLicenseForAppRequest {
+pub struct CUserAccount_CancelLicenseForApp_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -479,7 +523,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CUserAccountCancelLicenseForAppRequest) pack() []byte {
+pub fn (o &CUserAccount_CancelLicenseForApp_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -487,8 +531,8 @@ pub fn (o &CUserAccountCancelLicenseForAppRequest) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountcancellicenseforapprequest_unpack(buf []byte) ?CUserAccountCancelLicenseForAppRequest {
-	mut res := CUserAccountCancelLicenseForAppRequest{}
+pub fn cuseraccount_cancellicenseforapp_request_unpack(buf []byte) ?CUserAccount_CancelLicenseForApp_Request {
+	mut res := CUserAccount_CancelLicenseForApp_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -520,55 +564,55 @@ pub fn cuseraccountcancellicenseforapprequest_unpack(buf []byte) ?CUserAccountCa
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountcancellicenseforapprequest() CUserAccountCancelLicenseForAppRequest {
-	return CUserAccountCancelLicenseForAppRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_cancellicenseforapp_request() CUserAccount_CancelLicenseForApp_Request {
+	return CUserAccount_CancelLicenseForApp_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountcancellicenseforapprequest(o CUserAccountCancelLicenseForAppRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_cancellicenseforapp_request(o CUserAccount_CancelLicenseForApp_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountcancellicenseforapprequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountCancelLicenseForAppRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_cancellicenseforapp_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CancelLicenseForApp_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountcancellicenseforapprequest_unpack(v)?
+	mut unpacked := cuseraccount_cancellicenseforapp_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountCancelLicenseForAppResponse {
+pub struct CUserAccount_CancelLicenseForApp_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CUserAccountCancelLicenseForAppResponse) pack() []byte {
+pub fn (o &CUserAccount_CancelLicenseForApp_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cuseraccountcancellicenseforappresponse_unpack(buf []byte) ?CUserAccountCancelLicenseForAppResponse {
-	res := CUserAccountCancelLicenseForAppResponse{}
+pub fn cuseraccount_cancellicenseforapp_response_unpack(buf []byte) ?CUserAccount_CancelLicenseForApp_Response {
+	res := CUserAccount_CancelLicenseForApp_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountcancellicenseforappresponse() CUserAccountCancelLicenseForAppResponse {
-	return CUserAccountCancelLicenseForAppResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_cancellicenseforapp_response() CUserAccount_CancelLicenseForApp_Response {
+	return CUserAccount_CancelLicenseForApp_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountcancellicenseforappresponse(o CUserAccountCancelLicenseForAppResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_cancellicenseforapp_response(o CUserAccount_CancelLicenseForApp_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountcancellicenseforappresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountCancelLicenseForAppResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_cancellicenseforapp_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CancelLicenseForApp_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountcancellicenseforappresponse_unpack(v)?
+	mut unpacked := cuseraccount_cancellicenseforapp_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountCreateFriendInviteTokenRequest {
+pub struct CUserAccount_CreateFriendInviteToken_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -580,7 +624,7 @@ pub mut:
 	has_invite_note     bool
 }
 
-pub fn (o &CUserAccountCreateFriendInviteTokenRequest) pack() []byte {
+pub fn (o &CUserAccount_CreateFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_invite_limit {
 		res << vproto.pack_uint32_field(o.invite_limit, 1)
@@ -594,8 +638,8 @@ pub fn (o &CUserAccountCreateFriendInviteTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountcreatefriendinvitetokenrequest_unpack(buf []byte) ?CUserAccountCreateFriendInviteTokenRequest {
-	mut res := CUserAccountCreateFriendInviteTokenRequest{}
+pub fn cuseraccount_createfriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_CreateFriendInviteToken_Request {
+	mut res := CUserAccount_CreateFriendInviteToken_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -639,23 +683,23 @@ pub fn cuseraccountcreatefriendinvitetokenrequest_unpack(buf []byte) ?CUserAccou
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountcreatefriendinvitetokenrequest() CUserAccountCreateFriendInviteTokenRequest {
-	return CUserAccountCreateFriendInviteTokenRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_createfriendinvitetoken_request() CUserAccount_CreateFriendInviteToken_Request {
+	return CUserAccount_CreateFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountcreatefriendinvitetokenrequest(o CUserAccountCreateFriendInviteTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_createfriendinvitetoken_request(o CUserAccount_CreateFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountcreatefriendinvitetokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountCreateFriendInviteTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_createfriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CreateFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountcreatefriendinvitetokenrequest_unpack(v)?
+	mut unpacked := cuseraccount_createfriendinvitetoken_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountCreateFriendInviteTokenResponse {
+pub struct CUserAccount_CreateFriendInviteToken_Response {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -671,7 +715,7 @@ pub mut:
 	has_valid           bool
 }
 
-pub fn (o &CUserAccountCreateFriendInviteTokenResponse) pack() []byte {
+pub fn (o &CUserAccount_CreateFriendInviteToken_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_invite_token {
 		res << vproto.pack_string_field(o.invite_token, 1)
@@ -691,8 +735,8 @@ pub fn (o &CUserAccountCreateFriendInviteTokenResponse) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountcreatefriendinvitetokenresponse_unpack(buf []byte) ?CUserAccountCreateFriendInviteTokenResponse {
-	mut res := CUserAccountCreateFriendInviteTokenResponse{}
+pub fn cuseraccount_createfriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_CreateFriendInviteToken_Response {
+	mut res := CUserAccount_CreateFriendInviteToken_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -748,72 +792,72 @@ pub fn cuseraccountcreatefriendinvitetokenresponse_unpack(buf []byte) ?CUserAcco
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountcreatefriendinvitetokenresponse() CUserAccountCreateFriendInviteTokenResponse {
-	return CUserAccountCreateFriendInviteTokenResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_createfriendinvitetoken_response() CUserAccount_CreateFriendInviteToken_Response {
+	return CUserAccount_CreateFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountcreatefriendinvitetokenresponse(o CUserAccountCreateFriendInviteTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_createfriendinvitetoken_response(o CUserAccount_CreateFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountcreatefriendinvitetokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountCreateFriendInviteTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_createfriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CreateFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountcreatefriendinvitetokenresponse_unpack(v)?
+	mut unpacked := cuseraccount_createfriendinvitetoken_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountGetFriendInviteTokensRequest {
+pub struct CUserAccount_GetFriendInviteTokens_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CUserAccountGetFriendInviteTokensRequest) pack() []byte {
+pub fn (o &CUserAccount_GetFriendInviteTokens_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cuseraccountgetfriendinvitetokensrequest_unpack(buf []byte) ?CUserAccountGetFriendInviteTokensRequest {
-	res := CUserAccountGetFriendInviteTokensRequest{}
+pub fn cuseraccount_getfriendinvitetokens_request_unpack(buf []byte) ?CUserAccount_GetFriendInviteTokens_Request {
+	res := CUserAccount_GetFriendInviteTokens_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetfriendinvitetokensrequest() CUserAccountGetFriendInviteTokensRequest {
-	return CUserAccountGetFriendInviteTokensRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_getfriendinvitetokens_request() CUserAccount_GetFriendInviteTokens_Request {
+	return CUserAccount_GetFriendInviteTokens_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetfriendinvitetokensrequest(o CUserAccountGetFriendInviteTokensRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getfriendinvitetokens_request(o CUserAccount_GetFriendInviteTokens_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetfriendinvitetokensrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetFriendInviteTokensRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getfriendinvitetokens_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetFriendInviteTokens_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetfriendinvitetokensrequest_unpack(v)?
+	mut unpacked := cuseraccount_getfriendinvitetokens_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountGetFriendInviteTokensResponse {
+pub struct CUserAccount_GetFriendInviteTokens_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	tokens         []CUserAccountCreateFriendInviteTokenResponse
+	tokens         []CUserAccount_CreateFriendInviteToken_Response
 }
 
-pub fn (o &CUserAccountGetFriendInviteTokensResponse) pack() []byte {
+pub fn (o &CUserAccount_GetFriendInviteTokens_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.tokens {
-		res << zzz_vproto_internal_pack_cuseraccountcreatefriendinvitetokenresponse(x, 1)
+		res << zzz_vproto_internal_pack_cuseraccount_createfriendinvitetoken_response(x, 1)
 	}
 	return res
 }
 
-pub fn cuseraccountgetfriendinvitetokensresponse_unpack(buf []byte) ?CUserAccountGetFriendInviteTokensResponse {
-	mut res := CUserAccountGetFriendInviteTokensResponse{}
+pub fn cuseraccount_getfriendinvitetokens_response_unpack(buf []byte) ?CUserAccount_GetFriendInviteTokens_Response {
+	mut res := CUserAccount_GetFriendInviteTokens_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -825,7 +869,7 @@ pub fn cuseraccountgetfriendinvitetokensresponse_unpack(buf []byte) ?CUserAccoun
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cuseraccountcreatefriendinvitetokenresponse(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cuseraccount_createfriendinvitetoken_response(cur_buf,
 					tag_wiretype.wire_type)?
 				res.tokens << v
 				i = ii
@@ -846,23 +890,23 @@ pub fn cuseraccountgetfriendinvitetokensresponse_unpack(buf []byte) ?CUserAccoun
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountgetfriendinvitetokensresponse() CUserAccountGetFriendInviteTokensResponse {
-	return CUserAccountGetFriendInviteTokensResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_getfriendinvitetokens_response() CUserAccount_GetFriendInviteTokens_Response {
+	return CUserAccount_GetFriendInviteTokens_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountgetfriendinvitetokensresponse(o CUserAccountGetFriendInviteTokensResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_getfriendinvitetokens_response(o CUserAccount_GetFriendInviteTokens_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountgetfriendinvitetokensresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountGetFriendInviteTokensResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_getfriendinvitetokens_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetFriendInviteTokens_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountgetfriendinvitetokensresponse_unpack(v)?
+	mut unpacked := cuseraccount_getfriendinvitetokens_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountViewFriendInviteTokenRequest {
+pub struct CUserAccount_ViewFriendInviteToken_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -872,7 +916,7 @@ pub mut:
 	has_invite_token bool
 }
 
-pub fn (o &CUserAccountViewFriendInviteTokenRequest) pack() []byte {
+pub fn (o &CUserAccount_ViewFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -883,8 +927,8 @@ pub fn (o &CUserAccountViewFriendInviteTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountviewfriendinvitetokenrequest_unpack(buf []byte) ?CUserAccountViewFriendInviteTokenRequest {
-	mut res := CUserAccountViewFriendInviteTokenRequest{}
+pub fn cuseraccount_viewfriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_ViewFriendInviteToken_Request {
+	mut res := CUserAccount_ViewFriendInviteToken_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -922,23 +966,23 @@ pub fn cuseraccountviewfriendinvitetokenrequest_unpack(buf []byte) ?CUserAccount
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountviewfriendinvitetokenrequest() CUserAccountViewFriendInviteTokenRequest {
-	return CUserAccountViewFriendInviteTokenRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_viewfriendinvitetoken_request() CUserAccount_ViewFriendInviteToken_Request {
+	return CUserAccount_ViewFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountviewfriendinvitetokenrequest(o CUserAccountViewFriendInviteTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_viewfriendinvitetoken_request(o CUserAccount_ViewFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountviewfriendinvitetokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountViewFriendInviteTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_viewfriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_ViewFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountviewfriendinvitetokenrequest_unpack(v)?
+	mut unpacked := cuseraccount_viewfriendinvitetoken_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountViewFriendInviteTokenResponse {
+pub struct CUserAccount_ViewFriendInviteToken_Response {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -950,7 +994,7 @@ pub mut:
 	has_invite_duration bool
 }
 
-pub fn (o &CUserAccountViewFriendInviteTokenResponse) pack() []byte {
+pub fn (o &CUserAccount_ViewFriendInviteToken_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_valid {
 		res << vproto.pack_bool_field(o.valid, 1)
@@ -964,8 +1008,8 @@ pub fn (o &CUserAccountViewFriendInviteTokenResponse) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountviewfriendinvitetokenresponse_unpack(buf []byte) ?CUserAccountViewFriendInviteTokenResponse {
-	mut res := CUserAccountViewFriendInviteTokenResponse{}
+pub fn cuseraccount_viewfriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_ViewFriendInviteToken_Response {
+	mut res := CUserAccount_ViewFriendInviteToken_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1009,23 +1053,23 @@ pub fn cuseraccountviewfriendinvitetokenresponse_unpack(buf []byte) ?CUserAccoun
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountviewfriendinvitetokenresponse() CUserAccountViewFriendInviteTokenResponse {
-	return CUserAccountViewFriendInviteTokenResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_viewfriendinvitetoken_response() CUserAccount_ViewFriendInviteToken_Response {
+	return CUserAccount_ViewFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountviewfriendinvitetokenresponse(o CUserAccountViewFriendInviteTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_viewfriendinvitetoken_response(o CUserAccount_ViewFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountviewfriendinvitetokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountViewFriendInviteTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_viewfriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_ViewFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountviewfriendinvitetokenresponse_unpack(v)?
+	mut unpacked := cuseraccount_viewfriendinvitetoken_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountRedeemFriendInviteTokenRequest {
+pub struct CUserAccount_RedeemFriendInviteToken_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1035,7 +1079,7 @@ pub mut:
 	has_invite_token bool
 }
 
-pub fn (o &CUserAccountRedeemFriendInviteTokenRequest) pack() []byte {
+pub fn (o &CUserAccount_RedeemFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1046,8 +1090,8 @@ pub fn (o &CUserAccountRedeemFriendInviteTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountredeemfriendinvitetokenrequest_unpack(buf []byte) ?CUserAccountRedeemFriendInviteTokenRequest {
-	mut res := CUserAccountRedeemFriendInviteTokenRequest{}
+pub fn cuseraccount_redeemfriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_RedeemFriendInviteToken_Request {
+	mut res := CUserAccount_RedeemFriendInviteToken_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1085,55 +1129,55 @@ pub fn cuseraccountredeemfriendinvitetokenrequest_unpack(buf []byte) ?CUserAccou
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountredeemfriendinvitetokenrequest() CUserAccountRedeemFriendInviteTokenRequest {
-	return CUserAccountRedeemFriendInviteTokenRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_redeemfriendinvitetoken_request() CUserAccount_RedeemFriendInviteToken_Request {
+	return CUserAccount_RedeemFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountredeemfriendinvitetokenrequest(o CUserAccountRedeemFriendInviteTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_redeemfriendinvitetoken_request(o CUserAccount_RedeemFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountredeemfriendinvitetokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountRedeemFriendInviteTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_redeemfriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RedeemFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountredeemfriendinvitetokenrequest_unpack(v)?
+	mut unpacked := cuseraccount_redeemfriendinvitetoken_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountRedeemFriendInviteTokenResponse {
+pub struct CUserAccount_RedeemFriendInviteToken_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CUserAccountRedeemFriendInviteTokenResponse) pack() []byte {
+pub fn (o &CUserAccount_RedeemFriendInviteToken_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cuseraccountredeemfriendinvitetokenresponse_unpack(buf []byte) ?CUserAccountRedeemFriendInviteTokenResponse {
-	res := CUserAccountRedeemFriendInviteTokenResponse{}
+pub fn cuseraccount_redeemfriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_RedeemFriendInviteToken_Response {
+	res := CUserAccount_RedeemFriendInviteToken_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountredeemfriendinvitetokenresponse() CUserAccountRedeemFriendInviteTokenResponse {
-	return CUserAccountRedeemFriendInviteTokenResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_redeemfriendinvitetoken_response() CUserAccount_RedeemFriendInviteToken_Response {
+	return CUserAccount_RedeemFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountredeemfriendinvitetokenresponse(o CUserAccountRedeemFriendInviteTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_redeemfriendinvitetoken_response(o CUserAccount_RedeemFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountredeemfriendinvitetokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountRedeemFriendInviteTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_redeemfriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RedeemFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountredeemfriendinvitetokenresponse_unpack(v)?
+	mut unpacked := cuseraccount_redeemfriendinvitetoken_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountRevokeFriendInviteTokenRequest {
+pub struct CUserAccount_RevokeFriendInviteToken_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1141,7 +1185,7 @@ pub mut:
 	has_invite_token bool
 }
 
-pub fn (o &CUserAccountRevokeFriendInviteTokenRequest) pack() []byte {
+pub fn (o &CUserAccount_RevokeFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_invite_token {
 		res << vproto.pack_string_field(o.invite_token, 1)
@@ -1149,8 +1193,8 @@ pub fn (o &CUserAccountRevokeFriendInviteTokenRequest) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountrevokefriendinvitetokenrequest_unpack(buf []byte) ?CUserAccountRevokeFriendInviteTokenRequest {
-	mut res := CUserAccountRevokeFriendInviteTokenRequest{}
+pub fn cuseraccount_revokefriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_RevokeFriendInviteToken_Request {
+	mut res := CUserAccount_RevokeFriendInviteToken_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1182,55 +1226,55 @@ pub fn cuseraccountrevokefriendinvitetokenrequest_unpack(buf []byte) ?CUserAccou
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountrevokefriendinvitetokenrequest() CUserAccountRevokeFriendInviteTokenRequest {
-	return CUserAccountRevokeFriendInviteTokenRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_revokefriendinvitetoken_request() CUserAccount_RevokeFriendInviteToken_Request {
+	return CUserAccount_RevokeFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountrevokefriendinvitetokenrequest(o CUserAccountRevokeFriendInviteTokenRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_revokefriendinvitetoken_request(o CUserAccount_RevokeFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountrevokefriendinvitetokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountRevokeFriendInviteTokenRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_revokefriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RevokeFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountrevokefriendinvitetokenrequest_unpack(v)?
+	mut unpacked := cuseraccount_revokefriendinvitetoken_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountRevokeFriendInviteTokenResponse {
+pub struct CUserAccount_RevokeFriendInviteToken_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CUserAccountRevokeFriendInviteTokenResponse) pack() []byte {
+pub fn (o &CUserAccount_RevokeFriendInviteToken_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cuseraccountrevokefriendinvitetokenresponse_unpack(buf []byte) ?CUserAccountRevokeFriendInviteTokenResponse {
-	res := CUserAccountRevokeFriendInviteTokenResponse{}
+pub fn cuseraccount_revokefriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_RevokeFriendInviteToken_Response {
+	res := CUserAccount_RevokeFriendInviteToken_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountrevokefriendinvitetokenresponse() CUserAccountRevokeFriendInviteTokenResponse {
-	return CUserAccountRevokeFriendInviteTokenResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_revokefriendinvitetoken_response() CUserAccount_RevokeFriendInviteToken_Response {
+	return CUserAccount_RevokeFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountrevokefriendinvitetokenresponse(o CUserAccountRevokeFriendInviteTokenResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_revokefriendinvitetoken_response(o CUserAccount_RevokeFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountrevokefriendinvitetokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountRevokeFriendInviteTokenResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_revokefriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RevokeFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountrevokefriendinvitetokenresponse_unpack(v)?
+	mut unpacked := cuseraccount_revokefriendinvitetoken_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountRegisterCompatToolRequest {
+pub struct CUserAccount_RegisterCompatTool_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -1238,7 +1282,7 @@ pub mut:
 	has_compat_tool bool
 }
 
-pub fn (o &CUserAccountRegisterCompatToolRequest) pack() []byte {
+pub fn (o &CUserAccount_RegisterCompatTool_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_compat_tool {
 		res << vproto.pack_uint32_field(o.compat_tool, 1)
@@ -1246,8 +1290,8 @@ pub fn (o &CUserAccountRegisterCompatToolRequest) pack() []byte {
 	return res
 }
 
-pub fn cuseraccountregistercompattoolrequest_unpack(buf []byte) ?CUserAccountRegisterCompatToolRequest {
-	mut res := CUserAccountRegisterCompatToolRequest{}
+pub fn cuseraccount_registercompattool_request_unpack(buf []byte) ?CUserAccount_RegisterCompatTool_Request {
+	mut res := CUserAccount_RegisterCompatTool_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1279,55 +1323,55 @@ pub fn cuseraccountregistercompattoolrequest_unpack(buf []byte) ?CUserAccountReg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountregistercompattoolrequest() CUserAccountRegisterCompatToolRequest {
-	return CUserAccountRegisterCompatToolRequest{}
+pub fn zzz_vproto_internal_new_cuseraccount_registercompattool_request() CUserAccount_RegisterCompatTool_Request {
+	return CUserAccount_RegisterCompatTool_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountregistercompattoolrequest(o CUserAccountRegisterCompatToolRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_registercompattool_request(o CUserAccount_RegisterCompatTool_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountregistercompattoolrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountRegisterCompatToolRequest) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_registercompattool_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RegisterCompatTool_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountregistercompattoolrequest_unpack(v)?
+	mut unpacked := cuseraccount_registercompattool_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CUserAccountRegisterCompatToolResponse {
+pub struct CUserAccount_RegisterCompatTool_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CUserAccountRegisterCompatToolResponse) pack() []byte {
+pub fn (o &CUserAccount_RegisterCompatTool_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cuseraccountregistercompattoolresponse_unpack(buf []byte) ?CUserAccountRegisterCompatToolResponse {
-	res := CUserAccountRegisterCompatToolResponse{}
+pub fn cuseraccount_registercompattool_response_unpack(buf []byte) ?CUserAccount_RegisterCompatTool_Response {
+	res := CUserAccount_RegisterCompatTool_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cuseraccountregistercompattoolresponse() CUserAccountRegisterCompatToolResponse {
-	return CUserAccountRegisterCompatToolResponse{}
+pub fn zzz_vproto_internal_new_cuseraccount_registercompattool_response() CUserAccount_RegisterCompatTool_Response {
+	return CUserAccount_RegisterCompatTool_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cuseraccountregistercompattoolresponse(o CUserAccountRegisterCompatToolResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cuseraccount_registercompattool_response(o CUserAccount_RegisterCompatTool_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cuseraccountregistercompattoolresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccountRegisterCompatToolResponse) {
+pub fn zzz_vproto_internal_unpack_cuseraccount_registercompattool_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RegisterCompatTool_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cuseraccountregistercompattoolresponse_unpack(v)?
+	mut unpacked := cuseraccount_registercompattool_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountLinkingGetLinkedAccountInfoRequest {
+pub struct CAccountLinking_GetLinkedAccountInfo_Request {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -1341,7 +1385,7 @@ pub mut:
 	has_return_access_token bool
 }
 
-pub fn (o &CAccountLinkingGetLinkedAccountInfoRequest) pack() []byte {
+pub fn (o &CAccountLinking_GetLinkedAccountInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_account_type {
 		res << zzz_vproto_internal_pack_einternalaccounttype(o.account_type, 1)
@@ -1358,8 +1402,8 @@ pub fn (o &CAccountLinkingGetLinkedAccountInfoRequest) pack() []byte {
 	return res
 }
 
-pub fn caccountlinkinggetlinkedaccountinforequest_unpack(buf []byte) ?CAccountLinkingGetLinkedAccountInfoRequest {
-	mut res := CAccountLinkingGetLinkedAccountInfoRequest{}
+pub fn caccountlinking_getlinkedaccountinfo_request_unpack(buf []byte) ?CAccountLinking_GetLinkedAccountInfo_Request {
+	mut res := CAccountLinking_GetLinkedAccountInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1409,23 +1453,23 @@ pub fn caccountlinkinggetlinkedaccountinforequest_unpack(buf []byte) ?CAccountLi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccountlinkinggetlinkedaccountinforequest() CAccountLinkingGetLinkedAccountInfoRequest {
-	return CAccountLinkingGetLinkedAccountInfoRequest{}
+pub fn zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_request() CAccountLinking_GetLinkedAccountInfo_Request {
+	return CAccountLinking_GetLinkedAccountInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccountlinkinggetlinkedaccountinforequest(o CAccountLinkingGetLinkedAccountInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_request(o CAccountLinking_GetLinkedAccountInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccountlinkinggetlinkedaccountinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinkingGetLinkedAccountInfoRequest) {
+pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinking_GetLinkedAccountInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccountlinkinggetlinkedaccountinforequest_unpack(v)?
+	mut unpacked := caccountlinking_getlinkedaccountinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse {
+pub struct CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -1445,7 +1489,7 @@ pub mut:
 	has_is_valid            bool
 }
 
-pub fn (o &CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse) pack() []byte {
+pub fn (o &CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_external_type {
 		res << zzz_vproto_internal_pack_eexternalaccounttype(o.external_type, 1)
@@ -1471,8 +1515,8 @@ pub fn (o &CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleRespo
 	return res
 }
 
-pub fn caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse_unpack(buf []byte) ?CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse {
-	mut res := CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse{}
+pub fn caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response_unpack(buf []byte) ?CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response {
+	mut res := CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1540,41 +1584,41 @@ pub fn caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse_
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse() CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse {
-	return CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse{}
+pub fn zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response() CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response {
+	return CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse(o CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response(o CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse) {
+pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse_unpack(v)?
+	mut unpacked := caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountLinkingGetLinkedAccountInfoResponse {
+pub struct CAccountLinking_GetLinkedAccountInfo_Response {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
-	external_accounts []CAccountLinkingGetLinkedAccountInfoResponseCExternalAccountTupleResponse
+	external_accounts []CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response
 }
 
-pub fn (o &CAccountLinkingGetLinkedAccountInfoResponse) pack() []byte {
+pub fn (o &CAccountLinking_GetLinkedAccountInfo_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.external_accounts {
 		res <<
-			zzz_vproto_internal_pack_caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse(x, 1)
+			zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response(x, 1)
 	}
 	return res
 }
 
-pub fn caccountlinkinggetlinkedaccountinforesponse_unpack(buf []byte) ?CAccountLinkingGetLinkedAccountInfoResponse {
-	mut res := CAccountLinkingGetLinkedAccountInfoResponse{}
+pub fn caccountlinking_getlinkedaccountinfo_response_unpack(buf []byte) ?CAccountLinking_GetLinkedAccountInfo_Response {
+	mut res := CAccountLinking_GetLinkedAccountInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1586,7 +1630,7 @@ pub fn caccountlinkinggetlinkedaccountinforesponse_unpack(buf []byte) ?CAccountL
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccountlinkinggetlinkedaccountinforesponsecexternalaccounttupleresponse(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response(cur_buf,
 					tag_wiretype.wire_type)?
 				res.external_accounts << v
 				i = ii
@@ -1607,23 +1651,23 @@ pub fn caccountlinkinggetlinkedaccountinforesponse_unpack(buf []byte) ?CAccountL
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccountlinkinggetlinkedaccountinforesponse() CAccountLinkingGetLinkedAccountInfoResponse {
-	return CAccountLinkingGetLinkedAccountInfoResponse{}
+pub fn zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_response() CAccountLinking_GetLinkedAccountInfo_Response {
+	return CAccountLinking_GetLinkedAccountInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccountlinkinggetlinkedaccountinforesponse(o CAccountLinkingGetLinkedAccountInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_response(o CAccountLinking_GetLinkedAccountInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccountlinkinggetlinkedaccountinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinkingGetLinkedAccountInfoResponse) {
+pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinking_GetLinkedAccountInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccountlinkinggetlinkedaccountinforesponse_unpack(v)?
+	mut unpacked := caccountlinking_getlinkedaccountinfo_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEmbeddedClientAuthorizeCurrentDeviceRequest {
+pub struct CEmbeddedClient_AuthorizeCurrentDevice_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -1637,7 +1681,7 @@ pub mut:
 	has_deviceid    bool
 }
 
-pub fn (o &CEmbeddedClientAuthorizeCurrentDeviceRequest) pack() []byte {
+pub fn (o &CEmbeddedClient_AuthorizeCurrentDevice_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1654,8 +1698,8 @@ pub fn (o &CEmbeddedClientAuthorizeCurrentDeviceRequest) pack() []byte {
 	return res
 }
 
-pub fn cembeddedclientauthorizecurrentdevicerequest_unpack(buf []byte) ?CEmbeddedClientAuthorizeCurrentDeviceRequest {
-	mut res := CEmbeddedClientAuthorizeCurrentDeviceRequest{}
+pub fn cembeddedclient_authorizecurrentdevice_request_unpack(buf []byte) ?CEmbeddedClient_AuthorizeCurrentDevice_Request {
+	mut res := CEmbeddedClient_AuthorizeCurrentDevice_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1705,23 +1749,23 @@ pub fn cembeddedclientauthorizecurrentdevicerequest_unpack(buf []byte) ?CEmbedde
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cembeddedclientauthorizecurrentdevicerequest() CEmbeddedClientAuthorizeCurrentDeviceRequest {
-	return CEmbeddedClientAuthorizeCurrentDeviceRequest{}
+pub fn zzz_vproto_internal_new_cembeddedclient_authorizecurrentdevice_request() CEmbeddedClient_AuthorizeCurrentDevice_Request {
+	return CEmbeddedClient_AuthorizeCurrentDevice_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cembeddedclientauthorizecurrentdevicerequest(o CEmbeddedClientAuthorizeCurrentDeviceRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cembeddedclient_authorizecurrentdevice_request(o CEmbeddedClient_AuthorizeCurrentDevice_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cembeddedclientauthorizecurrentdevicerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClientAuthorizeCurrentDeviceRequest) {
+pub fn zzz_vproto_internal_unpack_cembeddedclient_authorizecurrentdevice_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClient_AuthorizeCurrentDevice_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cembeddedclientauthorizecurrentdevicerequest_unpack(v)?
+	mut unpacked := cembeddedclient_authorizecurrentdevice_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEmbeddedClientToken {
+pub struct CEmbeddedClient_Token {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1735,7 +1779,7 @@ pub mut:
 	has_deviceid     bool
 }
 
-pub fn (o &CEmbeddedClientToken) pack() []byte {
+pub fn (o &CEmbeddedClient_Token) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1752,8 +1796,8 @@ pub fn (o &CEmbeddedClientToken) pack() []byte {
 	return res
 }
 
-pub fn cembeddedclienttoken_unpack(buf []byte) ?CEmbeddedClientToken {
-	mut res := CEmbeddedClientToken{}
+pub fn cembeddedclient_token_unpack(buf []byte) ?CEmbeddedClient_Token {
+	mut res := CEmbeddedClient_Token{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1803,45 +1847,45 @@ pub fn cembeddedclienttoken_unpack(buf []byte) ?CEmbeddedClientToken {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cembeddedclienttoken() CEmbeddedClientToken {
-	return CEmbeddedClientToken{}
+pub fn zzz_vproto_internal_new_cembeddedclient_token() CEmbeddedClient_Token {
+	return CEmbeddedClient_Token{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cembeddedclienttoken(o CEmbeddedClientToken, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cembeddedclient_token(o CEmbeddedClient_Token, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cembeddedclienttoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClientToken) {
+pub fn zzz_vproto_internal_unpack_cembeddedclient_token(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClient_Token) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cembeddedclienttoken_unpack(v)?
+	mut unpacked := cembeddedclient_token_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CEmbeddedClientAuthorizeDeviceResponse {
+pub struct CEmbeddedClient_AuthorizeDevice_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	result         u32
 	has_result     bool
-	token          CEmbeddedClientToken
+	token          CEmbeddedClient_Token
 	has_token      bool
 }
 
-pub fn (o &CEmbeddedClientAuthorizeDeviceResponse) pack() []byte {
+pub fn (o &CEmbeddedClient_AuthorizeDevice_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_result {
 		res << vproto.pack_uint32_field(o.result, 1)
 	}
 	if o.has_token {
-		res << zzz_vproto_internal_pack_cembeddedclienttoken(o.token, 2)
+		res << zzz_vproto_internal_pack_cembeddedclient_token(o.token, 2)
 	}
 	return res
 }
 
-pub fn cembeddedclientauthorizedeviceresponse_unpack(buf []byte) ?CEmbeddedClientAuthorizeDeviceResponse {
-	mut res := CEmbeddedClientAuthorizeDeviceResponse{}
+pub fn cembeddedclient_authorizedevice_response_unpack(buf []byte) ?CEmbeddedClient_AuthorizeDevice_Response {
+	mut res := CEmbeddedClient_AuthorizeDevice_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1859,7 +1903,7 @@ pub fn cembeddedclientauthorizedeviceresponse_unpack(buf []byte) ?CEmbeddedClien
 			}
 			2 {
 				res.has_token = true
-				ii, v := zzz_vproto_internal_unpack_cembeddedclienttoken(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cembeddedclient_token(cur_buf, tag_wiretype.wire_type)?
 				res.token = v
 				i = ii
 			}
@@ -1879,18 +1923,18 @@ pub fn cembeddedclientauthorizedeviceresponse_unpack(buf []byte) ?CEmbeddedClien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cembeddedclientauthorizedeviceresponse() CEmbeddedClientAuthorizeDeviceResponse {
-	return CEmbeddedClientAuthorizeDeviceResponse{}
+pub fn zzz_vproto_internal_new_cembeddedclient_authorizedevice_response() CEmbeddedClient_AuthorizeDevice_Response {
+	return CEmbeddedClient_AuthorizeDevice_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cembeddedclientauthorizedeviceresponse(o CEmbeddedClientAuthorizeDeviceResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cembeddedclient_authorizedevice_response(o CEmbeddedClient_AuthorizeDevice_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cembeddedclientauthorizedeviceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClientAuthorizeDeviceResponse) {
+pub fn zzz_vproto_internal_unpack_cembeddedclient_authorizedevice_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClient_AuthorizeDevice_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cembeddedclientauthorizedeviceresponse_unpack(v)?
+	mut unpacked := cembeddedclient_authorizedevice_response_unpack(v)?
 	return i, unpacked
 }

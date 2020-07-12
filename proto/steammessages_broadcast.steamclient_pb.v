@@ -27,9 +27,31 @@ fn zzz_vproto_internal_pack_ebroadcastwatchlocation(e EBroadcastWatchLocation, n
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_ebroadcastwatchlocation_packed(e []EBroadcastWatchLocation, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_ebroadcastwatchlocation(buf []byte, tag_wiretype vproto.WireType) ?(int, EBroadcastWatchLocation) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EBroadcastWatchLocation(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_ebroadcastwatchlocation_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EBroadcastWatchLocation) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -44,12 +66,34 @@ fn zzz_vproto_internal_pack_ebroadcastchatpermission(e EBroadcastChatPermission,
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_ebroadcastchatpermission_packed(e []EBroadcastChatPermission, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_ebroadcastchatpermission(buf []byte, tag_wiretype vproto.WireType) ?(int, EBroadcastChatPermission) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EBroadcastChatPermission(v)
 }
 
-pub struct CBroadcastBeginBroadcastSessionRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_ebroadcastchatpermission_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EBroadcastChatPermission) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CBroadcast_BeginBroadcastSession_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -75,7 +119,7 @@ pub mut:
 	has_allow_webrtc       bool
 }
 
-pub fn (o &CBroadcastBeginBroadcastSessionRequest) pack() []byte {
+pub fn (o &CBroadcast_BeginBroadcastSession_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_permission {
 		res << vproto.pack_int32_field(o.permission, 1)
@@ -110,8 +154,8 @@ pub fn (o &CBroadcastBeginBroadcastSessionRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastbeginbroadcastsessionrequest_unpack(buf []byte) ?CBroadcastBeginBroadcastSessionRequest {
-	mut res := CBroadcastBeginBroadcastSessionRequest{}
+pub fn cbroadcast_beginbroadcastsession_request_unpack(buf []byte) ?CBroadcast_BeginBroadcastSession_Request {
+	mut res := CBroadcast_BeginBroadcastSession_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -197,23 +241,23 @@ pub fn cbroadcastbeginbroadcastsessionrequest_unpack(buf []byte) ?CBroadcastBegi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastbeginbroadcastsessionrequest() CBroadcastBeginBroadcastSessionRequest {
-	return CBroadcastBeginBroadcastSessionRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_beginbroadcastsession_request() CBroadcast_BeginBroadcastSession_Request {
+	return CBroadcast_BeginBroadcastSession_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastbeginbroadcastsessionrequest(o CBroadcastBeginBroadcastSessionRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_beginbroadcastsession_request(o CBroadcast_BeginBroadcastSession_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastbeginbroadcastsessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBeginBroadcastSessionRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_beginbroadcastsession_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BeginBroadcastSession_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastbeginbroadcastsessionrequest_unpack(v)?
+	mut unpacked := cbroadcast_beginbroadcastsession_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastBeginBroadcastSessionResponse {
+pub struct CBroadcast_BeginBroadcastSession_Response {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
@@ -229,7 +273,7 @@ pub mut:
 	has_heartbeat_interval_seconds bool
 }
 
-pub fn (o &CBroadcastBeginBroadcastSessionResponse) pack() []byte {
+pub fn (o &CBroadcast_BeginBroadcastSession_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -249,8 +293,8 @@ pub fn (o &CBroadcastBeginBroadcastSessionResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastbeginbroadcastsessionresponse_unpack(buf []byte) ?CBroadcastBeginBroadcastSessionResponse {
-	mut res := CBroadcastBeginBroadcastSessionResponse{}
+pub fn cbroadcast_beginbroadcastsession_response_unpack(buf []byte) ?CBroadcast_BeginBroadcastSession_Response {
+	mut res := CBroadcast_BeginBroadcastSession_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -306,23 +350,23 @@ pub fn cbroadcastbeginbroadcastsessionresponse_unpack(buf []byte) ?CBroadcastBeg
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastbeginbroadcastsessionresponse() CBroadcastBeginBroadcastSessionResponse {
-	return CBroadcastBeginBroadcastSessionResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_beginbroadcastsession_response() CBroadcast_BeginBroadcastSession_Response {
+	return CBroadcast_BeginBroadcastSession_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastbeginbroadcastsessionresponse(o CBroadcastBeginBroadcastSessionResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_beginbroadcastsession_response(o CBroadcast_BeginBroadcastSession_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastbeginbroadcastsessionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBeginBroadcastSessionResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_beginbroadcastsession_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BeginBroadcastSession_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastbeginbroadcastsessionresponse_unpack(v)?
+	mut unpacked := cbroadcast_beginbroadcastsession_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastEndBroadcastSessionRequest {
+pub struct CBroadcast_EndBroadcastSession_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -330,7 +374,7 @@ pub mut:
 	has_broadcast_id bool
 }
 
-pub fn (o &CBroadcastEndBroadcastSessionRequest) pack() []byte {
+pub fn (o &CBroadcast_EndBroadcastSession_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -338,8 +382,8 @@ pub fn (o &CBroadcastEndBroadcastSessionRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastendbroadcastsessionrequest_unpack(buf []byte) ?CBroadcastEndBroadcastSessionRequest {
-	mut res := CBroadcastEndBroadcastSessionRequest{}
+pub fn cbroadcast_endbroadcastsession_request_unpack(buf []byte) ?CBroadcast_EndBroadcastSession_Request {
+	mut res := CBroadcast_EndBroadcastSession_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -371,55 +415,55 @@ pub fn cbroadcastendbroadcastsessionrequest_unpack(buf []byte) ?CBroadcastEndBro
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastendbroadcastsessionrequest() CBroadcastEndBroadcastSessionRequest {
-	return CBroadcastEndBroadcastSessionRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_endbroadcastsession_request() CBroadcast_EndBroadcastSession_Request {
+	return CBroadcast_EndBroadcastSession_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastendbroadcastsessionrequest(o CBroadcastEndBroadcastSessionRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_endbroadcastsession_request(o CBroadcast_EndBroadcastSession_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastendbroadcastsessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastEndBroadcastSessionRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_endbroadcastsession_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_EndBroadcastSession_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastendbroadcastsessionrequest_unpack(v)?
+	mut unpacked := cbroadcast_endbroadcastsession_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastEndBroadcastSessionResponse {
+pub struct CBroadcast_EndBroadcastSession_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastEndBroadcastSessionResponse) pack() []byte {
+pub fn (o &CBroadcast_EndBroadcastSession_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastendbroadcastsessionresponse_unpack(buf []byte) ?CBroadcastEndBroadcastSessionResponse {
-	res := CBroadcastEndBroadcastSessionResponse{}
+pub fn cbroadcast_endbroadcastsession_response_unpack(buf []byte) ?CBroadcast_EndBroadcastSession_Response {
+	res := CBroadcast_EndBroadcastSession_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastendbroadcastsessionresponse() CBroadcastEndBroadcastSessionResponse {
-	return CBroadcastEndBroadcastSessionResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_endbroadcastsession_response() CBroadcast_EndBroadcastSession_Response {
+	return CBroadcast_EndBroadcastSession_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastendbroadcastsessionresponse(o CBroadcastEndBroadcastSessionResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_endbroadcastsession_response(o CBroadcast_EndBroadcastSession_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastendbroadcastsessionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastEndBroadcastSessionResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_endbroadcastsession_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_EndBroadcastSession_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastendbroadcastsessionresponse_unpack(v)?
+	mut unpacked := cbroadcast_endbroadcastsession_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastStartBroadcastUploadRequest {
+pub struct CBroadcast_StartBroadcastUpload_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -441,7 +485,7 @@ pub mut:
 	has_sysid             bool
 }
 
-pub fn (o &CBroadcastStartBroadcastUploadRequest) pack() []byte {
+pub fn (o &CBroadcast_StartBroadcastUpload_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -470,8 +514,8 @@ pub fn (o &CBroadcastStartBroadcastUploadRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcaststartbroadcastuploadrequest_unpack(buf []byte) ?CBroadcastStartBroadcastUploadRequest {
-	mut res := CBroadcastStartBroadcastUploadRequest{}
+pub fn cbroadcast_startbroadcastupload_request_unpack(buf []byte) ?CBroadcast_StartBroadcastUpload_Request {
+	mut res := CBroadcast_StartBroadcastUpload_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -545,23 +589,23 @@ pub fn cbroadcaststartbroadcastuploadrequest_unpack(buf []byte) ?CBroadcastStart
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcaststartbroadcastuploadrequest() CBroadcastStartBroadcastUploadRequest {
-	return CBroadcastStartBroadcastUploadRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_startbroadcastupload_request() CBroadcast_StartBroadcastUpload_Request {
+	return CBroadcast_StartBroadcastUpload_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcaststartbroadcastuploadrequest(o CBroadcastStartBroadcastUploadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_startbroadcastupload_request(o CBroadcast_StartBroadcastUpload_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcaststartbroadcastuploadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastStartBroadcastUploadRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_startbroadcastupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_StartBroadcastUpload_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcaststartbroadcastuploadrequest_unpack(v)?
+	mut unpacked := cbroadcast_startbroadcastupload_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastStartBroadcastUploadResponse {
+pub struct CBroadcast_StartBroadcastUpload_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -577,7 +621,7 @@ pub mut:
 	has_http_address        bool
 }
 
-pub fn (o &CBroadcastStartBroadcastUploadResponse) pack() []byte {
+pub fn (o &CBroadcast_StartBroadcastUpload_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_token {
 		res << vproto.pack_string_field(o.upload_token, 1)
@@ -597,8 +641,8 @@ pub fn (o &CBroadcastStartBroadcastUploadResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcaststartbroadcastuploadresponse_unpack(buf []byte) ?CBroadcastStartBroadcastUploadResponse {
-	mut res := CBroadcastStartBroadcastUploadResponse{}
+pub fn cbroadcast_startbroadcastupload_response_unpack(buf []byte) ?CBroadcast_StartBroadcastUpload_Response {
+	mut res := CBroadcast_StartBroadcastUpload_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -654,23 +698,23 @@ pub fn cbroadcaststartbroadcastuploadresponse_unpack(buf []byte) ?CBroadcastStar
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcaststartbroadcastuploadresponse() CBroadcastStartBroadcastUploadResponse {
-	return CBroadcastStartBroadcastUploadResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_startbroadcastupload_response() CBroadcast_StartBroadcastUpload_Response {
+	return CBroadcast_StartBroadcastUpload_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcaststartbroadcastuploadresponse(o CBroadcastStartBroadcastUploadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_startbroadcastupload_response(o CBroadcast_StartBroadcastUpload_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcaststartbroadcastuploadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastStartBroadcastUploadResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_startbroadcastupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_StartBroadcastUpload_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcaststartbroadcastuploadresponse_unpack(v)?
+	mut unpacked := cbroadcast_startbroadcastupload_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastNotifyBroadcastUploadStopNotification {
+pub struct CBroadcast_NotifyBroadcastUploadStop_Notification {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -680,7 +724,7 @@ pub mut:
 	has_upload_result       bool
 }
 
-pub fn (o &CBroadcastNotifyBroadcastUploadStopNotification) pack() []byte {
+pub fn (o &CBroadcast_NotifyBroadcastUploadStop_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_upload_id {
 		res << vproto.pack_64bit_field(o.broadcast_upload_id, 1)
@@ -691,8 +735,8 @@ pub fn (o &CBroadcastNotifyBroadcastUploadStopNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastnotifybroadcastuploadstopnotification_unpack(buf []byte) ?CBroadcastNotifyBroadcastUploadStopNotification {
-	mut res := CBroadcastNotifyBroadcastUploadStopNotification{}
+pub fn cbroadcast_notifybroadcastuploadstop_notification_unpack(buf []byte) ?CBroadcast_NotifyBroadcastUploadStop_Notification {
+	mut res := CBroadcast_NotifyBroadcastUploadStop_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -730,23 +774,23 @@ pub fn cbroadcastnotifybroadcastuploadstopnotification_unpack(buf []byte) ?CBroa
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastnotifybroadcastuploadstopnotification() CBroadcastNotifyBroadcastUploadStopNotification {
-	return CBroadcastNotifyBroadcastUploadStopNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_notifybroadcastuploadstop_notification() CBroadcast_NotifyBroadcastUploadStop_Notification {
+	return CBroadcast_NotifyBroadcastUploadStop_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastnotifybroadcastuploadstopnotification(o CBroadcastNotifyBroadcastUploadStopNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_notifybroadcastuploadstop_notification(o CBroadcast_NotifyBroadcastUploadStop_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastnotifybroadcastuploadstopnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastNotifyBroadcastUploadStopNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_notifybroadcastuploadstop_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_NotifyBroadcastUploadStop_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastnotifybroadcastuploadstopnotification_unpack(v)?
+	mut unpacked := cbroadcast_notifybroadcastuploadstop_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWatchBroadcastRequest {
+pub struct CBroadcast_WatchBroadcast_Request {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -766,7 +810,7 @@ pub mut:
 	has_is_webrtc             bool
 }
 
-pub fn (o &CBroadcastWatchBroadcastRequest) pack() []byte {
+pub fn (o &CBroadcast_WatchBroadcast_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -792,8 +836,8 @@ pub fn (o &CBroadcastWatchBroadcastRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwatchbroadcastrequest_unpack(buf []byte) ?CBroadcastWatchBroadcastRequest {
-	mut res := CBroadcastWatchBroadcastRequest{}
+pub fn cbroadcast_watchbroadcast_request_unpack(buf []byte) ?CBroadcast_WatchBroadcast_Request {
+	mut res := CBroadcast_WatchBroadcast_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -861,24 +905,24 @@ pub fn cbroadcastwatchbroadcastrequest_unpack(buf []byte) ?CBroadcastWatchBroadc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwatchbroadcastrequest() CBroadcastWatchBroadcastRequest {
-	return CBroadcastWatchBroadcastRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_watchbroadcast_request() CBroadcast_WatchBroadcast_Request {
+	return CBroadcast_WatchBroadcast_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwatchbroadcastrequest(o CBroadcastWatchBroadcastRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_watchbroadcast_request(o CBroadcast_WatchBroadcast_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwatchbroadcastrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWatchBroadcastRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_watchbroadcast_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WatchBroadcast_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwatchbroadcastrequest_unpack(v)?
+	mut unpacked := cbroadcast_watchbroadcast_request_unpack(v)?
 	return i, unpacked
 }
 
 [_allow_multiple_values]
-enum CBroadcastWatchBroadcastResponseEWatchResponse {
+enum CBroadcast_WatchBroadcast_Response_EWatchResponse {
 	k_ewatchresponseready = 1
 	k_ewatchresponsenotavailable = 2
 	k_ewatchresponsewaitingforapproval = 3
@@ -894,21 +938,43 @@ enum CBroadcastWatchBroadcastResponseEWatchResponse {
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_cbroadcastwatchbroadcastresponseewatchresponse(e CBroadcastWatchBroadcastResponseEWatchResponse, num u32) []byte {
+fn zzz_vproto_internal_pack_cbroadcast_watchbroadcast_response_ewatchresponse(e CBroadcast_WatchBroadcast_Response_EWatchResponse, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_cbroadcastwatchbroadcastresponseewatchresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWatchBroadcastResponseEWatchResponse) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, CBroadcastWatchBroadcastResponseEWatchResponse(v)
+fn zzz_vproto_internal_pack_cbroadcast_watchbroadcast_response_ewatchresponse_packed(e []CBroadcast_WatchBroadcast_Response_EWatchResponse, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
 }
 
-pub struct CBroadcastWatchBroadcastResponse {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cbroadcast_watchbroadcast_response_ewatchresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WatchBroadcast_Response_EWatchResponse) {
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	return i, CBroadcast_WatchBroadcast_Response_EWatchResponse(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cbroadcast_watchbroadcast_response_ewatchresponse_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CBroadcast_WatchBroadcast_Response_EWatchResponse) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CBroadcast_WatchBroadcast_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
-	response                CBroadcastWatchBroadcastResponseEWatchResponse
+	response                CBroadcast_WatchBroadcast_Response_EWatchResponse
 	has_response            bool
 	mpd_url                 string
 	has_mpd_url             bool
@@ -948,11 +1014,11 @@ pub mut:
 	has_duration            bool
 }
 
-pub fn (o &CBroadcastWatchBroadcastResponse) pack() []byte {
+pub fn (o &CBroadcast_WatchBroadcast_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_response {
 		res <<
-			zzz_vproto_internal_pack_cbroadcastwatchbroadcastresponseewatchresponse(o.response, 1)
+			zzz_vproto_internal_pack_cbroadcast_watchbroadcast_response_ewatchresponse(o.response, 1)
 	}
 	if o.has_mpd_url {
 		res << vproto.pack_string_field(o.mpd_url, 2)
@@ -1011,8 +1077,8 @@ pub fn (o &CBroadcastWatchBroadcastResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwatchbroadcastresponse_unpack(buf []byte) ?CBroadcastWatchBroadcastResponse {
-	mut res := CBroadcastWatchBroadcastResponse{}
+pub fn cbroadcast_watchbroadcast_response_unpack(buf []byte) ?CBroadcast_WatchBroadcast_Response {
+	mut res := CBroadcast_WatchBroadcast_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1024,7 +1090,7 @@ pub fn cbroadcastwatchbroadcastresponse_unpack(buf []byte) ?CBroadcastWatchBroad
 		match tag_wiretype.tag {
 			1 {
 				res.has_response = true
-				ii, v := zzz_vproto_internal_unpack_cbroadcastwatchbroadcastresponseewatchresponse(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_watchbroadcast_response_ewatchresponse(cur_buf,
 					tag_wiretype.wire_type)?
 				res.response = v
 				i = ii
@@ -1153,23 +1219,23 @@ pub fn cbroadcastwatchbroadcastresponse_unpack(buf []byte) ?CBroadcastWatchBroad
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwatchbroadcastresponse() CBroadcastWatchBroadcastResponse {
-	return CBroadcastWatchBroadcastResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_watchbroadcast_response() CBroadcast_WatchBroadcast_Response {
+	return CBroadcast_WatchBroadcast_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwatchbroadcastresponse(o CBroadcastWatchBroadcastResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_watchbroadcast_response(o CBroadcast_WatchBroadcast_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwatchbroadcastresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWatchBroadcastResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_watchbroadcast_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WatchBroadcast_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwatchbroadcastresponse_unpack(v)?
+	mut unpacked := cbroadcast_watchbroadcast_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastHeartbeatBroadcastNotification {
+pub struct CBroadcast_HeartbeatBroadcast_Notification {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -1183,7 +1249,7 @@ pub mut:
 	has_representation bool
 }
 
-pub fn (o &CBroadcastHeartbeatBroadcastNotification) pack() []byte {
+pub fn (o &CBroadcast_HeartbeatBroadcast_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1200,8 +1266,8 @@ pub fn (o &CBroadcastHeartbeatBroadcastNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastheartbeatbroadcastnotification_unpack(buf []byte) ?CBroadcastHeartbeatBroadcastNotification {
-	mut res := CBroadcastHeartbeatBroadcastNotification{}
+pub fn cbroadcast_heartbeatbroadcast_notification_unpack(buf []byte) ?CBroadcast_HeartbeatBroadcast_Notification {
+	mut res := CBroadcast_HeartbeatBroadcast_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1251,23 +1317,23 @@ pub fn cbroadcastheartbeatbroadcastnotification_unpack(buf []byte) ?CBroadcastHe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastheartbeatbroadcastnotification() CBroadcastHeartbeatBroadcastNotification {
-	return CBroadcastHeartbeatBroadcastNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_heartbeatbroadcast_notification() CBroadcast_HeartbeatBroadcast_Notification {
+	return CBroadcast_HeartbeatBroadcast_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastheartbeatbroadcastnotification(o CBroadcastHeartbeatBroadcastNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_heartbeatbroadcast_notification(o CBroadcast_HeartbeatBroadcast_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastheartbeatbroadcastnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastHeartbeatBroadcastNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_heartbeatbroadcast_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_HeartbeatBroadcast_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastheartbeatbroadcastnotification_unpack(v)?
+	mut unpacked := cbroadcast_heartbeatbroadcast_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastStopWatchingBroadcastNotification {
+pub struct CBroadcast_StopWatchingBroadcast_Notification {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1279,7 +1345,7 @@ pub mut:
 	has_viewer_token bool
 }
 
-pub fn (o &CBroadcastStopWatchingBroadcastNotification) pack() []byte {
+pub fn (o &CBroadcast_StopWatchingBroadcast_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1293,8 +1359,8 @@ pub fn (o &CBroadcastStopWatchingBroadcastNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcaststopwatchingbroadcastnotification_unpack(buf []byte) ?CBroadcastStopWatchingBroadcastNotification {
-	mut res := CBroadcastStopWatchingBroadcastNotification{}
+pub fn cbroadcast_stopwatchingbroadcast_notification_unpack(buf []byte) ?CBroadcast_StopWatchingBroadcast_Notification {
+	mut res := CBroadcast_StopWatchingBroadcast_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1338,23 +1404,23 @@ pub fn cbroadcaststopwatchingbroadcastnotification_unpack(buf []byte) ?CBroadcas
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcaststopwatchingbroadcastnotification() CBroadcastStopWatchingBroadcastNotification {
-	return CBroadcastStopWatchingBroadcastNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_stopwatchingbroadcast_notification() CBroadcast_StopWatchingBroadcast_Notification {
+	return CBroadcast_StopWatchingBroadcast_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcaststopwatchingbroadcastnotification(o CBroadcastStopWatchingBroadcastNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_stopwatchingbroadcast_notification(o CBroadcast_StopWatchingBroadcast_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcaststopwatchingbroadcastnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastStopWatchingBroadcastNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_stopwatchingbroadcast_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_StopWatchingBroadcast_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcaststopwatchingbroadcastnotification_unpack(v)?
+	mut unpacked := cbroadcast_stopwatchingbroadcast_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastStatusRequest {
+pub struct CBroadcast_GetBroadcastStatus_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1364,7 +1430,7 @@ pub mut:
 	has_broadcast_id bool
 }
 
-pub fn (o &CBroadcastGetBroadcastStatusRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastStatus_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1375,8 +1441,8 @@ pub fn (o &CBroadcastGetBroadcastStatusRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcaststatusrequest_unpack(buf []byte) ?CBroadcastGetBroadcastStatusRequest {
-	mut res := CBroadcastGetBroadcastStatusRequest{}
+pub fn cbroadcast_getbroadcaststatus_request_unpack(buf []byte) ?CBroadcast_GetBroadcastStatus_Request {
+	mut res := CBroadcast_GetBroadcastStatus_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1414,23 +1480,23 @@ pub fn cbroadcastgetbroadcaststatusrequest_unpack(buf []byte) ?CBroadcastGetBroa
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcaststatusrequest() CBroadcastGetBroadcastStatusRequest {
-	return CBroadcastGetBroadcastStatusRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcaststatus_request() CBroadcast_GetBroadcastStatus_Request {
+	return CBroadcast_GetBroadcastStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcaststatusrequest(o CBroadcastGetBroadcastStatusRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcaststatus_request(o CBroadcast_GetBroadcastStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcaststatusrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastStatusRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcaststatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcaststatusrequest_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcaststatus_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastStatusResponse {
+pub struct CBroadcast_GetBroadcastStatus_Response {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -1464,7 +1530,7 @@ pub mut:
 	has_is_store_whitelisted bool
 }
 
-pub fn (o &CBroadcastGetBroadcastStatusResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastStatus_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_gameid {
 		res << vproto.pack_uint64_field(o.gameid, 1)
@@ -1511,8 +1577,8 @@ pub fn (o &CBroadcastGetBroadcastStatusResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcaststatusresponse_unpack(buf []byte) ?CBroadcastGetBroadcastStatusResponse {
-	mut res := CBroadcastGetBroadcastStatusResponse{}
+pub fn cbroadcast_getbroadcaststatus_response_unpack(buf []byte) ?CBroadcast_GetBroadcastStatus_Response {
+	mut res := CBroadcast_GetBroadcastStatus_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1622,23 +1688,23 @@ pub fn cbroadcastgetbroadcaststatusresponse_unpack(buf []byte) ?CBroadcastGetBro
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcaststatusresponse() CBroadcastGetBroadcastStatusResponse {
-	return CBroadcastGetBroadcastStatusResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcaststatus_response() CBroadcast_GetBroadcastStatus_Response {
+	return CBroadcast_GetBroadcastStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcaststatusresponse(o CBroadcastGetBroadcastStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcaststatus_response(o CBroadcast_GetBroadcastStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcaststatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastStatusResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcaststatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcaststatusresponse_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcaststatus_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastThumbnailRequest {
+pub struct CBroadcast_GetBroadcastThumbnail_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1648,7 +1714,7 @@ pub mut:
 	has_broadcast_id bool
 }
 
-pub fn (o &CBroadcastGetBroadcastThumbnailRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastThumbnail_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1659,8 +1725,8 @@ pub fn (o &CBroadcastGetBroadcastThumbnailRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastthumbnailrequest_unpack(buf []byte) ?CBroadcastGetBroadcastThumbnailRequest {
-	mut res := CBroadcastGetBroadcastThumbnailRequest{}
+pub fn cbroadcast_getbroadcastthumbnail_request_unpack(buf []byte) ?CBroadcast_GetBroadcastThumbnail_Request {
+	mut res := CBroadcast_GetBroadcastThumbnail_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1698,23 +1764,23 @@ pub fn cbroadcastgetbroadcastthumbnailrequest_unpack(buf []byte) ?CBroadcastGetB
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastthumbnailrequest() CBroadcastGetBroadcastThumbnailRequest {
-	return CBroadcastGetBroadcastThumbnailRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastthumbnail_request() CBroadcast_GetBroadcastThumbnail_Request {
+	return CBroadcast_GetBroadcastThumbnail_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastthumbnailrequest(o CBroadcastGetBroadcastThumbnailRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastthumbnail_request(o CBroadcast_GetBroadcastThumbnail_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastthumbnailrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastThumbnailRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastthumbnail_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastThumbnail_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastthumbnailrequest_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastthumbnail_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastThumbnailResponse {
+pub struct CBroadcast_GetBroadcastThumbnail_Response {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -1728,7 +1794,7 @@ pub mut:
 	has_duration        bool
 }
 
-pub fn (o &CBroadcastGetBroadcastThumbnailResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastThumbnail_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_thumbnail_url {
 		res << vproto.pack_string_field(o.thumbnail_url, 1)
@@ -1745,8 +1811,8 @@ pub fn (o &CBroadcastGetBroadcastThumbnailResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastthumbnailresponse_unpack(buf []byte) ?CBroadcastGetBroadcastThumbnailResponse {
-	mut res := CBroadcastGetBroadcastThumbnailResponse{}
+pub fn cbroadcast_getbroadcastthumbnail_response_unpack(buf []byte) ?CBroadcast_GetBroadcastThumbnail_Response {
+	mut res := CBroadcast_GetBroadcastThumbnail_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1796,23 +1862,23 @@ pub fn cbroadcastgetbroadcastthumbnailresponse_unpack(buf []byte) ?CBroadcastGet
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastthumbnailresponse() CBroadcastGetBroadcastThumbnailResponse {
-	return CBroadcastGetBroadcastThumbnailResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastthumbnail_response() CBroadcast_GetBroadcastThumbnail_Response {
+	return CBroadcast_GetBroadcastThumbnail_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastthumbnailresponse(o CBroadcastGetBroadcastThumbnailResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastthumbnail_response(o CBroadcast_GetBroadcastThumbnail_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastthumbnailresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastThumbnailResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastthumbnail_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastThumbnail_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastthumbnailresponse_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastthumbnail_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastInviteToBroadcastRequest {
+pub struct CBroadcast_InviteToBroadcast_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -1822,7 +1888,7 @@ pub mut:
 	has_approval_response bool
 }
 
-pub fn (o &CBroadcastInviteToBroadcastRequest) pack() []byte {
+pub fn (o &CBroadcast_InviteToBroadcast_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1833,8 +1899,8 @@ pub fn (o &CBroadcastInviteToBroadcastRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastinvitetobroadcastrequest_unpack(buf []byte) ?CBroadcastInviteToBroadcastRequest {
-	mut res := CBroadcastInviteToBroadcastRequest{}
+pub fn cbroadcast_invitetobroadcast_request_unpack(buf []byte) ?CBroadcast_InviteToBroadcast_Request {
+	mut res := CBroadcast_InviteToBroadcast_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1872,23 +1938,23 @@ pub fn cbroadcastinvitetobroadcastrequest_unpack(buf []byte) ?CBroadcastInviteTo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastinvitetobroadcastrequest() CBroadcastInviteToBroadcastRequest {
-	return CBroadcastInviteToBroadcastRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_invitetobroadcast_request() CBroadcast_InviteToBroadcast_Request {
+	return CBroadcast_InviteToBroadcast_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastinvitetobroadcastrequest(o CBroadcastInviteToBroadcastRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_invitetobroadcast_request(o CBroadcast_InviteToBroadcast_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastinvitetobroadcastrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastInviteToBroadcastRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_invitetobroadcast_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_InviteToBroadcast_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastinvitetobroadcastrequest_unpack(v)?
+	mut unpacked := cbroadcast_invitetobroadcast_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastInviteToBroadcastResponse {
+pub struct CBroadcast_InviteToBroadcast_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1896,7 +1962,7 @@ pub mut:
 	has_success    bool
 }
 
-pub fn (o &CBroadcastInviteToBroadcastResponse) pack() []byte {
+pub fn (o &CBroadcast_InviteToBroadcast_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_success {
 		res << vproto.pack_bool_field(o.success, 1)
@@ -1904,8 +1970,8 @@ pub fn (o &CBroadcastInviteToBroadcastResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastinvitetobroadcastresponse_unpack(buf []byte) ?CBroadcastInviteToBroadcastResponse {
-	mut res := CBroadcastInviteToBroadcastResponse{}
+pub fn cbroadcast_invitetobroadcast_response_unpack(buf []byte) ?CBroadcast_InviteToBroadcast_Response {
+	mut res := CBroadcast_InviteToBroadcast_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1937,23 +2003,23 @@ pub fn cbroadcastinvitetobroadcastresponse_unpack(buf []byte) ?CBroadcastInviteT
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastinvitetobroadcastresponse() CBroadcastInviteToBroadcastResponse {
-	return CBroadcastInviteToBroadcastResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_invitetobroadcast_response() CBroadcast_InviteToBroadcast_Response {
+	return CBroadcast_InviteToBroadcast_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastinvitetobroadcastresponse(o CBroadcastInviteToBroadcastResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_invitetobroadcast_response(o CBroadcast_InviteToBroadcast_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastinvitetobroadcastresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastInviteToBroadcastResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_invitetobroadcast_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_InviteToBroadcast_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastinvitetobroadcastresponse_unpack(v)?
+	mut unpacked := cbroadcast_invitetobroadcast_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSendBroadcastStateToServerRequest {
+pub struct CBroadcast_SendBroadcastStateToServer_Request {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -1967,7 +2033,7 @@ pub mut:
 	has_game_data_config bool
 }
 
-pub fn (o &CBroadcastSendBroadcastStateToServerRequest) pack() []byte {
+pub fn (o &CBroadcast_SendBroadcastStateToServer_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_permission {
 		res << vproto.pack_int32_field(o.permission, 1)
@@ -1984,8 +2050,8 @@ pub fn (o &CBroadcastSendBroadcastStateToServerRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastsendbroadcaststatetoserverrequest_unpack(buf []byte) ?CBroadcastSendBroadcastStateToServerRequest {
-	mut res := CBroadcastSendBroadcastStateToServerRequest{}
+pub fn cbroadcast_sendbroadcaststatetoserver_request_unpack(buf []byte) ?CBroadcast_SendBroadcastStateToServer_Request {
+	mut res := CBroadcast_SendBroadcastStateToServer_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2035,55 +2101,55 @@ pub fn cbroadcastsendbroadcaststatetoserverrequest_unpack(buf []byte) ?CBroadcas
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsendbroadcaststatetoserverrequest() CBroadcastSendBroadcastStateToServerRequest {
-	return CBroadcastSendBroadcastStateToServerRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_sendbroadcaststatetoserver_request() CBroadcast_SendBroadcastStateToServer_Request {
+	return CBroadcast_SendBroadcastStateToServer_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsendbroadcaststatetoserverrequest(o CBroadcastSendBroadcastStateToServerRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_sendbroadcaststatetoserver_request(o CBroadcast_SendBroadcastStateToServer_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsendbroadcaststatetoserverrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSendBroadcastStateToServerRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_sendbroadcaststatetoserver_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SendBroadcastStateToServer_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsendbroadcaststatetoserverrequest_unpack(v)?
+	mut unpacked := cbroadcast_sendbroadcaststatetoserver_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSendBroadcastStateToServerResponse {
+pub struct CBroadcast_SendBroadcastStateToServer_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastSendBroadcastStateToServerResponse) pack() []byte {
+pub fn (o &CBroadcast_SendBroadcastStateToServer_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastsendbroadcaststatetoserverresponse_unpack(buf []byte) ?CBroadcastSendBroadcastStateToServerResponse {
-	res := CBroadcastSendBroadcastStateToServerResponse{}
+pub fn cbroadcast_sendbroadcaststatetoserver_response_unpack(buf []byte) ?CBroadcast_SendBroadcastStateToServer_Response {
+	res := CBroadcast_SendBroadcastStateToServer_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsendbroadcaststatetoserverresponse() CBroadcastSendBroadcastStateToServerResponse {
-	return CBroadcastSendBroadcastStateToServerResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_sendbroadcaststatetoserver_response() CBroadcast_SendBroadcastStateToServer_Response {
+	return CBroadcast_SendBroadcastStateToServer_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsendbroadcaststatetoserverresponse(o CBroadcastSendBroadcastStateToServerResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_sendbroadcaststatetoserver_response(o CBroadcast_SendBroadcastStateToServer_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsendbroadcaststatetoserverresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSendBroadcastStateToServerResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_sendbroadcaststatetoserver_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SendBroadcastStateToServer_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsendbroadcaststatetoserverresponse_unpack(v)?
+	mut unpacked := cbroadcast_sendbroadcaststatetoserver_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastNotifyBroadcastSessionHeartbeatNotification {
+pub struct CBroadcast_NotifyBroadcastSessionHeartbeat_Notification {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2091,7 +2157,7 @@ pub mut:
 	has_broadcast_id bool
 }
 
-pub fn (o &CBroadcastNotifyBroadcastSessionHeartbeatNotification) pack() []byte {
+pub fn (o &CBroadcast_NotifyBroadcastSessionHeartbeat_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -2099,8 +2165,8 @@ pub fn (o &CBroadcastNotifyBroadcastSessionHeartbeatNotification) pack() []byte 
 	return res
 }
 
-pub fn cbroadcastnotifybroadcastsessionheartbeatnotification_unpack(buf []byte) ?CBroadcastNotifyBroadcastSessionHeartbeatNotification {
-	mut res := CBroadcastNotifyBroadcastSessionHeartbeatNotification{}
+pub fn cbroadcast_notifybroadcastsessionheartbeat_notification_unpack(buf []byte) ?CBroadcast_NotifyBroadcastSessionHeartbeat_Notification {
+	mut res := CBroadcast_NotifyBroadcastSessionHeartbeat_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2132,23 +2198,23 @@ pub fn cbroadcastnotifybroadcastsessionheartbeatnotification_unpack(buf []byte) 
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastnotifybroadcastsessionheartbeatnotification() CBroadcastNotifyBroadcastSessionHeartbeatNotification {
-	return CBroadcastNotifyBroadcastSessionHeartbeatNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_notifybroadcastsessionheartbeat_notification() CBroadcast_NotifyBroadcastSessionHeartbeat_Notification {
+	return CBroadcast_NotifyBroadcastSessionHeartbeat_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastnotifybroadcastsessionheartbeatnotification(o CBroadcastNotifyBroadcastSessionHeartbeatNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_notifybroadcastsessionheartbeat_notification(o CBroadcast_NotifyBroadcastSessionHeartbeat_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastnotifybroadcastsessionheartbeatnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastNotifyBroadcastSessionHeartbeatNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_notifybroadcastsessionheartbeat_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_NotifyBroadcastSessionHeartbeat_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastnotifybroadcastsessionheartbeatnotification_unpack(v)?
+	mut unpacked := cbroadcast_notifybroadcastsessionheartbeat_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastChatInfoRequest {
+pub struct CBroadcast_GetBroadcastChatInfo_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2162,7 +2228,7 @@ pub mut:
 	has_client_cell  bool
 }
 
-pub fn (o &CBroadcastGetBroadcastChatInfoRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastChatInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -2179,8 +2245,8 @@ pub fn (o &CBroadcastGetBroadcastChatInfoRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastchatinforequest_unpack(buf []byte) ?CBroadcastGetBroadcastChatInfoRequest {
-	mut res := CBroadcastGetBroadcastChatInfoRequest{}
+pub fn cbroadcast_getbroadcastchatinfo_request_unpack(buf []byte) ?CBroadcast_GetBroadcastChatInfo_Request {
+	mut res := CBroadcast_GetBroadcastChatInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2230,23 +2296,23 @@ pub fn cbroadcastgetbroadcastchatinforequest_unpack(buf []byte) ?CBroadcastGetBr
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastchatinforequest() CBroadcastGetBroadcastChatInfoRequest {
-	return CBroadcastGetBroadcastChatInfoRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastchatinfo_request() CBroadcast_GetBroadcastChatInfo_Request {
+	return CBroadcast_GetBroadcastChatInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastchatinforequest(o CBroadcastGetBroadcastChatInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastchatinfo_request(o CBroadcast_GetBroadcastChatInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastchatinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastChatInfoRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastchatinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastChatInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastchatinforequest_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastchatinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastChatInfoResponse {
+pub struct CBroadcast_GetBroadcastChatInfo_Response {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -2257,7 +2323,7 @@ pub mut:
 	flair_group_ids       []u32
 }
 
-pub fn (o &CBroadcastGetBroadcastChatInfoResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastChatInfo_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_chat_id {
 		res << vproto.pack_64bit_field(o.chat_id, 1)
@@ -2272,8 +2338,8 @@ pub fn (o &CBroadcastGetBroadcastChatInfoResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastchatinforesponse_unpack(buf []byte) ?CBroadcastGetBroadcastChatInfoResponse {
-	mut res := CBroadcastGetBroadcastChatInfoResponse{}
+pub fn cbroadcast_getbroadcastchatinfo_response_unpack(buf []byte) ?CBroadcast_GetBroadcastChatInfo_Response {
+	mut res := CBroadcast_GetBroadcastChatInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2317,23 +2383,23 @@ pub fn cbroadcastgetbroadcastchatinforesponse_unpack(buf []byte) ?CBroadcastGetB
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastchatinforesponse() CBroadcastGetBroadcastChatInfoResponse {
-	return CBroadcastGetBroadcastChatInfoResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastchatinfo_response() CBroadcast_GetBroadcastChatInfo_Response {
+	return CBroadcast_GetBroadcastChatInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastchatinforesponse(o CBroadcastGetBroadcastChatInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastchatinfo_response(o CBroadcast_GetBroadcastChatInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastchatinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastChatInfoResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastchatinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastChatInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastchatinforesponse_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastchatinfo_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastPostChatMessageRequest {
+pub struct CBroadcast_PostChatMessage_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2349,7 +2415,7 @@ pub mut:
 	has_country_code bool
 }
 
-pub fn (o &CBroadcastPostChatMessageRequest) pack() []byte {
+pub fn (o &CBroadcast_PostChatMessage_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_chat_id {
 		res << vproto.pack_64bit_field(o.chat_id, 1)
@@ -2369,8 +2435,8 @@ pub fn (o &CBroadcastPostChatMessageRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastpostchatmessagerequest_unpack(buf []byte) ?CBroadcastPostChatMessageRequest {
-	mut res := CBroadcastPostChatMessageRequest{}
+pub fn cbroadcast_postchatmessage_request_unpack(buf []byte) ?CBroadcast_PostChatMessage_Request {
+	mut res := CBroadcast_PostChatMessage_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2426,23 +2492,23 @@ pub fn cbroadcastpostchatmessagerequest_unpack(buf []byte) ?CBroadcastPostChatMe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastpostchatmessagerequest() CBroadcastPostChatMessageRequest {
-	return CBroadcastPostChatMessageRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_postchatmessage_request() CBroadcast_PostChatMessage_Request {
+	return CBroadcast_PostChatMessage_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastpostchatmessagerequest(o CBroadcastPostChatMessageRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_postchatmessage_request(o CBroadcast_PostChatMessage_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastpostchatmessagerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastPostChatMessageRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_postchatmessage_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_PostChatMessage_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastpostchatmessagerequest_unpack(v)?
+	mut unpacked := cbroadcast_postchatmessage_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastPostChatMessageResponse {
+pub struct CBroadcast_PostChatMessage_Response {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -2456,7 +2522,7 @@ pub mut:
 	has_cooldown_time_seconds bool
 }
 
-pub fn (o &CBroadcastPostChatMessageResponse) pack() []byte {
+pub fn (o &CBroadcast_PostChatMessage_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_persona_name {
 		res << vproto.pack_string_field(o.persona_name, 1)
@@ -2473,8 +2539,8 @@ pub fn (o &CBroadcastPostChatMessageResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastpostchatmessageresponse_unpack(buf []byte) ?CBroadcastPostChatMessageResponse {
-	mut res := CBroadcastPostChatMessageResponse{}
+pub fn cbroadcast_postchatmessage_response_unpack(buf []byte) ?CBroadcast_PostChatMessage_Response {
+	mut res := CBroadcast_PostChatMessage_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2524,23 +2590,23 @@ pub fn cbroadcastpostchatmessageresponse_unpack(buf []byte) ?CBroadcastPostChatM
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastpostchatmessageresponse() CBroadcastPostChatMessageResponse {
-	return CBroadcastPostChatMessageResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_postchatmessage_response() CBroadcast_PostChatMessage_Response {
+	return CBroadcast_PostChatMessage_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastpostchatmessageresponse(o CBroadcastPostChatMessageResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_postchatmessage_response(o CBroadcast_PostChatMessage_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastpostchatmessageresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastPostChatMessageResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_postchatmessage_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_PostChatMessage_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastpostchatmessageresponse_unpack(v)?
+	mut unpacked := cbroadcast_postchatmessage_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastUpdateChatMessageFlairRequest {
+pub struct CBroadcast_UpdateChatMessageFlair_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2550,7 +2616,7 @@ pub mut:
 	has_flair      bool
 }
 
-pub fn (o &CBroadcastUpdateChatMessageFlairRequest) pack() []byte {
+pub fn (o &CBroadcast_UpdateChatMessageFlair_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_chat_id {
 		res << vproto.pack_64bit_field(o.chat_id, 1)
@@ -2561,8 +2627,8 @@ pub fn (o &CBroadcastUpdateChatMessageFlairRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastupdatechatmessageflairrequest_unpack(buf []byte) ?CBroadcastUpdateChatMessageFlairRequest {
-	mut res := CBroadcastUpdateChatMessageFlairRequest{}
+pub fn cbroadcast_updatechatmessageflair_request_unpack(buf []byte) ?CBroadcast_UpdateChatMessageFlair_Request {
+	mut res := CBroadcast_UpdateChatMessageFlair_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2600,23 +2666,23 @@ pub fn cbroadcastupdatechatmessageflairrequest_unpack(buf []byte) ?CBroadcastUpd
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastupdatechatmessageflairrequest() CBroadcastUpdateChatMessageFlairRequest {
-	return CBroadcastUpdateChatMessageFlairRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_updatechatmessageflair_request() CBroadcast_UpdateChatMessageFlair_Request {
+	return CBroadcast_UpdateChatMessageFlair_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastupdatechatmessageflairrequest(o CBroadcastUpdateChatMessageFlairRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_updatechatmessageflair_request(o CBroadcast_UpdateChatMessageFlair_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastupdatechatmessageflairrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastUpdateChatMessageFlairRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_updatechatmessageflair_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_UpdateChatMessageFlair_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastupdatechatmessageflairrequest_unpack(v)?
+	mut unpacked := cbroadcast_updatechatmessageflair_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastUpdateChatMessageFlairResponse {
+pub struct CBroadcast_UpdateChatMessageFlair_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2628,7 +2694,7 @@ pub mut:
 	has_flair      bool
 }
 
-pub fn (o &CBroadcastUpdateChatMessageFlairResponse) pack() []byte {
+pub fn (o &CBroadcast_UpdateChatMessageFlair_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_result {
 		res << vproto.pack_int32_field(o.result, 1)
@@ -2642,8 +2708,8 @@ pub fn (o &CBroadcastUpdateChatMessageFlairResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastupdatechatmessageflairresponse_unpack(buf []byte) ?CBroadcastUpdateChatMessageFlairResponse {
-	mut res := CBroadcastUpdateChatMessageFlairResponse{}
+pub fn cbroadcast_updatechatmessageflair_response_unpack(buf []byte) ?CBroadcast_UpdateChatMessageFlair_Response {
+	mut res := CBroadcast_UpdateChatMessageFlair_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2687,23 +2753,23 @@ pub fn cbroadcastupdatechatmessageflairresponse_unpack(buf []byte) ?CBroadcastUp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastupdatechatmessageflairresponse() CBroadcastUpdateChatMessageFlairResponse {
-	return CBroadcastUpdateChatMessageFlairResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_updatechatmessageflair_response() CBroadcast_UpdateChatMessageFlair_Response {
+	return CBroadcast_UpdateChatMessageFlair_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastupdatechatmessageflairresponse(o CBroadcastUpdateChatMessageFlairResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_updatechatmessageflair_response(o CBroadcast_UpdateChatMessageFlair_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastupdatechatmessageflairresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastUpdateChatMessageFlairResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_updatechatmessageflair_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_UpdateChatMessageFlair_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastupdatechatmessageflairresponse_unpack(v)?
+	mut unpacked := cbroadcast_updatechatmessageflair_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastMuteBroadcastChatUserRequest {
+pub struct CBroadcast_MuteBroadcastChatUser_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2715,7 +2781,7 @@ pub mut:
 	has_muted        bool
 }
 
-pub fn (o &CBroadcastMuteBroadcastChatUserRequest) pack() []byte {
+pub fn (o &CBroadcast_MuteBroadcastChatUser_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_chat_id {
 		res << vproto.pack_64bit_field(o.chat_id, 1)
@@ -2729,8 +2795,8 @@ pub fn (o &CBroadcastMuteBroadcastChatUserRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastmutebroadcastchatuserrequest_unpack(buf []byte) ?CBroadcastMuteBroadcastChatUserRequest {
-	mut res := CBroadcastMuteBroadcastChatUserRequest{}
+pub fn cbroadcast_mutebroadcastchatuser_request_unpack(buf []byte) ?CBroadcast_MuteBroadcastChatUser_Request {
+	mut res := CBroadcast_MuteBroadcastChatUser_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2774,55 +2840,55 @@ pub fn cbroadcastmutebroadcastchatuserrequest_unpack(buf []byte) ?CBroadcastMute
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastmutebroadcastchatuserrequest() CBroadcastMuteBroadcastChatUserRequest {
-	return CBroadcastMuteBroadcastChatUserRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_mutebroadcastchatuser_request() CBroadcast_MuteBroadcastChatUser_Request {
+	return CBroadcast_MuteBroadcastChatUser_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastmutebroadcastchatuserrequest(o CBroadcastMuteBroadcastChatUserRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_mutebroadcastchatuser_request(o CBroadcast_MuteBroadcastChatUser_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastmutebroadcastchatuserrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastMuteBroadcastChatUserRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_mutebroadcastchatuser_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_MuteBroadcastChatUser_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastmutebroadcastchatuserrequest_unpack(v)?
+	mut unpacked := cbroadcast_mutebroadcastchatuser_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastMuteBroadcastChatUserResponse {
+pub struct CBroadcast_MuteBroadcastChatUser_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastMuteBroadcastChatUserResponse) pack() []byte {
+pub fn (o &CBroadcast_MuteBroadcastChatUser_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastmutebroadcastchatuserresponse_unpack(buf []byte) ?CBroadcastMuteBroadcastChatUserResponse {
-	res := CBroadcastMuteBroadcastChatUserResponse{}
+pub fn cbroadcast_mutebroadcastchatuser_response_unpack(buf []byte) ?CBroadcast_MuteBroadcastChatUser_Response {
+	res := CBroadcast_MuteBroadcastChatUser_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastmutebroadcastchatuserresponse() CBroadcastMuteBroadcastChatUserResponse {
-	return CBroadcastMuteBroadcastChatUserResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_mutebroadcastchatuser_response() CBroadcast_MuteBroadcastChatUser_Response {
+	return CBroadcast_MuteBroadcastChatUser_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastmutebroadcastchatuserresponse(o CBroadcastMuteBroadcastChatUserResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_mutebroadcastchatuser_response(o CBroadcast_MuteBroadcastChatUser_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastmutebroadcastchatuserresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastMuteBroadcastChatUserResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_mutebroadcastchatuser_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_MuteBroadcastChatUser_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastmutebroadcastchatuserresponse_unpack(v)?
+	mut unpacked := cbroadcast_mutebroadcastchatuser_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastRemoveUserChatTextRequest {
+pub struct CBroadcast_RemoveUserChatText_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2832,7 +2898,7 @@ pub mut:
 	has_user_steamid bool
 }
 
-pub fn (o &CBroadcastRemoveUserChatTextRequest) pack() []byte {
+pub fn (o &CBroadcast_RemoveUserChatText_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_chat_id {
 		res << vproto.pack_64bit_field(o.chat_id, 1)
@@ -2843,8 +2909,8 @@ pub fn (o &CBroadcastRemoveUserChatTextRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastremoveuserchattextrequest_unpack(buf []byte) ?CBroadcastRemoveUserChatTextRequest {
-	mut res := CBroadcastRemoveUserChatTextRequest{}
+pub fn cbroadcast_removeuserchattext_request_unpack(buf []byte) ?CBroadcast_RemoveUserChatText_Request {
+	mut res := CBroadcast_RemoveUserChatText_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2882,55 +2948,55 @@ pub fn cbroadcastremoveuserchattextrequest_unpack(buf []byte) ?CBroadcastRemoveU
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastremoveuserchattextrequest() CBroadcastRemoveUserChatTextRequest {
-	return CBroadcastRemoveUserChatTextRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_removeuserchattext_request() CBroadcast_RemoveUserChatText_Request {
+	return CBroadcast_RemoveUserChatText_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastremoveuserchattextrequest(o CBroadcastRemoveUserChatTextRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_removeuserchattext_request(o CBroadcast_RemoveUserChatText_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastremoveuserchattextrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastRemoveUserChatTextRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_removeuserchattext_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_RemoveUserChatText_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastremoveuserchattextrequest_unpack(v)?
+	mut unpacked := cbroadcast_removeuserchattext_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastRemoveUserChatTextResponse {
+pub struct CBroadcast_RemoveUserChatText_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastRemoveUserChatTextResponse) pack() []byte {
+pub fn (o &CBroadcast_RemoveUserChatText_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastremoveuserchattextresponse_unpack(buf []byte) ?CBroadcastRemoveUserChatTextResponse {
-	res := CBroadcastRemoveUserChatTextResponse{}
+pub fn cbroadcast_removeuserchattext_response_unpack(buf []byte) ?CBroadcast_RemoveUserChatText_Response {
+	res := CBroadcast_RemoveUserChatText_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastremoveuserchattextresponse() CBroadcastRemoveUserChatTextResponse {
-	return CBroadcastRemoveUserChatTextResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_removeuserchattext_response() CBroadcast_RemoveUserChatText_Response {
+	return CBroadcast_RemoveUserChatText_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastremoveuserchattextresponse(o CBroadcastRemoveUserChatTextResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_removeuserchattext_response(o CBroadcast_RemoveUserChatText_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastremoveuserchattextresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastRemoveUserChatTextResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_removeuserchattext_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_RemoveUserChatText_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastremoveuserchattextresponse_unpack(v)?
+	mut unpacked := cbroadcast_removeuserchattext_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastChatUserNamesRequest {
+pub struct CBroadcast_GetBroadcastChatUserNames_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2939,7 +3005,7 @@ pub mut:
 	user_steamid   []u64
 }
 
-pub fn (o &CBroadcastGetBroadcastChatUserNamesRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastChatUserNames_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_chat_id {
 		res << vproto.pack_64bit_field(o.chat_id, 1)
@@ -2951,8 +3017,8 @@ pub fn (o &CBroadcastGetBroadcastChatUserNamesRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastchatusernamesrequest_unpack(buf []byte) ?CBroadcastGetBroadcastChatUserNamesRequest {
-	mut res := CBroadcastGetBroadcastChatUserNamesRequest{}
+pub fn cbroadcast_getbroadcastchatusernames_request_unpack(buf []byte) ?CBroadcast_GetBroadcastChatUserNames_Request {
+	mut res := CBroadcast_GetBroadcastChatUserNames_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2990,23 +3056,23 @@ pub fn cbroadcastgetbroadcastchatusernamesrequest_unpack(buf []byte) ?CBroadcast
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastchatusernamesrequest() CBroadcastGetBroadcastChatUserNamesRequest {
-	return CBroadcastGetBroadcastChatUserNamesRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastchatusernames_request() CBroadcast_GetBroadcastChatUserNames_Request {
+	return CBroadcast_GetBroadcastChatUserNames_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastchatusernamesrequest(o CBroadcastGetBroadcastChatUserNamesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastchatusernames_request(o CBroadcast_GetBroadcastChatUserNames_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastchatusernamesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastChatUserNamesRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastchatusernames_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastChatUserNames_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastchatusernamesrequest_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastchatusernames_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastChatUserNamesResponsePersonaName {
+pub struct CBroadcast_GetBroadcastChatUserNames_Response_PersonaName {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3016,7 +3082,7 @@ pub mut:
 	has_persona    bool
 }
 
-pub fn (o &CBroadcastGetBroadcastChatUserNamesResponsePersonaName) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastChatUserNames_Response_PersonaName) pack() []byte {
 	mut res := []byte{}
 	if o.has_steam_id {
 		res << vproto.pack_64bit_field(o.steam_id, 1)
@@ -3027,8 +3093,8 @@ pub fn (o &CBroadcastGetBroadcastChatUserNamesResponsePersonaName) pack() []byte
 	return res
 }
 
-pub fn cbroadcastgetbroadcastchatusernamesresponsepersonaname_unpack(buf []byte) ?CBroadcastGetBroadcastChatUserNamesResponsePersonaName {
-	mut res := CBroadcastGetBroadcastChatUserNamesResponsePersonaName{}
+pub fn cbroadcast_getbroadcastchatusernames_response_personaname_unpack(buf []byte) ?CBroadcast_GetBroadcastChatUserNames_Response_PersonaName {
+	mut res := CBroadcast_GetBroadcastChatUserNames_Response_PersonaName{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3066,41 +3132,41 @@ pub fn cbroadcastgetbroadcastchatusernamesresponsepersonaname_unpack(buf []byte)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastchatusernamesresponsepersonaname() CBroadcastGetBroadcastChatUserNamesResponsePersonaName {
-	return CBroadcastGetBroadcastChatUserNamesResponsePersonaName{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastchatusernames_response_personaname() CBroadcast_GetBroadcastChatUserNames_Response_PersonaName {
+	return CBroadcast_GetBroadcastChatUserNames_Response_PersonaName{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastchatusernamesresponsepersonaname(o CBroadcastGetBroadcastChatUserNamesResponsePersonaName, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastchatusernames_response_personaname(o CBroadcast_GetBroadcastChatUserNames_Response_PersonaName, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastchatusernamesresponsepersonaname(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastChatUserNamesResponsePersonaName) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastchatusernames_response_personaname(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastChatUserNames_Response_PersonaName) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastchatusernamesresponsepersonaname_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastchatusernames_response_personaname_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastChatUserNamesResponse {
+pub struct CBroadcast_GetBroadcastChatUserNames_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	persona_names  []CBroadcastGetBroadcastChatUserNamesResponsePersonaName
+	persona_names  []CBroadcast_GetBroadcastChatUserNames_Response_PersonaName
 }
 
-pub fn (o &CBroadcastGetBroadcastChatUserNamesResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastChatUserNames_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.persona_names {
 		res <<
-			zzz_vproto_internal_pack_cbroadcastgetbroadcastchatusernamesresponsepersonaname(x, 1)
+			zzz_vproto_internal_pack_cbroadcast_getbroadcastchatusernames_response_personaname(x, 1)
 	}
 	return res
 }
 
-pub fn cbroadcastgetbroadcastchatusernamesresponse_unpack(buf []byte) ?CBroadcastGetBroadcastChatUserNamesResponse {
-	mut res := CBroadcastGetBroadcastChatUserNamesResponse{}
+pub fn cbroadcast_getbroadcastchatusernames_response_unpack(buf []byte) ?CBroadcast_GetBroadcastChatUserNames_Response {
+	mut res := CBroadcast_GetBroadcastChatUserNames_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3112,7 +3178,7 @@ pub fn cbroadcastgetbroadcastchatusernamesresponse_unpack(buf []byte) ?CBroadcas
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cbroadcastgetbroadcastchatusernamesresponsepersonaname(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_getbroadcastchatusernames_response_personaname(cur_buf,
 					tag_wiretype.wire_type)?
 				res.persona_names << v
 				i = ii
@@ -3133,23 +3199,23 @@ pub fn cbroadcastgetbroadcastchatusernamesresponse_unpack(buf []byte) ?CBroadcas
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastchatusernamesresponse() CBroadcastGetBroadcastChatUserNamesResponse {
-	return CBroadcastGetBroadcastChatUserNamesResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastchatusernames_response() CBroadcast_GetBroadcastChatUserNames_Response {
+	return CBroadcast_GetBroadcastChatUserNames_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastchatusernamesresponse(o CBroadcastGetBroadcastChatUserNamesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastchatusernames_response(o CBroadcast_GetBroadcastChatUserNames_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastchatusernamesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastChatUserNamesResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastchatusernames_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastChatUserNames_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastchatusernamesresponse_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastchatusernames_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastStartBuildClipRequest {
+pub struct CBroadcast_StartBuildClip_Request {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -3165,7 +3231,7 @@ pub mut:
 	has_clip_description     bool
 }
 
-pub fn (o &CBroadcastStartBuildClipRequest) pack() []byte {
+pub fn (o &CBroadcast_StartBuildClip_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -3185,8 +3251,8 @@ pub fn (o &CBroadcastStartBuildClipRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcaststartbuildcliprequest_unpack(buf []byte) ?CBroadcastStartBuildClipRequest {
-	mut res := CBroadcastStartBuildClipRequest{}
+pub fn cbroadcast_startbuildclip_request_unpack(buf []byte) ?CBroadcast_StartBuildClip_Request {
+	mut res := CBroadcast_StartBuildClip_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3242,23 +3308,23 @@ pub fn cbroadcaststartbuildcliprequest_unpack(buf []byte) ?CBroadcastStartBuildC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcaststartbuildcliprequest() CBroadcastStartBuildClipRequest {
-	return CBroadcastStartBuildClipRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_startbuildclip_request() CBroadcast_StartBuildClip_Request {
+	return CBroadcast_StartBuildClip_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcaststartbuildcliprequest(o CBroadcastStartBuildClipRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_startbuildclip_request(o CBroadcast_StartBuildClip_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcaststartbuildcliprequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastStartBuildClipRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_startbuildclip_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_StartBuildClip_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcaststartbuildcliprequest_unpack(v)?
+	mut unpacked := cbroadcast_startbuildclip_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastStartBuildClipResponse {
+pub struct CBroadcast_StartBuildClip_Response {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -3266,7 +3332,7 @@ pub mut:
 	has_broadcast_clip_id bool
 }
 
-pub fn (o &CBroadcastStartBuildClipResponse) pack() []byte {
+pub fn (o &CBroadcast_StartBuildClip_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_clip_id {
 		res << vproto.pack_64bit_field(o.broadcast_clip_id, 1)
@@ -3274,8 +3340,8 @@ pub fn (o &CBroadcastStartBuildClipResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcaststartbuildclipresponse_unpack(buf []byte) ?CBroadcastStartBuildClipResponse {
-	mut res := CBroadcastStartBuildClipResponse{}
+pub fn cbroadcast_startbuildclip_response_unpack(buf []byte) ?CBroadcast_StartBuildClip_Response {
+	mut res := CBroadcast_StartBuildClip_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3307,23 +3373,23 @@ pub fn cbroadcaststartbuildclipresponse_unpack(buf []byte) ?CBroadcastStartBuild
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcaststartbuildclipresponse() CBroadcastStartBuildClipResponse {
-	return CBroadcastStartBuildClipResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_startbuildclip_response() CBroadcast_StartBuildClip_Response {
+	return CBroadcast_StartBuildClip_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcaststartbuildclipresponse(o CBroadcastStartBuildClipResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_startbuildclip_response(o CBroadcast_StartBuildClip_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcaststartbuildclipresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastStartBuildClipResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_startbuildclip_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_StartBuildClip_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcaststartbuildclipresponse_unpack(v)?
+	mut unpacked := cbroadcast_startbuildclip_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBuildClipStatusRequest {
+pub struct CBroadcast_GetBuildClipStatus_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -3331,7 +3397,7 @@ pub mut:
 	has_broadcast_clip_id bool
 }
 
-pub fn (o &CBroadcastGetBuildClipStatusRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBuildClipStatus_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_clip_id {
 		res << vproto.pack_64bit_field(o.broadcast_clip_id, 1)
@@ -3339,8 +3405,8 @@ pub fn (o &CBroadcastGetBuildClipStatusRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbuildclipstatusrequest_unpack(buf []byte) ?CBroadcastGetBuildClipStatusRequest {
-	mut res := CBroadcastGetBuildClipStatusRequest{}
+pub fn cbroadcast_getbuildclipstatus_request_unpack(buf []byte) ?CBroadcast_GetBuildClipStatus_Request {
+	mut res := CBroadcast_GetBuildClipStatus_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3372,55 +3438,55 @@ pub fn cbroadcastgetbuildclipstatusrequest_unpack(buf []byte) ?CBroadcastGetBuil
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbuildclipstatusrequest() CBroadcastGetBuildClipStatusRequest {
-	return CBroadcastGetBuildClipStatusRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbuildclipstatus_request() CBroadcast_GetBuildClipStatus_Request {
+	return CBroadcast_GetBuildClipStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbuildclipstatusrequest(o CBroadcastGetBuildClipStatusRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbuildclipstatus_request(o CBroadcast_GetBuildClipStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbuildclipstatusrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBuildClipStatusRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbuildclipstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBuildClipStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbuildclipstatusrequest_unpack(v)?
+	mut unpacked := cbroadcast_getbuildclipstatus_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBuildClipStatusResponse {
+pub struct CBroadcast_GetBuildClipStatus_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastGetBuildClipStatusResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBuildClipStatus_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastgetbuildclipstatusresponse_unpack(buf []byte) ?CBroadcastGetBuildClipStatusResponse {
-	res := CBroadcastGetBuildClipStatusResponse{}
+pub fn cbroadcast_getbuildclipstatus_response_unpack(buf []byte) ?CBroadcast_GetBuildClipStatus_Response {
+	res := CBroadcast_GetBuildClipStatus_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbuildclipstatusresponse() CBroadcastGetBuildClipStatusResponse {
-	return CBroadcastGetBuildClipStatusResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbuildclipstatus_response() CBroadcast_GetBuildClipStatus_Response {
+	return CBroadcast_GetBuildClipStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbuildclipstatusresponse(o CBroadcastGetBuildClipStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbuildclipstatus_response(o CBroadcast_GetBuildClipStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbuildclipstatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBuildClipStatusResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbuildclipstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBuildClipStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbuildclipstatusresponse_unpack(v)?
+	mut unpacked := cbroadcast_getbuildclipstatus_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSetClipDetailsRequest {
+pub struct CBroadcast_SetClipDetails_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -3434,7 +3500,7 @@ pub mut:
 	has_video_description bool
 }
 
-pub fn (o &CBroadcastSetClipDetailsRequest) pack() []byte {
+pub fn (o &CBroadcast_SetClipDetails_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_clip_id {
 		res << vproto.pack_uint64_field(o.broadcast_clip_id, 1)
@@ -3451,8 +3517,8 @@ pub fn (o &CBroadcastSetClipDetailsRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastsetclipdetailsrequest_unpack(buf []byte) ?CBroadcastSetClipDetailsRequest {
-	mut res := CBroadcastSetClipDetailsRequest{}
+pub fn cbroadcast_setclipdetails_request_unpack(buf []byte) ?CBroadcast_SetClipDetails_Request {
+	mut res := CBroadcast_SetClipDetails_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3502,55 +3568,55 @@ pub fn cbroadcastsetclipdetailsrequest_unpack(buf []byte) ?CBroadcastSetClipDeta
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsetclipdetailsrequest() CBroadcastSetClipDetailsRequest {
-	return CBroadcastSetClipDetailsRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_setclipdetails_request() CBroadcast_SetClipDetails_Request {
+	return CBroadcast_SetClipDetails_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsetclipdetailsrequest(o CBroadcastSetClipDetailsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_setclipdetails_request(o CBroadcast_SetClipDetails_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsetclipdetailsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSetClipDetailsRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_setclipdetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SetClipDetails_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsetclipdetailsrequest_unpack(v)?
+	mut unpacked := cbroadcast_setclipdetails_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSetClipDetailsResponse {
+pub struct CBroadcast_SetClipDetails_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastSetClipDetailsResponse) pack() []byte {
+pub fn (o &CBroadcast_SetClipDetails_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastsetclipdetailsresponse_unpack(buf []byte) ?CBroadcastSetClipDetailsResponse {
-	res := CBroadcastSetClipDetailsResponse{}
+pub fn cbroadcast_setclipdetails_response_unpack(buf []byte) ?CBroadcast_SetClipDetails_Response {
+	res := CBroadcast_SetClipDetails_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsetclipdetailsresponse() CBroadcastSetClipDetailsResponse {
-	return CBroadcastSetClipDetailsResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_setclipdetails_response() CBroadcast_SetClipDetails_Response {
+	return CBroadcast_SetClipDetails_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsetclipdetailsresponse(o CBroadcastSetClipDetailsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_setclipdetails_response(o CBroadcast_SetClipDetails_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsetclipdetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSetClipDetailsResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_setclipdetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SetClipDetails_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsetclipdetailsresponse_unpack(v)?
+	mut unpacked := cbroadcast_setclipdetails_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetClipDetailsRequest {
+pub struct CBroadcast_GetClipDetails_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -3558,7 +3624,7 @@ pub mut:
 	has_broadcast_clip_id bool
 }
 
-pub fn (o &CBroadcastGetClipDetailsRequest) pack() []byte {
+pub fn (o &CBroadcast_GetClipDetails_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_clip_id {
 		res << vproto.pack_uint64_field(o.broadcast_clip_id, 1)
@@ -3566,8 +3632,8 @@ pub fn (o &CBroadcastGetClipDetailsRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetclipdetailsrequest_unpack(buf []byte) ?CBroadcastGetClipDetailsRequest {
-	mut res := CBroadcastGetClipDetailsRequest{}
+pub fn cbroadcast_getclipdetails_request_unpack(buf []byte) ?CBroadcast_GetClipDetails_Request {
+	mut res := CBroadcast_GetClipDetails_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3599,23 +3665,23 @@ pub fn cbroadcastgetclipdetailsrequest_unpack(buf []byte) ?CBroadcastGetClipDeta
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetclipdetailsrequest() CBroadcastGetClipDetailsRequest {
-	return CBroadcastGetClipDetailsRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getclipdetails_request() CBroadcast_GetClipDetails_Request {
+	return CBroadcast_GetClipDetails_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetclipdetailsrequest(o CBroadcastGetClipDetailsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getclipdetails_request(o CBroadcast_GetClipDetails_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetclipdetailsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetClipDetailsRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getclipdetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetClipDetails_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetclipdetailsrequest_unpack(v)?
+	mut unpacked := cbroadcast_getclipdetails_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetClipDetailsResponse {
+pub struct CBroadcast_GetClipDetails_Response {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -3641,7 +3707,7 @@ pub mut:
 	has_thumbnail_path        bool
 }
 
-pub fn (o &CBroadcastGetClipDetailsResponse) pack() []byte {
+pub fn (o &CBroadcast_GetClipDetails_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_clip_id {
 		res << vproto.pack_uint64_field(o.broadcast_clip_id, 1)
@@ -3676,8 +3742,8 @@ pub fn (o &CBroadcastGetClipDetailsResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetclipdetailsresponse_unpack(buf []byte) ?CBroadcastGetClipDetailsResponse {
-	mut res := CBroadcastGetClipDetailsResponse{}
+pub fn cbroadcast_getclipdetails_response_unpack(buf []byte) ?CBroadcast_GetClipDetails_Response {
+	mut res := CBroadcast_GetClipDetails_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3763,23 +3829,23 @@ pub fn cbroadcastgetclipdetailsresponse_unpack(buf []byte) ?CBroadcastGetClipDet
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetclipdetailsresponse() CBroadcastGetClipDetailsResponse {
-	return CBroadcastGetClipDetailsResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getclipdetails_response() CBroadcast_GetClipDetails_Response {
+	return CBroadcast_GetClipDetails_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetclipdetailsresponse(o CBroadcastGetClipDetailsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getclipdetails_response(o CBroadcast_GetClipDetails_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetclipdetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetClipDetailsResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getclipdetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetClipDetails_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetclipdetailsresponse_unpack(v)?
+	mut unpacked := cbroadcast_getclipdetails_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSetRTmpinfoRequest {
+pub struct CBroadcast_SetRTMPInfo_Request {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -3805,7 +3871,7 @@ pub mut:
 	has_enable_replay             bool
 }
 
-pub fn (o &CBroadcastSetRTmpinfoRequest) pack() []byte {
+pub fn (o &CBroadcast_SetRTMPInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_permission {
 		res << vproto.pack_int32_field(o.broadcast_permission, 1)
@@ -3840,8 +3906,8 @@ pub fn (o &CBroadcastSetRTmpinfoRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastsetrtmpinforequest_unpack(buf []byte) ?CBroadcastSetRTmpinfoRequest {
-	mut res := CBroadcastSetRTmpinfoRequest{}
+pub fn cbroadcast_setrtmpinfo_request_unpack(buf []byte) ?CBroadcast_SetRTMPInfo_Request {
+	mut res := CBroadcast_SetRTMPInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3928,55 +3994,55 @@ pub fn cbroadcastsetrtmpinforequest_unpack(buf []byte) ?CBroadcastSetRTmpinfoReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsetrtmpinforequest() CBroadcastSetRTmpinfoRequest {
-	return CBroadcastSetRTmpinfoRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_setrtmpinfo_request() CBroadcast_SetRTMPInfo_Request {
+	return CBroadcast_SetRTMPInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsetrtmpinforequest(o CBroadcastSetRTmpinfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_setrtmpinfo_request(o CBroadcast_SetRTMPInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsetrtmpinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSetRTmpinfoRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_setrtmpinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SetRTMPInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsetrtmpinforequest_unpack(v)?
+	mut unpacked := cbroadcast_setrtmpinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSetRTmpinfoResponse {
+pub struct CBroadcast_SetRTMPInfo_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastSetRTmpinfoResponse) pack() []byte {
+pub fn (o &CBroadcast_SetRTMPInfo_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastsetrtmpinforesponse_unpack(buf []byte) ?CBroadcastSetRTmpinfoResponse {
-	res := CBroadcastSetRTmpinfoResponse{}
+pub fn cbroadcast_setrtmpinfo_response_unpack(buf []byte) ?CBroadcast_SetRTMPInfo_Response {
+	res := CBroadcast_SetRTMPInfo_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsetrtmpinforesponse() CBroadcastSetRTmpinfoResponse {
-	return CBroadcastSetRTmpinfoResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_setrtmpinfo_response() CBroadcast_SetRTMPInfo_Response {
+	return CBroadcast_SetRTMPInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsetrtmpinforesponse(o CBroadcastSetRTmpinfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_setrtmpinfo_response(o CBroadcast_SetRTMPInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsetrtmpinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSetRTmpinfoResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_setrtmpinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SetRTMPInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsetrtmpinforesponse_unpack(v)?
+	mut unpacked := cbroadcast_setrtmpinfo_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetRTmpinfoRequest {
+pub struct CBroadcast_GetRTMPInfo_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3986,7 +4052,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CBroadcastGetRTmpinfoRequest) pack() []byte {
+pub fn (o &CBroadcast_GetRTMPInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_ip {
 		res << vproto.pack_uint32_field(o.ip, 1)
@@ -3997,8 +4063,8 @@ pub fn (o &CBroadcastGetRTmpinfoRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetrtmpinforequest_unpack(buf []byte) ?CBroadcastGetRTmpinfoRequest {
-	mut res := CBroadcastGetRTmpinfoRequest{}
+pub fn cbroadcast_getrtmpinfo_request_unpack(buf []byte) ?CBroadcast_GetRTMPInfo_Request {
+	mut res := CBroadcast_GetRTMPInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4036,23 +4102,23 @@ pub fn cbroadcastgetrtmpinforequest_unpack(buf []byte) ?CBroadcastGetRTmpinfoReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetrtmpinforequest() CBroadcastGetRTmpinfoRequest {
-	return CBroadcastGetRTmpinfoRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getrtmpinfo_request() CBroadcast_GetRTMPInfo_Request {
+	return CBroadcast_GetRTMPInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetrtmpinforequest(o CBroadcastGetRTmpinfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getrtmpinfo_request(o CBroadcast_GetRTMPInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetrtmpinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetRTmpinfoRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getrtmpinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetRTMPInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetrtmpinforequest_unpack(v)?
+	mut unpacked := cbroadcast_getrtmpinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetRTmpinfoResponse {
+pub struct CBroadcast_GetRTMPInfo_Response {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -4080,7 +4146,7 @@ pub mut:
 	has_enable_replay             bool
 }
 
-pub fn (o &CBroadcastGetRTmpinfoResponse) pack() []byte {
+pub fn (o &CBroadcast_GetRTMPInfo_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_permission {
 		res << vproto.pack_int32_field(o.broadcast_permission, 1)
@@ -4118,8 +4184,8 @@ pub fn (o &CBroadcastGetRTmpinfoResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetrtmpinforesponse_unpack(buf []byte) ?CBroadcastGetRTmpinfoResponse {
-	mut res := CBroadcastGetRTmpinfoResponse{}
+pub fn cbroadcast_getrtmpinfo_response_unpack(buf []byte) ?CBroadcast_GetRTMPInfo_Response {
+	mut res := CBroadcast_GetRTMPInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4212,23 +4278,23 @@ pub fn cbroadcastgetrtmpinforesponse_unpack(buf []byte) ?CBroadcastGetRTmpinfoRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetrtmpinforesponse() CBroadcastGetRTmpinfoResponse {
-	return CBroadcastGetRTmpinfoResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getrtmpinfo_response() CBroadcast_GetRTMPInfo_Response {
+	return CBroadcast_GetRTMPInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetrtmpinforesponse(o CBroadcastGetRTmpinfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getrtmpinfo_response(o CBroadcast_GetRTMPInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetrtmpinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetRTmpinfoResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getrtmpinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetRTMPInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetrtmpinforesponse_unpack(v)?
+	mut unpacked := cbroadcast_getrtmpinfo_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTchaveTUrnserverNotification {
+pub struct CBroadcast_WebRTCHaveTURNServer_Notification {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -4238,7 +4304,7 @@ pub mut:
 	has_turn_server          bool
 }
 
-pub fn (o &CBroadcastWebRTchaveTUrnserverNotification) pack() []byte {
+pub fn (o &CBroadcast_WebRTCHaveTURNServer_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_session_id {
 		res << vproto.pack_64bit_field(o.broadcast_session_id, 1)
@@ -4249,8 +4315,8 @@ pub fn (o &CBroadcastWebRTchaveTUrnserverNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtchaveturnservernotification_unpack(buf []byte) ?CBroadcastWebRTchaveTUrnserverNotification {
-	mut res := CBroadcastWebRTchaveTUrnserverNotification{}
+pub fn cbroadcast_webrtchaveturnserver_notification_unpack(buf []byte) ?CBroadcast_WebRTCHaveTURNServer_Notification {
+	mut res := CBroadcast_WebRTCHaveTURNServer_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4288,23 +4354,23 @@ pub fn cbroadcastwebrtchaveturnservernotification_unpack(buf []byte) ?CBroadcast
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtchaveturnservernotification() CBroadcastWebRTchaveTUrnserverNotification {
-	return CBroadcastWebRTchaveTUrnserverNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtchaveturnserver_notification() CBroadcast_WebRTCHaveTURNServer_Notification {
+	return CBroadcast_WebRTCHaveTURNServer_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtchaveturnservernotification(o CBroadcastWebRTchaveTUrnserverNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtchaveturnserver_notification(o CBroadcast_WebRTCHaveTURNServer_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtchaveturnservernotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTchaveTUrnserverNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtchaveturnserver_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCHaveTURNServer_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtchaveturnservernotification_unpack(v)?
+	mut unpacked := cbroadcast_webrtchaveturnserver_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcstartResultRequest {
+pub struct CBroadcast_WebRTCStartResult_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -4322,7 +4388,7 @@ pub mut:
 	has_fps               bool
 }
 
-pub fn (o &CBroadcastWebRTcstartResultRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCStartResult_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_webrtc_session_id {
 		res << vproto.pack_64bit_field(o.webrtc_session_id, 1)
@@ -4345,8 +4411,8 @@ pub fn (o &CBroadcastWebRTcstartResultRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcstartresultrequest_unpack(buf []byte) ?CBroadcastWebRTcstartResultRequest {
-	mut res := CBroadcastWebRTcstartResultRequest{}
+pub fn cbroadcast_webrtcstartresult_request_unpack(buf []byte) ?CBroadcast_WebRTCStartResult_Request {
+	mut res := CBroadcast_WebRTCStartResult_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4408,55 +4474,55 @@ pub fn cbroadcastwebrtcstartresultrequest_unpack(buf []byte) ?CBroadcastWebRTcst
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcstartresultrequest() CBroadcastWebRTcstartResultRequest {
-	return CBroadcastWebRTcstartResultRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcstartresult_request() CBroadcast_WebRTCStartResult_Request {
+	return CBroadcast_WebRTCStartResult_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcstartresultrequest(o CBroadcastWebRTcstartResultRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcstartresult_request(o CBroadcast_WebRTCStartResult_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcstartresultrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcstartResultRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcstartresult_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCStartResult_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcstartresultrequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtcstartresult_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcstartResultResponse {
+pub struct CBroadcast_WebRTCStartResult_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastWebRTcstartResultResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCStartResult_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastwebrtcstartresultresponse_unpack(buf []byte) ?CBroadcastWebRTcstartResultResponse {
-	res := CBroadcastWebRTcstartResultResponse{}
+pub fn cbroadcast_webrtcstartresult_response_unpack(buf []byte) ?CBroadcast_WebRTCStartResult_Response {
+	res := CBroadcast_WebRTCStartResult_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcstartresultresponse() CBroadcastWebRTcstartResultResponse {
-	return CBroadcastWebRTcstartResultResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcstartresult_response() CBroadcast_WebRTCStartResult_Response {
+	return CBroadcast_WebRTCStartResult_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcstartresultresponse(o CBroadcastWebRTcstartResultResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcstartresult_response(o CBroadcast_WebRTCStartResult_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcstartresultresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcstartResultResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcstartresult_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCStartResult_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcstartresultresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtcstartresult_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcstoppedRequest {
+pub struct CBroadcast_WebRTCStopped_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -4464,7 +4530,7 @@ pub mut:
 	has_webrtc_session_id bool
 }
 
-pub fn (o &CBroadcastWebRTcstoppedRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCStopped_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_webrtc_session_id {
 		res << vproto.pack_64bit_field(o.webrtc_session_id, 1)
@@ -4472,8 +4538,8 @@ pub fn (o &CBroadcastWebRTcstoppedRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcstoppedrequest_unpack(buf []byte) ?CBroadcastWebRTcstoppedRequest {
-	mut res := CBroadcastWebRTcstoppedRequest{}
+pub fn cbroadcast_webrtcstopped_request_unpack(buf []byte) ?CBroadcast_WebRTCStopped_Request {
+	mut res := CBroadcast_WebRTCStopped_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4505,55 +4571,55 @@ pub fn cbroadcastwebrtcstoppedrequest_unpack(buf []byte) ?CBroadcastWebRTcstoppe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcstoppedrequest() CBroadcastWebRTcstoppedRequest {
-	return CBroadcastWebRTcstoppedRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcstopped_request() CBroadcast_WebRTCStopped_Request {
+	return CBroadcast_WebRTCStopped_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcstoppedrequest(o CBroadcastWebRTcstoppedRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcstopped_request(o CBroadcast_WebRTCStopped_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcstoppedrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcstoppedRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcstopped_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCStopped_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcstoppedrequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtcstopped_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcstoppedResponse {
+pub struct CBroadcast_WebRTCStopped_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastWebRTcstoppedResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCStopped_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastwebrtcstoppedresponse_unpack(buf []byte) ?CBroadcastWebRTcstoppedResponse {
-	res := CBroadcastWebRTcstoppedResponse{}
+pub fn cbroadcast_webrtcstopped_response_unpack(buf []byte) ?CBroadcast_WebRTCStopped_Response {
+	res := CBroadcast_WebRTCStopped_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcstoppedresponse() CBroadcastWebRTcstoppedResponse {
-	return CBroadcastWebRTcstoppedResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcstopped_response() CBroadcast_WebRTCStopped_Response {
+	return CBroadcast_WebRTCStopped_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcstoppedresponse(o CBroadcastWebRTcstoppedResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcstopped_response(o CBroadcast_WebRTCStopped_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcstoppedresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcstoppedResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcstopped_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCStopped_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcstoppedresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtcstopped_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcsetAnswerRequest {
+pub struct CBroadcast_WebRTCSetAnswer_Request {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -4565,7 +4631,7 @@ pub mut:
 	has_answer              bool
 }
 
-pub fn (o &CBroadcastWebRTcsetAnswerRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCSetAnswer_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcaster_steamid {
 		res << vproto.pack_64bit_field(o.broadcaster_steamid, 1)
@@ -4579,8 +4645,8 @@ pub fn (o &CBroadcastWebRTcsetAnswerRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcsetanswerrequest_unpack(buf []byte) ?CBroadcastWebRTcsetAnswerRequest {
-	mut res := CBroadcastWebRTcsetAnswerRequest{}
+pub fn cbroadcast_webrtcsetanswer_request_unpack(buf []byte) ?CBroadcast_WebRTCSetAnswer_Request {
+	mut res := CBroadcast_WebRTCSetAnswer_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4624,55 +4690,55 @@ pub fn cbroadcastwebrtcsetanswerrequest_unpack(buf []byte) ?CBroadcastWebRTcsetA
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcsetanswerrequest() CBroadcastWebRTcsetAnswerRequest {
-	return CBroadcastWebRTcsetAnswerRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcsetanswer_request() CBroadcast_WebRTCSetAnswer_Request {
+	return CBroadcast_WebRTCSetAnswer_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcsetanswerrequest(o CBroadcastWebRTcsetAnswerRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcsetanswer_request(o CBroadcast_WebRTCSetAnswer_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcsetanswerrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcsetAnswerRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcsetanswer_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCSetAnswer_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcsetanswerrequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtcsetanswer_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcsetAnswerResponse {
+pub struct CBroadcast_WebRTCSetAnswer_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastWebRTcsetAnswerResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCSetAnswer_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastwebrtcsetanswerresponse_unpack(buf []byte) ?CBroadcastWebRTcsetAnswerResponse {
-	res := CBroadcastWebRTcsetAnswerResponse{}
+pub fn cbroadcast_webrtcsetanswer_response_unpack(buf []byte) ?CBroadcast_WebRTCSetAnswer_Response {
+	res := CBroadcast_WebRTCSetAnswer_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcsetanswerresponse() CBroadcastWebRTcsetAnswerResponse {
-	return CBroadcastWebRTcsetAnswerResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcsetanswer_response() CBroadcast_WebRTCSetAnswer_Response {
+	return CBroadcast_WebRTCSetAnswer_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcsetanswerresponse(o CBroadcastWebRTcsetAnswerResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcsetanswer_response(o CBroadcast_WebRTCSetAnswer_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcsetanswerresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcsetAnswerResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcsetanswer_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCSetAnswer_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcsetanswerresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtcsetanswer_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTclookupTUrnserverRequest {
+pub struct CBroadcast_WebRTCLookupTURNServer_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -4680,7 +4746,7 @@ pub mut:
 	has_cellid     bool
 }
 
-pub fn (o &CBroadcastWebRTclookupTUrnserverRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCLookupTURNServer_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_cellid {
 		res << vproto.pack_uint32_field(o.cellid, 1)
@@ -4688,8 +4754,8 @@ pub fn (o &CBroadcastWebRTclookupTUrnserverRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtclookupturnserverrequest_unpack(buf []byte) ?CBroadcastWebRTclookupTUrnserverRequest {
-	mut res := CBroadcastWebRTclookupTUrnserverRequest{}
+pub fn cbroadcast_webrtclookupturnserver_request_unpack(buf []byte) ?CBroadcast_WebRTCLookupTURNServer_Request {
+	mut res := CBroadcast_WebRTCLookupTURNServer_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4721,23 +4787,23 @@ pub fn cbroadcastwebrtclookupturnserverrequest_unpack(buf []byte) ?CBroadcastWeb
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtclookupturnserverrequest() CBroadcastWebRTclookupTUrnserverRequest {
-	return CBroadcastWebRTclookupTUrnserverRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtclookupturnserver_request() CBroadcast_WebRTCLookupTURNServer_Request {
+	return CBroadcast_WebRTCLookupTURNServer_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtclookupturnserverrequest(o CBroadcastWebRTclookupTUrnserverRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtclookupturnserver_request(o CBroadcast_WebRTCLookupTURNServer_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtclookupturnserverrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTclookupTUrnserverRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtclookupturnserver_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCLookupTURNServer_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtclookupturnserverrequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtclookupturnserver_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTclookupTUrnserverResponse {
+pub struct CBroadcast_WebRTCLookupTURNServer_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -4745,7 +4811,7 @@ pub mut:
 	has_turn_server bool
 }
 
-pub fn (o &CBroadcastWebRTclookupTUrnserverResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCLookupTURNServer_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_turn_server {
 		res << vproto.pack_string_field(o.turn_server, 1)
@@ -4753,8 +4819,8 @@ pub fn (o &CBroadcastWebRTclookupTUrnserverResponse) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtclookupturnserverresponse_unpack(buf []byte) ?CBroadcastWebRTclookupTUrnserverResponse {
-	mut res := CBroadcastWebRTclookupTUrnserverResponse{}
+pub fn cbroadcast_webrtclookupturnserver_response_unpack(buf []byte) ?CBroadcast_WebRTCLookupTURNServer_Response {
+	mut res := CBroadcast_WebRTCLookupTURNServer_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4786,23 +4852,23 @@ pub fn cbroadcastwebrtclookupturnserverresponse_unpack(buf []byte) ?CBroadcastWe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtclookupturnserverresponse() CBroadcastWebRTclookupTUrnserverResponse {
-	return CBroadcastWebRTclookupTUrnserverResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtclookupturnserver_response() CBroadcast_WebRTCLookupTURNServer_Response {
+	return CBroadcast_WebRTCLookupTURNServer_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtclookupturnserverresponse(o CBroadcastWebRTclookupTUrnserverResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtclookupturnserver_response(o CBroadcast_WebRTCLookupTURNServer_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtclookupturnserverresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTclookupTUrnserverResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtclookupturnserver_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCLookupTURNServer_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtclookupturnserverresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtclookupturnserver_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTccandidate {
+pub struct CBroadcast_WebRTC_Candidate {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -4814,7 +4880,7 @@ pub mut:
 	has_candidate       bool
 }
 
-pub fn (o &CBroadcastWebRTccandidate) pack() []byte {
+pub fn (o &CBroadcast_WebRTC_Candidate) pack() []byte {
 	mut res := []byte{}
 	if o.has_sdp_mid {
 		res << vproto.pack_string_field(o.sdp_mid, 1)
@@ -4828,8 +4894,8 @@ pub fn (o &CBroadcastWebRTccandidate) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtccandidate_unpack(buf []byte) ?CBroadcastWebRTccandidate {
-	mut res := CBroadcastWebRTccandidate{}
+pub fn cbroadcast_webrtc_candidate_unpack(buf []byte) ?CBroadcast_WebRTC_Candidate {
+	mut res := CBroadcast_WebRTC_Candidate{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4873,45 +4939,45 @@ pub fn cbroadcastwebrtccandidate_unpack(buf []byte) ?CBroadcastWebRTccandidate {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtccandidate() CBroadcastWebRTccandidate {
-	return CBroadcastWebRTccandidate{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtc_candidate() CBroadcast_WebRTC_Candidate {
+	return CBroadcast_WebRTC_Candidate{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtccandidate(o CBroadcastWebRTccandidate, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtc_candidate(o CBroadcast_WebRTC_Candidate, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtccandidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTccandidate) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtc_candidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTC_Candidate) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtccandidate_unpack(v)?
+	mut unpacked := cbroadcast_webrtc_candidate_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcaddHostCandidateRequest {
+pub struct CBroadcast_WebRTCAddHostCandidate_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
 	webrtc_session_id     u64
 	has_webrtc_session_id bool
-	candidate             CBroadcastWebRTccandidate
+	candidate             CBroadcast_WebRTC_Candidate
 	has_candidate         bool
 }
 
-pub fn (o &CBroadcastWebRTcaddHostCandidateRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCAddHostCandidate_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_webrtc_session_id {
 		res << vproto.pack_64bit_field(o.webrtc_session_id, 1)
 	}
 	if o.has_candidate {
-		res << zzz_vproto_internal_pack_cbroadcastwebrtccandidate(o.candidate, 2)
+		res << zzz_vproto_internal_pack_cbroadcast_webrtc_candidate(o.candidate, 2)
 	}
 	return res
 }
 
-pub fn cbroadcastwebrtcaddhostcandidaterequest_unpack(buf []byte) ?CBroadcastWebRTcaddHostCandidateRequest {
-	mut res := CBroadcastWebRTcaddHostCandidateRequest{}
+pub fn cbroadcast_webrtcaddhostcandidate_request_unpack(buf []byte) ?CBroadcast_WebRTCAddHostCandidate_Request {
+	mut res := CBroadcast_WebRTCAddHostCandidate_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4929,7 +4995,7 @@ pub fn cbroadcastwebrtcaddhostcandidaterequest_unpack(buf []byte) ?CBroadcastWeb
 			}
 			2 {
 				res.has_candidate = true
-				ii, v := zzz_vproto_internal_unpack_cbroadcastwebrtccandidate(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_webrtc_candidate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.candidate = v
 				i = ii
@@ -4950,55 +5016,55 @@ pub fn cbroadcastwebrtcaddhostcandidaterequest_unpack(buf []byte) ?CBroadcastWeb
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcaddhostcandidaterequest() CBroadcastWebRTcaddHostCandidateRequest {
-	return CBroadcastWebRTcaddHostCandidateRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcaddhostcandidate_request() CBroadcast_WebRTCAddHostCandidate_Request {
+	return CBroadcast_WebRTCAddHostCandidate_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcaddhostcandidaterequest(o CBroadcastWebRTcaddHostCandidateRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcaddhostcandidate_request(o CBroadcast_WebRTCAddHostCandidate_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcaddhostcandidaterequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcaddHostCandidateRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcaddhostcandidate_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCAddHostCandidate_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcaddhostcandidaterequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtcaddhostcandidate_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcaddHostCandidateResponse {
+pub struct CBroadcast_WebRTCAddHostCandidate_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastWebRTcaddHostCandidateResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCAddHostCandidate_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastwebrtcaddhostcandidateresponse_unpack(buf []byte) ?CBroadcastWebRTcaddHostCandidateResponse {
-	res := CBroadcastWebRTcaddHostCandidateResponse{}
+pub fn cbroadcast_webrtcaddhostcandidate_response_unpack(buf []byte) ?CBroadcast_WebRTCAddHostCandidate_Response {
+	res := CBroadcast_WebRTCAddHostCandidate_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcaddhostcandidateresponse() CBroadcastWebRTcaddHostCandidateResponse {
-	return CBroadcastWebRTcaddHostCandidateResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcaddhostcandidate_response() CBroadcast_WebRTCAddHostCandidate_Response {
+	return CBroadcast_WebRTCAddHostCandidate_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcaddhostcandidateresponse(o CBroadcastWebRTcaddHostCandidateResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcaddhostcandidate_response(o CBroadcast_WebRTCAddHostCandidate_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcaddhostcandidateresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcaddHostCandidateResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcaddhostcandidate_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCAddHostCandidate_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcaddhostcandidateresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtcaddhostcandidate_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcaddViewerCandidateRequest {
+pub struct CBroadcast_WebRTCAddViewerCandidate_Request {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -5006,11 +5072,11 @@ pub mut:
 	has_broadcaster_steamid bool
 	webrtc_session_id       u64
 	has_webrtc_session_id   bool
-	candidate               CBroadcastWebRTccandidate
+	candidate               CBroadcast_WebRTC_Candidate
 	has_candidate           bool
 }
 
-pub fn (o &CBroadcastWebRTcaddViewerCandidateRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCAddViewerCandidate_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcaster_steamid {
 		res << vproto.pack_64bit_field(o.broadcaster_steamid, 1)
@@ -5019,13 +5085,13 @@ pub fn (o &CBroadcastWebRTcaddViewerCandidateRequest) pack() []byte {
 		res << vproto.pack_64bit_field(o.webrtc_session_id, 2)
 	}
 	if o.has_candidate {
-		res << zzz_vproto_internal_pack_cbroadcastwebrtccandidate(o.candidate, 3)
+		res << zzz_vproto_internal_pack_cbroadcast_webrtc_candidate(o.candidate, 3)
 	}
 	return res
 }
 
-pub fn cbroadcastwebrtcaddviewercandidaterequest_unpack(buf []byte) ?CBroadcastWebRTcaddViewerCandidateRequest {
-	mut res := CBroadcastWebRTcaddViewerCandidateRequest{}
+pub fn cbroadcast_webrtcaddviewercandidate_request_unpack(buf []byte) ?CBroadcast_WebRTCAddViewerCandidate_Request {
+	mut res := CBroadcast_WebRTCAddViewerCandidate_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5049,7 +5115,7 @@ pub fn cbroadcastwebrtcaddviewercandidaterequest_unpack(buf []byte) ?CBroadcastW
 			}
 			3 {
 				res.has_candidate = true
-				ii, v := zzz_vproto_internal_unpack_cbroadcastwebrtccandidate(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_webrtc_candidate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.candidate = v
 				i = ii
@@ -5070,55 +5136,55 @@ pub fn cbroadcastwebrtcaddviewercandidaterequest_unpack(buf []byte) ?CBroadcastW
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcaddviewercandidaterequest() CBroadcastWebRTcaddViewerCandidateRequest {
-	return CBroadcastWebRTcaddViewerCandidateRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcaddviewercandidate_request() CBroadcast_WebRTCAddViewerCandidate_Request {
+	return CBroadcast_WebRTCAddViewerCandidate_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcaddviewercandidaterequest(o CBroadcastWebRTcaddViewerCandidateRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcaddviewercandidate_request(o CBroadcast_WebRTCAddViewerCandidate_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcaddviewercandidaterequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcaddViewerCandidateRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcaddviewercandidate_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCAddViewerCandidate_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcaddviewercandidaterequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtcaddviewercandidate_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcaddViewerCandidateResponse {
+pub struct CBroadcast_WebRTCAddViewerCandidate_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CBroadcastWebRTcaddViewerCandidateResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCAddViewerCandidate_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cbroadcastwebrtcaddviewercandidateresponse_unpack(buf []byte) ?CBroadcastWebRTcaddViewerCandidateResponse {
-	res := CBroadcastWebRTcaddViewerCandidateResponse{}
+pub fn cbroadcast_webrtcaddviewercandidate_response_unpack(buf []byte) ?CBroadcast_WebRTCAddViewerCandidate_Response {
+	res := CBroadcast_WebRTCAddViewerCandidate_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcaddviewercandidateresponse() CBroadcastWebRTcaddViewerCandidateResponse {
-	return CBroadcastWebRTcaddViewerCandidateResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcaddviewercandidate_response() CBroadcast_WebRTCAddViewerCandidate_Response {
+	return CBroadcast_WebRTCAddViewerCandidate_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcaddviewercandidateresponse(o CBroadcastWebRTcaddViewerCandidateResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcaddviewercandidate_response(o CBroadcast_WebRTCAddViewerCandidate_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcaddviewercandidateresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcaddViewerCandidateResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcaddviewercandidate_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCAddViewerCandidate_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcaddviewercandidateresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtcaddviewercandidate_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcgetHostCandidatesRequest {
+pub struct CBroadcast_WebRTCGetHostCandidates_Request {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -5130,7 +5196,7 @@ pub mut:
 	has_candidate_generation bool
 }
 
-pub fn (o &CBroadcastWebRTcgetHostCandidatesRequest) pack() []byte {
+pub fn (o &CBroadcast_WebRTCGetHostCandidates_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcaster_steamid {
 		res << vproto.pack_64bit_field(o.broadcaster_steamid, 1)
@@ -5144,8 +5210,8 @@ pub fn (o &CBroadcastWebRTcgetHostCandidatesRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcgethostcandidatesrequest_unpack(buf []byte) ?CBroadcastWebRTcgetHostCandidatesRequest {
-	mut res := CBroadcastWebRTcgetHostCandidatesRequest{}
+pub fn cbroadcast_webrtcgethostcandidates_request_unpack(buf []byte) ?CBroadcast_WebRTCGetHostCandidates_Request {
+	mut res := CBroadcast_WebRTCGetHostCandidates_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5189,45 +5255,45 @@ pub fn cbroadcastwebrtcgethostcandidatesrequest_unpack(buf []byte) ?CBroadcastWe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcgethostcandidatesrequest() CBroadcastWebRTcgetHostCandidatesRequest {
-	return CBroadcastWebRTcgetHostCandidatesRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcgethostcandidates_request() CBroadcast_WebRTCGetHostCandidates_Request {
+	return CBroadcast_WebRTCGetHostCandidates_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcgethostcandidatesrequest(o CBroadcastWebRTcgetHostCandidatesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcgethostcandidates_request(o CBroadcast_WebRTCGetHostCandidates_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcgethostcandidatesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcgetHostCandidatesRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcgethostcandidates_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCGetHostCandidates_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcgethostcandidatesrequest_unpack(v)?
+	mut unpacked := cbroadcast_webrtcgethostcandidates_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcgetHostCandidatesResponse {
+pub struct CBroadcast_WebRTCGetHostCandidates_Response {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
 	candidate_generation     u32
 	has_candidate_generation bool
-	candidates               []CBroadcastWebRTccandidate
+	candidates               []CBroadcast_WebRTC_Candidate
 }
 
-pub fn (o &CBroadcastWebRTcgetHostCandidatesResponse) pack() []byte {
+pub fn (o &CBroadcast_WebRTCGetHostCandidates_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_candidate_generation {
 		res << vproto.pack_uint32_field(o.candidate_generation, 1)
 	}
 	// [packed=false]
 	for _, x in o.candidates {
-		res << zzz_vproto_internal_pack_cbroadcastwebrtccandidate(x, 2)
+		res << zzz_vproto_internal_pack_cbroadcast_webrtc_candidate(x, 2)
 	}
 	return res
 }
 
-pub fn cbroadcastwebrtcgethostcandidatesresponse_unpack(buf []byte) ?CBroadcastWebRTcgetHostCandidatesResponse {
-	mut res := CBroadcastWebRTcgetHostCandidatesResponse{}
+pub fn cbroadcast_webrtcgethostcandidates_response_unpack(buf []byte) ?CBroadcast_WebRTCGetHostCandidates_Response {
+	mut res := CBroadcast_WebRTCGetHostCandidates_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5245,7 +5311,7 @@ pub fn cbroadcastwebrtcgethostcandidatesresponse_unpack(buf []byte) ?CBroadcastW
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cbroadcastwebrtccandidate(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_webrtc_candidate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.candidates << v
 				i = ii
@@ -5266,23 +5332,23 @@ pub fn cbroadcastwebrtcgethostcandidatesresponse_unpack(buf []byte) ?CBroadcastW
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcgethostcandidatesresponse() CBroadcastWebRTcgetHostCandidatesResponse {
-	return CBroadcastWebRTcgetHostCandidatesResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcgethostcandidates_response() CBroadcast_WebRTCGetHostCandidates_Response {
+	return CBroadcast_WebRTCGetHostCandidates_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcgethostcandidatesresponse(o CBroadcastWebRTcgetHostCandidatesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcgethostcandidates_response(o CBroadcast_WebRTCGetHostCandidates_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcgethostcandidatesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcgetHostCandidatesResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcgethostcandidates_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCGetHostCandidates_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcgethostcandidatesresponse_unpack(v)?
+	mut unpacked := cbroadcast_webrtcgethostcandidates_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastUploadStatsRequest {
+pub struct CBroadcast_GetBroadcastUploadStats_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5298,7 +5364,7 @@ pub mut:
 	has_session_id bool
 }
 
-pub fn (o &CBroadcastGetBroadcastUploadStatsRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastUploadStats_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_row_limit {
 		res << vproto.pack_uint32_field(o.row_limit, 1)
@@ -5318,8 +5384,8 @@ pub fn (o &CBroadcastGetBroadcastUploadStatsRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastuploadstatsrequest_unpack(buf []byte) ?CBroadcastGetBroadcastUploadStatsRequest {
-	mut res := CBroadcastGetBroadcastUploadStatsRequest{}
+pub fn cbroadcast_getbroadcastuploadstats_request_unpack(buf []byte) ?CBroadcast_GetBroadcastUploadStats_Request {
+	mut res := CBroadcast_GetBroadcastUploadStats_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5375,23 +5441,23 @@ pub fn cbroadcastgetbroadcastuploadstatsrequest_unpack(buf []byte) ?CBroadcastGe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastuploadstatsrequest() CBroadcastGetBroadcastUploadStatsRequest {
-	return CBroadcastGetBroadcastUploadStatsRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastuploadstats_request() CBroadcast_GetBroadcastUploadStats_Request {
+	return CBroadcast_GetBroadcastUploadStats_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastuploadstatsrequest(o CBroadcastGetBroadcastUploadStatsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastuploadstats_request(o CBroadcast_GetBroadcastUploadStats_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastuploadstatsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastUploadStatsRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastuploadstats_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastUploadStats_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastuploadstatsrequest_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastuploadstats_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastUploadStatsResponseUploadStats {
+pub struct CBroadcast_GetBroadcastUploadStats_Response_UploadStats {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -5437,7 +5503,7 @@ pub mut:
 	has_session_id            bool
 }
 
-pub fn (o &CBroadcastGetBroadcastUploadStatsResponseUploadStats) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastUploadStats_Response_UploadStats) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_result {
 		res << vproto.pack_uint32_field(o.upload_result, 1)
@@ -5502,8 +5568,8 @@ pub fn (o &CBroadcastGetBroadcastUploadStatsResponseUploadStats) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastuploadstatsresponseuploadstats_unpack(buf []byte) ?CBroadcastGetBroadcastUploadStatsResponseUploadStats {
-	mut res := CBroadcastGetBroadcastUploadStatsResponseUploadStats{}
+pub fn cbroadcast_getbroadcastuploadstats_response_uploadstats_unpack(buf []byte) ?CBroadcast_GetBroadcastUploadStats_Response_UploadStats {
+	mut res := CBroadcast_GetBroadcastUploadStats_Response_UploadStats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5649,40 +5715,41 @@ pub fn cbroadcastgetbroadcastuploadstatsresponseuploadstats_unpack(buf []byte) ?
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastuploadstatsresponseuploadstats() CBroadcastGetBroadcastUploadStatsResponseUploadStats {
-	return CBroadcastGetBroadcastUploadStatsResponseUploadStats{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastuploadstats_response_uploadstats() CBroadcast_GetBroadcastUploadStats_Response_UploadStats {
+	return CBroadcast_GetBroadcastUploadStats_Response_UploadStats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastuploadstatsresponseuploadstats(o CBroadcastGetBroadcastUploadStatsResponseUploadStats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastuploadstats_response_uploadstats(o CBroadcast_GetBroadcastUploadStats_Response_UploadStats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastuploadstatsresponseuploadstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastUploadStatsResponseUploadStats) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastuploadstats_response_uploadstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastUploadStats_Response_UploadStats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastuploadstatsresponseuploadstats_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastuploadstats_response_uploadstats_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastUploadStatsResponse {
+pub struct CBroadcast_GetBroadcastUploadStats_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	upload_stats   []CBroadcastGetBroadcastUploadStatsResponseUploadStats
+	upload_stats   []CBroadcast_GetBroadcastUploadStats_Response_UploadStats
 }
 
-pub fn (o &CBroadcastGetBroadcastUploadStatsResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastUploadStats_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.upload_stats {
-		res << zzz_vproto_internal_pack_cbroadcastgetbroadcastuploadstatsresponseuploadstats(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cbroadcast_getbroadcastuploadstats_response_uploadstats(x, 1)
 	}
 	return res
 }
 
-pub fn cbroadcastgetbroadcastuploadstatsresponse_unpack(buf []byte) ?CBroadcastGetBroadcastUploadStatsResponse {
-	mut res := CBroadcastGetBroadcastUploadStatsResponse{}
+pub fn cbroadcast_getbroadcastuploadstats_response_unpack(buf []byte) ?CBroadcast_GetBroadcastUploadStats_Response {
+	mut res := CBroadcast_GetBroadcastUploadStats_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5694,7 +5761,7 @@ pub fn cbroadcastgetbroadcastuploadstatsresponse_unpack(buf []byte) ?CBroadcastG
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cbroadcastgetbroadcastuploadstatsresponseuploadstats(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_getbroadcastuploadstats_response_uploadstats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.upload_stats << v
 				i = ii
@@ -5715,23 +5782,23 @@ pub fn cbroadcastgetbroadcastuploadstatsresponse_unpack(buf []byte) ?CBroadcastG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastuploadstatsresponse() CBroadcastGetBroadcastUploadStatsResponse {
-	return CBroadcastGetBroadcastUploadStatsResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastuploadstats_response() CBroadcast_GetBroadcastUploadStats_Response {
+	return CBroadcast_GetBroadcastUploadStats_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastuploadstatsresponse(o CBroadcastGetBroadcastUploadStatsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastuploadstats_response(o CBroadcast_GetBroadcastUploadStats_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastuploadstatsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastUploadStatsResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastuploadstats_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastUploadStats_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastuploadstatsresponse_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastuploadstats_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastViewerStatsRequest {
+pub struct CBroadcast_GetBroadcastViewerStats_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5741,7 +5808,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CBroadcastGetBroadcastViewerStatsRequest) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastViewerStats_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_upload_id {
 		res << vproto.pack_uint64_field(o.upload_id, 1)
@@ -5752,8 +5819,8 @@ pub fn (o &CBroadcastGetBroadcastViewerStatsRequest) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastviewerstatsrequest_unpack(buf []byte) ?CBroadcastGetBroadcastViewerStatsRequest {
-	mut res := CBroadcastGetBroadcastViewerStatsRequest{}
+pub fn cbroadcast_getbroadcastviewerstats_request_unpack(buf []byte) ?CBroadcast_GetBroadcastViewerStats_Request {
+	mut res := CBroadcast_GetBroadcastViewerStats_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5791,23 +5858,23 @@ pub fn cbroadcastgetbroadcastviewerstatsrequest_unpack(buf []byte) ?CBroadcastGe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastviewerstatsrequest() CBroadcastGetBroadcastViewerStatsRequest {
-	return CBroadcastGetBroadcastViewerStatsRequest{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastviewerstats_request() CBroadcast_GetBroadcastViewerStats_Request {
+	return CBroadcast_GetBroadcastViewerStats_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastviewerstatsrequest(o CBroadcastGetBroadcastViewerStatsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastviewerstats_request(o CBroadcast_GetBroadcastViewerStats_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastviewerstatsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastViewerStatsRequest) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastviewerstats_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastViewerStats_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastviewerstatsrequest_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastviewerstats_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastViewerStatsResponseViewerStats {
+pub struct CBroadcast_GetBroadcastViewerStats_Response_ViewerStats {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -5817,7 +5884,7 @@ pub mut:
 	has_num_viewers bool
 }
 
-pub fn (o &CBroadcastGetBroadcastViewerStatsResponseViewerStats) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastViewerStats_Response_ViewerStats) pack() []byte {
 	mut res := []byte{}
 	if o.has_time {
 		res << vproto.pack_uint32_field(o.time, 1)
@@ -5828,8 +5895,8 @@ pub fn (o &CBroadcastGetBroadcastViewerStatsResponseViewerStats) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastgetbroadcastviewerstatsresponseviewerstats_unpack(buf []byte) ?CBroadcastGetBroadcastViewerStatsResponseViewerStats {
-	mut res := CBroadcastGetBroadcastViewerStatsResponseViewerStats{}
+pub fn cbroadcast_getbroadcastviewerstats_response_viewerstats_unpack(buf []byte) ?CBroadcast_GetBroadcastViewerStats_Response_ViewerStats {
+	mut res := CBroadcast_GetBroadcastViewerStats_Response_ViewerStats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5867,23 +5934,23 @@ pub fn cbroadcastgetbroadcastviewerstatsresponseviewerstats_unpack(buf []byte) ?
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastviewerstatsresponseviewerstats() CBroadcastGetBroadcastViewerStatsResponseViewerStats {
-	return CBroadcastGetBroadcastViewerStatsResponseViewerStats{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastviewerstats_response_viewerstats() CBroadcast_GetBroadcastViewerStats_Response_ViewerStats {
+	return CBroadcast_GetBroadcastViewerStats_Response_ViewerStats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastviewerstatsresponseviewerstats(o CBroadcastGetBroadcastViewerStatsResponseViewerStats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastviewerstats_response_viewerstats(o CBroadcast_GetBroadcastViewerStats_Response_ViewerStats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastviewerstatsresponseviewerstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastViewerStatsResponseViewerStats) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastviewerstats_response_viewerstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastViewerStats_Response_ViewerStats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastviewerstatsresponseviewerstats_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastviewerstats_response_viewerstats_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastViewerStatsResponseCountryStats {
+pub struct CBroadcast_GetBroadcastViewerStats_Response_CountryStats {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -5893,7 +5960,7 @@ pub mut:
 	has_num_viewers  bool
 }
 
-pub fn (o &CBroadcastGetBroadcastViewerStatsResponseCountryStats) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastViewerStats_Response_CountryStats) pack() []byte {
 	mut res := []byte{}
 	if o.has_country_code {
 		res << vproto.pack_string_field(o.country_code, 1)
@@ -5904,8 +5971,8 @@ pub fn (o &CBroadcastGetBroadcastViewerStatsResponseCountryStats) pack() []byte 
 	return res
 }
 
-pub fn cbroadcastgetbroadcastviewerstatsresponsecountrystats_unpack(buf []byte) ?CBroadcastGetBroadcastViewerStatsResponseCountryStats {
-	mut res := CBroadcastGetBroadcastViewerStatsResponseCountryStats{}
+pub fn cbroadcast_getbroadcastviewerstats_response_countrystats_unpack(buf []byte) ?CBroadcast_GetBroadcastViewerStats_Response_CountryStats {
+	mut res := CBroadcast_GetBroadcastViewerStats_Response_CountryStats{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5943,45 +6010,47 @@ pub fn cbroadcastgetbroadcastviewerstatsresponsecountrystats_unpack(buf []byte) 
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastviewerstatsresponsecountrystats() CBroadcastGetBroadcastViewerStatsResponseCountryStats {
-	return CBroadcastGetBroadcastViewerStatsResponseCountryStats{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastviewerstats_response_countrystats() CBroadcast_GetBroadcastViewerStats_Response_CountryStats {
+	return CBroadcast_GetBroadcastViewerStats_Response_CountryStats{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastviewerstatsresponsecountrystats(o CBroadcastGetBroadcastViewerStatsResponseCountryStats, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastviewerstats_response_countrystats(o CBroadcast_GetBroadcastViewerStats_Response_CountryStats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastviewerstatsresponsecountrystats(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastViewerStatsResponseCountryStats) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastviewerstats_response_countrystats(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastViewerStats_Response_CountryStats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastviewerstatsresponsecountrystats_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastviewerstats_response_countrystats_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastGetBroadcastViewerStatsResponse {
+pub struct CBroadcast_GetBroadcastViewerStats_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	viewer_stats   []CBroadcastGetBroadcastViewerStatsResponseViewerStats
-	country_stats  []CBroadcastGetBroadcastViewerStatsResponseCountryStats
+	viewer_stats   []CBroadcast_GetBroadcastViewerStats_Response_ViewerStats
+	country_stats  []CBroadcast_GetBroadcastViewerStats_Response_CountryStats
 }
 
-pub fn (o &CBroadcastGetBroadcastViewerStatsResponse) pack() []byte {
+pub fn (o &CBroadcast_GetBroadcastViewerStats_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.viewer_stats {
-		res << zzz_vproto_internal_pack_cbroadcastgetbroadcastviewerstatsresponseviewerstats(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cbroadcast_getbroadcastviewerstats_response_viewerstats(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.country_stats {
-		res << zzz_vproto_internal_pack_cbroadcastgetbroadcastviewerstatsresponsecountrystats(x, 2)
+		res <<
+			zzz_vproto_internal_pack_cbroadcast_getbroadcastviewerstats_response_countrystats(x, 2)
 	}
 	return res
 }
 
-pub fn cbroadcastgetbroadcastviewerstatsresponse_unpack(buf []byte) ?CBroadcastGetBroadcastViewerStatsResponse {
-	mut res := CBroadcastGetBroadcastViewerStatsResponse{}
+pub fn cbroadcast_getbroadcastviewerstats_response_unpack(buf []byte) ?CBroadcast_GetBroadcastViewerStats_Response {
+	mut res := CBroadcast_GetBroadcastViewerStats_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5993,14 +6062,14 @@ pub fn cbroadcastgetbroadcastviewerstatsresponse_unpack(buf []byte) ?CBroadcastG
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cbroadcastgetbroadcastviewerstatsresponseviewerstats(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_getbroadcastviewerstats_response_viewerstats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.viewer_stats << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cbroadcastgetbroadcastviewerstatsresponsecountrystats(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_getbroadcastviewerstats_response_countrystats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.country_stats << v
 				i = ii
@@ -6021,64 +6090,86 @@ pub fn cbroadcastgetbroadcastviewerstatsresponse_unpack(buf []byte) ?CBroadcastG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastgetbroadcastviewerstatsresponse() CBroadcastGetBroadcastViewerStatsResponse {
-	return CBroadcastGetBroadcastViewerStatsResponse{}
+pub fn zzz_vproto_internal_new_cbroadcast_getbroadcastviewerstats_response() CBroadcast_GetBroadcastViewerStats_Response {
+	return CBroadcast_GetBroadcastViewerStats_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastgetbroadcastviewerstatsresponse(o CBroadcastGetBroadcastViewerStatsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_getbroadcastviewerstats_response(o CBroadcast_GetBroadcastViewerStats_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastgetbroadcastviewerstatsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastGetBroadcastViewerStatsResponse) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_getbroadcastviewerstats_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_GetBroadcastViewerStats_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastgetbroadcastviewerstatsresponse_unpack(v)?
+	mut unpacked := cbroadcast_getbroadcastviewerstats_response_unpack(v)?
 	return i, unpacked
 }
 
 [_allow_multiple_values]
-enum CBroadcastBroadcastViewerStateNotificationEViewerState {
+enum CBroadcast_BroadcastViewerState_Notification_EViewerState {
 	k_eviewerneedsapproval = 1
 	k_eviewerwatching = 2
 	k_eviewerleft = 3
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_cbroadcastbroadcastviewerstatenotificationeviewerstate(e CBroadcastBroadcastViewerStateNotificationEViewerState, num u32) []byte {
+fn zzz_vproto_internal_pack_cbroadcast_broadcastviewerstate_notification_eviewerstate(e CBroadcast_BroadcastViewerState_Notification_EViewerState, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_cbroadcastbroadcastviewerstatenotificationeviewerstate(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBroadcastViewerStateNotificationEViewerState) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, CBroadcastBroadcastViewerStateNotificationEViewerState(v)
+fn zzz_vproto_internal_pack_cbroadcast_broadcastviewerstate_notification_eviewerstate_packed(e []CBroadcast_BroadcastViewerState_Notification_EViewerState, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
 }
 
-pub struct CBroadcastBroadcastViewerStateNotification {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cbroadcast_broadcastviewerstate_notification_eviewerstate(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BroadcastViewerState_Notification_EViewerState) {
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	return i, CBroadcast_BroadcastViewerState_Notification_EViewerState(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cbroadcast_broadcastviewerstate_notification_eviewerstate_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CBroadcast_BroadcastViewerState_Notification_EViewerState) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CBroadcast_BroadcastViewerState_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
 	has_steamid    bool
-	state          CBroadcastBroadcastViewerStateNotificationEViewerState
+	state          CBroadcast_BroadcastViewerState_Notification_EViewerState
 	has_state      bool
 }
 
-pub fn (o &CBroadcastBroadcastViewerStateNotification) pack() []byte {
+pub fn (o &CBroadcast_BroadcastViewerState_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	if o.has_state {
 		res <<
-			zzz_vproto_internal_pack_cbroadcastbroadcastviewerstatenotificationeviewerstate(o.state, 2)
+			zzz_vproto_internal_pack_cbroadcast_broadcastviewerstate_notification_eviewerstate(o.state, 2)
 	}
 	return res
 }
 
-pub fn cbroadcastbroadcastviewerstatenotification_unpack(buf []byte) ?CBroadcastBroadcastViewerStateNotification {
-	mut res := CBroadcastBroadcastViewerStateNotification{}
+pub fn cbroadcast_broadcastviewerstate_notification_unpack(buf []byte) ?CBroadcast_BroadcastViewerState_Notification {
+	mut res := CBroadcast_BroadcastViewerState_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6096,7 +6187,7 @@ pub fn cbroadcastbroadcastviewerstatenotification_unpack(buf []byte) ?CBroadcast
 			}
 			2 {
 				res.has_state = true
-				ii, v := zzz_vproto_internal_unpack_cbroadcastbroadcastviewerstatenotificationeviewerstate(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_broadcastviewerstate_notification_eviewerstate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.state = v
 				i = ii
@@ -6117,23 +6208,23 @@ pub fn cbroadcastbroadcastviewerstatenotification_unpack(buf []byte) ?CBroadcast
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastbroadcastviewerstatenotification() CBroadcastBroadcastViewerStateNotification {
-	return CBroadcastBroadcastViewerStateNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_broadcastviewerstate_notification() CBroadcast_BroadcastViewerState_Notification {
+	return CBroadcast_BroadcastViewerState_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastbroadcastviewerstatenotification(o CBroadcastBroadcastViewerStateNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_broadcastviewerstate_notification(o CBroadcast_BroadcastViewerState_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastbroadcastviewerstatenotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBroadcastViewerStateNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_broadcastviewerstate_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BroadcastViewerState_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastbroadcastviewerstatenotification_unpack(v)?
+	mut unpacked := cbroadcast_broadcastviewerstate_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWaitingBroadcastViewerNotification {
+pub struct CBroadcast_WaitingBroadcastViewer_Notification {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -6141,7 +6232,7 @@ pub mut:
 	has_broadcast_id bool
 }
 
-pub fn (o &CBroadcastWaitingBroadcastViewerNotification) pack() []byte {
+pub fn (o &CBroadcast_WaitingBroadcastViewer_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -6149,8 +6240,8 @@ pub fn (o &CBroadcastWaitingBroadcastViewerNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwaitingbroadcastviewernotification_unpack(buf []byte) ?CBroadcastWaitingBroadcastViewerNotification {
-	mut res := CBroadcastWaitingBroadcastViewerNotification{}
+pub fn cbroadcast_waitingbroadcastviewer_notification_unpack(buf []byte) ?CBroadcast_WaitingBroadcastViewer_Notification {
+	mut res := CBroadcast_WaitingBroadcastViewer_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6182,23 +6273,23 @@ pub fn cbroadcastwaitingbroadcastviewernotification_unpack(buf []byte) ?CBroadca
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwaitingbroadcastviewernotification() CBroadcastWaitingBroadcastViewerNotification {
-	return CBroadcastWaitingBroadcastViewerNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_waitingbroadcastviewer_notification() CBroadcast_WaitingBroadcastViewer_Notification {
+	return CBroadcast_WaitingBroadcastViewer_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwaitingbroadcastviewernotification(o CBroadcastWaitingBroadcastViewerNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_waitingbroadcastviewer_notification(o CBroadcast_WaitingBroadcastViewer_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwaitingbroadcastviewernotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWaitingBroadcastViewerNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_waitingbroadcastviewer_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WaitingBroadcastViewer_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwaitingbroadcastviewernotification_unpack(v)?
+	mut unpacked := cbroadcast_waitingbroadcastviewer_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastBroadcastUploadStartedNotification {
+pub struct CBroadcast_BroadcastUploadStarted_Notification {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
@@ -6218,7 +6309,7 @@ pub mut:
 	has_is_rtmp                    bool
 }
 
-pub fn (o &CBroadcastBroadcastUploadStartedNotification) pack() []byte {
+pub fn (o &CBroadcast_BroadcastUploadStarted_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -6244,8 +6335,8 @@ pub fn (o &CBroadcastBroadcastUploadStartedNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastbroadcastuploadstartednotification_unpack(buf []byte) ?CBroadcastBroadcastUploadStartedNotification {
-	mut res := CBroadcastBroadcastUploadStartedNotification{}
+pub fn cbroadcast_broadcastuploadstarted_notification_unpack(buf []byte) ?CBroadcast_BroadcastUploadStarted_Notification {
+	mut res := CBroadcast_BroadcastUploadStarted_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6313,23 +6404,23 @@ pub fn cbroadcastbroadcastuploadstartednotification_unpack(buf []byte) ?CBroadca
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastbroadcastuploadstartednotification() CBroadcastBroadcastUploadStartedNotification {
-	return CBroadcastBroadcastUploadStartedNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_broadcastuploadstarted_notification() CBroadcast_BroadcastUploadStarted_Notification {
+	return CBroadcast_BroadcastUploadStarted_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastbroadcastuploadstartednotification(o CBroadcastBroadcastUploadStartedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_broadcastuploadstarted_notification(o CBroadcast_BroadcastUploadStarted_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastbroadcastuploadstartednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBroadcastUploadStartedNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_broadcastuploadstarted_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BroadcastUploadStarted_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastbroadcastuploadstartednotification_unpack(v)?
+	mut unpacked := cbroadcast_broadcastuploadstarted_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastStopBroadcastUploadNotification {
+pub struct CBroadcast_StopBroadcastUpload_Notification {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -6343,7 +6434,7 @@ pub mut:
 	has_too_many_poor_uploads bool
 }
 
-pub fn (o &CBroadcastStopBroadcastUploadNotification) pack() []byte {
+pub fn (o &CBroadcast_StopBroadcastUpload_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -6360,8 +6451,8 @@ pub fn (o &CBroadcastStopBroadcastUploadNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcaststopbroadcastuploadnotification_unpack(buf []byte) ?CBroadcastStopBroadcastUploadNotification {
-	mut res := CBroadcastStopBroadcastUploadNotification{}
+pub fn cbroadcast_stopbroadcastupload_notification_unpack(buf []byte) ?CBroadcast_StopBroadcastUpload_Notification {
+	mut res := CBroadcast_StopBroadcastUpload_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6411,23 +6502,23 @@ pub fn cbroadcaststopbroadcastuploadnotification_unpack(buf []byte) ?CBroadcastS
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcaststopbroadcastuploadnotification() CBroadcastStopBroadcastUploadNotification {
-	return CBroadcastStopBroadcastUploadNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_stopbroadcastupload_notification() CBroadcast_StopBroadcastUpload_Notification {
+	return CBroadcast_StopBroadcastUpload_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcaststopbroadcastuploadnotification(o CBroadcastStopBroadcastUploadNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_stopbroadcastupload_notification(o CBroadcast_StopBroadcastUpload_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcaststopbroadcastuploadnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastStopBroadcastUploadNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_stopbroadcastupload_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_StopBroadcastUpload_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcaststopbroadcastuploadnotification_unpack(v)?
+	mut unpacked := cbroadcast_stopbroadcastupload_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSessionClosedNotification {
+pub struct CBroadcast_SessionClosed_Notification {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -6435,7 +6526,7 @@ pub mut:
 	has_broadcast_id bool
 }
 
-pub fn (o &CBroadcastSessionClosedNotification) pack() []byte {
+pub fn (o &CBroadcast_SessionClosed_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -6443,8 +6534,8 @@ pub fn (o &CBroadcastSessionClosedNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastsessionclosednotification_unpack(buf []byte) ?CBroadcastSessionClosedNotification {
-	mut res := CBroadcastSessionClosedNotification{}
+pub fn cbroadcast_sessionclosed_notification_unpack(buf []byte) ?CBroadcast_SessionClosed_Notification {
+	mut res := CBroadcast_SessionClosed_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6476,23 +6567,23 @@ pub fn cbroadcastsessionclosednotification_unpack(buf []byte) ?CBroadcastSession
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsessionclosednotification() CBroadcastSessionClosedNotification {
-	return CBroadcastSessionClosedNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_sessionclosed_notification() CBroadcast_SessionClosed_Notification {
+	return CBroadcast_SessionClosed_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsessionclosednotification(o CBroadcastSessionClosedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_sessionclosed_notification(o CBroadcast_SessionClosed_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsessionclosednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSessionClosedNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_sessionclosed_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SessionClosed_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsessionclosednotification_unpack(v)?
+	mut unpacked := cbroadcast_sessionclosed_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastViewerBroadcastInviteNotification {
+pub struct CBroadcast_ViewerBroadcastInvite_Notification {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -6500,7 +6591,7 @@ pub mut:
 	has_broadcaster_steamid bool
 }
 
-pub fn (o &CBroadcastViewerBroadcastInviteNotification) pack() []byte {
+pub fn (o &CBroadcast_ViewerBroadcastInvite_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcaster_steamid {
 		res << vproto.pack_64bit_field(o.broadcaster_steamid, 1)
@@ -6508,8 +6599,8 @@ pub fn (o &CBroadcastViewerBroadcastInviteNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastviewerbroadcastinvitenotification_unpack(buf []byte) ?CBroadcastViewerBroadcastInviteNotification {
-	mut res := CBroadcastViewerBroadcastInviteNotification{}
+pub fn cbroadcast_viewerbroadcastinvite_notification_unpack(buf []byte) ?CBroadcast_ViewerBroadcastInvite_Notification {
+	mut res := CBroadcast_ViewerBroadcastInvite_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6541,23 +6632,23 @@ pub fn cbroadcastviewerbroadcastinvitenotification_unpack(buf []byte) ?CBroadcas
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastviewerbroadcastinvitenotification() CBroadcastViewerBroadcastInviteNotification {
-	return CBroadcastViewerBroadcastInviteNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_viewerbroadcastinvite_notification() CBroadcast_ViewerBroadcastInvite_Notification {
+	return CBroadcast_ViewerBroadcastInvite_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastviewerbroadcastinvitenotification(o CBroadcastViewerBroadcastInviteNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_viewerbroadcastinvite_notification(o CBroadcast_ViewerBroadcastInvite_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastviewerbroadcastinvitenotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastViewerBroadcastInviteNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_viewerbroadcastinvite_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_ViewerBroadcastInvite_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastviewerbroadcastinvitenotification_unpack(v)?
+	mut unpacked := cbroadcast_viewerbroadcastinvite_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastBroadcastStatusNotification {
+pub struct CBroadcast_BroadcastStatus_Notification {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -6567,7 +6658,7 @@ pub mut:
 	has_num_viewers  bool
 }
 
-pub fn (o &CBroadcastBroadcastStatusNotification) pack() []byte {
+pub fn (o &CBroadcast_BroadcastStatus_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_id {
 		res << vproto.pack_64bit_field(o.broadcast_id, 1)
@@ -6578,8 +6669,8 @@ pub fn (o &CBroadcastBroadcastStatusNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastbroadcaststatusnotification_unpack(buf []byte) ?CBroadcastBroadcastStatusNotification {
-	mut res := CBroadcastBroadcastStatusNotification{}
+pub fn cbroadcast_broadcaststatus_notification_unpack(buf []byte) ?CBroadcast_BroadcastStatus_Notification {
+	mut res := CBroadcast_BroadcastStatus_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6617,23 +6708,23 @@ pub fn cbroadcastbroadcaststatusnotification_unpack(buf []byte) ?CBroadcastBroad
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastbroadcaststatusnotification() CBroadcastBroadcastStatusNotification {
-	return CBroadcastBroadcastStatusNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_broadcaststatus_notification() CBroadcast_BroadcastStatus_Notification {
+	return CBroadcast_BroadcastStatus_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastbroadcaststatusnotification(o CBroadcastBroadcastStatusNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_broadcaststatus_notification(o CBroadcast_BroadcastStatus_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastbroadcaststatusnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBroadcastStatusNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_broadcaststatus_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BroadcastStatus_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastbroadcaststatusnotification_unpack(v)?
+	mut unpacked := cbroadcast_broadcaststatus_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastBroadcastChannelLiveNotification {
+pub struct CBroadcast_BroadcastChannelLive_Notification {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -6645,7 +6736,7 @@ pub mut:
 	has_broadcast_channel_avatar bool
 }
 
-pub fn (o &CBroadcastBroadcastChannelLiveNotification) pack() []byte {
+pub fn (o &CBroadcast_BroadcastChannelLive_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_channel_id {
 		res << vproto.pack_64bit_field(o.broadcast_channel_id, 1)
@@ -6659,8 +6750,8 @@ pub fn (o &CBroadcastBroadcastChannelLiveNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastbroadcastchannellivenotification_unpack(buf []byte) ?CBroadcastBroadcastChannelLiveNotification {
-	mut res := CBroadcastBroadcastChannelLiveNotification{}
+pub fn cbroadcast_broadcastchannellive_notification_unpack(buf []byte) ?CBroadcast_BroadcastChannelLive_Notification {
+	mut res := CBroadcast_BroadcastChannelLive_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6704,23 +6795,23 @@ pub fn cbroadcastbroadcastchannellivenotification_unpack(buf []byte) ?CBroadcast
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastbroadcastchannellivenotification() CBroadcastBroadcastChannelLiveNotification {
-	return CBroadcastBroadcastChannelLiveNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_broadcastchannellive_notification() CBroadcast_BroadcastChannelLive_Notification {
+	return CBroadcast_BroadcastChannelLive_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastbroadcastchannellivenotification(o CBroadcastBroadcastChannelLiveNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_broadcastchannellive_notification(o CBroadcast_BroadcastChannelLive_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastbroadcastchannellivenotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastBroadcastChannelLiveNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_broadcastchannellive_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_BroadcastChannelLive_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastbroadcastchannellivenotification_unpack(v)?
+	mut unpacked := cbroadcast_broadcastchannellive_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastSendThumbnailToRelayNotification {
+pub struct CBroadcast_SendThumbnailToRelay_Notification {
 mut:
 	unknown_fields                     []vproto.UnknownField
 pub mut:
@@ -6736,7 +6827,7 @@ pub mut:
 	has_thumbnail_height               bool
 }
 
-pub fn (o &CBroadcastSendThumbnailToRelayNotification) pack() []byte {
+pub fn (o &CBroadcast_SendThumbnailToRelay_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_thumbnail_upload_token {
 		res << vproto.pack_string_field(o.thumbnail_upload_token, 1)
@@ -6756,8 +6847,8 @@ pub fn (o &CBroadcastSendThumbnailToRelayNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastsendthumbnailtorelaynotification_unpack(buf []byte) ?CBroadcastSendThumbnailToRelayNotification {
-	mut res := CBroadcastSendThumbnailToRelayNotification{}
+pub fn cbroadcast_sendthumbnailtorelay_notification_unpack(buf []byte) ?CBroadcast_SendThumbnailToRelay_Notification {
+	mut res := CBroadcast_SendThumbnailToRelay_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6813,23 +6904,23 @@ pub fn cbroadcastsendthumbnailtorelaynotification_unpack(buf []byte) ?CBroadcast
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastsendthumbnailtorelaynotification() CBroadcastSendThumbnailToRelayNotification {
-	return CBroadcastSendThumbnailToRelayNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_sendthumbnailtorelay_notification() CBroadcast_SendThumbnailToRelay_Notification {
+	return CBroadcast_SendThumbnailToRelay_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastsendthumbnailtorelaynotification(o CBroadcastSendThumbnailToRelayNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_sendthumbnailtorelay_notification(o CBroadcast_SendThumbnailToRelay_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastsendthumbnailtorelaynotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastSendThumbnailToRelayNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_sendthumbnailtorelay_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_SendThumbnailToRelay_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastsendthumbnailtorelaynotification_unpack(v)?
+	mut unpacked := cbroadcast_sendthumbnailtorelay_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcneedTUrnserverNotification {
+pub struct CBroadcast_WebRTCNeedTURNServer_Notification {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -6837,7 +6928,7 @@ pub mut:
 	has_broadcast_session_id bool
 }
 
-pub fn (o &CBroadcastWebRTcneedTUrnserverNotification) pack() []byte {
+pub fn (o &CBroadcast_WebRTCNeedTURNServer_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_session_id {
 		res << vproto.pack_64bit_field(o.broadcast_session_id, 1)
@@ -6845,8 +6936,8 @@ pub fn (o &CBroadcastWebRTcneedTUrnserverNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcneedturnservernotification_unpack(buf []byte) ?CBroadcastWebRTcneedTUrnserverNotification {
-	mut res := CBroadcastWebRTcneedTUrnserverNotification{}
+pub fn cbroadcast_webrtcneedturnserver_notification_unpack(buf []byte) ?CBroadcast_WebRTCNeedTURNServer_Notification {
+	mut res := CBroadcast_WebRTCNeedTURNServer_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6878,23 +6969,23 @@ pub fn cbroadcastwebrtcneedturnservernotification_unpack(buf []byte) ?CBroadcast
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcneedturnservernotification() CBroadcastWebRTcneedTUrnserverNotification {
-	return CBroadcastWebRTcneedTUrnserverNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcneedturnserver_notification() CBroadcast_WebRTCNeedTURNServer_Notification {
+	return CBroadcast_WebRTCNeedTURNServer_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcneedturnservernotification(o CBroadcastWebRTcneedTUrnserverNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcneedturnserver_notification(o CBroadcast_WebRTCNeedTURNServer_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcneedturnservernotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcneedTUrnserverNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcneedturnserver_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCNeedTURNServer_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcneedturnservernotification_unpack(v)?
+	mut unpacked := cbroadcast_webrtcneedturnserver_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcstartNotification {
+pub struct CBroadcast_WebRTCStart_Notification {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -6908,7 +6999,7 @@ pub mut:
 	has_viewer_token         bool
 }
 
-pub fn (o &CBroadcastWebRTcstartNotification) pack() []byte {
+pub fn (o &CBroadcast_WebRTCStart_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_session_id {
 		res << vproto.pack_64bit_field(o.broadcast_session_id, 1)
@@ -6925,8 +7016,8 @@ pub fn (o &CBroadcastWebRTcstartNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcstartnotification_unpack(buf []byte) ?CBroadcastWebRTcstartNotification {
-	mut res := CBroadcastWebRTcstartNotification{}
+pub fn cbroadcast_webrtcstart_notification_unpack(buf []byte) ?CBroadcast_WebRTCStart_Notification {
+	mut res := CBroadcast_WebRTCStart_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6976,23 +7067,23 @@ pub fn cbroadcastwebrtcstartnotification_unpack(buf []byte) ?CBroadcastWebRTcsta
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcstartnotification() CBroadcastWebRTcstartNotification {
-	return CBroadcastWebRTcstartNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcstart_notification() CBroadcast_WebRTCStart_Notification {
+	return CBroadcast_WebRTCStart_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcstartnotification(o CBroadcastWebRTcstartNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcstart_notification(o CBroadcast_WebRTCStart_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcstartnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcstartNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcstart_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCStart_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcstartnotification_unpack(v)?
+	mut unpacked := cbroadcast_webrtcstart_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcsetAnswerNotification {
+pub struct CBroadcast_WebRTCSetAnswer_Notification {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -7004,7 +7095,7 @@ pub mut:
 	has_answer               bool
 }
 
-pub fn (o &CBroadcastWebRTcsetAnswerNotification) pack() []byte {
+pub fn (o &CBroadcast_WebRTCSetAnswer_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_session_id {
 		res << vproto.pack_64bit_field(o.broadcast_session_id, 1)
@@ -7018,8 +7109,8 @@ pub fn (o &CBroadcastWebRTcsetAnswerNotification) pack() []byte {
 	return res
 }
 
-pub fn cbroadcastwebrtcsetanswernotification_unpack(buf []byte) ?CBroadcastWebRTcsetAnswerNotification {
-	mut res := CBroadcastWebRTcsetAnswerNotification{}
+pub fn cbroadcast_webrtcsetanswer_notification_unpack(buf []byte) ?CBroadcast_WebRTCSetAnswer_Notification {
+	mut res := CBroadcast_WebRTCSetAnswer_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7063,23 +7154,23 @@ pub fn cbroadcastwebrtcsetanswernotification_unpack(buf []byte) ?CBroadcastWebRT
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcsetanswernotification() CBroadcastWebRTcsetAnswerNotification {
-	return CBroadcastWebRTcsetAnswerNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcsetanswer_notification() CBroadcast_WebRTCSetAnswer_Notification {
+	return CBroadcast_WebRTCSetAnswer_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcsetanswernotification(o CBroadcastWebRTcsetAnswerNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcsetanswer_notification(o CBroadcast_WebRTCSetAnswer_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcsetanswernotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcsetAnswerNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcsetanswer_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCSetAnswer_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcsetanswernotification_unpack(v)?
+	mut unpacked := cbroadcast_webrtcsetanswer_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CBroadcastWebRTcaddViewerCandidateNotification {
+pub struct CBroadcast_WebRTCAddViewerCandidate_Notification {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -7087,11 +7178,11 @@ pub mut:
 	has_broadcast_session_id bool
 	webrtc_session_id        u64
 	has_webrtc_session_id    bool
-	candidate                CBroadcastWebRTccandidate
+	candidate                CBroadcast_WebRTC_Candidate
 	has_candidate            bool
 }
 
-pub fn (o &CBroadcastWebRTcaddViewerCandidateNotification) pack() []byte {
+pub fn (o &CBroadcast_WebRTCAddViewerCandidate_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_broadcast_session_id {
 		res << vproto.pack_64bit_field(o.broadcast_session_id, 1)
@@ -7100,13 +7191,13 @@ pub fn (o &CBroadcastWebRTcaddViewerCandidateNotification) pack() []byte {
 		res << vproto.pack_64bit_field(o.webrtc_session_id, 2)
 	}
 	if o.has_candidate {
-		res << zzz_vproto_internal_pack_cbroadcastwebrtccandidate(o.candidate, 3)
+		res << zzz_vproto_internal_pack_cbroadcast_webrtc_candidate(o.candidate, 3)
 	}
 	return res
 }
 
-pub fn cbroadcastwebrtcaddviewercandidatenotification_unpack(buf []byte) ?CBroadcastWebRTcaddViewerCandidateNotification {
-	mut res := CBroadcastWebRTcaddViewerCandidateNotification{}
+pub fn cbroadcast_webrtcaddviewercandidate_notification_unpack(buf []byte) ?CBroadcast_WebRTCAddViewerCandidate_Notification {
+	mut res := CBroadcast_WebRTCAddViewerCandidate_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7130,7 +7221,7 @@ pub fn cbroadcastwebrtcaddviewercandidatenotification_unpack(buf []byte) ?CBroad
 			}
 			3 {
 				res.has_candidate = true
-				ii, v := zzz_vproto_internal_unpack_cbroadcastwebrtccandidate(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cbroadcast_webrtc_candidate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.candidate = v
 				i = ii
@@ -7151,18 +7242,18 @@ pub fn cbroadcastwebrtcaddviewercandidatenotification_unpack(buf []byte) ?CBroad
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cbroadcastwebrtcaddviewercandidatenotification() CBroadcastWebRTcaddViewerCandidateNotification {
-	return CBroadcastWebRTcaddViewerCandidateNotification{}
+pub fn zzz_vproto_internal_new_cbroadcast_webrtcaddviewercandidate_notification() CBroadcast_WebRTCAddViewerCandidate_Notification {
+	return CBroadcast_WebRTCAddViewerCandidate_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cbroadcastwebrtcaddviewercandidatenotification(o CBroadcastWebRTcaddViewerCandidateNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cbroadcast_webrtcaddviewercandidate_notification(o CBroadcast_WebRTCAddViewerCandidate_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cbroadcastwebrtcaddviewercandidatenotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcastWebRTcaddViewerCandidateNotification) {
+pub fn zzz_vproto_internal_unpack_cbroadcast_webrtcaddviewercandidate_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CBroadcast_WebRTCAddViewerCandidate_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbroadcastwebrtcaddviewercandidatenotification_unpack(v)?
+	mut unpacked := cbroadcast_webrtcaddviewercandidate_notification_unpack(v)?
 	return i, unpacked
 }

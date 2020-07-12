@@ -4,7 +4,7 @@ module proto
 import emily33901.vproto
 
 [_allow_multiple_values]
-enum EStarglyphWriteResult {
+enum E_STAR_GlyphWriteResult {
 	k_e_star_glyphwriteresult_success = 0
 	k_e_star_glyphwriteresult_invalidmessage = 1
 	k_e_star_glyphwriteresult_invalidjson = 2
@@ -12,17 +12,39 @@ enum EStarglyphWriteResult {
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_estarglyphwriteresult(e EStarglyphWriteResult, num u32) []byte {
+fn zzz_vproto_internal_pack_e_star_glyphwriteresult(e E_STAR_GlyphWriteResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_estarglyphwriteresult(buf []byte, tag_wiretype vproto.WireType) ?(int, EStarglyphWriteResult) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, EStarglyphWriteResult(v)
+fn zzz_vproto_internal_pack_e_star_glyphwriteresult_packed(e []E_STAR_GlyphWriteResult, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
 }
 
-pub struct CStarkeyValueQuery {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_e_star_glyphwriteresult(buf []byte, tag_wiretype vproto.WireType) ?(int, E_STAR_GlyphWriteResult) {
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	return i, E_STAR_GlyphWriteResult(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_e_star_glyphwriteresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []E_STAR_GlyphWriteResult) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CSTAR_KeyValueQuery {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -32,7 +54,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CStarkeyValueQuery) pack() []byte {
+pub fn (o &CSTAR_KeyValueQuery) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_string_field(o.key, 1)
@@ -43,8 +65,8 @@ pub fn (o &CStarkeyValueQuery) pack() []byte {
 	return res
 }
 
-pub fn cstarkeyvaluequery_unpack(buf []byte) ?CStarkeyValueQuery {
-	mut res := CStarkeyValueQuery{}
+pub fn cstar_keyvaluequery_unpack(buf []byte) ?CSTAR_KeyValueQuery {
+	mut res := CSTAR_KeyValueQuery{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -82,45 +104,45 @@ pub fn cstarkeyvaluequery_unpack(buf []byte) ?CStarkeyValueQuery {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarkeyvaluequery() CStarkeyValueQuery {
-	return CStarkeyValueQuery{}
+pub fn zzz_vproto_internal_new_cstar_keyvaluequery() CSTAR_KeyValueQuery {
+	return CSTAR_KeyValueQuery{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarkeyvaluequery(o CStarkeyValueQuery, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_keyvaluequery(o CSTAR_KeyValueQuery, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarkeyvaluequery(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarkeyValueQuery) {
+pub fn zzz_vproto_internal_unpack_cstar_keyvaluequery(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_KeyValueQuery) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarkeyvaluequery_unpack(v)?
+	mut unpacked := cstar_keyvaluequery_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarglyphQueryParams {
+pub struct CSTAR_GlyphQueryParams {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	bundle_id      u64
 	has_bundle_id  bool
-	queries        []CStarkeyValueQuery
+	queries        []CSTAR_KeyValueQuery
 }
 
-pub fn (o &CStarglyphQueryParams) pack() []byte {
+pub fn (o &CSTAR_GlyphQueryParams) pack() []byte {
 	mut res := []byte{}
 	if o.has_bundle_id {
 		res << vproto.pack_uint64_field(o.bundle_id, 1)
 	}
 	// [packed=false]
 	for _, x in o.queries {
-		res << zzz_vproto_internal_pack_cstarkeyvaluequery(x, 2)
+		res << zzz_vproto_internal_pack_cstar_keyvaluequery(x, 2)
 	}
 	return res
 }
 
-pub fn cstarglyphqueryparams_unpack(buf []byte) ?CStarglyphQueryParams {
-	mut res := CStarglyphQueryParams{}
+pub fn cstar_glyphqueryparams_unpack(buf []byte) ?CSTAR_GlyphQueryParams {
+	mut res := CSTAR_GlyphQueryParams{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -138,7 +160,7 @@ pub fn cstarglyphqueryparams_unpack(buf []byte) ?CStarglyphQueryParams {
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cstarkeyvaluequery(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cstar_keyvaluequery(cur_buf, tag_wiretype.wire_type)?
 				res.queries << v
 				i = ii
 			}
@@ -158,36 +180,36 @@ pub fn cstarglyphqueryparams_unpack(buf []byte) ?CStarglyphQueryParams {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarglyphqueryparams() CStarglyphQueryParams {
-	return CStarglyphQueryParams{}
+pub fn zzz_vproto_internal_new_cstar_glyphqueryparams() CSTAR_GlyphQueryParams {
+	return CSTAR_GlyphQueryParams{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarglyphqueryparams(o CStarglyphQueryParams, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_glyphqueryparams(o CSTAR_GlyphQueryParams, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarglyphqueryparams(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarglyphQueryParams) {
+pub fn zzz_vproto_internal_unpack_cstar_glyphqueryparams(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_GlyphQueryParams) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarglyphqueryparams_unpack(v)?
+	mut unpacked := cstar_glyphqueryparams_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarreadGlyphDataRequest {
+pub struct CSTAR_ReadGlyphData_Request {
 mut:
 	unknown_fields                     []vproto.UnknownField
 pub mut:
-	query_params                       CStarglyphQueryParams
+	query_params                       CSTAR_GlyphQueryParams
 	has_query_params                   bool
 	last_modified_time_lower_limit     string
 	has_last_modified_time_lower_limit bool
 }
 
-pub fn (o &CStarreadGlyphDataRequest) pack() []byte {
+pub fn (o &CSTAR_ReadGlyphData_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_query_params {
-		res << zzz_vproto_internal_pack_cstarglyphqueryparams(o.query_params, 1)
+		res << zzz_vproto_internal_pack_cstar_glyphqueryparams(o.query_params, 1)
 	}
 	if o.has_last_modified_time_lower_limit {
 		res << vproto.pack_string_field(o.last_modified_time_lower_limit, 2)
@@ -195,8 +217,8 @@ pub fn (o &CStarreadGlyphDataRequest) pack() []byte {
 	return res
 }
 
-pub fn cstarreadglyphdatarequest_unpack(buf []byte) ?CStarreadGlyphDataRequest {
-	mut res := CStarreadGlyphDataRequest{}
+pub fn cstar_readglyphdata_request_unpack(buf []byte) ?CSTAR_ReadGlyphData_Request {
+	mut res := CSTAR_ReadGlyphData_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -208,7 +230,7 @@ pub fn cstarreadglyphdatarequest_unpack(buf []byte) ?CStarreadGlyphDataRequest {
 		match tag_wiretype.tag {
 			1 {
 				res.has_query_params = true
-				ii, v := zzz_vproto_internal_unpack_cstarglyphqueryparams(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cstar_glyphqueryparams(cur_buf, tag_wiretype.wire_type)?
 				res.query_params = v
 				i = ii
 			}
@@ -234,23 +256,23 @@ pub fn cstarreadglyphdatarequest_unpack(buf []byte) ?CStarreadGlyphDataRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarreadglyphdatarequest() CStarreadGlyphDataRequest {
-	return CStarreadGlyphDataRequest{}
+pub fn zzz_vproto_internal_new_cstar_readglyphdata_request() CSTAR_ReadGlyphData_Request {
+	return CSTAR_ReadGlyphData_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarreadglyphdatarequest(o CStarreadGlyphDataRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_readglyphdata_request(o CSTAR_ReadGlyphData_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarreadglyphdatarequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarreadGlyphDataRequest) {
+pub fn zzz_vproto_internal_unpack_cstar_readglyphdata_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_ReadGlyphData_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarreadglyphdatarequest_unpack(v)?
+	mut unpacked := cstar_readglyphdata_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarglyphData {
+pub struct CSTAR_GlyphData {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -262,7 +284,7 @@ pub mut:
 	has_glyph_json_data     bool
 }
 
-pub fn (o &CStarglyphData) pack() []byte {
+pub fn (o &CSTAR_GlyphData) pack() []byte {
 	mut res := []byte{}
 	if o.has_glyph_guid {
 		res << vproto.pack_bytes_field(o.glyph_guid, 1)
@@ -276,8 +298,8 @@ pub fn (o &CStarglyphData) pack() []byte {
 	return res
 }
 
-pub fn cstarglyphdata_unpack(buf []byte) ?CStarglyphData {
-	mut res := CStarglyphData{}
+pub fn cstar_glyphdata_unpack(buf []byte) ?CSTAR_GlyphData {
+	mut res := CSTAR_GlyphData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -321,45 +343,45 @@ pub fn cstarglyphdata_unpack(buf []byte) ?CStarglyphData {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarglyphdata() CStarglyphData {
-	return CStarglyphData{}
+pub fn zzz_vproto_internal_new_cstar_glyphdata() CSTAR_GlyphData {
+	return CSTAR_GlyphData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarglyphdata(o CStarglyphData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_glyphdata(o CSTAR_GlyphData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarglyphdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarglyphData) {
+pub fn zzz_vproto_internal_unpack_cstar_glyphdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_GlyphData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarglyphdata_unpack(v)?
+	mut unpacked := cstar_glyphdata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarwriteGlyphDataRequest {
+pub struct CSTAR_WriteGlyphData_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	bundle_id      u64
 	has_bundle_id  bool
-	glyph_data     []CStarglyphData
+	glyph_data     []CSTAR_GlyphData
 }
 
-pub fn (o &CStarwriteGlyphDataRequest) pack() []byte {
+pub fn (o &CSTAR_WriteGlyphData_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_bundle_id {
 		res << vproto.pack_uint64_field(o.bundle_id, 1)
 	}
 	// [packed=false]
 	for _, x in o.glyph_data {
-		res << zzz_vproto_internal_pack_cstarglyphdata(x, 2)
+		res << zzz_vproto_internal_pack_cstar_glyphdata(x, 2)
 	}
 	return res
 }
 
-pub fn cstarwriteglyphdatarequest_unpack(buf []byte) ?CStarwriteGlyphDataRequest {
-	mut res := CStarwriteGlyphDataRequest{}
+pub fn cstar_writeglyphdata_request_unpack(buf []byte) ?CSTAR_WriteGlyphData_Request {
+	mut res := CSTAR_WriteGlyphData_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -377,7 +399,7 @@ pub fn cstarwriteglyphdatarequest_unpack(buf []byte) ?CStarwriteGlyphDataRequest
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cstarglyphdata(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cstar_glyphdata(cur_buf, tag_wiretype.wire_type)?
 				res.glyph_data << v
 				i = ii
 			}
@@ -397,45 +419,45 @@ pub fn cstarwriteglyphdatarequest_unpack(buf []byte) ?CStarwriteGlyphDataRequest
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarwriteglyphdatarequest() CStarwriteGlyphDataRequest {
-	return CStarwriteGlyphDataRequest{}
+pub fn zzz_vproto_internal_new_cstar_writeglyphdata_request() CSTAR_WriteGlyphData_Request {
+	return CSTAR_WriteGlyphData_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarwriteglyphdatarequest(o CStarwriteGlyphDataRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_writeglyphdata_request(o CSTAR_WriteGlyphData_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarwriteglyphdatarequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarwriteGlyphDataRequest) {
+pub fn zzz_vproto_internal_unpack_cstar_writeglyphdata_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_WriteGlyphData_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarwriteglyphdatarequest_unpack(v)?
+	mut unpacked := cstar_writeglyphdata_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarrequest {
+pub struct CSTAR_Request {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	read_glyph_data      CStarreadGlyphDataRequest
+	read_glyph_data      CSTAR_ReadGlyphData_Request
 	has_read_glyph_data  bool
-	write_glyph_data     CStarwriteGlyphDataRequest
+	write_glyph_data     CSTAR_WriteGlyphData_Request
 	has_write_glyph_data bool
 }
 
-pub fn (o &CStarrequest) pack() []byte {
+pub fn (o &CSTAR_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_read_glyph_data {
-		res << zzz_vproto_internal_pack_cstarreadglyphdatarequest(o.read_glyph_data, 1)
+		res << zzz_vproto_internal_pack_cstar_readglyphdata_request(o.read_glyph_data, 1)
 	}
 	if o.has_write_glyph_data {
-		res << zzz_vproto_internal_pack_cstarwriteglyphdatarequest(o.write_glyph_data, 2)
+		res << zzz_vproto_internal_pack_cstar_writeglyphdata_request(o.write_glyph_data, 2)
 	}
 	return res
 }
 
-pub fn cstarrequest_unpack(buf []byte) ?CStarrequest {
-	mut res := CStarrequest{}
+pub fn cstar_request_unpack(buf []byte) ?CSTAR_Request {
+	mut res := CSTAR_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -447,14 +469,14 @@ pub fn cstarrequest_unpack(buf []byte) ?CStarrequest {
 		match tag_wiretype.tag {
 			1 {
 				res.has_read_glyph_data = true
-				ii, v := zzz_vproto_internal_unpack_cstarreadglyphdatarequest(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstar_readglyphdata_request(cur_buf,
 					tag_wiretype.wire_type)?
 				res.read_glyph_data = v
 				i = ii
 			}
 			2 {
 				res.has_write_glyph_data = true
-				ii, v := zzz_vproto_internal_unpack_cstarwriteglyphdatarequest(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstar_writeglyphdata_request(cur_buf,
 					tag_wiretype.wire_type)?
 				res.write_glyph_data = v
 				i = ii
@@ -475,45 +497,45 @@ pub fn cstarrequest_unpack(buf []byte) ?CStarrequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarrequest() CStarrequest {
-	return CStarrequest{}
+pub fn zzz_vproto_internal_new_cstar_request() CSTAR_Request {
+	return CSTAR_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarrequest(o CStarrequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_request(o CSTAR_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarrequest) {
+pub fn zzz_vproto_internal_unpack_cstar_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarrequest_unpack(v)?
+	mut unpacked := cstar_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarreadGlyphDataResponse {
+pub struct CSTAR_ReadGlyphData_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	bundle_id      u64
 	has_bundle_id  bool
-	glyph_data     []CStarglyphData
+	glyph_data     []CSTAR_GlyphData
 }
 
-pub fn (o &CStarreadGlyphDataResponse) pack() []byte {
+pub fn (o &CSTAR_ReadGlyphData_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_bundle_id {
 		res << vproto.pack_uint64_field(o.bundle_id, 1)
 	}
 	// [packed=false]
 	for _, x in o.glyph_data {
-		res << zzz_vproto_internal_pack_cstarglyphdata(x, 2)
+		res << zzz_vproto_internal_pack_cstar_glyphdata(x, 2)
 	}
 	return res
 }
 
-pub fn cstarreadglyphdataresponse_unpack(buf []byte) ?CStarreadGlyphDataResponse {
-	mut res := CStarreadGlyphDataResponse{}
+pub fn cstar_readglyphdata_response_unpack(buf []byte) ?CSTAR_ReadGlyphData_Response {
+	mut res := CSTAR_ReadGlyphData_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -531,7 +553,7 @@ pub fn cstarreadglyphdataresponse_unpack(buf []byte) ?CStarreadGlyphDataResponse
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cstarglyphdata(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cstar_glyphdata(cur_buf, tag_wiretype.wire_type)?
 				res.glyph_data << v
 				i = ii
 			}
@@ -551,40 +573,40 @@ pub fn cstarreadglyphdataresponse_unpack(buf []byte) ?CStarreadGlyphDataResponse
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarreadglyphdataresponse() CStarreadGlyphDataResponse {
-	return CStarreadGlyphDataResponse{}
+pub fn zzz_vproto_internal_new_cstar_readglyphdata_response() CSTAR_ReadGlyphData_Response {
+	return CSTAR_ReadGlyphData_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarreadglyphdataresponse(o CStarreadGlyphDataResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_readglyphdata_response(o CSTAR_ReadGlyphData_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarreadglyphdataresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarreadGlyphDataResponse) {
+pub fn zzz_vproto_internal_unpack_cstar_readglyphdata_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_ReadGlyphData_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarreadglyphdataresponse_unpack(v)?
+	mut unpacked := cstar_readglyphdata_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarwriteGlyphDataResponse {
+pub struct CSTAR_WriteGlyphData_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	result         []EStarglyphWriteResult
+	result         []E_STAR_GlyphWriteResult
 }
 
-pub fn (o &CStarwriteGlyphDataResponse) pack() []byte {
+pub fn (o &CSTAR_WriteGlyphData_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.result {
-		res << zzz_vproto_internal_pack_estarglyphwriteresult(x, 1)
+		res << zzz_vproto_internal_pack_e_star_glyphwriteresult(x, 1)
 	}
 	return res
 }
 
-pub fn cstarwriteglyphdataresponse_unpack(buf []byte) ?CStarwriteGlyphDataResponse {
-	mut res := CStarwriteGlyphDataResponse{}
+pub fn cstar_writeglyphdata_response_unpack(buf []byte) ?CSTAR_WriteGlyphData_Response {
+	mut res := CSTAR_WriteGlyphData_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -596,7 +618,7 @@ pub fn cstarwriteglyphdataresponse_unpack(buf []byte) ?CStarwriteGlyphDataRespon
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_estarglyphwriteresult(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_e_star_glyphwriteresult(cur_buf, tag_wiretype.wire_type)?
 				res.result << v
 				i = ii
 			}
@@ -616,45 +638,45 @@ pub fn cstarwriteglyphdataresponse_unpack(buf []byte) ?CStarwriteGlyphDataRespon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarwriteglyphdataresponse() CStarwriteGlyphDataResponse {
-	return CStarwriteGlyphDataResponse{}
+pub fn zzz_vproto_internal_new_cstar_writeglyphdata_response() CSTAR_WriteGlyphData_Response {
+	return CSTAR_WriteGlyphData_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarwriteglyphdataresponse(o CStarwriteGlyphDataResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_writeglyphdata_response(o CSTAR_WriteGlyphData_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarwriteglyphdataresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarwriteGlyphDataResponse) {
+pub fn zzz_vproto_internal_unpack_cstar_writeglyphdata_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_WriteGlyphData_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarwriteglyphdataresponse_unpack(v)?
+	mut unpacked := cstar_writeglyphdata_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CStarresponse {
+pub struct CSTAR_Response {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	read_glyph_data      CStarreadGlyphDataResponse
+	read_glyph_data      CSTAR_ReadGlyphData_Response
 	has_read_glyph_data  bool
-	write_glyph_data     CStarwriteGlyphDataResponse
+	write_glyph_data     CSTAR_WriteGlyphData_Response
 	has_write_glyph_data bool
 }
 
-pub fn (o &CStarresponse) pack() []byte {
+pub fn (o &CSTAR_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_read_glyph_data {
-		res << zzz_vproto_internal_pack_cstarreadglyphdataresponse(o.read_glyph_data, 1)
+		res << zzz_vproto_internal_pack_cstar_readglyphdata_response(o.read_glyph_data, 1)
 	}
 	if o.has_write_glyph_data {
-		res << zzz_vproto_internal_pack_cstarwriteglyphdataresponse(o.write_glyph_data, 2)
+		res << zzz_vproto_internal_pack_cstar_writeglyphdata_response(o.write_glyph_data, 2)
 	}
 	return res
 }
 
-pub fn cstarresponse_unpack(buf []byte) ?CStarresponse {
-	mut res := CStarresponse{}
+pub fn cstar_response_unpack(buf []byte) ?CSTAR_Response {
+	mut res := CSTAR_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -666,14 +688,14 @@ pub fn cstarresponse_unpack(buf []byte) ?CStarresponse {
 		match tag_wiretype.tag {
 			1 {
 				res.has_read_glyph_data = true
-				ii, v := zzz_vproto_internal_unpack_cstarreadglyphdataresponse(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstar_readglyphdata_response(cur_buf,
 					tag_wiretype.wire_type)?
 				res.read_glyph_data = v
 				i = ii
 			}
 			2 {
 				res.has_write_glyph_data = true
-				ii, v := zzz_vproto_internal_unpack_cstarwriteglyphdataresponse(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cstar_writeglyphdata_response(cur_buf,
 					tag_wiretype.wire_type)?
 				res.write_glyph_data = v
 				i = ii
@@ -694,18 +716,18 @@ pub fn cstarresponse_unpack(buf []byte) ?CStarresponse {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cstarresponse() CStarresponse {
-	return CStarresponse{}
+pub fn zzz_vproto_internal_new_cstar_response() CSTAR_Response {
+	return CSTAR_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cstarresponse(o CStarresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cstar_response(o CSTAR_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cstarresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CStarresponse) {
+pub fn zzz_vproto_internal_unpack_cstar_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSTAR_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cstarresponse_unpack(v)?
+	mut unpacked := cstar_response_unpack(v)?
 	return i, unpacked
 }

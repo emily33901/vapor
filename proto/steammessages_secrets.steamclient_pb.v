@@ -14,12 +14,34 @@ fn zzz_vproto_internal_pack_ekeyescrowusage(e EKeyEscrowUsage, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_ekeyescrowusage_packed(e []EKeyEscrowUsage, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_ekeyescrowusage(buf []byte, tag_wiretype vproto.WireType) ?(int, EKeyEscrowUsage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EKeyEscrowUsage(v)
 }
 
-pub struct CKeyEscrowRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_ekeyescrowusage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EKeyEscrowUsage) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CKeyEscrow_Request {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -33,7 +55,7 @@ pub mut:
 	has_device_name         bool
 }
 
-pub fn (o &CKeyEscrowRequest) pack() []byte {
+pub fn (o &CKeyEscrow_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_rsa_oaep_sha_ticket {
 		res << vproto.pack_bytes_field(o.rsa_oaep_sha_ticket, 1)
@@ -50,8 +72,8 @@ pub fn (o &CKeyEscrowRequest) pack() []byte {
 	return res
 }
 
-pub fn ckeyescrowrequest_unpack(buf []byte) ?CKeyEscrowRequest {
-	mut res := CKeyEscrowRequest{}
+pub fn ckeyescrow_request_unpack(buf []byte) ?CKeyEscrow_Request {
+	mut res := CKeyEscrow_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -101,23 +123,23 @@ pub fn ckeyescrowrequest_unpack(buf []byte) ?CKeyEscrowRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ckeyescrowrequest() CKeyEscrowRequest {
-	return CKeyEscrowRequest{}
+pub fn zzz_vproto_internal_new_ckeyescrow_request() CKeyEscrow_Request {
+	return CKeyEscrow_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ckeyescrowrequest(o CKeyEscrowRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ckeyescrow_request(o CKeyEscrow_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ckeyescrowrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrowRequest) {
+pub fn zzz_vproto_internal_unpack_ckeyescrow_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrow_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ckeyescrowrequest_unpack(v)?
+	mut unpacked := ckeyescrow_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CKeyEscrowTicket {
+pub struct CKeyEscrow_Ticket {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -141,7 +163,7 @@ pub mut:
 	has_device_provisioning_id bool
 }
 
-pub fn (o &CKeyEscrowTicket) pack() []byte {
+pub fn (o &CKeyEscrow_Ticket) pack() []byte {
 	mut res := []byte{}
 	if o.has_password {
 		res << vproto.pack_bytes_field(o.password, 1)
@@ -173,8 +195,8 @@ pub fn (o &CKeyEscrowTicket) pack() []byte {
 	return res
 }
 
-pub fn ckeyescrowticket_unpack(buf []byte) ?CKeyEscrowTicket {
-	mut res := CKeyEscrowTicket{}
+pub fn ckeyescrow_ticket_unpack(buf []byte) ?CKeyEscrow_Ticket {
+	mut res := CKeyEscrow_Ticket{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -254,40 +276,40 @@ pub fn ckeyescrowticket_unpack(buf []byte) ?CKeyEscrowTicket {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ckeyescrowticket() CKeyEscrowTicket {
-	return CKeyEscrowTicket{}
+pub fn zzz_vproto_internal_new_ckeyescrow_ticket() CKeyEscrow_Ticket {
+	return CKeyEscrow_Ticket{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ckeyescrowticket(o CKeyEscrowTicket, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ckeyescrow_ticket(o CKeyEscrow_Ticket, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ckeyescrowticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrowTicket) {
+pub fn zzz_vproto_internal_unpack_ckeyescrow_ticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrow_Ticket) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ckeyescrowticket_unpack(v)?
+	mut unpacked := ckeyescrow_ticket_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CKeyEscrowResponse {
+pub struct CKeyEscrow_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	ticket         CKeyEscrowTicket
+	ticket         CKeyEscrow_Ticket
 	has_ticket     bool
 }
 
-pub fn (o &CKeyEscrowResponse) pack() []byte {
+pub fn (o &CKeyEscrow_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_ticket {
-		res << zzz_vproto_internal_pack_ckeyescrowticket(o.ticket, 1)
+		res << zzz_vproto_internal_pack_ckeyescrow_ticket(o.ticket, 1)
 	}
 	return res
 }
 
-pub fn ckeyescrowresponse_unpack(buf []byte) ?CKeyEscrowResponse {
-	mut res := CKeyEscrowResponse{}
+pub fn ckeyescrow_response_unpack(buf []byte) ?CKeyEscrow_Response {
+	mut res := CKeyEscrow_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -299,7 +321,7 @@ pub fn ckeyescrowresponse_unpack(buf []byte) ?CKeyEscrowResponse {
 		match tag_wiretype.tag {
 			1 {
 				res.has_ticket = true
-				ii, v := zzz_vproto_internal_unpack_ckeyescrowticket(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ckeyescrow_ticket(cur_buf, tag_wiretype.wire_type)?
 				res.ticket = v
 				i = ii
 			}
@@ -319,18 +341,18 @@ pub fn ckeyescrowresponse_unpack(buf []byte) ?CKeyEscrowResponse {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ckeyescrowresponse() CKeyEscrowResponse {
-	return CKeyEscrowResponse{}
+pub fn zzz_vproto_internal_new_ckeyescrow_response() CKeyEscrow_Response {
+	return CKeyEscrow_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ckeyescrowresponse(o CKeyEscrowResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ckeyescrow_response(o CKeyEscrow_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ckeyescrowresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrowResponse) {
+pub fn zzz_vproto_internal_unpack_ckeyescrow_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrow_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ckeyescrowresponse_unpack(v)?
+	mut unpacked := ckeyescrow_response_unpack(v)?
 	return i, unpacked
 }

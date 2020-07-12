@@ -44,9 +44,31 @@ fn zzz_vproto_internal_pack_edisplaystatus(e EDisplayStatus, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_edisplaystatus_packed(e []EDisplayStatus, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_edisplaystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, EDisplayStatus) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EDisplayStatus(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_edisplaystatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EDisplayStatus) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -79,9 +101,31 @@ fn zzz_vproto_internal_pack_eprotoapptype(e EProtoAppType, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eprotoapptype_packed(e []EProtoAppType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eprotoapptype(buf []byte, tag_wiretype vproto.WireType) ?(int, EProtoAppType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EProtoAppType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eprotoapptype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EProtoAppType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -98,9 +142,31 @@ fn zzz_vproto_internal_pack_eappassociationtype(e EAppAssociationType, num u32) 
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eappassociationtype_packed(e []EAppAssociationType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eappassociationtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EAppAssociationType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EAppAssociationType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eappassociationtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EAppAssociationType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -116,12 +182,34 @@ fn zzz_vproto_internal_pack_eappcontrollersupportlevel(e EAppControllerSupportLe
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eappcontrollersupportlevel_packed(e []EAppControllerSupportLevel, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eappcontrollersupportlevel(buf []byte, tag_wiretype vproto.WireType) ?(int, EAppControllerSupportLevel) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EAppControllerSupportLevel(v)
 }
 
-pub struct CAppOverviewAppAssociation {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eappcontrollersupportlevel_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EAppControllerSupportLevel) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CAppOverview_AppAssociation {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -131,7 +219,7 @@ pub mut:
 	has_name       bool
 }
 
-pub fn (o &CAppOverviewAppAssociation) pack() []byte {
+pub fn (o &CAppOverview_AppAssociation) pack() []byte {
 	mut res := []byte{}
 	if o.has_type {
 		res << zzz_vproto_internal_pack_eappassociationtype(o.@type, 1)
@@ -142,8 +230,8 @@ pub fn (o &CAppOverviewAppAssociation) pack() []byte {
 	return res
 }
 
-pub fn cappoverviewappassociation_unpack(buf []byte) ?CAppOverviewAppAssociation {
-	mut res := CAppOverviewAppAssociation{}
+pub fn cappoverview_appassociation_unpack(buf []byte) ?CAppOverview_AppAssociation {
+	mut res := CAppOverview_AppAssociation{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -181,23 +269,23 @@ pub fn cappoverviewappassociation_unpack(buf []byte) ?CAppOverviewAppAssociation
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cappoverviewappassociation() CAppOverviewAppAssociation {
-	return CAppOverviewAppAssociation{}
+pub fn zzz_vproto_internal_new_cappoverview_appassociation() CAppOverview_AppAssociation {
+	return CAppOverview_AppAssociation{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cappoverviewappassociation(o CAppOverviewAppAssociation, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cappoverview_appassociation(o CAppOverview_AppAssociation, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cappoverviewappassociation(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverviewAppAssociation) {
+pub fn zzz_vproto_internal_unpack_cappoverview_appassociation(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview_AppAssociation) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cappoverviewappassociation_unpack(v)?
+	mut unpacked := cappoverview_appassociation_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAppOverviewPerClientData {
+pub struct CAppOverview_PerClientData {
 mut:
 	unknown_fields                       []vproto.UnknownField
 pub mut:
@@ -227,7 +315,7 @@ pub mut:
 	has_playtime_left                    bool
 }
 
-pub fn (o &CAppOverviewPerClientData) pack() []byte {
+pub fn (o &CAppOverview_PerClientData) pack() []byte {
 	mut res := []byte{}
 	if o.has_clientid {
 		res << vproto.pack_uint64_field(o.clientid, 1)
@@ -268,8 +356,8 @@ pub fn (o &CAppOverviewPerClientData) pack() []byte {
 	return res
 }
 
-pub fn cappoverviewperclientdata_unpack(buf []byte) ?CAppOverviewPerClientData {
-	mut res := CAppOverviewPerClientData{}
+pub fn cappoverview_perclientdata_unpack(buf []byte) ?CAppOverview_PerClientData {
+	mut res := CAppOverview_PerClientData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -367,19 +455,19 @@ pub fn cappoverviewperclientdata_unpack(buf []byte) ?CAppOverviewPerClientData {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cappoverviewperclientdata() CAppOverviewPerClientData {
-	return CAppOverviewPerClientData{}
+pub fn zzz_vproto_internal_new_cappoverview_perclientdata() CAppOverview_PerClientData {
+	return CAppOverview_PerClientData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cappoverviewperclientdata(o CAppOverviewPerClientData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cappoverview_perclientdata(o CAppOverview_PerClientData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cappoverviewperclientdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverviewPerClientData) {
+pub fn zzz_vproto_internal_unpack_cappoverview_perclientdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview_PerClientData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cappoverviewperclientdata_unpack(v)?
+	mut unpacked := cappoverview_perclientdata_unpack(v)?
 	return i, unpacked
 }
 
@@ -408,7 +496,7 @@ pub mut:
 	rt_last_time_played                 u32
 	has_rt_last_time_played             bool
 	store_tag                           []u32
-	association                         []CAppOverviewAppAssociation
+	association                         []CAppOverview_AppAssociation
 	store_category                      []u32
 	rt_original_release_date            u32
 	has_rt_original_release_date        bool
@@ -436,7 +524,7 @@ pub mut:
 	has_gameid                          bool
 	library_capsule_filename            string
 	has_library_capsule_filename        bool
-	per_client_data                     []CAppOverviewPerClientData
+	per_client_data                     []CAppOverview_PerClientData
 	most_available_clientid             u64
 	has_most_available_clientid         bool
 	selected_clientid                   u64
@@ -505,7 +593,7 @@ pub fn (o &CAppOverview) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.association {
-		res << zzz_vproto_internal_pack_cappoverviewappassociation(x, 20)
+		res << zzz_vproto_internal_pack_cappoverview_appassociation(x, 20)
 	}
 	// [packed=false]
 	for _, x in o.store_category {
@@ -552,7 +640,7 @@ pub fn (o &CAppOverview) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.per_client_data {
-		res << zzz_vproto_internal_pack_cappoverviewperclientdata(x, 43)
+		res << zzz_vproto_internal_pack_cappoverview_perclientdata(x, 43)
 	}
 	if o.has_most_available_clientid {
 		res << vproto.pack_uint64_field(o.most_available_clientid, 44)
@@ -678,7 +766,7 @@ pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
 			}
 			20 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cappoverviewappassociation(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cappoverview_appassociation(cur_buf,
 					tag_wiretype.wire_type)?
 				res.association << v
 				i = ii
@@ -770,7 +858,7 @@ pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
 			}
 			43 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cappoverviewperclientdata(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cappoverview_perclientdata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.per_client_data << v
 				i = ii
@@ -891,7 +979,7 @@ pub fn zzz_vproto_internal_unpack_cappoverview(buf []byte, tag_wiretype vproto.W
 	return i, unpacked
 }
 
-pub struct CAppOverviewChange {
+pub struct CAppOverview_Change {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -899,7 +987,7 @@ pub mut:
 	removed_appid  []u32
 }
 
-pub fn (o &CAppOverviewChange) pack() []byte {
+pub fn (o &CAppOverview_Change) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.app_overview {
@@ -912,8 +1000,8 @@ pub fn (o &CAppOverviewChange) pack() []byte {
 	return res
 }
 
-pub fn cappoverviewchange_unpack(buf []byte) ?CAppOverviewChange {
-	mut res := CAppOverviewChange{}
+pub fn cappoverview_change_unpack(buf []byte) ?CAppOverview_Change {
+	mut res := CAppOverview_Change{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -951,19 +1039,19 @@ pub fn cappoverviewchange_unpack(buf []byte) ?CAppOverviewChange {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cappoverviewchange() CAppOverviewChange {
-	return CAppOverviewChange{}
+pub fn zzz_vproto_internal_new_cappoverview_change() CAppOverview_Change {
+	return CAppOverview_Change{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cappoverviewchange(o CAppOverviewChange, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cappoverview_change(o CAppOverview_Change, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cappoverviewchange(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverviewChange) {
+pub fn zzz_vproto_internal_unpack_cappoverview_change(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview_Change) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cappoverviewchange_unpack(v)?
+	mut unpacked := cappoverview_change_unpack(v)?
 	return i, unpacked
 }
 

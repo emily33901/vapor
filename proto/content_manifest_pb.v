@@ -15,12 +15,34 @@ fn zzz_vproto_internal_pack_econtentdeltachunkdatalocation(e EContentDeltaChunkD
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_econtentdeltachunkdatalocation_packed(e []EContentDeltaChunkDataLocation, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_econtentdeltachunkdatalocation(buf []byte, tag_wiretype vproto.WireType) ?(int, EContentDeltaChunkDataLocation) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EContentDeltaChunkDataLocation(v)
 }
 
-pub struct ContentManifestPayloadFileMappingChunkData {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_econtentdeltachunkdatalocation_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EContentDeltaChunkDataLocation) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct ContentManifestPayloadFileMapping_ChunkData {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -36,7 +58,7 @@ pub mut:
 	has_cb_compressed bool
 }
 
-pub fn (o &ContentManifestPayloadFileMappingChunkData) pack() []byte {
+pub fn (o &ContentManifestPayloadFileMapping_ChunkData) pack() []byte {
 	mut res := []byte{}
 	if o.has_sha {
 		res << vproto.pack_bytes_field(o.sha, 1)
@@ -56,8 +78,8 @@ pub fn (o &ContentManifestPayloadFileMappingChunkData) pack() []byte {
 	return res
 }
 
-pub fn contentmanifestpayloadfilemappingchunkdata_unpack(buf []byte) ?ContentManifestPayloadFileMappingChunkData {
-	mut res := ContentManifestPayloadFileMappingChunkData{}
+pub fn contentmanifestpayloadfilemapping_chunkdata_unpack(buf []byte) ?ContentManifestPayloadFileMapping_ChunkData {
+	mut res := ContentManifestPayloadFileMapping_ChunkData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -113,23 +135,23 @@ pub fn contentmanifestpayloadfilemappingchunkdata_unpack(buf []byte) ?ContentMan
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_contentmanifestpayloadfilemappingchunkdata() ContentManifestPayloadFileMappingChunkData {
-	return ContentManifestPayloadFileMappingChunkData{}
+pub fn zzz_vproto_internal_new_contentmanifestpayloadfilemapping_chunkdata() ContentManifestPayloadFileMapping_ChunkData {
+	return ContentManifestPayloadFileMapping_ChunkData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_contentmanifestpayloadfilemappingchunkdata(o ContentManifestPayloadFileMappingChunkData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_contentmanifestpayloadfilemapping_chunkdata(o ContentManifestPayloadFileMapping_ChunkData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_contentmanifestpayloadfilemappingchunkdata(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayloadFileMappingChunkData) {
+pub fn zzz_vproto_internal_unpack_contentmanifestpayloadfilemapping_chunkdata(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayloadFileMapping_ChunkData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestpayloadfilemappingchunkdata_unpack(v)?
+	mut unpacked := contentmanifestpayloadfilemapping_chunkdata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct ContentManifestPayloadFileMapping {
+pub struct ContentManifestPayload_FileMapping {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -143,12 +165,12 @@ pub mut:
 	has_sha_filename bool
 	sha_content      []byte
 	has_sha_content  bool
-	chunks           []ContentManifestPayloadFileMappingChunkData
+	chunks           []ContentManifestPayloadFileMapping_ChunkData
 	linktarget       string
 	has_linktarget   bool
 }
 
-pub fn (o &ContentManifestPayloadFileMapping) pack() []byte {
+pub fn (o &ContentManifestPayload_FileMapping) pack() []byte {
 	mut res := []byte{}
 	if o.has_filename {
 		res << vproto.pack_string_field(o.filename, 1)
@@ -167,7 +189,7 @@ pub fn (o &ContentManifestPayloadFileMapping) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.chunks {
-		res << zzz_vproto_internal_pack_contentmanifestpayloadfilemappingchunkdata(x, 6)
+		res << zzz_vproto_internal_pack_contentmanifestpayloadfilemapping_chunkdata(x, 6)
 	}
 	if o.has_linktarget {
 		res << vproto.pack_string_field(o.linktarget, 7)
@@ -175,8 +197,8 @@ pub fn (o &ContentManifestPayloadFileMapping) pack() []byte {
 	return res
 }
 
-pub fn contentmanifestpayloadfilemapping_unpack(buf []byte) ?ContentManifestPayloadFileMapping {
-	mut res := ContentManifestPayloadFileMapping{}
+pub fn contentmanifestpayload_filemapping_unpack(buf []byte) ?ContentManifestPayload_FileMapping {
+	mut res := ContentManifestPayload_FileMapping{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -218,7 +240,7 @@ pub fn contentmanifestpayloadfilemapping_unpack(buf []byte) ?ContentManifestPayl
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_contentmanifestpayloadfilemappingchunkdata(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_contentmanifestpayloadfilemapping_chunkdata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.chunks << v
 				i = ii
@@ -245,19 +267,19 @@ pub fn contentmanifestpayloadfilemapping_unpack(buf []byte) ?ContentManifestPayl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_contentmanifestpayloadfilemapping() ContentManifestPayloadFileMapping {
-	return ContentManifestPayloadFileMapping{}
+pub fn zzz_vproto_internal_new_contentmanifestpayload_filemapping() ContentManifestPayload_FileMapping {
+	return ContentManifestPayload_FileMapping{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_contentmanifestpayloadfilemapping(o ContentManifestPayloadFileMapping, num u32) []byte {
+pub fn zzz_vproto_internal_pack_contentmanifestpayload_filemapping(o ContentManifestPayload_FileMapping, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_contentmanifestpayloadfilemapping(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayloadFileMapping) {
+pub fn zzz_vproto_internal_unpack_contentmanifestpayload_filemapping(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayload_FileMapping) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestpayloadfilemapping_unpack(v)?
+	mut unpacked := contentmanifestpayload_filemapping_unpack(v)?
 	return i, unpacked
 }
 
@@ -265,14 +287,14 @@ pub struct ContentManifestPayload {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	mappings       []ContentManifestPayloadFileMapping
+	mappings       []ContentManifestPayload_FileMapping
 }
 
 pub fn (o &ContentManifestPayload) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.mappings {
-		res << zzz_vproto_internal_pack_contentmanifestpayloadfilemapping(x, 1)
+		res << zzz_vproto_internal_pack_contentmanifestpayload_filemapping(x, 1)
 	}
 	return res
 }
@@ -290,7 +312,7 @@ pub fn contentmanifestpayload_unpack(buf []byte) ?ContentManifestPayload {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_contentmanifestpayloadfilemapping(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_contentmanifestpayload_filemapping(cur_buf,
 					tag_wiretype.wire_type)?
 				res.mappings << v
 				i = ii
@@ -545,7 +567,7 @@ pub fn zzz_vproto_internal_unpack_contentmanifestsignature(buf []byte, tag_wiret
 	return i, unpacked
 }
 
-pub struct ContentDeltaChunksDeltaChunk {
+pub struct ContentDeltaChunks_DeltaChunk {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -563,7 +585,7 @@ pub mut:
 	has_size_delta    bool
 }
 
-pub fn (o &ContentDeltaChunksDeltaChunk) pack() []byte {
+pub fn (o &ContentDeltaChunks_DeltaChunk) pack() []byte {
 	mut res := []byte{}
 	if o.has_sha_source {
 		res << vproto.pack_bytes_field(o.sha_source, 1)
@@ -586,8 +608,8 @@ pub fn (o &ContentDeltaChunksDeltaChunk) pack() []byte {
 	return res
 }
 
-pub fn contentdeltachunksdeltachunk_unpack(buf []byte) ?ContentDeltaChunksDeltaChunk {
-	mut res := ContentDeltaChunksDeltaChunk{}
+pub fn contentdeltachunks_deltachunk_unpack(buf []byte) ?ContentDeltaChunks_DeltaChunk {
+	mut res := ContentDeltaChunks_DeltaChunk{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -649,19 +671,19 @@ pub fn contentdeltachunksdeltachunk_unpack(buf []byte) ?ContentDeltaChunksDeltaC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_contentdeltachunksdeltachunk() ContentDeltaChunksDeltaChunk {
-	return ContentDeltaChunksDeltaChunk{}
+pub fn zzz_vproto_internal_new_contentdeltachunks_deltachunk() ContentDeltaChunks_DeltaChunk {
+	return ContentDeltaChunks_DeltaChunk{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_contentdeltachunksdeltachunk(o ContentDeltaChunksDeltaChunk, num u32) []byte {
+pub fn zzz_vproto_internal_pack_contentdeltachunks_deltachunk(o ContentDeltaChunks_DeltaChunk, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_contentdeltachunksdeltachunk(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentDeltaChunksDeltaChunk) {
+pub fn zzz_vproto_internal_unpack_contentdeltachunks_deltachunk(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentDeltaChunks_DeltaChunk) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentdeltachunksdeltachunk_unpack(v)?
+	mut unpacked := contentdeltachunks_deltachunk_unpack(v)?
 	return i, unpacked
 }
 
@@ -675,7 +697,7 @@ pub mut:
 	has_manifest_id_source  bool
 	manifest_id_target      u64
 	has_manifest_id_target  bool
-	deltachunks             []ContentDeltaChunksDeltaChunk
+	deltachunks             []ContentDeltaChunks_DeltaChunk
 	chunk_data_location     EContentDeltaChunkDataLocation
 	has_chunk_data_location bool
 }
@@ -693,7 +715,7 @@ pub fn (o &ContentDeltaChunks) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.deltachunks {
-		res << zzz_vproto_internal_pack_contentdeltachunksdeltachunk(x, 4)
+		res << zzz_vproto_internal_pack_contentdeltachunks_deltachunk(x, 4)
 	}
 	if o.has_chunk_data_location {
 		res << zzz_vproto_internal_pack_econtentdeltachunkdatalocation(o.chunk_data_location, 5)
@@ -732,7 +754,7 @@ pub fn contentdeltachunks_unpack(buf []byte) ?ContentDeltaChunks {
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_contentdeltachunksdeltachunk(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_contentdeltachunks_deltachunk(cur_buf,
 					tag_wiretype.wire_type)?
 				res.deltachunks << v
 				i = ii

@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CCredentialsTestAvailablePasswordRequest {
+pub struct CCredentials_TestAvailablePassword_Request {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -15,7 +15,7 @@ pub mut:
 	has_account_name        bool
 }
 
-pub fn (o &CCredentialsTestAvailablePasswordRequest) pack() []byte {
+pub fn (o &CCredentials_TestAvailablePassword_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_password {
 		res << vproto.pack_string_field(o.password, 1)
@@ -29,8 +29,8 @@ pub fn (o &CCredentialsTestAvailablePasswordRequest) pack() []byte {
 	return res
 }
 
-pub fn ccredentialstestavailablepasswordrequest_unpack(buf []byte) ?CCredentialsTestAvailablePasswordRequest {
-	mut res := CCredentialsTestAvailablePasswordRequest{}
+pub fn ccredentials_testavailablepassword_request_unpack(buf []byte) ?CCredentials_TestAvailablePassword_Request {
+	mut res := CCredentials_TestAvailablePassword_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -74,23 +74,23 @@ pub fn ccredentialstestavailablepasswordrequest_unpack(buf []byte) ?CCredentials
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialstestavailablepasswordrequest() CCredentialsTestAvailablePasswordRequest {
-	return CCredentialsTestAvailablePasswordRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_testavailablepassword_request() CCredentials_TestAvailablePassword_Request {
+	return CCredentials_TestAvailablePassword_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialstestavailablepasswordrequest(o CCredentialsTestAvailablePasswordRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_testavailablepassword_request(o CCredentials_TestAvailablePassword_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialstestavailablepasswordrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsTestAvailablePasswordRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_testavailablepassword_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_TestAvailablePassword_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialstestavailablepasswordrequest_unpack(v)?
+	mut unpacked := ccredentials_testavailablepassword_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsTestAvailablePasswordResponse {
+pub struct CCredentials_TestAvailablePassword_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -98,7 +98,7 @@ pub mut:
 	has_is_valid   bool
 }
 
-pub fn (o &CCredentialsTestAvailablePasswordResponse) pack() []byte {
+pub fn (o &CCredentials_TestAvailablePassword_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_is_valid {
 		res << vproto.pack_bool_field(o.is_valid, 3)
@@ -106,8 +106,8 @@ pub fn (o &CCredentialsTestAvailablePasswordResponse) pack() []byte {
 	return res
 }
 
-pub fn ccredentialstestavailablepasswordresponse_unpack(buf []byte) ?CCredentialsTestAvailablePasswordResponse {
-	mut res := CCredentialsTestAvailablePasswordResponse{}
+pub fn ccredentials_testavailablepassword_response_unpack(buf []byte) ?CCredentials_TestAvailablePassword_Response {
+	mut res := CCredentials_TestAvailablePassword_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -139,23 +139,23 @@ pub fn ccredentialstestavailablepasswordresponse_unpack(buf []byte) ?CCredential
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialstestavailablepasswordresponse() CCredentialsTestAvailablePasswordResponse {
-	return CCredentialsTestAvailablePasswordResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_testavailablepassword_response() CCredentials_TestAvailablePassword_Response {
+	return CCredentials_TestAvailablePassword_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialstestavailablepasswordresponse(o CCredentialsTestAvailablePasswordResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_testavailablepassword_response(o CCredentials_TestAvailablePassword_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialstestavailablepasswordresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsTestAvailablePasswordResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_testavailablepassword_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_TestAvailablePassword_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialstestavailablepasswordresponse_unpack(v)?
+	mut unpacked := ccredentials_testavailablepassword_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsGetSteamGuardDetailsRequest {
+pub struct CCredentials_GetSteamGuardDetails_Request {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
@@ -169,7 +169,7 @@ pub mut:
 	has_ipaddress                   bool
 }
 
-pub fn (o &CCredentialsGetSteamGuardDetailsRequest) pack() []byte {
+pub fn (o &CCredentials_GetSteamGuardDetails_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_include_new_authentications {
 		res << vproto.pack_bool_field(o.include_new_authentications, 1)
@@ -186,8 +186,8 @@ pub fn (o &CCredentialsGetSteamGuardDetailsRequest) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsgetsteamguarddetailsrequest_unpack(buf []byte) ?CCredentialsGetSteamGuardDetailsRequest {
-	mut res := CCredentialsGetSteamGuardDetailsRequest{}
+pub fn ccredentials_getsteamguarddetails_request_unpack(buf []byte) ?CCredentials_GetSteamGuardDetails_Request {
+	mut res := CCredentials_GetSteamGuardDetails_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -237,23 +237,23 @@ pub fn ccredentialsgetsteamguarddetailsrequest_unpack(buf []byte) ?CCredentialsG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsgetsteamguarddetailsrequest() CCredentialsGetSteamGuardDetailsRequest {
-	return CCredentialsGetSteamGuardDetailsRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_getsteamguarddetails_request() CCredentials_GetSteamGuardDetails_Request {
+	return CCredentials_GetSteamGuardDetails_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsrequest(o CCredentialsGetSteamGuardDetailsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_request(o CCredentials_GetSteamGuardDetails_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsGetSteamGuardDetailsRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsgetsteamguarddetailsrequest_unpack(v)?
+	mut unpacked := ccredentials_getsteamguarddetails_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsGetSteamGuardDetailsResponseNewAuthentication {
+pub struct CCredentials_GetSteamGuardDetails_Response_NewAuthentication {
 mut:
 	unknown_fields                   []vproto.UnknownField
 pub mut:
@@ -273,7 +273,7 @@ pub mut:
 	has_status                       bool
 }
 
-pub fn (o &CCredentialsGetSteamGuardDetailsResponseNewAuthentication) pack() []byte {
+pub fn (o &CCredentials_GetSteamGuardDetails_Response_NewAuthentication) pack() []byte {
 	mut res := []byte{}
 	if o.has_timestamp_steamguard_enabled {
 		res << vproto.pack_32bit_field(o.timestamp_steamguard_enabled, 1)
@@ -299,8 +299,8 @@ pub fn (o &CCredentialsGetSteamGuardDetailsResponseNewAuthentication) pack() []b
 	return res
 }
 
-pub fn ccredentialsgetsteamguarddetailsresponsenewauthentication_unpack(buf []byte) ?CCredentialsGetSteamGuardDetailsResponseNewAuthentication {
-	mut res := CCredentialsGetSteamGuardDetailsResponseNewAuthentication{}
+pub fn ccredentials_getsteamguarddetails_response_newauthentication_unpack(buf []byte) ?CCredentials_GetSteamGuardDetails_Response_NewAuthentication {
+	mut res := CCredentials_GetSteamGuardDetails_Response_NewAuthentication{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -368,23 +368,23 @@ pub fn ccredentialsgetsteamguarddetailsresponsenewauthentication_unpack(buf []by
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsgetsteamguarddetailsresponsenewauthentication() CCredentialsGetSteamGuardDetailsResponseNewAuthentication {
-	return CCredentialsGetSteamGuardDetailsResponseNewAuthentication{}
+pub fn zzz_vproto_internal_new_ccredentials_getsteamguarddetails_response_newauthentication() CCredentials_GetSteamGuardDetails_Response_NewAuthentication {
+	return CCredentials_GetSteamGuardDetails_Response_NewAuthentication{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsresponsenewauthentication(o CCredentialsGetSteamGuardDetailsResponseNewAuthentication, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_newauthentication(o CCredentials_GetSteamGuardDetails_Response_NewAuthentication, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsresponsenewauthentication(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsGetSteamGuardDetailsResponseNewAuthentication) {
+pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_newauthentication(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Response_NewAuthentication) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsgetsteamguarddetailsresponsenewauthentication_unpack(v)?
+	mut unpacked := ccredentials_getsteamguarddetails_response_newauthentication_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsGetSteamGuardDetailsResponseSessionData {
+pub struct CCredentials_GetSteamGuardDetails_Response_SessionData {
 mut:
 	unknown_fields                                        []vproto.UnknownField
 pub mut:
@@ -396,7 +396,7 @@ pub mut:
 	has_timestamp_machine_steamguard_enabled              bool
 	authentication_exists_from_geoloc_before_mintime      bool
 	has_authentication_exists_from_geoloc_before_mintime  bool
-	newauthentication                                     []CCredentialsGetSteamGuardDetailsResponseNewAuthentication
+	newauthentication                                     []CCredentials_GetSteamGuardDetails_Response_NewAuthentication
 	authentication_exists_from_same_ip_before_mintime     bool
 	has_authentication_exists_from_same_ip_before_mintime bool
 	public_ipv4                                           u32
@@ -405,7 +405,7 @@ pub mut:
 	has_public_ip_address                                 bool
 }
 
-pub fn (o &CCredentialsGetSteamGuardDetailsResponseSessionData) pack() []byte {
+pub fn (o &CCredentials_GetSteamGuardDetails_Response_SessionData) pack() []byte {
 	mut res := []byte{}
 	if o.has_machine_id {
 		res << vproto.pack_uint64_field(o.machine_id, 1)
@@ -422,7 +422,7 @@ pub fn (o &CCredentialsGetSteamGuardDetailsResponseSessionData) pack() []byte {
 	// [packed=false]
 	for _, x in o.newauthentication {
 		res <<
-			zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsresponsenewauthentication(x, 5)
+			zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_newauthentication(x, 5)
 	}
 	if o.has_authentication_exists_from_same_ip_before_mintime {
 		res << vproto.pack_bool_field(o.authentication_exists_from_same_ip_before_mintime, 6)
@@ -436,8 +436,8 @@ pub fn (o &CCredentialsGetSteamGuardDetailsResponseSessionData) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsgetsteamguarddetailsresponsesessiondata_unpack(buf []byte) ?CCredentialsGetSteamGuardDetailsResponseSessionData {
-	mut res := CCredentialsGetSteamGuardDetailsResponseSessionData{}
+pub fn ccredentials_getsteamguarddetails_response_sessiondata_unpack(buf []byte) ?CCredentials_GetSteamGuardDetails_Response_SessionData {
+	mut res := CCredentials_GetSteamGuardDetails_Response_SessionData{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -473,7 +473,7 @@ pub fn ccredentialsgetsteamguarddetailsresponsesessiondata_unpack(buf []byte) ?C
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsresponsenewauthentication(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_newauthentication(cur_buf,
 					tag_wiretype.wire_type)?
 				res.newauthentication << v
 				i = ii
@@ -512,23 +512,23 @@ pub fn ccredentialsgetsteamguarddetailsresponsesessiondata_unpack(buf []byte) ?C
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsgetsteamguarddetailsresponsesessiondata() CCredentialsGetSteamGuardDetailsResponseSessionData {
-	return CCredentialsGetSteamGuardDetailsResponseSessionData{}
+pub fn zzz_vproto_internal_new_ccredentials_getsteamguarddetails_response_sessiondata() CCredentials_GetSteamGuardDetails_Response_SessionData {
+	return CCredentials_GetSteamGuardDetails_Response_SessionData{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsresponsesessiondata(o CCredentialsGetSteamGuardDetailsResponseSessionData, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_sessiondata(o CCredentials_GetSteamGuardDetails_Response_SessionData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsresponsesessiondata(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsGetSteamGuardDetailsResponseSessionData) {
+pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_sessiondata(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Response_SessionData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsgetsteamguarddetailsresponsesessiondata_unpack(v)?
+	mut unpacked := ccredentials_getsteamguarddetails_response_sessiondata_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsGetSteamGuardDetailsResponse {
+pub struct CCredentials_GetSteamGuardDetails_Response {
 mut:
 	unknown_fields                                                  []vproto.UnknownField
 pub mut:
@@ -536,7 +536,7 @@ pub mut:
 	has_is_steamguard_enabled                                       bool
 	timestamp_steamguard_enabled                                    u32
 	has_timestamp_steamguard_enabled                                bool
-	deprecated_newauthentication                                    []CCredentialsGetSteamGuardDetailsResponseNewAuthentication
+	deprecated_newauthentication                                    []CCredentials_GetSteamGuardDetails_Response_NewAuthentication
 	deprecated_machine_name_userchosen                              string
 	has_deprecated_machine_name_userchosen                          bool
 	deprecated_timestamp_machine_steamguard_enabled                 u32
@@ -545,7 +545,7 @@ pub mut:
 	has_deprecated_authentication_exists_from_geoloc_before_mintime bool
 	deprecated_machine_id                                           u64
 	has_deprecated_machine_id                                       bool
-	session_data                                                    []CCredentialsGetSteamGuardDetailsResponseSessionData
+	session_data                                                    []CCredentials_GetSteamGuardDetails_Response_SessionData
 	is_twofactor_enabled                                            bool
 	has_is_twofactor_enabled                                        bool
 	timestamp_twofactor_enabled                                     u32
@@ -554,7 +554,7 @@ pub mut:
 	has_is_phone_verified                                           bool
 }
 
-pub fn (o &CCredentialsGetSteamGuardDetailsResponse) pack() []byte {
+pub fn (o &CCredentials_GetSteamGuardDetails_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_is_steamguard_enabled {
 		res << vproto.pack_bool_field(o.is_steamguard_enabled, 1)
@@ -565,7 +565,7 @@ pub fn (o &CCredentialsGetSteamGuardDetailsResponse) pack() []byte {
 	// [packed=false]
 	for _, x in o.deprecated_newauthentication {
 		res <<
-			zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsresponsenewauthentication(x, 3)
+			zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_newauthentication(x, 3)
 	}
 	if o.has_deprecated_machine_name_userchosen {
 		res << vproto.pack_string_field(o.deprecated_machine_name_userchosen, 4)
@@ -582,7 +582,8 @@ pub fn (o &CCredentialsGetSteamGuardDetailsResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.session_data {
-		res << zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsresponsesessiondata(x, 8)
+		res <<
+			zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_sessiondata(x, 8)
 	}
 	if o.has_is_twofactor_enabled {
 		res << vproto.pack_bool_field(o.is_twofactor_enabled, 9)
@@ -596,8 +597,8 @@ pub fn (o &CCredentialsGetSteamGuardDetailsResponse) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsgetsteamguarddetailsresponse_unpack(buf []byte) ?CCredentialsGetSteamGuardDetailsResponse {
-	mut res := CCredentialsGetSteamGuardDetailsResponse{}
+pub fn ccredentials_getsteamguarddetails_response_unpack(buf []byte) ?CCredentials_GetSteamGuardDetails_Response {
+	mut res := CCredentials_GetSteamGuardDetails_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -621,7 +622,7 @@ pub fn ccredentialsgetsteamguarddetailsresponse_unpack(buf []byte) ?CCredentials
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsresponsenewauthentication(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_newauthentication(cur_buf,
 					tag_wiretype.wire_type)?
 				res.deprecated_newauthentication << v
 				i = ii
@@ -652,7 +653,7 @@ pub fn ccredentialsgetsteamguarddetailsresponse_unpack(buf []byte) ?CCredentials
 			}
 			8 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsresponsesessiondata(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_sessiondata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.session_data << v
 				i = ii
@@ -691,23 +692,23 @@ pub fn ccredentialsgetsteamguarddetailsresponse_unpack(buf []byte) ?CCredentials
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsgetsteamguarddetailsresponse() CCredentialsGetSteamGuardDetailsResponse {
-	return CCredentialsGetSteamGuardDetailsResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_getsteamguarddetails_response() CCredentials_GetSteamGuardDetails_Response {
+	return CCredentials_GetSteamGuardDetails_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsgetsteamguarddetailsresponse(o CCredentialsGetSteamGuardDetailsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response(o CCredentials_GetSteamGuardDetails_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsgetsteamguarddetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsGetSteamGuardDetailsResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsgetsteamguarddetailsresponse_unpack(v)?
+	mut unpacked := ccredentials_getsteamguarddetails_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsNewMachineNotificationDialogRequest {
+pub struct CCredentials_NewMachineNotificationDialog_Request {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -717,7 +718,7 @@ pub mut:
 	has_is_wizard_complete bool
 }
 
-pub fn (o &CCredentialsNewMachineNotificationDialogRequest) pack() []byte {
+pub fn (o &CCredentials_NewMachineNotificationDialog_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_is_approved {
 		res << vproto.pack_bool_field(o.is_approved, 1)
@@ -728,8 +729,8 @@ pub fn (o &CCredentialsNewMachineNotificationDialogRequest) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsnewmachinenotificationdialogrequest_unpack(buf []byte) ?CCredentialsNewMachineNotificationDialogRequest {
-	mut res := CCredentialsNewMachineNotificationDialogRequest{}
+pub fn ccredentials_newmachinenotificationdialog_request_unpack(buf []byte) ?CCredentials_NewMachineNotificationDialog_Request {
+	mut res := CCredentials_NewMachineNotificationDialog_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -767,55 +768,55 @@ pub fn ccredentialsnewmachinenotificationdialogrequest_unpack(buf []byte) ?CCred
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsnewmachinenotificationdialogrequest() CCredentialsNewMachineNotificationDialogRequest {
-	return CCredentialsNewMachineNotificationDialogRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_newmachinenotificationdialog_request() CCredentials_NewMachineNotificationDialog_Request {
+	return CCredentials_NewMachineNotificationDialog_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsnewmachinenotificationdialogrequest(o CCredentialsNewMachineNotificationDialogRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_newmachinenotificationdialog_request(o CCredentials_NewMachineNotificationDialog_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsnewmachinenotificationdialogrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsNewMachineNotificationDialogRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_newmachinenotificationdialog_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_NewMachineNotificationDialog_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsnewmachinenotificationdialogrequest_unpack(v)?
+	mut unpacked := ccredentials_newmachinenotificationdialog_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsNewMachineNotificationDialogResponse {
+pub struct CCredentials_NewMachineNotificationDialog_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CCredentialsNewMachineNotificationDialogResponse) pack() []byte {
+pub fn (o &CCredentials_NewMachineNotificationDialog_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn ccredentialsnewmachinenotificationdialogresponse_unpack(buf []byte) ?CCredentialsNewMachineNotificationDialogResponse {
-	res := CCredentialsNewMachineNotificationDialogResponse{}
+pub fn ccredentials_newmachinenotificationdialog_response_unpack(buf []byte) ?CCredentials_NewMachineNotificationDialog_Response {
+	res := CCredentials_NewMachineNotificationDialog_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsnewmachinenotificationdialogresponse() CCredentialsNewMachineNotificationDialogResponse {
-	return CCredentialsNewMachineNotificationDialogResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_newmachinenotificationdialog_response() CCredentials_NewMachineNotificationDialog_Response {
+	return CCredentials_NewMachineNotificationDialog_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsnewmachinenotificationdialogresponse(o CCredentialsNewMachineNotificationDialogResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_newmachinenotificationdialog_response(o CCredentials_NewMachineNotificationDialog_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsnewmachinenotificationdialogresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsNewMachineNotificationDialogResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_newmachinenotificationdialog_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_NewMachineNotificationDialog_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsnewmachinenotificationdialogresponse_unpack(v)?
+	mut unpacked := ccredentials_newmachinenotificationdialog_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsValidateEmailAddressRequest {
+pub struct CCredentials_ValidateEmailAddress_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -823,7 +824,7 @@ pub mut:
 	has_stoken     bool
 }
 
-pub fn (o &CCredentialsValidateEmailAddressRequest) pack() []byte {
+pub fn (o &CCredentials_ValidateEmailAddress_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_stoken {
 		res << vproto.pack_string_field(o.stoken, 1)
@@ -831,8 +832,8 @@ pub fn (o &CCredentialsValidateEmailAddressRequest) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsvalidateemailaddressrequest_unpack(buf []byte) ?CCredentialsValidateEmailAddressRequest {
-	mut res := CCredentialsValidateEmailAddressRequest{}
+pub fn ccredentials_validateemailaddress_request_unpack(buf []byte) ?CCredentials_ValidateEmailAddress_Request {
+	mut res := CCredentials_ValidateEmailAddress_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -864,23 +865,23 @@ pub fn ccredentialsvalidateemailaddressrequest_unpack(buf []byte) ?CCredentialsV
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsvalidateemailaddressrequest() CCredentialsValidateEmailAddressRequest {
-	return CCredentialsValidateEmailAddressRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_validateemailaddress_request() CCredentials_ValidateEmailAddress_Request {
+	return CCredentials_ValidateEmailAddress_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsvalidateemailaddressrequest(o CCredentialsValidateEmailAddressRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_validateemailaddress_request(o CCredentials_ValidateEmailAddress_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsvalidateemailaddressrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsValidateEmailAddressRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_validateemailaddress_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_ValidateEmailAddress_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsvalidateemailaddressrequest_unpack(v)?
+	mut unpacked := ccredentials_validateemailaddress_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsValidateEmailAddressResponse {
+pub struct CCredentials_ValidateEmailAddress_Response {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -888,7 +889,7 @@ pub mut:
 	has_was_validated bool
 }
 
-pub fn (o &CCredentialsValidateEmailAddressResponse) pack() []byte {
+pub fn (o &CCredentials_ValidateEmailAddress_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_was_validated {
 		res << vproto.pack_bool_field(o.was_validated, 1)
@@ -896,8 +897,8 @@ pub fn (o &CCredentialsValidateEmailAddressResponse) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsvalidateemailaddressresponse_unpack(buf []byte) ?CCredentialsValidateEmailAddressResponse {
-	mut res := CCredentialsValidateEmailAddressResponse{}
+pub fn ccredentials_validateemailaddress_response_unpack(buf []byte) ?CCredentials_ValidateEmailAddress_Response {
+	mut res := CCredentials_ValidateEmailAddress_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -929,23 +930,23 @@ pub fn ccredentialsvalidateemailaddressresponse_unpack(buf []byte) ?CCredentials
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsvalidateemailaddressresponse() CCredentialsValidateEmailAddressResponse {
-	return CCredentialsValidateEmailAddressResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_validateemailaddress_response() CCredentials_ValidateEmailAddress_Response {
+	return CCredentials_ValidateEmailAddress_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsvalidateemailaddressresponse(o CCredentialsValidateEmailAddressResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_validateemailaddress_response(o CCredentials_ValidateEmailAddress_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsvalidateemailaddressresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsValidateEmailAddressResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_validateemailaddress_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_ValidateEmailAddress_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsvalidateemailaddressresponse_unpack(v)?
+	mut unpacked := ccredentials_validateemailaddress_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsSteamGuardPhishingReportRequest {
+pub struct CCredentials_SteamGuardPhishingReport_Request {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -955,7 +956,7 @@ pub mut:
 	has_ipaddress_actual bool
 }
 
-pub fn (o &CCredentialsSteamGuardPhishingReportRequest) pack() []byte {
+pub fn (o &CCredentials_SteamGuardPhishingReport_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_param_string {
 		res << vproto.pack_string_field(o.param_string, 1)
@@ -966,8 +967,8 @@ pub fn (o &CCredentialsSteamGuardPhishingReportRequest) pack() []byte {
 	return res
 }
 
-pub fn ccredentialssteamguardphishingreportrequest_unpack(buf []byte) ?CCredentialsSteamGuardPhishingReportRequest {
-	mut res := CCredentialsSteamGuardPhishingReportRequest{}
+pub fn ccredentials_steamguardphishingreport_request_unpack(buf []byte) ?CCredentials_SteamGuardPhishingReport_Request {
+	mut res := CCredentials_SteamGuardPhishingReport_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1005,23 +1006,23 @@ pub fn ccredentialssteamguardphishingreportrequest_unpack(buf []byte) ?CCredenti
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialssteamguardphishingreportrequest() CCredentialsSteamGuardPhishingReportRequest {
-	return CCredentialsSteamGuardPhishingReportRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_steamguardphishingreport_request() CCredentials_SteamGuardPhishingReport_Request {
+	return CCredentials_SteamGuardPhishingReport_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialssteamguardphishingreportrequest(o CCredentialsSteamGuardPhishingReportRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_steamguardphishingreport_request(o CCredentials_SteamGuardPhishingReport_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialssteamguardphishingreportrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsSteamGuardPhishingReportRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_steamguardphishingreport_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_SteamGuardPhishingReport_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialssteamguardphishingreportrequest_unpack(v)?
+	mut unpacked := ccredentials_steamguardphishingreport_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsSteamGuardPhishingReportResponse {
+pub struct CCredentials_SteamGuardPhishingReport_Response {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -1045,7 +1046,7 @@ pub mut:
 	has_steamguard_code          bool
 }
 
-pub fn (o &CCredentialsSteamGuardPhishingReportResponse) pack() []byte {
+pub fn (o &CCredentials_SteamGuardPhishingReport_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_ipaddress_loginattempt {
 		res << vproto.pack_uint32_field(o.ipaddress_loginattempt, 1)
@@ -1077,8 +1078,8 @@ pub fn (o &CCredentialsSteamGuardPhishingReportResponse) pack() []byte {
 	return res
 }
 
-pub fn ccredentialssteamguardphishingreportresponse_unpack(buf []byte) ?CCredentialsSteamGuardPhishingReportResponse {
-	mut res := CCredentialsSteamGuardPhishingReportResponse{}
+pub fn ccredentials_steamguardphishingreport_response_unpack(buf []byte) ?CCredentials_SteamGuardPhishingReport_Response {
+	mut res := CCredentials_SteamGuardPhishingReport_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1158,23 +1159,23 @@ pub fn ccredentialssteamguardphishingreportresponse_unpack(buf []byte) ?CCredent
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialssteamguardphishingreportresponse() CCredentialsSteamGuardPhishingReportResponse {
-	return CCredentialsSteamGuardPhishingReportResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_steamguardphishingreport_response() CCredentials_SteamGuardPhishingReport_Response {
+	return CCredentials_SteamGuardPhishingReport_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialssteamguardphishingreportresponse(o CCredentialsSteamGuardPhishingReportResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_steamguardphishingreport_response(o CCredentials_SteamGuardPhishingReport_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialssteamguardphishingreportresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsSteamGuardPhishingReportResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_steamguardphishingreport_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_SteamGuardPhishingReport_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialssteamguardphishingreportresponse_unpack(v)?
+	mut unpacked := ccredentials_steamguardphishingreport_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsLastCredentialChangeTimeRequest {
+pub struct CCredentials_LastCredentialChangeTime_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -1182,7 +1183,7 @@ pub mut:
 	has_user_changes_only bool
 }
 
-pub fn (o &CCredentialsLastCredentialChangeTimeRequest) pack() []byte {
+pub fn (o &CCredentials_LastCredentialChangeTime_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_user_changes_only {
 		res << vproto.pack_bool_field(o.user_changes_only, 1)
@@ -1190,8 +1191,8 @@ pub fn (o &CCredentialsLastCredentialChangeTimeRequest) pack() []byte {
 	return res
 }
 
-pub fn ccredentialslastcredentialchangetimerequest_unpack(buf []byte) ?CCredentialsLastCredentialChangeTimeRequest {
-	mut res := CCredentialsLastCredentialChangeTimeRequest{}
+pub fn ccredentials_lastcredentialchangetime_request_unpack(buf []byte) ?CCredentials_LastCredentialChangeTime_Request {
+	mut res := CCredentials_LastCredentialChangeTime_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1223,23 +1224,23 @@ pub fn ccredentialslastcredentialchangetimerequest_unpack(buf []byte) ?CCredenti
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialslastcredentialchangetimerequest() CCredentialsLastCredentialChangeTimeRequest {
-	return CCredentialsLastCredentialChangeTimeRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_lastcredentialchangetime_request() CCredentials_LastCredentialChangeTime_Request {
+	return CCredentials_LastCredentialChangeTime_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialslastcredentialchangetimerequest(o CCredentialsLastCredentialChangeTimeRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_lastcredentialchangetime_request(o CCredentials_LastCredentialChangeTime_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialslastcredentialchangetimerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsLastCredentialChangeTimeRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_lastcredentialchangetime_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_LastCredentialChangeTime_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialslastcredentialchangetimerequest_unpack(v)?
+	mut unpacked := ccredentials_lastcredentialchangetime_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsLastCredentialChangeTimeResponse {
+pub struct CCredentials_LastCredentialChangeTime_Response {
 mut:
 	unknown_fields                     []vproto.UnknownField
 pub mut:
@@ -1251,7 +1252,7 @@ pub mut:
 	has_timestamp_last_password_reset  bool
 }
 
-pub fn (o &CCredentialsLastCredentialChangeTimeResponse) pack() []byte {
+pub fn (o &CCredentials_LastCredentialChangeTime_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_timestamp_last_password_change {
 		res << vproto.pack_32bit_field(o.timestamp_last_password_change, 1)
@@ -1265,8 +1266,8 @@ pub fn (o &CCredentialsLastCredentialChangeTimeResponse) pack() []byte {
 	return res
 }
 
-pub fn ccredentialslastcredentialchangetimeresponse_unpack(buf []byte) ?CCredentialsLastCredentialChangeTimeResponse {
-	mut res := CCredentialsLastCredentialChangeTimeResponse{}
+pub fn ccredentials_lastcredentialchangetime_response_unpack(buf []byte) ?CCredentials_LastCredentialChangeTime_Response {
+	mut res := CCredentials_LastCredentialChangeTime_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1310,55 +1311,55 @@ pub fn ccredentialslastcredentialchangetimeresponse_unpack(buf []byte) ?CCredent
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialslastcredentialchangetimeresponse() CCredentialsLastCredentialChangeTimeResponse {
-	return CCredentialsLastCredentialChangeTimeResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_lastcredentialchangetime_response() CCredentials_LastCredentialChangeTime_Response {
+	return CCredentials_LastCredentialChangeTime_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialslastcredentialchangetimeresponse(o CCredentialsLastCredentialChangeTimeResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_lastcredentialchangetime_response(o CCredentials_LastCredentialChangeTime_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialslastcredentialchangetimeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsLastCredentialChangeTimeResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_lastcredentialchangetime_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_LastCredentialChangeTime_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialslastcredentialchangetimeresponse_unpack(v)?
+	mut unpacked := ccredentials_lastcredentialchangetime_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsGetAccountAuthSecretRequest {
+pub struct CCredentials_GetAccountAuthSecret_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CCredentialsGetAccountAuthSecretRequest) pack() []byte {
+pub fn (o &CCredentials_GetAccountAuthSecret_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn ccredentialsgetaccountauthsecretrequest_unpack(buf []byte) ?CCredentialsGetAccountAuthSecretRequest {
-	res := CCredentialsGetAccountAuthSecretRequest{}
+pub fn ccredentials_getaccountauthsecret_request_unpack(buf []byte) ?CCredentials_GetAccountAuthSecret_Request {
+	res := CCredentials_GetAccountAuthSecret_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsgetaccountauthsecretrequest() CCredentialsGetAccountAuthSecretRequest {
-	return CCredentialsGetAccountAuthSecretRequest{}
+pub fn zzz_vproto_internal_new_ccredentials_getaccountauthsecret_request() CCredentials_GetAccountAuthSecret_Request {
+	return CCredentials_GetAccountAuthSecret_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsgetaccountauthsecretrequest(o CCredentialsGetAccountAuthSecretRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_getaccountauthsecret_request(o CCredentials_GetAccountAuthSecret_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsgetaccountauthsecretrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsGetAccountAuthSecretRequest) {
+pub fn zzz_vproto_internal_unpack_ccredentials_getaccountauthsecret_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetAccountAuthSecret_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsgetaccountauthsecretrequest_unpack(v)?
+	mut unpacked := ccredentials_getaccountauthsecret_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CCredentialsGetAccountAuthSecretResponse {
+pub struct CCredentials_GetAccountAuthSecret_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1368,7 +1369,7 @@ pub mut:
 	has_secret     bool
 }
 
-pub fn (o &CCredentialsGetAccountAuthSecretResponse) pack() []byte {
+pub fn (o &CCredentials_GetAccountAuthSecret_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_secret_id {
 		res << vproto.pack_int32_field(o.secret_id, 1)
@@ -1379,8 +1380,8 @@ pub fn (o &CCredentialsGetAccountAuthSecretResponse) pack() []byte {
 	return res
 }
 
-pub fn ccredentialsgetaccountauthsecretresponse_unpack(buf []byte) ?CCredentialsGetAccountAuthSecretResponse {
-	mut res := CCredentialsGetAccountAuthSecretResponse{}
+pub fn ccredentials_getaccountauthsecret_response_unpack(buf []byte) ?CCredentials_GetAccountAuthSecret_Response {
+	mut res := CCredentials_GetAccountAuthSecret_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1418,18 +1419,18 @@ pub fn ccredentialsgetaccountauthsecretresponse_unpack(buf []byte) ?CCredentials
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccredentialsgetaccountauthsecretresponse() CCredentialsGetAccountAuthSecretResponse {
-	return CCredentialsGetAccountAuthSecretResponse{}
+pub fn zzz_vproto_internal_new_ccredentials_getaccountauthsecret_response() CCredentials_GetAccountAuthSecret_Response {
+	return CCredentials_GetAccountAuthSecret_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccredentialsgetaccountauthsecretresponse(o CCredentialsGetAccountAuthSecretResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccredentials_getaccountauthsecret_response(o CCredentials_GetAccountAuthSecret_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccredentialsgetaccountauthsecretresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentialsGetAccountAuthSecretResponse) {
+pub fn zzz_vproto_internal_unpack_ccredentials_getaccountauthsecret_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetAccountAuthSecret_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentialsgetaccountauthsecretresponse_unpack(v)?
+	mut unpacked := ccredentials_getaccountauthsecret_response_unpack(v)?
 	return i, unpacked
 }

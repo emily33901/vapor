@@ -237,7 +237,6 @@ pub fn (mut s SteamClient) logon(username, password string) ? {
 	logon_message.cell_id = 4
 
 	packed := logon_message.pack()
-	println('${base64.encode(tos(packed.data, packed.len))}')
 
 	steamclient_write_message(mut s, 0, .client_logon, &logon_message, sizeof(proto.CMsgClientLogon))
 }

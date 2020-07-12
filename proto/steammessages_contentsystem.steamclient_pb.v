@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CContentServerDirectoryGetServersForSteamPipeRequest {
+pub struct CContentServerDirectory_GetServersForSteamPipe_Request {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -17,7 +17,7 @@ pub mut:
 	has_launcher_type bool
 }
 
-pub fn (o &CContentServerDirectoryGetServersForSteamPipeRequest) pack() []byte {
+pub fn (o &CContentServerDirectory_GetServersForSteamPipe_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_cell_id {
 		res << vproto.pack_uint32_field(o.cell_id, 1)
@@ -34,8 +34,8 @@ pub fn (o &CContentServerDirectoryGetServersForSteamPipeRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentserverdirectorygetserversforsteampiperequest_unpack(buf []byte) ?CContentServerDirectoryGetServersForSteamPipeRequest {
-	mut res := CContentServerDirectoryGetServersForSteamPipeRequest{}
+pub fn ccontentserverdirectory_getserversforsteampipe_request_unpack(buf []byte) ?CContentServerDirectory_GetServersForSteamPipe_Request {
+	mut res := CContentServerDirectory_GetServersForSteamPipe_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -85,23 +85,23 @@ pub fn ccontentserverdirectorygetserversforsteampiperequest_unpack(buf []byte) ?
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentserverdirectorygetserversforsteampiperequest() CContentServerDirectoryGetServersForSteamPipeRequest {
-	return CContentServerDirectoryGetServersForSteamPipeRequest{}
+pub fn zzz_vproto_internal_new_ccontentserverdirectory_getserversforsteampipe_request() CContentServerDirectory_GetServersForSteamPipe_Request {
+	return CContentServerDirectory_GetServersForSteamPipe_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentserverdirectorygetserversforsteampiperequest(o CContentServerDirectoryGetServersForSteamPipeRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getserversforsteampipe_request(o CContentServerDirectory_GetServersForSteamPipe_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentserverdirectorygetserversforsteampiperequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectoryGetServersForSteamPipeRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getserversforsteampipe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetServersForSteamPipe_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectorygetserversforsteampiperequest_unpack(v)?
+	mut unpacked := ccontentserverdirectory_getserversforsteampipe_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentServerDirectoryServerInfo {
+pub struct CContentServerDirectory_ServerInfo {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
@@ -134,7 +134,7 @@ pub mut:
 	has_preferred_server            bool
 }
 
-pub fn (o &CContentServerDirectoryServerInfo) pack() []byte {
+pub fn (o &CContentServerDirectory_ServerInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_type {
 		res << vproto.pack_string_field(o.@type, 1)
@@ -182,8 +182,8 @@ pub fn (o &CContentServerDirectoryServerInfo) pack() []byte {
 	return res
 }
 
-pub fn ccontentserverdirectoryserverinfo_unpack(buf []byte) ?CContentServerDirectoryServerInfo {
-	mut res := CContentServerDirectoryServerInfo{}
+pub fn ccontentserverdirectory_serverinfo_unpack(buf []byte) ?CContentServerDirectory_ServerInfo {
+	mut res := CContentServerDirectory_ServerInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -293,40 +293,40 @@ pub fn ccontentserverdirectoryserverinfo_unpack(buf []byte) ?CContentServerDirec
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentserverdirectoryserverinfo() CContentServerDirectoryServerInfo {
-	return CContentServerDirectoryServerInfo{}
+pub fn zzz_vproto_internal_new_ccontentserverdirectory_serverinfo() CContentServerDirectory_ServerInfo {
+	return CContentServerDirectory_ServerInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentserverdirectoryserverinfo(o CContentServerDirectoryServerInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentserverdirectory_serverinfo(o CContentServerDirectory_ServerInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentserverdirectoryserverinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectoryServerInfo) {
+pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_serverinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_ServerInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectoryserverinfo_unpack(v)?
+	mut unpacked := ccontentserverdirectory_serverinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentServerDirectoryGetServersForSteamPipeResponse {
+pub struct CContentServerDirectory_GetServersForSteamPipe_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	servers        []CContentServerDirectoryServerInfo
+	servers        []CContentServerDirectory_ServerInfo
 }
 
-pub fn (o &CContentServerDirectoryGetServersForSteamPipeResponse) pack() []byte {
+pub fn (o &CContentServerDirectory_GetServersForSteamPipe_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.servers {
-		res << zzz_vproto_internal_pack_ccontentserverdirectoryserverinfo(x, 1)
+		res << zzz_vproto_internal_pack_ccontentserverdirectory_serverinfo(x, 1)
 	}
 	return res
 }
 
-pub fn ccontentserverdirectorygetserversforsteampiperesponse_unpack(buf []byte) ?CContentServerDirectoryGetServersForSteamPipeResponse {
-	mut res := CContentServerDirectoryGetServersForSteamPipeResponse{}
+pub fn ccontentserverdirectory_getserversforsteampipe_response_unpack(buf []byte) ?CContentServerDirectory_GetServersForSteamPipe_Response {
+	mut res := CContentServerDirectory_GetServersForSteamPipe_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -338,7 +338,7 @@ pub fn ccontentserverdirectorygetserversforsteampiperesponse_unpack(buf []byte) 
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccontentserverdirectoryserverinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ccontentserverdirectory_serverinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.servers << v
 				i = ii
@@ -359,23 +359,23 @@ pub fn ccontentserverdirectorygetserversforsteampiperesponse_unpack(buf []byte) 
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentserverdirectorygetserversforsteampiperesponse() CContentServerDirectoryGetServersForSteamPipeResponse {
-	return CContentServerDirectoryGetServersForSteamPipeResponse{}
+pub fn zzz_vproto_internal_new_ccontentserverdirectory_getserversforsteampipe_response() CContentServerDirectory_GetServersForSteamPipe_Response {
+	return CContentServerDirectory_GetServersForSteamPipe_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentserverdirectorygetserversforsteampiperesponse(o CContentServerDirectoryGetServersForSteamPipeResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getserversforsteampipe_response(o CContentServerDirectory_GetServersForSteamPipe_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentserverdirectorygetserversforsteampiperesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectoryGetServersForSteamPipeResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getserversforsteampipe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetServersForSteamPipe_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectorygetserversforsteampiperesponse_unpack(v)?
+	mut unpacked := ccontentserverdirectory_getserversforsteampipe_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentServerDirectoryGetDepotPatchInfoRequest {
+pub struct CContentServerDirectory_GetDepotPatchInfo_Request {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -389,7 +389,7 @@ pub mut:
 	has_target_manifestid bool
 }
 
-pub fn (o &CContentServerDirectoryGetDepotPatchInfoRequest) pack() []byte {
+pub fn (o &CContentServerDirectory_GetDepotPatchInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -406,8 +406,8 @@ pub fn (o &CContentServerDirectoryGetDepotPatchInfoRequest) pack() []byte {
 	return res
 }
 
-pub fn ccontentserverdirectorygetdepotpatchinforequest_unpack(buf []byte) ?CContentServerDirectoryGetDepotPatchInfoRequest {
-	mut res := CContentServerDirectoryGetDepotPatchInfoRequest{}
+pub fn ccontentserverdirectory_getdepotpatchinfo_request_unpack(buf []byte) ?CContentServerDirectory_GetDepotPatchInfo_Request {
+	mut res := CContentServerDirectory_GetDepotPatchInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -457,23 +457,23 @@ pub fn ccontentserverdirectorygetdepotpatchinforequest_unpack(buf []byte) ?CCont
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentserverdirectorygetdepotpatchinforequest() CContentServerDirectoryGetDepotPatchInfoRequest {
-	return CContentServerDirectoryGetDepotPatchInfoRequest{}
+pub fn zzz_vproto_internal_new_ccontentserverdirectory_getdepotpatchinfo_request() CContentServerDirectory_GetDepotPatchInfo_Request {
+	return CContentServerDirectory_GetDepotPatchInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentserverdirectorygetdepotpatchinforequest(o CContentServerDirectoryGetDepotPatchInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getdepotpatchinfo_request(o CContentServerDirectory_GetDepotPatchInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentserverdirectorygetdepotpatchinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectoryGetDepotPatchInfoRequest) {
+pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getdepotpatchinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetDepotPatchInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectorygetdepotpatchinforequest_unpack(v)?
+	mut unpacked := ccontentserverdirectory_getdepotpatchinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CContentServerDirectoryGetDepotPatchInfoResponse {
+pub struct CContentServerDirectory_GetDepotPatchInfo_Response {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -481,7 +481,7 @@ pub mut:
 	has_is_available bool
 }
 
-pub fn (o &CContentServerDirectoryGetDepotPatchInfoResponse) pack() []byte {
+pub fn (o &CContentServerDirectory_GetDepotPatchInfo_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_is_available {
 		res << vproto.pack_bool_field(o.is_available, 1)
@@ -489,8 +489,8 @@ pub fn (o &CContentServerDirectoryGetDepotPatchInfoResponse) pack() []byte {
 	return res
 }
 
-pub fn ccontentserverdirectorygetdepotpatchinforesponse_unpack(buf []byte) ?CContentServerDirectoryGetDepotPatchInfoResponse {
-	mut res := CContentServerDirectoryGetDepotPatchInfoResponse{}
+pub fn ccontentserverdirectory_getdepotpatchinfo_response_unpack(buf []byte) ?CContentServerDirectory_GetDepotPatchInfo_Response {
+	mut res := CContentServerDirectory_GetDepotPatchInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -522,18 +522,18 @@ pub fn ccontentserverdirectorygetdepotpatchinforesponse_unpack(buf []byte) ?CCon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ccontentserverdirectorygetdepotpatchinforesponse() CContentServerDirectoryGetDepotPatchInfoResponse {
-	return CContentServerDirectoryGetDepotPatchInfoResponse{}
+pub fn zzz_vproto_internal_new_ccontentserverdirectory_getdepotpatchinfo_response() CContentServerDirectory_GetDepotPatchInfo_Response {
+	return CContentServerDirectory_GetDepotPatchInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ccontentserverdirectorygetdepotpatchinforesponse(o CContentServerDirectoryGetDepotPatchInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getdepotpatchinfo_response(o CContentServerDirectory_GetDepotPatchInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ccontentserverdirectorygetdepotpatchinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectoryGetDepotPatchInfoResponse) {
+pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getdepotpatchinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetDepotPatchInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectorygetdepotpatchinforesponse_unpack(v)?
+	mut unpacked := ccontentserverdirectory_getdepotpatchinfo_response_unpack(v)?
 	return i, unpacked
 }

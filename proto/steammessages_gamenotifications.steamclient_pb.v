@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CGameNotificationsVariable {
+pub struct CGameNotifications_Variable {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -13,7 +13,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CGameNotificationsVariable) pack() []byte {
+pub fn (o &CGameNotifications_Variable) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_string_field(o.key, 1)
@@ -24,8 +24,8 @@ pub fn (o &CGameNotificationsVariable) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsvariable_unpack(buf []byte) ?CGameNotificationsVariable {
-	mut res := CGameNotificationsVariable{}
+pub fn cgamenotifications_variable_unpack(buf []byte) ?CGameNotifications_Variable {
+	mut res := CGameNotifications_Variable{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,41 +63,41 @@ pub fn cgamenotificationsvariable_unpack(buf []byte) ?CGameNotificationsVariable
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsvariable() CGameNotificationsVariable {
-	return CGameNotificationsVariable{}
+pub fn zzz_vproto_internal_new_cgamenotifications_variable() CGameNotifications_Variable {
+	return CGameNotifications_Variable{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsvariable(o CGameNotificationsVariable, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_variable(o CGameNotifications_Variable, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsvariable(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsVariable) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_variable(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_Variable) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsvariable_unpack(v)?
+	mut unpacked := cgamenotifications_variable_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsLocalizedText {
+pub struct CGameNotifications_LocalizedText {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
 	token             string
 	has_token         bool
-	variables         []CGameNotificationsVariable
+	variables         []CGameNotifications_Variable
 	rendered_text     string
 	has_rendered_text bool
 }
 
-pub fn (o &CGameNotificationsLocalizedText) pack() []byte {
+pub fn (o &CGameNotifications_LocalizedText) pack() []byte {
 	mut res := []byte{}
 	if o.has_token {
 		res << vproto.pack_string_field(o.token, 1)
 	}
 	// [packed=false]
 	for _, x in o.variables {
-		res << zzz_vproto_internal_pack_cgamenotificationsvariable(x, 2)
+		res << zzz_vproto_internal_pack_cgamenotifications_variable(x, 2)
 	}
 	if o.has_rendered_text {
 		res << vproto.pack_string_field(o.rendered_text, 3)
@@ -105,8 +105,8 @@ pub fn (o &CGameNotificationsLocalizedText) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationslocalizedtext_unpack(buf []byte) ?CGameNotificationsLocalizedText {
-	mut res := CGameNotificationsLocalizedText{}
+pub fn cgamenotifications_localizedtext_unpack(buf []byte) ?CGameNotifications_LocalizedText {
+	mut res := CGameNotifications_LocalizedText{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -124,7 +124,7 @@ pub fn cgamenotificationslocalizedtext_unpack(buf []byte) ?CGameNotificationsLoc
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationsvariable(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_variable(cur_buf,
 					tag_wiretype.wire_type)?
 				res.variables << v
 				i = ii
@@ -151,23 +151,23 @@ pub fn cgamenotificationslocalizedtext_unpack(buf []byte) ?CGameNotificationsLoc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationslocalizedtext() CGameNotificationsLocalizedText {
-	return CGameNotificationsLocalizedText{}
+pub fn zzz_vproto_internal_new_cgamenotifications_localizedtext() CGameNotifications_LocalizedText {
+	return CGameNotifications_LocalizedText{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationslocalizedtext(o CGameNotificationsLocalizedText, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_localizedtext(o CGameNotifications_LocalizedText, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationslocalizedtext(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsLocalizedText) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_localizedtext(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_LocalizedText) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationslocalizedtext_unpack(v)?
+	mut unpacked := cgamenotifications_localizedtext_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsUserStatus {
+pub struct CGameNotifications_UserStatus {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -175,13 +175,13 @@ pub mut:
 	has_steamid    bool
 	state          string
 	has_state      bool
-	title          CGameNotificationsLocalizedText
+	title          CGameNotifications_LocalizedText
 	has_title      bool
-	message        CGameNotificationsLocalizedText
+	message        CGameNotifications_LocalizedText
 	has_message    bool
 }
 
-pub fn (o &CGameNotificationsUserStatus) pack() []byte {
+pub fn (o &CGameNotifications_UserStatus) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -190,16 +190,16 @@ pub fn (o &CGameNotificationsUserStatus) pack() []byte {
 		res << vproto.pack_string_field(o.state, 2)
 	}
 	if o.has_title {
-		res << zzz_vproto_internal_pack_cgamenotificationslocalizedtext(o.title, 3)
+		res << zzz_vproto_internal_pack_cgamenotifications_localizedtext(o.title, 3)
 	}
 	if o.has_message {
-		res << zzz_vproto_internal_pack_cgamenotificationslocalizedtext(o.message, 4)
+		res << zzz_vproto_internal_pack_cgamenotifications_localizedtext(o.message, 4)
 	}
 	return res
 }
 
-pub fn cgamenotificationsuserstatus_unpack(buf []byte) ?CGameNotificationsUserStatus {
-	mut res := CGameNotificationsUserStatus{}
+pub fn cgamenotifications_userstatus_unpack(buf []byte) ?CGameNotifications_UserStatus {
+	mut res := CGameNotifications_UserStatus{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -223,14 +223,14 @@ pub fn cgamenotificationsuserstatus_unpack(buf []byte) ?CGameNotificationsUserSt
 			}
 			3 {
 				res.has_title = true
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationslocalizedtext(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_localizedtext(cur_buf,
 					tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
 			}
 			4 {
 				res.has_message = true
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationslocalizedtext(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_localizedtext(cur_buf,
 					tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
@@ -251,23 +251,23 @@ pub fn cgamenotificationsuserstatus_unpack(buf []byte) ?CGameNotificationsUserSt
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsuserstatus() CGameNotificationsUserStatus {
-	return CGameNotificationsUserStatus{}
+pub fn zzz_vproto_internal_new_cgamenotifications_userstatus() CGameNotifications_UserStatus {
+	return CGameNotifications_UserStatus{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsuserstatus(o CGameNotificationsUserStatus, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_userstatus(o CGameNotifications_UserStatus, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsuserstatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsUserStatus) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_userstatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_UserStatus) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsuserstatus_unpack(v)?
+	mut unpacked := cgamenotifications_userstatus_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsCreateSessionRequest {
+pub struct CGameNotifications_CreateSession_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -275,14 +275,14 @@ pub mut:
 	has_appid      bool
 	context        u64
 	has_context    bool
-	title          CGameNotificationsLocalizedText
+	title          CGameNotifications_LocalizedText
 	has_title      bool
-	users          []CGameNotificationsUserStatus
+	users          []CGameNotifications_UserStatus
 	steamid        u64
 	has_steamid    bool
 }
 
-pub fn (o &CGameNotificationsCreateSessionRequest) pack() []byte {
+pub fn (o &CGameNotifications_CreateSession_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -291,11 +291,11 @@ pub fn (o &CGameNotificationsCreateSessionRequest) pack() []byte {
 		res << vproto.pack_uint64_field(o.context, 2)
 	}
 	if o.has_title {
-		res << zzz_vproto_internal_pack_cgamenotificationslocalizedtext(o.title, 3)
+		res << zzz_vproto_internal_pack_cgamenotifications_localizedtext(o.title, 3)
 	}
 	// [packed=false]
 	for _, x in o.users {
-		res << zzz_vproto_internal_pack_cgamenotificationsuserstatus(x, 4)
+		res << zzz_vproto_internal_pack_cgamenotifications_userstatus(x, 4)
 	}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 5)
@@ -303,8 +303,8 @@ pub fn (o &CGameNotificationsCreateSessionRequest) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationscreatesessionrequest_unpack(buf []byte) ?CGameNotificationsCreateSessionRequest {
-	mut res := CGameNotificationsCreateSessionRequest{}
+pub fn cgamenotifications_createsession_request_unpack(buf []byte) ?CGameNotifications_CreateSession_Request {
+	mut res := CGameNotifications_CreateSession_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -328,14 +328,14 @@ pub fn cgamenotificationscreatesessionrequest_unpack(buf []byte) ?CGameNotificat
 			}
 			3 {
 				res.has_title = true
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationslocalizedtext(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_localizedtext(cur_buf,
 					tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationsuserstatus(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_userstatus(cur_buf,
 					tag_wiretype.wire_type)?
 				res.users << v
 				i = ii
@@ -362,23 +362,23 @@ pub fn cgamenotificationscreatesessionrequest_unpack(buf []byte) ?CGameNotificat
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationscreatesessionrequest() CGameNotificationsCreateSessionRequest {
-	return CGameNotificationsCreateSessionRequest{}
+pub fn zzz_vproto_internal_new_cgamenotifications_createsession_request() CGameNotifications_CreateSession_Request {
+	return CGameNotifications_CreateSession_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationscreatesessionrequest(o CGameNotificationsCreateSessionRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_createsession_request(o CGameNotifications_CreateSession_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationscreatesessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsCreateSessionRequest) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_createsession_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_CreateSession_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationscreatesessionrequest_unpack(v)?
+	mut unpacked := cgamenotifications_createsession_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsCreateSessionResponse {
+pub struct CGameNotifications_CreateSession_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -386,7 +386,7 @@ pub mut:
 	has_sessionid  bool
 }
 
-pub fn (o &CGameNotificationsCreateSessionResponse) pack() []byte {
+pub fn (o &CGameNotifications_CreateSession_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_sessionid {
 		res << vproto.pack_uint64_field(o.sessionid, 1)
@@ -394,8 +394,8 @@ pub fn (o &CGameNotificationsCreateSessionResponse) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationscreatesessionresponse_unpack(buf []byte) ?CGameNotificationsCreateSessionResponse {
-	mut res := CGameNotificationsCreateSessionResponse{}
+pub fn cgamenotifications_createsession_response_unpack(buf []byte) ?CGameNotifications_CreateSession_Response {
+	mut res := CGameNotifications_CreateSession_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -427,23 +427,23 @@ pub fn cgamenotificationscreatesessionresponse_unpack(buf []byte) ?CGameNotifica
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationscreatesessionresponse() CGameNotificationsCreateSessionResponse {
-	return CGameNotificationsCreateSessionResponse{}
+pub fn zzz_vproto_internal_new_cgamenotifications_createsession_response() CGameNotifications_CreateSession_Response {
+	return CGameNotifications_CreateSession_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationscreatesessionresponse(o CGameNotificationsCreateSessionResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_createsession_response(o CGameNotifications_CreateSession_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationscreatesessionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsCreateSessionResponse) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_createsession_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_CreateSession_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationscreatesessionresponse_unpack(v)?
+	mut unpacked := cgamenotifications_createsession_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsDeleteSessionRequest {
+pub struct CGameNotifications_DeleteSession_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -455,7 +455,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CGameNotificationsDeleteSessionRequest) pack() []byte {
+pub fn (o &CGameNotifications_DeleteSession_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_sessionid {
 		res << vproto.pack_uint64_field(o.sessionid, 1)
@@ -469,8 +469,8 @@ pub fn (o &CGameNotificationsDeleteSessionRequest) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsdeletesessionrequest_unpack(buf []byte) ?CGameNotificationsDeleteSessionRequest {
-	mut res := CGameNotificationsDeleteSessionRequest{}
+pub fn cgamenotifications_deletesession_request_unpack(buf []byte) ?CGameNotifications_DeleteSession_Request {
+	mut res := CGameNotifications_DeleteSession_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -514,55 +514,55 @@ pub fn cgamenotificationsdeletesessionrequest_unpack(buf []byte) ?CGameNotificat
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsdeletesessionrequest() CGameNotificationsDeleteSessionRequest {
-	return CGameNotificationsDeleteSessionRequest{}
+pub fn zzz_vproto_internal_new_cgamenotifications_deletesession_request() CGameNotifications_DeleteSession_Request {
+	return CGameNotifications_DeleteSession_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsdeletesessionrequest(o CGameNotificationsDeleteSessionRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_deletesession_request(o CGameNotifications_DeleteSession_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsdeletesessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsDeleteSessionRequest) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_deletesession_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_DeleteSession_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsdeletesessionrequest_unpack(v)?
+	mut unpacked := cgamenotifications_deletesession_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsDeleteSessionResponse {
+pub struct CGameNotifications_DeleteSession_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CGameNotificationsDeleteSessionResponse) pack() []byte {
+pub fn (o &CGameNotifications_DeleteSession_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cgamenotificationsdeletesessionresponse_unpack(buf []byte) ?CGameNotificationsDeleteSessionResponse {
-	res := CGameNotificationsDeleteSessionResponse{}
+pub fn cgamenotifications_deletesession_response_unpack(buf []byte) ?CGameNotifications_DeleteSession_Response {
+	res := CGameNotifications_DeleteSession_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsdeletesessionresponse() CGameNotificationsDeleteSessionResponse {
-	return CGameNotificationsDeleteSessionResponse{}
+pub fn zzz_vproto_internal_new_cgamenotifications_deletesession_response() CGameNotifications_DeleteSession_Response {
+	return CGameNotifications_DeleteSession_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsdeletesessionresponse(o CGameNotificationsDeleteSessionResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_deletesession_response(o CGameNotifications_DeleteSession_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsdeletesessionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsDeleteSessionResponse) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_deletesession_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_DeleteSession_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsdeletesessionresponse_unpack(v)?
+	mut unpacked := cgamenotifications_deletesession_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsUpdateSessionRequest {
+pub struct CGameNotifications_UpdateSession_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -570,14 +570,14 @@ pub mut:
 	has_sessionid  bool
 	appid          u32
 	has_appid      bool
-	title          CGameNotificationsLocalizedText
+	title          CGameNotifications_LocalizedText
 	has_title      bool
-	users          []CGameNotificationsUserStatus
+	users          []CGameNotifications_UserStatus
 	steamid        u64
 	has_steamid    bool
 }
 
-pub fn (o &CGameNotificationsUpdateSessionRequest) pack() []byte {
+pub fn (o &CGameNotifications_UpdateSession_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_sessionid {
 		res << vproto.pack_uint64_field(o.sessionid, 1)
@@ -586,11 +586,11 @@ pub fn (o &CGameNotificationsUpdateSessionRequest) pack() []byte {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
 	if o.has_title {
-		res << zzz_vproto_internal_pack_cgamenotificationslocalizedtext(o.title, 3)
+		res << zzz_vproto_internal_pack_cgamenotifications_localizedtext(o.title, 3)
 	}
 	// [packed=false]
 	for _, x in o.users {
-		res << zzz_vproto_internal_pack_cgamenotificationsuserstatus(x, 4)
+		res << zzz_vproto_internal_pack_cgamenotifications_userstatus(x, 4)
 	}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 6)
@@ -598,8 +598,8 @@ pub fn (o &CGameNotificationsUpdateSessionRequest) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsupdatesessionrequest_unpack(buf []byte) ?CGameNotificationsUpdateSessionRequest {
-	mut res := CGameNotificationsUpdateSessionRequest{}
+pub fn cgamenotifications_updatesession_request_unpack(buf []byte) ?CGameNotifications_UpdateSession_Request {
+	mut res := CGameNotifications_UpdateSession_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -623,14 +623,14 @@ pub fn cgamenotificationsupdatesessionrequest_unpack(buf []byte) ?CGameNotificat
 			}
 			3 {
 				res.has_title = true
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationslocalizedtext(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_localizedtext(cur_buf,
 					tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationsuserstatus(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_userstatus(cur_buf,
 					tag_wiretype.wire_type)?
 				res.users << v
 				i = ii
@@ -657,55 +657,55 @@ pub fn cgamenotificationsupdatesessionrequest_unpack(buf []byte) ?CGameNotificat
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsupdatesessionrequest() CGameNotificationsUpdateSessionRequest {
-	return CGameNotificationsUpdateSessionRequest{}
+pub fn zzz_vproto_internal_new_cgamenotifications_updatesession_request() CGameNotifications_UpdateSession_Request {
+	return CGameNotifications_UpdateSession_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsupdatesessionrequest(o CGameNotificationsUpdateSessionRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_updatesession_request(o CGameNotifications_UpdateSession_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsupdatesessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsUpdateSessionRequest) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_updatesession_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_UpdateSession_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsupdatesessionrequest_unpack(v)?
+	mut unpacked := cgamenotifications_updatesession_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsUpdateSessionResponse {
+pub struct CGameNotifications_UpdateSession_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CGameNotificationsUpdateSessionResponse) pack() []byte {
+pub fn (o &CGameNotifications_UpdateSession_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cgamenotificationsupdatesessionresponse_unpack(buf []byte) ?CGameNotificationsUpdateSessionResponse {
-	res := CGameNotificationsUpdateSessionResponse{}
+pub fn cgamenotifications_updatesession_response_unpack(buf []byte) ?CGameNotifications_UpdateSession_Response {
+	res := CGameNotifications_UpdateSession_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsupdatesessionresponse() CGameNotificationsUpdateSessionResponse {
-	return CGameNotificationsUpdateSessionResponse{}
+pub fn zzz_vproto_internal_new_cgamenotifications_updatesession_response() CGameNotifications_UpdateSession_Response {
+	return CGameNotifications_UpdateSession_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsupdatesessionresponse(o CGameNotificationsUpdateSessionResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_updatesession_response(o CGameNotifications_UpdateSession_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsupdatesessionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsUpdateSessionResponse) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_updatesession_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_UpdateSession_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsupdatesessionresponse_unpack(v)?
+	mut unpacked := cgamenotifications_updatesession_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsEnumerateSessionsRequest {
+pub struct CGameNotifications_EnumerateSessions_Request {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -719,7 +719,7 @@ pub mut:
 	has_language                  bool
 }
 
-pub fn (o &CGameNotificationsEnumerateSessionsRequest) pack() []byte {
+pub fn (o &CGameNotifications_EnumerateSessions_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -736,8 +736,8 @@ pub fn (o &CGameNotificationsEnumerateSessionsRequest) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsenumeratesessionsrequest_unpack(buf []byte) ?CGameNotificationsEnumerateSessionsRequest {
-	mut res := CGameNotificationsEnumerateSessionsRequest{}
+pub fn cgamenotifications_enumeratesessions_request_unpack(buf []byte) ?CGameNotifications_EnumerateSessions_Request {
+	mut res := CGameNotifications_EnumerateSessions_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -787,23 +787,23 @@ pub fn cgamenotificationsenumeratesessionsrequest_unpack(buf []byte) ?CGameNotif
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsenumeratesessionsrequest() CGameNotificationsEnumerateSessionsRequest {
-	return CGameNotificationsEnumerateSessionsRequest{}
+pub fn zzz_vproto_internal_new_cgamenotifications_enumeratesessions_request() CGameNotifications_EnumerateSessions_Request {
+	return CGameNotifications_EnumerateSessions_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsenumeratesessionsrequest(o CGameNotificationsEnumerateSessionsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_enumeratesessions_request(o CGameNotifications_EnumerateSessions_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsenumeratesessionsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsEnumerateSessionsRequest) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_enumeratesessions_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_EnumerateSessions_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsenumeratesessionsrequest_unpack(v)?
+	mut unpacked := cgamenotifications_enumeratesessions_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsSession {
+pub struct CGameNotifications_Session {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -813,16 +813,16 @@ pub mut:
 	has_appid        bool
 	context          u64
 	has_context      bool
-	title            CGameNotificationsLocalizedText
+	title            CGameNotifications_LocalizedText
 	has_title        bool
 	time_created     u32
 	has_time_created bool
 	time_updated     u32
 	has_time_updated bool
-	user_status      []CGameNotificationsUserStatus
+	user_status      []CGameNotifications_UserStatus
 }
 
-pub fn (o &CGameNotificationsSession) pack() []byte {
+pub fn (o &CGameNotifications_Session) pack() []byte {
 	mut res := []byte{}
 	if o.has_sessionid {
 		res << vproto.pack_uint64_field(o.sessionid, 1)
@@ -834,7 +834,7 @@ pub fn (o &CGameNotificationsSession) pack() []byte {
 		res << vproto.pack_uint64_field(o.context, 3)
 	}
 	if o.has_title {
-		res << zzz_vproto_internal_pack_cgamenotificationslocalizedtext(o.title, 4)
+		res << zzz_vproto_internal_pack_cgamenotifications_localizedtext(o.title, 4)
 	}
 	if o.has_time_created {
 		res << vproto.pack_uint32_field(o.time_created, 5)
@@ -844,13 +844,13 @@ pub fn (o &CGameNotificationsSession) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.user_status {
-		res << zzz_vproto_internal_pack_cgamenotificationsuserstatus(x, 7)
+		res << zzz_vproto_internal_pack_cgamenotifications_userstatus(x, 7)
 	}
 	return res
 }
 
-pub fn cgamenotificationssession_unpack(buf []byte) ?CGameNotificationsSession {
-	mut res := CGameNotificationsSession{}
+pub fn cgamenotifications_session_unpack(buf []byte) ?CGameNotifications_Session {
+	mut res := CGameNotifications_Session{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -880,7 +880,7 @@ pub fn cgamenotificationssession_unpack(buf []byte) ?CGameNotificationsSession {
 			}
 			4 {
 				res.has_title = true
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationslocalizedtext(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_localizedtext(cur_buf,
 					tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
@@ -899,7 +899,7 @@ pub fn cgamenotificationssession_unpack(buf []byte) ?CGameNotificationsSession {
 			}
 			7 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationsuserstatus(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_userstatus(cur_buf,
 					tag_wiretype.wire_type)?
 				res.user_status << v
 				i = ii
@@ -920,40 +920,40 @@ pub fn cgamenotificationssession_unpack(buf []byte) ?CGameNotificationsSession {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationssession() CGameNotificationsSession {
-	return CGameNotificationsSession{}
+pub fn zzz_vproto_internal_new_cgamenotifications_session() CGameNotifications_Session {
+	return CGameNotifications_Session{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationssession(o CGameNotificationsSession, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_session(o CGameNotifications_Session, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationssession(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsSession) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_session(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_Session) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationssession_unpack(v)?
+	mut unpacked := cgamenotifications_session_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsEnumerateSessionsResponse {
+pub struct CGameNotifications_EnumerateSessions_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	sessions       []CGameNotificationsSession
+	sessions       []CGameNotifications_Session
 }
 
-pub fn (o &CGameNotificationsEnumerateSessionsResponse) pack() []byte {
+pub fn (o &CGameNotifications_EnumerateSessions_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.sessions {
-		res << zzz_vproto_internal_pack_cgamenotificationssession(x, 1)
+		res << zzz_vproto_internal_pack_cgamenotifications_session(x, 1)
 	}
 	return res
 }
 
-pub fn cgamenotificationsenumeratesessionsresponse_unpack(buf []byte) ?CGameNotificationsEnumerateSessionsResponse {
-	mut res := CGameNotificationsEnumerateSessionsResponse{}
+pub fn cgamenotifications_enumeratesessions_response_unpack(buf []byte) ?CGameNotifications_EnumerateSessions_Response {
+	mut res := CGameNotifications_EnumerateSessions_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -965,7 +965,7 @@ pub fn cgamenotificationsenumeratesessionsresponse_unpack(buf []byte) ?CGameNoti
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationssession(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_session(cur_buf,
 					tag_wiretype.wire_type)?
 				res.sessions << v
 				i = ii
@@ -986,23 +986,23 @@ pub fn cgamenotificationsenumeratesessionsresponse_unpack(buf []byte) ?CGameNoti
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsenumeratesessionsresponse() CGameNotificationsEnumerateSessionsResponse {
-	return CGameNotificationsEnumerateSessionsResponse{}
+pub fn zzz_vproto_internal_new_cgamenotifications_enumeratesessions_response() CGameNotifications_EnumerateSessions_Response {
+	return CGameNotifications_EnumerateSessions_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsenumeratesessionsresponse(o CGameNotificationsEnumerateSessionsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_enumeratesessions_response(o CGameNotifications_EnumerateSessions_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsenumeratesessionsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsEnumerateSessionsResponse) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_enumeratesessions_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_EnumerateSessions_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsenumeratesessionsresponse_unpack(v)?
+	mut unpacked := cgamenotifications_enumeratesessions_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsGetSessionDetailsRequestRequestedSession {
+pub struct CGameNotifications_GetSessionDetails_Request_RequestedSession {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -1012,7 +1012,7 @@ pub mut:
 	has_include_auth_user_message bool
 }
 
-pub fn (o &CGameNotificationsGetSessionDetailsRequestRequestedSession) pack() []byte {
+pub fn (o &CGameNotifications_GetSessionDetails_Request_RequestedSession) pack() []byte {
 	mut res := []byte{}
 	if o.has_sessionid {
 		res << vproto.pack_uint64_field(o.sessionid, 1)
@@ -1023,8 +1023,8 @@ pub fn (o &CGameNotificationsGetSessionDetailsRequestRequestedSession) pack() []
 	return res
 }
 
-pub fn cgamenotificationsgetsessiondetailsrequestrequestedsession_unpack(buf []byte) ?CGameNotificationsGetSessionDetailsRequestRequestedSession {
-	mut res := CGameNotificationsGetSessionDetailsRequestRequestedSession{}
+pub fn cgamenotifications_getsessiondetails_request_requestedsession_unpack(buf []byte) ?CGameNotifications_GetSessionDetails_Request_RequestedSession {
+	mut res := CGameNotifications_GetSessionDetails_Request_RequestedSession{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1062,39 +1062,39 @@ pub fn cgamenotificationsgetsessiondetailsrequestrequestedsession_unpack(buf []b
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsgetsessiondetailsrequestrequestedsession() CGameNotificationsGetSessionDetailsRequestRequestedSession {
-	return CGameNotificationsGetSessionDetailsRequestRequestedSession{}
+pub fn zzz_vproto_internal_new_cgamenotifications_getsessiondetails_request_requestedsession() CGameNotifications_GetSessionDetails_Request_RequestedSession {
+	return CGameNotifications_GetSessionDetails_Request_RequestedSession{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsgetsessiondetailsrequestrequestedsession(o CGameNotificationsGetSessionDetailsRequestRequestedSession, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_getsessiondetails_request_requestedsession(o CGameNotifications_GetSessionDetails_Request_RequestedSession, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsgetsessiondetailsrequestrequestedsession(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsGetSessionDetailsRequestRequestedSession) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_getsessiondetails_request_requestedsession(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_GetSessionDetails_Request_RequestedSession) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsgetsessiondetailsrequestrequestedsession_unpack(v)?
+	mut unpacked := cgamenotifications_getsessiondetails_request_requestedsession_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsGetSessionDetailsRequest {
+pub struct CGameNotifications_GetSessionDetails_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	sessions       []CGameNotificationsGetSessionDetailsRequestRequestedSession
+	sessions       []CGameNotifications_GetSessionDetails_Request_RequestedSession
 	appid          u32
 	has_appid      bool
 	language       string
 	has_language   bool
 }
 
-pub fn (o &CGameNotificationsGetSessionDetailsRequest) pack() []byte {
+pub fn (o &CGameNotifications_GetSessionDetails_Request) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.sessions {
 		res <<
-			zzz_vproto_internal_pack_cgamenotificationsgetsessiondetailsrequestrequestedsession(x, 1)
+			zzz_vproto_internal_pack_cgamenotifications_getsessiondetails_request_requestedsession(x, 1)
 	}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 2)
@@ -1105,8 +1105,8 @@ pub fn (o &CGameNotificationsGetSessionDetailsRequest) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsgetsessiondetailsrequest_unpack(buf []byte) ?CGameNotificationsGetSessionDetailsRequest {
-	mut res := CGameNotificationsGetSessionDetailsRequest{}
+pub fn cgamenotifications_getsessiondetails_request_unpack(buf []byte) ?CGameNotifications_GetSessionDetails_Request {
+	mut res := CGameNotifications_GetSessionDetails_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1118,7 +1118,7 @@ pub fn cgamenotificationsgetsessiondetailsrequest_unpack(buf []byte) ?CGameNotif
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationsgetsessiondetailsrequestrequestedsession(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_getsessiondetails_request_requestedsession(cur_buf,
 					tag_wiretype.wire_type)?
 				res.sessions << v
 				i = ii
@@ -1151,40 +1151,40 @@ pub fn cgamenotificationsgetsessiondetailsrequest_unpack(buf []byte) ?CGameNotif
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsgetsessiondetailsrequest() CGameNotificationsGetSessionDetailsRequest {
-	return CGameNotificationsGetSessionDetailsRequest{}
+pub fn zzz_vproto_internal_new_cgamenotifications_getsessiondetails_request() CGameNotifications_GetSessionDetails_Request {
+	return CGameNotifications_GetSessionDetails_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsgetsessiondetailsrequest(o CGameNotificationsGetSessionDetailsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_getsessiondetails_request(o CGameNotifications_GetSessionDetails_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsgetsessiondetailsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsGetSessionDetailsRequest) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_getsessiondetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_GetSessionDetails_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsgetsessiondetailsrequest_unpack(v)?
+	mut unpacked := cgamenotifications_getsessiondetails_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsGetSessionDetailsResponse {
+pub struct CGameNotifications_GetSessionDetails_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	sessions       []CGameNotificationsSession
+	sessions       []CGameNotifications_Session
 }
 
-pub fn (o &CGameNotificationsGetSessionDetailsResponse) pack() []byte {
+pub fn (o &CGameNotifications_GetSessionDetails_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.sessions {
-		res << zzz_vproto_internal_pack_cgamenotificationssession(x, 1)
+		res << zzz_vproto_internal_pack_cgamenotifications_session(x, 1)
 	}
 	return res
 }
 
-pub fn cgamenotificationsgetsessiondetailsresponse_unpack(buf []byte) ?CGameNotificationsGetSessionDetailsResponse {
-	mut res := CGameNotificationsGetSessionDetailsResponse{}
+pub fn cgamenotifications_getsessiondetails_response_unpack(buf []byte) ?CGameNotifications_GetSessionDetails_Response {
+	mut res := CGameNotifications_GetSessionDetails_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1196,7 +1196,7 @@ pub fn cgamenotificationsgetsessiondetailsresponse_unpack(buf []byte) ?CGameNoti
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationssession(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_session(cur_buf,
 					tag_wiretype.wire_type)?
 				res.sessions << v
 				i = ii
@@ -1217,19 +1217,19 @@ pub fn cgamenotificationsgetsessiondetailsresponse_unpack(buf []byte) ?CGameNoti
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsgetsessiondetailsresponse() CGameNotificationsGetSessionDetailsResponse {
-	return CGameNotificationsGetSessionDetailsResponse{}
+pub fn zzz_vproto_internal_new_cgamenotifications_getsessiondetails_response() CGameNotifications_GetSessionDetails_Response {
+	return CGameNotifications_GetSessionDetails_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsgetsessiondetailsresponse(o CGameNotificationsGetSessionDetailsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_getsessiondetails_response(o CGameNotifications_GetSessionDetails_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsgetsessiondetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsGetSessionDetailsResponse) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_getsessiondetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_GetSessionDetails_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsgetsessiondetailsresponse_unpack(v)?
+	mut unpacked := cgamenotifications_getsessiondetails_response_unpack(v)?
 	return i, unpacked
 }
 
@@ -1309,14 +1309,14 @@ pub fn zzz_vproto_internal_unpack_gamenotificationsettings(buf []byte, tag_wiret
 	return i, unpacked
 }
 
-pub struct CGameNotificationsUpdateNotificationSettingsRequest {
+pub struct CGameNotifications_UpdateNotificationSettings_Request {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
 	game_notification_settings []GameNotificationSettings
 }
 
-pub fn (o &CGameNotificationsUpdateNotificationSettingsRequest) pack() []byte {
+pub fn (o &CGameNotifications_UpdateNotificationSettings_Request) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.game_notification_settings {
@@ -1325,8 +1325,8 @@ pub fn (o &CGameNotificationsUpdateNotificationSettingsRequest) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsupdatenotificationsettingsrequest_unpack(buf []byte) ?CGameNotificationsUpdateNotificationSettingsRequest {
-	mut res := CGameNotificationsUpdateNotificationSettingsRequest{}
+pub fn cgamenotifications_updatenotificationsettings_request_unpack(buf []byte) ?CGameNotifications_UpdateNotificationSettings_Request {
+	mut res := CGameNotifications_UpdateNotificationSettings_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1359,55 +1359,55 @@ pub fn cgamenotificationsupdatenotificationsettingsrequest_unpack(buf []byte) ?C
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsupdatenotificationsettingsrequest() CGameNotificationsUpdateNotificationSettingsRequest {
-	return CGameNotificationsUpdateNotificationSettingsRequest{}
+pub fn zzz_vproto_internal_new_cgamenotifications_updatenotificationsettings_request() CGameNotifications_UpdateNotificationSettings_Request {
+	return CGameNotifications_UpdateNotificationSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsupdatenotificationsettingsrequest(o CGameNotificationsUpdateNotificationSettingsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_updatenotificationsettings_request(o CGameNotifications_UpdateNotificationSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsupdatenotificationsettingsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsUpdateNotificationSettingsRequest) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_updatenotificationsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_UpdateNotificationSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsupdatenotificationsettingsrequest_unpack(v)?
+	mut unpacked := cgamenotifications_updatenotificationsettings_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsUpdateNotificationSettingsResponse {
+pub struct CGameNotifications_UpdateNotificationSettings_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CGameNotificationsUpdateNotificationSettingsResponse) pack() []byte {
+pub fn (o &CGameNotifications_UpdateNotificationSettings_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cgamenotificationsupdatenotificationsettingsresponse_unpack(buf []byte) ?CGameNotificationsUpdateNotificationSettingsResponse {
-	res := CGameNotificationsUpdateNotificationSettingsResponse{}
+pub fn cgamenotifications_updatenotificationsettings_response_unpack(buf []byte) ?CGameNotifications_UpdateNotificationSettings_Response {
+	res := CGameNotifications_UpdateNotificationSettings_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsupdatenotificationsettingsresponse() CGameNotificationsUpdateNotificationSettingsResponse {
-	return CGameNotificationsUpdateNotificationSettingsResponse{}
+pub fn zzz_vproto_internal_new_cgamenotifications_updatenotificationsettings_response() CGameNotifications_UpdateNotificationSettings_Response {
+	return CGameNotifications_UpdateNotificationSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsupdatenotificationsettingsresponse(o CGameNotificationsUpdateNotificationSettingsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_updatenotificationsettings_response(o CGameNotifications_UpdateNotificationSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsupdatenotificationsettingsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsUpdateNotificationSettingsResponse) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_updatenotificationsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_UpdateNotificationSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsupdatenotificationsettingsresponse_unpack(v)?
+	mut unpacked := cgamenotifications_updatenotificationsettings_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsOnNotificationsRequestedNotification {
+pub struct CGameNotifications_OnNotificationsRequested_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1417,7 +1417,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CGameNotificationsOnNotificationsRequestedNotification) pack() []byte {
+pub fn (o &CGameNotifications_OnNotificationsRequested_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1428,8 +1428,8 @@ pub fn (o &CGameNotificationsOnNotificationsRequestedNotification) pack() []byte
 	return res
 }
 
-pub fn cgamenotificationsonnotificationsrequestednotification_unpack(buf []byte) ?CGameNotificationsOnNotificationsRequestedNotification {
-	mut res := CGameNotificationsOnNotificationsRequestedNotification{}
+pub fn cgamenotifications_onnotificationsrequested_notification_unpack(buf []byte) ?CGameNotifications_OnNotificationsRequested_Notification {
+	mut res := CGameNotifications_OnNotificationsRequested_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1467,23 +1467,23 @@ pub fn cgamenotificationsonnotificationsrequestednotification_unpack(buf []byte)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsonnotificationsrequestednotification() CGameNotificationsOnNotificationsRequestedNotification {
-	return CGameNotificationsOnNotificationsRequestedNotification{}
+pub fn zzz_vproto_internal_new_cgamenotifications_onnotificationsrequested_notification() CGameNotifications_OnNotificationsRequested_Notification {
+	return CGameNotifications_OnNotificationsRequested_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsonnotificationsrequestednotification(o CGameNotificationsOnNotificationsRequestedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_onnotificationsrequested_notification(o CGameNotifications_OnNotificationsRequested_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsonnotificationsrequestednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsOnNotificationsRequestedNotification) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_onnotificationsrequested_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_OnNotificationsRequested_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsonnotificationsrequestednotification_unpack(v)?
+	mut unpacked := cgamenotifications_onnotificationsrequested_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CGameNotificationsOnUserStatusChangedNotification {
+pub struct CGameNotifications_OnUserStatusChanged_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1493,13 +1493,13 @@ pub mut:
 	has_sessionid  bool
 	appid          u32
 	has_appid      bool
-	status         CGameNotificationsUserStatus
+	status         CGameNotifications_UserStatus
 	has_status     bool
 	removed        bool
 	has_removed    bool
 }
 
-pub fn (o &CGameNotificationsOnUserStatusChangedNotification) pack() []byte {
+pub fn (o &CGameNotifications_OnUserStatusChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1511,7 +1511,7 @@ pub fn (o &CGameNotificationsOnUserStatusChangedNotification) pack() []byte {
 		res << vproto.pack_uint32_field(o.appid, 3)
 	}
 	if o.has_status {
-		res << zzz_vproto_internal_pack_cgamenotificationsuserstatus(o.status, 4)
+		res << zzz_vproto_internal_pack_cgamenotifications_userstatus(o.status, 4)
 	}
 	if o.has_removed {
 		res << vproto.pack_bool_field(o.removed, 5)
@@ -1519,8 +1519,8 @@ pub fn (o &CGameNotificationsOnUserStatusChangedNotification) pack() []byte {
 	return res
 }
 
-pub fn cgamenotificationsonuserstatuschangednotification_unpack(buf []byte) ?CGameNotificationsOnUserStatusChangedNotification {
-	mut res := CGameNotificationsOnUserStatusChangedNotification{}
+pub fn cgamenotifications_onuserstatuschanged_notification_unpack(buf []byte) ?CGameNotifications_OnUserStatusChanged_Notification {
+	mut res := CGameNotifications_OnUserStatusChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1550,7 +1550,7 @@ pub fn cgamenotificationsonuserstatuschangednotification_unpack(buf []byte) ?CGa
 			}
 			4 {
 				res.has_status = true
-				ii, v := zzz_vproto_internal_unpack_cgamenotificationsuserstatus(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cgamenotifications_userstatus(cur_buf,
 					tag_wiretype.wire_type)?
 				res.status = v
 				i = ii
@@ -1577,18 +1577,18 @@ pub fn cgamenotificationsonuserstatuschangednotification_unpack(buf []byte) ?CGa
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cgamenotificationsonuserstatuschangednotification() CGameNotificationsOnUserStatusChangedNotification {
-	return CGameNotificationsOnUserStatusChangedNotification{}
+pub fn zzz_vproto_internal_new_cgamenotifications_onuserstatuschanged_notification() CGameNotifications_OnUserStatusChanged_Notification {
+	return CGameNotifications_OnUserStatusChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cgamenotificationsonuserstatuschangednotification(o CGameNotificationsOnUserStatusChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cgamenotifications_onuserstatuschanged_notification(o CGameNotifications_OnUserStatusChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cgamenotificationsonuserstatuschangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotificationsOnUserStatusChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cgamenotifications_onuserstatuschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameNotifications_OnUserStatusChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgamenotificationsonuserstatuschangednotification_unpack(v)?
+	mut unpacked := cgamenotifications_onuserstatuschanged_notification_unpack(v)?
 	return i, unpacked
 }

@@ -309,7 +309,7 @@ pub mut:
 	has_wine_version                            bool
 	deprecated_10                               u32
 	has_deprecated_10                           bool
-	obfuscated_private_ip                       CMsgIPaddress
+	obfuscated_private_ip                       CMsgIPAddress
 	has_obfuscated_private_ip                   bool
 	deprecated_public_ip                        u32
 	has_deprecated_public_ip                    bool
@@ -317,7 +317,7 @@ pub mut:
 	has_qos_level                               bool
 	client_supplied_steam_id                    u64
 	has_client_supplied_steam_id                bool
-	public_ip                                   CMsgIPaddress
+	public_ip                                   CMsgIPAddress
 	has_public_ip                               bool
 	machine_id                                  []byte
 	has_machine_id                              bool
@@ -954,7 +954,7 @@ pub mut:
 	has_deprecated_use_pics            bool
 	vanity_url                         string
 	has_vanity_url                     bool
-	public_ip                          CMsgIPaddress
+	public_ip                          CMsgIPAddress
 	has_public_ip                      bool
 	client_supplied_steamid            u64
 	has_client_supplied_steamid        bool
@@ -1240,7 +1240,7 @@ pub fn zzz_vproto_internal_unpack_cmsgclientlogonresponse(buf []byte, tag_wirety
 	return i, unpacked
 }
 
-pub struct CMsgClientRequestWebAPiauthenticateUserNonce {
+pub struct CMsgClientRequestWebAPIAuthenticateUserNonce {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1248,7 +1248,7 @@ pub mut:
 	has_token_type bool
 }
 
-pub fn (o &CMsgClientRequestWebAPiauthenticateUserNonce) pack() []byte {
+pub fn (o &CMsgClientRequestWebAPIAuthenticateUserNonce) pack() []byte {
 	mut res := []byte{}
 	if o.has_token_type {
 		res << vproto.pack_int32_field(o.token_type, 1)
@@ -1256,8 +1256,8 @@ pub fn (o &CMsgClientRequestWebAPiauthenticateUserNonce) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientrequestwebapiauthenticateusernonce_unpack(buf []byte) ?CMsgClientRequestWebAPiauthenticateUserNonce {
-	mut res := CMsgClientRequestWebAPiauthenticateUserNonce{}
+pub fn cmsgclientrequestwebapiauthenticateusernonce_unpack(buf []byte) ?CMsgClientRequestWebAPIAuthenticateUserNonce {
+	mut res := CMsgClientRequestWebAPIAuthenticateUserNonce{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1289,23 +1289,23 @@ pub fn cmsgclientrequestwebapiauthenticateusernonce_unpack(buf []byte) ?CMsgClie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonce() CMsgClientRequestWebAPiauthenticateUserNonce {
-	return CMsgClientRequestWebAPiauthenticateUserNonce{}
+pub fn zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonce() CMsgClientRequestWebAPIAuthenticateUserNonce {
+	return CMsgClientRequestWebAPIAuthenticateUserNonce{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientrequestwebapiauthenticateusernonce(o CMsgClientRequestWebAPiauthenticateUserNonce, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientrequestwebapiauthenticateusernonce(o CMsgClientRequestWebAPIAuthenticateUserNonce, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonce(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestWebAPiauthenticateUserNonce) {
+pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonce(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestWebAPIAuthenticateUserNonce) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientrequestwebapiauthenticateusernonce_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CMsgClientRequestWebAPiauthenticateUserNonceResponse {
+pub struct CMsgClientRequestWebAPIAuthenticateUserNonceResponse {
 mut:
 	unknown_fields                     []vproto.UnknownField
 pub mut:
@@ -1317,7 +1317,7 @@ pub mut:
 	has_token_type                     bool
 }
 
-pub fn (o &CMsgClientRequestWebAPiauthenticateUserNonceResponse) pack() []byte {
+pub fn (o &CMsgClientRequestWebAPIAuthenticateUserNonceResponse) pack() []byte {
 	mut res := []byte{}
 	if o.has_eresult {
 		res << vproto.pack_int32_field(o.eresult, 1)
@@ -1331,8 +1331,8 @@ pub fn (o &CMsgClientRequestWebAPiauthenticateUserNonceResponse) pack() []byte {
 	return res
 }
 
-pub fn cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(buf []byte) ?CMsgClientRequestWebAPiauthenticateUserNonceResponse {
-	mut res := CMsgClientRequestWebAPiauthenticateUserNonceResponse{}
+pub fn cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(buf []byte) ?CMsgClientRequestWebAPIAuthenticateUserNonceResponse {
+	mut res := CMsgClientRequestWebAPIAuthenticateUserNonceResponse{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1376,17 +1376,17 @@ pub fn cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(buf []byte) ?
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonceresponse() CMsgClientRequestWebAPiauthenticateUserNonceResponse {
-	return CMsgClientRequestWebAPiauthenticateUserNonceResponse{}
+pub fn zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonceresponse() CMsgClientRequestWebAPIAuthenticateUserNonceResponse {
+	return CMsgClientRequestWebAPIAuthenticateUserNonceResponse{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cmsgclientrequestwebapiauthenticateusernonceresponse(o CMsgClientRequestWebAPiauthenticateUserNonceResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cmsgclientrequestwebapiauthenticateusernonceresponse(o CMsgClientRequestWebAPIAuthenticateUserNonceResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestWebAPiauthenticateUserNonceResponse) {
+pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestWebAPIAuthenticateUserNonceResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(v)?
 	return i, unpacked

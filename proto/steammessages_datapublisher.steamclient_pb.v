@@ -3,7 +3,7 @@ module proto
 
 import emily33901.vproto
 
-pub struct CDataPublisherClientContentCorruptionReportNotification {
+pub struct CDataPublisher_ClientContentCorruptionReport_Notification {
 mut:
 	unknown_fields        []vproto.UnknownField
 pub mut:
@@ -29,7 +29,7 @@ pub mut:
 	has_oc_proxy_detected bool
 }
 
-pub fn (o &CDataPublisherClientContentCorruptionReportNotification) pack() []byte {
+pub fn (o &CDataPublisher_ClientContentCorruptionReport_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -64,8 +64,8 @@ pub fn (o &CDataPublisherClientContentCorruptionReportNotification) pack() []byt
 	return res
 }
 
-pub fn cdatapublisherclientcontentcorruptionreportnotification_unpack(buf []byte) ?CDataPublisherClientContentCorruptionReportNotification {
-	mut res := CDataPublisherClientContentCorruptionReportNotification{}
+pub fn cdatapublisher_clientcontentcorruptionreport_notification_unpack(buf []byte) ?CDataPublisher_ClientContentCorruptionReport_Notification {
+	mut res := CDataPublisher_ClientContentCorruptionReport_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -151,23 +151,23 @@ pub fn cdatapublisherclientcontentcorruptionreportnotification_unpack(buf []byte
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cdatapublisherclientcontentcorruptionreportnotification() CDataPublisherClientContentCorruptionReportNotification {
-	return CDataPublisherClientContentCorruptionReportNotification{}
+pub fn zzz_vproto_internal_new_cdatapublisher_clientcontentcorruptionreport_notification() CDataPublisher_ClientContentCorruptionReport_Notification {
+	return CDataPublisher_ClientContentCorruptionReport_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cdatapublisherclientcontentcorruptionreportnotification(o CDataPublisherClientContentCorruptionReportNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cdatapublisher_clientcontentcorruptionreport_notification(o CDataPublisher_ClientContentCorruptionReport_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cdatapublisherclientcontentcorruptionreportnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CDataPublisherClientContentCorruptionReportNotification) {
+pub fn zzz_vproto_internal_unpack_cdatapublisher_clientcontentcorruptionreport_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CDataPublisher_ClientContentCorruptionReport_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cdatapublisherclientcontentcorruptionreportnotification_unpack(v)?
+	mut unpacked := cdatapublisher_clientcontentcorruptionreport_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CValveHWsurveyGetSurveyScheduleRequest {
+pub struct CValveHWSurvey_GetSurveySchedule_Request {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -177,7 +177,7 @@ pub mut:
 	has_surveydatetokenversion bool
 }
 
-pub fn (o &CValveHWsurveyGetSurveyScheduleRequest) pack() []byte {
+pub fn (o &CValveHWSurvey_GetSurveySchedule_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_surveydatetoken {
 		res << vproto.pack_string_field(o.surveydatetoken, 1)
@@ -188,8 +188,8 @@ pub fn (o &CValveHWsurveyGetSurveyScheduleRequest) pack() []byte {
 	return res
 }
 
-pub fn cvalvehwsurveygetsurveyschedulerequest_unpack(buf []byte) ?CValveHWsurveyGetSurveyScheduleRequest {
-	mut res := CValveHWsurveyGetSurveyScheduleRequest{}
+pub fn cvalvehwsurvey_getsurveyschedule_request_unpack(buf []byte) ?CValveHWSurvey_GetSurveySchedule_Request {
+	mut res := CValveHWSurvey_GetSurveySchedule_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -227,23 +227,23 @@ pub fn cvalvehwsurveygetsurveyschedulerequest_unpack(buf []byte) ?CValveHWsurvey
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cvalvehwsurveygetsurveyschedulerequest() CValveHWsurveyGetSurveyScheduleRequest {
-	return CValveHWsurveyGetSurveyScheduleRequest{}
+pub fn zzz_vproto_internal_new_cvalvehwsurvey_getsurveyschedule_request() CValveHWSurvey_GetSurveySchedule_Request {
+	return CValveHWSurvey_GetSurveySchedule_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cvalvehwsurveygetsurveyschedulerequest(o CValveHWsurveyGetSurveyScheduleRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cvalvehwsurvey_getsurveyschedule_request(o CValveHWSurvey_GetSurveySchedule_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cvalvehwsurveygetsurveyschedulerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CValveHWsurveyGetSurveyScheduleRequest) {
+pub fn zzz_vproto_internal_unpack_cvalvehwsurvey_getsurveyschedule_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CValveHWSurvey_GetSurveySchedule_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvalvehwsurveygetsurveyschedulerequest_unpack(v)?
+	mut unpacked := cvalvehwsurvey_getsurveyschedule_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CValveHWsurveyGetSurveyScheduleResponse {
+pub struct CValveHWSurvey_GetSurveySchedule_Response {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -253,7 +253,7 @@ pub mut:
 	has_surveydatetokenversion bool
 }
 
-pub fn (o &CValveHWsurveyGetSurveyScheduleResponse) pack() []byte {
+pub fn (o &CValveHWSurvey_GetSurveySchedule_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_surveydatetoken {
 		res << vproto.pack_uint32_field(o.surveydatetoken, 1)
@@ -264,8 +264,8 @@ pub fn (o &CValveHWsurveyGetSurveyScheduleResponse) pack() []byte {
 	return res
 }
 
-pub fn cvalvehwsurveygetsurveyscheduleresponse_unpack(buf []byte) ?CValveHWsurveyGetSurveyScheduleResponse {
-	mut res := CValveHWsurveyGetSurveyScheduleResponse{}
+pub fn cvalvehwsurvey_getsurveyschedule_response_unpack(buf []byte) ?CValveHWSurvey_GetSurveySchedule_Response {
+	mut res := CValveHWSurvey_GetSurveySchedule_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -303,18 +303,18 @@ pub fn cvalvehwsurveygetsurveyscheduleresponse_unpack(buf []byte) ?CValveHWsurve
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cvalvehwsurveygetsurveyscheduleresponse() CValveHWsurveyGetSurveyScheduleResponse {
-	return CValveHWsurveyGetSurveyScheduleResponse{}
+pub fn zzz_vproto_internal_new_cvalvehwsurvey_getsurveyschedule_response() CValveHWSurvey_GetSurveySchedule_Response {
+	return CValveHWSurvey_GetSurveySchedule_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cvalvehwsurveygetsurveyscheduleresponse(o CValveHWsurveyGetSurveyScheduleResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cvalvehwsurvey_getsurveyschedule_response(o CValveHWSurvey_GetSurveySchedule_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cvalvehwsurveygetsurveyscheduleresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CValveHWsurveyGetSurveyScheduleResponse) {
+pub fn zzz_vproto_internal_unpack_cvalvehwsurvey_getsurveyschedule_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CValveHWSurvey_GetSurveySchedule_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvalvehwsurveygetsurveyscheduleresponse_unpack(v)?
+	mut unpacked := cvalvehwsurvey_getsurveyschedule_response_unpack(v)?
 	return i, unpacked
 }

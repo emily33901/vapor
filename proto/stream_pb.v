@@ -18,9 +18,31 @@ fn zzz_vproto_internal_pack_estreamchannel(e EStreamChannel, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamchannel_packed(e []EStreamChannel, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamchannel(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamChannel) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamChannel(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamchannel_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamChannel) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -35,9 +57,31 @@ fn zzz_vproto_internal_pack_estreamdiscoverymessage(e EStreamDiscoveryMessage, n
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamdiscoverymessage_packed(e []EStreamDiscoveryMessage, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamdiscoverymessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamDiscoveryMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamDiscoveryMessage(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamdiscoverymessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamDiscoveryMessage) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -134,9 +178,31 @@ fn zzz_vproto_internal_pack_estreamcontrolmessage(e EStreamControlMessage, num u
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamcontrolmessage_packed(e []EStreamControlMessage, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamcontrolmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamControlMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamControlMessage(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamcontrolmessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamControlMessage) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -151,9 +217,31 @@ fn zzz_vproto_internal_pack_estreamversion(e EStreamVersion, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamversion_packed(e []EStreamVersion, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamversion(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamVersion) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamVersion(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamversion_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamVersion) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -172,9 +260,31 @@ fn zzz_vproto_internal_pack_estreamaudiocodec(e EStreamAudioCodec, num u32) []by
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamaudiocodec_packed(e []EStreamAudioCodec, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamaudiocodec(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamAudioCodec) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamAudioCodec(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamaudiocodec_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamAudioCodec) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -195,9 +305,31 @@ fn zzz_vproto_internal_pack_estreamvideocodec(e EStreamVideoCodec, num u32) []by
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamvideocodec_packed(e []EStreamVideoCodec, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamvideocodec(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamVideoCodec) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamVideoCodec(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamvideocodec_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamVideoCodec) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -213,9 +345,31 @@ fn zzz_vproto_internal_pack_estreamqualitypreference(e EStreamQualityPreference,
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamqualitypreference_packed(e []EStreamQualityPreference, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamqualitypreference(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamQualityPreference) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamQualityPreference(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamqualitypreference_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamQualityPreference) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -230,9 +384,31 @@ fn zzz_vproto_internal_pack_estreambitrate(e EStreamBitrate, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreambitrate_packed(e []EStreamBitrate, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreambitrate(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamBitrate) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamBitrate(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreambitrate_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamBitrate) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -250,9 +426,31 @@ fn zzz_vproto_internal_pack_estreamp2pscope(e EStreamP2PScope, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamp2pscope_packed(e []EStreamP2PScope, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamp2pscope(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamP2PScope) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamP2PScope(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamp2pscope_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamP2PScope) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -267,9 +465,31 @@ fn zzz_vproto_internal_pack_estreamhostplayaudiopreference(e EStreamHostPlayAudi
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamhostplayaudiopreference_packed(e []EStreamHostPlayAudioPreference, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamhostplayaudiopreference(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamHostPlayAudioPreference) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamHostPlayAudioPreference(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamhostplayaudiopreference_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamHostPlayAudioPreference) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -285,9 +505,31 @@ fn zzz_vproto_internal_pack_estreamingdatatype(e EStreamingDataType, num u32) []
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamingdatatype_packed(e []EStreamingDataType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamingdatatype(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamingDataType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamingDataType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamingdatatype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamingDataType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -306,9 +548,31 @@ fn zzz_vproto_internal_pack_estreammousebutton(e EStreamMouseButton, num u32) []
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreammousebutton_packed(e []EStreamMouseButton, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreammousebutton(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamMouseButton) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamMouseButton(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreammousebutton_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamMouseButton) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -325,9 +589,31 @@ fn zzz_vproto_internal_pack_estreammousewheeldirection(e EStreamMouseWheelDirect
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreammousewheeldirection_packed(e []EStreamMouseWheelDirection, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreammousewheeldirection(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamMouseWheelDirection) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamMouseWheelDirection(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreammousewheeldirection_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamMouseWheelDirection) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -347,9 +633,31 @@ fn zzz_vproto_internal_pack_estreamframeratelimiter(e EStreamFramerateLimiter, n
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamframeratelimiter_packed(e []EStreamFramerateLimiter, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamframeratelimiter(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamFramerateLimiter) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamFramerateLimiter(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamframeratelimiter_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamFramerateLimiter) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -366,9 +674,31 @@ fn zzz_vproto_internal_pack_estreamactivity(e EStreamActivity, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamactivity_packed(e []EStreamActivity, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamactivity(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamActivity) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamActivity(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamactivity_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamActivity) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -383,9 +713,31 @@ fn zzz_vproto_internal_pack_estreamdatamessage(e EStreamDataMessage, num u32) []
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamdatamessage_packed(e []EStreamDataMessage, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamdatamessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamDataMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamDataMessage(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamdatamessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamDataMessage) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -401,9 +753,31 @@ fn zzz_vproto_internal_pack_eaudioformat(e EAudioFormat, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eaudioformat_packed(e []EAudioFormat, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eaudioformat(buf []byte, tag_wiretype vproto.WireType) ?(int, EAudioFormat) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EAudioFormat(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eaudioformat_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EAudioFormat) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -419,9 +793,31 @@ fn zzz_vproto_internal_pack_evideoformat(e EVideoFormat, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_evideoformat_packed(e []EVideoFormat, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_evideoformat(buf []byte, tag_wiretype vproto.WireType) ?(int, EVideoFormat) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EVideoFormat(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_evideoformat_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EVideoFormat) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -440,9 +836,31 @@ fn zzz_vproto_internal_pack_estreamstatsmessage(e EStreamStatsMessage, num u32) 
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamstatsmessage_packed(e []EStreamStatsMessage, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamstatsmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamStatsMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamStatsMessage(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamstatsmessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamStatsMessage) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -474,9 +892,31 @@ fn zzz_vproto_internal_pack_estreamframeevent(e EStreamFrameEvent, num u32) []by
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamframeevent_packed(e []EStreamFrameEvent, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamframeevent(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamFrameEvent) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamFrameEvent(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamframeevent_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamFrameEvent) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -497,9 +937,31 @@ fn zzz_vproto_internal_pack_estreamframeresult(e EStreamFrameResult, num u32) []
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_estreamframeresult_packed(e []EStreamFrameResult, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_estreamframeresult(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamFrameResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamFrameResult(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_estreamframeresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamFrameResult) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -531,9 +993,31 @@ fn zzz_vproto_internal_pack_eframeaccumulatedstat(e EFrameAccumulatedStat, num u
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_eframeaccumulatedstat_packed(e []EFrameAccumulatedStat, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_eframeaccumulatedstat(buf []byte, tag_wiretype vproto.WireType) ?(int, EFrameAccumulatedStat) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EFrameAccumulatedStat(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_eframeaccumulatedstat_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EFrameAccumulatedStat) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 [_allow_multiple_values]
@@ -549,9 +1033,31 @@ fn zzz_vproto_internal_pack_elogfiletype(e ELogFileType, num u32) []byte {
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_elogfiletype_packed(e []ELogFileType, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_elogfiletype(buf []byte, tag_wiretype vproto.WireType) ?(int, ELogFileType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ELogFileType(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_elogfiletype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ELogFileType) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct CDiscoveryPingRequest {
@@ -1037,27 +1543,49 @@ pub fn zzz_vproto_internal_unpack_cauthenticationrequestmsg(buf []byte, tag_wire
 }
 
 [_allow_multiple_values]
-enum CAuthenticationResponseMsgAuthenticationResult {
+enum CAuthenticationResponseMsg_AuthenticationResult {
 	succeeded = 0
 	failed = 1
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_pack_cauthenticationresponsemsgauthenticationresult(e CAuthenticationResponseMsgAuthenticationResult, num u32) []byte {
+fn zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult(e CAuthenticationResponseMsg_AuthenticationResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
-fn zzz_vproto_internal_unpack_cauthenticationresponsemsgauthenticationresult(buf []byte, tag_wiretype vproto.WireType) ?(int, CAuthenticationResponseMsgAuthenticationResult) {
+fn zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult_packed(e []CAuthenticationResponseMsg_AuthenticationResult, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult(buf []byte, tag_wiretype vproto.WireType) ?(int, CAuthenticationResponseMsg_AuthenticationResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
-	return i, CAuthenticationResponseMsgAuthenticationResult(v)
+	return i, CAuthenticationResponseMsg_AuthenticationResult(v)
+}
+
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CAuthenticationResponseMsg_AuthenticationResult) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
 }
 
 pub struct CAuthenticationResponseMsg {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	result         CAuthenticationResponseMsgAuthenticationResult
+	result         CAuthenticationResponseMsg_AuthenticationResult
 	has_result     bool
 	version        EStreamVersion
 	has_version    bool
@@ -1066,7 +1594,8 @@ pub mut:
 pub fn (o &CAuthenticationResponseMsg) pack() []byte {
 	mut res := []byte{}
 	if o.has_result {
-		res << zzz_vproto_internal_pack_cauthenticationresponsemsgauthenticationresult(o.result, 1)
+		res <<
+			zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult(o.result, 1)
 	}
 	if o.has_version {
 		res << zzz_vproto_internal_pack_estreamversion(o.version, 2)
@@ -1087,7 +1616,7 @@ pub fn cauthenticationresponsemsg_unpack(buf []byte) ?CAuthenticationResponseMsg
 		match tag_wiretype.tag {
 			1 {
 				res.has_result = true
-				ii, v := zzz_vproto_internal_unpack_cauthenticationresponsemsgauthenticationresult(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult(cur_buf,
 					tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
@@ -5838,7 +6367,7 @@ pub fn zzz_vproto_internal_unpack_csetspectatormodemsg(buf []byte, tag_wiretype 
 	return i, unpacked
 }
 
-pub struct CRemoteHIdmsg {
+pub struct CRemoteHIDMsg {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5846,7 +6375,7 @@ pub mut:
 	has_data       bool
 }
 
-pub fn (o &CRemoteHIdmsg) pack() []byte {
+pub fn (o &CRemoteHIDMsg) pack() []byte {
 	mut res := []byte{}
 	if o.has_data {
 		res << vproto.pack_bytes_field(o.data, 1)
@@ -5854,8 +6383,8 @@ pub fn (o &CRemoteHIdmsg) pack() []byte {
 	return res
 }
 
-pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIdmsg {
-	mut res := CRemoteHIdmsg{}
+pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIDMsg {
+	mut res := CRemoteHIDMsg{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5887,17 +6416,17 @@ pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIdmsg {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cremotehidmsg() CRemoteHIdmsg {
-	return CRemoteHIdmsg{}
+pub fn zzz_vproto_internal_new_cremotehidmsg() CRemoteHIDMsg {
+	return CRemoteHIDMsg{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cremotehidmsg(o CRemoteHIdmsg, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cremotehidmsg(o CRemoteHIDMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cremotehidmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteHIdmsg) {
+pub fn zzz_vproto_internal_unpack_cremotehidmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteHIDMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cremotehidmsg_unpack(v)?
 	return i, unpacked
@@ -7589,7 +8118,7 @@ pub fn zzz_vproto_internal_unpack_cloguploadmsg(buf []byte, tag_wiretype vproto.
 	return i, unpacked
 }
 
-pub struct CTransportSignalMsgWebRTcmessageCandidate {
+pub struct CTransportSignalMsgWebRTCMessage_Candidate {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -7601,7 +8130,7 @@ pub mut:
 	has_candidate       bool
 }
 
-pub fn (o &CTransportSignalMsgWebRTcmessageCandidate) pack() []byte {
+pub fn (o &CTransportSignalMsgWebRTCMessage_Candidate) pack() []byte {
 	mut res := []byte{}
 	if o.has_sdp_mid {
 		res << vproto.pack_string_field(o.sdp_mid, 1)
@@ -7615,8 +8144,8 @@ pub fn (o &CTransportSignalMsgWebRTcmessageCandidate) pack() []byte {
 	return res
 }
 
-pub fn ctransportsignalmsgwebrtcmessagecandidate_unpack(buf []byte) ?CTransportSignalMsgWebRTcmessageCandidate {
-	mut res := CTransportSignalMsgWebRTcmessageCandidate{}
+pub fn ctransportsignalmsgwebrtcmessage_candidate_unpack(buf []byte) ?CTransportSignalMsgWebRTCMessage_Candidate {
+	mut res := CTransportSignalMsgWebRTCMessage_Candidate{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7660,51 +8189,51 @@ pub fn ctransportsignalmsgwebrtcmessagecandidate_unpack(buf []byte) ?CTransportS
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ctransportsignalmsgwebrtcmessagecandidate() CTransportSignalMsgWebRTcmessageCandidate {
-	return CTransportSignalMsgWebRTcmessageCandidate{}
+pub fn zzz_vproto_internal_new_ctransportsignalmsgwebrtcmessage_candidate() CTransportSignalMsgWebRTCMessage_Candidate {
+	return CTransportSignalMsgWebRTCMessage_Candidate{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ctransportsignalmsgwebrtcmessagecandidate(o CTransportSignalMsgWebRTcmessageCandidate, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ctransportsignalmsgwebrtcmessage_candidate(o CTransportSignalMsgWebRTCMessage_Candidate, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ctransportsignalmsgwebrtcmessagecandidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsgWebRTcmessageCandidate) {
+pub fn zzz_vproto_internal_unpack_ctransportsignalmsgwebrtcmessage_candidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsgWebRTCMessage_Candidate) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ctransportsignalmsgwebrtcmessagecandidate_unpack(v)?
+	mut unpacked := ctransportsignalmsgwebrtcmessage_candidate_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CTransportSignalMsgWebRTcmessage {
+pub struct CTransportSignalMsg_WebRTCMessage {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CTransportSignalMsgWebRTcmessage) pack() []byte {
+pub fn (o &CTransportSignalMsg_WebRTCMessage) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn ctransportsignalmsgwebrtcmessage_unpack(buf []byte) ?CTransportSignalMsgWebRTcmessage {
-	res := CTransportSignalMsgWebRTcmessage{}
+pub fn ctransportsignalmsg_webrtcmessage_unpack(buf []byte) ?CTransportSignalMsg_WebRTCMessage {
+	res := CTransportSignalMsg_WebRTCMessage{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_ctransportsignalmsgwebrtcmessage() CTransportSignalMsgWebRTcmessage {
-	return CTransportSignalMsgWebRTcmessage{}
+pub fn zzz_vproto_internal_new_ctransportsignalmsg_webrtcmessage() CTransportSignalMsg_WebRTCMessage {
+	return CTransportSignalMsg_WebRTCMessage{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_ctransportsignalmsgwebrtcmessage(o CTransportSignalMsgWebRTcmessage, num u32) []byte {
+pub fn zzz_vproto_internal_pack_ctransportsignalmsg_webrtcmessage(o CTransportSignalMsg_WebRTCMessage, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_ctransportsignalmsgwebrtcmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsgWebRTcmessage) {
+pub fn zzz_vproto_internal_unpack_ctransportsignalmsg_webrtcmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsg_WebRTCMessage) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ctransportsignalmsgwebrtcmessage_unpack(v)?
+	mut unpacked := ctransportsignalmsg_webrtcmessage_unpack(v)?
 	return i, unpacked
 }
 
@@ -7712,7 +8241,7 @@ pub struct CTransportSignalMsg {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	webrtc         CTransportSignalMsgWebRTcmessage
+	webrtc         CTransportSignalMsg_WebRTCMessage
 	has_webrtc     bool
 	sdr            [][]byte
 }
@@ -7720,7 +8249,7 @@ pub mut:
 pub fn (o &CTransportSignalMsg) pack() []byte {
 	mut res := []byte{}
 	if o.has_webrtc {
-		res << zzz_vproto_internal_pack_ctransportsignalmsgwebrtcmessage(o.webrtc, 1)
+		res << zzz_vproto_internal_pack_ctransportsignalmsg_webrtcmessage(o.webrtc, 1)
 	}
 	// [packed=false]
 	for _, x in o.sdr {
@@ -7742,7 +8271,7 @@ pub fn ctransportsignalmsg_unpack(buf []byte) ?CTransportSignalMsg {
 		match tag_wiretype.tag {
 			1 {
 				res.has_webrtc = true
-				ii, v := zzz_vproto_internal_unpack_ctransportsignalmsgwebrtcmessage(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_ctransportsignalmsg_webrtcmessage(cur_buf,
 					tag_wiretype.wire_type)?
 				res.webrtc = v
 				i = ii

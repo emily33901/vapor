@@ -17,12 +17,34 @@ fn zzz_vproto_internal_pack_evalveindexcomponent(e EValveIndexComponent, num u32
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_evalveindexcomponent_packed(e []EValveIndexComponent, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_evalveindexcomponent(buf []byte, tag_wiretype vproto.WireType) ?(int, EValveIndexComponent) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EValveIndexComponent(v)
 }
 
-pub struct CAccountHardwareRegisterSteamControllerRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_evalveindexcomponent_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EValveIndexComponent) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CAccountHardware_RegisterSteamController_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -32,7 +54,7 @@ pub mut:
 	has_controller_code bool
 }
 
-pub fn (o &CAccountHardwareRegisterSteamControllerRequest) pack() []byte {
+pub fn (o &CAccountHardware_RegisterSteamController_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -43,8 +65,8 @@ pub fn (o &CAccountHardwareRegisterSteamControllerRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwareregistersteamcontrollerrequest_unpack(buf []byte) ?CAccountHardwareRegisterSteamControllerRequest {
-	mut res := CAccountHardwareRegisterSteamControllerRequest{}
+pub fn caccounthardware_registersteamcontroller_request_unpack(buf []byte) ?CAccountHardware_RegisterSteamController_Request {
+	mut res := CAccountHardware_RegisterSteamController_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -82,55 +104,55 @@ pub fn caccounthardwareregistersteamcontrollerrequest_unpack(buf []byte) ?CAccou
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwareregistersteamcontrollerrequest() CAccountHardwareRegisterSteamControllerRequest {
-	return CAccountHardwareRegisterSteamControllerRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_registersteamcontroller_request() CAccountHardware_RegisterSteamController_Request {
+	return CAccountHardware_RegisterSteamController_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwareregistersteamcontrollerrequest(o CAccountHardwareRegisterSteamControllerRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_registersteamcontroller_request(o CAccountHardware_RegisterSteamController_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwareregistersteamcontrollerrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareRegisterSteamControllerRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_registersteamcontroller_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterSteamController_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwareregistersteamcontrollerrequest_unpack(v)?
+	mut unpacked := caccounthardware_registersteamcontroller_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareRegisterSteamControllerResponse {
+pub struct CAccountHardware_RegisterSteamController_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CAccountHardwareRegisterSteamControllerResponse) pack() []byte {
+pub fn (o &CAccountHardware_RegisterSteamController_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn caccounthardwareregistersteamcontrollerresponse_unpack(buf []byte) ?CAccountHardwareRegisterSteamControllerResponse {
-	res := CAccountHardwareRegisterSteamControllerResponse{}
+pub fn caccounthardware_registersteamcontroller_response_unpack(buf []byte) ?CAccountHardware_RegisterSteamController_Response {
+	res := CAccountHardware_RegisterSteamController_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwareregistersteamcontrollerresponse() CAccountHardwareRegisterSteamControllerResponse {
-	return CAccountHardwareRegisterSteamControllerResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_registersteamcontroller_response() CAccountHardware_RegisterSteamController_Response {
+	return CAccountHardware_RegisterSteamController_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwareregistersteamcontrollerresponse(o CAccountHardwareRegisterSteamControllerResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_registersteamcontroller_response(o CAccountHardware_RegisterSteamController_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwareregistersteamcontrollerresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareRegisterSteamControllerResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_registersteamcontroller_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterSteamController_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwareregistersteamcontrollerresponse_unpack(v)?
+	mut unpacked := caccounthardware_registersteamcontroller_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareCompleteSteamControllerRegistrationRequest {
+pub struct CAccountHardware_CompleteSteamControllerRegistration_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -140,7 +162,7 @@ pub mut:
 	has_controller_code bool
 }
 
-pub fn (o &CAccountHardwareCompleteSteamControllerRegistrationRequest) pack() []byte {
+pub fn (o &CAccountHardware_CompleteSteamControllerRegistration_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -151,8 +173,8 @@ pub fn (o &CAccountHardwareCompleteSteamControllerRegistrationRequest) pack() []
 	return res
 }
 
-pub fn caccounthardwarecompletesteamcontrollerregistrationrequest_unpack(buf []byte) ?CAccountHardwareCompleteSteamControllerRegistrationRequest {
-	mut res := CAccountHardwareCompleteSteamControllerRegistrationRequest{}
+pub fn caccounthardware_completesteamcontrollerregistration_request_unpack(buf []byte) ?CAccountHardware_CompleteSteamControllerRegistration_Request {
+	mut res := CAccountHardware_CompleteSteamControllerRegistration_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -190,55 +212,55 @@ pub fn caccounthardwarecompletesteamcontrollerregistrationrequest_unpack(buf []b
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarecompletesteamcontrollerregistrationrequest() CAccountHardwareCompleteSteamControllerRegistrationRequest {
-	return CAccountHardwareCompleteSteamControllerRegistrationRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_completesteamcontrollerregistration_request() CAccountHardware_CompleteSteamControllerRegistration_Request {
+	return CAccountHardware_CompleteSteamControllerRegistration_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarecompletesteamcontrollerregistrationrequest(o CAccountHardwareCompleteSteamControllerRegistrationRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_completesteamcontrollerregistration_request(o CAccountHardware_CompleteSteamControllerRegistration_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarecompletesteamcontrollerregistrationrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareCompleteSteamControllerRegistrationRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_completesteamcontrollerregistration_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_CompleteSteamControllerRegistration_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarecompletesteamcontrollerregistrationrequest_unpack(v)?
+	mut unpacked := caccounthardware_completesteamcontrollerregistration_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareCompleteSteamControllerRegistrationResponse {
+pub struct CAccountHardware_CompleteSteamControllerRegistration_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CAccountHardwareCompleteSteamControllerRegistrationResponse) pack() []byte {
+pub fn (o &CAccountHardware_CompleteSteamControllerRegistration_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn caccounthardwarecompletesteamcontrollerregistrationresponse_unpack(buf []byte) ?CAccountHardwareCompleteSteamControllerRegistrationResponse {
-	res := CAccountHardwareCompleteSteamControllerRegistrationResponse{}
+pub fn caccounthardware_completesteamcontrollerregistration_response_unpack(buf []byte) ?CAccountHardware_CompleteSteamControllerRegistration_Response {
+	res := CAccountHardware_CompleteSteamControllerRegistration_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarecompletesteamcontrollerregistrationresponse() CAccountHardwareCompleteSteamControllerRegistrationResponse {
-	return CAccountHardwareCompleteSteamControllerRegistrationResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_completesteamcontrollerregistration_response() CAccountHardware_CompleteSteamControllerRegistration_Response {
+	return CAccountHardware_CompleteSteamControllerRegistration_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarecompletesteamcontrollerregistrationresponse(o CAccountHardwareCompleteSteamControllerRegistrationResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_completesteamcontrollerregistration_response(o CAccountHardware_CompleteSteamControllerRegistration_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarecompletesteamcontrollerregistrationresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareCompleteSteamControllerRegistrationResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_completesteamcontrollerregistration_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_CompleteSteamControllerRegistration_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarecompletesteamcontrollerregistrationresponse_unpack(v)?
+	mut unpacked := caccounthardware_completesteamcontrollerregistration_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareQueryAccountsRegisteredToSerialRequest {
+pub struct CAccountHardware_QueryAccountsRegisteredToSerial_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -248,7 +270,7 @@ pub mut:
 	has_controller_code bool
 }
 
-pub fn (o &CAccountHardwareQueryAccountsRegisteredToSerialRequest) pack() []byte {
+pub fn (o &CAccountHardware_QueryAccountsRegisteredToSerial_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -259,8 +281,8 @@ pub fn (o &CAccountHardwareQueryAccountsRegisteredToSerialRequest) pack() []byte
 	return res
 }
 
-pub fn caccounthardwarequeryaccountsregisteredtoserialrequest_unpack(buf []byte) ?CAccountHardwareQueryAccountsRegisteredToSerialRequest {
-	mut res := CAccountHardwareQueryAccountsRegisteredToSerialRequest{}
+pub fn caccounthardware_queryaccountsregisteredtoserial_request_unpack(buf []byte) ?CAccountHardware_QueryAccountsRegisteredToSerial_Request {
+	mut res := CAccountHardware_QueryAccountsRegisteredToSerial_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -298,23 +320,23 @@ pub fn caccounthardwarequeryaccountsregisteredtoserialrequest_unpack(buf []byte)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarequeryaccountsregisteredtoserialrequest() CAccountHardwareQueryAccountsRegisteredToSerialRequest {
-	return CAccountHardwareQueryAccountsRegisteredToSerialRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_request() CAccountHardware_QueryAccountsRegisteredToSerial_Request {
+	return CAccountHardware_QueryAccountsRegisteredToSerial_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarequeryaccountsregisteredtoserialrequest(o CAccountHardwareQueryAccountsRegisteredToSerialRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_request(o CAccountHardware_QueryAccountsRegisteredToSerial_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarequeryaccountsregisteredtoserialrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareQueryAccountsRegisteredToSerialRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_QueryAccountsRegisteredToSerial_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarequeryaccountsregisteredtoserialrequest_unpack(v)?
+	mut unpacked := caccounthardware_queryaccountsregisteredtoserial_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareQueryAccountsRegisteredToSerialAccounts {
+pub struct CAccountHardware_QueryAccountsRegisteredToSerial_Accounts {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -324,7 +346,7 @@ pub mut:
 	has_registration_complete bool
 }
 
-pub fn (o &CAccountHardwareQueryAccountsRegisteredToSerialAccounts) pack() []byte {
+pub fn (o &CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_uint32_field(o.accountid, 1)
@@ -335,8 +357,8 @@ pub fn (o &CAccountHardwareQueryAccountsRegisteredToSerialAccounts) pack() []byt
 	return res
 }
 
-pub fn caccounthardwarequeryaccountsregisteredtoserialaccounts_unpack(buf []byte) ?CAccountHardwareQueryAccountsRegisteredToSerialAccounts {
-	mut res := CAccountHardwareQueryAccountsRegisteredToSerialAccounts{}
+pub fn caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(buf []byte) ?CAccountHardware_QueryAccountsRegisteredToSerial_Accounts {
+	mut res := CAccountHardware_QueryAccountsRegisteredToSerial_Accounts{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -374,41 +396,41 @@ pub fn caccounthardwarequeryaccountsregisteredtoserialaccounts_unpack(buf []byte
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarequeryaccountsregisteredtoserialaccounts() CAccountHardwareQueryAccountsRegisteredToSerialAccounts {
-	return CAccountHardwareQueryAccountsRegisteredToSerialAccounts{}
+pub fn zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_accounts() CAccountHardware_QueryAccountsRegisteredToSerial_Accounts {
+	return CAccountHardware_QueryAccountsRegisteredToSerial_Accounts{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarequeryaccountsregisteredtoserialaccounts(o CAccountHardwareQueryAccountsRegisteredToSerialAccounts, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_accounts(o CAccountHardware_QueryAccountsRegisteredToSerial_Accounts, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarequeryaccountsregisteredtoserialaccounts(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareQueryAccountsRegisteredToSerialAccounts) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_accounts(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarequeryaccountsregisteredtoserialaccounts_unpack(v)?
+	mut unpacked := caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareQueryAccountsRegisteredToSerialResponse {
+pub struct CAccountHardware_QueryAccountsRegisteredToSerial_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	accounts       []CAccountHardwareQueryAccountsRegisteredToSerialAccounts
+	accounts       []CAccountHardware_QueryAccountsRegisteredToSerial_Accounts
 }
 
-pub fn (o &CAccountHardwareQueryAccountsRegisteredToSerialResponse) pack() []byte {
+pub fn (o &CAccountHardware_QueryAccountsRegisteredToSerial_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.accounts {
 		res <<
-			zzz_vproto_internal_pack_caccounthardwarequeryaccountsregisteredtoserialaccounts(x, 1)
+			zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_accounts(x, 1)
 	}
 	return res
 }
 
-pub fn caccounthardwarequeryaccountsregisteredtoserialresponse_unpack(buf []byte) ?CAccountHardwareQueryAccountsRegisteredToSerialResponse {
-	mut res := CAccountHardwareQueryAccountsRegisteredToSerialResponse{}
+pub fn caccounthardware_queryaccountsregisteredtoserial_response_unpack(buf []byte) ?CAccountHardware_QueryAccountsRegisteredToSerial_Response {
+	mut res := CAccountHardware_QueryAccountsRegisteredToSerial_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -420,7 +442,7 @@ pub fn caccounthardwarequeryaccountsregisteredtoserialresponse_unpack(buf []byte
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccounthardwarequeryaccountsregisteredtoserialaccounts(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_accounts(cur_buf,
 					tag_wiretype.wire_type)?
 				res.accounts << v
 				i = ii
@@ -441,23 +463,23 @@ pub fn caccounthardwarequeryaccountsregisteredtoserialresponse_unpack(buf []byte
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarequeryaccountsregisteredtoserialresponse() CAccountHardwareQueryAccountsRegisteredToSerialResponse {
-	return CAccountHardwareQueryAccountsRegisteredToSerialResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_response() CAccountHardware_QueryAccountsRegisteredToSerial_Response {
+	return CAccountHardware_QueryAccountsRegisteredToSerial_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarequeryaccountsregisteredtoserialresponse(o CAccountHardwareQueryAccountsRegisteredToSerialResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_response(o CAccountHardware_QueryAccountsRegisteredToSerial_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarequeryaccountsregisteredtoserialresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareQueryAccountsRegisteredToSerialResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_QueryAccountsRegisteredToSerial_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarequeryaccountsregisteredtoserialresponse_unpack(v)?
+	mut unpacked := caccounthardware_queryaccountsregisteredtoserial_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSteamControllerSetConfigControllerConfig {
+pub struct CAccountHardware_SteamControllerSetConfig_ControllerConfig {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -469,7 +491,7 @@ pub mut:
 	has_templatename    bool
 }
 
-pub fn (o &CAccountHardwareSteamControllerSetConfigControllerConfig) pack() []byte {
+pub fn (o &CAccountHardware_SteamControllerSetConfig_ControllerConfig) pack() []byte {
 	mut res := []byte{}
 	if o.has_appidorname {
 		res << vproto.pack_string_field(o.appidorname, 1)
@@ -483,8 +505,8 @@ pub fn (o &CAccountHardwareSteamControllerSetConfigControllerConfig) pack() []by
 	return res
 }
 
-pub fn caccounthardwaresteamcontrollersetconfigcontrollerconfig_unpack(buf []byte) ?CAccountHardwareSteamControllerSetConfigControllerConfig {
-	mut res := CAccountHardwareSteamControllerSetConfigControllerConfig{}
+pub fn caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(buf []byte) ?CAccountHardware_SteamControllerSetConfig_ControllerConfig {
+	mut res := CAccountHardware_SteamControllerSetConfig_ControllerConfig{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -528,23 +550,23 @@ pub fn caccounthardwaresteamcontrollersetconfigcontrollerconfig_unpack(buf []byt
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresteamcontrollersetconfigcontrollerconfig() CAccountHardwareSteamControllerSetConfigControllerConfig {
-	return CAccountHardwareSteamControllerSetConfigControllerConfig{}
+pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_controllerconfig() CAccountHardware_SteamControllerSetConfig_ControllerConfig {
+	return CAccountHardware_SteamControllerSetConfig_ControllerConfig{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresteamcontrollersetconfigcontrollerconfig(o CAccountHardwareSteamControllerSetConfigControllerConfig, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_controllerconfig(o CAccountHardware_SteamControllerSetConfig_ControllerConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresteamcontrollersetconfigcontrollerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSteamControllerSetConfigControllerConfig) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_controllerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerSetConfig_ControllerConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresteamcontrollersetconfigcontrollerconfig_unpack(v)?
+	mut unpacked := caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSteamControllerSetConfigRequest {
+pub struct CAccountHardware_SteamControllerSetConfig_Request {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -554,14 +576,14 @@ pub mut:
 	has_controller_code      bool
 	accountid                u32
 	has_accountid            bool
-	configurations           []CAccountHardwareSteamControllerSetConfigControllerConfig
+	configurations           []CAccountHardware_SteamControllerSetConfig_ControllerConfig
 	controller_type          int
 	has_controller_type      bool
 	only_for_this_serial     bool
 	has_only_for_this_serial bool
 }
 
-pub fn (o &CAccountHardwareSteamControllerSetConfigRequest) pack() []byte {
+pub fn (o &CAccountHardware_SteamControllerSetConfig_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -575,7 +597,7 @@ pub fn (o &CAccountHardwareSteamControllerSetConfigRequest) pack() []byte {
 	// [packed=false]
 	for _, x in o.configurations {
 		res <<
-			zzz_vproto_internal_pack_caccounthardwaresteamcontrollersetconfigcontrollerconfig(x, 4)
+			zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_controllerconfig(x, 4)
 	}
 	if o.has_controller_type {
 		res << vproto.pack_int32_field(o.controller_type, 5)
@@ -586,8 +608,8 @@ pub fn (o &CAccountHardwareSteamControllerSetConfigRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwaresteamcontrollersetconfigrequest_unpack(buf []byte) ?CAccountHardwareSteamControllerSetConfigRequest {
-	mut res := CAccountHardwareSteamControllerSetConfigRequest{}
+pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAccountHardware_SteamControllerSetConfig_Request {
+	mut res := CAccountHardware_SteamControllerSetConfig_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -617,7 +639,7 @@ pub fn caccounthardwaresteamcontrollersetconfigrequest_unpack(buf []byte) ?CAcco
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccounthardwaresteamcontrollersetconfigcontrollerconfig(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_controllerconfig(cur_buf,
 					tag_wiretype.wire_type)?
 				res.configurations << v
 				i = ii
@@ -650,55 +672,55 @@ pub fn caccounthardwaresteamcontrollersetconfigrequest_unpack(buf []byte) ?CAcco
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresteamcontrollersetconfigrequest() CAccountHardwareSteamControllerSetConfigRequest {
-	return CAccountHardwareSteamControllerSetConfigRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_request() CAccountHardware_SteamControllerSetConfig_Request {
+	return CAccountHardware_SteamControllerSetConfig_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresteamcontrollersetconfigrequest(o CAccountHardwareSteamControllerSetConfigRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_request(o CAccountHardware_SteamControllerSetConfig_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresteamcontrollersetconfigrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSteamControllerSetConfigRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerSetConfig_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresteamcontrollersetconfigrequest_unpack(v)?
+	mut unpacked := caccounthardware_steamcontrollersetconfig_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSteamControllerSetConfigResponse {
+pub struct CAccountHardware_SteamControllerSetConfig_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CAccountHardwareSteamControllerSetConfigResponse) pack() []byte {
+pub fn (o &CAccountHardware_SteamControllerSetConfig_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn caccounthardwaresteamcontrollersetconfigresponse_unpack(buf []byte) ?CAccountHardwareSteamControllerSetConfigResponse {
-	res := CAccountHardwareSteamControllerSetConfigResponse{}
+pub fn caccounthardware_steamcontrollersetconfig_response_unpack(buf []byte) ?CAccountHardware_SteamControllerSetConfig_Response {
+	res := CAccountHardware_SteamControllerSetConfig_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresteamcontrollersetconfigresponse() CAccountHardwareSteamControllerSetConfigResponse {
-	return CAccountHardwareSteamControllerSetConfigResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_response() CAccountHardware_SteamControllerSetConfig_Response {
+	return CAccountHardware_SteamControllerSetConfig_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresteamcontrollersetconfigresponse(o CAccountHardwareSteamControllerSetConfigResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_response(o CAccountHardware_SteamControllerSetConfig_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresteamcontrollersetconfigresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSteamControllerSetConfigResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerSetConfig_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresteamcontrollersetconfigresponse_unpack(v)?
+	mut unpacked := caccounthardware_steamcontrollersetconfig_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSteamControllerGetConfigRequest {
+pub struct CAccountHardware_SteamControllerGetConfig_Request {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -716,7 +738,7 @@ pub mut:
 	has_only_for_this_serial bool
 }
 
-pub fn (o &CAccountHardwareSteamControllerGetConfigRequest) pack() []byte {
+pub fn (o &CAccountHardware_SteamControllerGetConfig_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -739,8 +761,8 @@ pub fn (o &CAccountHardwareSteamControllerGetConfigRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwaresteamcontrollergetconfigrequest_unpack(buf []byte) ?CAccountHardwareSteamControllerGetConfigRequest {
-	mut res := CAccountHardwareSteamControllerGetConfigRequest{}
+pub fn caccounthardware_steamcontrollergetconfig_request_unpack(buf []byte) ?CAccountHardware_SteamControllerGetConfig_Request {
+	mut res := CAccountHardware_SteamControllerGetConfig_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -802,23 +824,23 @@ pub fn caccounthardwaresteamcontrollergetconfigrequest_unpack(buf []byte) ?CAcco
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresteamcontrollergetconfigrequest() CAccountHardwareSteamControllerGetConfigRequest {
-	return CAccountHardwareSteamControllerGetConfigRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_request() CAccountHardware_SteamControllerGetConfig_Request {
+	return CAccountHardware_SteamControllerGetConfig_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresteamcontrollergetconfigrequest(o CAccountHardwareSteamControllerGetConfigRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_request(o CAccountHardware_SteamControllerGetConfig_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresteamcontrollergetconfigrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSteamControllerGetConfigRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerGetConfig_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresteamcontrollergetconfigrequest_unpack(v)?
+	mut unpacked := caccounthardware_steamcontrollergetconfig_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSteamControllerGetConfigControllerConfig {
+pub struct CAccountHardware_SteamControllerGetConfig_ControllerConfig {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -832,7 +854,7 @@ pub mut:
 	has_serial_number   bool
 }
 
-pub fn (o &CAccountHardwareSteamControllerGetConfigControllerConfig) pack() []byte {
+pub fn (o &CAccountHardware_SteamControllerGetConfig_ControllerConfig) pack() []byte {
 	mut res := []byte{}
 	if o.has_appidorname {
 		res << vproto.pack_string_field(o.appidorname, 1)
@@ -849,8 +871,8 @@ pub fn (o &CAccountHardwareSteamControllerGetConfigControllerConfig) pack() []by
 	return res
 }
 
-pub fn caccounthardwaresteamcontrollergetconfigcontrollerconfig_unpack(buf []byte) ?CAccountHardwareSteamControllerGetConfigControllerConfig {
-	mut res := CAccountHardwareSteamControllerGetConfigControllerConfig{}
+pub fn caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(buf []byte) ?CAccountHardware_SteamControllerGetConfig_ControllerConfig {
+	mut res := CAccountHardware_SteamControllerGetConfig_ControllerConfig{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -900,41 +922,41 @@ pub fn caccounthardwaresteamcontrollergetconfigcontrollerconfig_unpack(buf []byt
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresteamcontrollergetconfigcontrollerconfig() CAccountHardwareSteamControllerGetConfigControllerConfig {
-	return CAccountHardwareSteamControllerGetConfigControllerConfig{}
+pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_controllerconfig() CAccountHardware_SteamControllerGetConfig_ControllerConfig {
+	return CAccountHardware_SteamControllerGetConfig_ControllerConfig{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresteamcontrollergetconfigcontrollerconfig(o CAccountHardwareSteamControllerGetConfigControllerConfig, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_controllerconfig(o CAccountHardware_SteamControllerGetConfig_ControllerConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresteamcontrollergetconfigcontrollerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSteamControllerGetConfigControllerConfig) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_controllerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerGetConfig_ControllerConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresteamcontrollergetconfigcontrollerconfig_unpack(v)?
+	mut unpacked := caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSteamControllerGetConfigResponse {
+pub struct CAccountHardware_SteamControllerGetConfig_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	configurations []CAccountHardwareSteamControllerGetConfigControllerConfig
+	configurations []CAccountHardware_SteamControllerGetConfig_ControllerConfig
 }
 
-pub fn (o &CAccountHardwareSteamControllerGetConfigResponse) pack() []byte {
+pub fn (o &CAccountHardware_SteamControllerGetConfig_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.configurations {
 		res <<
-			zzz_vproto_internal_pack_caccounthardwaresteamcontrollergetconfigcontrollerconfig(x, 1)
+			zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_controllerconfig(x, 1)
 	}
 	return res
 }
 
-pub fn caccounthardwaresteamcontrollergetconfigresponse_unpack(buf []byte) ?CAccountHardwareSteamControllerGetConfigResponse {
-	mut res := CAccountHardwareSteamControllerGetConfigResponse{}
+pub fn caccounthardware_steamcontrollergetconfig_response_unpack(buf []byte) ?CAccountHardware_SteamControllerGetConfig_Response {
+	mut res := CAccountHardware_SteamControllerGetConfig_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -946,7 +968,7 @@ pub fn caccounthardwaresteamcontrollergetconfigresponse_unpack(buf []byte) ?CAcc
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccounthardwaresteamcontrollergetconfigcontrollerconfig(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_controllerconfig(cur_buf,
 					tag_wiretype.wire_type)?
 				res.configurations << v
 				i = ii
@@ -967,23 +989,23 @@ pub fn caccounthardwaresteamcontrollergetconfigresponse_unpack(buf []byte) ?CAcc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresteamcontrollergetconfigresponse() CAccountHardwareSteamControllerGetConfigResponse {
-	return CAccountHardwareSteamControllerGetConfigResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_response() CAccountHardware_SteamControllerGetConfig_Response {
+	return CAccountHardware_SteamControllerGetConfig_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresteamcontrollergetconfigresponse(o CAccountHardwareSteamControllerGetConfigResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_response(o CAccountHardware_SteamControllerGetConfig_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresteamcontrollergetconfigresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSteamControllerGetConfigResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerGetConfig_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresteamcontrollergetconfigresponse_unpack(v)?
+	mut unpacked := caccounthardware_steamcontrollergetconfig_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareDeRegisterSteamControllerRequest {
+pub struct CAccountHardware_DeRegisterSteamController_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -995,7 +1017,7 @@ pub mut:
 	has_accountid       bool
 }
 
-pub fn (o &CAccountHardwareDeRegisterSteamControllerRequest) pack() []byte {
+pub fn (o &CAccountHardware_DeRegisterSteamController_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -1009,8 +1031,8 @@ pub fn (o &CAccountHardwareDeRegisterSteamControllerRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwarederegistersteamcontrollerrequest_unpack(buf []byte) ?CAccountHardwareDeRegisterSteamControllerRequest {
-	mut res := CAccountHardwareDeRegisterSteamControllerRequest{}
+pub fn caccounthardware_deregistersteamcontroller_request_unpack(buf []byte) ?CAccountHardware_DeRegisterSteamController_Request {
+	mut res := CAccountHardware_DeRegisterSteamController_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1054,55 +1076,55 @@ pub fn caccounthardwarederegistersteamcontrollerrequest_unpack(buf []byte) ?CAcc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarederegistersteamcontrollerrequest() CAccountHardwareDeRegisterSteamControllerRequest {
-	return CAccountHardwareDeRegisterSteamControllerRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_deregistersteamcontroller_request() CAccountHardware_DeRegisterSteamController_Request {
+	return CAccountHardware_DeRegisterSteamController_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarederegistersteamcontrollerrequest(o CAccountHardwareDeRegisterSteamControllerRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_deregistersteamcontroller_request(o CAccountHardware_DeRegisterSteamController_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarederegistersteamcontrollerrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareDeRegisterSteamControllerRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_deregistersteamcontroller_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_DeRegisterSteamController_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarederegistersteamcontrollerrequest_unpack(v)?
+	mut unpacked := caccounthardware_deregistersteamcontroller_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareDeRegisterSteamControllerResponse {
+pub struct CAccountHardware_DeRegisterSteamController_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CAccountHardwareDeRegisterSteamControllerResponse) pack() []byte {
+pub fn (o &CAccountHardware_DeRegisterSteamController_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn caccounthardwarederegistersteamcontrollerresponse_unpack(buf []byte) ?CAccountHardwareDeRegisterSteamControllerResponse {
-	res := CAccountHardwareDeRegisterSteamControllerResponse{}
+pub fn caccounthardware_deregistersteamcontroller_response_unpack(buf []byte) ?CAccountHardware_DeRegisterSteamController_Response {
+	res := CAccountHardware_DeRegisterSteamController_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarederegistersteamcontrollerresponse() CAccountHardwareDeRegisterSteamControllerResponse {
-	return CAccountHardwareDeRegisterSteamControllerResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_deregistersteamcontroller_response() CAccountHardware_DeRegisterSteamController_Response {
+	return CAccountHardware_DeRegisterSteamController_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarederegistersteamcontrollerresponse(o CAccountHardwareDeRegisterSteamControllerResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_deregistersteamcontroller_response(o CAccountHardware_DeRegisterSteamController_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarederegistersteamcontrollerresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareDeRegisterSteamControllerResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_deregistersteamcontroller_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_DeRegisterSteamController_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarederegistersteamcontrollerresponse_unpack(v)?
+	mut unpacked := caccounthardware_deregistersteamcontroller_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSetPersonalizationFileRequest {
+pub struct CAccountHardware_SetPersonalizationFile_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -1114,7 +1136,7 @@ pub mut:
 	has_accountid       bool
 }
 
-pub fn (o &CAccountHardwareSetPersonalizationFileRequest) pack() []byte {
+pub fn (o &CAccountHardware_SetPersonalizationFile_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -1128,8 +1150,8 @@ pub fn (o &CAccountHardwareSetPersonalizationFileRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwaresetpersonalizationfilerequest_unpack(buf []byte) ?CAccountHardwareSetPersonalizationFileRequest {
-	mut res := CAccountHardwareSetPersonalizationFileRequest{}
+pub fn caccounthardware_setpersonalizationfile_request_unpack(buf []byte) ?CAccountHardware_SetPersonalizationFile_Request {
+	mut res := CAccountHardware_SetPersonalizationFile_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1173,55 +1195,55 @@ pub fn caccounthardwaresetpersonalizationfilerequest_unpack(buf []byte) ?CAccoun
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresetpersonalizationfilerequest() CAccountHardwareSetPersonalizationFileRequest {
-	return CAccountHardwareSetPersonalizationFileRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_setpersonalizationfile_request() CAccountHardware_SetPersonalizationFile_Request {
+	return CAccountHardware_SetPersonalizationFile_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresetpersonalizationfilerequest(o CAccountHardwareSetPersonalizationFileRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_setpersonalizationfile_request(o CAccountHardware_SetPersonalizationFile_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresetpersonalizationfilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSetPersonalizationFileRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_setpersonalizationfile_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SetPersonalizationFile_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresetpersonalizationfilerequest_unpack(v)?
+	mut unpacked := caccounthardware_setpersonalizationfile_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareSetPersonalizationFileResponse {
+pub struct CAccountHardware_SetPersonalizationFile_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CAccountHardwareSetPersonalizationFileResponse) pack() []byte {
+pub fn (o &CAccountHardware_SetPersonalizationFile_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn caccounthardwaresetpersonalizationfileresponse_unpack(buf []byte) ?CAccountHardwareSetPersonalizationFileResponse {
-	res := CAccountHardwareSetPersonalizationFileResponse{}
+pub fn caccounthardware_setpersonalizationfile_response_unpack(buf []byte) ?CAccountHardware_SetPersonalizationFile_Response {
+	res := CAccountHardware_SetPersonalizationFile_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaresetpersonalizationfileresponse() CAccountHardwareSetPersonalizationFileResponse {
-	return CAccountHardwareSetPersonalizationFileResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_setpersonalizationfile_response() CAccountHardware_SetPersonalizationFile_Response {
+	return CAccountHardware_SetPersonalizationFile_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaresetpersonalizationfileresponse(o CAccountHardwareSetPersonalizationFileResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_setpersonalizationfile_response(o CAccountHardware_SetPersonalizationFile_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaresetpersonalizationfileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareSetPersonalizationFileResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_setpersonalizationfile_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SetPersonalizationFile_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaresetpersonalizationfileresponse_unpack(v)?
+	mut unpacked := caccounthardware_setpersonalizationfile_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareGetPersonalizationFileRequest {
+pub struct CAccountHardware_GetPersonalizationFile_Request {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -1231,7 +1253,7 @@ pub mut:
 	has_accountid     bool
 }
 
-pub fn (o &CAccountHardwareGetPersonalizationFileRequest) pack() []byte {
+pub fn (o &CAccountHardware_GetPersonalizationFile_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -1242,8 +1264,8 @@ pub fn (o &CAccountHardwareGetPersonalizationFileRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwaregetpersonalizationfilerequest_unpack(buf []byte) ?CAccountHardwareGetPersonalizationFileRequest {
-	mut res := CAccountHardwareGetPersonalizationFileRequest{}
+pub fn caccounthardware_getpersonalizationfile_request_unpack(buf []byte) ?CAccountHardware_GetPersonalizationFile_Request {
+	mut res := CAccountHardware_GetPersonalizationFile_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1281,23 +1303,23 @@ pub fn caccounthardwaregetpersonalizationfilerequest_unpack(buf []byte) ?CAccoun
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaregetpersonalizationfilerequest() CAccountHardwareGetPersonalizationFileRequest {
-	return CAccountHardwareGetPersonalizationFileRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_getpersonalizationfile_request() CAccountHardware_GetPersonalizationFile_Request {
+	return CAccountHardware_GetPersonalizationFile_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaregetpersonalizationfilerequest(o CAccountHardwareGetPersonalizationFileRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_getpersonalizationfile_request(o CAccountHardware_GetPersonalizationFile_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaregetpersonalizationfilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareGetPersonalizationFileRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_getpersonalizationfile_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_GetPersonalizationFile_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaregetpersonalizationfilerequest_unpack(v)?
+	mut unpacked := caccounthardware_getpersonalizationfile_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareGetPersonalizationFileResponse {
+pub struct CAccountHardware_GetPersonalizationFile_Response {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -1305,7 +1327,7 @@ pub mut:
 	has_publishedfileid bool
 }
 
-pub fn (o &CAccountHardwareGetPersonalizationFileResponse) pack() []byte {
+pub fn (o &CAccountHardware_GetPersonalizationFile_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_publishedfileid {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
@@ -1313,8 +1335,8 @@ pub fn (o &CAccountHardwareGetPersonalizationFileResponse) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwaregetpersonalizationfileresponse_unpack(buf []byte) ?CAccountHardwareGetPersonalizationFileResponse {
-	mut res := CAccountHardwareGetPersonalizationFileResponse{}
+pub fn caccounthardware_getpersonalizationfile_response_unpack(buf []byte) ?CAccountHardware_GetPersonalizationFile_Response {
+	mut res := CAccountHardware_GetPersonalizationFile_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1346,23 +1368,23 @@ pub fn caccounthardwaregetpersonalizationfileresponse_unpack(buf []byte) ?CAccou
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwaregetpersonalizationfileresponse() CAccountHardwareGetPersonalizationFileResponse {
-	return CAccountHardwareGetPersonalizationFileResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_getpersonalizationfile_response() CAccountHardware_GetPersonalizationFile_Response {
+	return CAccountHardware_GetPersonalizationFile_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwaregetpersonalizationfileresponse(o CAccountHardwareGetPersonalizationFileResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_getpersonalizationfile_response(o CAccountHardware_GetPersonalizationFile_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwaregetpersonalizationfileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareGetPersonalizationFileResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_getpersonalizationfile_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_GetPersonalizationFile_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwaregetpersonalizationfileresponse_unpack(v)?
+	mut unpacked := caccounthardware_getpersonalizationfile_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareVRcompatibilityCheckRequestPair {
+pub struct CAccountHardware_VRCompatibilityCheck_Request_Pair {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1372,7 +1394,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CAccountHardwareVRcompatibilityCheckRequestPair) pack() []byte {
+pub fn (o &CAccountHardware_VRCompatibilityCheck_Request_Pair) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_string_field(o.key, 1)
@@ -1383,8 +1405,8 @@ pub fn (o &CAccountHardwareVRcompatibilityCheckRequestPair) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwarevrcompatibilitycheckrequestpair_unpack(buf []byte) ?CAccountHardwareVRcompatibilityCheckRequestPair {
-	mut res := CAccountHardwareVRcompatibilityCheckRequestPair{}
+pub fn caccounthardware_vrcompatibilitycheck_request_pair_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Request_Pair {
+	mut res := CAccountHardware_VRCompatibilityCheck_Request_Pair{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1422,45 +1444,45 @@ pub fn caccounthardwarevrcompatibilitycheckrequestpair_unpack(buf []byte) ?CAcco
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarevrcompatibilitycheckrequestpair() CAccountHardwareVRcompatibilityCheckRequestPair {
-	return CAccountHardwareVRcompatibilityCheckRequestPair{}
+pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_request_pair() CAccountHardware_VRCompatibilityCheck_Request_Pair {
+	return CAccountHardware_VRCompatibilityCheck_Request_Pair{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckrequestpair(o CAccountHardwareVRcompatibilityCheckRequestPair, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_request_pair(o CAccountHardware_VRCompatibilityCheck_Request_Pair, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckrequestpair(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareVRcompatibilityCheckRequestPair) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_request_pair(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Request_Pair) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarevrcompatibilitycheckrequestpair_unpack(v)?
+	mut unpacked := caccounthardware_vrcompatibilitycheck_request_pair_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareVRcompatibilityCheckRequest {
+pub struct CAccountHardware_VRCompatibilityCheck_Request {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	product_name     string
 	has_product_name bool
-	values           []CAccountHardwareVRcompatibilityCheckRequestPair
+	values           []CAccountHardware_VRCompatibilityCheck_Request_Pair
 }
 
-pub fn (o &CAccountHardwareVRcompatibilityCheckRequest) pack() []byte {
+pub fn (o &CAccountHardware_VRCompatibilityCheck_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_product_name {
 		res << vproto.pack_string_field(o.product_name, 1)
 	}
 	// [packed=false]
 	for _, x in o.values {
-		res << zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckrequestpair(x, 2)
+		res << zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_request_pair(x, 2)
 	}
 	return res
 }
 
-pub fn caccounthardwarevrcompatibilitycheckrequest_unpack(buf []byte) ?CAccountHardwareVRcompatibilityCheckRequest {
-	mut res := CAccountHardwareVRcompatibilityCheckRequest{}
+pub fn caccounthardware_vrcompatibilitycheck_request_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Request {
+	mut res := CAccountHardware_VRCompatibilityCheck_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1478,7 +1500,7 @@ pub fn caccounthardwarevrcompatibilitycheckrequest_unpack(buf []byte) ?CAccountH
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckrequestpair(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_request_pair(cur_buf,
 					tag_wiretype.wire_type)?
 				res.values << v
 				i = ii
@@ -1499,23 +1521,23 @@ pub fn caccounthardwarevrcompatibilitycheckrequest_unpack(buf []byte) ?CAccountH
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarevrcompatibilitycheckrequest() CAccountHardwareVRcompatibilityCheckRequest {
-	return CAccountHardwareVRcompatibilityCheckRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_request() CAccountHardware_VRCompatibilityCheck_Request {
+	return CAccountHardware_VRCompatibilityCheck_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckrequest(o CAccountHardwareVRcompatibilityCheckRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_request(o CAccountHardware_VRCompatibilityCheck_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareVRcompatibilityCheckRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarevrcompatibilitycheckrequest_unpack(v)?
+	mut unpacked := caccounthardware_vrcompatibilitycheck_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareVRcompatibilityCheckResponsePair {
+pub struct CAccountHardware_VRCompatibilityCheck_Response_Pair {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1525,7 +1547,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CAccountHardwareVRcompatibilityCheckResponsePair) pack() []byte {
+pub fn (o &CAccountHardware_VRCompatibilityCheck_Response_Pair) pack() []byte {
 	mut res := []byte{}
 	if o.has_key {
 		res << vproto.pack_string_field(o.key, 1)
@@ -1536,8 +1558,8 @@ pub fn (o &CAccountHardwareVRcompatibilityCheckResponsePair) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwarevrcompatibilitycheckresponsepair_unpack(buf []byte) ?CAccountHardwareVRcompatibilityCheckResponsePair {
-	mut res := CAccountHardwareVRcompatibilityCheckResponsePair{}
+pub fn caccounthardware_vrcompatibilitycheck_response_pair_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Response_Pair {
+	mut res := CAccountHardware_VRCompatibilityCheck_Response_Pair{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1575,23 +1597,23 @@ pub fn caccounthardwarevrcompatibilitycheckresponsepair_unpack(buf []byte) ?CAcc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarevrcompatibilitycheckresponsepair() CAccountHardwareVRcompatibilityCheckResponsePair {
-	return CAccountHardwareVRcompatibilityCheckResponsePair{}
+pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response_pair() CAccountHardware_VRCompatibilityCheck_Response_Pair {
+	return CAccountHardware_VRCompatibilityCheck_Response_Pair{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckresponsepair(o CAccountHardwareVRcompatibilityCheckResponsePair, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response_pair(o CAccountHardware_VRCompatibilityCheck_Response_Pair, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckresponsepair(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareVRcompatibilityCheckResponsePair) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response_pair(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Response_Pair) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarevrcompatibilitycheckresponsepair_unpack(v)?
+	mut unpacked := caccounthardware_vrcompatibilitycheck_response_pair_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareVRcompatibilityCheckResponseComponentDisplay {
+pub struct CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1603,7 +1625,7 @@ pub mut:
 	has_value      bool
 }
 
-pub fn (o &CAccountHardwareVRcompatibilityCheckResponseComponentDisplay) pack() []byte {
+pub fn (o &CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -1617,8 +1639,8 @@ pub fn (o &CAccountHardwareVRcompatibilityCheckResponseComponentDisplay) pack() 
 	return res
 }
 
-pub fn caccounthardwarevrcompatibilitycheckresponsecomponentdisplay_unpack(buf []byte) ?CAccountHardwareVRcompatibilityCheckResponseComponentDisplay {
-	mut res := CAccountHardwareVRcompatibilityCheckResponseComponentDisplay{}
+pub fn caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay {
+	mut res := CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1662,46 +1684,46 @@ pub fn caccounthardwarevrcompatibilitycheckresponsecomponentdisplay_unpack(buf [
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarevrcompatibilitycheckresponsecomponentdisplay() CAccountHardwareVRcompatibilityCheckResponseComponentDisplay {
-	return CAccountHardwareVRcompatibilityCheckResponseComponentDisplay{}
+pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response_componentdisplay() CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay {
+	return CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckresponsecomponentdisplay(o CAccountHardwareVRcompatibilityCheckResponseComponentDisplay, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response_componentdisplay(o CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckresponsecomponentdisplay(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareVRcompatibilityCheckResponseComponentDisplay) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response_componentdisplay(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarevrcompatibilitycheckresponsecomponentdisplay_unpack(v)?
+	mut unpacked := caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareVRcompatibilityCheckResponse {
+pub struct CAccountHardware_VRCompatibilityCheck_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	values         []CAccountHardwareVRcompatibilityCheckResponsePair
-	components     []CAccountHardwareVRcompatibilityCheckResponseComponentDisplay
+	values         []CAccountHardware_VRCompatibilityCheck_Response_Pair
+	components     []CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay
 }
 
-pub fn (o &CAccountHardwareVRcompatibilityCheckResponse) pack() []byte {
+pub fn (o &CAccountHardware_VRCompatibilityCheck_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.values {
-		res << zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckresponsepair(x, 1)
+		res << zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response_pair(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.components {
 		res <<
-			zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckresponsecomponentdisplay(x, 2)
+			zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response_componentdisplay(x, 2)
 	}
 	return res
 }
 
-pub fn caccounthardwarevrcompatibilitycheckresponse_unpack(buf []byte) ?CAccountHardwareVRcompatibilityCheckResponse {
-	mut res := CAccountHardwareVRcompatibilityCheckResponse{}
+pub fn caccounthardware_vrcompatibilitycheck_response_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Response {
+	mut res := CAccountHardware_VRCompatibilityCheck_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1713,14 +1735,14 @@ pub fn caccounthardwarevrcompatibilitycheckresponse_unpack(buf []byte) ?CAccount
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckresponsepair(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response_pair(cur_buf,
 					tag_wiretype.wire_type)?
 				res.values << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckresponsecomponentdisplay(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response_componentdisplay(cur_buf,
 					tag_wiretype.wire_type)?
 				res.components << v
 				i = ii
@@ -1741,23 +1763,23 @@ pub fn caccounthardwarevrcompatibilitycheckresponse_unpack(buf []byte) ?CAccount
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwarevrcompatibilitycheckresponse() CAccountHardwareVRcompatibilityCheckResponse {
-	return CAccountHardwareVRcompatibilityCheckResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response() CAccountHardware_VRCompatibilityCheck_Response {
+	return CAccountHardware_VRCompatibilityCheck_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwarevrcompatibilitycheckresponse(o CAccountHardwareVRcompatibilityCheckResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response(o CAccountHardware_VRCompatibilityCheck_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwarevrcompatibilitycheckresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareVRcompatibilityCheckResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwarevrcompatibilitycheckresponse_unpack(v)?
+	mut unpacked := caccounthardware_vrcompatibilitycheck_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareRegisterValveIndexComponentRequest {
+pub struct CAccountHardware_RegisterValveIndexComponent_Request {
 mut:
 	unknown_fields                 []vproto.UnknownField
 pub mut:
@@ -1773,7 +1795,7 @@ pub mut:
 	has_estimated_time_registered  bool
 }
 
-pub fn (o &CAccountHardwareRegisterValveIndexComponentRequest) pack() []byte {
+pub fn (o &CAccountHardware_RegisterValveIndexComponent_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_serial_number {
 		res << vproto.pack_string_field(o.serial_number, 1)
@@ -1793,8 +1815,8 @@ pub fn (o &CAccountHardwareRegisterValveIndexComponentRequest) pack() []byte {
 	return res
 }
 
-pub fn caccounthardwareregistervalveindexcomponentrequest_unpack(buf []byte) ?CAccountHardwareRegisterValveIndexComponentRequest {
-	mut res := CAccountHardwareRegisterValveIndexComponentRequest{}
+pub fn caccounthardware_registervalveindexcomponent_request_unpack(buf []byte) ?CAccountHardware_RegisterValveIndexComponent_Request {
+	mut res := CAccountHardware_RegisterValveIndexComponent_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1850,50 +1872,50 @@ pub fn caccounthardwareregistervalveindexcomponentrequest_unpack(buf []byte) ?CA
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwareregistervalveindexcomponentrequest() CAccountHardwareRegisterValveIndexComponentRequest {
-	return CAccountHardwareRegisterValveIndexComponentRequest{}
+pub fn zzz_vproto_internal_new_caccounthardware_registervalveindexcomponent_request() CAccountHardware_RegisterValveIndexComponent_Request {
+	return CAccountHardware_RegisterValveIndexComponent_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwareregistervalveindexcomponentrequest(o CAccountHardwareRegisterValveIndexComponentRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_registervalveindexcomponent_request(o CAccountHardware_RegisterValveIndexComponent_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwareregistervalveindexcomponentrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareRegisterValveIndexComponentRequest) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_registervalveindexcomponent_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterValveIndexComponent_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwareregistervalveindexcomponentrequest_unpack(v)?
+	mut unpacked := caccounthardware_registervalveindexcomponent_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CAccountHardwareRegisterValveIndexComponentResponse {
+pub struct CAccountHardware_RegisterValveIndexComponent_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CAccountHardwareRegisterValveIndexComponentResponse) pack() []byte {
+pub fn (o &CAccountHardware_RegisterValveIndexComponent_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn caccounthardwareregistervalveindexcomponentresponse_unpack(buf []byte) ?CAccountHardwareRegisterValveIndexComponentResponse {
-	res := CAccountHardwareRegisterValveIndexComponentResponse{}
+pub fn caccounthardware_registervalveindexcomponent_response_unpack(buf []byte) ?CAccountHardware_RegisterValveIndexComponent_Response {
+	res := CAccountHardware_RegisterValveIndexComponent_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_caccounthardwareregistervalveindexcomponentresponse() CAccountHardwareRegisterValveIndexComponentResponse {
-	return CAccountHardwareRegisterValveIndexComponentResponse{}
+pub fn zzz_vproto_internal_new_caccounthardware_registervalveindexcomponent_response() CAccountHardware_RegisterValveIndexComponent_Response {
+	return CAccountHardware_RegisterValveIndexComponent_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_caccounthardwareregistervalveindexcomponentresponse(o CAccountHardwareRegisterValveIndexComponentResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_caccounthardware_registervalveindexcomponent_response(o CAccountHardware_RegisterValveIndexComponent_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_caccounthardwareregistervalveindexcomponentresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardwareRegisterValveIndexComponentResponse) {
+pub fn zzz_vproto_internal_unpack_caccounthardware_registervalveindexcomponent_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterValveIndexComponent_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := caccounthardwareregistervalveindexcomponentresponse_unpack(v)?
+	mut unpacked := caccounthardware_registervalveindexcomponent_response_unpack(v)?
 	return i, unpacked
 }

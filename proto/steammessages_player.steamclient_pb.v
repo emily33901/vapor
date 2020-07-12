@@ -16,44 +16,66 @@ fn zzz_vproto_internal_pack_enotificationsetting(e ENotificationSetting, num u32
 }
 
 // FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_pack_enotificationsetting_packed(e []ENotificationSetting, num u32) []byte {
+	x := array{
+		data: e.data
+		len: e.len
+		element_size: e.element_size
+		cap: e.cap
+	}
+	return vproto.pack_int32_field_packed(x, num)
+}
+
+// FOR INTERNAL USE ONLY
 fn zzz_vproto_internal_unpack_enotificationsetting(buf []byte, tag_wiretype vproto.WireType) ?(int, ENotificationSetting) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ENotificationSetting(v)
 }
 
-pub struct CPlayerGetMutualFriendsForIncomingInvitesRequest {
+// FOR INTERNAL USE ONLY
+fn zzz_vproto_internal_unpack_enotificationsetting_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ENotificationSetting) {
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	return i, array{
+		data: v.data
+		len: v.len
+		cap: v.cap
+		element_size: v.element_size
+	}
+}
+
+pub struct CPlayer_GetMutualFriendsForIncomingInvites_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerGetMutualFriendsForIncomingInvitesRequest) pack() []byte {
+pub fn (o &CPlayer_GetMutualFriendsForIncomingInvites_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayergetmutualfriendsforincominginvitesrequest_unpack(buf []byte) ?CPlayerGetMutualFriendsForIncomingInvitesRequest {
-	res := CPlayerGetMutualFriendsForIncomingInvitesRequest{}
+pub fn cplayer_getmutualfriendsforincominginvites_request_unpack(buf []byte) ?CPlayer_GetMutualFriendsForIncomingInvites_Request {
+	res := CPlayer_GetMutualFriendsForIncomingInvites_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetmutualfriendsforincominginvitesrequest() CPlayerGetMutualFriendsForIncomingInvitesRequest {
-	return CPlayerGetMutualFriendsForIncomingInvitesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getmutualfriendsforincominginvites_request() CPlayer_GetMutualFriendsForIncomingInvites_Request {
+	return CPlayer_GetMutualFriendsForIncomingInvites_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetmutualfriendsforincominginvitesrequest(o CPlayerGetMutualFriendsForIncomingInvitesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getmutualfriendsforincominginvites_request(o CPlayer_GetMutualFriendsForIncomingInvites_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetmutualfriendsforincominginvitesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetMutualFriendsForIncomingInvitesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getmutualfriendsforincominginvites_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMutualFriendsForIncomingInvites_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetmutualfriendsforincominginvitesrequest_unpack(v)?
+	mut unpacked := cplayer_getmutualfriendsforincominginvites_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerIncomingInviteMutualFriendList {
+pub struct CPlayer_IncomingInviteMutualFriendList {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -62,7 +84,7 @@ pub mut:
 	mutual_friend_account_ids []u32
 }
 
-pub fn (o &CPlayerIncomingInviteMutualFriendList) pack() []byte {
+pub fn (o &CPlayer_IncomingInviteMutualFriendList) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -74,8 +96,8 @@ pub fn (o &CPlayerIncomingInviteMutualFriendList) pack() []byte {
 	return res
 }
 
-pub fn cplayerincominginvitemutualfriendlist_unpack(buf []byte) ?CPlayerIncomingInviteMutualFriendList {
-	mut res := CPlayerIncomingInviteMutualFriendList{}
+pub fn cplayer_incominginvitemutualfriendlist_unpack(buf []byte) ?CPlayer_IncomingInviteMutualFriendList {
+	mut res := CPlayer_IncomingInviteMutualFriendList{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -113,40 +135,40 @@ pub fn cplayerincominginvitemutualfriendlist_unpack(buf []byte) ?CPlayerIncoming
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerincominginvitemutualfriendlist() CPlayerIncomingInviteMutualFriendList {
-	return CPlayerIncomingInviteMutualFriendList{}
+pub fn zzz_vproto_internal_new_cplayer_incominginvitemutualfriendlist() CPlayer_IncomingInviteMutualFriendList {
+	return CPlayer_IncomingInviteMutualFriendList{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerincominginvitemutualfriendlist(o CPlayerIncomingInviteMutualFriendList, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_incominginvitemutualfriendlist(o CPlayer_IncomingInviteMutualFriendList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerincominginvitemutualfriendlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerIncomingInviteMutualFriendList) {
+pub fn zzz_vproto_internal_unpack_cplayer_incominginvitemutualfriendlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_IncomingInviteMutualFriendList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerincominginvitemutualfriendlist_unpack(v)?
+	mut unpacked := cplayer_incominginvitemutualfriendlist_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetMutualFriendsForIncomingInvitesResponse {
+pub struct CPlayer_GetMutualFriendsForIncomingInvites_Response {
 mut:
 	unknown_fields                       []vproto.UnknownField
 pub mut:
-	incoming_invite_mutual_friends_lists []CPlayerIncomingInviteMutualFriendList
+	incoming_invite_mutual_friends_lists []CPlayer_IncomingInviteMutualFriendList
 }
 
-pub fn (o &CPlayerGetMutualFriendsForIncomingInvitesResponse) pack() []byte {
+pub fn (o &CPlayer_GetMutualFriendsForIncomingInvites_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.incoming_invite_mutual_friends_lists {
-		res << zzz_vproto_internal_pack_cplayerincominginvitemutualfriendlist(x, 1)
+		res << zzz_vproto_internal_pack_cplayer_incominginvitemutualfriendlist(x, 1)
 	}
 	return res
 }
 
-pub fn cplayergetmutualfriendsforincominginvitesresponse_unpack(buf []byte) ?CPlayerGetMutualFriendsForIncomingInvitesResponse {
-	mut res := CPlayerGetMutualFriendsForIncomingInvitesResponse{}
+pub fn cplayer_getmutualfriendsforincominginvites_response_unpack(buf []byte) ?CPlayer_GetMutualFriendsForIncomingInvites_Response {
+	mut res := CPlayer_GetMutualFriendsForIncomingInvites_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -158,7 +180,7 @@ pub fn cplayergetmutualfriendsforincominginvitesresponse_unpack(buf []byte) ?CPl
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayerincominginvitemutualfriendlist(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_incominginvitemutualfriendlist(cur_buf,
 					tag_wiretype.wire_type)?
 				res.incoming_invite_mutual_friends_lists << v
 				i = ii
@@ -179,23 +201,23 @@ pub fn cplayergetmutualfriendsforincominginvitesresponse_unpack(buf []byte) ?CPl
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetmutualfriendsforincominginvitesresponse() CPlayerGetMutualFriendsForIncomingInvitesResponse {
-	return CPlayerGetMutualFriendsForIncomingInvitesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getmutualfriendsforincominginvites_response() CPlayer_GetMutualFriendsForIncomingInvites_Response {
+	return CPlayer_GetMutualFriendsForIncomingInvites_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetmutualfriendsforincominginvitesresponse(o CPlayerGetMutualFriendsForIncomingInvitesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getmutualfriendsforincominginvites_response(o CPlayer_GetMutualFriendsForIncomingInvites_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetmutualfriendsforincominginvitesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetMutualFriendsForIncomingInvitesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getmutualfriendsforincominginvites_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMutualFriendsForIncomingInvites_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetmutualfriendsforincominginvitesresponse_unpack(v)?
+	mut unpacked := cplayer_getmutualfriendsforincominginvites_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetOwnedGamesRequest {
+pub struct CPlayer_GetOwnedGames_Request {
 mut:
 	unknown_fields                []vproto.UnknownField
 pub mut:
@@ -210,7 +232,7 @@ pub mut:
 	has_include_free_sub          bool
 }
 
-pub fn (o &CPlayerGetOwnedGamesRequest) pack() []byte {
+pub fn (o &CPlayer_GetOwnedGames_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_uint64_field(o.steamid, 1)
@@ -231,8 +253,8 @@ pub fn (o &CPlayerGetOwnedGamesRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetownedgamesrequest_unpack(buf []byte) ?CPlayerGetOwnedGamesRequest {
-	mut res := CPlayerGetOwnedGamesRequest{}
+pub fn cplayer_getownedgames_request_unpack(buf []byte) ?CPlayer_GetOwnedGames_Request {
+	mut res := CPlayer_GetOwnedGames_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -288,23 +310,23 @@ pub fn cplayergetownedgamesrequest_unpack(buf []byte) ?CPlayerGetOwnedGamesReque
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetownedgamesrequest() CPlayerGetOwnedGamesRequest {
-	return CPlayerGetOwnedGamesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getownedgames_request() CPlayer_GetOwnedGames_Request {
+	return CPlayer_GetOwnedGames_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetownedgamesrequest(o CPlayerGetOwnedGamesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getownedgames_request(o CPlayer_GetOwnedGames_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetownedgamesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetOwnedGamesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetOwnedGames_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetownedgamesrequest_unpack(v)?
+	mut unpacked := cplayer_getownedgames_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetOwnedGamesResponseGame {
+pub struct CPlayer_GetOwnedGames_Response_Game {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
@@ -330,7 +352,7 @@ pub mut:
 	has_playtime_linux_forever      bool
 }
 
-pub fn (o &CPlayerGetOwnedGamesResponseGame) pack() []byte {
+pub fn (o &CPlayer_GetOwnedGames_Response_Game) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_int32_field(o.appid, 1)
@@ -365,8 +387,8 @@ pub fn (o &CPlayerGetOwnedGamesResponseGame) pack() []byte {
 	return res
 }
 
-pub fn cplayergetownedgamesresponsegame_unpack(buf []byte) ?CPlayerGetOwnedGamesResponseGame {
-	mut res := CPlayerGetOwnedGamesResponseGame{}
+pub fn cplayer_getownedgames_response_game_unpack(buf []byte) ?CPlayer_GetOwnedGames_Response_Game {
+	mut res := CPlayer_GetOwnedGames_Response_Game{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -452,45 +474,45 @@ pub fn cplayergetownedgamesresponsegame_unpack(buf []byte) ?CPlayerGetOwnedGames
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetownedgamesresponsegame() CPlayerGetOwnedGamesResponseGame {
-	return CPlayerGetOwnedGamesResponseGame{}
+pub fn zzz_vproto_internal_new_cplayer_getownedgames_response_game() CPlayer_GetOwnedGames_Response_Game {
+	return CPlayer_GetOwnedGames_Response_Game{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetownedgamesresponsegame(o CPlayerGetOwnedGamesResponseGame, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getownedgames_response_game(o CPlayer_GetOwnedGames_Response_Game, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetownedgamesresponsegame(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetOwnedGamesResponseGame) {
+pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_response_game(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetOwnedGames_Response_Game) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetownedgamesresponsegame_unpack(v)?
+	mut unpacked := cplayer_getownedgames_response_game_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetOwnedGamesResponse {
+pub struct CPlayer_GetOwnedGames_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	game_count     u32
 	has_game_count bool
-	games          []CPlayerGetOwnedGamesResponseGame
+	games          []CPlayer_GetOwnedGames_Response_Game
 }
 
-pub fn (o &CPlayerGetOwnedGamesResponse) pack() []byte {
+pub fn (o &CPlayer_GetOwnedGames_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_game_count {
 		res << vproto.pack_uint32_field(o.game_count, 1)
 	}
 	// [packed=false]
 	for _, x in o.games {
-		res << zzz_vproto_internal_pack_cplayergetownedgamesresponsegame(x, 2)
+		res << zzz_vproto_internal_pack_cplayer_getownedgames_response_game(x, 2)
 	}
 	return res
 }
 
-pub fn cplayergetownedgamesresponse_unpack(buf []byte) ?CPlayerGetOwnedGamesResponse {
-	mut res := CPlayerGetOwnedGamesResponse{}
+pub fn cplayer_getownedgames_response_unpack(buf []byte) ?CPlayer_GetOwnedGames_Response {
+	mut res := CPlayer_GetOwnedGames_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -508,7 +530,7 @@ pub fn cplayergetownedgamesresponse_unpack(buf []byte) ?CPlayerGetOwnedGamesResp
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetownedgamesresponsegame(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getownedgames_response_game(cur_buf,
 					tag_wiretype.wire_type)?
 				res.games << v
 				i = ii
@@ -529,23 +551,23 @@ pub fn cplayergetownedgamesresponse_unpack(buf []byte) ?CPlayerGetOwnedGamesResp
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetownedgamesresponse() CPlayerGetOwnedGamesResponse {
-	return CPlayerGetOwnedGamesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getownedgames_response() CPlayer_GetOwnedGames_Response {
+	return CPlayer_GetOwnedGames_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetownedgamesresponse(o CPlayerGetOwnedGamesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getownedgames_response(o CPlayer_GetOwnedGames_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetownedgamesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetOwnedGamesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetOwnedGames_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetownedgamesresponse_unpack(v)?
+	mut unpacked := cplayer_getownedgames_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetPlayNextRequest {
+pub struct CPlayer_GetPlayNext_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -554,7 +576,7 @@ pub mut:
 	ignore_appids       []u32
 }
 
-pub fn (o &CPlayerGetPlayNextRequest) pack() []byte {
+pub fn (o &CPlayer_GetPlayNext_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_max_age_seconds {
 		res << vproto.pack_uint32_field(o.max_age_seconds, 1)
@@ -566,8 +588,8 @@ pub fn (o &CPlayerGetPlayNextRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetplaynextrequest_unpack(buf []byte) ?CPlayerGetPlayNextRequest {
-	mut res := CPlayerGetPlayNextRequest{}
+pub fn cplayer_getplaynext_request_unpack(buf []byte) ?CPlayer_GetPlayNext_Request {
+	mut res := CPlayer_GetPlayNext_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -605,23 +627,23 @@ pub fn cplayergetplaynextrequest_unpack(buf []byte) ?CPlayerGetPlayNextRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetplaynextrequest() CPlayerGetPlayNextRequest {
-	return CPlayerGetPlayNextRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getplaynext_request() CPlayer_GetPlayNext_Request {
+	return CPlayer_GetPlayNext_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetplaynextrequest(o CPlayerGetPlayNextRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getplaynext_request(o CPlayer_GetPlayNext_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetplaynextrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPlayNextRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getplaynext_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPlayNext_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetplaynextrequest_unpack(v)?
+	mut unpacked := cplayer_getplaynext_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetPlayNextResponse {
+pub struct CPlayer_GetPlayNext_Response {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -630,7 +652,7 @@ pub mut:
 	appids               []u32
 }
 
-pub fn (o &CPlayerGetPlayNextResponse) pack() []byte {
+pub fn (o &CPlayer_GetPlayNext_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_last_update_time {
 		res << vproto.pack_uint32_field(o.last_update_time, 1)
@@ -642,8 +664,8 @@ pub fn (o &CPlayerGetPlayNextResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetplaynextresponse_unpack(buf []byte) ?CPlayerGetPlayNextResponse {
-	mut res := CPlayerGetPlayNextResponse{}
+pub fn cplayer_getplaynext_response_unpack(buf []byte) ?CPlayer_GetPlayNext_Response {
+	mut res := CPlayer_GetPlayNext_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -681,23 +703,23 @@ pub fn cplayergetplaynextresponse_unpack(buf []byte) ?CPlayerGetPlayNextResponse
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetplaynextresponse() CPlayerGetPlayNextResponse {
-	return CPlayerGetPlayNextResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getplaynext_response() CPlayer_GetPlayNext_Response {
+	return CPlayer_GetPlayNext_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetplaynextresponse(o CPlayerGetPlayNextResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getplaynext_response(o CPlayer_GetPlayNext_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetplaynextresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPlayNextResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getplaynext_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPlayNext_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetplaynextresponse_unpack(v)?
+	mut unpacked := cplayer_getplaynext_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsGameplayInfoRequest {
+pub struct CPlayer_GetFriendsGameplayInfo_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -705,7 +727,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CPlayerGetFriendsGameplayInfoRequest) pack() []byte {
+pub fn (o &CPlayer_GetFriendsGameplayInfo_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -713,8 +735,8 @@ pub fn (o &CPlayerGetFriendsGameplayInfoRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetfriendsgameplayinforequest_unpack(buf []byte) ?CPlayerGetFriendsGameplayInfoRequest {
-	mut res := CPlayerGetFriendsGameplayInfoRequest{}
+pub fn cplayer_getfriendsgameplayinfo_request_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Request {
+	mut res := CPlayer_GetFriendsGameplayInfo_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -746,23 +768,23 @@ pub fn cplayergetfriendsgameplayinforequest_unpack(buf []byte) ?CPlayerGetFriend
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsgameplayinforequest() CPlayerGetFriendsGameplayInfoRequest {
-	return CPlayerGetFriendsGameplayInfoRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_request() CPlayer_GetFriendsGameplayInfo_Request {
+	return CPlayer_GetFriendsGameplayInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsgameplayinforequest(o CPlayerGetFriendsGameplayInfoRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_request(o CPlayer_GetFriendsGameplayInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsGameplayInfoRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsgameplayinforequest_unpack(v)?
+	mut unpacked := cplayer_getfriendsgameplayinfo_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo {
+pub struct CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -774,7 +796,7 @@ pub mut:
 	has_minutes_played_forever bool
 }
 
-pub fn (o &CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo) pack() []byte {
+pub fn (o &CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -788,8 +810,8 @@ pub fn (o &CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo) pack() []by
 	return res
 }
 
-pub fn cplayergetfriendsgameplayinforesponsefriendsgameplayinfo_unpack(buf []byte) ?CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo {
-	mut res := CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo{}
+pub fn cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo {
+	mut res := CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -833,23 +855,23 @@ pub fn cplayergetfriendsgameplayinforesponsefriendsgameplayinfo_unpack(buf []byt
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo() CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo {
-	return CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo() CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo {
+	return CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(o CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(o CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsgameplayinforesponsefriendsgameplayinfo_unpack(v)?
+	mut unpacked := cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo {
+pub struct CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo {
 mut:
 	unknown_fields             []vproto.UnknownField
 pub mut:
@@ -865,7 +887,7 @@ pub mut:
 	has_owned                  bool
 }
 
-pub fn (o &CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo) pack() []byte {
+pub fn (o &CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -885,8 +907,8 @@ pub fn (o &CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo) pack() []byte {
 	return res
 }
 
-pub fn cplayergetfriendsgameplayinforesponseowngameplayinfo_unpack(buf []byte) ?CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo {
-	mut res := CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo{}
+pub fn cplayer_getfriendsgameplayinfo_response_owngameplayinfo_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo {
+	mut res := CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -942,71 +964,71 @@ pub fn cplayergetfriendsgameplayinforesponseowngameplayinfo_unpack(buf []byte) ?
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsgameplayinforesponseowngameplayinfo() CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo {
-	return CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_owngameplayinfo() CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo {
+	return CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponseowngameplayinfo(o CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(o CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponseowngameplayinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsgameplayinforesponseowngameplayinfo_unpack(v)?
+	mut unpacked := cplayer_getfriendsgameplayinfo_response_owngameplayinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsGameplayInfoResponse {
+pub struct CPlayer_GetFriendsGameplayInfo_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	your_info       CPlayerGetFriendsGameplayInfoResponseOwnGameplayInfo
+	your_info       CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo
 	has_your_info   bool
-	in_game         []CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo
-	played_recently []CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo
-	played_ever     []CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo
-	owns            []CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo
-	in_wishlist     []CPlayerGetFriendsGameplayInfoResponseFriendsGameplayInfo
+	in_game         []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
+	played_recently []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
+	played_ever     []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
+	owns            []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
+	in_wishlist     []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
 }
 
-pub fn (o &CPlayerGetFriendsGameplayInfoResponse) pack() []byte {
+pub fn (o &CPlayer_GetFriendsGameplayInfo_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_your_info {
 		res <<
-			zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponseowngameplayinfo(o.your_info, 1)
+			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(o.your_info, 1)
 	}
 	// [packed=false]
 	for _, x in o.in_game {
 		res <<
-			zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(x, 2)
+			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(x, 2)
 	}
 	// [packed=false]
 	for _, x in o.played_recently {
 		res <<
-			zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(x, 3)
+			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(x, 3)
 	}
 	// [packed=false]
 	for _, x in o.played_ever {
 		res <<
-			zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(x, 4)
+			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(x, 4)
 	}
 	// [packed=false]
 	for _, x in o.owns {
 		res <<
-			zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(x, 5)
+			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(x, 5)
 	}
 	// [packed=false]
 	for _, x in o.in_wishlist {
 		res <<
-			zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(x, 6)
+			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(x, 6)
 	}
 	return res
 }
 
-pub fn cplayergetfriendsgameplayinforesponse_unpack(buf []byte) ?CPlayerGetFriendsGameplayInfoResponse {
-	mut res := CPlayerGetFriendsGameplayInfoResponse{}
+pub fn cplayer_getfriendsgameplayinfo_response_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Response {
+	mut res := CPlayer_GetFriendsGameplayInfo_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1018,42 +1040,42 @@ pub fn cplayergetfriendsgameplayinforesponse_unpack(buf []byte) ?CPlayerGetFrien
 		match tag_wiretype.tag {
 			1 {
 				res.has_your_info = true
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponseowngameplayinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.your_info = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.in_game << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.played_recently << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.played_ever << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.owns << v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponsefriendsgameplayinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.in_wishlist << v
 				i = ii
@@ -1074,23 +1096,23 @@ pub fn cplayergetfriendsgameplayinforesponse_unpack(buf []byte) ?CPlayerGetFrien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsgameplayinforesponse() CPlayerGetFriendsGameplayInfoResponse {
-	return CPlayerGetFriendsGameplayInfoResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response() CPlayer_GetFriendsGameplayInfo_Response {
+	return CPlayer_GetFriendsGameplayInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsgameplayinforesponse(o CPlayerGetFriendsGameplayInfoResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response(o CPlayer_GetFriendsGameplayInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsgameplayinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsGameplayInfoResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsgameplayinforesponse_unpack(v)?
+	mut unpacked := cplayer_getfriendsgameplayinfo_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsAppsActivityRequest {
+pub struct CPlayer_GetFriendsAppsActivity_Request {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
@@ -1100,7 +1122,7 @@ pub mut:
 	has_request_flags bool
 }
 
-pub fn (o &CPlayerGetFriendsAppsActivityRequest) pack() []byte {
+pub fn (o &CPlayer_GetFriendsAppsActivity_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_news_language {
 		res << vproto.pack_string_field(o.news_language, 1)
@@ -1111,8 +1133,8 @@ pub fn (o &CPlayerGetFriendsAppsActivityRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetfriendsappsactivityrequest_unpack(buf []byte) ?CPlayerGetFriendsAppsActivityRequest {
-	mut res := CPlayerGetFriendsAppsActivityRequest{}
+pub fn cplayer_getfriendsappsactivity_request_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Request {
+	mut res := CPlayer_GetFriendsAppsActivity_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1150,23 +1172,23 @@ pub fn cplayergetfriendsappsactivityrequest_unpack(buf []byte) ?CPlayerGetFriend
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsappsactivityrequest() CPlayerGetFriendsAppsActivityRequest {
-	return CPlayerGetFriendsAppsActivityRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_request() CPlayer_GetFriendsAppsActivity_Request {
+	return CPlayer_GetFriendsAppsActivity_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsappsactivityrequest(o CPlayerGetFriendsAppsActivityRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_request(o CPlayer_GetFriendsAppsActivity_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsappsactivityrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsAppsActivityRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsappsactivityrequest_unpack(v)?
+	mut unpacked := cplayer_getfriendsappsactivity_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsAppsActivityResponseFriendPlayTime {
+pub struct CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -1182,7 +1204,7 @@ pub mut:
 	has_event_count              bool
 }
 
-pub fn (o &CPlayerGetFriendsAppsActivityResponseFriendPlayTime) pack() []byte {
+pub fn (o &CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1202,8 +1224,8 @@ pub fn (o &CPlayerGetFriendsAppsActivityResponseFriendPlayTime) pack() []byte {
 	return res
 }
 
-pub fn cplayergetfriendsappsactivityresponsefriendplaytime_unpack(buf []byte) ?CPlayerGetFriendsAppsActivityResponseFriendPlayTime {
-	mut res := CPlayerGetFriendsAppsActivityResponseFriendPlayTime{}
+pub fn cplayer_getfriendsappsactivity_response_friendplaytime_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime {
+	mut res := CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1259,41 +1281,42 @@ pub fn cplayergetfriendsappsactivityresponsefriendplaytime_unpack(buf []byte) ?C
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsappsactivityresponsefriendplaytime() CPlayerGetFriendsAppsActivityResponseFriendPlayTime {
-	return CPlayerGetFriendsAppsActivityResponseFriendPlayTime{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response_friendplaytime() CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime {
+	return CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponsefriendplaytime(o CPlayerGetFriendsAppsActivityResponseFriendPlayTime, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_friendplaytime(o CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponsefriendplaytime(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsAppsActivityResponseFriendPlayTime) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_friendplaytime(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsappsactivityresponsefriendplaytime_unpack(v)?
+	mut unpacked := cplayer_getfriendsappsactivity_response_friendplaytime_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsAppsActivityResponseAppFriendsInfo {
+pub struct CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo {
 mut:
 	unknown_fields    []vproto.UnknownField
 pub mut:
 	appid             u32
 	has_appid         bool
-	friends           []CPlayerGetFriendsAppsActivityResponseFriendPlayTime
+	friends           []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime
 	display_order     u32
 	has_display_order bool
 }
 
-pub fn (o &CPlayerGetFriendsAppsActivityResponseAppFriendsInfo) pack() []byte {
+pub fn (o &CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
 	for _, x in o.friends {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponsefriendplaytime(x, 2)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_friendplaytime(x, 2)
 	}
 	if o.has_display_order {
 		res << vproto.pack_uint32_field(o.display_order, 3)
@@ -1301,8 +1324,8 @@ pub fn (o &CPlayerGetFriendsAppsActivityResponseAppFriendsInfo) pack() []byte {
 	return res
 }
 
-pub fn cplayergetfriendsappsactivityresponseappfriendsinfo_unpack(buf []byte) ?CPlayerGetFriendsAppsActivityResponseAppFriendsInfo {
-	mut res := CPlayerGetFriendsAppsActivityResponseAppFriendsInfo{}
+pub fn cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo {
+	mut res := CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1320,7 +1343,7 @@ pub fn cplayergetfriendsappsactivityresponseappfriendsinfo_unpack(buf []byte) ?C
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponsefriendplaytime(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_friendplaytime(cur_buf,
 					tag_wiretype.wire_type)?
 				res.friends << v
 				i = ii
@@ -1347,71 +1370,79 @@ pub fn cplayergetfriendsappsactivityresponseappfriendsinfo_unpack(buf []byte) ?C
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsappsactivityresponseappfriendsinfo() CPlayerGetFriendsAppsActivityResponseAppFriendsInfo {
-	return CPlayerGetFriendsAppsActivityResponseAppFriendsInfo{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response_appfriendsinfo() CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo {
+	return CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(o CPlayerGetFriendsAppsActivityResponseAppFriendsInfo, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(o CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsAppsActivityResponseAppFriendsInfo) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsappsactivityresponseappfriendsinfo_unpack(v)?
+	mut unpacked := cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetFriendsAppsActivityResponse {
+pub struct CPlayer_GetFriendsAppsActivity_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
-	trending                []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	recent_purchases        []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	unowned                 []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	popular                 []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	dont_forget             []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	being_discussed         []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	new_to_group            []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
-	returned_to_group       []CPlayerGetFriendsAppsActivityResponseAppFriendsInfo
+	trending                []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	recent_purchases        []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	unowned                 []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	popular                 []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	dont_forget             []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	being_discussed         []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	new_to_group            []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	returned_to_group       []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
 	active_friend_count     u32
 	has_active_friend_count bool
 }
 
-pub fn (o &CPlayerGetFriendsAppsActivityResponse) pack() []byte {
+pub fn (o &CPlayer_GetFriendsAppsActivity_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.trending {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.recent_purchases {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 2)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 2)
 	}
 	// [packed=false]
 	for _, x in o.unowned {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 3)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 3)
 	}
 	// [packed=false]
 	for _, x in o.popular {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 4)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 4)
 	}
 	// [packed=false]
 	for _, x in o.dont_forget {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 5)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 5)
 	}
 	// [packed=false]
 	for _, x in o.being_discussed {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 6)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 6)
 	}
 	// [packed=false]
 	for _, x in o.new_to_group {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 7)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 7)
 	}
 	// [packed=false]
 	for _, x in o.returned_to_group {
-		res << zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponseappfriendsinfo(x, 8)
+		res <<
+			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 8)
 	}
 	if o.has_active_friend_count {
 		res << vproto.pack_uint32_field(o.active_friend_count, 9)
@@ -1419,8 +1450,8 @@ pub fn (o &CPlayerGetFriendsAppsActivityResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetfriendsappsactivityresponse_unpack(buf []byte) ?CPlayerGetFriendsAppsActivityResponse {
-	mut res := CPlayerGetFriendsAppsActivityResponse{}
+pub fn cplayer_getfriendsappsactivity_response_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Response {
+	mut res := CPlayer_GetFriendsAppsActivity_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1432,56 +1463,56 @@ pub fn cplayergetfriendsappsactivityresponse_unpack(buf []byte) ?CPlayerGetFrien
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.trending << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.recent_purchases << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.unowned << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.popular << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.dont_forget << v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.being_discussed << v
 				i = ii
 			}
 			7 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.new_to_group << v
 				i = ii
 			}
 			8 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponseappfriendsinfo(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.returned_to_group << v
 				i = ii
@@ -1508,23 +1539,23 @@ pub fn cplayergetfriendsappsactivityresponse_unpack(buf []byte) ?CPlayerGetFrien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetfriendsappsactivityresponse() CPlayerGetFriendsAppsActivityResponse {
-	return CPlayerGetFriendsAppsActivityResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response() CPlayer_GetFriendsAppsActivity_Response {
+	return CPlayer_GetFriendsAppsActivity_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetfriendsappsactivityresponse(o CPlayerGetFriendsAppsActivityResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response(o CPlayer_GetFriendsAppsActivity_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetfriendsappsactivityresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetFriendsAppsActivityResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetfriendsappsactivityresponse_unpack(v)?
+	mut unpacked := cplayer_getfriendsappsactivity_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetGameBadgeLevelsRequest {
+pub struct CPlayer_GetGameBadgeLevels_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1532,7 +1563,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CPlayerGetGameBadgeLevelsRequest) pack() []byte {
+pub fn (o &CPlayer_GetGameBadgeLevels_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -1540,8 +1571,8 @@ pub fn (o &CPlayerGetGameBadgeLevelsRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetgamebadgelevelsrequest_unpack(buf []byte) ?CPlayerGetGameBadgeLevelsRequest {
-	mut res := CPlayerGetGameBadgeLevelsRequest{}
+pub fn cplayer_getgamebadgelevels_request_unpack(buf []byte) ?CPlayer_GetGameBadgeLevels_Request {
+	mut res := CPlayer_GetGameBadgeLevels_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1573,23 +1604,23 @@ pub fn cplayergetgamebadgelevelsrequest_unpack(buf []byte) ?CPlayerGetGameBadgeL
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetgamebadgelevelsrequest() CPlayerGetGameBadgeLevelsRequest {
-	return CPlayerGetGameBadgeLevelsRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getgamebadgelevels_request() CPlayer_GetGameBadgeLevels_Request {
+	return CPlayer_GetGameBadgeLevels_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetgamebadgelevelsrequest(o CPlayerGetGameBadgeLevelsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getgamebadgelevels_request(o CPlayer_GetGameBadgeLevels_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetgamebadgelevelsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetGameBadgeLevelsRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetGameBadgeLevels_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetgamebadgelevelsrequest_unpack(v)?
+	mut unpacked := cplayer_getgamebadgelevels_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetGameBadgeLevelsResponseBadge {
+pub struct CPlayer_GetGameBadgeLevels_Response_Badge {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -1601,7 +1632,7 @@ pub mut:
 	has_border_color bool
 }
 
-pub fn (o &CPlayerGetGameBadgeLevelsResponseBadge) pack() []byte {
+pub fn (o &CPlayer_GetGameBadgeLevels_Response_Badge) pack() []byte {
 	mut res := []byte{}
 	if o.has_level {
 		res << vproto.pack_int32_field(o.level, 1)
@@ -1615,8 +1646,8 @@ pub fn (o &CPlayerGetGameBadgeLevelsResponseBadge) pack() []byte {
 	return res
 }
 
-pub fn cplayergetgamebadgelevelsresponsebadge_unpack(buf []byte) ?CPlayerGetGameBadgeLevelsResponseBadge {
-	mut res := CPlayerGetGameBadgeLevelsResponseBadge{}
+pub fn cplayer_getgamebadgelevels_response_badge_unpack(buf []byte) ?CPlayer_GetGameBadgeLevels_Response_Badge {
+	mut res := CPlayer_GetGameBadgeLevels_Response_Badge{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1660,45 +1691,45 @@ pub fn cplayergetgamebadgelevelsresponsebadge_unpack(buf []byte) ?CPlayerGetGame
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetgamebadgelevelsresponsebadge() CPlayerGetGameBadgeLevelsResponseBadge {
-	return CPlayerGetGameBadgeLevelsResponseBadge{}
+pub fn zzz_vproto_internal_new_cplayer_getgamebadgelevels_response_badge() CPlayer_GetGameBadgeLevels_Response_Badge {
+	return CPlayer_GetGameBadgeLevels_Response_Badge{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetgamebadgelevelsresponsebadge(o CPlayerGetGameBadgeLevelsResponseBadge, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getgamebadgelevels_response_badge(o CPlayer_GetGameBadgeLevels_Response_Badge, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetgamebadgelevelsresponsebadge(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetGameBadgeLevelsResponseBadge) {
+pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_response_badge(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetGameBadgeLevels_Response_Badge) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetgamebadgelevelsresponsebadge_unpack(v)?
+	mut unpacked := cplayer_getgamebadgelevels_response_badge_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetGameBadgeLevelsResponse {
+pub struct CPlayer_GetGameBadgeLevels_Response {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	player_level     u32
 	has_player_level bool
-	badges           []CPlayerGetGameBadgeLevelsResponseBadge
+	badges           []CPlayer_GetGameBadgeLevels_Response_Badge
 }
 
-pub fn (o &CPlayerGetGameBadgeLevelsResponse) pack() []byte {
+pub fn (o &CPlayer_GetGameBadgeLevels_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_player_level {
 		res << vproto.pack_uint32_field(o.player_level, 1)
 	}
 	// [packed=false]
 	for _, x in o.badges {
-		res << zzz_vproto_internal_pack_cplayergetgamebadgelevelsresponsebadge(x, 2)
+		res << zzz_vproto_internal_pack_cplayer_getgamebadgelevels_response_badge(x, 2)
 	}
 	return res
 }
 
-pub fn cplayergetgamebadgelevelsresponse_unpack(buf []byte) ?CPlayerGetGameBadgeLevelsResponse {
-	mut res := CPlayerGetGameBadgeLevelsResponse{}
+pub fn cplayer_getgamebadgelevels_response_unpack(buf []byte) ?CPlayer_GetGameBadgeLevels_Response {
+	mut res := CPlayer_GetGameBadgeLevels_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1716,7 +1747,7 @@ pub fn cplayergetgamebadgelevelsresponse_unpack(buf []byte) ?CPlayerGetGameBadge
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetgamebadgelevelsresponsebadge(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_response_badge(cur_buf,
 					tag_wiretype.wire_type)?
 				res.badges << v
 				i = ii
@@ -1737,23 +1768,23 @@ pub fn cplayergetgamebadgelevelsresponse_unpack(buf []byte) ?CPlayerGetGameBadge
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetgamebadgelevelsresponse() CPlayerGetGameBadgeLevelsResponse {
-	return CPlayerGetGameBadgeLevelsResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getgamebadgelevels_response() CPlayer_GetGameBadgeLevels_Response {
+	return CPlayer_GetGameBadgeLevels_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetgamebadgelevelsresponse(o CPlayerGetGameBadgeLevelsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getgamebadgelevels_response(o CPlayer_GetGameBadgeLevels_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetgamebadgelevelsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetGameBadgeLevelsResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetGameBadgeLevels_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetgamebadgelevelsresponse_unpack(v)?
+	mut unpacked := cplayer_getgamebadgelevels_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetProfileBackgroundRequest {
+pub struct CPlayer_GetProfileBackground_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -1763,7 +1794,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetProfileBackgroundRequest) pack() []byte {
+pub fn (o &CPlayer_GetProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -1774,8 +1805,8 @@ pub fn (o &CPlayerGetProfileBackgroundRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprofilebackgroundrequest_unpack(buf []byte) ?CPlayerGetProfileBackgroundRequest {
-	mut res := CPlayerGetProfileBackgroundRequest{}
+pub fn cplayer_getprofilebackground_request_unpack(buf []byte) ?CPlayer_GetProfileBackground_Request {
+	mut res := CPlayer_GetProfileBackground_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1813,19 +1844,19 @@ pub fn cplayergetprofilebackgroundrequest_unpack(buf []byte) ?CPlayerGetProfileB
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprofilebackgroundrequest() CPlayerGetProfileBackgroundRequest {
-	return CPlayerGetProfileBackgroundRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getprofilebackground_request() CPlayer_GetProfileBackground_Request {
+	return CPlayer_GetProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprofilebackgroundrequest(o CPlayerGetProfileBackgroundRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprofilebackground_request(o CPlayer_GetProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprofilebackgroundrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetProfileBackgroundRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprofilebackgroundrequest_unpack(v)?
+	mut unpacked := cplayer_getprofilebackground_request_unpack(v)?
 	return i, unpacked
 }
 
@@ -2015,7 +2046,7 @@ pub fn zzz_vproto_internal_unpack_profileitem(buf []byte, tag_wiretype vproto.Wi
 	return i, unpacked
 }
 
-pub struct CPlayerGetProfileBackgroundResponse {
+pub struct CPlayer_GetProfileBackground_Response {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -2023,7 +2054,7 @@ pub mut:
 	has_profile_background bool
 }
 
-pub fn (o &CPlayerGetProfileBackgroundResponse) pack() []byte {
+pub fn (o &CPlayer_GetProfileBackground_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_profile_background {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_background, 1)
@@ -2031,8 +2062,8 @@ pub fn (o &CPlayerGetProfileBackgroundResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprofilebackgroundresponse_unpack(buf []byte) ?CPlayerGetProfileBackgroundResponse {
-	mut res := CPlayerGetProfileBackgroundResponse{}
+pub fn cplayer_getprofilebackground_response_unpack(buf []byte) ?CPlayer_GetProfileBackground_Response {
+	mut res := CPlayer_GetProfileBackground_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2064,23 +2095,23 @@ pub fn cplayergetprofilebackgroundresponse_unpack(buf []byte) ?CPlayerGetProfile
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprofilebackgroundresponse() CPlayerGetProfileBackgroundResponse {
-	return CPlayerGetProfileBackgroundResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getprofilebackground_response() CPlayer_GetProfileBackground_Response {
+	return CPlayer_GetProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprofilebackgroundresponse(o CPlayerGetProfileBackgroundResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprofilebackground_response(o CPlayer_GetProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprofilebackgroundresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetProfileBackgroundResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprofilebackgroundresponse_unpack(v)?
+	mut unpacked := cplayer_getprofilebackground_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetProfileBackgroundRequest {
+pub struct CPlayer_SetProfileBackground_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -2088,7 +2119,7 @@ pub mut:
 	has_communityitemid bool
 }
 
-pub fn (o &CPlayerSetProfileBackgroundRequest) pack() []byte {
+pub fn (o &CPlayer_SetProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_communityitemid {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
@@ -2096,8 +2127,8 @@ pub fn (o &CPlayerSetProfileBackgroundRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayersetprofilebackgroundrequest_unpack(buf []byte) ?CPlayerSetProfileBackgroundRequest {
-	mut res := CPlayerSetProfileBackgroundRequest{}
+pub fn cplayer_setprofilebackground_request_unpack(buf []byte) ?CPlayer_SetProfileBackground_Request {
+	mut res := CPlayer_SetProfileBackground_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2129,55 +2160,55 @@ pub fn cplayersetprofilebackgroundrequest_unpack(buf []byte) ?CPlayerSetProfileB
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetprofilebackgroundrequest() CPlayerSetProfileBackgroundRequest {
-	return CPlayerSetProfileBackgroundRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setprofilebackground_request() CPlayer_SetProfileBackground_Request {
+	return CPlayer_SetProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetprofilebackgroundrequest(o CPlayerSetProfileBackgroundRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setprofilebackground_request(o CPlayer_SetProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetprofilebackgroundrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetProfileBackgroundRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetprofilebackgroundrequest_unpack(v)?
+	mut unpacked := cplayer_setprofilebackground_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetProfileBackgroundResponse {
+pub struct CPlayer_SetProfileBackground_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetProfileBackgroundResponse) pack() []byte {
+pub fn (o &CPlayer_SetProfileBackground_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetprofilebackgroundresponse_unpack(buf []byte) ?CPlayerSetProfileBackgroundResponse {
-	res := CPlayerSetProfileBackgroundResponse{}
+pub fn cplayer_setprofilebackground_response_unpack(buf []byte) ?CPlayer_SetProfileBackground_Response {
+	res := CPlayer_SetProfileBackground_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetprofilebackgroundresponse() CPlayerSetProfileBackgroundResponse {
-	return CPlayerSetProfileBackgroundResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setprofilebackground_response() CPlayer_SetProfileBackground_Response {
+	return CPlayer_SetProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetprofilebackgroundresponse(o CPlayerSetProfileBackgroundResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setprofilebackground_response(o CPlayer_SetProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetprofilebackgroundresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetProfileBackgroundResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetprofilebackgroundresponse_unpack(v)?
+	mut unpacked := cplayer_setprofilebackground_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetMiniProfileBackgroundRequest {
+pub struct CPlayer_GetMiniProfileBackground_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2187,7 +2218,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetMiniProfileBackgroundRequest) pack() []byte {
+pub fn (o &CPlayer_GetMiniProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -2198,8 +2229,8 @@ pub fn (o &CPlayerGetMiniProfileBackgroundRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetminiprofilebackgroundrequest_unpack(buf []byte) ?CPlayerGetMiniProfileBackgroundRequest {
-	mut res := CPlayerGetMiniProfileBackgroundRequest{}
+pub fn cplayer_getminiprofilebackground_request_unpack(buf []byte) ?CPlayer_GetMiniProfileBackground_Request {
+	mut res := CPlayer_GetMiniProfileBackground_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2237,23 +2268,23 @@ pub fn cplayergetminiprofilebackgroundrequest_unpack(buf []byte) ?CPlayerGetMini
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetminiprofilebackgroundrequest() CPlayerGetMiniProfileBackgroundRequest {
-	return CPlayerGetMiniProfileBackgroundRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getminiprofilebackground_request() CPlayer_GetMiniProfileBackground_Request {
+	return CPlayer_GetMiniProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetminiprofilebackgroundrequest(o CPlayerGetMiniProfileBackgroundRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getminiprofilebackground_request(o CPlayer_GetMiniProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetminiprofilebackgroundrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetMiniProfileBackgroundRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getminiprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMiniProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetminiprofilebackgroundrequest_unpack(v)?
+	mut unpacked := cplayer_getminiprofilebackground_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetMiniProfileBackgroundResponse {
+pub struct CPlayer_GetMiniProfileBackground_Response {
 mut:
 	unknown_fields         []vproto.UnknownField
 pub mut:
@@ -2261,7 +2292,7 @@ pub mut:
 	has_profile_background bool
 }
 
-pub fn (o &CPlayerGetMiniProfileBackgroundResponse) pack() []byte {
+pub fn (o &CPlayer_GetMiniProfileBackground_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_profile_background {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_background, 1)
@@ -2269,8 +2300,8 @@ pub fn (o &CPlayerGetMiniProfileBackgroundResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetminiprofilebackgroundresponse_unpack(buf []byte) ?CPlayerGetMiniProfileBackgroundResponse {
-	mut res := CPlayerGetMiniProfileBackgroundResponse{}
+pub fn cplayer_getminiprofilebackground_response_unpack(buf []byte) ?CPlayer_GetMiniProfileBackground_Response {
+	mut res := CPlayer_GetMiniProfileBackground_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2302,23 +2333,23 @@ pub fn cplayergetminiprofilebackgroundresponse_unpack(buf []byte) ?CPlayerGetMin
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetminiprofilebackgroundresponse() CPlayerGetMiniProfileBackgroundResponse {
-	return CPlayerGetMiniProfileBackgroundResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getminiprofilebackground_response() CPlayer_GetMiniProfileBackground_Response {
+	return CPlayer_GetMiniProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetminiprofilebackgroundresponse(o CPlayerGetMiniProfileBackgroundResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getminiprofilebackground_response(o CPlayer_GetMiniProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetminiprofilebackgroundresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetMiniProfileBackgroundResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getminiprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMiniProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetminiprofilebackgroundresponse_unpack(v)?
+	mut unpacked := cplayer_getminiprofilebackground_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetMiniProfileBackgroundRequest {
+pub struct CPlayer_SetMiniProfileBackground_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -2326,7 +2357,7 @@ pub mut:
 	has_communityitemid bool
 }
 
-pub fn (o &CPlayerSetMiniProfileBackgroundRequest) pack() []byte {
+pub fn (o &CPlayer_SetMiniProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_communityitemid {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
@@ -2334,8 +2365,8 @@ pub fn (o &CPlayerSetMiniProfileBackgroundRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayersetminiprofilebackgroundrequest_unpack(buf []byte) ?CPlayerSetMiniProfileBackgroundRequest {
-	mut res := CPlayerSetMiniProfileBackgroundRequest{}
+pub fn cplayer_setminiprofilebackground_request_unpack(buf []byte) ?CPlayer_SetMiniProfileBackground_Request {
+	mut res := CPlayer_SetMiniProfileBackground_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2367,55 +2398,55 @@ pub fn cplayersetminiprofilebackgroundrequest_unpack(buf []byte) ?CPlayerSetMini
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetminiprofilebackgroundrequest() CPlayerSetMiniProfileBackgroundRequest {
-	return CPlayerSetMiniProfileBackgroundRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setminiprofilebackground_request() CPlayer_SetMiniProfileBackground_Request {
+	return CPlayer_SetMiniProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetminiprofilebackgroundrequest(o CPlayerSetMiniProfileBackgroundRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setminiprofilebackground_request(o CPlayer_SetMiniProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetminiprofilebackgroundrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetMiniProfileBackgroundRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setminiprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetMiniProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetminiprofilebackgroundrequest_unpack(v)?
+	mut unpacked := cplayer_setminiprofilebackground_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetMiniProfileBackgroundResponse {
+pub struct CPlayer_SetMiniProfileBackground_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetMiniProfileBackgroundResponse) pack() []byte {
+pub fn (o &CPlayer_SetMiniProfileBackground_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetminiprofilebackgroundresponse_unpack(buf []byte) ?CPlayerSetMiniProfileBackgroundResponse {
-	res := CPlayerSetMiniProfileBackgroundResponse{}
+pub fn cplayer_setminiprofilebackground_response_unpack(buf []byte) ?CPlayer_SetMiniProfileBackground_Response {
+	res := CPlayer_SetMiniProfileBackground_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetminiprofilebackgroundresponse() CPlayerSetMiniProfileBackgroundResponse {
-	return CPlayerSetMiniProfileBackgroundResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setminiprofilebackground_response() CPlayer_SetMiniProfileBackground_Response {
+	return CPlayer_SetMiniProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetminiprofilebackgroundresponse(o CPlayerSetMiniProfileBackgroundResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setminiprofilebackground_response(o CPlayer_SetMiniProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetminiprofilebackgroundresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetMiniProfileBackgroundResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setminiprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetMiniProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetminiprofilebackgroundresponse_unpack(v)?
+	mut unpacked := cplayer_setminiprofilebackground_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAvatarFrameRequest {
+pub struct CPlayer_GetAvatarFrame_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2425,7 +2456,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetAvatarFrameRequest) pack() []byte {
+pub fn (o &CPlayer_GetAvatarFrame_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -2436,8 +2467,8 @@ pub fn (o &CPlayerGetAvatarFrameRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetavatarframerequest_unpack(buf []byte) ?CPlayerGetAvatarFrameRequest {
-	mut res := CPlayerGetAvatarFrameRequest{}
+pub fn cplayer_getavatarframe_request_unpack(buf []byte) ?CPlayer_GetAvatarFrame_Request {
+	mut res := CPlayer_GetAvatarFrame_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2475,23 +2506,23 @@ pub fn cplayergetavatarframerequest_unpack(buf []byte) ?CPlayerGetAvatarFrameReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetavatarframerequest() CPlayerGetAvatarFrameRequest {
-	return CPlayerGetAvatarFrameRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getavatarframe_request() CPlayer_GetAvatarFrame_Request {
+	return CPlayer_GetAvatarFrame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetavatarframerequest(o CPlayerGetAvatarFrameRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getavatarframe_request(o CPlayer_GetAvatarFrame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetavatarframerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAvatarFrameRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getavatarframe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAvatarFrame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetavatarframerequest_unpack(v)?
+	mut unpacked := cplayer_getavatarframe_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAvatarFrameResponse {
+pub struct CPlayer_GetAvatarFrame_Response {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -2499,7 +2530,7 @@ pub mut:
 	has_avatar_frame bool
 }
 
-pub fn (o &CPlayerGetAvatarFrameResponse) pack() []byte {
+pub fn (o &CPlayer_GetAvatarFrame_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_avatar_frame {
 		res << zzz_vproto_internal_pack_profileitem(o.avatar_frame, 1)
@@ -2507,8 +2538,8 @@ pub fn (o &CPlayerGetAvatarFrameResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetavatarframeresponse_unpack(buf []byte) ?CPlayerGetAvatarFrameResponse {
-	mut res := CPlayerGetAvatarFrameResponse{}
+pub fn cplayer_getavatarframe_response_unpack(buf []byte) ?CPlayer_GetAvatarFrame_Response {
+	mut res := CPlayer_GetAvatarFrame_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2540,23 +2571,23 @@ pub fn cplayergetavatarframeresponse_unpack(buf []byte) ?CPlayerGetAvatarFrameRe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetavatarframeresponse() CPlayerGetAvatarFrameResponse {
-	return CPlayerGetAvatarFrameResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getavatarframe_response() CPlayer_GetAvatarFrame_Response {
+	return CPlayer_GetAvatarFrame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetavatarframeresponse(o CPlayerGetAvatarFrameResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getavatarframe_response(o CPlayer_GetAvatarFrame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetavatarframeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAvatarFrameResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getavatarframe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAvatarFrame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetavatarframeresponse_unpack(v)?
+	mut unpacked := cplayer_getavatarframe_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetAvatarFrameRequest {
+pub struct CPlayer_SetAvatarFrame_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -2564,7 +2595,7 @@ pub mut:
 	has_communityitemid bool
 }
 
-pub fn (o &CPlayerSetAvatarFrameRequest) pack() []byte {
+pub fn (o &CPlayer_SetAvatarFrame_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_communityitemid {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
@@ -2572,8 +2603,8 @@ pub fn (o &CPlayerSetAvatarFrameRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayersetavatarframerequest_unpack(buf []byte) ?CPlayerSetAvatarFrameRequest {
-	mut res := CPlayerSetAvatarFrameRequest{}
+pub fn cplayer_setavatarframe_request_unpack(buf []byte) ?CPlayer_SetAvatarFrame_Request {
+	mut res := CPlayer_SetAvatarFrame_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2605,55 +2636,55 @@ pub fn cplayersetavatarframerequest_unpack(buf []byte) ?CPlayerSetAvatarFrameReq
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetavatarframerequest() CPlayerSetAvatarFrameRequest {
-	return CPlayerSetAvatarFrameRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setavatarframe_request() CPlayer_SetAvatarFrame_Request {
+	return CPlayer_SetAvatarFrame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetavatarframerequest(o CPlayerSetAvatarFrameRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setavatarframe_request(o CPlayer_SetAvatarFrame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetavatarframerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetAvatarFrameRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setavatarframe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAvatarFrame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetavatarframerequest_unpack(v)?
+	mut unpacked := cplayer_setavatarframe_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetAvatarFrameResponse {
+pub struct CPlayer_SetAvatarFrame_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetAvatarFrameResponse) pack() []byte {
+pub fn (o &CPlayer_SetAvatarFrame_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetavatarframeresponse_unpack(buf []byte) ?CPlayerSetAvatarFrameResponse {
-	res := CPlayerSetAvatarFrameResponse{}
+pub fn cplayer_setavatarframe_response_unpack(buf []byte) ?CPlayer_SetAvatarFrame_Response {
+	res := CPlayer_SetAvatarFrame_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetavatarframeresponse() CPlayerSetAvatarFrameResponse {
-	return CPlayerSetAvatarFrameResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setavatarframe_response() CPlayer_SetAvatarFrame_Response {
+	return CPlayer_SetAvatarFrame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetavatarframeresponse(o CPlayerSetAvatarFrameResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setavatarframe_response(o CPlayer_SetAvatarFrame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetavatarframeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetAvatarFrameResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setavatarframe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAvatarFrame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetavatarframeresponse_unpack(v)?
+	mut unpacked := cplayer_setavatarframe_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAnimatedAvatarRequest {
+pub struct CPlayer_GetAnimatedAvatar_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2663,7 +2694,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetAnimatedAvatarRequest) pack() []byte {
+pub fn (o &CPlayer_GetAnimatedAvatar_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -2674,8 +2705,8 @@ pub fn (o &CPlayerGetAnimatedAvatarRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetanimatedavatarrequest_unpack(buf []byte) ?CPlayerGetAnimatedAvatarRequest {
-	mut res := CPlayerGetAnimatedAvatarRequest{}
+pub fn cplayer_getanimatedavatar_request_unpack(buf []byte) ?CPlayer_GetAnimatedAvatar_Request {
+	mut res := CPlayer_GetAnimatedAvatar_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2713,23 +2744,23 @@ pub fn cplayergetanimatedavatarrequest_unpack(buf []byte) ?CPlayerGetAnimatedAva
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetanimatedavatarrequest() CPlayerGetAnimatedAvatarRequest {
-	return CPlayerGetAnimatedAvatarRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getanimatedavatar_request() CPlayer_GetAnimatedAvatar_Request {
+	return CPlayer_GetAnimatedAvatar_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetanimatedavatarrequest(o CPlayerGetAnimatedAvatarRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getanimatedavatar_request(o CPlayer_GetAnimatedAvatar_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetanimatedavatarrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAnimatedAvatarRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getanimatedavatar_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAnimatedAvatar_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetanimatedavatarrequest_unpack(v)?
+	mut unpacked := cplayer_getanimatedavatar_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAnimatedAvatarResponse {
+pub struct CPlayer_GetAnimatedAvatar_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2737,7 +2768,7 @@ pub mut:
 	has_avatar     bool
 }
 
-pub fn (o &CPlayerGetAnimatedAvatarResponse) pack() []byte {
+pub fn (o &CPlayer_GetAnimatedAvatar_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_avatar {
 		res << zzz_vproto_internal_pack_profileitem(o.avatar, 1)
@@ -2745,8 +2776,8 @@ pub fn (o &CPlayerGetAnimatedAvatarResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetanimatedavatarresponse_unpack(buf []byte) ?CPlayerGetAnimatedAvatarResponse {
-	mut res := CPlayerGetAnimatedAvatarResponse{}
+pub fn cplayer_getanimatedavatar_response_unpack(buf []byte) ?CPlayer_GetAnimatedAvatar_Response {
+	mut res := CPlayer_GetAnimatedAvatar_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2778,23 +2809,23 @@ pub fn cplayergetanimatedavatarresponse_unpack(buf []byte) ?CPlayerGetAnimatedAv
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetanimatedavatarresponse() CPlayerGetAnimatedAvatarResponse {
-	return CPlayerGetAnimatedAvatarResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getanimatedavatar_response() CPlayer_GetAnimatedAvatar_Response {
+	return CPlayer_GetAnimatedAvatar_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetanimatedavatarresponse(o CPlayerGetAnimatedAvatarResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getanimatedavatar_response(o CPlayer_GetAnimatedAvatar_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetanimatedavatarresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAnimatedAvatarResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getanimatedavatar_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAnimatedAvatar_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetanimatedavatarresponse_unpack(v)?
+	mut unpacked := cplayer_getanimatedavatar_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetAnimatedAvatarRequest {
+pub struct CPlayer_SetAnimatedAvatar_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -2802,7 +2833,7 @@ pub mut:
 	has_communityitemid bool
 }
 
-pub fn (o &CPlayerSetAnimatedAvatarRequest) pack() []byte {
+pub fn (o &CPlayer_SetAnimatedAvatar_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_communityitemid {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
@@ -2810,8 +2841,8 @@ pub fn (o &CPlayerSetAnimatedAvatarRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayersetanimatedavatarrequest_unpack(buf []byte) ?CPlayerSetAnimatedAvatarRequest {
-	mut res := CPlayerSetAnimatedAvatarRequest{}
+pub fn cplayer_setanimatedavatar_request_unpack(buf []byte) ?CPlayer_SetAnimatedAvatar_Request {
+	mut res := CPlayer_SetAnimatedAvatar_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2843,55 +2874,55 @@ pub fn cplayersetanimatedavatarrequest_unpack(buf []byte) ?CPlayerSetAnimatedAva
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetanimatedavatarrequest() CPlayerSetAnimatedAvatarRequest {
-	return CPlayerSetAnimatedAvatarRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setanimatedavatar_request() CPlayer_SetAnimatedAvatar_Request {
+	return CPlayer_SetAnimatedAvatar_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetanimatedavatarrequest(o CPlayerSetAnimatedAvatarRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setanimatedavatar_request(o CPlayer_SetAnimatedAvatar_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetanimatedavatarrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetAnimatedAvatarRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setanimatedavatar_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAnimatedAvatar_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetanimatedavatarrequest_unpack(v)?
+	mut unpacked := cplayer_setanimatedavatar_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetAnimatedAvatarResponse {
+pub struct CPlayer_SetAnimatedAvatar_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetAnimatedAvatarResponse) pack() []byte {
+pub fn (o &CPlayer_SetAnimatedAvatar_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetanimatedavatarresponse_unpack(buf []byte) ?CPlayerSetAnimatedAvatarResponse {
-	res := CPlayerSetAnimatedAvatarResponse{}
+pub fn cplayer_setanimatedavatar_response_unpack(buf []byte) ?CPlayer_SetAnimatedAvatar_Response {
+	res := CPlayer_SetAnimatedAvatar_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetanimatedavatarresponse() CPlayerSetAnimatedAvatarResponse {
-	return CPlayerSetAnimatedAvatarResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setanimatedavatar_response() CPlayer_SetAnimatedAvatar_Response {
+	return CPlayer_SetAnimatedAvatar_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetanimatedavatarresponse(o CPlayerSetAnimatedAvatarResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setanimatedavatar_response(o CPlayer_SetAnimatedAvatar_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetanimatedavatarresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetAnimatedAvatarResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setanimatedavatar_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAnimatedAvatar_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetanimatedavatarresponse_unpack(v)?
+	mut unpacked := cplayer_setanimatedavatar_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetProfileItemsOwnedRequest {
+pub struct CPlayer_GetProfileItemsOwned_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -2899,7 +2930,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetProfileItemsOwnedRequest) pack() []byte {
+pub fn (o &CPlayer_GetProfileItemsOwned_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_language {
 		res << vproto.pack_string_field(o.language, 1)
@@ -2907,8 +2938,8 @@ pub fn (o &CPlayerGetProfileItemsOwnedRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprofileitemsownedrequest_unpack(buf []byte) ?CPlayerGetProfileItemsOwnedRequest {
-	mut res := CPlayerGetProfileItemsOwnedRequest{}
+pub fn cplayer_getprofileitemsowned_request_unpack(buf []byte) ?CPlayer_GetProfileItemsOwned_Request {
+	mut res := CPlayer_GetProfileItemsOwned_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2940,23 +2971,23 @@ pub fn cplayergetprofileitemsownedrequest_unpack(buf []byte) ?CPlayerGetProfileI
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprofileitemsownedrequest() CPlayerGetProfileItemsOwnedRequest {
-	return CPlayerGetProfileItemsOwnedRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getprofileitemsowned_request() CPlayer_GetProfileItemsOwned_Request {
+	return CPlayer_GetProfileItemsOwned_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprofileitemsownedrequest(o CPlayerGetProfileItemsOwnedRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsowned_request(o CPlayer_GetProfileItemsOwned_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprofileitemsownedrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetProfileItemsOwnedRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsowned_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsOwned_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprofileitemsownedrequest_unpack(v)?
+	mut unpacked := cplayer_getprofileitemsowned_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetProfileItemsOwnedResponse {
+pub struct CPlayer_GetProfileItemsOwned_Response {
 mut:
 	unknown_fields           []vproto.UnknownField
 pub mut:
@@ -2967,7 +2998,7 @@ pub mut:
 	profile_modifiers        []ProfileItem
 }
 
-pub fn (o &CPlayerGetProfileItemsOwnedResponse) pack() []byte {
+pub fn (o &CPlayer_GetProfileItemsOwned_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.profile_backgrounds {
@@ -2992,8 +3023,8 @@ pub fn (o &CPlayerGetProfileItemsOwnedResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprofileitemsownedresponse_unpack(buf []byte) ?CPlayerGetProfileItemsOwnedResponse {
-	mut res := CPlayerGetProfileItemsOwnedResponse{}
+pub fn cplayer_getprofileitemsowned_response_unpack(buf []byte) ?CPlayer_GetProfileItemsOwned_Response {
+	mut res := CPlayer_GetProfileItemsOwned_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3049,23 +3080,23 @@ pub fn cplayergetprofileitemsownedresponse_unpack(buf []byte) ?CPlayerGetProfile
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprofileitemsownedresponse() CPlayerGetProfileItemsOwnedResponse {
-	return CPlayerGetProfileItemsOwnedResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getprofileitemsowned_response() CPlayer_GetProfileItemsOwned_Response {
+	return CPlayer_GetProfileItemsOwned_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprofileitemsownedresponse(o CPlayerGetProfileItemsOwnedResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsowned_response(o CPlayer_GetProfileItemsOwned_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprofileitemsownedresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetProfileItemsOwnedResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsowned_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsOwned_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprofileitemsownedresponse_unpack(v)?
+	mut unpacked := cplayer_getprofileitemsowned_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetProfileItemsEquippedRequest {
+pub struct CPlayer_GetProfileItemsEquipped_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3075,7 +3106,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetProfileItemsEquippedRequest) pack() []byte {
+pub fn (o &CPlayer_GetProfileItemsEquipped_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -3086,8 +3117,8 @@ pub fn (o &CPlayerGetProfileItemsEquippedRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprofileitemsequippedrequest_unpack(buf []byte) ?CPlayerGetProfileItemsEquippedRequest {
-	mut res := CPlayerGetProfileItemsEquippedRequest{}
+pub fn cplayer_getprofileitemsequipped_request_unpack(buf []byte) ?CPlayer_GetProfileItemsEquipped_Request {
+	mut res := CPlayer_GetProfileItemsEquipped_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3125,23 +3156,23 @@ pub fn cplayergetprofileitemsequippedrequest_unpack(buf []byte) ?CPlayerGetProfi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprofileitemsequippedrequest() CPlayerGetProfileItemsEquippedRequest {
-	return CPlayerGetProfileItemsEquippedRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getprofileitemsequipped_request() CPlayer_GetProfileItemsEquipped_Request {
+	return CPlayer_GetProfileItemsEquipped_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprofileitemsequippedrequest(o CPlayerGetProfileItemsEquippedRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsequipped_request(o CPlayer_GetProfileItemsEquipped_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprofileitemsequippedrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetProfileItemsEquippedRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsequipped_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsEquipped_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprofileitemsequippedrequest_unpack(v)?
+	mut unpacked := cplayer_getprofileitemsequipped_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetProfileItemsEquippedResponse {
+pub struct CPlayer_GetProfileItemsEquipped_Response {
 mut:
 	unknown_fields              []vproto.UnknownField
 pub mut:
@@ -3157,7 +3188,7 @@ pub mut:
 	has_profile_modifier        bool
 }
 
-pub fn (o &CPlayerGetProfileItemsEquippedResponse) pack() []byte {
+pub fn (o &CPlayer_GetProfileItemsEquipped_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_profile_background {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_background, 1)
@@ -3177,8 +3208,8 @@ pub fn (o &CPlayerGetProfileItemsEquippedResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprofileitemsequippedresponse_unpack(buf []byte) ?CPlayerGetProfileItemsEquippedResponse {
-	mut res := CPlayerGetProfileItemsEquippedResponse{}
+pub fn cplayer_getprofileitemsequipped_response_unpack(buf []byte) ?CPlayer_GetProfileItemsEquipped_Response {
+	mut res := CPlayer_GetProfileItemsEquipped_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3234,23 +3265,23 @@ pub fn cplayergetprofileitemsequippedresponse_unpack(buf []byte) ?CPlayerGetProf
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprofileitemsequippedresponse() CPlayerGetProfileItemsEquippedResponse {
-	return CPlayerGetProfileItemsEquippedResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getprofileitemsequipped_response() CPlayer_GetProfileItemsEquipped_Response {
+	return CPlayer_GetProfileItemsEquipped_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprofileitemsequippedresponse(o CPlayerGetProfileItemsEquippedResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsequipped_response(o CPlayer_GetProfileItemsEquipped_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprofileitemsequippedresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetProfileItemsEquippedResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsequipped_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsEquipped_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprofileitemsequippedresponse_unpack(v)?
+	mut unpacked := cplayer_getprofileitemsequipped_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetEquippedProfileItemFlagsRequest {
+pub struct CPlayer_SetEquippedProfileItemFlags_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -3260,7 +3291,7 @@ pub mut:
 	has_flags           bool
 }
 
-pub fn (o &CPlayerSetEquippedProfileItemFlagsRequest) pack() []byte {
+pub fn (o &CPlayer_SetEquippedProfileItemFlags_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_communityitemid {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
@@ -3271,8 +3302,8 @@ pub fn (o &CPlayerSetEquippedProfileItemFlagsRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayersetequippedprofileitemflagsrequest_unpack(buf []byte) ?CPlayerSetEquippedProfileItemFlagsRequest {
-	mut res := CPlayerSetEquippedProfileItemFlagsRequest{}
+pub fn cplayer_setequippedprofileitemflags_request_unpack(buf []byte) ?CPlayer_SetEquippedProfileItemFlags_Request {
+	mut res := CPlayer_SetEquippedProfileItemFlags_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3310,87 +3341,87 @@ pub fn cplayersetequippedprofileitemflagsrequest_unpack(buf []byte) ?CPlayerSetE
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetequippedprofileitemflagsrequest() CPlayerSetEquippedProfileItemFlagsRequest {
-	return CPlayerSetEquippedProfileItemFlagsRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setequippedprofileitemflags_request() CPlayer_SetEquippedProfileItemFlags_Request {
+	return CPlayer_SetEquippedProfileItemFlags_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetequippedprofileitemflagsrequest(o CPlayerSetEquippedProfileItemFlagsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setequippedprofileitemflags_request(o CPlayer_SetEquippedProfileItemFlags_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetequippedprofileitemflagsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetEquippedProfileItemFlagsRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setequippedprofileitemflags_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetEquippedProfileItemFlags_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetequippedprofileitemflagsrequest_unpack(v)?
+	mut unpacked := cplayer_setequippedprofileitemflags_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetEquippedProfileItemFlagsResponse {
+pub struct CPlayer_SetEquippedProfileItemFlags_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetEquippedProfileItemFlagsResponse) pack() []byte {
+pub fn (o &CPlayer_SetEquippedProfileItemFlags_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetequippedprofileitemflagsresponse_unpack(buf []byte) ?CPlayerSetEquippedProfileItemFlagsResponse {
-	res := CPlayerSetEquippedProfileItemFlagsResponse{}
+pub fn cplayer_setequippedprofileitemflags_response_unpack(buf []byte) ?CPlayer_SetEquippedProfileItemFlags_Response {
+	res := CPlayer_SetEquippedProfileItemFlags_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetequippedprofileitemflagsresponse() CPlayerSetEquippedProfileItemFlagsResponse {
-	return CPlayerSetEquippedProfileItemFlagsResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setequippedprofileitemflags_response() CPlayer_SetEquippedProfileItemFlags_Response {
+	return CPlayer_SetEquippedProfileItemFlags_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetequippedprofileitemflagsresponse(o CPlayerSetEquippedProfileItemFlagsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setequippedprofileitemflags_response(o CPlayer_SetEquippedProfileItemFlags_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetequippedprofileitemflagsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetEquippedProfileItemFlagsResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setequippedprofileitemflags_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetEquippedProfileItemFlags_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetequippedprofileitemflagsresponse_unpack(v)?
+	mut unpacked := cplayer_setequippedprofileitemflags_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetEmoticonListRequest {
+pub struct CPlayer_GetEmoticonList_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerGetEmoticonListRequest) pack() []byte {
+pub fn (o &CPlayer_GetEmoticonList_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayergetemoticonlistrequest_unpack(buf []byte) ?CPlayerGetEmoticonListRequest {
-	res := CPlayerGetEmoticonListRequest{}
+pub fn cplayer_getemoticonlist_request_unpack(buf []byte) ?CPlayer_GetEmoticonList_Request {
+	res := CPlayer_GetEmoticonList_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetemoticonlistrequest() CPlayerGetEmoticonListRequest {
-	return CPlayerGetEmoticonListRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getemoticonlist_request() CPlayer_GetEmoticonList_Request {
+	return CPlayer_GetEmoticonList_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetemoticonlistrequest(o CPlayerGetEmoticonListRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getemoticonlist_request(o CPlayer_GetEmoticonList_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetemoticonlistrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetEmoticonListRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetEmoticonList_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetemoticonlistrequest_unpack(v)?
+	mut unpacked := cplayer_getemoticonlist_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetEmoticonListResponseEmoticon {
+pub struct CPlayer_GetEmoticonList_Response_Emoticon {
 mut:
 	unknown_fields     []vproto.UnknownField
 pub mut:
@@ -3406,7 +3437,7 @@ pub mut:
 	has_time_received  bool
 }
 
-pub fn (o &CPlayerGetEmoticonListResponseEmoticon) pack() []byte {
+pub fn (o &CPlayer_GetEmoticonList_Response_Emoticon) pack() []byte {
 	mut res := []byte{}
 	if o.has_name {
 		res << vproto.pack_string_field(o.name, 1)
@@ -3426,8 +3457,8 @@ pub fn (o &CPlayerGetEmoticonListResponseEmoticon) pack() []byte {
 	return res
 }
 
-pub fn cplayergetemoticonlistresponseemoticon_unpack(buf []byte) ?CPlayerGetEmoticonListResponseEmoticon {
-	mut res := CPlayerGetEmoticonListResponseEmoticon{}
+pub fn cplayer_getemoticonlist_response_emoticon_unpack(buf []byte) ?CPlayer_GetEmoticonList_Response_Emoticon {
+	mut res := CPlayer_GetEmoticonList_Response_Emoticon{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3483,40 +3514,40 @@ pub fn cplayergetemoticonlistresponseemoticon_unpack(buf []byte) ?CPlayerGetEmot
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetemoticonlistresponseemoticon() CPlayerGetEmoticonListResponseEmoticon {
-	return CPlayerGetEmoticonListResponseEmoticon{}
+pub fn zzz_vproto_internal_new_cplayer_getemoticonlist_response_emoticon() CPlayer_GetEmoticonList_Response_Emoticon {
+	return CPlayer_GetEmoticonList_Response_Emoticon{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetemoticonlistresponseemoticon(o CPlayerGetEmoticonListResponseEmoticon, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getemoticonlist_response_emoticon(o CPlayer_GetEmoticonList_Response_Emoticon, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetemoticonlistresponseemoticon(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetEmoticonListResponseEmoticon) {
+pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_response_emoticon(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetEmoticonList_Response_Emoticon) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetemoticonlistresponseemoticon_unpack(v)?
+	mut unpacked := cplayer_getemoticonlist_response_emoticon_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetEmoticonListResponse {
+pub struct CPlayer_GetEmoticonList_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	emoticons      []CPlayerGetEmoticonListResponseEmoticon
+	emoticons      []CPlayer_GetEmoticonList_Response_Emoticon
 }
 
-pub fn (o &CPlayerGetEmoticonListResponse) pack() []byte {
+pub fn (o &CPlayer_GetEmoticonList_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.emoticons {
-		res << zzz_vproto_internal_pack_cplayergetemoticonlistresponseemoticon(x, 1)
+		res << zzz_vproto_internal_pack_cplayer_getemoticonlist_response_emoticon(x, 1)
 	}
 	return res
 }
 
-pub fn cplayergetemoticonlistresponse_unpack(buf []byte) ?CPlayerGetEmoticonListResponse {
-	mut res := CPlayerGetEmoticonListResponse{}
+pub fn cplayer_getemoticonlist_response_unpack(buf []byte) ?CPlayer_GetEmoticonList_Response {
+	mut res := CPlayer_GetEmoticonList_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3528,7 +3559,7 @@ pub fn cplayergetemoticonlistresponse_unpack(buf []byte) ?CPlayerGetEmoticonList
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetemoticonlistresponseemoticon(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getemoticonlist_response_emoticon(cur_buf,
 					tag_wiretype.wire_type)?
 				res.emoticons << v
 				i = ii
@@ -3549,23 +3580,23 @@ pub fn cplayergetemoticonlistresponse_unpack(buf []byte) ?CPlayerGetEmoticonList
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetemoticonlistresponse() CPlayerGetEmoticonListResponse {
-	return CPlayerGetEmoticonListResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getemoticonlist_response() CPlayer_GetEmoticonList_Response {
+	return CPlayer_GetEmoticonList_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetemoticonlistresponse(o CPlayerGetEmoticonListResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getemoticonlist_response(o CPlayer_GetEmoticonList_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetemoticonlistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetEmoticonListResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetEmoticonList_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetemoticonlistresponse_unpack(v)?
+	mut unpacked := cplayer_getemoticonlist_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAchievementsProgressRequest {
+pub struct CPlayer_GetAchievementsProgress_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3576,7 +3607,7 @@ pub mut:
 	appids         []u32
 }
 
-pub fn (o &CPlayerGetAchievementsProgressRequest) pack() []byte {
+pub fn (o &CPlayer_GetAchievementsProgress_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_uint64_field(o.steamid, 1)
@@ -3591,8 +3622,8 @@ pub fn (o &CPlayerGetAchievementsProgressRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetachievementsprogressrequest_unpack(buf []byte) ?CPlayerGetAchievementsProgressRequest {
-	mut res := CPlayerGetAchievementsProgressRequest{}
+pub fn cplayer_getachievementsprogress_request_unpack(buf []byte) ?CPlayer_GetAchievementsProgress_Request {
+	mut res := CPlayer_GetAchievementsProgress_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3636,23 +3667,23 @@ pub fn cplayergetachievementsprogressrequest_unpack(buf []byte) ?CPlayerGetAchie
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetachievementsprogressrequest() CPlayerGetAchievementsProgressRequest {
-	return CPlayerGetAchievementsProgressRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getachievementsprogress_request() CPlayer_GetAchievementsProgress_Request {
+	return CPlayer_GetAchievementsProgress_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetachievementsprogressrequest(o CPlayerGetAchievementsProgressRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getachievementsprogress_request(o CPlayer_GetAchievementsProgress_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetachievementsprogressrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAchievementsProgressRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAchievementsProgress_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetachievementsprogressrequest_unpack(v)?
+	mut unpacked := cplayer_getachievementsprogress_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAchievementsProgressResponseAchievementProgress {
+pub struct CPlayer_GetAchievementsProgress_Response_AchievementProgress {
 mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
@@ -3670,7 +3701,7 @@ pub mut:
 	has_cache_time   bool
 }
 
-pub fn (o &CPlayerGetAchievementsProgressResponseAchievementProgress) pack() []byte {
+pub fn (o &CPlayer_GetAchievementsProgress_Response_AchievementProgress) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -3693,8 +3724,8 @@ pub fn (o &CPlayerGetAchievementsProgressResponseAchievementProgress) pack() []b
 	return res
 }
 
-pub fn cplayergetachievementsprogressresponseachievementprogress_unpack(buf []byte) ?CPlayerGetAchievementsProgressResponseAchievementProgress {
-	mut res := CPlayerGetAchievementsProgressResponseAchievementProgress{}
+pub fn cplayer_getachievementsprogress_response_achievementprogress_unpack(buf []byte) ?CPlayer_GetAchievementsProgress_Response_AchievementProgress {
+	mut res := CPlayer_GetAchievementsProgress_Response_AchievementProgress{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3756,41 +3787,41 @@ pub fn cplayergetachievementsprogressresponseachievementprogress_unpack(buf []by
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetachievementsprogressresponseachievementprogress() CPlayerGetAchievementsProgressResponseAchievementProgress {
-	return CPlayerGetAchievementsProgressResponseAchievementProgress{}
+pub fn zzz_vproto_internal_new_cplayer_getachievementsprogress_response_achievementprogress() CPlayer_GetAchievementsProgress_Response_AchievementProgress {
+	return CPlayer_GetAchievementsProgress_Response_AchievementProgress{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetachievementsprogressresponseachievementprogress(o CPlayerGetAchievementsProgressResponseAchievementProgress, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getachievementsprogress_response_achievementprogress(o CPlayer_GetAchievementsProgress_Response_AchievementProgress, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetachievementsprogressresponseachievementprogress(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAchievementsProgressResponseAchievementProgress) {
+pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_response_achievementprogress(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAchievementsProgress_Response_AchievementProgress) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetachievementsprogressresponseachievementprogress_unpack(v)?
+	mut unpacked := cplayer_getachievementsprogress_response_achievementprogress_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetAchievementsProgressResponse {
+pub struct CPlayer_GetAchievementsProgress_Response {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	achievement_progress []CPlayerGetAchievementsProgressResponseAchievementProgress
+	achievement_progress []CPlayer_GetAchievementsProgress_Response_AchievementProgress
 }
 
-pub fn (o &CPlayerGetAchievementsProgressResponse) pack() []byte {
+pub fn (o &CPlayer_GetAchievementsProgress_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.achievement_progress {
 		res <<
-			zzz_vproto_internal_pack_cplayergetachievementsprogressresponseachievementprogress(x, 1)
+			zzz_vproto_internal_pack_cplayer_getachievementsprogress_response_achievementprogress(x, 1)
 	}
 	return res
 }
 
-pub fn cplayergetachievementsprogressresponse_unpack(buf []byte) ?CPlayerGetAchievementsProgressResponse {
-	mut res := CPlayerGetAchievementsProgressResponse{}
+pub fn cplayer_getachievementsprogress_response_unpack(buf []byte) ?CPlayer_GetAchievementsProgress_Response {
+	mut res := CPlayer_GetAchievementsProgress_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3802,7 +3833,7 @@ pub fn cplayergetachievementsprogressresponse_unpack(buf []byte) ?CPlayerGetAchi
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetachievementsprogressresponseachievementprogress(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getachievementsprogress_response_achievementprogress(cur_buf,
 					tag_wiretype.wire_type)?
 				res.achievement_progress << v
 				i = ii
@@ -3823,23 +3854,23 @@ pub fn cplayergetachievementsprogressresponse_unpack(buf []byte) ?CPlayerGetAchi
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetachievementsprogressresponse() CPlayerGetAchievementsProgressResponse {
-	return CPlayerGetAchievementsProgressResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getachievementsprogress_response() CPlayer_GetAchievementsProgress_Response {
+	return CPlayer_GetAchievementsProgress_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetachievementsprogressresponse(o CPlayerGetAchievementsProgressResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getachievementsprogress_response(o CPlayer_GetAchievementsProgress_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetachievementsprogressresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetAchievementsProgressResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAchievementsProgress_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetachievementsprogressresponse_unpack(v)?
+	mut unpacked := cplayer_getachievementsprogress_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerPostStatusToFriendsRequest {
+pub struct CPlayer_PostStatusToFriends_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -3849,7 +3880,7 @@ pub mut:
 	has_status_text bool
 }
 
-pub fn (o &CPlayerPostStatusToFriendsRequest) pack() []byte {
+pub fn (o &CPlayer_PostStatusToFriends_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -3860,8 +3891,8 @@ pub fn (o &CPlayerPostStatusToFriendsRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayerpoststatustofriendsrequest_unpack(buf []byte) ?CPlayerPostStatusToFriendsRequest {
-	mut res := CPlayerPostStatusToFriendsRequest{}
+pub fn cplayer_poststatustofriends_request_unpack(buf []byte) ?CPlayer_PostStatusToFriends_Request {
+	mut res := CPlayer_PostStatusToFriends_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3899,55 +3930,55 @@ pub fn cplayerpoststatustofriendsrequest_unpack(buf []byte) ?CPlayerPostStatusTo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerpoststatustofriendsrequest() CPlayerPostStatusToFriendsRequest {
-	return CPlayerPostStatusToFriendsRequest{}
+pub fn zzz_vproto_internal_new_cplayer_poststatustofriends_request() CPlayer_PostStatusToFriends_Request {
+	return CPlayer_PostStatusToFriends_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerpoststatustofriendsrequest(o CPlayerPostStatusToFriendsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_poststatustofriends_request(o CPlayer_PostStatusToFriends_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerpoststatustofriendsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerPostStatusToFriendsRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_poststatustofriends_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PostStatusToFriends_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerpoststatustofriendsrequest_unpack(v)?
+	mut unpacked := cplayer_poststatustofriends_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerPostStatusToFriendsResponse {
+pub struct CPlayer_PostStatusToFriends_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerPostStatusToFriendsResponse) pack() []byte {
+pub fn (o &CPlayer_PostStatusToFriends_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayerpoststatustofriendsresponse_unpack(buf []byte) ?CPlayerPostStatusToFriendsResponse {
-	res := CPlayerPostStatusToFriendsResponse{}
+pub fn cplayer_poststatustofriends_response_unpack(buf []byte) ?CPlayer_PostStatusToFriends_Response {
+	res := CPlayer_PostStatusToFriends_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerpoststatustofriendsresponse() CPlayerPostStatusToFriendsResponse {
-	return CPlayerPostStatusToFriendsResponse{}
+pub fn zzz_vproto_internal_new_cplayer_poststatustofriends_response() CPlayer_PostStatusToFriends_Response {
+	return CPlayer_PostStatusToFriends_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerpoststatustofriendsresponse(o CPlayerPostStatusToFriendsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_poststatustofriends_response(o CPlayer_PostStatusToFriends_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerpoststatustofriendsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerPostStatusToFriendsResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_poststatustofriends_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PostStatusToFriends_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerpoststatustofriendsresponse_unpack(v)?
+	mut unpacked := cplayer_poststatustofriends_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetPostedStatusRequest {
+pub struct CPlayer_GetPostedStatus_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -3957,7 +3988,7 @@ pub mut:
 	has_postid     bool
 }
 
-pub fn (o &CPlayerGetPostedStatusRequest) pack() []byte {
+pub fn (o &CPlayer_GetPostedStatus_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_uint64_field(o.steamid, 1)
@@ -3968,8 +3999,8 @@ pub fn (o &CPlayerGetPostedStatusRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetpostedstatusrequest_unpack(buf []byte) ?CPlayerGetPostedStatusRequest {
-	mut res := CPlayerGetPostedStatusRequest{}
+pub fn cplayer_getpostedstatus_request_unpack(buf []byte) ?CPlayer_GetPostedStatus_Request {
+	mut res := CPlayer_GetPostedStatus_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4007,23 +4038,23 @@ pub fn cplayergetpostedstatusrequest_unpack(buf []byte) ?CPlayerGetPostedStatusR
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetpostedstatusrequest() CPlayerGetPostedStatusRequest {
-	return CPlayerGetPostedStatusRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getpostedstatus_request() CPlayer_GetPostedStatus_Request {
+	return CPlayer_GetPostedStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetpostedstatusrequest(o CPlayerGetPostedStatusRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getpostedstatus_request(o CPlayer_GetPostedStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetpostedstatusrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPostedStatusRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getpostedstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPostedStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetpostedstatusrequest_unpack(v)?
+	mut unpacked := cplayer_getpostedstatus_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetPostedStatusResponse {
+pub struct CPlayer_GetPostedStatus_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -4039,7 +4070,7 @@ pub mut:
 	has_appid       bool
 }
 
-pub fn (o &CPlayerGetPostedStatusResponse) pack() []byte {
+pub fn (o &CPlayer_GetPostedStatus_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_uint32_field(o.accountid, 1)
@@ -4059,8 +4090,8 @@ pub fn (o &CPlayerGetPostedStatusResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetpostedstatusresponse_unpack(buf []byte) ?CPlayerGetPostedStatusResponse {
-	mut res := CPlayerGetPostedStatusResponse{}
+pub fn cplayer_getpostedstatus_response_unpack(buf []byte) ?CPlayer_GetPostedStatus_Response {
+	mut res := CPlayer_GetPostedStatus_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4116,23 +4147,23 @@ pub fn cplayergetpostedstatusresponse_unpack(buf []byte) ?CPlayerGetPostedStatus
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetpostedstatusresponse() CPlayerGetPostedStatusResponse {
-	return CPlayerGetPostedStatusResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getpostedstatus_response() CPlayer_GetPostedStatus_Response {
+	return CPlayer_GetPostedStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetpostedstatusresponse(o CPlayerGetPostedStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getpostedstatus_response(o CPlayer_GetPostedStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetpostedstatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPostedStatusResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getpostedstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPostedStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetpostedstatusresponse_unpack(v)?
+	mut unpacked := cplayer_getpostedstatus_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerDeletePostedStatusRequest {
+pub struct CPlayer_DeletePostedStatus_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -4140,7 +4171,7 @@ pub mut:
 	has_postid     bool
 }
 
-pub fn (o &CPlayerDeletePostedStatusRequest) pack() []byte {
+pub fn (o &CPlayer_DeletePostedStatus_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_postid {
 		res << vproto.pack_uint64_field(o.postid, 1)
@@ -4148,8 +4179,8 @@ pub fn (o &CPlayerDeletePostedStatusRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayerdeletepostedstatusrequest_unpack(buf []byte) ?CPlayerDeletePostedStatusRequest {
-	mut res := CPlayerDeletePostedStatusRequest{}
+pub fn cplayer_deletepostedstatus_request_unpack(buf []byte) ?CPlayer_DeletePostedStatus_Request {
+	mut res := CPlayer_DeletePostedStatus_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4181,55 +4212,55 @@ pub fn cplayerdeletepostedstatusrequest_unpack(buf []byte) ?CPlayerDeletePostedS
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerdeletepostedstatusrequest() CPlayerDeletePostedStatusRequest {
-	return CPlayerDeletePostedStatusRequest{}
+pub fn zzz_vproto_internal_new_cplayer_deletepostedstatus_request() CPlayer_DeletePostedStatus_Request {
+	return CPlayer_DeletePostedStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerdeletepostedstatusrequest(o CPlayerDeletePostedStatusRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_deletepostedstatus_request(o CPlayer_DeletePostedStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerdeletepostedstatusrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerDeletePostedStatusRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_deletepostedstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_DeletePostedStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerdeletepostedstatusrequest_unpack(v)?
+	mut unpacked := cplayer_deletepostedstatus_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerDeletePostedStatusResponse {
+pub struct CPlayer_DeletePostedStatus_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerDeletePostedStatusResponse) pack() []byte {
+pub fn (o &CPlayer_DeletePostedStatus_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayerdeletepostedstatusresponse_unpack(buf []byte) ?CPlayerDeletePostedStatusResponse {
-	res := CPlayerDeletePostedStatusResponse{}
+pub fn cplayer_deletepostedstatus_response_unpack(buf []byte) ?CPlayer_DeletePostedStatus_Response {
+	res := CPlayer_DeletePostedStatus_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerdeletepostedstatusresponse() CPlayerDeletePostedStatusResponse {
-	return CPlayerDeletePostedStatusResponse{}
+pub fn zzz_vproto_internal_new_cplayer_deletepostedstatus_response() CPlayer_DeletePostedStatus_Response {
+	return CPlayer_DeletePostedStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerdeletepostedstatusresponse(o CPlayerDeletePostedStatusResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_deletepostedstatus_response(o CPlayer_DeletePostedStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerdeletepostedstatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerDeletePostedStatusResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_deletepostedstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_DeletePostedStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerdeletepostedstatusresponse_unpack(v)?
+	mut unpacked := cplayer_deletepostedstatus_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetLastPlayedTimesRequest {
+pub struct CPlayer_GetLastPlayedTimes_Request {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -4237,7 +4268,7 @@ pub mut:
 	has_min_last_played bool
 }
 
-pub fn (o &CPlayerGetLastPlayedTimesRequest) pack() []byte {
+pub fn (o &CPlayer_GetLastPlayedTimes_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_min_last_played {
 		res << vproto.pack_uint32_field(o.min_last_played, 1)
@@ -4245,8 +4276,8 @@ pub fn (o &CPlayerGetLastPlayedTimesRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetlastplayedtimesrequest_unpack(buf []byte) ?CPlayerGetLastPlayedTimesRequest {
-	mut res := CPlayerGetLastPlayedTimesRequest{}
+pub fn cplayer_getlastplayedtimes_request_unpack(buf []byte) ?CPlayer_GetLastPlayedTimes_Request {
+	mut res := CPlayer_GetLastPlayedTimes_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4278,23 +4309,23 @@ pub fn cplayergetlastplayedtimesrequest_unpack(buf []byte) ?CPlayerGetLastPlayed
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetlastplayedtimesrequest() CPlayerGetLastPlayedTimesRequest {
-	return CPlayerGetLastPlayedTimesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getlastplayedtimes_request() CPlayer_GetLastPlayedTimes_Request {
+	return CPlayer_GetLastPlayedTimes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetlastplayedtimesrequest(o CPlayerGetLastPlayedTimesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getlastplayedtimes_request(o CPlayer_GetLastPlayedTimes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetlastplayedtimesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetLastPlayedTimesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetLastPlayedTimes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetlastplayedtimesrequest_unpack(v)?
+	mut unpacked := cplayer_getlastplayedtimes_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetLastPlayedTimesResponseGame {
+pub struct CPlayer_GetLastPlayedTimes_Response_Game {
 mut:
 	unknown_fields               []vproto.UnknownField
 pub mut:
@@ -4328,7 +4359,7 @@ pub mut:
 	has_last_linux_playtime      bool
 }
 
-pub fn (o &CPlayerGetLastPlayedTimesResponseGame) pack() []byte {
+pub fn (o &CPlayer_GetLastPlayedTimes_Response_Game) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_int32_field(o.appid, 1)
@@ -4375,8 +4406,8 @@ pub fn (o &CPlayerGetLastPlayedTimesResponseGame) pack() []byte {
 	return res
 }
 
-pub fn cplayergetlastplayedtimesresponsegame_unpack(buf []byte) ?CPlayerGetLastPlayedTimesResponseGame {
-	mut res := CPlayerGetLastPlayedTimesResponseGame{}
+pub fn cplayer_getlastplayedtimes_response_game_unpack(buf []byte) ?CPlayer_GetLastPlayedTimes_Response_Game {
+	mut res := CPlayer_GetLastPlayedTimes_Response_Game{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4486,40 +4517,40 @@ pub fn cplayergetlastplayedtimesresponsegame_unpack(buf []byte) ?CPlayerGetLastP
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetlastplayedtimesresponsegame() CPlayerGetLastPlayedTimesResponseGame {
-	return CPlayerGetLastPlayedTimesResponseGame{}
+pub fn zzz_vproto_internal_new_cplayer_getlastplayedtimes_response_game() CPlayer_GetLastPlayedTimes_Response_Game {
+	return CPlayer_GetLastPlayedTimes_Response_Game{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetlastplayedtimesresponsegame(o CPlayerGetLastPlayedTimesResponseGame, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getlastplayedtimes_response_game(o CPlayer_GetLastPlayedTimes_Response_Game, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetlastplayedtimesresponsegame(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetLastPlayedTimesResponseGame) {
+pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_response_game(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetLastPlayedTimes_Response_Game) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetlastplayedtimesresponsegame_unpack(v)?
+	mut unpacked := cplayer_getlastplayedtimes_response_game_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetLastPlayedTimesResponse {
+pub struct CPlayer_GetLastPlayedTimes_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	games          []CPlayerGetLastPlayedTimesResponseGame
+	games          []CPlayer_GetLastPlayedTimes_Response_Game
 }
 
-pub fn (o &CPlayerGetLastPlayedTimesResponse) pack() []byte {
+pub fn (o &CPlayer_GetLastPlayedTimes_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.games {
-		res << zzz_vproto_internal_pack_cplayergetlastplayedtimesresponsegame(x, 1)
+		res << zzz_vproto_internal_pack_cplayer_getlastplayedtimes_response_game(x, 1)
 	}
 	return res
 }
 
-pub fn cplayergetlastplayedtimesresponse_unpack(buf []byte) ?CPlayerGetLastPlayedTimesResponse {
-	mut res := CPlayerGetLastPlayedTimesResponse{}
+pub fn cplayer_getlastplayedtimes_response_unpack(buf []byte) ?CPlayer_GetLastPlayedTimes_Response {
+	mut res := CPlayer_GetLastPlayedTimes_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4531,7 +4562,7 @@ pub fn cplayergetlastplayedtimesresponse_unpack(buf []byte) ?CPlayerGetLastPlaye
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetlastplayedtimesresponsegame(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_response_game(cur_buf,
 					tag_wiretype.wire_type)?
 				res.games << v
 				i = ii
@@ -4552,119 +4583,119 @@ pub fn cplayergetlastplayedtimesresponse_unpack(buf []byte) ?CPlayerGetLastPlaye
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetlastplayedtimesresponse() CPlayerGetLastPlayedTimesResponse {
-	return CPlayerGetLastPlayedTimesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getlastplayedtimes_response() CPlayer_GetLastPlayedTimes_Response {
+	return CPlayer_GetLastPlayedTimes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetlastplayedtimesresponse(o CPlayerGetLastPlayedTimesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getlastplayedtimes_response(o CPlayer_GetLastPlayedTimes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetlastplayedtimesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetLastPlayedTimesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetLastPlayedTimes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetlastplayedtimesresponse_unpack(v)?
+	mut unpacked := cplayer_getlastplayedtimes_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerAcceptSSarequest {
+pub struct CPlayer_AcceptSSA_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerAcceptSSarequest) pack() []byte {
+pub fn (o &CPlayer_AcceptSSA_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayeracceptssarequest_unpack(buf []byte) ?CPlayerAcceptSSarequest {
-	res := CPlayerAcceptSSarequest{}
+pub fn cplayer_acceptssa_request_unpack(buf []byte) ?CPlayer_AcceptSSA_Request {
+	res := CPlayer_AcceptSSA_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayeracceptssarequest() CPlayerAcceptSSarequest {
-	return CPlayerAcceptSSarequest{}
+pub fn zzz_vproto_internal_new_cplayer_acceptssa_request() CPlayer_AcceptSSA_Request {
+	return CPlayer_AcceptSSA_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayeracceptssarequest(o CPlayerAcceptSSarequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_acceptssa_request(o CPlayer_AcceptSSA_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayeracceptssarequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerAcceptSSarequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_acceptssa_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AcceptSSA_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayeracceptssarequest_unpack(v)?
+	mut unpacked := cplayer_acceptssa_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerAcceptSSaresponse {
+pub struct CPlayer_AcceptSSA_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerAcceptSSaresponse) pack() []byte {
+pub fn (o &CPlayer_AcceptSSA_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayeracceptssaresponse_unpack(buf []byte) ?CPlayerAcceptSSaresponse {
-	res := CPlayerAcceptSSaresponse{}
+pub fn cplayer_acceptssa_response_unpack(buf []byte) ?CPlayer_AcceptSSA_Response {
+	res := CPlayer_AcceptSSA_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayeracceptssaresponse() CPlayerAcceptSSaresponse {
-	return CPlayerAcceptSSaresponse{}
+pub fn zzz_vproto_internal_new_cplayer_acceptssa_response() CPlayer_AcceptSSA_Response {
+	return CPlayer_AcceptSSA_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayeracceptssaresponse(o CPlayerAcceptSSaresponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_acceptssa_response(o CPlayer_AcceptSSA_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayeracceptssaresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerAcceptSSaresponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_acceptssa_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AcceptSSA_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayeracceptssaresponse_unpack(v)?
+	mut unpacked := cplayer_acceptssa_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetNicknameListRequest {
+pub struct CPlayer_GetNicknameList_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerGetNicknameListRequest) pack() []byte {
+pub fn (o &CPlayer_GetNicknameList_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayergetnicknamelistrequest_unpack(buf []byte) ?CPlayerGetNicknameListRequest {
-	res := CPlayerGetNicknameListRequest{}
+pub fn cplayer_getnicknamelist_request_unpack(buf []byte) ?CPlayer_GetNicknameList_Request {
+	res := CPlayer_GetNicknameList_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetnicknamelistrequest() CPlayerGetNicknameListRequest {
-	return CPlayerGetNicknameListRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getnicknamelist_request() CPlayer_GetNicknameList_Request {
+	return CPlayer_GetNicknameList_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetnicknamelistrequest(o CPlayerGetNicknameListRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getnicknamelist_request(o CPlayer_GetNicknameList_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetnicknamelistrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetNicknameListRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getnicknamelist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNicknameList_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetnicknamelistrequest_unpack(v)?
+	mut unpacked := cplayer_getnicknamelist_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetNicknameListResponsePlayerNickname {
+pub struct CPlayer_GetNicknameList_Response_PlayerNickname {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -4674,7 +4705,7 @@ pub mut:
 	has_nickname   bool
 }
 
-pub fn (o &CPlayerGetNicknameListResponsePlayerNickname) pack() []byte {
+pub fn (o &CPlayer_GetNicknameList_Response_PlayerNickname) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_32bit_field(o.accountid, 1)
@@ -4685,8 +4716,8 @@ pub fn (o &CPlayerGetNicknameListResponsePlayerNickname) pack() []byte {
 	return res
 }
 
-pub fn cplayergetnicknamelistresponseplayernickname_unpack(buf []byte) ?CPlayerGetNicknameListResponsePlayerNickname {
-	mut res := CPlayerGetNicknameListResponsePlayerNickname{}
+pub fn cplayer_getnicknamelist_response_playernickname_unpack(buf []byte) ?CPlayer_GetNicknameList_Response_PlayerNickname {
+	mut res := CPlayer_GetNicknameList_Response_PlayerNickname{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4724,40 +4755,40 @@ pub fn cplayergetnicknamelistresponseplayernickname_unpack(buf []byte) ?CPlayerG
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetnicknamelistresponseplayernickname() CPlayerGetNicknameListResponsePlayerNickname {
-	return CPlayerGetNicknameListResponsePlayerNickname{}
+pub fn zzz_vproto_internal_new_cplayer_getnicknamelist_response_playernickname() CPlayer_GetNicknameList_Response_PlayerNickname {
+	return CPlayer_GetNicknameList_Response_PlayerNickname{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetnicknamelistresponseplayernickname(o CPlayerGetNicknameListResponsePlayerNickname, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getnicknamelist_response_playernickname(o CPlayer_GetNicknameList_Response_PlayerNickname, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetnicknamelistresponseplayernickname(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetNicknameListResponsePlayerNickname) {
+pub fn zzz_vproto_internal_unpack_cplayer_getnicknamelist_response_playernickname(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNicknameList_Response_PlayerNickname) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetnicknamelistresponseplayernickname_unpack(v)?
+	mut unpacked := cplayer_getnicknamelist_response_playernickname_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetNicknameListResponse {
+pub struct CPlayer_GetNicknameList_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	nicknames      []CPlayerGetNicknameListResponsePlayerNickname
+	nicknames      []CPlayer_GetNicknameList_Response_PlayerNickname
 }
 
-pub fn (o &CPlayerGetNicknameListResponse) pack() []byte {
+pub fn (o &CPlayer_GetNicknameList_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.nicknames {
-		res << zzz_vproto_internal_pack_cplayergetnicknamelistresponseplayernickname(x, 1)
+		res << zzz_vproto_internal_pack_cplayer_getnicknamelist_response_playernickname(x, 1)
 	}
 	return res
 }
 
-pub fn cplayergetnicknamelistresponse_unpack(buf []byte) ?CPlayerGetNicknameListResponse {
-	mut res := CPlayerGetNicknameListResponse{}
+pub fn cplayer_getnicknamelist_response_unpack(buf []byte) ?CPlayer_GetNicknameList_Response {
+	mut res := CPlayer_GetNicknameList_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4769,7 +4800,7 @@ pub fn cplayergetnicknamelistresponse_unpack(buf []byte) ?CPlayerGetNicknameList
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetnicknamelistresponseplayernickname(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getnicknamelist_response_playernickname(cur_buf,
 					tag_wiretype.wire_type)?
 				res.nicknames << v
 				i = ii
@@ -4790,51 +4821,51 @@ pub fn cplayergetnicknamelistresponse_unpack(buf []byte) ?CPlayerGetNicknameList
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetnicknamelistresponse() CPlayerGetNicknameListResponse {
-	return CPlayerGetNicknameListResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getnicknamelist_response() CPlayer_GetNicknameList_Response {
+	return CPlayer_GetNicknameList_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetnicknamelistresponse(o CPlayerGetNicknameListResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getnicknamelist_response(o CPlayer_GetNicknameList_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetnicknamelistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetNicknameListResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getnicknamelist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNicknameList_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetnicknamelistresponse_unpack(v)?
+	mut unpacked := cplayer_getnicknamelist_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetPerFriendPreferencesRequest {
+pub struct CPlayer_GetPerFriendPreferences_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerGetPerFriendPreferencesRequest) pack() []byte {
+pub fn (o &CPlayer_GetPerFriendPreferences_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayergetperfriendpreferencesrequest_unpack(buf []byte) ?CPlayerGetPerFriendPreferencesRequest {
-	res := CPlayerGetPerFriendPreferencesRequest{}
+pub fn cplayer_getperfriendpreferences_request_unpack(buf []byte) ?CPlayer_GetPerFriendPreferences_Request {
+	res := CPlayer_GetPerFriendPreferences_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetperfriendpreferencesrequest() CPlayerGetPerFriendPreferencesRequest {
-	return CPlayerGetPerFriendPreferencesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getperfriendpreferences_request() CPlayer_GetPerFriendPreferences_Request {
+	return CPlayer_GetPerFriendPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetperfriendpreferencesrequest(o CPlayerGetPerFriendPreferencesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getperfriendpreferences_request(o CPlayer_GetPerFriendPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetperfriendpreferencesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPerFriendPreferencesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getperfriendpreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPerFriendPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetperfriendpreferencesrequest_unpack(v)?
+	mut unpacked := cplayer_getperfriendpreferences_request_unpack(v)?
 	return i, unpacked
 }
 
@@ -4991,14 +5022,14 @@ pub fn zzz_vproto_internal_unpack_perfriendpreferences(buf []byte, tag_wiretype 
 	return i, unpacked
 }
 
-pub struct CPlayerGetPerFriendPreferencesResponse {
+pub struct CPlayer_GetPerFriendPreferences_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	preferences    []PerFriendPreferences
 }
 
-pub fn (o &CPlayerGetPerFriendPreferencesResponse) pack() []byte {
+pub fn (o &CPlayer_GetPerFriendPreferences_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.preferences {
@@ -5007,8 +5038,8 @@ pub fn (o &CPlayerGetPerFriendPreferencesResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetperfriendpreferencesresponse_unpack(buf []byte) ?CPlayerGetPerFriendPreferencesResponse {
-	mut res := CPlayerGetPerFriendPreferencesResponse{}
+pub fn cplayer_getperfriendpreferences_response_unpack(buf []byte) ?CPlayer_GetPerFriendPreferences_Response {
+	mut res := CPlayer_GetPerFriendPreferences_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5040,23 +5071,23 @@ pub fn cplayergetperfriendpreferencesresponse_unpack(buf []byte) ?CPlayerGetPerF
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetperfriendpreferencesresponse() CPlayerGetPerFriendPreferencesResponse {
-	return CPlayerGetPerFriendPreferencesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getperfriendpreferences_response() CPlayer_GetPerFriendPreferences_Response {
+	return CPlayer_GetPerFriendPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetperfriendpreferencesresponse(o CPlayerGetPerFriendPreferencesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getperfriendpreferences_response(o CPlayer_GetPerFriendPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetperfriendpreferencesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPerFriendPreferencesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getperfriendpreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPerFriendPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetperfriendpreferencesresponse_unpack(v)?
+	mut unpacked := cplayer_getperfriendpreferences_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetPerFriendPreferencesRequest {
+pub struct CPlayer_SetPerFriendPreferences_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -5064,7 +5095,7 @@ pub mut:
 	has_preferences bool
 }
 
-pub fn (o &CPlayerSetPerFriendPreferencesRequest) pack() []byte {
+pub fn (o &CPlayer_SetPerFriendPreferences_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_preferences {
 		res << zzz_vproto_internal_pack_perfriendpreferences(o.preferences, 1)
@@ -5072,8 +5103,8 @@ pub fn (o &CPlayerSetPerFriendPreferencesRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayersetperfriendpreferencesrequest_unpack(buf []byte) ?CPlayerSetPerFriendPreferencesRequest {
-	mut res := CPlayerSetPerFriendPreferencesRequest{}
+pub fn cplayer_setperfriendpreferences_request_unpack(buf []byte) ?CPlayer_SetPerFriendPreferences_Request {
+	mut res := CPlayer_SetPerFriendPreferences_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5105,55 +5136,55 @@ pub fn cplayersetperfriendpreferencesrequest_unpack(buf []byte) ?CPlayerSetPerFr
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetperfriendpreferencesrequest() CPlayerSetPerFriendPreferencesRequest {
-	return CPlayerSetPerFriendPreferencesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setperfriendpreferences_request() CPlayer_SetPerFriendPreferences_Request {
+	return CPlayer_SetPerFriendPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetperfriendpreferencesrequest(o CPlayerSetPerFriendPreferencesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setperfriendpreferences_request(o CPlayer_SetPerFriendPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetperfriendpreferencesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetPerFriendPreferencesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setperfriendpreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetPerFriendPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetperfriendpreferencesrequest_unpack(v)?
+	mut unpacked := cplayer_setperfriendpreferences_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetPerFriendPreferencesResponse {
+pub struct CPlayer_SetPerFriendPreferences_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetPerFriendPreferencesResponse) pack() []byte {
+pub fn (o &CPlayer_SetPerFriendPreferences_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetperfriendpreferencesresponse_unpack(buf []byte) ?CPlayerSetPerFriendPreferencesResponse {
-	res := CPlayerSetPerFriendPreferencesResponse{}
+pub fn cplayer_setperfriendpreferences_response_unpack(buf []byte) ?CPlayer_SetPerFriendPreferences_Response {
+	res := CPlayer_SetPerFriendPreferences_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetperfriendpreferencesresponse() CPlayerSetPerFriendPreferencesResponse {
-	return CPlayerSetPerFriendPreferencesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setperfriendpreferences_response() CPlayer_SetPerFriendPreferences_Response {
+	return CPlayer_SetPerFriendPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetperfriendpreferencesresponse(o CPlayerSetPerFriendPreferencesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setperfriendpreferences_response(o CPlayer_SetPerFriendPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetperfriendpreferencesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetPerFriendPreferencesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setperfriendpreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetPerFriendPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetperfriendpreferencesresponse_unpack(v)?
+	mut unpacked := cplayer_setperfriendpreferences_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerAddFriendRequest {
+pub struct CPlayer_AddFriend_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5161,7 +5192,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CPlayerAddFriendRequest) pack() []byte {
+pub fn (o &CPlayer_AddFriend_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -5169,8 +5200,8 @@ pub fn (o &CPlayerAddFriendRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayeraddfriendrequest_unpack(buf []byte) ?CPlayerAddFriendRequest {
-	mut res := CPlayerAddFriendRequest{}
+pub fn cplayer_addfriend_request_unpack(buf []byte) ?CPlayer_AddFriend_Request {
+	mut res := CPlayer_AddFriend_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5202,23 +5233,23 @@ pub fn cplayeraddfriendrequest_unpack(buf []byte) ?CPlayerAddFriendRequest {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayeraddfriendrequest() CPlayerAddFriendRequest {
-	return CPlayerAddFriendRequest{}
+pub fn zzz_vproto_internal_new_cplayer_addfriend_request() CPlayer_AddFriend_Request {
+	return CPlayer_AddFriend_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayeraddfriendrequest(o CPlayerAddFriendRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_addfriend_request(o CPlayer_AddFriend_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayeraddfriendrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerAddFriendRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_addfriend_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AddFriend_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayeraddfriendrequest_unpack(v)?
+	mut unpacked := cplayer_addfriend_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerAddFriendResponse {
+pub struct CPlayer_AddFriend_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -5230,7 +5261,7 @@ pub mut:
 	has_result              bool
 }
 
-pub fn (o &CPlayerAddFriendResponse) pack() []byte {
+pub fn (o &CPlayer_AddFriend_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_invite_sent {
 		res << vproto.pack_bool_field(o.invite_sent, 1)
@@ -5244,8 +5275,8 @@ pub fn (o &CPlayerAddFriendResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayeraddfriendresponse_unpack(buf []byte) ?CPlayerAddFriendResponse {
-	mut res := CPlayerAddFriendResponse{}
+pub fn cplayer_addfriend_response_unpack(buf []byte) ?CPlayer_AddFriend_Response {
+	mut res := CPlayer_AddFriend_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5289,23 +5320,23 @@ pub fn cplayeraddfriendresponse_unpack(buf []byte) ?CPlayerAddFriendResponse {
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayeraddfriendresponse() CPlayerAddFriendResponse {
-	return CPlayerAddFriendResponse{}
+pub fn zzz_vproto_internal_new_cplayer_addfriend_response() CPlayer_AddFriend_Response {
+	return CPlayer_AddFriend_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayeraddfriendresponse(o CPlayerAddFriendResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_addfriend_response(o CPlayer_AddFriend_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayeraddfriendresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerAddFriendResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_addfriend_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AddFriend_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayeraddfriendresponse_unpack(v)?
+	mut unpacked := cplayer_addfriend_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerRemoveFriendRequest {
+pub struct CPlayer_RemoveFriend_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5313,7 +5344,7 @@ pub mut:
 	has_steamid    bool
 }
 
-pub fn (o &CPlayerRemoveFriendRequest) pack() []byte {
+pub fn (o &CPlayer_RemoveFriend_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -5321,8 +5352,8 @@ pub fn (o &CPlayerRemoveFriendRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayerremovefriendrequest_unpack(buf []byte) ?CPlayerRemoveFriendRequest {
-	mut res := CPlayerRemoveFriendRequest{}
+pub fn cplayer_removefriend_request_unpack(buf []byte) ?CPlayer_RemoveFriend_Request {
+	mut res := CPlayer_RemoveFriend_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5354,23 +5385,23 @@ pub fn cplayerremovefriendrequest_unpack(buf []byte) ?CPlayerRemoveFriendRequest
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerremovefriendrequest() CPlayerRemoveFriendRequest {
-	return CPlayerRemoveFriendRequest{}
+pub fn zzz_vproto_internal_new_cplayer_removefriend_request() CPlayer_RemoveFriend_Request {
+	return CPlayer_RemoveFriend_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerremovefriendrequest(o CPlayerRemoveFriendRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_removefriend_request(o CPlayer_RemoveFriend_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerremovefriendrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerRemoveFriendRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_removefriend_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_RemoveFriend_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerremovefriendrequest_unpack(v)?
+	mut unpacked := cplayer_removefriend_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerRemoveFriendResponse {
+pub struct CPlayer_RemoveFriend_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -5378,7 +5409,7 @@ pub mut:
 	has_friend_relationship bool
 }
 
-pub fn (o &CPlayerRemoveFriendResponse) pack() []byte {
+pub fn (o &CPlayer_RemoveFriend_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_friend_relationship {
 		res << vproto.pack_uint32_field(o.friend_relationship, 1)
@@ -5386,8 +5417,8 @@ pub fn (o &CPlayerRemoveFriendResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayerremovefriendresponse_unpack(buf []byte) ?CPlayerRemoveFriendResponse {
-	mut res := CPlayerRemoveFriendResponse{}
+pub fn cplayer_removefriend_response_unpack(buf []byte) ?CPlayer_RemoveFriend_Response {
+	mut res := CPlayer_RemoveFriend_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5419,23 +5450,23 @@ pub fn cplayerremovefriendresponse_unpack(buf []byte) ?CPlayerRemoveFriendRespon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerremovefriendresponse() CPlayerRemoveFriendResponse {
-	return CPlayerRemoveFriendResponse{}
+pub fn zzz_vproto_internal_new_cplayer_removefriend_response() CPlayer_RemoveFriend_Response {
+	return CPlayer_RemoveFriend_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerremovefriendresponse(o CPlayerRemoveFriendResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_removefriend_response(o CPlayer_RemoveFriend_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerremovefriendresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerRemoveFriendResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_removefriend_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_RemoveFriend_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerremovefriendresponse_unpack(v)?
+	mut unpacked := cplayer_removefriend_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerIgnoreFriendRequest {
+pub struct CPlayer_IgnoreFriend_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5445,7 +5476,7 @@ pub mut:
 	has_unignore   bool
 }
 
-pub fn (o &CPlayerIgnoreFriendRequest) pack() []byte {
+pub fn (o &CPlayer_IgnoreFriend_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_steamid {
 		res << vproto.pack_64bit_field(o.steamid, 1)
@@ -5456,8 +5487,8 @@ pub fn (o &CPlayerIgnoreFriendRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayerignorefriendrequest_unpack(buf []byte) ?CPlayerIgnoreFriendRequest {
-	mut res := CPlayerIgnoreFriendRequest{}
+pub fn cplayer_ignorefriend_request_unpack(buf []byte) ?CPlayer_IgnoreFriend_Request {
+	mut res := CPlayer_IgnoreFriend_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5495,23 +5526,23 @@ pub fn cplayerignorefriendrequest_unpack(buf []byte) ?CPlayerIgnoreFriendRequest
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerignorefriendrequest() CPlayerIgnoreFriendRequest {
-	return CPlayerIgnoreFriendRequest{}
+pub fn zzz_vproto_internal_new_cplayer_ignorefriend_request() CPlayer_IgnoreFriend_Request {
+	return CPlayer_IgnoreFriend_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerignorefriendrequest(o CPlayerIgnoreFriendRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_ignorefriend_request(o CPlayer_IgnoreFriend_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerignorefriendrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerIgnoreFriendRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_ignorefriend_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_IgnoreFriend_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerignorefriendrequest_unpack(v)?
+	mut unpacked := cplayer_ignorefriend_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerIgnoreFriendResponse {
+pub struct CPlayer_IgnoreFriend_Response {
 mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
@@ -5519,7 +5550,7 @@ pub mut:
 	has_friend_relationship bool
 }
 
-pub fn (o &CPlayerIgnoreFriendResponse) pack() []byte {
+pub fn (o &CPlayer_IgnoreFriend_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_friend_relationship {
 		res << vproto.pack_uint32_field(o.friend_relationship, 1)
@@ -5527,8 +5558,8 @@ pub fn (o &CPlayerIgnoreFriendResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayerignorefriendresponse_unpack(buf []byte) ?CPlayerIgnoreFriendResponse {
-	mut res := CPlayerIgnoreFriendResponse{}
+pub fn cplayer_ignorefriend_response_unpack(buf []byte) ?CPlayer_IgnoreFriend_Response {
+	mut res := CPlayer_IgnoreFriend_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5560,55 +5591,55 @@ pub fn cplayerignorefriendresponse_unpack(buf []byte) ?CPlayerIgnoreFriendRespon
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerignorefriendresponse() CPlayerIgnoreFriendResponse {
-	return CPlayerIgnoreFriendResponse{}
+pub fn zzz_vproto_internal_new_cplayer_ignorefriend_response() CPlayer_IgnoreFriend_Response {
+	return CPlayer_IgnoreFriend_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerignorefriendresponse(o CPlayerIgnoreFriendResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_ignorefriend_response(o CPlayer_IgnoreFriend_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerignorefriendresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerIgnoreFriendResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_ignorefriend_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_IgnoreFriend_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerignorefriendresponse_unpack(v)?
+	mut unpacked := cplayer_ignorefriend_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetCommunityPreferencesRequest {
+pub struct CPlayer_GetCommunityPreferences_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerGetCommunityPreferencesRequest) pack() []byte {
+pub fn (o &CPlayer_GetCommunityPreferences_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayergetcommunitypreferencesrequest_unpack(buf []byte) ?CPlayerGetCommunityPreferencesRequest {
-	res := CPlayerGetCommunityPreferencesRequest{}
+pub fn cplayer_getcommunitypreferences_request_unpack(buf []byte) ?CPlayer_GetCommunityPreferences_Request {
+	res := CPlayer_GetCommunityPreferences_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetcommunitypreferencesrequest() CPlayerGetCommunityPreferencesRequest {
-	return CPlayerGetCommunityPreferencesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getcommunitypreferences_request() CPlayer_GetCommunityPreferences_Request {
+	return CPlayer_GetCommunityPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetcommunitypreferencesrequest(o CPlayerGetCommunityPreferencesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getcommunitypreferences_request(o CPlayer_GetCommunityPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetcommunitypreferencesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetCommunityPreferencesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getcommunitypreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetCommunityPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetcommunitypreferencesrequest_unpack(v)?
+	mut unpacked := cplayer_getcommunitypreferences_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerCommunityPreferences {
+pub struct CPlayer_CommunityPreferences {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
@@ -5622,7 +5653,7 @@ pub mut:
 	has_timestamp_updated           bool
 }
 
-pub fn (o &CPlayerCommunityPreferences) pack() []byte {
+pub fn (o &CPlayer_CommunityPreferences) pack() []byte {
 	mut res := []byte{}
 	if o.has_hide_adult_content_violence {
 		res << vproto.pack_bool_field(o.hide_adult_content_violence, 1)
@@ -5639,8 +5670,8 @@ pub fn (o &CPlayerCommunityPreferences) pack() []byte {
 	return res
 }
 
-pub fn cplayercommunitypreferences_unpack(buf []byte) ?CPlayerCommunityPreferences {
-	mut res := CPlayerCommunityPreferences{}
+pub fn cplayer_communitypreferences_unpack(buf []byte) ?CPlayer_CommunityPreferences {
+	mut res := CPlayer_CommunityPreferences{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5690,40 +5721,40 @@ pub fn cplayercommunitypreferences_unpack(buf []byte) ?CPlayerCommunityPreferenc
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayercommunitypreferences() CPlayerCommunityPreferences {
-	return CPlayerCommunityPreferences{}
+pub fn zzz_vproto_internal_new_cplayer_communitypreferences() CPlayer_CommunityPreferences {
+	return CPlayer_CommunityPreferences{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayercommunitypreferences(o CPlayerCommunityPreferences, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_communitypreferences(o CPlayer_CommunityPreferences, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayercommunitypreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerCommunityPreferences) {
+pub fn zzz_vproto_internal_unpack_cplayer_communitypreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_CommunityPreferences) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayercommunitypreferences_unpack(v)?
+	mut unpacked := cplayer_communitypreferences_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetCommunityPreferencesResponse {
+pub struct CPlayer_GetCommunityPreferences_Response {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	preferences     CPlayerCommunityPreferences
+	preferences     CPlayer_CommunityPreferences
 	has_preferences bool
 }
 
-pub fn (o &CPlayerGetCommunityPreferencesResponse) pack() []byte {
+pub fn (o &CPlayer_GetCommunityPreferences_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_preferences {
-		res << zzz_vproto_internal_pack_cplayercommunitypreferences(o.preferences, 1)
+		res << zzz_vproto_internal_pack_cplayer_communitypreferences(o.preferences, 1)
 	}
 	return res
 }
 
-pub fn cplayergetcommunitypreferencesresponse_unpack(buf []byte) ?CPlayerGetCommunityPreferencesResponse {
-	mut res := CPlayerGetCommunityPreferencesResponse{}
+pub fn cplayer_getcommunitypreferences_response_unpack(buf []byte) ?CPlayer_GetCommunityPreferences_Response {
+	mut res := CPlayer_GetCommunityPreferences_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5735,7 +5766,7 @@ pub fn cplayergetcommunitypreferencesresponse_unpack(buf []byte) ?CPlayerGetComm
 		match tag_wiretype.tag {
 			1 {
 				res.has_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cplayercommunitypreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_communitypreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
@@ -5756,40 +5787,40 @@ pub fn cplayergetcommunitypreferencesresponse_unpack(buf []byte) ?CPlayerGetComm
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetcommunitypreferencesresponse() CPlayerGetCommunityPreferencesResponse {
-	return CPlayerGetCommunityPreferencesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getcommunitypreferences_response() CPlayer_GetCommunityPreferences_Response {
+	return CPlayer_GetCommunityPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetcommunitypreferencesresponse(o CPlayerGetCommunityPreferencesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getcommunitypreferences_response(o CPlayer_GetCommunityPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetcommunitypreferencesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetCommunityPreferencesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getcommunitypreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetCommunityPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetcommunitypreferencesresponse_unpack(v)?
+	mut unpacked := cplayer_getcommunitypreferences_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetCommunityPreferencesRequest {
+pub struct CPlayer_SetCommunityPreferences_Request {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	preferences     CPlayerCommunityPreferences
+	preferences     CPlayer_CommunityPreferences
 	has_preferences bool
 }
 
-pub fn (o &CPlayerSetCommunityPreferencesRequest) pack() []byte {
+pub fn (o &CPlayer_SetCommunityPreferences_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_preferences {
-		res << zzz_vproto_internal_pack_cplayercommunitypreferences(o.preferences, 1)
+		res << zzz_vproto_internal_pack_cplayer_communitypreferences(o.preferences, 1)
 	}
 	return res
 }
 
-pub fn cplayersetcommunitypreferencesrequest_unpack(buf []byte) ?CPlayerSetCommunityPreferencesRequest {
-	mut res := CPlayerSetCommunityPreferencesRequest{}
+pub fn cplayer_setcommunitypreferences_request_unpack(buf []byte) ?CPlayer_SetCommunityPreferences_Request {
+	mut res := CPlayer_SetCommunityPreferences_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5801,7 +5832,7 @@ pub fn cplayersetcommunitypreferencesrequest_unpack(buf []byte) ?CPlayerSetCommu
 		match tag_wiretype.tag {
 			1 {
 				res.has_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cplayercommunitypreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_communitypreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
@@ -5822,55 +5853,55 @@ pub fn cplayersetcommunitypreferencesrequest_unpack(buf []byte) ?CPlayerSetCommu
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetcommunitypreferencesrequest() CPlayerSetCommunityPreferencesRequest {
-	return CPlayerSetCommunityPreferencesRequest{}
+pub fn zzz_vproto_internal_new_cplayer_setcommunitypreferences_request() CPlayer_SetCommunityPreferences_Request {
+	return CPlayer_SetCommunityPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetcommunitypreferencesrequest(o CPlayerSetCommunityPreferencesRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setcommunitypreferences_request(o CPlayer_SetCommunityPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetcommunitypreferencesrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetCommunityPreferencesRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_setcommunitypreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetCommunityPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetcommunitypreferencesrequest_unpack(v)?
+	mut unpacked := cplayer_setcommunitypreferences_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerSetCommunityPreferencesResponse {
+pub struct CPlayer_SetCommunityPreferences_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerSetCommunityPreferencesResponse) pack() []byte {
+pub fn (o &CPlayer_SetCommunityPreferences_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayersetcommunitypreferencesresponse_unpack(buf []byte) ?CPlayerSetCommunityPreferencesResponse {
-	res := CPlayerSetCommunityPreferencesResponse{}
+pub fn cplayer_setcommunitypreferences_response_unpack(buf []byte) ?CPlayer_SetCommunityPreferences_Response {
+	res := CPlayer_SetCommunityPreferences_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayersetcommunitypreferencesresponse() CPlayerSetCommunityPreferencesResponse {
-	return CPlayerSetCommunityPreferencesResponse{}
+pub fn zzz_vproto_internal_new_cplayer_setcommunitypreferences_response() CPlayer_SetCommunityPreferences_Response {
+	return CPlayer_SetCommunityPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayersetcommunitypreferencesresponse(o CPlayerSetCommunityPreferencesResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_setcommunitypreferences_response(o CPlayer_SetCommunityPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayersetcommunitypreferencesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerSetCommunityPreferencesResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_setcommunitypreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetCommunityPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayersetcommunitypreferencesresponse_unpack(v)?
+	mut unpacked := cplayer_setcommunitypreferences_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetNewSteamAnnouncementStateRequest {
+pub struct CPlayer_GetNewSteamAnnouncementState_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -5878,7 +5909,7 @@ pub mut:
 	has_language   bool
 }
 
-pub fn (o &CPlayerGetNewSteamAnnouncementStateRequest) pack() []byte {
+pub fn (o &CPlayer_GetNewSteamAnnouncementState_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_language {
 		res << vproto.pack_int32_field(o.language, 1)
@@ -5886,8 +5917,8 @@ pub fn (o &CPlayerGetNewSteamAnnouncementStateRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetnewsteamannouncementstaterequest_unpack(buf []byte) ?CPlayerGetNewSteamAnnouncementStateRequest {
-	mut res := CPlayerGetNewSteamAnnouncementStateRequest{}
+pub fn cplayer_getnewsteamannouncementstate_request_unpack(buf []byte) ?CPlayer_GetNewSteamAnnouncementState_Request {
+	mut res := CPlayer_GetNewSteamAnnouncementState_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5919,23 +5950,23 @@ pub fn cplayergetnewsteamannouncementstaterequest_unpack(buf []byte) ?CPlayerGet
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetnewsteamannouncementstaterequest() CPlayerGetNewSteamAnnouncementStateRequest {
-	return CPlayerGetNewSteamAnnouncementStateRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getnewsteamannouncementstate_request() CPlayer_GetNewSteamAnnouncementState_Request {
+	return CPlayer_GetNewSteamAnnouncementState_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetnewsteamannouncementstaterequest(o CPlayerGetNewSteamAnnouncementStateRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getnewsteamannouncementstate_request(o CPlayer_GetNewSteamAnnouncementState_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetnewsteamannouncementstaterequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetNewSteamAnnouncementStateRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getnewsteamannouncementstate_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNewSteamAnnouncementState_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetnewsteamannouncementstaterequest_unpack(v)?
+	mut unpacked := cplayer_getnewsteamannouncementstate_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetNewSteamAnnouncementStateResponse {
+pub struct CPlayer_GetNewSteamAnnouncementState_Response {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -5951,7 +5982,7 @@ pub mut:
 	has_announcement_gid      bool
 }
 
-pub fn (o &CPlayerGetNewSteamAnnouncementStateResponse) pack() []byte {
+pub fn (o &CPlayer_GetNewSteamAnnouncementState_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_state {
 		res << vproto.pack_int32_field(o.state, 1)
@@ -5971,8 +6002,8 @@ pub fn (o &CPlayerGetNewSteamAnnouncementStateResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetnewsteamannouncementstateresponse_unpack(buf []byte) ?CPlayerGetNewSteamAnnouncementStateResponse {
-	mut res := CPlayerGetNewSteamAnnouncementStateResponse{}
+pub fn cplayer_getnewsteamannouncementstate_response_unpack(buf []byte) ?CPlayer_GetNewSteamAnnouncementState_Response {
+	mut res := CPlayer_GetNewSteamAnnouncementState_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6028,23 +6059,23 @@ pub fn cplayergetnewsteamannouncementstateresponse_unpack(buf []byte) ?CPlayerGe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetnewsteamannouncementstateresponse() CPlayerGetNewSteamAnnouncementStateResponse {
-	return CPlayerGetNewSteamAnnouncementStateResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getnewsteamannouncementstate_response() CPlayer_GetNewSteamAnnouncementState_Response {
+	return CPlayer_GetNewSteamAnnouncementState_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetnewsteamannouncementstateresponse(o CPlayerGetNewSteamAnnouncementStateResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getnewsteamannouncementstate_response(o CPlayer_GetNewSteamAnnouncementState_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetnewsteamannouncementstateresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetNewSteamAnnouncementStateResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getnewsteamannouncementstate_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNewSteamAnnouncementState_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetnewsteamannouncementstateresponse_unpack(v)?
+	mut unpacked := cplayer_getnewsteamannouncementstate_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerUpdateSteamAnnouncementLastReadRequest {
+pub struct CPlayer_UpdateSteamAnnouncementLastRead_Request {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -6054,7 +6085,7 @@ pub mut:
 	has_time_posted      bool
 }
 
-pub fn (o &CPlayerUpdateSteamAnnouncementLastReadRequest) pack() []byte {
+pub fn (o &CPlayer_UpdateSteamAnnouncementLastRead_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_announcement_gid {
 		res << vproto.pack_uint64_field(o.announcement_gid, 1)
@@ -6065,8 +6096,8 @@ pub fn (o &CPlayerUpdateSteamAnnouncementLastReadRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayerupdatesteamannouncementlastreadrequest_unpack(buf []byte) ?CPlayerUpdateSteamAnnouncementLastReadRequest {
-	mut res := CPlayerUpdateSteamAnnouncementLastReadRequest{}
+pub fn cplayer_updatesteamannouncementlastread_request_unpack(buf []byte) ?CPlayer_UpdateSteamAnnouncementLastRead_Request {
+	mut res := CPlayer_UpdateSteamAnnouncementLastRead_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6104,83 +6135,83 @@ pub fn cplayerupdatesteamannouncementlastreadrequest_unpack(buf []byte) ?CPlayer
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerupdatesteamannouncementlastreadrequest() CPlayerUpdateSteamAnnouncementLastReadRequest {
-	return CPlayerUpdateSteamAnnouncementLastReadRequest{}
+pub fn zzz_vproto_internal_new_cplayer_updatesteamannouncementlastread_request() CPlayer_UpdateSteamAnnouncementLastRead_Request {
+	return CPlayer_UpdateSteamAnnouncementLastRead_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerupdatesteamannouncementlastreadrequest(o CPlayerUpdateSteamAnnouncementLastReadRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_updatesteamannouncementlastread_request(o CPlayer_UpdateSteamAnnouncementLastRead_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerupdatesteamannouncementlastreadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerUpdateSteamAnnouncementLastReadRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_updatesteamannouncementlastread_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_UpdateSteamAnnouncementLastRead_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerupdatesteamannouncementlastreadrequest_unpack(v)?
+	mut unpacked := cplayer_updatesteamannouncementlastread_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerUpdateSteamAnnouncementLastReadResponse {
+pub struct CPlayer_UpdateSteamAnnouncementLastRead_Response {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerUpdateSteamAnnouncementLastReadResponse) pack() []byte {
+pub fn (o &CPlayer_UpdateSteamAnnouncementLastRead_Response) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayerupdatesteamannouncementlastreadresponse_unpack(buf []byte) ?CPlayerUpdateSteamAnnouncementLastReadResponse {
-	res := CPlayerUpdateSteamAnnouncementLastReadResponse{}
+pub fn cplayer_updatesteamannouncementlastread_response_unpack(buf []byte) ?CPlayer_UpdateSteamAnnouncementLastRead_Response {
+	res := CPlayer_UpdateSteamAnnouncementLastRead_Response{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerupdatesteamannouncementlastreadresponse() CPlayerUpdateSteamAnnouncementLastReadResponse {
-	return CPlayerUpdateSteamAnnouncementLastReadResponse{}
+pub fn zzz_vproto_internal_new_cplayer_updatesteamannouncementlastread_response() CPlayer_UpdateSteamAnnouncementLastRead_Response {
+	return CPlayer_UpdateSteamAnnouncementLastRead_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerupdatesteamannouncementlastreadresponse(o CPlayerUpdateSteamAnnouncementLastReadResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_updatesteamannouncementlastread_response(o CPlayer_UpdateSteamAnnouncementLastRead_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerupdatesteamannouncementlastreadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerUpdateSteamAnnouncementLastReadResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_updatesteamannouncementlastread_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_UpdateSteamAnnouncementLastRead_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerupdatesteamannouncementlastreadresponse_unpack(v)?
+	mut unpacked := cplayer_updatesteamannouncementlastread_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetPrivacySettingsRequest {
+pub struct CPlayer_GetPrivacySettings_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 }
 
-pub fn (o &CPlayerGetPrivacySettingsRequest) pack() []byte {
+pub fn (o &CPlayer_GetPrivacySettings_Request) pack() []byte {
 	res := []byte{}
 	return res
 }
 
-pub fn cplayergetprivacysettingsrequest_unpack(buf []byte) ?CPlayerGetPrivacySettingsRequest {
-	res := CPlayerGetPrivacySettingsRequest{}
+pub fn cplayer_getprivacysettings_request_unpack(buf []byte) ?CPlayer_GetPrivacySettings_Request {
+	res := CPlayer_GetPrivacySettings_Request{}
 	return res
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprivacysettingsrequest() CPlayerGetPrivacySettingsRequest {
-	return CPlayerGetPrivacySettingsRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getprivacysettings_request() CPlayer_GetPrivacySettings_Request {
+	return CPlayer_GetPrivacySettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprivacysettingsrequest(o CPlayerGetPrivacySettingsRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprivacysettings_request(o CPlayer_GetPrivacySettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprivacysettingsrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPrivacySettingsRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprivacysettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPrivacySettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprivacysettingsrequest_unpack(v)?
+	mut unpacked := cplayer_getprivacysettings_request_unpack(v)?
 	return i, unpacked
 }
 
@@ -6304,7 +6335,7 @@ pub fn zzz_vproto_internal_unpack_cprivacysettings(buf []byte, tag_wiretype vpro
 	return i, unpacked
 }
 
-pub struct CPlayerGetPrivacySettingsResponse {
+pub struct CPlayer_GetPrivacySettings_Response {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -6312,7 +6343,7 @@ pub mut:
 	has_privacy_settings bool
 }
 
-pub fn (o &CPlayerGetPrivacySettingsResponse) pack() []byte {
+pub fn (o &CPlayer_GetPrivacySettings_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_privacy_settings {
 		res << zzz_vproto_internal_pack_cprivacysettings(o.privacy_settings, 1)
@@ -6320,8 +6351,8 @@ pub fn (o &CPlayerGetPrivacySettingsResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetprivacysettingsresponse_unpack(buf []byte) ?CPlayerGetPrivacySettingsResponse {
-	mut res := CPlayerGetPrivacySettingsResponse{}
+pub fn cplayer_getprivacysettings_response_unpack(buf []byte) ?CPlayer_GetPrivacySettings_Response {
+	mut res := CPlayer_GetPrivacySettings_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6353,23 +6384,23 @@ pub fn cplayergetprivacysettingsresponse_unpack(buf []byte) ?CPlayerGetPrivacySe
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetprivacysettingsresponse() CPlayerGetPrivacySettingsResponse {
-	return CPlayerGetPrivacySettingsResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getprivacysettings_response() CPlayer_GetPrivacySettings_Response {
+	return CPlayer_GetPrivacySettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetprivacysettingsresponse(o CPlayerGetPrivacySettingsResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getprivacysettings_response(o CPlayer_GetPrivacySettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetprivacysettingsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetPrivacySettingsResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getprivacysettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPrivacySettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetprivacysettingsresponse_unpack(v)?
+	mut unpacked := cplayer_getprivacysettings_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetDurationControlRequest {
+pub struct CPlayer_GetDurationControl_Request {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -6377,7 +6408,7 @@ pub mut:
 	has_appid      bool
 }
 
-pub fn (o &CPlayerGetDurationControlRequest) pack() []byte {
+pub fn (o &CPlayer_GetDurationControl_Request) pack() []byte {
 	mut res := []byte{}
 	if o.has_appid {
 		res << vproto.pack_uint32_field(o.appid, 1)
@@ -6385,8 +6416,8 @@ pub fn (o &CPlayerGetDurationControlRequest) pack() []byte {
 	return res
 }
 
-pub fn cplayergetdurationcontrolrequest_unpack(buf []byte) ?CPlayerGetDurationControlRequest {
-	mut res := CPlayerGetDurationControlRequest{}
+pub fn cplayer_getdurationcontrol_request_unpack(buf []byte) ?CPlayer_GetDurationControl_Request {
+	mut res := CPlayer_GetDurationControl_Request{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6418,23 +6449,23 @@ pub fn cplayergetdurationcontrolrequest_unpack(buf []byte) ?CPlayerGetDurationCo
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetdurationcontrolrequest() CPlayerGetDurationControlRequest {
-	return CPlayerGetDurationControlRequest{}
+pub fn zzz_vproto_internal_new_cplayer_getdurationcontrol_request() CPlayer_GetDurationControl_Request {
+	return CPlayer_GetDurationControl_Request{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetdurationcontrolrequest(o CPlayerGetDurationControlRequest, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getdurationcontrol_request(o CPlayer_GetDurationControl_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetdurationcontrolrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetDurationControlRequest) {
+pub fn zzz_vproto_internal_unpack_cplayer_getdurationcontrol_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetDurationControl_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetdurationcontrolrequest_unpack(v)?
+	mut unpacked := cplayer_getdurationcontrol_request_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerGetDurationControlResponse {
+pub struct CPlayer_GetDurationControl_Response {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -6452,7 +6483,7 @@ pub mut:
 	has_seconds_allowed_today bool
 }
 
-pub fn (o &CPlayerGetDurationControlResponse) pack() []byte {
+pub fn (o &CPlayer_GetDurationControl_Response) pack() []byte {
 	mut res := []byte{}
 	if o.has_is_enabled {
 		res << vproto.pack_bool_field(o.is_enabled, 1)
@@ -6475,8 +6506,8 @@ pub fn (o &CPlayerGetDurationControlResponse) pack() []byte {
 	return res
 }
 
-pub fn cplayergetdurationcontrolresponse_unpack(buf []byte) ?CPlayerGetDurationControlResponse {
-	mut res := CPlayerGetDurationControlResponse{}
+pub fn cplayer_getdurationcontrol_response_unpack(buf []byte) ?CPlayer_GetDurationControl_Response {
+	mut res := CPlayer_GetDurationControl_Response{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6538,40 +6569,40 @@ pub fn cplayergetdurationcontrolresponse_unpack(buf []byte) ?CPlayerGetDurationC
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayergetdurationcontrolresponse() CPlayerGetDurationControlResponse {
-	return CPlayerGetDurationControlResponse{}
+pub fn zzz_vproto_internal_new_cplayer_getdurationcontrol_response() CPlayer_GetDurationControl_Response {
+	return CPlayer_GetDurationControl_Response{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayergetdurationcontrolresponse(o CPlayerGetDurationControlResponse, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_getdurationcontrol_response(o CPlayer_GetDurationControl_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayergetdurationcontrolresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerGetDurationControlResponse) {
+pub fn zzz_vproto_internal_unpack_cplayer_getdurationcontrol_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetDurationControl_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayergetdurationcontrolresponse_unpack(v)?
+	mut unpacked := cplayer_getdurationcontrol_response_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerLastPlayedTimesNotification {
+pub struct CPlayer_LastPlayedTimes_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	games          []CPlayerGetLastPlayedTimesResponseGame
+	games          []CPlayer_GetLastPlayedTimes_Response_Game
 }
 
-pub fn (o &CPlayerLastPlayedTimesNotification) pack() []byte {
+pub fn (o &CPlayer_LastPlayedTimes_Notification) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.games {
-		res << zzz_vproto_internal_pack_cplayergetlastplayedtimesresponsegame(x, 1)
+		res << zzz_vproto_internal_pack_cplayer_getlastplayedtimes_response_game(x, 1)
 	}
 	return res
 }
 
-pub fn cplayerlastplayedtimesnotification_unpack(buf []byte) ?CPlayerLastPlayedTimesNotification {
-	mut res := CPlayerLastPlayedTimesNotification{}
+pub fn cplayer_lastplayedtimes_notification_unpack(buf []byte) ?CPlayer_LastPlayedTimes_Notification {
+	mut res := CPlayer_LastPlayedTimes_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6583,7 +6614,7 @@ pub fn cplayerlastplayedtimesnotification_unpack(buf []byte) ?CPlayerLastPlayedT
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cplayergetlastplayedtimesresponsegame(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_response_game(cur_buf,
 					tag_wiretype.wire_type)?
 				res.games << v
 				i = ii
@@ -6604,23 +6635,23 @@ pub fn cplayerlastplayedtimesnotification_unpack(buf []byte) ?CPlayerLastPlayedT
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerlastplayedtimesnotification() CPlayerLastPlayedTimesNotification {
-	return CPlayerLastPlayedTimesNotification{}
+pub fn zzz_vproto_internal_new_cplayer_lastplayedtimes_notification() CPlayer_LastPlayedTimes_Notification {
+	return CPlayer_LastPlayedTimes_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerlastplayedtimesnotification(o CPlayerLastPlayedTimesNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_lastplayedtimes_notification(o CPlayer_LastPlayedTimes_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerlastplayedtimesnotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerLastPlayedTimesNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_lastplayedtimes_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_LastPlayedTimes_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerlastplayedtimesnotification_unpack(v)?
+	mut unpacked := cplayer_lastplayedtimes_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerFriendNicknameChangedNotification {
+pub struct CPlayer_FriendNicknameChanged_Notification {
 mut:
 	unknown_fields      []vproto.UnknownField
 pub mut:
@@ -6632,7 +6663,7 @@ pub mut:
 	has_is_echo_to_self bool
 }
 
-pub fn (o &CPlayerFriendNicknameChangedNotification) pack() []byte {
+pub fn (o &CPlayer_FriendNicknameChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_32bit_field(o.accountid, 1)
@@ -6646,8 +6677,8 @@ pub fn (o &CPlayerFriendNicknameChangedNotification) pack() []byte {
 	return res
 }
 
-pub fn cplayerfriendnicknamechangednotification_unpack(buf []byte) ?CPlayerFriendNicknameChangedNotification {
-	mut res := CPlayerFriendNicknameChangedNotification{}
+pub fn cplayer_friendnicknamechanged_notification_unpack(buf []byte) ?CPlayer_FriendNicknameChanged_Notification {
+	mut res := CPlayer_FriendNicknameChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6691,23 +6722,23 @@ pub fn cplayerfriendnicknamechangednotification_unpack(buf []byte) ?CPlayerFrien
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerfriendnicknamechangednotification() CPlayerFriendNicknameChangedNotification {
-	return CPlayerFriendNicknameChangedNotification{}
+pub fn zzz_vproto_internal_new_cplayer_friendnicknamechanged_notification() CPlayer_FriendNicknameChanged_Notification {
+	return CPlayer_FriendNicknameChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerfriendnicknamechangednotification(o CPlayerFriendNicknameChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_friendnicknamechanged_notification(o CPlayer_FriendNicknameChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerfriendnicknamechangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerFriendNicknameChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_friendnicknamechanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_FriendNicknameChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerfriendnicknamechangednotification_unpack(v)?
+	mut unpacked := cplayer_friendnicknamechanged_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerFriendEquippedProfileItemsChangedNotification {
+pub struct CPlayer_FriendEquippedProfileItemsChanged_Notification {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
@@ -6715,7 +6746,7 @@ pub mut:
 	has_accountid  bool
 }
 
-pub fn (o &CPlayerFriendEquippedProfileItemsChangedNotification) pack() []byte {
+pub fn (o &CPlayer_FriendEquippedProfileItemsChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_32bit_field(o.accountid, 1)
@@ -6723,8 +6754,8 @@ pub fn (o &CPlayerFriendEquippedProfileItemsChangedNotification) pack() []byte {
 	return res
 }
 
-pub fn cplayerfriendequippedprofileitemschangednotification_unpack(buf []byte) ?CPlayerFriendEquippedProfileItemsChangedNotification {
-	mut res := CPlayerFriendEquippedProfileItemsChangedNotification{}
+pub fn cplayer_friendequippedprofileitemschanged_notification_unpack(buf []byte) ?CPlayer_FriendEquippedProfileItemsChanged_Notification {
+	mut res := CPlayer_FriendEquippedProfileItemsChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6756,23 +6787,23 @@ pub fn cplayerfriendequippedprofileitemschangednotification_unpack(buf []byte) ?
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerfriendequippedprofileitemschangednotification() CPlayerFriendEquippedProfileItemsChangedNotification {
-	return CPlayerFriendEquippedProfileItemsChangedNotification{}
+pub fn zzz_vproto_internal_new_cplayer_friendequippedprofileitemschanged_notification() CPlayer_FriendEquippedProfileItemsChanged_Notification {
+	return CPlayer_FriendEquippedProfileItemsChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerfriendequippedprofileitemschangednotification(o CPlayerFriendEquippedProfileItemsChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_friendequippedprofileitemschanged_notification(o CPlayer_FriendEquippedProfileItemsChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerfriendequippedprofileitemschangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerFriendEquippedProfileItemsChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_friendequippedprofileitemschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_FriendEquippedProfileItemsChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerfriendequippedprofileitemschangednotification_unpack(v)?
+	mut unpacked := cplayer_friendequippedprofileitemschanged_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerNewSteamAnnouncementStateNotification {
+pub struct CPlayer_NewSteamAnnouncementState_Notification {
 mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
@@ -6788,7 +6819,7 @@ pub mut:
 	has_announcement_gid      bool
 }
 
-pub fn (o &CPlayerNewSteamAnnouncementStateNotification) pack() []byte {
+pub fn (o &CPlayer_NewSteamAnnouncementState_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_state {
 		res << vproto.pack_int32_field(o.state, 1)
@@ -6808,8 +6839,8 @@ pub fn (o &CPlayerNewSteamAnnouncementStateNotification) pack() []byte {
 	return res
 }
 
-pub fn cplayernewsteamannouncementstatenotification_unpack(buf []byte) ?CPlayerNewSteamAnnouncementStateNotification {
-	mut res := CPlayerNewSteamAnnouncementStateNotification{}
+pub fn cplayer_newsteamannouncementstate_notification_unpack(buf []byte) ?CPlayer_NewSteamAnnouncementState_Notification {
+	mut res := CPlayer_NewSteamAnnouncementState_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6865,40 +6896,40 @@ pub fn cplayernewsteamannouncementstatenotification_unpack(buf []byte) ?CPlayerN
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayernewsteamannouncementstatenotification() CPlayerNewSteamAnnouncementStateNotification {
-	return CPlayerNewSteamAnnouncementStateNotification{}
+pub fn zzz_vproto_internal_new_cplayer_newsteamannouncementstate_notification() CPlayer_NewSteamAnnouncementState_Notification {
+	return CPlayer_NewSteamAnnouncementState_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayernewsteamannouncementstatenotification(o CPlayerNewSteamAnnouncementStateNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_newsteamannouncementstate_notification(o CPlayer_NewSteamAnnouncementState_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayernewsteamannouncementstatenotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerNewSteamAnnouncementStateNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_newsteamannouncementstate_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_NewSteamAnnouncementState_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayernewsteamannouncementstatenotification_unpack(v)?
+	mut unpacked := cplayer_newsteamannouncementstate_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerCommunityPreferencesChangedNotification {
+pub struct CPlayer_CommunityPreferencesChanged_Notification {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
-	preferences     CPlayerCommunityPreferences
+	preferences     CPlayer_CommunityPreferences
 	has_preferences bool
 }
 
-pub fn (o &CPlayerCommunityPreferencesChangedNotification) pack() []byte {
+pub fn (o &CPlayer_CommunityPreferencesChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_preferences {
-		res << zzz_vproto_internal_pack_cplayercommunitypreferences(o.preferences, 1)
+		res << zzz_vproto_internal_pack_cplayer_communitypreferences(o.preferences, 1)
 	}
 	return res
 }
 
-pub fn cplayercommunitypreferenceschangednotification_unpack(buf []byte) ?CPlayerCommunityPreferencesChangedNotification {
-	mut res := CPlayerCommunityPreferencesChangedNotification{}
+pub fn cplayer_communitypreferenceschanged_notification_unpack(buf []byte) ?CPlayer_CommunityPreferencesChanged_Notification {
+	mut res := CPlayer_CommunityPreferencesChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6910,7 +6941,7 @@ pub fn cplayercommunitypreferenceschangednotification_unpack(buf []byte) ?CPlaye
 		match tag_wiretype.tag {
 			1 {
 				res.has_preferences = true
-				ii, v := zzz_vproto_internal_unpack_cplayercommunitypreferences(cur_buf,
+				ii, v := zzz_vproto_internal_unpack_cplayer_communitypreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
@@ -6931,23 +6962,23 @@ pub fn cplayercommunitypreferenceschangednotification_unpack(buf []byte) ?CPlaye
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayercommunitypreferenceschangednotification() CPlayerCommunityPreferencesChangedNotification {
-	return CPlayerCommunityPreferencesChangedNotification{}
+pub fn zzz_vproto_internal_new_cplayer_communitypreferenceschanged_notification() CPlayer_CommunityPreferencesChanged_Notification {
+	return CPlayer_CommunityPreferencesChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayercommunitypreferenceschangednotification(o CPlayerCommunityPreferencesChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_communitypreferenceschanged_notification(o CPlayer_CommunityPreferencesChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayercommunitypreferenceschangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerCommunityPreferencesChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_communitypreferenceschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_CommunityPreferencesChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayercommunitypreferenceschangednotification_unpack(v)?
+	mut unpacked := cplayer_communitypreferenceschanged_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerPerFriendPreferencesChangedNotification {
+pub struct CPlayer_PerFriendPreferencesChanged_Notification {
 mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
@@ -6957,7 +6988,7 @@ pub mut:
 	has_preferences bool
 }
 
-pub fn (o &CPlayerPerFriendPreferencesChangedNotification) pack() []byte {
+pub fn (o &CPlayer_PerFriendPreferencesChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_accountid {
 		res << vproto.pack_32bit_field(o.accountid, 1)
@@ -6968,8 +6999,8 @@ pub fn (o &CPlayerPerFriendPreferencesChangedNotification) pack() []byte {
 	return res
 }
 
-pub fn cplayerperfriendpreferenceschangednotification_unpack(buf []byte) ?CPlayerPerFriendPreferencesChangedNotification {
-	mut res := CPlayerPerFriendPreferencesChangedNotification{}
+pub fn cplayer_perfriendpreferenceschanged_notification_unpack(buf []byte) ?CPlayer_PerFriendPreferencesChanged_Notification {
+	mut res := CPlayer_PerFriendPreferencesChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7007,23 +7038,23 @@ pub fn cplayerperfriendpreferenceschangednotification_unpack(buf []byte) ?CPlaye
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerperfriendpreferenceschangednotification() CPlayerPerFriendPreferencesChangedNotification {
-	return CPlayerPerFriendPreferencesChangedNotification{}
+pub fn zzz_vproto_internal_new_cplayer_perfriendpreferenceschanged_notification() CPlayer_PerFriendPreferencesChanged_Notification {
+	return CPlayer_PerFriendPreferencesChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerperfriendpreferenceschangednotification(o CPlayerPerFriendPreferencesChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_perfriendpreferenceschanged_notification(o CPlayer_PerFriendPreferencesChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerperfriendpreferenceschangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerPerFriendPreferencesChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_perfriendpreferenceschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PerFriendPreferencesChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerperfriendpreferenceschangednotification_unpack(v)?
+	mut unpacked := cplayer_perfriendpreferenceschanged_notification_unpack(v)?
 	return i, unpacked
 }
 
-pub struct CPlayerPrivacySettingsChangedNotification {
+pub struct CPlayer_PrivacySettingsChanged_Notification {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
@@ -7031,7 +7062,7 @@ pub mut:
 	has_privacy_settings bool
 }
 
-pub fn (o &CPlayerPrivacySettingsChangedNotification) pack() []byte {
+pub fn (o &CPlayer_PrivacySettingsChanged_Notification) pack() []byte {
 	mut res := []byte{}
 	if o.has_privacy_settings {
 		res << zzz_vproto_internal_pack_cprivacysettings(o.privacy_settings, 1)
@@ -7039,8 +7070,8 @@ pub fn (o &CPlayerPrivacySettingsChangedNotification) pack() []byte {
 	return res
 }
 
-pub fn cplayerprivacysettingschangednotification_unpack(buf []byte) ?CPlayerPrivacySettingsChangedNotification {
-	mut res := CPlayerPrivacySettingsChangedNotification{}
+pub fn cplayer_privacysettingschanged_notification_unpack(buf []byte) ?CPlayer_PrivacySettingsChanged_Notification {
+	mut res := CPlayer_PrivacySettingsChanged_Notification{}
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7072,18 +7103,18 @@ pub fn cplayerprivacysettingschangednotification_unpack(buf []byte) ?CPlayerPriv
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_new_cplayerprivacysettingschangednotification() CPlayerPrivacySettingsChangedNotification {
-	return CPlayerPrivacySettingsChangedNotification{}
+pub fn zzz_vproto_internal_new_cplayer_privacysettingschanged_notification() CPlayer_PrivacySettingsChanged_Notification {
+	return CPlayer_PrivacySettingsChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_pack_cplayerprivacysettingschangednotification(o CPlayerPrivacySettingsChangedNotification, num u32) []byte {
+pub fn zzz_vproto_internal_pack_cplayer_privacysettingschanged_notification(o CPlayer_PrivacySettingsChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
-pub fn zzz_vproto_internal_unpack_cplayerprivacysettingschangednotification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayerPrivacySettingsChangedNotification) {
+pub fn zzz_vproto_internal_unpack_cplayer_privacysettingschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PrivacySettingsChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cplayerprivacysettingschangednotification_unpack(v)?
+	mut unpacked := cplayer_privacysettingschanged_notification_unpack(v)?
 	return i, unpacked
 }
