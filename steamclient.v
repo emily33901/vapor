@@ -22,31 +22,46 @@ struct Message {
 	body []byte
 }
 
-// TODO
-// type FillFn = fn (mut body []byte)?
-
 struct SteamClient {
 mut:
 	cm_addr string
 	client TcpClient
 	handlers []MsgHandler
-	session_id u32
+
+	// Items needed for the header
+	session_id int
+	steam_id u64
+
+	// Handlers
 	encryption &EncryptionHandler
+	multi_handler &MultiHandler
+	friends &SteamFriends
+	user &SteamUser
 }
 
 pub fn new_steamclient() &SteamClient {
 	s := &SteamClient {
 		encryption: &EncryptionHandler{}
+		multi_handler: &MultiHandler{}
+		friends: &SteamFriends{}
+		user: &SteamUser{}
 	}
 
 	s.handlers << s
+	s.handlers << s.multi_handler
 	s.handlers << s.encryption
+	s.handlers << s.friends
+	s.handlers << s.user
 
 	for h in s.handlers {
 		h.initialise(mut s)
 	}
 
 	return s
+}
+
+pub fn (mut s SteamClient) shutdown() ? {
+	return none
 }
 
 pub fn (_ SteamClient) initialise(mut s SteamClient) ? {
@@ -65,9 +80,7 @@ pub fn (mut s SteamClient) connected() bool {
 pub fn (mut s SteamClient) frame() ? {
 	for {
 		if p := s.read_packet() {
-			if msg := s.process_packet(p) {
-				s.dispatch(msg)?
-			}
+			s.process_and_dispatch_packet(p)?
 		} else {
 			break
 		}
@@ -84,13 +97,18 @@ fn (mut s SteamClient) read_packet() ?Packet {
 	return s.encryption.decrypt_packet(Packet {header body})
 }
 
-fn (mut s SteamClient) fake_packet(body []byte) ? {
-	decrypted := s.encryption.decrypt_packet(Packet { TcpHeader {size: body.len magic: 0} body})?
-	s.process_packet(decrypted)?
+// process_and_dispatch_packet processes a packet and then dispatches 
+// the message that comes from it (if any)
+fn (mut s SteamClient) process_and_dispatch_packet(p Packet) ? {
+	if msg := s.process_packet(p) {
+		s.dispatch(msg)?
+		msg.body.free()
+	}
 }
 
 fn (mut s SteamClient) process_packet(p Packet) ?Message {
 	base_header := &MsgBaseHeader(p.body.data)
+
 	is_proto, msg := base_header.decompose()
 
 	println('$msg $is_proto')
@@ -106,29 +124,32 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 				full_header := &MsgHeader(p.body.data)
 				source_job_id = full_header.source_job_id
 				target_job_id = full_header.target_job_id
-				msg_body = p.body[sizeof(MsgHeader)..]
+				msg_body = p.body[sizeof(MsgHeader)..].clone()
 			}
 			else {}
 		}
 	} else {
 		full_header := &MsgHdrProtobuf(p.body.data)
-		header := proto.cmsgprotobufheader_unpack(p.body[sizeof(MsgHdrProtobuf)..int(sizeof(MsgHdrProtobuf))+full_header.header_length])?
-		println('$header')
 
-		match msg {
-			.client_log_on_response {
-				// TODO remove
-				sliced := p.body[int(sizeof(MsgHdrProtobuf))+full_header.header_length..]
-				message := proto.cmsgclientlogonresponse_unpack(sliced)?
-				
-				println('$message')
-				println('$message.eresult')
+		if full_header.header_length > 0 {
+			header := proto.cmsgprotobufheader_unpack(
+				p.body[sizeof(MsgHdrProtobuf)..int(sizeof(MsgHdrProtobuf))+full_header.header_length])?
+
+			if header.has_steamid {
+				s.steam_id = header.steamid
 			}
 
-			else {
-				println('unknown message')
+			if header.has_client_sessionid {
+				s.session_id = header.client_sessionid
 			}
+			source_job_id = header.jobid_source
+			target_job_id = header.jobid_target
+		} else {
+			source_job_id = ~0
+			target_job_id = ~0
 		}
+
+		msg_body = p.body[int(sizeof(MsgHdrProtobuf))+full_header.header_length..].clone()
 	}
 
 	return Message {
@@ -141,25 +162,23 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 
 fn (mut s SteamClient) dispatch(m Message) ? {
 	for h in s.handlers {
-		h.handle_msg(m)
+		h.handle_msg(m)?
 	}
 }
 
 fn (mut s SteamClient) handle_msg(m Message) ? {
 }
 
-fn (mut s SteamClient) write_packet(mut data []byte) ? {
+fn (mut s SteamClient) write_packet(data []byte) ? {
 	mut p := Packet {
 		TcpHeader {	data.len }
 		data
 	}
 	p = s.encryption.encrypt_packet(p)?
 	mut body := p.body
-	val := byte(0)
-	// prepend 8 bytes for packet header
-	// TODO careful this doesnt do what we want at all 
-	// and just reads random crap off of the stack!!!!
-	body.prepend_many(val, int(sizeof(TcpHeader)))
+	pad := []byte{len:8, init:0}
+	defer {pad.free()}
+	body.prepend(pad)
 
 	mut packet_header := &TcpHeader(body.data)
 	packet_header.size = p.header.size
@@ -174,8 +193,8 @@ fn (mut s SteamClient) write_non_protobuf_message(m Message) ? {
 	}
 	// Prepend 20 bytes for msg header
 	mut body := m.body
-	val := byte(0)
-	body.prepend_many(val, int(sizeof(MsgHeader)))
+	pad := []byte{len:20}
+	body.prepend_many(pad, int(sizeof(MsgHeader)))
 
 	mut message_header := &MsgHeader(body.data)
 	message_header.msg = m.msg
@@ -185,7 +204,7 @@ fn (mut s SteamClient) write_non_protobuf_message(m Message) ? {
 	s.write_packet(body)?
 }
 
-fn (mut s SteamClient) write_message(m Message) ? {
+fn (mut s SteamClient) write_message_internal(m Message) ? {
 	mut header := proto.CMsgProtoBufHeader{}
 
 	header.has_steamid = true
@@ -213,30 +232,18 @@ fn (mut s SteamClient) write_message(m Message) ? {
 	s.write_packet(full_message)
 }
 
-pub fn steamclient_write_message(mut s SteamClient, job u64, m Msg, body &Packable, size u32) ? {
-	s.write_message(Message {
+pub fn (mut s SteamClient) write_message(job u64, m Msg, body &Packable) ? {
+	s.write_message_internal(Message {
 		target: job
 		msg: m
 		body: body.pack()
 	})
 }
 
-pub fn (mut s SteamClient) logon(username, password string) ? {
-	mut logon_message := proto.CMsgClientLogon{}
+pub fn (s &SteamClient) friends() &SteamFriends {
+	return s.friends
+}
 
-	logon_message.has_protocol_version = true
-	logon_message.protocol_version = 65575
-
-	logon_message.has_account_name = true
-	logon_message.account_name = username
-
-	logon_message.has_password = true
-	logon_message.password = password
-
-	logon_message.has_cell_id = true
-	logon_message.cell_id = 4
-
-	packed := logon_message.pack()
-
-	steamclient_write_message(mut s, 0, .client_logon, &logon_message, sizeof(proto.CMsgClientLogon))
+pub fn (s &SteamClient) user() &SteamUser {
+	return s.user
 }

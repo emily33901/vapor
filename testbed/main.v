@@ -25,6 +25,7 @@ fn pump (mut s vapor.SteamClient) {
 
 fn main() {
 	mut s := vapor.new_steamclient()
+	mut user := s.user()
 
 	go pump(mut s)
 
@@ -37,7 +38,7 @@ fn main() {
 	ssecrets := os.read_file('secrets.json')?
 	secrets := json.decode(Secrets, ssecrets)?
 
-	s.logon(secrets.username, secrets.password)?
+	user.logon(secrets.username, secrets.password)?
 
 	for {
 		// wait for stuff to happen i guess

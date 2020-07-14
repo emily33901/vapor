@@ -1,12 +1,14 @@
 module vapor
 
 struct SteamFriends {
+mut:
+	s &SteamClient
 }
 
-pub fn (mut s SteamFriends) initialise() ? {
-	
+pub fn (mut f SteamFriends) initialise(mut s SteamClient) ? {
+	f.s = s
 }
 
-pub fn (mut s SteamFriends) handle_msg(mut m Message) ? {
+pub fn (mut f SteamFriends) handle_msg(m Message) ? {
 
 }
