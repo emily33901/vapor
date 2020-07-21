@@ -1,6 +1,8 @@
 module vapor
 
-enum Msg
+// Msg is all possible messages that a steam server
+// (cmclient, cdnclient ...) could send to a client
+pub enum Msg
 {
 	invalid = 0
 	multi = 1
@@ -2015,7 +2017,7 @@ enum Msg
 	server_secret_changed = 12100
 }
 
-pub fn (m Msg) make_proto() u32 {
+fn (m Msg) make_proto() u32 {
 	return msg_make_proto(m)
 }
 

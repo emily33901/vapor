@@ -26,7 +26,11 @@
 				</div>
 				<nav class="content hidden">
 					<ul>
-						<li class="open"><a href="#new_steamclient">new_steamclient</a>        <ul>
+						<li class="open"><a href="#Constants">Constants</a></li>
+<li class="open"><a href="#Msg">Msg</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#new_steamclient">new_steamclient</a>        <ul>
 </ul>
 </li>
 <li class="open"><a href="#steamid">steamid</a>        <ul>
@@ -47,18 +51,6 @@
 <li><a href="#SteamClient.write_message">write_message</a></li>
 </ul>
 </li>
-<li class="open"><a href="#">SteamFriends</a>        <ul>
-<li><a href="#SteamFriends.handle_msg">handle_msg</a></li>
-<li><a href="#SteamFriends.initialise">initialise</a></li>
-</ul>
-</li>
-<li class="open"><a href="#">Msg</a>        <ul>
-<li><a href="#Msg.make_proto">make_proto</a></li>
-</ul>
-</li>
-<li class="open"><a href="#LoggedOffCallback">LoggedOffCallback</a>        <ul>
-</ul>
-</li>
 <li class="open"><a href="#">SteamUser</a>        <ul>
 <li><a href="#SteamUser.logoff">logoff</a></li>
 <li><a href="#SteamUser.logon">logon</a></li>
@@ -67,9 +59,12 @@
 <li class="open"><a href="#LoggedOnCallback">LoggedOnCallback</a>        <ul>
 </ul>
 </li>
-<li class="open"><a href="#">MultiHandler</a>        <ul>
-<li><a href="#MultiHandler.handle_msg">handle_msg</a></li>
-<li><a href="#MultiHandler.initialise">initialise</a></li>
+<li class="open"><a href="#LoggedOffCallback">LoggedOffCallback</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#">SteamFriends</a>        <ul>
+<li><a href="#SteamFriends.handle_msg">handle_msg</a></li>
+<li><a href="#SteamFriends.initialise">initialise</a></li>
 </ul>
 </li>
 <li class="open"><a href="#Callback">Callback</a>        <ul>
@@ -91,15 +86,1458 @@
 			<div class="doc-container">
 				<div class="doc-content">
 					<section id="vapor" class="doc-node">
-<div class="title"><h1>vapor</h1></div></section>
+<div class="title"><h1>vapor</h1></div><h1>Vapor</h1>
+<p>Vapor is a steamkit implementation for the V programming language. Based on the work I did for <a href="https://github.com/emily33901/argonx">argonx</a>, but with different goals.
+Vapor intends to be the <a href="https://github.com/SteamRE/SteamKit">SteamKit</a> of the V programming world. No grandeur ideas of replacing <code>steamclient.dll</code> here, just a way to interface with Steam.</p>
+<p>Vapor uses the components that I have been building out over time after realising that I would need to provide them myself. If you are interested in using any of them they are (in no particular order):</p>
+<ul>
+<li>Protobuf support: <a href="https://github.com/emily33901/vproto">vproto</a></li>
+<li>RSA and AES encryption: <a href="https://github.com/emily33901/vtomcrypt">vtomcrypt</a></li>
+<li>TCP Networking support: <a href="https://github.com/emily33901/vlang-net">net</a></li>
+<li>Simple Zip compression: <a href="https://github.com/emily33901/varchive">archive</a></li>
+</ul>
+<p>Vapor is still a work in progress.</p></section>
 
+<section id="Constants" class="doc-node const">
+<div class="title"><h2>Constants <a href="#Constants">#</a></h2></div><pre class="signature"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	default_steamid <span class="token operator">=</span> <span class="token function">SteamId</span><span class="token punctuation">(</span><span class="token number">76561197960265728</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<p>default_steamid is the default universe 1, type .individual, instance 1, id 0 steamid</p>
+</section>
+<section id="Msg" class="doc-node">
+<div class="title"><h2>Msg <a href="#Msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">enum</span> <span class="token symbol">Msg</span> <span class="token punctuation">{</span>
+	invalid <span class="token operator">=</span> <span class="token number">0</span>
+	multi <span class="token operator">=</span> <span class="token number">1</span>
+	protobuf_wrapped <span class="token operator">=</span> <span class="token number">2</span>
+	generic_reply <span class="token operator">=</span> <span class="token number">100</span>
+	dest_job_failed <span class="token operator">=</span> <span class="token number">113</span>
+	alert <span class="token operator">=</span> <span class="token number">115</span>
+	scid_request <span class="token operator">=</span> <span class="token number">120</span>
+	scid_response <span class="token operator">=</span> <span class="token number">121</span>
+	job_heartbeat <span class="token operator">=</span> <span class="token number">123</span>
+	hub_connect <span class="token operator">=</span> <span class="token number">124</span>
+	subscribe <span class="token operator">=</span> <span class="token number">126</span>
+	route_message <span class="token operator">=</span> <span class="token number">127</span>
+	wg_request <span class="token operator">=</span> <span class="token number">130</span>
+	wg_response <span class="token operator">=</span> <span class="token number">131</span>
+	keep_alive <span class="token operator">=</span> <span class="token number">132</span>
+	web_api_job_request <span class="token operator">=</span> <span class="token number">133</span>
+	web_api_job_response <span class="token operator">=</span> <span class="token number">134</span>
+	client_session_start <span class="token operator">=</span> <span class="token number">135</span>
+	client_session_end <span class="token operator">=</span> <span class="token number">136</span>
+	client_session_update <span class="token operator">=</span> <span class="token number">137</span>
+	ping <span class="token operator">=</span> <span class="token number">139</span>
+	ping_response <span class="token operator">=</span> <span class="token number">140</span>
+	stats <span class="token operator">=</span> <span class="token number">141</span>
+	request_full_stats_block <span class="token operator">=</span> <span class="token number">142</span>
+	load_dbo_cache_item <span class="token operator">=</span> <span class="token number">143</span>
+	load_dbo_cache_item_response <span class="token operator">=</span> <span class="token number">144</span>
+	invalidate_dbo_cache_items <span class="token operator">=</span> <span class="token number">145</span>
+	service_method <span class="token operator">=</span> <span class="token number">146</span>
+	service_method_response <span class="token operator">=</span> <span class="token number">147</span>
+	client_package_versions <span class="token operator">=</span> <span class="token number">148</span>
+	timestamp_request <span class="token operator">=</span> <span class="token number">149</span>
+	timestamp_response <span class="token operator">=</span> <span class="token number">150</span>
+	service_method_call_from_client <span class="token operator">=</span> <span class="token number">151</span>
+	service_method_send_to_client <span class="token operator">=</span> <span class="token number">152</span>
+	assign_sys_id <span class="token operator">=</span> <span class="token number">200</span>
+	exit <span class="token operator">=</span> <span class="token number">201</span>
+	dir_request <span class="token operator">=</span> <span class="token number">202</span>
+	dir_response <span class="token operator">=</span> <span class="token number">203</span>
+	zip_request <span class="token operator">=</span> <span class="token number">204</span>
+	zip_response <span class="token operator">=</span> <span class="token number">205</span>
+	update_record_response <span class="token operator">=</span> <span class="token number">215</span>
+	update_credit_card_request <span class="token operator">=</span> <span class="token number">221</span>
+	update_user_ban_response <span class="token operator">=</span> <span class="token number">225</span>
+	prepare_to_exit <span class="token operator">=</span> <span class="token number">226</span>
+	content_description_update <span class="token operator">=</span> <span class="token number">227</span>
+	test_reset_server <span class="token operator">=</span> <span class="token number">228</span>
+	universe_changed <span class="token operator">=</span> <span class="token number">229</span>
+	shell_config_info_update <span class="token operator">=</span> <span class="token number">230</span>
+	request_windows_event_log_entries <span class="token operator">=</span> <span class="token number">233</span>
+	provide_windows_event_log_entries <span class="token operator">=</span> <span class="token number">234</span>
+	shell_search_logs <span class="token operator">=</span> <span class="token number">235</span>
+	shell_search_logs_response <span class="token operator">=</span> <span class="token number">236</span>
+	shell_check_windows_updates <span class="token operator">=</span> <span class="token number">237</span>
+	shell_check_windows_updates_response <span class="token operator">=</span> <span class="token number">238</span>
+	test_flush_delayed_sql <span class="token operator">=</span> <span class="token number">240</span>
+	test_flush_delayed_sql_response <span class="token operator">=</span> <span class="token number">241</span>
+	ensure_execute_scheduled_task_test <span class="token operator">=</span> <span class="token number">242</span>
+	ensure_execute_scheduled_task_response_test <span class="token operator">=</span> <span class="token number">243</span>
+	update_scheduled_task_enable_state_test <span class="token operator">=</span> <span class="token number">244</span>
+	update_scheduled_task_enable_state_response_test <span class="token operator">=</span> <span class="token number">245</span>
+	content_description_delta_update <span class="token operator">=</span> <span class="token number">246</span>
+	heartbeat <span class="token operator">=</span> <span class="token number">300</span>
+	shell_failed <span class="token operator">=</span> <span class="token number">301</span>
+	exit_shells <span class="token operator">=</span> <span class="token number">307</span>
+	exit_shell <span class="token operator">=</span> <span class="token number">308</span>
+	graceful_exit_shell <span class="token operator">=</span> <span class="token number">309</span>
+	license_processing_complete <span class="token operator">=</span> <span class="token number">316</span>
+	set_test_flag <span class="token operator">=</span> <span class="token number">317</span>
+	queued_emails_complete <span class="token operator">=</span> <span class="token number">318</span>
+	gm_report_php_error <span class="token operator">=</span> <span class="token number">319</span>
+	gmdrm_sync <span class="token operator">=</span> <span class="token number">320</span>
+	physical_box_inventory <span class="token operator">=</span> <span class="token number">321</span>
+	update_config_file <span class="token operator">=</span> <span class="token number">322</span>
+	test_init_db <span class="token operator">=</span> <span class="token number">323</span>
+	gm_write_config_to_sql <span class="token operator">=</span> <span class="token number">324</span>
+	gm_load_activation_codes <span class="token operator">=</span> <span class="token number">325</span>
+	gm_queue_for_fbs <span class="token operator">=</span> <span class="token number">326</span>
+	gm_schema_conversion_results <span class="token operator">=</span> <span class="token number">327</span>
+	gm_write_shell_failure_to_sql <span class="token operator">=</span> <span class="token number">329</span>
+	gm_write_stats_to_sos <span class="token operator">=</span> <span class="token number">330</span>
+	gm_get_service_method_routing <span class="token operator">=</span> <span class="token number">331</span>
+	gm_get_service_method_routing_response <span class="token operator">=</span> <span class="token number">332</span>
+	gm_convert_user_wallets <span class="token operator">=</span> <span class="token number">333</span>
+	gm_test_next_build_schema_conversion <span class="token operator">=</span> <span class="token number">334</span>
+	gm_test_next_build_schema_conversion_response <span class="token operator">=</span> <span class="token number">335</span>
+	expect_shell_restart <span class="token operator">=</span> <span class="token number">336</span>
+	hot_fix_progress <span class="token operator">=</span> <span class="token number">337</span>
+	ais_request_content_description <span class="token operator">=</span> <span class="token number">402</span>
+	ais_update_app_info <span class="token operator">=</span> <span class="token number">403</span>
+	ais_get_package_change_number <span class="token operator">=</span> <span class="token number">405</span>
+	ais_get_package_change_number_response <span class="token operator">=</span> <span class="token number">406</span>
+	ai_get_app_gc_flags <span class="token operator">=</span> <span class="token number">423</span>
+	ai_get_app_gc_flags_response <span class="token operator">=</span> <span class="token number">424</span>
+	ai_get_app_list <span class="token operator">=</span> <span class="token number">425</span>
+	ai_get_app_list_response <span class="token operator">=</span> <span class="token number">426</span>
+	ais_get_coupon_definition <span class="token operator">=</span> <span class="token number">429</span>
+	ais_get_coupon_definition_response <span class="token operator">=</span> <span class="token number">430</span>
+	ais_update_slave_content_description <span class="token operator">=</span> <span class="token number">431</span>
+	ais_update_slave_content_description_response <span class="token operator">=</span> <span class="token number">432</span>
+	ais_test_enable_gc <span class="token operator">=</span> <span class="token number">433</span>
+	am_update_user_ban_request <span class="token operator">=</span> <span class="token number">504</span>
+	am_add_license <span class="token operator">=</span> <span class="token number">505</span>
+	am_send_system_im_to_user <span class="token operator">=</span> <span class="token number">508</span>
+	am_extend_license <span class="token operator">=</span> <span class="token number">509</span>
+	am_add_minutes_to_license <span class="token operator">=</span> <span class="token number">510</span>
+	am_cancel_license <span class="token operator">=</span> <span class="token number">511</span>
+	am_init_purchase <span class="token operator">=</span> <span class="token number">512</span>
+	am_purchase_response <span class="token operator">=</span> <span class="token number">513</span>
+	am_get_final_price <span class="token operator">=</span> <span class="token number">514</span>
+	am_get_final_price_response <span class="token operator">=</span> <span class="token number">515</span>
+	am_get_legacy_game_key <span class="token operator">=</span> <span class="token number">516</span>
+	am_get_legacy_game_key_response <span class="token operator">=</span> <span class="token number">517</span>
+	am_find_hung_transactions <span class="token operator">=</span> <span class="token number">518</span>
+	am_set_account_trusted_request <span class="token operator">=</span> <span class="token number">519</span>
+	am_cancel_purchase <span class="token operator">=</span> <span class="token number">522</span>
+	am_new_challenge <span class="token operator">=</span> <span class="token number">523</span>
+	am_load_oem_tickets <span class="token operator">=</span> <span class="token number">524</span>
+	am_fix_pending_purchase <span class="token operator">=</span> <span class="token number">525</span>
+	am_fix_pending_purchase_response <span class="token operator">=</span> <span class="token number">526</span>
+	am_is_user_banned <span class="token operator">=</span> <span class="token number">527</span>
+	am_register_key <span class="token operator">=</span> <span class="token number">528</span>
+	am_load_activation_codes <span class="token operator">=</span> <span class="token number">529</span>
+	am_load_activation_codes_response <span class="token operator">=</span> <span class="token number">530</span>
+	am_lookup_key_response <span class="token operator">=</span> <span class="token number">531</span>
+	am_lookup_key <span class="token operator">=</span> <span class="token number">532</span>
+	am_chat_cleanup <span class="token operator">=</span> <span class="token number">533</span>
+	am_clan_cleanup <span class="token operator">=</span> <span class="token number">534</span>
+	am_fix_pending_refund <span class="token operator">=</span> <span class="token number">535</span>
+	am_reverse_chargeback <span class="token operator">=</span> <span class="token number">536</span>
+	am_reverse_chargeback_response <span class="token operator">=</span> <span class="token number">537</span>
+	am_clan_cleanup_list <span class="token operator">=</span> <span class="token number">538</span>
+	am_get_licenses <span class="token operator">=</span> <span class="token number">539</span>
+	am_get_licenses_response <span class="token operator">=</span> <span class="token number">540</span>
+	am_send_cart_repurchase <span class="token operator">=</span> <span class="token number">541</span>
+	am_send_cart_repurchase_response <span class="token operator">=</span> <span class="token number">542</span>
+	allow_user_to_play_query <span class="token operator">=</span> <span class="token number">550</span>
+	allow_user_to_play_response <span class="token operator">=</span> <span class="token number">551</span>
+	am_verfiy_user <span class="token operator">=</span> <span class="token number">552</span>
+	am_client_not_playing <span class="token operator">=</span> <span class="token number">553</span>
+	am_client_request_friendship <span class="token operator">=</span> <span class="token number">554</span>
+	am_relay_publish_status <span class="token operator">=</span> <span class="token number">555</span>
+	am_init_purchase_response <span class="token operator">=</span> <span class="token number">560</span>
+	am_revoke_purchase_response <span class="token operator">=</span> <span class="token number">561</span>
+	am_refresh_guest_passes <span class="token operator">=</span> <span class="token number">563</span>
+	am_grant_guest_passes <span class="token operator">=</span> <span class="token number">566</span>
+	am_clan_data_updated <span class="token operator">=</span> <span class="token number">567</span>
+	am_reload_account <span class="token operator">=</span> <span class="token number">568</span>
+	am_client_chat_msg_relay <span class="token operator">=</span> <span class="token number">569</span>
+	am_chat_multi <span class="token operator">=</span> <span class="token number">570</span>
+	am_client_chat_invite_relay <span class="token operator">=</span> <span class="token number">571</span>
+	am_chat_invite <span class="token operator">=</span> <span class="token number">572</span>
+	am_client_join_chat_relay <span class="token operator">=</span> <span class="token number">573</span>
+	am_client_chat_member_info_relay <span class="token operator">=</span> <span class="token number">574</span>
+	am_publish_chat_member_info <span class="token operator">=</span> <span class="token number">575</span>
+	am_client_accept_friend_invite <span class="token operator">=</span> <span class="token number">576</span>
+	am_chat_enter <span class="token operator">=</span> <span class="token number">577</span>
+	am_client_publish_removal_from_source <span class="token operator">=</span> <span class="token number">578</span>
+	am_chat_action_result <span class="token operator">=</span> <span class="token number">579</span>
+	am_find_accounts <span class="token operator">=</span> <span class="token number">580</span>
+	am_find_accounts_response <span class="token operator">=</span> <span class="token number">581</span>
+	am_request_account_data <span class="token operator">=</span> <span class="token number">582</span>
+	am_request_account_data_response <span class="token operator">=</span> <span class="token number">583</span>
+	am_set_account_flags <span class="token operator">=</span> <span class="token number">584</span>
+	am_create_clan <span class="token operator">=</span> <span class="token number">586</span>
+	am_create_clan_response <span class="token operator">=</span> <span class="token number">587</span>
+	am_get_clan_details <span class="token operator">=</span> <span class="token number">588</span>
+	am_get_clan_details_response <span class="token operator">=</span> <span class="token number">589</span>
+	am_set_persona_name <span class="token operator">=</span> <span class="token number">590</span>
+	am_set_avatar <span class="token operator">=</span> <span class="token number">591</span>
+	am_authenticate_user <span class="token operator">=</span> <span class="token number">592</span>
+	am_authenticate_user_response <span class="token operator">=</span> <span class="token number">593</span>
+	amp2_p_introducer_message <span class="token operator">=</span> <span class="token number">596</span>
+	client_chat_action <span class="token operator">=</span> <span class="token number">597</span>
+	am_client_chat_action_relay <span class="token operator">=</span> <span class="token number">598</span>
+	req_challenge <span class="token operator">=</span> <span class="token number">600</span>
+	vac_response <span class="token operator">=</span> <span class="token number">601</span>
+	req_challenge_test <span class="token operator">=</span> <span class="token number">602</span>
+	vs_mark_cheat <span class="token operator">=</span> <span class="token number">604</span>
+	vs_add_cheat <span class="token operator">=</span> <span class="token number">605</span>
+	vs_purge_code_mod_db <span class="token operator">=</span> <span class="token number">606</span>
+	vs_get_challenge_results <span class="token operator">=</span> <span class="token number">607</span>
+	vs_challenge_result_text <span class="token operator">=</span> <span class="token number">608</span>
+	vs_report_lingerer <span class="token operator">=</span> <span class="token number">609</span>
+	vs_request_managed_challenge <span class="token operator">=</span> <span class="token number">610</span>
+	vs_load_db_finished <span class="token operator">=</span> <span class="token number">611</span>
+	drm_build_blob_request <span class="token operator">=</span> <span class="token number">628</span>
+	drm_build_blob_response <span class="token operator">=</span> <span class="token number">629</span>
+	drm_resolve_guid_request <span class="token operator">=</span> <span class="token number">630</span>
+	drm_resolve_guid_response <span class="token operator">=</span> <span class="token number">631</span>
+	drm_variability_report <span class="token operator">=</span> <span class="token number">633</span>
+	drm_variability_report_response <span class="token operator">=</span> <span class="token number">634</span>
+	drm_stability_report <span class="token operator">=</span> <span class="token number">635</span>
+	drm_stability_report_response <span class="token operator">=</span> <span class="token number">636</span>
+	drm_details_report_request <span class="token operator">=</span> <span class="token number">637</span>
+	drm_details_report_response <span class="token operator">=</span> <span class="token number">638</span>
+	drm_process_file <span class="token operator">=</span> <span class="token number">639</span>
+	drm_admin_update <span class="token operator">=</span> <span class="token number">640</span>
+	drm_admin_update_response <span class="token operator">=</span> <span class="token number">641</span>
+	drm_sync <span class="token operator">=</span> <span class="token number">642</span>
+	drm_sync_response <span class="token operator">=</span> <span class="token number">643</span>
+	drm_process_file_response <span class="token operator">=</span> <span class="token number">644</span>
+	drm_empty_guid_cache <span class="token operator">=</span> <span class="token number">645</span>
+	drm_empty_guid_cache_response <span class="token operator">=</span> <span class="token number">646</span>
+	client_heart_beat <span class="token operator">=</span> <span class="token number">703</span>
+	client_vac_response <span class="token operator">=</span> <span class="token number">704</span>
+	client_log_off <span class="token operator">=</span> <span class="token number">706</span>
+	client_no_udp_connectivity <span class="token operator">=</span> <span class="token number">707</span>
+	client_connection_stats <span class="token operator">=</span> <span class="token number">710</span>
+	client_ping_response <span class="token operator">=</span> <span class="token number">712</span>
+	client_remove_friend <span class="token operator">=</span> <span class="token number">714</span>
+	client_games_played_no_data_blob <span class="token operator">=</span> <span class="token number">715</span>
+	client_change_status <span class="token operator">=</span> <span class="token number">716</span>
+	client_vac_status_response <span class="token operator">=</span> <span class="token number">717</span>
+	client_friend_msg <span class="token operator">=</span> <span class="token number">718</span>
+	client_system_im <span class="token operator">=</span> <span class="token number">726</span>
+	client_system_im_ack <span class="token operator">=</span> <span class="token number">727</span>
+	client_get_licenses <span class="token operator">=</span> <span class="token number">728</span>
+	client_get_legacy_game_key <span class="token operator">=</span> <span class="token number">730</span>
+	client_ack_vac_ban2 <span class="token operator">=</span> <span class="token number">732</span>
+	client_get_purchase_receipts <span class="token operator">=</span> <span class="token number">736</span>
+	client_ack_guest_pass <span class="token operator">=</span> <span class="token number">740</span>
+	client_redeem_guest_pass <span class="token operator">=</span> <span class="token number">741</span>
+	client_games_played <span class="token operator">=</span> <span class="token number">742</span>
+	client_register_key <span class="token operator">=</span> <span class="token number">743</span>
+	client_invite_user_to_clan <span class="token operator">=</span> <span class="token number">744</span>
+	client_acknowledge_clan_invite <span class="token operator">=</span> <span class="token number">745</span>
+	client_purchase_with_machine_id <span class="token operator">=</span> <span class="token number">746</span>
+	client_app_usage_event <span class="token operator">=</span> <span class="token number">747</span>
+	client_log_on_response <span class="token operator">=</span> <span class="token number">751</span>
+	client_set_heartbeat_rate <span class="token operator">=</span> <span class="token number">755</span>
+	client_logged_off <span class="token operator">=</span> <span class="token number">757</span>
+	gs_approve <span class="token operator">=</span> <span class="token number">758</span>
+	gs_deny <span class="token operator">=</span> <span class="token number">759</span>
+	gs_kick <span class="token operator">=</span> <span class="token number">760</span>
+	client_create_acct_response <span class="token operator">=</span> <span class="token number">761</span>
+	client_purchase_response <span class="token operator">=</span> <span class="token number">763</span>
+	client_ping <span class="token operator">=</span> <span class="token number">764</span>
+	client_nop <span class="token operator">=</span> <span class="token number">765</span>
+	client_persona_state <span class="token operator">=</span> <span class="token number">766</span>
+	client_friends_list <span class="token operator">=</span> <span class="token number">767</span>
+	client_account_info <span class="token operator">=</span> <span class="token number">768</span>
+	client_news_update <span class="token operator">=</span> <span class="token number">771</span>
+	client_game_connect_deny <span class="token operator">=</span> <span class="token number">773</span>
+	gs_status_reply <span class="token operator">=</span> <span class="token number">774</span>
+	client_game_connect_tokens <span class="token operator">=</span> <span class="token number">779</span>
+	client_license_list <span class="token operator">=</span> <span class="token number">780</span>
+	client_vac_ban_status <span class="token operator">=</span> <span class="token number">782</span>
+	client_cm_list <span class="token operator">=</span> <span class="token number">783</span>
+	client_encrypt_pct <span class="token operator">=</span> <span class="token number">784</span>
+	client_get_legacy_game_key_response <span class="token operator">=</span> <span class="token number">785</span>
+	client_add_friend <span class="token operator">=</span> <span class="token number">791</span>
+	client_add_friend_response <span class="token operator">=</span> <span class="token number">792</span>
+	client_ack_guest_pass_response <span class="token operator">=</span> <span class="token number">796</span>
+	client_redeem_guest_pass_response <span class="token operator">=</span> <span class="token number">797</span>
+	client_update_guest_passes_list <span class="token operator">=</span> <span class="token number">798</span>
+	client_chat_msg <span class="token operator">=</span> <span class="token number">799</span>
+	client_chat_invite <span class="token operator">=</span> <span class="token number">800</span>
+	client_join_chat <span class="token operator">=</span> <span class="token number">801</span>
+	client_chat_member_info <span class="token operator">=</span> <span class="token number">802</span>
+	client_password_change_response <span class="token operator">=</span> <span class="token number">805</span>
+	client_chat_enter <span class="token operator">=</span> <span class="token number">807</span>
+	client_friend_removed_from_source <span class="token operator">=</span> <span class="token number">808</span>
+	client_create_chat <span class="token operator">=</span> <span class="token number">809</span>
+	client_create_chat_response <span class="token operator">=</span> <span class="token number">810</span>
+	client_p2_p_introducer_message <span class="token operator">=</span> <span class="token number">813</span>
+	client_chat_action_result <span class="token operator">=</span> <span class="token number">814</span>
+	client_request_friend_data <span class="token operator">=</span> <span class="token number">815</span>
+	client_get_user_stats <span class="token operator">=</span> <span class="token number">818</span>
+	client_get_user_stats_response <span class="token operator">=</span> <span class="token number">819</span>
+	client_store_user_stats <span class="token operator">=</span> <span class="token number">820</span>
+	client_store_user_stats_response <span class="token operator">=</span> <span class="token number">821</span>
+	client_clan_state <span class="token operator">=</span> <span class="token number">822</span>
+	client_service_module <span class="token operator">=</span> <span class="token number">830</span>
+	client_service_call <span class="token operator">=</span> <span class="token number">831</span>
+	client_service_call_response <span class="token operator">=</span> <span class="token number">832</span>
+	client_nat_traversal_stat_event <span class="token operator">=</span> <span class="token number">839</span>
+	client_steam_usage_event <span class="token operator">=</span> <span class="token number">842</span>
+	client_check_password <span class="token operator">=</span> <span class="token number">845</span>
+	client_reset_password <span class="token operator">=</span> <span class="token number">846</span>
+	client_check_password_response <span class="token operator">=</span> <span class="token number">848</span>
+	client_reset_password_response <span class="token operator">=</span> <span class="token number">849</span>
+	client_session_token <span class="token operator">=</span> <span class="token number">850</span>
+	client_drm_problem_report <span class="token operator">=</span> <span class="token number">851</span>
+	client_set_ignore_friend <span class="token operator">=</span> <span class="token number">855</span>
+	client_set_ignore_friend_response <span class="token operator">=</span> <span class="token number">856</span>
+	client_get_app_ownership_ticket <span class="token operator">=</span> <span class="token number">857</span>
+	client_get_app_ownership_ticket_response <span class="token operator">=</span> <span class="token number">858</span>
+	client_get_lobby_list_response <span class="token operator">=</span> <span class="token number">860</span>
+	client_server_list <span class="token operator">=</span> <span class="token number">880</span>
+	client_email_change_response <span class="token operator">=</span> <span class="token number">891</span>
+	client_secret_qa_change_response <span class="token operator">=</span> <span class="token number">892</span>
+	client_drm_blob_request <span class="token operator">=</span> <span class="token number">896</span>
+	client_drm_blob_response <span class="token operator">=</span> <span class="token number">897</span>
+	gs_disconnect_notice <span class="token operator">=</span> <span class="token number">901</span>
+	gs_status <span class="token operator">=</span> <span class="token number">903</span>
+	gs_user_playing <span class="token operator">=</span> <span class="token number">905</span>
+	gs_status2 <span class="token operator">=</span> <span class="token number">906</span>
+	gs_status_update_unused <span class="token operator">=</span> <span class="token number">907</span>
+	gs_server_type <span class="token operator">=</span> <span class="token number">908</span>
+	gs_player_list <span class="token operator">=</span> <span class="token number">909</span>
+	gs_get_user_achievement_status <span class="token operator">=</span> <span class="token number">910</span>
+	gs_get_user_achievement_status_response <span class="token operator">=</span> <span class="token number">911</span>
+	gs_get_play_stats <span class="token operator">=</span> <span class="token number">918</span>
+	gs_get_play_stats_response <span class="token operator">=</span> <span class="token number">919</span>
+	gs_get_user_group_status <span class="token operator">=</span> <span class="token number">920</span>
+	am_get_user_group_status <span class="token operator">=</span> <span class="token number">921</span>
+	am_get_user_group_status_response <span class="token operator">=</span> <span class="token number">922</span>
+	gs_get_user_group_status_response <span class="token operator">=</span> <span class="token number">923</span>
+	gs_get_reputation <span class="token operator">=</span> <span class="token number">936</span>
+	gs_get_reputation_response <span class="token operator">=</span> <span class="token number">937</span>
+	gs_associate_with_clan <span class="token operator">=</span> <span class="token number">938</span>
+	gs_associate_with_clan_response <span class="token operator">=</span> <span class="token number">939</span>
+	gs_compute_new_player_compatibility <span class="token operator">=</span> <span class="token number">940</span>
+	gs_compute_new_player_compatibility_response <span class="token operator">=</span> <span class="token number">941</span>
+	admin_cmd <span class="token operator">=</span> <span class="token number">1000</span>
+	admin_cmd_response <span class="token operator">=</span> <span class="token number">1004</span>
+	admin_log_listen_request <span class="token operator">=</span> <span class="token number">1005</span>
+	admin_log_event <span class="token operator">=</span> <span class="token number">1006</span>
+	universe_data <span class="token operator">=</span> <span class="token number">1010</span>
+	admin_spew <span class="token operator">=</span> <span class="token number">1019</span>
+	admin_console_title <span class="token operator">=</span> <span class="token number">1020</span>
+	admin_gc_spew <span class="token operator">=</span> <span class="token number">1023</span>
+	admin_gc_command <span class="token operator">=</span> <span class="token number">1024</span>
+	admin_gc_get_command_list <span class="token operator">=</span> <span class="token number">1025</span>
+	admin_gc_get_command_list_response <span class="token operator">=</span> <span class="token number">1026</span>
+	fbs_connection_data <span class="token operator">=</span> <span class="token number">1027</span>
+	admin_msg_spew <span class="token operator">=</span> <span class="token number">1028</span>
+	fbs_req_version <span class="token operator">=</span> <span class="token number">1100</span>
+	fbs_version_info <span class="token operator">=</span> <span class="token number">1101</span>
+	fbs_force_refresh <span class="token operator">=</span> <span class="token number">1102</span>
+	fbs_force_bounce <span class="token operator">=</span> <span class="token number">1103</span>
+	fbs_deploy_package <span class="token operator">=</span> <span class="token number">1104</span>
+	fbs_deploy_response <span class="token operator">=</span> <span class="token number">1105</span>
+	fbs_update_bootstrapper <span class="token operator">=</span> <span class="token number">1106</span>
+	fbs_set_state <span class="token operator">=</span> <span class="token number">1107</span>
+	fbs_apply_os_updates <span class="token operator">=</span> <span class="token number">1108</span>
+	fbs_run_cmd_script <span class="token operator">=</span> <span class="token number">1109</span>
+	fbs_reboot_box <span class="token operator">=</span> <span class="token number">1110</span>
+	fbs_set_big_brother_mode <span class="token operator">=</span> <span class="token number">1111</span>
+	fbs_minidump_server <span class="token operator">=</span> <span class="token number">1112</span>
+	fbs_deploy_hot_fix_package <span class="token operator">=</span> <span class="token number">1114</span>
+	fbs_deploy_hot_fix_response <span class="token operator">=</span> <span class="token number">1115</span>
+	fbs_download_hot_fix <span class="token operator">=</span> <span class="token number">1116</span>
+	fbs_download_hot_fix_response <span class="token operator">=</span> <span class="token number">1117</span>
+	fbs_update_target_config_file <span class="token operator">=</span> <span class="token number">1118</span>
+	fbs_apply_account_cred <span class="token operator">=</span> <span class="token number">1119</span>
+	fbs_apply_account_cred_response <span class="token operator">=</span> <span class="token number">1120</span>
+	fbs_set_shell_count <span class="token operator">=</span> <span class="token number">1121</span>
+	fbs_terminate_shell <span class="token operator">=</span> <span class="token number">1122</span>
+	fbs_query_gm_for_request <span class="token operator">=</span> <span class="token number">1123</span>
+	fbs_query_gm_response <span class="token operator">=</span> <span class="token number">1124</span>
+	fbs_terminate_zombies <span class="token operator">=</span> <span class="token number">1125</span>
+	fbs_info_from_bootstrapper <span class="token operator">=</span> <span class="token number">1126</span>
+	fbs_reboot_box_response <span class="token operator">=</span> <span class="token number">1127</span>
+	fbs_bootstrapper_package_request <span class="token operator">=</span> <span class="token number">1128</span>
+	fbs_bootstrapper_package_response <span class="token operator">=</span> <span class="token number">1129</span>
+	fbs_bootstrapper_get_package_chunk <span class="token operator">=</span> <span class="token number">1130</span>
+	fbs_bootstrapper_get_package_chunk_response <span class="token operator">=</span> <span class="token number">1131</span>
+	fbs_bootstrapper_package_transfer_progress <span class="token operator">=</span> <span class="token number">1132</span>
+	fbs_restart_bootstrapper <span class="token operator">=</span> <span class="token number">1133</span>
+	fbs_pause_frozen_dumps <span class="token operator">=</span> <span class="token number">1134</span>
+	file_xfer_request <span class="token operator">=</span> <span class="token number">1200</span>
+	file_xfer_response <span class="token operator">=</span> <span class="token number">1201</span>
+	file_xfer_data <span class="token operator">=</span> <span class="token number">1202</span>
+	file_xfer_end <span class="token operator">=</span> <span class="token number">1203</span>
+	file_xfer_data_ack <span class="token operator">=</span> <span class="token number">1204</span>
+	channel_auth_challenge <span class="token operator">=</span> <span class="token number">1300</span>
+	channel_auth_response <span class="token operator">=</span> <span class="token number">1301</span>
+	channel_auth_result <span class="token operator">=</span> <span class="token number">1302</span>
+	channel_encrypt_request <span class="token operator">=</span> <span class="token number">1303</span>
+	channel_encrypt_response <span class="token operator">=</span> <span class="token number">1304</span>
+	channel_encrypt_result <span class="token operator">=</span> <span class="token number">1305</span>
+	bs_purchase_start <span class="token operator">=</span> <span class="token number">1401</span>
+	bs_purchase_response <span class="token operator">=</span> <span class="token number">1402</span>
+	bs_authenticate_cc_trans <span class="token operator">=</span> <span class="token number">1403</span>
+	bs_authenticate_cc_trans_response <span class="token operator">=</span> <span class="token number">1404</span>
+	bs_settle_complete <span class="token operator">=</span> <span class="token number">1406</span>
+	bs_init_pay_pal_txn <span class="token operator">=</span> <span class="token number">1408</span>
+	bs_init_pay_pal_txn_response <span class="token operator">=</span> <span class="token number">1409</span>
+	bs_get_pay_pal_user_info <span class="token operator">=</span> <span class="token number">1410</span>
+	bs_get_pay_pal_user_info_response <span class="token operator">=</span> <span class="token number">1411</span>
+	bs_payment_instr_ban <span class="token operator">=</span> <span class="token number">1417</span>
+	bs_payment_instr_ban_response <span class="token operator">=</span> <span class="token number">1418</span>
+	bs_init_gc_bank_xfer_txn <span class="token operator">=</span> <span class="token number">1421</span>
+	bs_init_gc_bank_xfer_txn_response <span class="token operator">=</span> <span class="token number">1422</span>
+	bs_commit_gc_txn <span class="token operator">=</span> <span class="token number">1425</span>
+	bs_query_transaction_status <span class="token operator">=</span> <span class="token number">1426</span>
+	bs_query_transaction_status_response <span class="token operator">=</span> <span class="token number">1427</span>
+	bs_query_payment_inst_usage <span class="token operator">=</span> <span class="token number">1431</span>
+	bs_query_payment_inst_response <span class="token operator">=</span> <span class="token number">1432</span>
+	bs_query_txn_extended_info <span class="token operator">=</span> <span class="token number">1433</span>
+	bs_query_txn_extended_info_response <span class="token operator">=</span> <span class="token number">1434</span>
+	bs_update_conversion_rates <span class="token operator">=</span> <span class="token number">1435</span>
+	bs_purchase_run_fraud_checks <span class="token operator">=</span> <span class="token number">1437</span>
+	bs_purchase_run_fraud_checks_response <span class="token operator">=</span> <span class="token number">1438</span>
+	bs_query_bank_information <span class="token operator">=</span> <span class="token number">1440</span>
+	bs_query_bank_information_response <span class="token operator">=</span> <span class="token number">1441</span>
+	bs_validate_xsolla_signature <span class="token operator">=</span> <span class="token number">1445</span>
+	bs_validate_xsolla_signature_response <span class="token operator">=</span> <span class="token number">1446</span>
+	bs_qiwi_wallet_invoice <span class="token operator">=</span> <span class="token number">1448</span>
+	bs_qiwi_wallet_invoice_response <span class="token operator">=</span> <span class="token number">1449</span>
+	bs_update_inventory_from_pro_pack <span class="token operator">=</span> <span class="token number">1450</span>
+	bs_update_inventory_from_pro_pack_response <span class="token operator">=</span> <span class="token number">1451</span>
+	bs_send_shipping_request <span class="token operator">=</span> <span class="token number">1452</span>
+	bs_send_shipping_request_response <span class="token operator">=</span> <span class="token number">1453</span>
+	bs_get_pro_pack_order_status <span class="token operator">=</span> <span class="token number">1454</span>
+	bs_get_pro_pack_order_status_response <span class="token operator">=</span> <span class="token number">1455</span>
+	bs_check_job_running <span class="token operator">=</span> <span class="token number">1456</span>
+	bs_check_job_running_response <span class="token operator">=</span> <span class="token number">1457</span>
+	bs_reset_package_purchase_rate_limit <span class="token operator">=</span> <span class="token number">1458</span>
+	bs_reset_package_purchase_rate_limit_response <span class="token operator">=</span> <span class="token number">1459</span>
+	bs_update_payment_data <span class="token operator">=</span> <span class="token number">1460</span>
+	bs_update_payment_data_response <span class="token operator">=</span> <span class="token number">1461</span>
+	bs_get_billing_address <span class="token operator">=</span> <span class="token number">1462</span>
+	bs_get_billing_address_response <span class="token operator">=</span> <span class="token number">1463</span>
+	bs_get_credit_card_info <span class="token operator">=</span> <span class="token number">1464</span>
+	bs_get_credit_card_info_response <span class="token operator">=</span> <span class="token number">1465</span>
+	bs_remove_expired_payment_data <span class="token operator">=</span> <span class="token number">1468</span>
+	bs_remove_expired_payment_data_response <span class="token operator">=</span> <span class="token number">1469</span>
+	bs_convert_to_current_keys <span class="token operator">=</span> <span class="token number">1470</span>
+	bs_convert_to_current_keys_response <span class="token operator">=</span> <span class="token number">1471</span>
+	bs_init_purchase <span class="token operator">=</span> <span class="token number">1472</span>
+	bs_init_purchase_response <span class="token operator">=</span> <span class="token number">1473</span>
+	bs_complete_purchase <span class="token operator">=</span> <span class="token number">1474</span>
+	bs_complete_purchase_response <span class="token operator">=</span> <span class="token number">1475</span>
+	bs_prune_card_usage_stats <span class="token operator">=</span> <span class="token number">1476</span>
+	bs_prune_card_usage_stats_response <span class="token operator">=</span> <span class="token number">1477</span>
+	bs_store_bank_information <span class="token operator">=</span> <span class="token number">1478</span>
+	bs_store_bank_information_response <span class="token operator">=</span> <span class="token number">1479</span>
+	bs_verify_posa_key <span class="token operator">=</span> <span class="token number">1480</span>
+	bs_verify_posa_key_response <span class="token operator">=</span> <span class="token number">1481</span>
+	bs_reverse_redeem_posa_key <span class="token operator">=</span> <span class="token number">1482</span>
+	bs_reverse_redeem_posa_key_response <span class="token operator">=</span> <span class="token number">1483</span>
+	bs_query_find_credit_card <span class="token operator">=</span> <span class="token number">1484</span>
+	bs_query_find_credit_card_response <span class="token operator">=</span> <span class="token number">1485</span>
+	bs_status_inquiry_posa_key <span class="token operator">=</span> <span class="token number">1486</span>
+	bs_status_inquiry_posa_key_response <span class="token operator">=</span> <span class="token number">1487</span>
+	bs_boa_compra_confirm_product_delivery <span class="token operator">=</span> <span class="token number">1494</span>
+	bs_boa_compra_confirm_product_delivery_response <span class="token operator">=</span> <span class="token number">1495</span>
+	bs_generate_boa_compra_md5 <span class="token operator">=</span> <span class="token number">1496</span>
+	bs_generate_boa_compra_md5_response <span class="token operator">=</span> <span class="token number">1497</span>
+	bs_commit_wp_txn <span class="token operator">=</span> <span class="token number">1498</span>
+	bs_commit_adyen_txn <span class="token operator">=</span> <span class="token number">1499</span>
+	ats_start_stress_test <span class="token operator">=</span> <span class="token number">1501</span>
+	ats_stop_stress_test <span class="token operator">=</span> <span class="token number">1502</span>
+	ats_run_fail_server_test <span class="token operator">=</span> <span class="token number">1503</span>
+	atsufs_perf_test_task <span class="token operator">=</span> <span class="token number">1504</span>
+	atsufs_perf_test_response <span class="token operator">=</span> <span class="token number">1505</span>
+	ats_cycle_tcm <span class="token operator">=</span> <span class="token number">1506</span>
+	ats_init_drms_stress_test <span class="token operator">=</span> <span class="token number">1507</span>
+	ats_call_test <span class="token operator">=</span> <span class="token number">1508</span>
+	ats_call_test_reply <span class="token operator">=</span> <span class="token number">1509</span>
+	ats_start_external_stress <span class="token operator">=</span> <span class="token number">1510</span>
+	ats_external_stress_job_start <span class="token operator">=</span> <span class="token number">1511</span>
+	ats_external_stress_job_queued <span class="token operator">=</span> <span class="token number">1512</span>
+	ats_external_stress_job_running <span class="token operator">=</span> <span class="token number">1513</span>
+	ats_external_stress_job_stopped <span class="token operator">=</span> <span class="token number">1514</span>
+	ats_external_stress_job_stop_all <span class="token operator">=</span> <span class="token number">1515</span>
+	ats_external_stress_action_result <span class="token operator">=</span> <span class="token number">1516</span>
+	ats_started <span class="token operator">=</span> <span class="token number">1517</span>
+	atscs_perf_test_task <span class="token operator">=</span> <span class="token number">1518</span>
+	atscs_perf_test_response <span class="token operator">=</span> <span class="token number">1519</span>
+	dp_set_publishing_state <span class="token operator">=</span> <span class="token number">1601</span>
+	dp_unique_players_stat <span class="token operator">=</span> <span class="token number">1603</span>
+	dp_streaming_unique_players_stat <span class="token operator">=</span> <span class="token number">1604</span>
+	dp_blocking_stats <span class="token operator">=</span> <span class="token number">1607</span>
+	dp_nat_traversal_stats <span class="token operator">=</span> <span class="token number">1608</span>
+	dp_cloud_stats <span class="token operator">=</span> <span class="token number">1612</span>
+	dp_achievement_stats <span class="token operator">=</span> <span class="token number">1613</span>
+	dp_get_player_count <span class="token operator">=</span> <span class="token number">1615</span>
+	dp_get_player_count_response <span class="token operator">=</span> <span class="token number">1616</span>
+	dp_game_servers_players_stats <span class="token operator">=</span> <span class="token number">1617</span>
+	client_dp_check_special_survey <span class="token operator">=</span> <span class="token number">1620</span>
+	client_dp_check_special_survey_response <span class="token operator">=</span> <span class="token number">1621</span>
+	client_dp_send_special_survey_response <span class="token operator">=</span> <span class="token number">1622</span>
+	client_dp_send_special_survey_response_reply <span class="token operator">=</span> <span class="token number">1623</span>
+	dp_store_sale_statistics <span class="token operator">=</span> <span class="token number">1624</span>
+	client_dp_update_app_job_report <span class="token operator">=</span> <span class="token number">1625</span>
+	dp_update_content_event <span class="token operator">=</span> <span class="token number">1626</span>
+	client_dp_unsigned_install_script <span class="token operator">=</span> <span class="token number">1627</span>
+	dp_partner_micro_txns <span class="token operator">=</span> <span class="token number">1628</span>
+	dp_partner_micro_txns_response <span class="token operator">=</span> <span class="token number">1629</span>
+	client_dp_content_stats_report <span class="token operator">=</span> <span class="token number">1630</span>
+	dpvr_unique_players_stat <span class="token operator">=</span> <span class="token number">1631</span>
+	cm_set_allow_state <span class="token operator">=</span> <span class="token number">1701</span>
+	cm_spew_allow_state <span class="token operator">=</span> <span class="token number">1702</span>
+	cm_session_rejected <span class="token operator">=</span> <span class="token number">1703</span>
+	cm_set_secrets <span class="token operator">=</span> <span class="token number">1704</span>
+	cm_get_secrets <span class="token operator">=</span> <span class="token number">1705</span>
+	gc_cmd_revive <span class="token operator">=</span> <span class="token number">2203</span>
+	gc_cmd_down <span class="token operator">=</span> <span class="token number">2206</span>
+	gc_cmd_deploy <span class="token operator">=</span> <span class="token number">2207</span>
+	gc_cmd_deploy_response <span class="token operator">=</span> <span class="token number">2208</span>
+	gc_cmd_switch <span class="token operator">=</span> <span class="token number">2209</span>
+	am_refresh_sessions <span class="token operator">=</span> <span class="token number">2210</span>
+	gc_achievement_awarded <span class="token operator">=</span> <span class="token number">2212</span>
+	gc_system_message <span class="token operator">=</span> <span class="token number">2213</span>
+	gc_cmd_status <span class="token operator">=</span> <span class="token number">2216</span>
+	gc_inter_app_message <span class="token operator">=</span> <span class="token number">2219</span>
+	gc_get_email_template <span class="token operator">=</span> <span class="token number">2220</span>
+	gc_get_email_template_response <span class="token operator">=</span> <span class="token number">2221</span>
+	gch_relay <span class="token operator">=</span> <span class="token number">2222</span>
+	gch_relay_to_client <span class="token operator">=</span> <span class="token number">2223</span>
+	gch_update_session <span class="token operator">=</span> <span class="token number">2224</span>
+	gch_request_update_session <span class="token operator">=</span> <span class="token number">2225</span>
+	gch_request_status <span class="token operator">=</span> <span class="token number">2226</span>
+	gch_request_status_response <span class="token operator">=</span> <span class="token number">2227</span>
+	gch_account_vac_status_change <span class="token operator">=</span> <span class="token number">2228</span>
+	gch_spawn_gc <span class="token operator">=</span> <span class="token number">2229</span>
+	gch_spawn_gc_response <span class="token operator">=</span> <span class="token number">2230</span>
+	gch_kill_gc <span class="token operator">=</span> <span class="token number">2231</span>
+	gch_kill_gc_response <span class="token operator">=</span> <span class="token number">2232</span>
+	gch_account_trade_ban_status_change <span class="token operator">=</span> <span class="token number">2233</span>
+	gch_account_lock_status_change <span class="token operator">=</span> <span class="token number">2234</span>
+	gch_vac_verification_change <span class="token operator">=</span> <span class="token number">2235</span>
+	gch_account_phone_number_change <span class="token operator">=</span> <span class="token number">2236</span>
+	gch_account_two_factor_change <span class="token operator">=</span> <span class="token number">2237</span>
+	gch_invite_user_to_lobby <span class="token operator">=</span> <span class="token number">2238</span>
+	p2_p_introducer_message <span class="token operator">=</span> <span class="token number">2502</span>
+	sm_expensive_report <span class="token operator">=</span> <span class="token number">2902</span>
+	sm_hourly_report <span class="token operator">=</span> <span class="token number">2903</span>
+	sm_partition_renames <span class="token operator">=</span> <span class="token number">2905</span>
+	sm_monitor_space <span class="token operator">=</span> <span class="token number">2906</span>
+	sm_test_next_build_schema_conversion <span class="token operator">=</span> <span class="token number">2907</span>
+	sm_test_next_build_schema_conversion_response <span class="token operator">=</span> <span class="token number">2908</span>
+	fail_server <span class="token operator">=</span> <span class="token number">3000</span>
+	job_heartbeat_test <span class="token operator">=</span> <span class="token number">3001</span>
+	job_heartbeat_test_response <span class="token operator">=</span> <span class="token number">3002</span>
+	ccs_delete_all_comments_by_author <span class="token operator">=</span> <span class="token number">3161</span>
+	ccs_delete_all_comments_by_author_response <span class="token operator">=</span> <span class="token number">3162</span>
+	lbs_set_score <span class="token operator">=</span> <span class="token number">3201</span>
+	lbs_set_score_response <span class="token operator">=</span> <span class="token number">3202</span>
+	lbs_find_or_create_lb <span class="token operator">=</span> <span class="token number">3203</span>
+	lbs_find_or_create_lb_response <span class="token operator">=</span> <span class="token number">3204</span>
+	lbs_get_lb_entries <span class="token operator">=</span> <span class="token number">3205</span>
+	lbs_get_lb_entries_response <span class="token operator">=</span> <span class="token number">3206</span>
+	lbs_get_lb_list <span class="token operator">=</span> <span class="token number">3207</span>
+	lbs_get_lb_list_response <span class="token operator">=</span> <span class="token number">3208</span>
+	lbs_set_lb_details <span class="token operator">=</span> <span class="token number">3209</span>
+	lbs_delete_lb <span class="token operator">=</span> <span class="token number">3210</span>
+	lbs_delete_lb_entry <span class="token operator">=</span> <span class="token number">3211</span>
+	lbs_reset_lb <span class="token operator">=</span> <span class="token number">3212</span>
+	lbs_reset_lb_response <span class="token operator">=</span> <span class="token number">3213</span>
+	lbs_delete_lb_response <span class="token operator">=</span> <span class="token number">3214</span>
+	ogs_begin_session <span class="token operator">=</span> <span class="token number">3401</span>
+	ogs_begin_session_response <span class="token operator">=</span> <span class="token number">3402</span>
+	ogs_end_session <span class="token operator">=</span> <span class="token number">3403</span>
+	ogs_end_session_response <span class="token operator">=</span> <span class="token number">3404</span>
+	ogs_write_app_session_row <span class="token operator">=</span> <span class="token number">3406</span>
+	brp_post_transaction_tax <span class="token operator">=</span> <span class="token number">3629</span>
+	brp_post_transaction_tax_response <span class="token operator">=</span> <span class="token number">3630</span>
+	am_create_chat <span class="token operator">=</span> <span class="token number">4001</span>
+	am_create_chat_response <span class="token operator">=</span> <span class="token number">4002</span>
+	am_set_profile_url <span class="token operator">=</span> <span class="token number">4005</span>
+	am_get_account_email_address <span class="token operator">=</span> <span class="token number">4006</span>
+	am_get_account_email_address_response <span class="token operator">=</span> <span class="token number">4007</span>
+	am_request_clan_data <span class="token operator">=</span> <span class="token number">4008</span>
+	am_route_to_clients <span class="token operator">=</span> <span class="token number">4009</span>
+	am_leave_clan <span class="token operator">=</span> <span class="token number">4010</span>
+	am_clan_permissions <span class="token operator">=</span> <span class="token number">4011</span>
+	am_clan_permissions_response <span class="token operator">=</span> <span class="token number">4012</span>
+	am_create_clan_event_dummy_for_rate_limiting <span class="token operator">=</span> <span class="token number">4013</span>
+	am_update_clan_event_dummy_for_rate_limiting <span class="token operator">=</span> <span class="token number">4015</span>
+	am_set_clan_permission_settings <span class="token operator">=</span> <span class="token number">4021</span>
+	am_set_clan_permission_settings_response <span class="token operator">=</span> <span class="token number">4022</span>
+	am_get_clan_permission_settings <span class="token operator">=</span> <span class="token number">4023</span>
+	am_get_clan_permission_settings_response <span class="token operator">=</span> <span class="token number">4024</span>
+	am_publish_chat_room_info <span class="token operator">=</span> <span class="token number">4025</span>
+	client_chat_room_info <span class="token operator">=</span> <span class="token number">4026</span>
+	am_get_clan_history <span class="token operator">=</span> <span class="token number">4039</span>
+	am_get_clan_history_response <span class="token operator">=</span> <span class="token number">4040</span>
+	am_get_clan_permission_bits <span class="token operator">=</span> <span class="token number">4041</span>
+	am_get_clan_permission_bits_response <span class="token operator">=</span> <span class="token number">4042</span>
+	am_set_clan_permission_bits <span class="token operator">=</span> <span class="token number">4043</span>
+	am_set_clan_permission_bits_response <span class="token operator">=</span> <span class="token number">4044</span>
+	am_session_info_request <span class="token operator">=</span> <span class="token number">4045</span>
+	am_session_info_response <span class="token operator">=</span> <span class="token number">4046</span>
+	am_validate_wg_token <span class="token operator">=</span> <span class="token number">4047</span>
+	am_get_clan_rank <span class="token operator">=</span> <span class="token number">4050</span>
+	am_get_clan_rank_response <span class="token operator">=</span> <span class="token number">4051</span>
+	am_set_clan_rank <span class="token operator">=</span> <span class="token number">4052</span>
+	am_set_clan_rank_response <span class="token operator">=</span> <span class="token number">4053</span>
+	am_get_clan_potw <span class="token operator">=</span> <span class="token number">4054</span>
+	am_get_clan_potw_response <span class="token operator">=</span> <span class="token number">4055</span>
+	am_set_clan_potw <span class="token operator">=</span> <span class="token number">4056</span>
+	am_set_clan_potw_response <span class="token operator">=</span> <span class="token number">4057</span>
+	am_dump_user <span class="token operator">=</span> <span class="token number">4059</span>
+	am_kick_user_from_clan <span class="token operator">=</span> <span class="token number">4060</span>
+	am_add_founder_to_clan <span class="token operator">=</span> <span class="token number">4061</span>
+	am_validate_wg_token_response <span class="token operator">=</span> <span class="token number">4062</span>
+	am_set_account_details <span class="token operator">=</span> <span class="token number">4064</span>
+	am_get_chat_ban_list <span class="token operator">=</span> <span class="token number">4065</span>
+	am_get_chat_ban_list_response <span class="token operator">=</span> <span class="token number">4066</span>
+	am_un_ban_from_chat <span class="token operator">=</span> <span class="token number">4067</span>
+	am_set_clan_details <span class="token operator">=</span> <span class="token number">4068</span>
+	am_get_account_links <span class="token operator">=</span> <span class="token number">4069</span>
+	am_get_account_links_response <span class="token operator">=</span> <span class="token number">4070</span>
+	am_set_account_links <span class="token operator">=</span> <span class="token number">4071</span>
+	am_set_account_links_response <span class="token operator">=</span> <span class="token number">4072</span>
+	ugs_get_user_game_stats <span class="token operator">=</span> <span class="token number">4073</span>
+	ugs_get_user_game_stats_response <span class="token operator">=</span> <span class="token number">4074</span>
+	am_check_clan_membership <span class="token operator">=</span> <span class="token number">4075</span>
+	am_get_clan_members <span class="token operator">=</span> <span class="token number">4076</span>
+	am_get_clan_members_response <span class="token operator">=</span> <span class="token number">4077</span>
+	am_notify_chat_of_clan_change <span class="token operator">=</span> <span class="token number">4079</span>
+	am_resubmit_purchase <span class="token operator">=</span> <span class="token number">4080</span>
+	am_add_friend <span class="token operator">=</span> <span class="token number">4081</span>
+	am_add_friend_response <span class="token operator">=</span> <span class="token number">4082</span>
+	am_remove_friend <span class="token operator">=</span> <span class="token number">4083</span>
+	am_dump_clan <span class="token operator">=</span> <span class="token number">4084</span>
+	am_change_clan_owner <span class="token operator">=</span> <span class="token number">4085</span>
+	am_cancel_easy_collect <span class="token operator">=</span> <span class="token number">4086</span>
+	am_cancel_easy_collect_response <span class="token operator">=</span> <span class="token number">4087</span>
+	am_clans_in_common <span class="token operator">=</span> <span class="token number">4090</span>
+	am_clans_in_common_response <span class="token operator">=</span> <span class="token number">4091</span>
+	am_is_valid_account_id <span class="token operator">=</span> <span class="token number">4092</span>
+	am_wipe_friends_list <span class="token operator">=</span> <span class="token number">4095</span>
+	am_set_ignored <span class="token operator">=</span> <span class="token number">4096</span>
+	am_clans_in_common_count_response <span class="token operator">=</span> <span class="token number">4097</span>
+	am_friends_list <span class="token operator">=</span> <span class="token number">4098</span>
+	am_friends_list_response <span class="token operator">=</span> <span class="token number">4099</span>
+	am_friends_in_common <span class="token operator">=</span> <span class="token number">4100</span>
+	am_friends_in_common_response <span class="token operator">=</span> <span class="token number">4101</span>
+	am_friends_in_common_count_response <span class="token operator">=</span> <span class="token number">4102</span>
+	am_clans_in_common_count <span class="token operator">=</span> <span class="token number">4103</span>
+	am_challenge_verdict <span class="token operator">=</span> <span class="token number">4104</span>
+	am_challenge_notification <span class="token operator">=</span> <span class="token number">4105</span>
+	am_find_gs_by_ip <span class="token operator">=</span> <span class="token number">4106</span>
+	am_found_gs_by_ip <span class="token operator">=</span> <span class="token number">4107</span>
+	am_gift_revoked <span class="token operator">=</span> <span class="token number">4108</span>
+	am_user_clan_list <span class="token operator">=</span> <span class="token number">4110</span>
+	am_user_clan_list_response <span class="token operator">=</span> <span class="token number">4111</span>
+	am_get_account_details2 <span class="token operator">=</span> <span class="token number">4112</span>
+	am_get_account_details_response2 <span class="token operator">=</span> <span class="token number">4113</span>
+	am_set_community_profile_settings <span class="token operator">=</span> <span class="token number">4114</span>
+	am_set_community_profile_settings_response <span class="token operator">=</span> <span class="token number">4115</span>
+	am_get_community_privacy_state <span class="token operator">=</span> <span class="token number">4116</span>
+	am_get_community_privacy_state_response <span class="token operator">=</span> <span class="token number">4117</span>
+	am_check_clan_invite_rate_limiting <span class="token operator">=</span> <span class="token number">4118</span>
+	ugs_get_user_achievement_status <span class="token operator">=</span> <span class="token number">4119</span>
+	am_get_ignored <span class="token operator">=</span> <span class="token number">4120</span>
+	am_get_ignored_response <span class="token operator">=</span> <span class="token number">4121</span>
+	am_set_ignored_response <span class="token operator">=</span> <span class="token number">4122</span>
+	am_set_friend_relationship_none <span class="token operator">=</span> <span class="token number">4123</span>
+	am_get_friend_relationship <span class="token operator">=</span> <span class="token number">4124</span>
+	am_get_friend_relationship_response <span class="token operator">=</span> <span class="token number">4125</span>
+	am_service_modules_cache <span class="token operator">=</span> <span class="token number">4126</span>
+	am_service_modules_call <span class="token operator">=</span> <span class="token number">4127</span>
+	am_service_modules_call_response <span class="token operator">=</span> <span class="token number">4128</span>
+	community_add_friend_news <span class="token operator">=</span> <span class="token number">4140</span>
+	am_find_clan_user <span class="token operator">=</span> <span class="token number">4143</span>
+	am_find_clan_user_response <span class="token operator">=</span> <span class="token number">4144</span>
+	am_ban_from_chat <span class="token operator">=</span> <span class="token number">4145</span>
+	am_get_user_news_subscriptions <span class="token operator">=</span> <span class="token number">4147</span>
+	am_get_user_news_subscriptions_response <span class="token operator">=</span> <span class="token number">4148</span>
+	am_set_user_news_subscriptions <span class="token operator">=</span> <span class="token number">4149</span>
+	am_send_queued_emails <span class="token operator">=</span> <span class="token number">4152</span>
+	am_set_license_flags <span class="token operator">=</span> <span class="token number">4153</span>
+	community_delete_user_news <span class="token operator">=</span> <span class="token number">4155</span>
+	am_allow_user_files_request <span class="token operator">=</span> <span class="token number">4156</span>
+	am_allow_user_files_response <span class="token operator">=</span> <span class="token number">4157</span>
+	am_get_account_status <span class="token operator">=</span> <span class="token number">4158</span>
+	am_get_account_status_response <span class="token operator">=</span> <span class="token number">4159</span>
+	am_edit_ban_reason <span class="token operator">=</span> <span class="token number">4160</span>
+	am_check_clan_membership_response <span class="token operator">=</span> <span class="token number">4161</span>
+	am_probe_clan_membership_list <span class="token operator">=</span> <span class="token number">4162</span>
+	am_probe_clan_membership_list_response <span class="token operator">=</span> <span class="token number">4163</span>
+	ugs_get_user_achievement_status_response <span class="token operator">=</span> <span class="token number">4164</span>
+	am_get_friends_lobbies <span class="token operator">=</span> <span class="token number">4165</span>
+	am_get_friends_lobbies_response <span class="token operator">=</span> <span class="token number">4166</span>
+	am_get_user_friend_news_response <span class="token operator">=</span> <span class="token number">4172</span>
+	community_get_user_friend_news <span class="token operator">=</span> <span class="token number">4173</span>
+	am_get_user_clans_news_response <span class="token operator">=</span> <span class="token number">4174</span>
+	am_get_user_clans_news <span class="token operator">=</span> <span class="token number">4175</span>
+	am_get_previous_cb_account <span class="token operator">=</span> <span class="token number">4184</span>
+	am_get_previous_cb_account_response <span class="token operator">=</span> <span class="token number">4185</span>
+	am_get_user_license_history <span class="token operator">=</span> <span class="token number">4190</span>
+	am_get_user_license_history_response <span class="token operator">=</span> <span class="token number">4191</span>
+	am_support_change_password <span class="token operator">=</span> <span class="token number">4194</span>
+	am_support_change_email <span class="token operator">=</span> <span class="token number">4195</span>
+	am_reset_user_verification_gs_by_ip <span class="token operator">=</span> <span class="token number">4197</span>
+	am_update_gs_play_stats <span class="token operator">=</span> <span class="token number">4198</span>
+	am_support_enable_or_disable <span class="token operator">=</span> <span class="token number">4199</span>
+	am_get_purchase_status <span class="token operator">=</span> <span class="token number">4206</span>
+	am_support_is_account_enabled <span class="token operator">=</span> <span class="token number">4209</span>
+	am_support_is_account_enabled_response <span class="token operator">=</span> <span class="token number">4210</span>
+	ugs_get_user_stats <span class="token operator">=</span> <span class="token number">4211</span>
+	am_support_kick_session <span class="token operator">=</span> <span class="token number">4212</span>
+	amgs_search <span class="token operator">=</span> <span class="token number">4213</span>
+	marketing_message_update <span class="token operator">=</span> <span class="token number">4216</span>
+	chat_server_route_friend_msg <span class="token operator">=</span> <span class="token number">4219</span>
+	am_ticket_auth_request_or_response <span class="token operator">=</span> <span class="token number">4220</span>
+	am_verify_depot_management_rights <span class="token operator">=</span> <span class="token number">4222</span>
+	am_verify_depot_management_rights_response <span class="token operator">=</span> <span class="token number">4223</span>
+	am_add_free_license <span class="token operator">=</span> <span class="token number">4224</span>
+	am_validate_email_link <span class="token operator">=</span> <span class="token number">4231</span>
+	am_validate_email_link_response <span class="token operator">=</span> <span class="token number">4232</span>
+	ugs_store_user_stats <span class="token operator">=</span> <span class="token number">4236</span>
+	am_delete_stored_card <span class="token operator">=</span> <span class="token number">4241</span>
+	am_revoke_legacy_game_keys <span class="token operator">=</span> <span class="token number">4242</span>
+	am_get_wallet_details <span class="token operator">=</span> <span class="token number">4244</span>
+	am_get_wallet_details_response <span class="token operator">=</span> <span class="token number">4245</span>
+	am_delete_stored_payment_info <span class="token operator">=</span> <span class="token number">4246</span>
+	am_get_stored_payment_summary <span class="token operator">=</span> <span class="token number">4247</span>
+	am_get_stored_payment_summary_response <span class="token operator">=</span> <span class="token number">4248</span>
+	am_get_wallet_conversion_rate <span class="token operator">=</span> <span class="token number">4249</span>
+	am_get_wallet_conversion_rate_response <span class="token operator">=</span> <span class="token number">4250</span>
+	am_convert_wallet <span class="token operator">=</span> <span class="token number">4251</span>
+	am_convert_wallet_response <span class="token operator">=</span> <span class="token number">4252</span>
+	am_set_pre_approval <span class="token operator">=</span> <span class="token number">4255</span>
+	am_set_pre_approval_response <span class="token operator">=</span> <span class="token number">4256</span>
+	am_create_refund <span class="token operator">=</span> <span class="token number">4258</span>
+	am_create_chargeback <span class="token operator">=</span> <span class="token number">4260</span>
+	am_create_dispute <span class="token operator">=</span> <span class="token number">4262</span>
+	am_clear_dispute <span class="token operator">=</span> <span class="token number">4264</span>
+	am_create_financial_adjustment <span class="token operator">=</span> <span class="token number">4265</span>
+	am_player_nickname_list <span class="token operator">=</span> <span class="token number">4266</span>
+	am_player_nickname_list_response <span class="token operator">=</span> <span class="token number">4267</span>
+	am_set_drm_test_config <span class="token operator">=</span> <span class="token number">4268</span>
+	am_get_user_current_game_info <span class="token operator">=</span> <span class="token number">4269</span>
+	am_get_user_current_game_info_response <span class="token operator">=</span> <span class="token number">4270</span>
+	am_get_gs_player_list <span class="token operator">=</span> <span class="token number">4271</span>
+	am_get_gs_player_list_response <span class="token operator">=</span> <span class="token number">4272</span>
+	am_get_game_members <span class="token operator">=</span> <span class="token number">4276</span>
+	am_get_game_members_response <span class="token operator">=</span> <span class="token number">4277</span>
+	am_get_steam_id_for_micro_txn <span class="token operator">=</span> <span class="token number">4278</span>
+	am_get_steam_id_for_micro_txn_response <span class="token operator">=</span> <span class="token number">4279</span>
+	am_set_partner_member <span class="token operator">=</span> <span class="token number">4280</span>
+	am_remove_publisher_user <span class="token operator">=</span> <span class="token number">4281</span>
+	am_get_user_license_list <span class="token operator">=</span> <span class="token number">4282</span>
+	am_get_user_license_list_response <span class="token operator">=</span> <span class="token number">4283</span>
+	am_reload_game_group_policy <span class="token operator">=</span> <span class="token number">4284</span>
+	am_add_free_license_response <span class="token operator">=</span> <span class="token number">4285</span>
+	amvac_status_update <span class="token operator">=</span> <span class="token number">4286</span>
+	am_get_account_details <span class="token operator">=</span> <span class="token number">4287</span>
+	am_get_account_details_response <span class="token operator">=</span> <span class="token number">4288</span>
+	am_get_player_link_details <span class="token operator">=</span> <span class="token number">4289</span>
+	am_get_player_link_details_response <span class="token operator">=</span> <span class="token number">4290</span>
+	am_get_account_flags_for_wg_spoofing <span class="token operator">=</span> <span class="token number">4294</span>
+	am_get_account_flags_for_wg_spoofing_response <span class="token operator">=</span> <span class="token number">4295</span>
+	am_get_clan_officers <span class="token operator">=</span> <span class="token number">4298</span>
+	am_get_clan_officers_response <span class="token operator">=</span> <span class="token number">4299</span>
+	am_name_change <span class="token operator">=</span> <span class="token number">4300</span>
+	am_get_name_history <span class="token operator">=</span> <span class="token number">4301</span>
+	am_get_name_history_response <span class="token operator">=</span> <span class="token number">4302</span>
+	am_update_provider_status <span class="token operator">=</span> <span class="token number">4305</span>
+	am_support_remove_account_security <span class="token operator">=</span> <span class="token number">4307</span>
+	am_is_account_in_captcha_grace_period <span class="token operator">=</span> <span class="token number">4308</span>
+	am_is_account_in_captcha_grace_period_response <span class="token operator">=</span> <span class="token number">4309</span>
+	am_account_ps3_unlink <span class="token operator">=</span> <span class="token number">4310</span>
+	am_account_ps3_unlink_response <span class="token operator">=</span> <span class="token number">4311</span>
+	ugs_store_user_stats_response <span class="token operator">=</span> <span class="token number">4312</span>
+	am_get_account_psn_info <span class="token operator">=</span> <span class="token number">4313</span>
+	am_get_account_psn_info_response <span class="token operator">=</span> <span class="token number">4314</span>
+	am_authenticated_player_list <span class="token operator">=</span> <span class="token number">4315</span>
+	am_get_user_gifts <span class="token operator">=</span> <span class="token number">4316</span>
+	am_get_user_gifts_response <span class="token operator">=</span> <span class="token number">4317</span>
+	am_transfer_locked_gifts <span class="token operator">=</span> <span class="token number">4320</span>
+	am_transfer_locked_gifts_response <span class="token operator">=</span> <span class="token number">4321</span>
+	am_player_hosted_on_game_server <span class="token operator">=</span> <span class="token number">4322</span>
+	am_get_account_ban_info <span class="token operator">=</span> <span class="token number">4323</span>
+	am_get_account_ban_info_response <span class="token operator">=</span> <span class="token number">4324</span>
+	am_record_ban_enforcement <span class="token operator">=</span> <span class="token number">4325</span>
+	am_rollback_gift_transfer <span class="token operator">=</span> <span class="token number">4326</span>
+	am_rollback_gift_transfer_response <span class="token operator">=</span> <span class="token number">4327</span>
+	am_handle_pending_transaction <span class="token operator">=</span> <span class="token number">4328</span>
+	am_request_clan_details <span class="token operator">=</span> <span class="token number">4329</span>
+	am_delete_stored_paypal_agreement <span class="token operator">=</span> <span class="token number">4330</span>
+	am_game_server_update <span class="token operator">=</span> <span class="token number">4331</span>
+	am_game_server_remove <span class="token operator">=</span> <span class="token number">4332</span>
+	am_get_paypal_agreements <span class="token operator">=</span> <span class="token number">4333</span>
+	am_get_paypal_agreements_response <span class="token operator">=</span> <span class="token number">4334</span>
+	am_game_server_player_compatibility_check <span class="token operator">=</span> <span class="token number">4335</span>
+	am_game_server_player_compatibility_check_response <span class="token operator">=</span> <span class="token number">4336</span>
+	am_renew_license <span class="token operator">=</span> <span class="token number">4337</span>
+	am_get_account_community_ban_info <span class="token operator">=</span> <span class="token number">4338</span>
+	am_get_account_community_ban_info_response <span class="token operator">=</span> <span class="token number">4339</span>
+	am_game_server_account_change_password <span class="token operator">=</span> <span class="token number">4340</span>
+	am_game_server_account_delete_account <span class="token operator">=</span> <span class="token number">4341</span>
+	am_renew_agreement <span class="token operator">=</span> <span class="token number">4342</span>
+	am_xsolla_payment <span class="token operator">=</span> <span class="token number">4344</span>
+	am_xsolla_payment_response <span class="token operator">=</span> <span class="token number">4345</span>
+	am_acct_allowed_to_purchase <span class="token operator">=</span> <span class="token number">4346</span>
+	am_acct_allowed_to_purchase_response <span class="token operator">=</span> <span class="token number">4347</span>
+	am_swap_kiosk_deposit <span class="token operator">=</span> <span class="token number">4348</span>
+	am_swap_kiosk_deposit_response <span class="token operator">=</span> <span class="token number">4349</span>
+	am_set_user_gift_unowned <span class="token operator">=</span> <span class="token number">4350</span>
+	am_set_user_gift_unowned_response <span class="token operator">=</span> <span class="token number">4351</span>
+	am_claim_unowned_user_gift <span class="token operator">=</span> <span class="token number">4352</span>
+	am_claim_unowned_user_gift_response <span class="token operator">=</span> <span class="token number">4353</span>
+	am_set_clan_name <span class="token operator">=</span> <span class="token number">4354</span>
+	am_set_clan_name_response <span class="token operator">=</span> <span class="token number">4355</span>
+	am_grant_coupon <span class="token operator">=</span> <span class="token number">4356</span>
+	am_grant_coupon_response <span class="token operator">=</span> <span class="token number">4357</span>
+	am_is_package_restricted_in_user_country <span class="token operator">=</span> <span class="token number">4358</span>
+	am_is_package_restricted_in_user_country_response <span class="token operator">=</span> <span class="token number">4359</span>
+	am_handle_pending_transaction_response <span class="token operator">=</span> <span class="token number">4360</span>
+	am_grant_guest_passes2 <span class="token operator">=</span> <span class="token number">4361</span>
+	am_grant_guest_passes2_response <span class="token operator">=</span> <span class="token number">4362</span>
+	am_get_player_ban_details <span class="token operator">=</span> <span class="token number">4365</span>
+	am_get_player_ban_details_response <span class="token operator">=</span> <span class="token number">4366</span>
+	am_finalize_purchase <span class="token operator">=</span> <span class="token number">4367</span>
+	am_finalize_purchase_response <span class="token operator">=</span> <span class="token number">4368</span>
+	am_persona_change_response <span class="token operator">=</span> <span class="token number">4372</span>
+	am_get_clan_details_for_forum_creation <span class="token operator">=</span> <span class="token number">4373</span>
+	am_get_clan_details_for_forum_creation_response <span class="token operator">=</span> <span class="token number">4374</span>
+	am_get_pending_notification_count <span class="token operator">=</span> <span class="token number">4375</span>
+	am_get_pending_notification_count_response <span class="token operator">=</span> <span class="token number">4376</span>
+	am_password_hash_upgrade <span class="token operator">=</span> <span class="token number">4377</span>
+	am_boa_compra_payment <span class="token operator">=</span> <span class="token number">4380</span>
+	am_boa_compra_payment_response <span class="token operator">=</span> <span class="token number">4381</span>
+	am_complete_external_purchase <span class="token operator">=</span> <span class="token number">4383</span>
+	am_complete_external_purchase_response <span class="token operator">=</span> <span class="token number">4384</span>
+	am_resolve_negative_wallet_credits <span class="token operator">=</span> <span class="token number">4385</span>
+	am_resolve_negative_wallet_credits_response <span class="token operator">=</span> <span class="token number">4386</span>
+	am_player_get_clan_basic_details <span class="token operator">=</span> <span class="token number">4389</span>
+	am_player_get_clan_basic_details_response <span class="token operator">=</span> <span class="token number">4390</span>
+	ammol_payment <span class="token operator">=</span> <span class="token number">4391</span>
+	ammol_payment_response <span class="token operator">=</span> <span class="token number">4392</span>
+	get_user_ip_country <span class="token operator">=</span> <span class="token number">4393</span>
+	get_user_ip_country_response <span class="token operator">=</span> <span class="token number">4394</span>
+	notification_of_suspicious_activity <span class="token operator">=</span> <span class="token number">4395</span>
+	am_degica_payment <span class="token operator">=</span> <span class="token number">4396</span>
+	am_degica_payment_response <span class="token operator">=</span> <span class="token number">4397</span>
+	ame_club_payment <span class="token operator">=</span> <span class="token number">4398</span>
+	ame_club_payment_response <span class="token operator">=</span> <span class="token number">4399</span>
+	am_pay_pal_payments_hub_payment <span class="token operator">=</span> <span class="token number">4400</span>
+	am_pay_pal_payments_hub_payment_response <span class="token operator">=</span> <span class="token number">4401</span>
+	am_two_factor_recover_authenticator_request <span class="token operator">=</span> <span class="token number">4402</span>
+	am_two_factor_recover_authenticator_response <span class="token operator">=</span> <span class="token number">4403</span>
+	am_smart2_pay_payment <span class="token operator">=</span> <span class="token number">4404</span>
+	am_smart2_pay_payment_response <span class="token operator">=</span> <span class="token number">4405</span>
+	am_validate_password_reset_code_and_send_sms_request <span class="token operator">=</span> <span class="token number">4406</span>
+	am_validate_password_reset_code_and_send_sms_response <span class="token operator">=</span> <span class="token number">4407</span>
+	am_get_account_reset_details_request <span class="token operator">=</span> <span class="token number">4408</span>
+	am_get_account_reset_details_response <span class="token operator">=</span> <span class="token number">4409</span>
+	am_bit_pay_payment <span class="token operator">=</span> <span class="token number">4410</span>
+	am_bit_pay_payment_response <span class="token operator">=</span> <span class="token number">4411</span>
+	am_send_account_info_update <span class="token operator">=</span> <span class="token number">4412</span>
+	am_send_scheduled_gift <span class="token operator">=</span> <span class="token number">4413</span>
+	am_nodwin_payment <span class="token operator">=</span> <span class="token number">4414</span>
+	am_nodwin_payment_response <span class="token operator">=</span> <span class="token number">4415</span>
+	am_resolve_wallet_revoke <span class="token operator">=</span> <span class="token number">4416</span>
+	am_resolve_wallet_reverse_revoke <span class="token operator">=</span> <span class="token number">4417</span>
+	am_funded_payment <span class="token operator">=</span> <span class="token number">4418</span>
+	am_funded_payment_response <span class="token operator">=</span> <span class="token number">4419</span>
+	am_request_persona_update_for_chat_server <span class="token operator">=</span> <span class="token number">4420</span>
+	am_perfect_world_payment <span class="token operator">=</span> <span class="token number">4421</span>
+	am_perfect_world_payment_response <span class="token operator">=</span> <span class="token number">4422</span>
+	ps_create_shopping_cart <span class="token operator">=</span> <span class="token number">5001</span>
+	ps_create_shopping_cart_response <span class="token operator">=</span> <span class="token number">5002</span>
+	ps_is_valid_shopping_cart <span class="token operator">=</span> <span class="token number">5003</span>
+	ps_is_valid_shopping_cart_response <span class="token operator">=</span> <span class="token number">5004</span>
+	ps_add_package_to_shopping_cart <span class="token operator">=</span> <span class="token number">5005</span>
+	ps_add_package_to_shopping_cart_response <span class="token operator">=</span> <span class="token number">5006</span>
+	ps_remove_line_item_from_shopping_cart <span class="token operator">=</span> <span class="token number">5007</span>
+	ps_remove_line_item_from_shopping_cart_response <span class="token operator">=</span> <span class="token number">5008</span>
+	ps_get_shopping_cart_contents <span class="token operator">=</span> <span class="token number">5009</span>
+	ps_get_shopping_cart_contents_response <span class="token operator">=</span> <span class="token number">5010</span>
+	ps_add_wallet_credit_to_shopping_cart <span class="token operator">=</span> <span class="token number">5011</span>
+	ps_add_wallet_credit_to_shopping_cart_response <span class="token operator">=</span> <span class="token number">5012</span>
+	client_ufs_upload_file_request <span class="token operator">=</span> <span class="token number">5202</span>
+	client_ufs_upload_file_response <span class="token operator">=</span> <span class="token number">5203</span>
+	client_ufs_upload_file_chunk <span class="token operator">=</span> <span class="token number">5204</span>
+	client_ufs_upload_file_finished <span class="token operator">=</span> <span class="token number">5205</span>
+	client_ufs_get_file_list_for_app <span class="token operator">=</span> <span class="token number">5206</span>
+	client_ufs_get_file_list_for_app_response <span class="token operator">=</span> <span class="token number">5207</span>
+	client_ufs_download_request <span class="token operator">=</span> <span class="token number">5210</span>
+	client_ufs_download_response <span class="token operator">=</span> <span class="token number">5211</span>
+	client_ufs_download_chunk <span class="token operator">=</span> <span class="token number">5212</span>
+	client_ufs_login_request <span class="token operator">=</span> <span class="token number">5213</span>
+	client_ufs_login_response <span class="token operator">=</span> <span class="token number">5214</span>
+	ufs_reload_partition_info <span class="token operator">=</span> <span class="token number">5215</span>
+	client_ufs_transfer_heartbeat <span class="token operator">=</span> <span class="token number">5216</span>
+	ufs_synchronize_file <span class="token operator">=</span> <span class="token number">5217</span>
+	ufs_synchronize_file_response <span class="token operator">=</span> <span class="token number">5218</span>
+	client_ufs_delete_file_request <span class="token operator">=</span> <span class="token number">5219</span>
+	client_ufs_delete_file_response <span class="token operator">=</span> <span class="token number">5220</span>
+	client_ufs_get_ugc_details <span class="token operator">=</span> <span class="token number">5226</span>
+	client_ufs_get_ugc_details_response <span class="token operator">=</span> <span class="token number">5227</span>
+	ufs_update_file_flags <span class="token operator">=</span> <span class="token number">5228</span>
+	ufs_update_file_flags_response <span class="token operator">=</span> <span class="token number">5229</span>
+	client_ufs_get_single_file_info <span class="token operator">=</span> <span class="token number">5230</span>
+	client_ufs_get_single_file_info_response <span class="token operator">=</span> <span class="token number">5231</span>
+	client_ufs_share_file <span class="token operator">=</span> <span class="token number">5232</span>
+	client_ufs_share_file_response <span class="token operator">=</span> <span class="token number">5233</span>
+	ufs_reload_account <span class="token operator">=</span> <span class="token number">5234</span>
+	ufs_reload_account_response <span class="token operator">=</span> <span class="token number">5235</span>
+	ufs_update_record_batched <span class="token operator">=</span> <span class="token number">5236</span>
+	ufs_update_record_batched_response <span class="token operator">=</span> <span class="token number">5237</span>
+	ufs_migrate_file <span class="token operator">=</span> <span class="token number">5238</span>
+	ufs_migrate_file_response <span class="token operator">=</span> <span class="token number">5239</span>
+	ufs_get_ugcur_ls <span class="token operator">=</span> <span class="token number">5240</span>
+	ufs_get_ugcur_ls_response <span class="token operator">=</span> <span class="token number">5241</span>
+	ufs_http_upload_file_finish_request <span class="token operator">=</span> <span class="token number">5242</span>
+	ufs_http_upload_file_finish_response <span class="token operator">=</span> <span class="token number">5243</span>
+	ufs_download_start_request <span class="token operator">=</span> <span class="token number">5244</span>
+	ufs_download_start_response <span class="token operator">=</span> <span class="token number">5245</span>
+	ufs_download_chunk_request <span class="token operator">=</span> <span class="token number">5246</span>
+	ufs_download_chunk_response <span class="token operator">=</span> <span class="token number">5247</span>
+	ufs_download_finish_request <span class="token operator">=</span> <span class="token number">5248</span>
+	ufs_download_finish_response <span class="token operator">=</span> <span class="token number">5249</span>
+	ufs_flush_url_cache <span class="token operator">=</span> <span class="token number">5250</span>
+	client_ufs_upload_commit <span class="token operator">=</span> <span class="token number">5251</span>
+	client_ufs_upload_commit_response <span class="token operator">=</span> <span class="token number">5252</span>
+	ufs_migrate_file_app_id <span class="token operator">=</span> <span class="token number">5253</span>
+	ufs_migrate_file_app_id_response <span class="token operator">=</span> <span class="token number">5254</span>
+	client_request_forgotten_password_email <span class="token operator">=</span> <span class="token number">5401</span>
+	client_request_forgotten_password_email_response <span class="token operator">=</span> <span class="token number">5402</span>
+	client_create_account_response <span class="token operator">=</span> <span class="token number">5403</span>
+	client_reset_forgotten_password <span class="token operator">=</span> <span class="token number">5404</span>
+	client_reset_forgotten_password_response <span class="token operator">=</span> <span class="token number">5405</span>
+	client_inform_of_reset_forgotten_password <span class="token operator">=</span> <span class="token number">5407</span>
+	client_inform_of_reset_forgotten_password_response <span class="token operator">=</span> <span class="token number">5408</span>
+	client_games_played_with_data_blob <span class="token operator">=</span> <span class="token number">5410</span>
+	client_update_user_game_info <span class="token operator">=</span> <span class="token number">5411</span>
+	client_file_to_download <span class="token operator">=</span> <span class="token number">5412</span>
+	client_file_to_download_response <span class="token operator">=</span> <span class="token number">5413</span>
+	client_lbs_set_score <span class="token operator">=</span> <span class="token number">5414</span>
+	client_lbs_set_score_response <span class="token operator">=</span> <span class="token number">5415</span>
+	client_lbs_find_or_create_lb <span class="token operator">=</span> <span class="token number">5416</span>
+	client_lbs_find_or_create_lb_response <span class="token operator">=</span> <span class="token number">5417</span>
+	client_lbs_get_lb_entries <span class="token operator">=</span> <span class="token number">5418</span>
+	client_lbs_get_lb_entries_response <span class="token operator">=</span> <span class="token number">5419</span>
+	client_chat_declined <span class="token operator">=</span> <span class="token number">5426</span>
+	client_friend_msg_incoming <span class="token operator">=</span> <span class="token number">5427</span>
+	client_ticket_auth_complete <span class="token operator">=</span> <span class="token number">5429</span>
+	client_is_limited_account <span class="token operator">=</span> <span class="token number">5430</span>
+	client_request_auth_list <span class="token operator">=</span> <span class="token number">5431</span>
+	client_auth_list <span class="token operator">=</span> <span class="token number">5432</span>
+	client_stat <span class="token operator">=</span> <span class="token number">5433</span>
+	client_p2_p_connection_info <span class="token operator">=</span> <span class="token number">5434</span>
+	client_p2_p_connection_fail_info <span class="token operator">=</span> <span class="token number">5435</span>
+	client_get_depot_decryption_key <span class="token operator">=</span> <span class="token number">5438</span>
+	client_get_depot_decryption_key_response <span class="token operator">=</span> <span class="token number">5439</span>
+	gs_perform_hardware_survey <span class="token operator">=</span> <span class="token number">5440</span>
+	client_enable_test_license <span class="token operator">=</span> <span class="token number">5443</span>
+	client_enable_test_license_response <span class="token operator">=</span> <span class="token number">5444</span>
+	client_disable_test_license <span class="token operator">=</span> <span class="token number">5445</span>
+	client_disable_test_license_response <span class="token operator">=</span> <span class="token number">5446</span>
+	client_request_validation_mail <span class="token operator">=</span> <span class="token number">5448</span>
+	client_request_validation_mail_response <span class="token operator">=</span> <span class="token number">5449</span>
+	client_check_app_beta_password <span class="token operator">=</span> <span class="token number">5450</span>
+	client_check_app_beta_password_response <span class="token operator">=</span> <span class="token number">5451</span>
+	client_to_gc <span class="token operator">=</span> <span class="token number">5452</span>
+	client_from_gc <span class="token operator">=</span> <span class="token number">5453</span>
+	client_request_change_mail <span class="token operator">=</span> <span class="token number">5454</span>
+	client_request_change_mail_response <span class="token operator">=</span> <span class="token number">5455</span>
+	client_email_addr_info <span class="token operator">=</span> <span class="token number">5456</span>
+	client_password_change3 <span class="token operator">=</span> <span class="token number">5457</span>
+	client_email_change3 <span class="token operator">=</span> <span class="token number">5458</span>
+	client_personal_qa_change3 <span class="token operator">=</span> <span class="token number">5459</span>
+	client_reset_forgotten_password3 <span class="token operator">=</span> <span class="token number">5460</span>
+	client_request_forgotten_password_email3 <span class="token operator">=</span> <span class="token number">5461</span>
+	client_new_login_key <span class="token operator">=</span> <span class="token number">5463</span>
+	client_new_login_key_accepted <span class="token operator">=</span> <span class="token number">5464</span>
+	client_store_user_stats2 <span class="token operator">=</span> <span class="token number">5466</span>
+	client_stats_updated <span class="token operator">=</span> <span class="token number">5467</span>
+	client_activate_oem_license <span class="token operator">=</span> <span class="token number">5468</span>
+	client_register_oem_machine <span class="token operator">=</span> <span class="token number">5469</span>
+	client_register_oem_machine_response <span class="token operator">=</span> <span class="token number">5470</span>
+	client_requested_client_stats <span class="token operator">=</span> <span class="token number">5480</span>
+	client_stat2_int32 <span class="token operator">=</span> <span class="token number">5481</span>
+	client_stat2 <span class="token operator">=</span> <span class="token number">5482</span>
+	client_verify_password <span class="token operator">=</span> <span class="token number">5483</span>
+	client_verify_password_response <span class="token operator">=</span> <span class="token number">5484</span>
+	client_drm_download_request <span class="token operator">=</span> <span class="token number">5485</span>
+	client_drm_download_response <span class="token operator">=</span> <span class="token number">5486</span>
+	client_drm_final_result <span class="token operator">=</span> <span class="token number">5487</span>
+	client_get_friends_who_play_game <span class="token operator">=</span> <span class="token number">5488</span>
+	client_get_friends_who_play_game_response <span class="token operator">=</span> <span class="token number">5489</span>
+	client_ogs_begin_session <span class="token operator">=</span> <span class="token number">5490</span>
+	client_ogs_begin_session_response <span class="token operator">=</span> <span class="token number">5491</span>
+	client_ogs_end_session <span class="token operator">=</span> <span class="token number">5492</span>
+	client_ogs_end_session_response <span class="token operator">=</span> <span class="token number">5493</span>
+	client_ogs_write_row <span class="token operator">=</span> <span class="token number">5494</span>
+	client_drm_test <span class="token operator">=</span> <span class="token number">5495</span>
+	client_drm_test_result <span class="token operator">=</span> <span class="token number">5496</span>
+	client_server_unavailable <span class="token operator">=</span> <span class="token number">5500</span>
+	client_servers_available <span class="token operator">=</span> <span class="token number">5501</span>
+	client_register_auth_ticket_with_cm <span class="token operator">=</span> <span class="token number">5502</span>
+	client_gc_msg_failed <span class="token operator">=</span> <span class="token number">5503</span>
+	client_micro_txn_auth_request <span class="token operator">=</span> <span class="token number">5504</span>
+	client_micro_txn_authorize <span class="token operator">=</span> <span class="token number">5505</span>
+	client_micro_txn_authorize_response <span class="token operator">=</span> <span class="token number">5506</span>
+	client_app_minutes_played_data <span class="token operator">=</span> <span class="token number">5507</span>
+	client_get_micro_txn_info <span class="token operator">=</span> <span class="token number">5508</span>
+	client_get_micro_txn_info_response <span class="token operator">=</span> <span class="token number">5509</span>
+	client_marketing_message_update2 <span class="token operator">=</span> <span class="token number">5510</span>
+	client_deregister_with_server <span class="token operator">=</span> <span class="token number">5511</span>
+	client_subscribe_to_persona_feed <span class="token operator">=</span> <span class="token number">5512</span>
+	client_logon <span class="token operator">=</span> <span class="token number">5514</span>
+	client_get_client_details <span class="token operator">=</span> <span class="token number">5515</span>
+	client_get_client_details_response <span class="token operator">=</span> <span class="token number">5516</span>
+	client_report_overlay_detour_failure <span class="token operator">=</span> <span class="token number">5517</span>
+	client_get_client_app_list <span class="token operator">=</span> <span class="token number">5518</span>
+	client_get_client_app_list_response <span class="token operator">=</span> <span class="token number">5519</span>
+	client_install_client_app <span class="token operator">=</span> <span class="token number">5520</span>
+	client_install_client_app_response <span class="token operator">=</span> <span class="token number">5521</span>
+	client_uninstall_client_app <span class="token operator">=</span> <span class="token number">5522</span>
+	client_uninstall_client_app_response <span class="token operator">=</span> <span class="token number">5523</span>
+	client_set_client_app_update_state <span class="token operator">=</span> <span class="token number">5524</span>
+	client_set_client_app_update_state_response <span class="token operator">=</span> <span class="token number">5525</span>
+	client_request_encrypted_app_ticket <span class="token operator">=</span> <span class="token number">5526</span>
+	client_request_encrypted_app_ticket_response <span class="token operator">=</span> <span class="token number">5527</span>
+	client_wallet_info_update <span class="token operator">=</span> <span class="token number">5528</span>
+	client_lbs_set_ugc <span class="token operator">=</span> <span class="token number">5529</span>
+	client_lbs_set_ugc_response <span class="token operator">=</span> <span class="token number">5530</span>
+	client_am_get_clan_officers <span class="token operator">=</span> <span class="token number">5531</span>
+	client_am_get_clan_officers_response <span class="token operator">=</span> <span class="token number">5532</span>
+	client_friend_profile_info <span class="token operator">=</span> <span class="token number">5535</span>
+	client_friend_profile_info_response <span class="token operator">=</span> <span class="token number">5536</span>
+	client_update_machine_auth <span class="token operator">=</span> <span class="token number">5537</span>
+	client_update_machine_auth_response <span class="token operator">=</span> <span class="token number">5538</span>
+	client_read_machine_auth <span class="token operator">=</span> <span class="token number">5539</span>
+	client_read_machine_auth_response <span class="token operator">=</span> <span class="token number">5540</span>
+	client_request_machine_auth <span class="token operator">=</span> <span class="token number">5541</span>
+	client_request_machine_auth_response <span class="token operator">=</span> <span class="token number">5542</span>
+	client_screenshots_changed <span class="token operator">=</span> <span class="token number">5543</span>
+	client_get_cdn_auth_token <span class="token operator">=</span> <span class="token number">5546</span>
+	client_get_cdn_auth_token_response <span class="token operator">=</span> <span class="token number">5547</span>
+	client_download_rate_statistics <span class="token operator">=</span> <span class="token number">5548</span>
+	client_request_account_data <span class="token operator">=</span> <span class="token number">5549</span>
+	client_request_account_data_response <span class="token operator">=</span> <span class="token number">5550</span>
+	client_reset_forgotten_password4 <span class="token operator">=</span> <span class="token number">5551</span>
+	client_hide_friend <span class="token operator">=</span> <span class="token number">5552</span>
+	client_friends_groups_list <span class="token operator">=</span> <span class="token number">5553</span>
+	client_get_clan_activity_counts <span class="token operator">=</span> <span class="token number">5554</span>
+	client_get_clan_activity_counts_response <span class="token operator">=</span> <span class="token number">5555</span>
+	client_ogs_report_string <span class="token operator">=</span> <span class="token number">5556</span>
+	client_ogs_report_bug <span class="token operator">=</span> <span class="token number">5557</span>
+	client_sent_logs <span class="token operator">=</span> <span class="token number">5558</span>
+	client_logon_game_server <span class="token operator">=</span> <span class="token number">5559</span>
+	am_client_create_friends_group <span class="token operator">=</span> <span class="token number">5560</span>
+	am_client_create_friends_group_response <span class="token operator">=</span> <span class="token number">5561</span>
+	am_client_delete_friends_group <span class="token operator">=</span> <span class="token number">5562</span>
+	am_client_delete_friends_group_response <span class="token operator">=</span> <span class="token number">5563</span>
+	am_client_manage_friends_group <span class="token operator">=</span> <span class="token number">5564</span>
+	am_client_manage_friends_group_response <span class="token operator">=</span> <span class="token number">5565</span>
+	am_client_add_friend_to_group <span class="token operator">=</span> <span class="token number">5566</span>
+	am_client_add_friend_to_group_response <span class="token operator">=</span> <span class="token number">5567</span>
+	am_client_remove_friend_from_group <span class="token operator">=</span> <span class="token number">5568</span>
+	am_client_remove_friend_from_group_response <span class="token operator">=</span> <span class="token number">5569</span>
+	client_am_get_persona_name_history <span class="token operator">=</span> <span class="token number">5570</span>
+	client_am_get_persona_name_history_response <span class="token operator">=</span> <span class="token number">5571</span>
+	client_request_free_license <span class="token operator">=</span> <span class="token number">5572</span>
+	client_request_free_license_response <span class="token operator">=</span> <span class="token number">5573</span>
+	client_drm_download_request_with_crash_data <span class="token operator">=</span> <span class="token number">5574</span>
+	client_auth_list_ack <span class="token operator">=</span> <span class="token number">5575</span>
+	client_item_announcements <span class="token operator">=</span> <span class="token number">5576</span>
+	client_request_item_announcements <span class="token operator">=</span> <span class="token number">5577</span>
+	client_friend_msg_echo_to_sender <span class="token operator">=</span> <span class="token number">5578</span>
+	client_ogs_game_server_ping_sample <span class="token operator">=</span> <span class="token number">5581</span>
+	client_comment_notifications <span class="token operator">=</span> <span class="token number">5582</span>
+	client_request_comment_notifications <span class="token operator">=</span> <span class="token number">5583</span>
+	client_persona_change_response <span class="token operator">=</span> <span class="token number">5584</span>
+	client_request_web_api_authenticate_user_nonce <span class="token operator">=</span> <span class="token number">5585</span>
+	client_request_web_api_authenticate_user_nonce_response <span class="token operator">=</span> <span class="token number">5586</span>
+	client_player_nickname_list <span class="token operator">=</span> <span class="token number">5587</span>
+	am_client_set_player_nickname <span class="token operator">=</span> <span class="token number">5588</span>
+	am_client_set_player_nickname_response <span class="token operator">=</span> <span class="token number">5589</span>
+	client_get_number_of_current_players_dp <span class="token operator">=</span> <span class="token number">5592</span>
+	client_get_number_of_current_players_dp_response <span class="token operator">=</span> <span class="token number">5593</span>
+	client_service_method_legacy <span class="token operator">=</span> <span class="token number">5594</span>
+	client_service_method_legacy_response <span class="token operator">=</span> <span class="token number">5595</span>
+	client_friend_user_status_published <span class="token operator">=</span> <span class="token number">5596</span>
+	client_current_ui_mode <span class="token operator">=</span> <span class="token number">5597</span>
+	client_vanity_url_changed_notification <span class="token operator">=</span> <span class="token number">5598</span>
+	client_user_notifications <span class="token operator">=</span> <span class="token number">5599</span>
+	dfs_get_file <span class="token operator">=</span> <span class="token number">5601</span>
+	dfs_install_local_file <span class="token operator">=</span> <span class="token number">5602</span>
+	dfs_connection <span class="token operator">=</span> <span class="token number">5603</span>
+	dfs_connection_reply <span class="token operator">=</span> <span class="token number">5604</span>
+	client_dfs_authenticate_request <span class="token operator">=</span> <span class="token number">5605</span>
+	client_dfs_authenticate_response <span class="token operator">=</span> <span class="token number">5606</span>
+	client_dfs_end_session <span class="token operator">=</span> <span class="token number">5607</span>
+	dfs_purge_file <span class="token operator">=</span> <span class="token number">5608</span>
+	dfs_route_file <span class="token operator">=</span> <span class="token number">5609</span>
+	dfs_get_file_from_server <span class="token operator">=</span> <span class="token number">5610</span>
+	dfs_accepted_response <span class="token operator">=</span> <span class="token number">5611</span>
+	dfs_request_pingback <span class="token operator">=</span> <span class="token number">5612</span>
+	dfs_recv_transmit_file <span class="token operator">=</span> <span class="token number">5613</span>
+	dfs_send_transmit_file <span class="token operator">=</span> <span class="token number">5614</span>
+	dfs_request_pingback2 <span class="token operator">=</span> <span class="token number">5615</span>
+	dfs_response_pingback2 <span class="token operator">=</span> <span class="token number">5616</span>
+	client_dfs_download_status <span class="token operator">=</span> <span class="token number">5617</span>
+	dfs_start_transfer <span class="token operator">=</span> <span class="token number">5618</span>
+	dfs_transfer_complete <span class="token operator">=</span> <span class="token number">5619</span>
+	dfs_route_file_response <span class="token operator">=</span> <span class="token number">5620</span>
+	client_networking_cert_request <span class="token operator">=</span> <span class="token number">5621</span>
+	client_networking_cert_request_response <span class="token operator">=</span> <span class="token number">5622</span>
+	client_challenge_request <span class="token operator">=</span> <span class="token number">5623</span>
+	client_challenge_response <span class="token operator">=</span> <span class="token number">5624</span>
+	badge_crafted_notification <span class="token operator">=</span> <span class="token number">5625</span>
+	client_networking_mobile_cert_request <span class="token operator">=</span> <span class="token number">5626</span>
+	client_networking_mobile_cert_request_response <span class="token operator">=</span> <span class="token number">5627</span>
+	am_to_mds_get_depot_decryption_key <span class="token operator">=</span> <span class="token number">5812</span>
+	mds_to_am_get_depot_decryption_key_response <span class="token operator">=</span> <span class="token number">5813</span>
+	mds_content_server_config_request <span class="token operator">=</span> <span class="token number">5827</span>
+	mds_content_server_config <span class="token operator">=</span> <span class="token number">5828</span>
+	mds_get_depot_manifest <span class="token operator">=</span> <span class="token number">5829</span>
+	mds_get_depot_manifest_response <span class="token operator">=</span> <span class="token number">5830</span>
+	mds_get_depot_manifest_chunk <span class="token operator">=</span> <span class="token number">5831</span>
+	mds_get_depot_chunk <span class="token operator">=</span> <span class="token number">5832</span>
+	mds_get_depot_chunk_response <span class="token operator">=</span> <span class="token number">5833</span>
+	mds_get_depot_chunk_chunk <span class="token operator">=</span> <span class="token number">5834</span>
+	mds_to_cs_flush_chunk <span class="token operator">=</span> <span class="token number">5844</span>
+	mds_migrate_chunk <span class="token operator">=</span> <span class="token number">5847</span>
+	mds_migrate_chunk_response <span class="token operator">=</span> <span class="token number">5848</span>
+	mds_to_cs_flush_manifest <span class="token operator">=</span> <span class="token number">5849</span>
+	cs_ping <span class="token operator">=</span> <span class="token number">6201</span>
+	cs_ping_response <span class="token operator">=</span> <span class="token number">6202</span>
+	gms_game_server_replicate <span class="token operator">=</span> <span class="token number">6401</span>
+	client_gms_server_query <span class="token operator">=</span> <span class="token number">6403</span>
+	gms_client_server_query_response <span class="token operator">=</span> <span class="token number">6404</span>
+	amgms_game_server_update <span class="token operator">=</span> <span class="token number">6405</span>
+	amgms_game_server_remove <span class="token operator">=</span> <span class="token number">6406</span>
+	game_server_out_of_date <span class="token operator">=</span> <span class="token number">6407</span>
+	client_authorize_local_device_request <span class="token operator">=</span> <span class="token number">6501</span>
+	client_authorize_local_device_response <span class="token operator">=</span> <span class="token number">6502</span>
+	client_deauthorize_device_request <span class="token operator">=</span> <span class="token number">6503</span>
+	client_deauthorize_device <span class="token operator">=</span> <span class="token number">6504</span>
+	client_use_local_device_authorizations <span class="token operator">=</span> <span class="token number">6505</span>
+	client_get_authorized_devices <span class="token operator">=</span> <span class="token number">6506</span>
+	client_get_authorized_devices_response <span class="token operator">=</span> <span class="token number">6507</span>
+	am_notify_session_device_authorized <span class="token operator">=</span> <span class="token number">6508</span>
+	client_authorize_local_device_notification <span class="token operator">=</span> <span class="token number">6509</span>
+	client_mms_create_lobby <span class="token operator">=</span> <span class="token number">6601</span>
+	client_mms_create_lobby_response <span class="token operator">=</span> <span class="token number">6602</span>
+	client_mms_join_lobby <span class="token operator">=</span> <span class="token number">6603</span>
+	client_mms_join_lobby_response <span class="token operator">=</span> <span class="token number">6604</span>
+	client_mms_leave_lobby <span class="token operator">=</span> <span class="token number">6605</span>
+	client_mms_leave_lobby_response <span class="token operator">=</span> <span class="token number">6606</span>
+	client_mms_get_lobby_list <span class="token operator">=</span> <span class="token number">6607</span>
+	client_mms_get_lobby_list_response <span class="token operator">=</span> <span class="token number">6608</span>
+	client_mms_set_lobby_data <span class="token operator">=</span> <span class="token number">6609</span>
+	client_mms_set_lobby_data_response <span class="token operator">=</span> <span class="token number">6610</span>
+	client_mms_get_lobby_data <span class="token operator">=</span> <span class="token number">6611</span>
+	client_mms_lobby_data <span class="token operator">=</span> <span class="token number">6612</span>
+	client_mms_send_lobby_chat_msg <span class="token operator">=</span> <span class="token number">6613</span>
+	client_mms_lobby_chat_msg <span class="token operator">=</span> <span class="token number">6614</span>
+	client_mms_set_lobby_owner <span class="token operator">=</span> <span class="token number">6615</span>
+	client_mms_set_lobby_owner_response <span class="token operator">=</span> <span class="token number">6616</span>
+	client_mms_set_lobby_game_server <span class="token operator">=</span> <span class="token number">6617</span>
+	client_mms_lobby_game_server_set <span class="token operator">=</span> <span class="token number">6618</span>
+	client_mms_user_joined_lobby <span class="token operator">=</span> <span class="token number">6619</span>
+	client_mms_user_left_lobby <span class="token operator">=</span> <span class="token number">6620</span>
+	client_mms_invite_to_lobby <span class="token operator">=</span> <span class="token number">6621</span>
+	client_mms_flush_frenemy_list_cache <span class="token operator">=</span> <span class="token number">6622</span>
+	client_mms_flush_frenemy_list_cache_response <span class="token operator">=</span> <span class="token number">6623</span>
+	client_mms_set_lobby_linked <span class="token operator">=</span> <span class="token number">6624</span>
+	client_mms_set_ratelimit_policy_on_client <span class="token operator">=</span> <span class="token number">6625</span>
+	client_mms_get_lobby_status <span class="token operator">=</span> <span class="token number">6626</span>
+	client_mms_get_lobby_status_response <span class="token operator">=</span> <span class="token number">6627</span>
+	mms_get_lobby_list <span class="token operator">=</span> <span class="token number">6628</span>
+	mms_get_lobby_list_response <span class="token operator">=</span> <span class="token number">6629</span>
+	non_std_msg_memcached <span class="token operator">=</span> <span class="token number">6801</span>
+	non_std_msg_http_server <span class="token operator">=</span> <span class="token number">6802</span>
+	non_std_msg_http_client <span class="token operator">=</span> <span class="token number">6803</span>
+	non_std_msg_wg_response <span class="token operator">=</span> <span class="token number">6804</span>
+	non_std_msg_php_simulator <span class="token operator">=</span> <span class="token number">6805</span>
+	non_std_msg_chase <span class="token operator">=</span> <span class="token number">6806</span>
+	non_std_msg_dfs_transfer <span class="token operator">=</span> <span class="token number">6807</span>
+	non_std_msg_tests <span class="token operator">=</span> <span class="token number">6808</span>
+	non_std_msg_um_qpipe_aapl <span class="token operator">=</span> <span class="token number">6809</span>
+	non_std_msg_syslog <span class="token operator">=</span> <span class="token number">6810</span>
+	non_std_msg_logsink <span class="token operator">=</span> <span class="token number">6811</span>
+	non_std_msg_steam2_emulator <span class="token operator">=</span> <span class="token number">6812</span>
+	non_std_msg_rtmp_server <span class="token operator">=</span> <span class="token number">6813</span>
+	non_std_msg_web_socket <span class="token operator">=</span> <span class="token number">6814</span>
+	non_std_msg_redis <span class="token operator">=</span> <span class="token number">6815</span>
+	client_udsp2_p_session_started <span class="token operator">=</span> <span class="token number">7001</span>
+	client_udsp2_p_session_ended <span class="token operator">=</span> <span class="token number">7002</span>
+	uds_render_user_auth <span class="token operator">=</span> <span class="token number">7003</span>
+	uds_render_user_auth_response <span class="token operator">=</span> <span class="token number">7004</span>
+	client_invite_to_game <span class="token operator">=</span> <span class="token number">7005</span>
+	uds_has_session <span class="token operator">=</span> <span class="token number">7006</span>
+	uds_has_session_response <span class="token operator">=</span> <span class="token number">7007</span>
+	mpas_vac_ban_reset <span class="token operator">=</span> <span class="token number">7101</span>
+	client_ucm_add_screenshot <span class="token operator">=</span> <span class="token number">7301</span>
+	client_ucm_add_screenshot_response <span class="token operator">=</span> <span class="token number">7302</span>
+	ucm_reset_community_content <span class="token operator">=</span> <span class="token number">7307</span>
+	ucm_reset_community_content_response <span class="token operator">=</span> <span class="token number">7308</span>
+	client_ucm_delete_screenshot <span class="token operator">=</span> <span class="token number">7309</span>
+	client_ucm_delete_screenshot_response <span class="token operator">=</span> <span class="token number">7310</span>
+	client_ucm_publish_file <span class="token operator">=</span> <span class="token number">7311</span>
+	client_ucm_publish_file_response <span class="token operator">=</span> <span class="token number">7312</span>
+	client_ucm_delete_published_file <span class="token operator">=</span> <span class="token number">7315</span>
+	client_ucm_delete_published_file_response <span class="token operator">=</span> <span class="token number">7316</span>
+	client_ucm_enumerate_user_published_files <span class="token operator">=</span> <span class="token number">7317</span>
+	client_ucm_enumerate_user_published_files_response <span class="token operator">=</span> <span class="token number">7318</span>
+	client_ucm_enumerate_user_subscribed_files <span class="token operator">=</span> <span class="token number">7321</span>
+	client_ucm_enumerate_user_subscribed_files_response <span class="token operator">=</span> <span class="token number">7322</span>
+	client_ucm_update_published_file <span class="token operator">=</span> <span class="token number">7325</span>
+	client_ucm_update_published_file_response <span class="token operator">=</span> <span class="token number">7326</span>
+	ucm_update_published_file <span class="token operator">=</span> <span class="token number">7327</span>
+	ucm_update_published_file_response <span class="token operator">=</span> <span class="token number">7328</span>
+	ucm_delete_published_file <span class="token operator">=</span> <span class="token number">7329</span>
+	ucm_delete_published_file_response <span class="token operator">=</span> <span class="token number">7330</span>
+	ucm_update_published_file_stat <span class="token operator">=</span> <span class="token number">7331</span>
+	ucm_reload_published_file <span class="token operator">=</span> <span class="token number">7337</span>
+	ucm_reload_user_file_list_caches <span class="token operator">=</span> <span class="token number">7338</span>
+	ucm_published_file_reported <span class="token operator">=</span> <span class="token number">7339</span>
+	ucm_published_file_preview_add <span class="token operator">=</span> <span class="token number">7341</span>
+	ucm_published_file_preview_add_response <span class="token operator">=</span> <span class="token number">7342</span>
+	ucm_published_file_preview_remove <span class="token operator">=</span> <span class="token number">7343</span>
+	ucm_published_file_preview_remove_response <span class="token operator">=</span> <span class="token number">7344</span>
+	client_ucm_published_file_subscribed <span class="token operator">=</span> <span class="token number">7347</span>
+	client_ucm_published_file_unsubscribed <span class="token operator">=</span> <span class="token number">7348</span>
+	ucm_published_file_subscribed <span class="token operator">=</span> <span class="token number">7349</span>
+	ucm_published_file_unsubscribed <span class="token operator">=</span> <span class="token number">7350</span>
+	ucm_publish_file <span class="token operator">=</span> <span class="token number">7351</span>
+	ucm_publish_file_response <span class="token operator">=</span> <span class="token number">7352</span>
+	ucm_published_file_child_add <span class="token operator">=</span> <span class="token number">7353</span>
+	ucm_published_file_child_add_response <span class="token operator">=</span> <span class="token number">7354</span>
+	ucm_published_file_child_remove <span class="token operator">=</span> <span class="token number">7355</span>
+	ucm_published_file_child_remove_response <span class="token operator">=</span> <span class="token number">7356</span>
+	ucm_published_file_parent_changed <span class="token operator">=</span> <span class="token number">7359</span>
+	client_ucm_get_published_files_for_user <span class="token operator">=</span> <span class="token number">7360</span>
+	client_ucm_get_published_files_for_user_response <span class="token operator">=</span> <span class="token number">7361</span>
+	client_ucm_set_user_published_file_action <span class="token operator">=</span> <span class="token number">7364</span>
+	client_ucm_set_user_published_file_action_response <span class="token operator">=</span> <span class="token number">7365</span>
+	client_ucm_enumerate_published_files_by_user_action <span class="token operator">=</span> <span class="token number">7366</span>
+	client_ucm_enumerate_published_files_by_user_action_response <span class="token operator">=</span> <span class="token number">7367</span>
+	client_ucm_published_file_deleted <span class="token operator">=</span> <span class="token number">7368</span>
+	ucm_get_user_subscribed_files <span class="token operator">=</span> <span class="token number">7369</span>
+	ucm_get_user_subscribed_files_response <span class="token operator">=</span> <span class="token number">7370</span>
+	ucm_fix_stats_published_file <span class="token operator">=</span> <span class="token number">7371</span>
+	client_ucm_enumerate_user_subscribed_files_with_updates <span class="token operator">=</span> <span class="token number">7378</span>
+	client_ucm_enumerate_user_subscribed_files_with_updates_response <span class="token operator">=</span> <span class="token number">7379</span>
+	ucm_published_file_content_updated <span class="token operator">=</span> <span class="token number">7380</span>
+	client_ucm_published_file_updated <span class="token operator">=</span> <span class="token number">7381</span>
+	client_workshop_item_changes_request <span class="token operator">=</span> <span class="token number">7382</span>
+	client_workshop_item_changes_response <span class="token operator">=</span> <span class="token number">7383</span>
+	client_workshop_item_info_request <span class="token operator">=</span> <span class="token number">7384</span>
+	client_workshop_item_info_response <span class="token operator">=</span> <span class="token number">7385</span>
+	client_rich_presence_upload <span class="token operator">=</span> <span class="token number">7501</span>
+	client_rich_presence_request <span class="token operator">=</span> <span class="token number">7502</span>
+	client_rich_presence_info <span class="token operator">=</span> <span class="token number">7503</span>
+	fs_rich_presence_request <span class="token operator">=</span> <span class="token number">7504</span>
+	fs_rich_presence_response <span class="token operator">=</span> <span class="token number">7505</span>
+	fs_compute_frenematrix <span class="token operator">=</span> <span class="token number">7506</span>
+	fs_compute_frenematrix_response <span class="token operator">=</span> <span class="token number">7507</span>
+	fs_play_status_notification <span class="token operator">=</span> <span class="token number">7508</span>
+	fs_add_or_remove_follower <span class="token operator">=</span> <span class="token number">7510</span>
+	fs_add_or_remove_follower_response <span class="token operator">=</span> <span class="token number">7511</span>
+	fs_update_following_list <span class="token operator">=</span> <span class="token number">7512</span>
+	fs_comment_notification <span class="token operator">=</span> <span class="token number">7513</span>
+	fs_comment_notification_viewed <span class="token operator">=</span> <span class="token number">7514</span>
+	client_fs_get_follower_count <span class="token operator">=</span> <span class="token number">7515</span>
+	client_fs_get_follower_count_response <span class="token operator">=</span> <span class="token number">7516</span>
+	client_fs_get_is_following <span class="token operator">=</span> <span class="token number">7517</span>
+	client_fs_get_is_following_response <span class="token operator">=</span> <span class="token number">7518</span>
+	client_fs_enumerate_following_list <span class="token operator">=</span> <span class="token number">7519</span>
+	client_fs_enumerate_following_list_response <span class="token operator">=</span> <span class="token number">7520</span>
+	fs_get_pending_notification_count <span class="token operator">=</span> <span class="token number">7521</span>
+	fs_get_pending_notification_count_response <span class="token operator">=</span> <span class="token number">7522</span>
+	client_chat_offline_message_notification <span class="token operator">=</span> <span class="token number">7523</span>
+	client_chat_request_offline_message_count <span class="token operator">=</span> <span class="token number">7524</span>
+	client_chat_get_friend_message_history <span class="token operator">=</span> <span class="token number">7525</span>
+	client_chat_get_friend_message_history_response <span class="token operator">=</span> <span class="token number">7526</span>
+	client_chat_get_friend_message_history_for_offline_messages <span class="token operator">=</span> <span class="token number">7527</span>
+	client_fs_get_friends_steam_levels <span class="token operator">=</span> <span class="token number">7528</span>
+	client_fs_get_friends_steam_levels_response <span class="token operator">=</span> <span class="token number">7529</span>
+	am_request_friend_data <span class="token operator">=</span> <span class="token number">7530</span>
+	ceg_version_set_enable_disable_request <span class="token operator">=</span> <span class="token number">7600</span>
+	ceg_version_set_enable_disable_response <span class="token operator">=</span> <span class="token number">7601</span>
+	ceg_prop_status_drms_request <span class="token operator">=</span> <span class="token number">7602</span>
+	ceg_prop_status_drms_response <span class="token operator">=</span> <span class="token number">7603</span>
+	ceg_whack_failure_report_request <span class="token operator">=</span> <span class="token number">7604</span>
+	ceg_whack_failure_report_response <span class="token operator">=</span> <span class="token number">7605</span>
+	drms_fetch_version_set <span class="token operator">=</span> <span class="token number">7606</span>
+	drms_fetch_version_set_response <span class="token operator">=</span> <span class="token number">7607</span>
+	econ_trading_initiate_trade_request <span class="token operator">=</span> <span class="token number">7701</span>
+	econ_trading_initiate_trade_proposed <span class="token operator">=</span> <span class="token number">7702</span>
+	econ_trading_initiate_trade_response <span class="token operator">=</span> <span class="token number">7703</span>
+	econ_trading_initiate_trade_result <span class="token operator">=</span> <span class="token number">7704</span>
+	econ_trading_start_session <span class="token operator">=</span> <span class="token number">7705</span>
+	econ_trading_cancel_trade_request <span class="token operator">=</span> <span class="token number">7706</span>
+	econ_flush_inventory_cache <span class="token operator">=</span> <span class="token number">7707</span>
+	econ_flush_inventory_cache_response <span class="token operator">=</span> <span class="token number">7708</span>
+	econ_cd_key_process_transaction <span class="token operator">=</span> <span class="token number">7711</span>
+	econ_cd_key_process_transaction_response <span class="token operator">=</span> <span class="token number">7712</span>
+	econ_get_error_logs <span class="token operator">=</span> <span class="token number">7713</span>
+	econ_get_error_logs_response <span class="token operator">=</span> <span class="token number">7714</span>
+	rm_test_verisign_otp <span class="token operator">=</span> <span class="token number">7800</span>
+	rm_test_verisign_otp_response <span class="token operator">=</span> <span class="token number">7801</span>
+	rm_delete_memcached_keys <span class="token operator">=</span> <span class="token number">7803</span>
+	rm_remote_invoke <span class="token operator">=</span> <span class="token number">7804</span>
+	bad_login_ip_list <span class="token operator">=</span> <span class="token number">7805</span>
+	rm_msg_trace_add_trigger <span class="token operator">=</span> <span class="token number">7806</span>
+	rm_msg_trace_remove_trigger <span class="token operator">=</span> <span class="token number">7807</span>
+	rm_msg_trace_event <span class="token operator">=</span> <span class="token number">7808</span>
+	ugs_update_global_stats <span class="token operator">=</span> <span class="token number">7900</span>
+	client_ugs_get_global_stats <span class="token operator">=</span> <span class="token number">7901</span>
+	client_ugs_get_global_stats_response <span class="token operator">=</span> <span class="token number">7902</span>
+	umq_logon_request <span class="token operator">=</span> <span class="token number">8100</span>
+	umq_logon_response <span class="token operator">=</span> <span class="token number">8101</span>
+	umq_logoff_request <span class="token operator">=</span> <span class="token number">8102</span>
+	umq_logoff_response <span class="token operator">=</span> <span class="token number">8103</span>
+	umq_send_chat_message <span class="token operator">=</span> <span class="token number">8104</span>
+	umq_incoming_chat_message <span class="token operator">=</span> <span class="token number">8105</span>
+	umq_poll <span class="token operator">=</span> <span class="token number">8106</span>
+	umq_poll_results <span class="token operator">=</span> <span class="token number">8107</span>
+	umq2_am_client_msg_batch <span class="token operator">=</span> <span class="token number">8108</span>
+	web_api_validate_o_auth2_token <span class="token operator">=</span> <span class="token number">8300</span>
+	web_api_validate_o_auth2_token_response <span class="token operator">=</span> <span class="token number">8301</span>
+	web_api_register_gc_interfaces <span class="token operator">=</span> <span class="token number">8303</span>
+	web_api_invalidate_o_auth_client_cache <span class="token operator">=</span> <span class="token number">8304</span>
+	web_api_invalidate_o_auth_token_cache <span class="token operator">=</span> <span class="token number">8305</span>
+	web_api_set_secrets <span class="token operator">=</span> <span class="token number">8306</span>
+	backpack_add_to_currency <span class="token operator">=</span> <span class="token number">8401</span>
+	backpack_add_to_currency_response <span class="token operator">=</span> <span class="token number">8402</span>
+	cre_item_vote_summary <span class="token operator">=</span> <span class="token number">8503</span>
+	cre_item_vote_summary_response <span class="token operator">=</span> <span class="token number">8504</span>
+	cre_update_user_published_item_vote <span class="token operator">=</span> <span class="token number">8507</span>
+	cre_update_user_published_item_vote_response <span class="token operator">=</span> <span class="token number">8508</span>
+	cre_get_user_published_item_vote_details <span class="token operator">=</span> <span class="token number">8509</span>
+	cre_get_user_published_item_vote_details_response <span class="token operator">=</span> <span class="token number">8510</span>
+	cre_enumerate_published_files <span class="token operator">=</span> <span class="token number">8511</span>
+	cre_enumerate_published_files_response <span class="token operator">=</span> <span class="token number">8512</span>
+	cre_published_file_vote_added <span class="token operator">=</span> <span class="token number">8513</span>
+	secrets_request_credential_pair <span class="token operator">=</span> <span class="token number">8600</span>
+	secrets_credential_pair_response <span class="token operator">=</span> <span class="token number">8601</span>
+	box_monitor_report_request <span class="token operator">=</span> <span class="token number">8700</span>
+	box_monitor_report_response <span class="token operator">=</span> <span class="token number">8701</span>
+	logsink_write_report <span class="token operator">=</span> <span class="token number">8800</span>
+	client_pics_changes_since_request <span class="token operator">=</span> <span class="token number">8901</span>
+	client_pics_changes_since_response <span class="token operator">=</span> <span class="token number">8902</span>
+	client_pics_product_info_request <span class="token operator">=</span> <span class="token number">8903</span>
+	client_pics_product_info_response <span class="token operator">=</span> <span class="token number">8904</span>
+	client_pics_access_token_request <span class="token operator">=</span> <span class="token number">8905</span>
+	client_pics_access_token_response <span class="token operator">=</span> <span class="token number">8906</span>
+	worker_process_ping_request <span class="token operator">=</span> <span class="token number">9000</span>
+	worker_process_ping_response <span class="token operator">=</span> <span class="token number">9001</span>
+	worker_process_shutdown <span class="token operator">=</span> <span class="token number">9002</span>
+	drm_worker_process_drm_and_sign <span class="token operator">=</span> <span class="token number">9100</span>
+	drm_worker_process_drm_and_sign_response <span class="token operator">=</span> <span class="token number">9101</span>
+	drm_worker_process_steamworks_info_request <span class="token operator">=</span> <span class="token number">9102</span>
+	drm_worker_process_steamworks_info_response <span class="token operator">=</span> <span class="token number">9103</span>
+	drm_worker_process_install_drmdll_request <span class="token operator">=</span> <span class="token number">9104</span>
+	drm_worker_process_install_drmdll_response <span class="token operator">=</span> <span class="token number">9105</span>
+	drm_worker_process_secret_id_string_request <span class="token operator">=</span> <span class="token number">9106</span>
+	drm_worker_process_secret_id_string_response <span class="token operator">=</span> <span class="token number">9107</span>
+	drm_worker_process_install_processed_files_request <span class="token operator">=</span> <span class="token number">9110</span>
+	drm_worker_process_install_processed_files_response <span class="token operator">=</span> <span class="token number">9111</span>
+	drm_worker_process_examine_blob_request <span class="token operator">=</span> <span class="token number">9112</span>
+	drm_worker_process_examine_blob_response <span class="token operator">=</span> <span class="token number">9113</span>
+	drm_worker_process_describe_secret_request <span class="token operator">=</span> <span class="token number">9114</span>
+	drm_worker_process_describe_secret_response <span class="token operator">=</span> <span class="token number">9115</span>
+	drm_worker_process_backfill_original_request <span class="token operator">=</span> <span class="token number">9116</span>
+	drm_worker_process_backfill_original_response <span class="token operator">=</span> <span class="token number">9117</span>
+	drm_worker_process_validate_drmdll_request <span class="token operator">=</span> <span class="token number">9118</span>
+	drm_worker_process_validate_drmdll_response <span class="token operator">=</span> <span class="token number">9119</span>
+	drm_worker_process_validate_file_request <span class="token operator">=</span> <span class="token number">9120</span>
+	drm_worker_process_validate_file_response <span class="token operator">=</span> <span class="token number">9121</span>
+	drm_worker_process_split_and_install_request <span class="token operator">=</span> <span class="token number">9122</span>
+	drm_worker_process_split_and_install_response <span class="token operator">=</span> <span class="token number">9123</span>
+	drm_worker_process_get_blob_request <span class="token operator">=</span> <span class="token number">9124</span>
+	drm_worker_process_get_blob_response <span class="token operator">=</span> <span class="token number">9125</span>
+	drm_worker_process_evaluate_crash_request <span class="token operator">=</span> <span class="token number">9126</span>
+	drm_worker_process_evaluate_crash_response <span class="token operator">=</span> <span class="token number">9127</span>
+	drm_worker_process_analyze_file_request <span class="token operator">=</span> <span class="token number">9128</span>
+	drm_worker_process_analyze_file_response <span class="token operator">=</span> <span class="token number">9129</span>
+	drm_worker_process_unpack_blob_request <span class="token operator">=</span> <span class="token number">9130</span>
+	drm_worker_process_unpack_blob_response <span class="token operator">=</span> <span class="token number">9131</span>
+	drm_worker_process_install_all_request <span class="token operator">=</span> <span class="token number">9132</span>
+	drm_worker_process_install_all_response <span class="token operator">=</span> <span class="token number">9133</span>
+	test_worker_process_load_unload_module_request <span class="token operator">=</span> <span class="token number">9200</span>
+	test_worker_process_load_unload_module_response <span class="token operator">=</span> <span class="token number">9201</span>
+	test_worker_process_service_module_call_request <span class="token operator">=</span> <span class="token number">9202</span>
+	test_worker_process_service_module_call_response <span class="token operator">=</span> <span class="token number">9203</span>
+	client_get_emoticon_list <span class="token operator">=</span> <span class="token number">9330</span>
+	client_emoticon_list <span class="token operator">=</span> <span class="token number">9331</span>
+	slc_user_session_status <span class="token operator">=</span> <span class="token number">9400</span>
+	slc_request_user_session_status <span class="token operator">=</span> <span class="token number">9401</span>
+	slc_shared_licenses_lock_status <span class="token operator">=</span> <span class="token number">9402</span>
+	client_shared_library_lock_status <span class="token operator">=</span> <span class="token number">9405</span>
+	client_shared_library_stop_playing <span class="token operator">=</span> <span class="token number">9406</span>
+	slc_owner_library_changed <span class="token operator">=</span> <span class="token number">9407</span>
+	slc_shared_library_changed <span class="token operator">=</span> <span class="token number">9408</span>
+	remote_client_base <span class="token operator">=</span> <span class="token number">9500</span>
+	remote_client_app_status <span class="token operator">=</span> <span class="token number">9502</span>
+	remote_client_start_stream <span class="token operator">=</span> <span class="token number">9503</span>
+	remote_client_start_stream_response <span class="token operator">=</span> <span class="token number">9504</span>
+	remote_client_ping <span class="token operator">=</span> <span class="token number">9505</span>
+	remote_client_ping_response <span class="token operator">=</span> <span class="token number">9506</span>
+	client_unlock_streaming <span class="token operator">=</span> <span class="token number">9507</span>
+	client_unlock_streaming_response <span class="token operator">=</span> <span class="token number">9508</span>
+	remote_client_accept_eula <span class="token operator">=</span> <span class="token number">9509</span>
+	remote_client_get_controller_config <span class="token operator">=</span> <span class="token number">9510</span>
+	remote_client_get_controller_config_response <span class="token operator">=</span> <span class="token number">9511</span>
+	remote_client_streaming_enabled <span class="token operator">=</span> <span class="token number">9512</span>
+	client_unlock_hevc <span class="token operator">=</span> <span class="token number">9513</span>
+	client_unlock_hevc_response <span class="token operator">=</span> <span class="token number">9514</span>
+	remote_client_status_request <span class="token operator">=</span> <span class="token number">9515</span>
+	remote_client_status_response <span class="token operator">=</span> <span class="token number">9516</span>
+	client_playing_session_state <span class="token operator">=</span> <span class="token number">9600</span>
+	client_kick_playing_session <span class="token operator">=</span> <span class="token number">9601</span>
+	client_broadcast_init <span class="token operator">=</span> <span class="token number">9700</span>
+	client_broadcast_frames <span class="token operator">=</span> <span class="token number">9701</span>
+	client_broadcast_disconnect <span class="token operator">=</span> <span class="token number">9702</span>
+	client_broadcast_screenshot <span class="token operator">=</span> <span class="token number">9703</span>
+	client_broadcast_upload_config <span class="token operator">=</span> <span class="token number">9704</span>
+	client_voice_call_pre_authorize <span class="token operator">=</span> <span class="token number">9800</span>
+	client_voice_call_pre_authorize_response <span class="token operator">=</span> <span class="token number">9801</span>
+	client_server_timestamp_request <span class="token operator">=</span> <span class="token number">9802</span>
+	client_server_timestamp_response <span class="token operator">=</span> <span class="token number">9803</span>
+	client_lanp2_p_request_chunk <span class="token operator">=</span> <span class="token number">9900</span>
+	client_lanp2_p_request_chunk_response <span class="token operator">=</span> <span class="token number">9901</span>
+	client_lanp2_p_max <span class="token operator">=</span> <span class="token number">9999</span>
+	notify_watchdog <span class="token operator">=</span> <span class="token number">10000</span>
+	client_site_license_site_info_notification <span class="token operator">=</span> <span class="token number">10100</span>
+	client_site_license_checkout <span class="token operator">=</span> <span class="token number">10101</span>
+	client_site_license_checkout_response <span class="token operator">=</span> <span class="token number">10102</span>
+	client_site_license_get_available_seats <span class="token operator">=</span> <span class="token number">10103</span>
+	client_site_license_get_available_seats_response <span class="token operator">=</span> <span class="token number">10104</span>
+	client_site_license_get_content_cache_info <span class="token operator">=</span> <span class="token number">10105</span>
+	client_site_license_get_content_cache_info_response <span class="token operator">=</span> <span class="token number">10106</span>
+	chat_server_get_pending_notification_count <span class="token operator">=</span> <span class="token number">12000</span>
+	chat_server_get_pending_notification_count_response <span class="token operator">=</span> <span class="token number">12001</span>
+	server_secret_changed <span class="token operator">=</span> <span class="token number">12100</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Msg is all possible messages that a steam server (cmclient, cdnclient ...) could send to a client</p>
+</section>
 <section id="new_steamclient" class="doc-node">
 <div class="title"><h2>new_steamclient <a href="#new_steamclient">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_steamclient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamClient</code></pre>
 <p>new_steamclient creates a new steamclient</p>
 </section>
 <section id="steamid" class="doc-node">
 <div class="title"><h2>steamid <a href="#steamid">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">steamid</span><span class="token punctuation">(</span>x <span class="token builtin">u64</span><span class="token punctuation">)</span> SteamId</code></pre>
-
+<p>steamid creates a SteamId from the u64 given it is a workaround for alias type casting being a little buggy...</p>
 </section>
 <section id="CallbackHandler" class="doc-node">
 <div class="title"><h2>CallbackHandler <a href="#CallbackHandler">#</a></h2></div><pre class="signature"><code><span class="token keyword">interface</span> <span class="token symbol">CallbackHandler</span> <span class="token punctuation">{</span>
@@ -107,17 +1545,13 @@
 <span class="token punctuation">}</span></code></pre>
 <p>CallbackHandler lets types handle callbacks</p>
 </section>
-<section id="SteamClient.user" class="doc-node">
-<div class="title"><h2>SteamClient.user <a href="#SteamClient.user">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamUser</code></pre>
-<p>user gets the user module</p>
+<section id="SteamClient.connected" class="doc-node">
+<div class="title"><h2>SteamClient.connected <a href="#SteamClient.connected">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connected</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>connected returns whether the client is connected to a CM</p>
 </section>
 <section id="SteamClient.connect" class="doc-node">
 <div class="title"><h2>SteamClient.connect <a href="#SteamClient.connect">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
 <p>connect connects to a CM</p>
-</section>
-<section id="SteamClient.connected" class="doc-node">
-<div class="title"><h2>SteamClient.connected <a href="#SteamClient.connected">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connected</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
-<p>connected returns whether the client is connected to a CM</p>
 </section>
 <section id="SteamClient.frame" class="doc-node">
 <div class="title"><h2>SteamClient.frame <a href="#SteamClient.frame">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">frame</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
@@ -127,37 +1561,29 @@
 <div class="title"><h2>SteamClient.friends <a href="#SteamClient.friends">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">friends</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamFriends</code></pre>
 <p>friends gets the friends module</p>
 </section>
-<section id="SteamFriends.handle_msg" class="doc-node">
-<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
-
+<section id="SteamClient.user" class="doc-node">
+<div class="title"><h2>SteamClient.user <a href="#SteamClient.user">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamUser</code></pre>
+<p>user gets the user module</p>
 </section>
-<section id="MultiHandler.handle_msg" class="doc-node">
-<div class="title"><h2>MultiHandler.handle_msg <a href="#MultiHandler.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
-
-</section>
-<section id="SteamClient.add_msg_handler" class="doc-node">
-<div class="title"><h2>SteamClient.add_msg_handler <a href="#SteamClient.add_msg_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_msg_handler</span><span class="token punctuation">(</span>m MsgHandler<span class="token punctuation">)</span></code></pre>
-<p>add_msg_handler allows someone to add their own msg handler and get direct access to messages sent from steam</p>
+<section id="SteamId.id" class="doc-node">
+<div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>id returns the account id</p>
 </section>
 <section id="SteamFriends.initialise" class="doc-node">
 <div class="title"><h2>SteamFriends.initialise <a href="#SteamFriends.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
 
 </section>
-<section id="MultiHandler.initialise" class="doc-node">
-<div class="title"><h2>MultiHandler.initialise <a href="#MultiHandler.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
-
-</section>
 <section id="SteamId.instance" class="doc-node">
 <div class="title"><h2>SteamId.instance <a href="#SteamId.instance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
-
+<p>instance returns the steamid's instance</p>
 </section>
 <section id="SteamId.universe" class="doc-node">
 <div class="title"><h2>SteamId.universe <a href="#SteamId.universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">universe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Universe</code></pre>
-<p>universe returns the steamids universe</p>
+<p>universe returns the steamid's universe</p>
 </section>
 <section id="SteamId.type" class="doc-node">
 <div class="title"><h2>SteamId.type <a href="#SteamId.type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token keyword">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span> AccountType</code></pre>
-<p>@type returns the type</p>
+<p>@type returns the steamid's type</p>
 </section>
 <section id="SteamUser.logoff" class="doc-node">
 <div class="title"><h2>SteamUser.logoff <a href="#SteamUser.logoff">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logoff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
@@ -167,13 +1593,21 @@
 <div class="title"><h2>SteamUser.logon <a href="#SteamUser.logon">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logon</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password <span class="token builtin">string</span><span class="token punctuation">)</span> ?</code></pre>
 <p>logon logs on with a username and password</p>
 </section>
-<section id="Msg.make_proto" class="doc-node">
-<div class="title"><h2>Msg.make_proto <a href="#Msg.make_proto">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>m Msg<span class="token punctuation">)</span> <span class="token function">make_proto</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<section id="SteamClient.add_msg_handler" class="doc-node">
+<div class="title"><h2>SteamClient.add_msg_handler <a href="#SteamClient.add_msg_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_msg_handler</span><span class="token punctuation">(</span>m MsgHandler<span class="token punctuation">)</span></code></pre>
+<p>add_msg_handler allows someone to add their own msg handler and get direct access to messages sent from steam</p>
+</section>
+<section id="SteamFriends.handle_msg" class="doc-node">
+<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
 
 </section>
-<section id="SteamId.id" class="doc-node">
-<div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
-<p>id returns the account id</p>
+<section id="SteamId.set_type" class="doc-node">
+<div class="title"><h2>SteamId.set_type <a href="#SteamId.set_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_type</span><span class="token punctuation">(</span>a AccountType<span class="token punctuation">)</span></code></pre>
+<p>set_type sets the steamid's type</p>
+</section>
+<section id="SteamId.set_universe" class="doc-node">
+<div class="title"><h2>SteamId.set_universe <a href="#SteamId.set_universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_universe</span><span class="token punctuation">(</span>u Universe<span class="token punctuation">)</span></code></pre>
+<p>set_universe sets the steamid's universe</p>
 </section>
 <section id="SteamClient.shutdown" class="doc-node">
 <div class="title"><h2>SteamClient.shutdown <a href="#SteamClient.shutdown">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
@@ -182,14 +1616,6 @@
 <section id="SteamClient.add_callback_handler" class="doc-node">
 <div class="title"><h2>SteamClient.add_callback_handler <a href="#SteamClient.add_callback_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_callback_handler</span><span class="token punctuation">(</span>h CallbackHandler<span class="token punctuation">)</span> ?</code></pre>
 <p>add_callback_handler adds a callback function</p>
-</section>
-<section id="SteamId.set_type" class="doc-node">
-<div class="title"><h2>SteamId.set_type <a href="#SteamId.set_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_type</span><span class="token punctuation">(</span>a AccountType<span class="token punctuation">)</span></code></pre>
-
-</section>
-<section id="SteamId.set_universe" class="doc-node">
-<div class="title"><h2>SteamId.set_universe <a href="#SteamId.set_universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_universe</span><span class="token punctuation">(</span>u Universe<span class="token punctuation">)</span></code></pre>
-
 </section>
 <section id="SteamClient.write_message" class="doc-node">
 <div class="title"><h2>SteamClient.write_message <a href="#SteamClient.write_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">write_message</span><span class="token punctuation">(</span>job <span class="token builtin">u64</span><span class="token punctuation">,</span> m Msg<span class="token punctuation">,</span> body <span class="token operator">&</span>Packable<span class="token punctuation">)</span> ?</code></pre>
@@ -230,24 +1656,6 @@
 <section id="SteamClient.write_message" class="doc-node">
 <div class="title"><h2>SteamClient.write_message <a href="#SteamClient.write_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">write_message</span><span class="token punctuation">(</span>job <span class="token builtin">u64</span><span class="token punctuation">,</span> m Msg<span class="token punctuation">,</span> body <span class="token operator">&</span>Packable<span class="token punctuation">)</span> ?</code></pre>
 <p>write_message takes components of a message and builds a Message for write_message_internal to deal with</p>
-</section>
-<section id="SteamFriends.handle_msg" class="doc-node">
-<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
-
-</section>
-<section id="SteamFriends.initialise" class="doc-node">
-<div class="title"><h2>SteamFriends.initialise <a href="#SteamFriends.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
-
-</section>
-<section id="Msg.make_proto" class="doc-node">
-<div class="title"><h2>Msg.make_proto <a href="#Msg.make_proto">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>m Msg<span class="token punctuation">)</span> <span class="token function">make_proto</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
-
-</section>
-<section id="LoggedOffCallback" class="doc-node">
-<div class="title"><h2>LoggedOffCallback <a href="#LoggedOffCallback">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">LoggedOffCallback</span> <span class="token punctuation">{</span>
-	result Result
-<span class="token punctuation">}</span></code></pre>
-
 </section>
 <section id="SteamUser.logoff" class="doc-node">
 <div class="title"><h2>SteamUser.logoff <a href="#SteamUser.logoff">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logoff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
@@ -273,12 +1681,18 @@
 <span class="token punctuation">}</span></code></pre>
 
 </section>
-<section id="MultiHandler.handle_msg" class="doc-node">
-<div class="title"><h2>MultiHandler.handle_msg <a href="#MultiHandler.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+<section id="LoggedOffCallback" class="doc-node">
+<div class="title"><h2>LoggedOffCallback <a href="#LoggedOffCallback">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">LoggedOffCallback</span> <span class="token punctuation">{</span>
+	result Result
+<span class="token punctuation">}</span></code></pre>
 
 </section>
-<section id="MultiHandler.initialise" class="doc-node">
-<div class="title"><h2>MultiHandler.initialise <a href="#MultiHandler.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
+<section id="SteamFriends.handle_msg" class="doc-node">
+<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="SteamFriends.initialise" class="doc-node">
+<div class="title"><h2>SteamFriends.initialise <a href="#SteamFriends.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
 
 </section>
 <section id="Callback" class="doc-node">
@@ -287,7 +1701,7 @@
 </section>
 <section id="SteamId" class="doc-node">
 <div class="title"><h2>SteamId <a href="#SteamId">#</a></h2></div><pre class="signature"><code><span class="token keyword">type</span> SteamId <span class="token builtin">u64</span></code></pre>
-
+<p>SteamId represents a steamid</p>
 </section>
 <section id="SteamId.id" class="doc-node">
 <div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
@@ -295,27 +1709,27 @@
 </section>
 <section id="SteamId.instance" class="doc-node">
 <div class="title"><h2>SteamId.instance <a href="#SteamId.instance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
-
+<p>instance returns the steamid's instance</p>
 </section>
 <section id="SteamId.set_type" class="doc-node">
 <div class="title"><h2>SteamId.set_type <a href="#SteamId.set_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_type</span><span class="token punctuation">(</span>a AccountType<span class="token punctuation">)</span></code></pre>
-
+<p>set_type sets the steamid's type</p>
 </section>
 <section id="SteamId.set_universe" class="doc-node">
 <div class="title"><h2>SteamId.set_universe <a href="#SteamId.set_universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_universe</span><span class="token punctuation">(</span>u Universe<span class="token punctuation">)</span></code></pre>
-
+<p>set_universe sets the steamid's universe</p>
 </section>
 <section id="SteamId.type" class="doc-node">
 <div class="title"><h2>SteamId.type <a href="#SteamId.type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token keyword">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span> AccountType</code></pre>
-<p>@type returns the type</p>
+<p>@type returns the steamid's type</p>
 </section>
 <section id="SteamId.universe" class="doc-node">
 <div class="title"><h2>SteamId.universe <a href="#SteamId.universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">universe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Universe</code></pre>
-<p>universe returns the steamids universe</p>
+<p>universe returns the steamid's universe</p>
 </section>
 
 					<div class="footer">
-						Powered by vdoc. Generated on: 21 Jul 2020 10:43:51
+						Powered by vdoc. Generated on: 21 Jul 2020 11:02:18
 					</div>
 				</div>
 				

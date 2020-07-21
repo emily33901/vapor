@@ -9,11 +9,11 @@ mut:
 	s &SteamClient
 }
 
-pub fn (mut h MultiHandler) initialise(mut s SteamClient) ? {
+fn (mut h MultiHandler) initialise(mut s SteamClient) ? {
 	h.s = s
 }
 
-pub fn (mut h MultiHandler) handle_msg(m Message) ? {
+fn (mut h MultiHandler) handle_msg(m Message) ? {
 	if m.msg == .multi {
 		multi := proto.cmsgmulti_unpack(m.body)?
 
