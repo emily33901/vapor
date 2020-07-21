@@ -11,11 +11,19 @@ enum EHIDDeviceLocation {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_ehiddevicelocation() EHIDDeviceLocation {
+	return .k_edevicelocationlocal
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_ehiddevicelocation(e EHIDDeviceLocation, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_ehiddevicelocation_packed(e []EHIDDeviceLocation, num u32) []byte {
 	x := array{
 		data: e.data
@@ -27,12 +35,14 @@ fn zzz_vproto_internal_pack_ehiddevicelocation_packed(e []EHIDDeviceLocation, nu
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_ehiddevicelocation(buf []byte, tag_wiretype vproto.WireType) ?(int, EHIDDeviceLocation) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EHIDDeviceLocation(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_ehiddevicelocation_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EHIDDeviceLocation) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -52,11 +62,19 @@ enum EHIDDeviceDisconnectMethod {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_ehiddevicedisconnectmethod() EHIDDeviceDisconnectMethod {
+	return .k_edevicedisconnectmethodunknown
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_ehiddevicedisconnectmethod(e EHIDDeviceDisconnectMethod, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_ehiddevicedisconnectmethod_packed(e []EHIDDeviceDisconnectMethod, num u32) []byte {
 	x := array{
 		data: e.data
@@ -68,12 +86,14 @@ fn zzz_vproto_internal_pack_ehiddevicedisconnectmethod_packed(e []EHIDDeviceDisc
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_ehiddevicedisconnectmethod(buf []byte, tag_wiretype vproto.WireType) ?(int, EHIDDeviceDisconnectMethod) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EHIDDeviceDisconnectMethod(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_ehiddevicedisconnectmethod_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EHIDDeviceDisconnectMethod) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -86,107 +106,89 @@ fn zzz_vproto_internal_unpack_ehiddevicedisconnectmethod_packed(buf []byte, tag_
 
 pub struct CHIDDeviceInfo {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	location                EHIDDeviceLocation
-	has_location            bool
-	path                    string
-	has_path                bool
-	vendor_id               u32
-	has_vendor_id           bool
-	product_id              u32
-	has_product_id          bool
-	serial_number           string
-	has_serial_number       bool
-	release_number          u32
-	has_release_number      bool
-	manufacturer_string     string
-	has_manufacturer_string bool
-	product_string          string
-	has_product_string      bool
-	usage_page              u32
-	has_usage_page          bool
-	usage                   u32
-	has_usage               bool
-	interface_number        int
-	has_interface_number    bool
-	ostype                  int
-	has_ostype              bool
-	is_generic_gamepad      bool
-	has_is_generic_gamepad  bool
-	is_generic_joystick     bool
-	has_is_generic_joystick bool
-	caps_bits               u32
-	has_caps_bits           bool
-	session_id              u32
-	has_session_id          bool
-	econtrollertype         u32
-	has_econtrollertype     bool
-	is_xinput_device        bool
-	has_is_xinput_device    bool
+	location            EHIDDeviceLocation = .k_edevicelocationlocal
+	path                string
+	vendor_id           u32
+	product_id          u32
+	serial_number       string
+	release_number      u32
+	manufacturer_string string
+	product_string      string
+	usage_page          u32
+	usage               u32
+	interface_number    int = -1
+	ostype              int = -1
+	is_generic_gamepad  bool
+	is_generic_joystick bool
+	caps_bits           u32
+	session_id          u32
+	econtrollertype     u32 = 0
+	is_xinput_device    bool = false
 }
 
 pub fn (o &CHIDDeviceInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_location {
+	if o.location != zzz_vproto_internal_new_ehiddevicelocation() {
 		res << zzz_vproto_internal_pack_ehiddevicelocation(o.location, 1)
 	}
-	if o.has_path {
+	if o.path != '' {
 		res << vproto.pack_string_field(o.path, 2)
 	}
-	if o.has_vendor_id {
+	if o.vendor_id != u32(0) {
 		res << vproto.pack_uint32_field(o.vendor_id, 3)
 	}
-	if o.has_product_id {
+	if o.product_id != u32(0) {
 		res << vproto.pack_uint32_field(o.product_id, 4)
 	}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 5)
 	}
-	if o.has_release_number {
+	if o.release_number != u32(0) {
 		res << vproto.pack_uint32_field(o.release_number, 6)
 	}
-	if o.has_manufacturer_string {
+	if o.manufacturer_string != '' {
 		res << vproto.pack_string_field(o.manufacturer_string, 7)
 	}
-	if o.has_product_string {
+	if o.product_string != '' {
 		res << vproto.pack_string_field(o.product_string, 8)
 	}
-	if o.has_usage_page {
+	if o.usage_page != u32(0) {
 		res << vproto.pack_uint32_field(o.usage_page, 9)
 	}
-	if o.has_usage {
+	if o.usage != u32(0) {
 		res << vproto.pack_uint32_field(o.usage, 10)
 	}
-	if o.has_interface_number {
+	if o.interface_number != int(0) {
 		res << vproto.pack_int32_field(o.interface_number, 11)
 	}
-	if o.has_ostype {
+	if o.ostype != int(0) {
 		res << vproto.pack_int32_field(o.ostype, 12)
 	}
-	if o.has_is_generic_gamepad {
+	if o.is_generic_gamepad != bool(0) {
 		res << vproto.pack_bool_field(o.is_generic_gamepad, 13)
 	}
-	if o.has_is_generic_joystick {
+	if o.is_generic_joystick != bool(0) {
 		res << vproto.pack_bool_field(o.is_generic_joystick, 14)
 	}
-	if o.has_caps_bits {
+	if o.caps_bits != u32(0) {
 		res << vproto.pack_uint32_field(o.caps_bits, 15)
 	}
-	if o.has_session_id {
+	if o.session_id != u32(0) {
 		res << vproto.pack_uint32_field(o.session_id, 16)
 	}
-	if o.has_econtrollertype {
+	if o.econtrollertype != u32(0) {
 		res << vproto.pack_uint32_field(o.econtrollertype, 17)
 	}
-	if o.has_is_xinput_device {
+	if o.is_xinput_device != bool(0) {
 		res << vproto.pack_bool_field(o.is_xinput_device, 18)
 	}
 	return res
 }
 
 pub fn chiddeviceinfo_unpack(buf []byte) ?CHIDDeviceInfo {
-	mut res := CHIDDeviceInfo{}
+	mut res := zzz_vproto_internal_new_chiddeviceinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -197,109 +199,91 @@ pub fn chiddeviceinfo_unpack(buf []byte) ?CHIDDeviceInfo {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_location = true
 				ii, v := zzz_vproto_internal_unpack_ehiddevicelocation(cur_buf, tag_wiretype.wire_type)?
 				res.location = v
 				i = ii
 			}
 			2 {
-				res.has_path = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.path = v
 				i = ii
 			}
 			3 {
-				res.has_vendor_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.vendor_id = v
 				i = ii
 			}
 			4 {
-				res.has_product_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.product_id = v
 				i = ii
 			}
 			5 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			6 {
-				res.has_release_number = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.release_number = v
 				i = ii
 			}
 			7 {
-				res.has_manufacturer_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.manufacturer_string = v
 				i = ii
 			}
 			8 {
-				res.has_product_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.product_string = v
 				i = ii
 			}
 			9 {
-				res.has_usage_page = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.usage_page = v
 				i = ii
 			}
 			10 {
-				res.has_usage = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.usage = v
 				i = ii
 			}
 			11 {
-				res.has_interface_number = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.interface_number = v
 				i = ii
 			}
 			12 {
-				res.has_ostype = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ostype = v
 				i = ii
 			}
 			13 {
-				res.has_is_generic_gamepad = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_generic_gamepad = v
 				i = ii
 			}
 			14 {
-				res.has_is_generic_joystick = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_generic_joystick = v
 				i = ii
 			}
 			15 {
-				res.has_caps_bits = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.caps_bits = v
 				i = ii
 			}
 			16 {
-				res.has_session_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.session_id = v
 				i = ii
 			}
 			17 {
-				res.has_econtrollertype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.econtrollertype = v
 				i = ii
 			}
 			18 {
-				res.has_is_xinput_device = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_xinput_device = v
 				i = ii
@@ -319,17 +303,60 @@ pub fn chiddeviceinfo_unpack(buf []byte) ?CHIDDeviceInfo {
 	return res
 }
 
+[inline]
+pub fn (a CHIDDeviceInfo) eq(b CHIDDeviceInfo) bool {
+	return true && a.location == b.location &&
+		a.path == b.path && a.vendor_id == b.vendor_id &&
+		a.product_id == b.product_id && a.serial_number == b.serial_number &&
+		a.release_number == b.release_number &&
+		a.manufacturer_string == b.manufacturer_string &&
+		a.product_string == b.product_string &&
+		a.usage_page == b.usage_page && a.usage == b.usage &&
+		a.interface_number == b.interface_number &&
+		a.ostype == b.ostype && a.is_generic_gamepad == b.is_generic_gamepad &&
+		a.is_generic_joystick == b.is_generic_joystick &&
+		a.caps_bits == b.caps_bits && a.session_id == b.session_id &&
+		a.econtrollertype == b.econtrollertype &&
+		a.is_xinput_device == b.is_xinput_device
+}
+
+[inline]
+pub fn (a CHIDDeviceInfo) ne(b CHIDDeviceInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDDeviceInfo) eq(b []CHIDDeviceInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDDeviceInfo) ne(b []CHIDDeviceInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chiddeviceinfo() CHIDDeviceInfo {
 	return CHIDDeviceInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chiddeviceinfo(o CHIDDeviceInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chiddeviceinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDDeviceInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chiddeviceinfo_unpack(v)?
@@ -338,37 +365,33 @@ pub fn zzz_vproto_internal_unpack_chiddeviceinfo(buf []byte, tag_wiretype vproto
 
 pub struct CHIDDeviceInputReport {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	full_report           []byte
-	has_full_report       bool
-	delta_report          []byte
-	has_delta_report      bool
-	delta_report_size     u32
-	has_delta_report_size bool
-	delta_report_crc      u32
-	has_delta_report_crc  bool
+	full_report       []byte
+	delta_report      []byte
+	delta_report_size u32
+	delta_report_crc  u32
 }
 
 pub fn (o &CHIDDeviceInputReport) pack() []byte {
 	mut res := []byte{}
-	if o.has_full_report {
+	if o.full_report != []byte{} {
 		res << vproto.pack_bytes_field(o.full_report, 1)
 	}
-	if o.has_delta_report {
+	if o.delta_report != []byte{} {
 		res << vproto.pack_bytes_field(o.delta_report, 2)
 	}
-	if o.has_delta_report_size {
+	if o.delta_report_size != u32(0) {
 		res << vproto.pack_uint32_field(o.delta_report_size, 3)
 	}
-	if o.has_delta_report_crc {
+	if o.delta_report_crc != u32(0) {
 		res << vproto.pack_uint32_field(o.delta_report_crc, 4)
 	}
 	return res
 }
 
 pub fn chiddeviceinputreport_unpack(buf []byte) ?CHIDDeviceInputReport {
-	mut res := CHIDDeviceInputReport{}
+	mut res := zzz_vproto_internal_new_chiddeviceinputreport()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -379,25 +402,21 @@ pub fn chiddeviceinputreport_unpack(buf []byte) ?CHIDDeviceInputReport {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_full_report = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.full_report = v
 				i = ii
 			}
 			2 {
-				res.has_delta_report = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.delta_report = v
 				i = ii
 			}
 			3 {
-				res.has_delta_report_size = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.delta_report_size = v
 				i = ii
 			}
 			4 {
-				res.has_delta_report_crc = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.delta_report_crc = v
 				i = ii
@@ -417,17 +436,51 @@ pub fn chiddeviceinputreport_unpack(buf []byte) ?CHIDDeviceInputReport {
 	return res
 }
 
+[inline]
+pub fn (a CHIDDeviceInputReport) eq(b CHIDDeviceInputReport) bool {
+	return true && a.full_report == b.full_report &&
+		a.delta_report == b.delta_report &&
+		a.delta_report_size == b.delta_report_size &&
+		a.delta_report_crc == b.delta_report_crc
+}
+
+[inline]
+pub fn (a CHIDDeviceInputReport) ne(b CHIDDeviceInputReport) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDDeviceInputReport) eq(b []CHIDDeviceInputReport) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDDeviceInputReport) ne(b []CHIDDeviceInputReport) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chiddeviceinputreport() CHIDDeviceInputReport {
 	return CHIDDeviceInputReport{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chiddeviceinputreport(o CHIDDeviceInputReport, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chiddeviceinputreport(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDDeviceInputReport) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chiddeviceinputreport_unpack(v)?
@@ -439,19 +492,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	info           CHIDDeviceInfo
-	has_info       bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceOpen) pack() []byte {
 	mut res := []byte{}
-	if o.has_info {
+	if o.info.ne(zzz_vproto_internal_new_chiddeviceinfo()) {
 		res << zzz_vproto_internal_pack_chiddeviceinfo(o.info, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_deviceopen_unpack(buf []byte) ?CHIDMessageToRemote_DeviceOpen {
-	mut res := CHIDMessageToRemote_DeviceOpen{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_deviceopen()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -462,7 +514,6 @@ pub fn chidmessagetoremote_deviceopen_unpack(buf []byte) ?CHIDMessageToRemote_De
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_info = true
 				ii, v := zzz_vproto_internal_unpack_chiddeviceinfo(cur_buf, tag_wiretype.wire_type)?
 				res.info = v
 				i = ii
@@ -482,17 +533,48 @@ pub fn chidmessagetoremote_deviceopen_unpack(buf []byte) ?CHIDMessageToRemote_De
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceOpen) eq(b CHIDMessageToRemote_DeviceOpen) bool {
+	return true && a.info.eq(b.info)
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceOpen) ne(b CHIDMessageToRemote_DeviceOpen) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceOpen) eq(b []CHIDMessageToRemote_DeviceOpen) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceOpen) ne(b []CHIDMessageToRemote_DeviceOpen) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_deviceopen() CHIDMessageToRemote_DeviceOpen {
 	return CHIDMessageToRemote_DeviceOpen{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_deviceopen(o CHIDMessageToRemote_DeviceOpen, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_deviceopen(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceOpen) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_deviceopen_unpack(v)?
@@ -504,19 +586,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceClose) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_deviceclose_unpack(buf []byte) ?CHIDMessageToRemote_DeviceClose {
-	mut res := CHIDMessageToRemote_DeviceClose{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_deviceclose()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -527,7 +608,6 @@ pub fn chidmessagetoremote_deviceclose_unpack(buf []byte) ?CHIDMessageToRemote_D
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -547,17 +627,48 @@ pub fn chidmessagetoremote_deviceclose_unpack(buf []byte) ?CHIDMessageToRemote_D
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceClose) eq(b CHIDMessageToRemote_DeviceClose) bool {
+	return true && a.device == b.device
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceClose) ne(b CHIDMessageToRemote_DeviceClose) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceClose) eq(b []CHIDMessageToRemote_DeviceClose) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceClose) ne(b []CHIDMessageToRemote_DeviceClose) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_deviceclose() CHIDMessageToRemote_DeviceClose {
 	return CHIDMessageToRemote_DeviceClose{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_deviceclose(o CHIDMessageToRemote_DeviceClose, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_deviceclose(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceClose) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_deviceclose_unpack(v)?
@@ -569,24 +680,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 	data           []byte
-	has_data       bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceWrite) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 2)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicewrite_unpack(buf []byte) ?CHIDMessageToRemote_DeviceWrite {
-	mut res := CHIDMessageToRemote_DeviceWrite{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicewrite()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -597,13 +706,11 @@ pub fn chidmessagetoremote_devicewrite_unpack(buf []byte) ?CHIDMessageToRemote_D
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
 			}
 			2 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -623,17 +730,48 @@ pub fn chidmessagetoremote_devicewrite_unpack(buf []byte) ?CHIDMessageToRemote_D
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceWrite) eq(b CHIDMessageToRemote_DeviceWrite) bool {
+	return true && a.device == b.device && a.data == b.data
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceWrite) ne(b CHIDMessageToRemote_DeviceWrite) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceWrite) eq(b []CHIDMessageToRemote_DeviceWrite) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceWrite) ne(b []CHIDMessageToRemote_DeviceWrite) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicewrite() CHIDMessageToRemote_DeviceWrite {
 	return CHIDMessageToRemote_DeviceWrite{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicewrite(o CHIDMessageToRemote_DeviceWrite, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicewrite(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceWrite) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicewrite_unpack(v)?
@@ -645,29 +783,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 	length         u32
-	has_length     bool
 	timeout_ms     int
-	has_timeout_ms bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceRead) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
-	if o.has_length {
+	if o.length != u32(0) {
 		res << vproto.pack_uint32_field(o.length, 2)
 	}
-	if o.has_timeout_ms {
+	if o.timeout_ms != int(0) {
 		res << vproto.pack_int32_field(o.timeout_ms, 3)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_deviceread_unpack(buf []byte) ?CHIDMessageToRemote_DeviceRead {
-	mut res := CHIDMessageToRemote_DeviceRead{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_deviceread()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -678,19 +813,16 @@ pub fn chidmessagetoremote_deviceread_unpack(buf []byte) ?CHIDMessageToRemote_De
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
 			}
 			2 {
-				res.has_length = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.length = v
 				i = ii
 			}
 			3 {
-				res.has_timeout_ms = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timeout_ms = v
 				i = ii
@@ -710,17 +842,48 @@ pub fn chidmessagetoremote_deviceread_unpack(buf []byte) ?CHIDMessageToRemote_De
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceRead) eq(b CHIDMessageToRemote_DeviceRead) bool {
+	return true && a.device == b.device && a.length == b.length && a.timeout_ms == b.timeout_ms
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceRead) ne(b CHIDMessageToRemote_DeviceRead) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceRead) eq(b []CHIDMessageToRemote_DeviceRead) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceRead) ne(b []CHIDMessageToRemote_DeviceRead) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_deviceread() CHIDMessageToRemote_DeviceRead {
 	return CHIDMessageToRemote_DeviceRead{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_deviceread(o CHIDMessageToRemote_DeviceRead, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_deviceread(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceRead) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_deviceread_unpack(v)?
@@ -732,24 +895,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 	data           []byte
-	has_data       bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceSendFeatureReport) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 2)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicesendfeaturereport_unpack(buf []byte) ?CHIDMessageToRemote_DeviceSendFeatureReport {
-	mut res := CHIDMessageToRemote_DeviceSendFeatureReport{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicesendfeaturereport()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -760,13 +921,11 @@ pub fn chidmessagetoremote_devicesendfeaturereport_unpack(buf []byte) ?CHIDMessa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
 			}
 			2 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -786,17 +945,48 @@ pub fn chidmessagetoremote_devicesendfeaturereport_unpack(buf []byte) ?CHIDMessa
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceSendFeatureReport) eq(b CHIDMessageToRemote_DeviceSendFeatureReport) bool {
+	return true && a.device == b.device && a.data == b.data
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceSendFeatureReport) ne(b CHIDMessageToRemote_DeviceSendFeatureReport) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceSendFeatureReport) eq(b []CHIDMessageToRemote_DeviceSendFeatureReport) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceSendFeatureReport) ne(b []CHIDMessageToRemote_DeviceSendFeatureReport) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicesendfeaturereport() CHIDMessageToRemote_DeviceSendFeatureReport {
 	return CHIDMessageToRemote_DeviceSendFeatureReport{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicesendfeaturereport(o CHIDMessageToRemote_DeviceSendFeatureReport, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicesendfeaturereport(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceSendFeatureReport) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicesendfeaturereport_unpack(v)?
@@ -805,32 +995,29 @@ pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicesendfeaturereport(bu
 
 pub struct CHIDMessageToRemote_DeviceGetFeatureReport {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	device            u32
-	has_device        bool
-	report_number     []byte
-	has_report_number bool
-	length            u32
-	has_length        bool
+	device         u32
+	report_number  []byte
+	length         u32
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceGetFeatureReport) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
-	if o.has_report_number {
+	if o.report_number != []byte{} {
 		res << vproto.pack_bytes_field(o.report_number, 2)
 	}
-	if o.has_length {
+	if o.length != u32(0) {
 		res << vproto.pack_uint32_field(o.length, 3)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicegetfeaturereport_unpack(buf []byte) ?CHIDMessageToRemote_DeviceGetFeatureReport {
-	mut res := CHIDMessageToRemote_DeviceGetFeatureReport{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicegetfeaturereport()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -841,19 +1028,16 @@ pub fn chidmessagetoremote_devicegetfeaturereport_unpack(buf []byte) ?CHIDMessag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
 			}
 			2 {
-				res.has_report_number = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.report_number = v
 				i = ii
 			}
 			3 {
-				res.has_length = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.length = v
 				i = ii
@@ -873,17 +1057,50 @@ pub fn chidmessagetoremote_devicegetfeaturereport_unpack(buf []byte) ?CHIDMessag
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetFeatureReport) eq(b CHIDMessageToRemote_DeviceGetFeatureReport) bool {
+	return true && a.device == b.device &&
+		a.report_number == b.report_number &&
+		a.length == b.length
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetFeatureReport) ne(b CHIDMessageToRemote_DeviceGetFeatureReport) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetFeatureReport) eq(b []CHIDMessageToRemote_DeviceGetFeatureReport) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetFeatureReport) ne(b []CHIDMessageToRemote_DeviceGetFeatureReport) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicegetfeaturereport() CHIDMessageToRemote_DeviceGetFeatureReport {
 	return CHIDMessageToRemote_DeviceGetFeatureReport{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicegetfeaturereport(o CHIDMessageToRemote_DeviceGetFeatureReport, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicegetfeaturereport(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceGetFeatureReport) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicegetfeaturereport_unpack(v)?
@@ -895,19 +1112,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceGetVendorString) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicegetvendorstring_unpack(buf []byte) ?CHIDMessageToRemote_DeviceGetVendorString {
-	mut res := CHIDMessageToRemote_DeviceGetVendorString{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicegetvendorstring()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -918,7 +1134,6 @@ pub fn chidmessagetoremote_devicegetvendorstring_unpack(buf []byte) ?CHIDMessage
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -938,17 +1153,48 @@ pub fn chidmessagetoremote_devicegetvendorstring_unpack(buf []byte) ?CHIDMessage
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetVendorString) eq(b CHIDMessageToRemote_DeviceGetVendorString) bool {
+	return true && a.device == b.device
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetVendorString) ne(b CHIDMessageToRemote_DeviceGetVendorString) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetVendorString) eq(b []CHIDMessageToRemote_DeviceGetVendorString) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetVendorString) ne(b []CHIDMessageToRemote_DeviceGetVendorString) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicegetvendorstring() CHIDMessageToRemote_DeviceGetVendorString {
 	return CHIDMessageToRemote_DeviceGetVendorString{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicegetvendorstring(o CHIDMessageToRemote_DeviceGetVendorString, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicegetvendorstring(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceGetVendorString) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicegetvendorstring_unpack(v)?
@@ -960,19 +1206,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceGetProductString) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicegetproductstring_unpack(buf []byte) ?CHIDMessageToRemote_DeviceGetProductString {
-	mut res := CHIDMessageToRemote_DeviceGetProductString{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicegetproductstring()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -983,7 +1228,6 @@ pub fn chidmessagetoremote_devicegetproductstring_unpack(buf []byte) ?CHIDMessag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -1003,17 +1247,48 @@ pub fn chidmessagetoremote_devicegetproductstring_unpack(buf []byte) ?CHIDMessag
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetProductString) eq(b CHIDMessageToRemote_DeviceGetProductString) bool {
+	return true && a.device == b.device
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetProductString) ne(b CHIDMessageToRemote_DeviceGetProductString) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetProductString) eq(b []CHIDMessageToRemote_DeviceGetProductString) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetProductString) ne(b []CHIDMessageToRemote_DeviceGetProductString) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicegetproductstring() CHIDMessageToRemote_DeviceGetProductString {
 	return CHIDMessageToRemote_DeviceGetProductString{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicegetproductstring(o CHIDMessageToRemote_DeviceGetProductString, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicegetproductstring(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceGetProductString) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicegetproductstring_unpack(v)?
@@ -1025,19 +1300,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceGetSerialNumberString) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicegetserialnumberstring_unpack(buf []byte) ?CHIDMessageToRemote_DeviceGetSerialNumberString {
-	mut res := CHIDMessageToRemote_DeviceGetSerialNumberString{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicegetserialnumberstring()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1048,7 +1322,6 @@ pub fn chidmessagetoremote_devicegetserialnumberstring_unpack(buf []byte) ?CHIDM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -1068,17 +1341,48 @@ pub fn chidmessagetoremote_devicegetserialnumberstring_unpack(buf []byte) ?CHIDM
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetSerialNumberString) eq(b CHIDMessageToRemote_DeviceGetSerialNumberString) bool {
+	return true && a.device == b.device
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceGetSerialNumberString) ne(b CHIDMessageToRemote_DeviceGetSerialNumberString) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetSerialNumberString) eq(b []CHIDMessageToRemote_DeviceGetSerialNumberString) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceGetSerialNumberString) ne(b []CHIDMessageToRemote_DeviceGetSerialNumberString) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicegetserialnumberstring() CHIDMessageToRemote_DeviceGetSerialNumberString {
 	return CHIDMessageToRemote_DeviceGetSerialNumberString{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicegetserialnumberstring(o CHIDMessageToRemote_DeviceGetSerialNumberString, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicegetserialnumberstring(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceGetSerialNumberString) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicegetserialnumberstring_unpack(v)?
@@ -1090,24 +1394,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 	length         u32
-	has_length     bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceStartInputReports) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
-	if o.has_length {
+	if o.length != u32(0) {
 		res << vproto.pack_uint32_field(o.length, 2)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicestartinputreports_unpack(buf []byte) ?CHIDMessageToRemote_DeviceStartInputReports {
-	mut res := CHIDMessageToRemote_DeviceStartInputReports{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicestartinputreports()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1118,13 +1420,11 @@ pub fn chidmessagetoremote_devicestartinputreports_unpack(buf []byte) ?CHIDMessa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
 			}
 			2 {
-				res.has_length = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.length = v
 				i = ii
@@ -1144,17 +1444,48 @@ pub fn chidmessagetoremote_devicestartinputreports_unpack(buf []byte) ?CHIDMessa
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceStartInputReports) eq(b CHIDMessageToRemote_DeviceStartInputReports) bool {
+	return true && a.device == b.device && a.length == b.length
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceStartInputReports) ne(b CHIDMessageToRemote_DeviceStartInputReports) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceStartInputReports) eq(b []CHIDMessageToRemote_DeviceStartInputReports) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceStartInputReports) ne(b []CHIDMessageToRemote_DeviceStartInputReports) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicestartinputreports() CHIDMessageToRemote_DeviceStartInputReports {
 	return CHIDMessageToRemote_DeviceStartInputReports{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicestartinputreports(o CHIDMessageToRemote_DeviceStartInputReports, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicestartinputreports(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceStartInputReports) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicestartinputreports_unpack(v)?
@@ -1166,19 +1497,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceRequestFullReport) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicerequestfullreport_unpack(buf []byte) ?CHIDMessageToRemote_DeviceRequestFullReport {
-	mut res := CHIDMessageToRemote_DeviceRequestFullReport{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicerequestfullreport()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1189,7 +1519,6 @@ pub fn chidmessagetoremote_devicerequestfullreport_unpack(buf []byte) ?CHIDMessa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -1209,17 +1538,48 @@ pub fn chidmessagetoremote_devicerequestfullreport_unpack(buf []byte) ?CHIDMessa
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceRequestFullReport) eq(b CHIDMessageToRemote_DeviceRequestFullReport) bool {
+	return true && a.device == b.device
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceRequestFullReport) ne(b CHIDMessageToRemote_DeviceRequestFullReport) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceRequestFullReport) eq(b []CHIDMessageToRemote_DeviceRequestFullReport) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceRequestFullReport) ne(b []CHIDMessageToRemote_DeviceRequestFullReport) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicerequestfullreport() CHIDMessageToRemote_DeviceRequestFullReport {
 	return CHIDMessageToRemote_DeviceRequestFullReport{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicerequestfullreport(o CHIDMessageToRemote_DeviceRequestFullReport, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicerequestfullreport(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceRequestFullReport) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicerequestfullreport_unpack(v)?
@@ -1228,32 +1588,29 @@ pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicerequestfullreport(bu
 
 pub struct CHIDMessageToRemote_DeviceDisconnect {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	device               u32
-	has_device           bool
-	disconnectmethod     EHIDDeviceDisconnectMethod
-	has_disconnectmethod bool
-	data                 []byte
-	has_data             bool
+	device           u32
+	disconnectmethod EHIDDeviceDisconnectMethod = .k_edevicedisconnectmethodunknown
+	data             []byte
 }
 
 pub fn (o &CHIDMessageToRemote_DeviceDisconnect) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
-	if o.has_disconnectmethod {
+	if o.disconnectmethod != zzz_vproto_internal_new_ehiddevicedisconnectmethod() {
 		res << zzz_vproto_internal_pack_ehiddevicedisconnectmethod(o.disconnectmethod, 2)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 3)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_devicedisconnect_unpack(buf []byte) ?CHIDMessageToRemote_DeviceDisconnect {
-	mut res := CHIDMessageToRemote_DeviceDisconnect{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote_devicedisconnect()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1264,20 +1621,17 @@ pub fn chidmessagetoremote_devicedisconnect_unpack(buf []byte) ?CHIDMessageToRem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
 			}
 			2 {
-				res.has_disconnectmethod = true
 				ii, v := zzz_vproto_internal_unpack_ehiddevicedisconnectmethod(cur_buf,
 					tag_wiretype.wire_type)?
 				res.disconnectmethod = v
 				i = ii
 			}
 			3 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -1297,17 +1651,50 @@ pub fn chidmessagetoremote_devicedisconnect_unpack(buf []byte) ?CHIDMessageToRem
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceDisconnect) eq(b CHIDMessageToRemote_DeviceDisconnect) bool {
+	return true && a.device == b.device &&
+		a.disconnectmethod == b.disconnectmethod &&
+		a.data == b.data
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote_DeviceDisconnect) ne(b CHIDMessageToRemote_DeviceDisconnect) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceDisconnect) eq(b []CHIDMessageToRemote_DeviceDisconnect) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote_DeviceDisconnect) ne(b []CHIDMessageToRemote_DeviceDisconnect) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote_devicedisconnect() CHIDMessageToRemote_DeviceDisconnect {
 	return CHIDMessageToRemote_DeviceDisconnect{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote_devicedisconnect(o CHIDMessageToRemote_DeviceDisconnect, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote_devicedisconnect(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote_DeviceDisconnect) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_devicedisconnect_unpack(v)?
@@ -1319,19 +1706,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	request_id     u32
-	has_request_id bool
 }
 
 pub fn (o &CHIDMessageToRemote) pack() []byte {
 	mut res := []byte{}
-	if o.has_request_id {
+	if o.request_id != u32(0) {
 		res << vproto.pack_uint32_field(o.request_id, 1)
 	}
 	return res
 }
 
 pub fn chidmessagetoremote_unpack(buf []byte) ?CHIDMessageToRemote {
-	mut res := CHIDMessageToRemote{}
+	mut res := zzz_vproto_internal_new_chidmessagetoremote()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1342,7 +1728,6 @@ pub fn chidmessagetoremote_unpack(buf []byte) ?CHIDMessageToRemote {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_request_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.request_id = v
 				i = ii
@@ -1362,17 +1747,48 @@ pub fn chidmessagetoremote_unpack(buf []byte) ?CHIDMessageToRemote {
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageToRemote) eq(b CHIDMessageToRemote) bool {
+	return true && a.request_id == b.request_id
+}
+
+[inline]
+pub fn (a CHIDMessageToRemote) ne(b CHIDMessageToRemote) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote) eq(b []CHIDMessageToRemote) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageToRemote) ne(b []CHIDMessageToRemote) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagetoremote() CHIDMessageToRemote {
 	return CHIDMessageToRemote{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagetoremote(o CHIDMessageToRemote, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagetoremote(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageToRemote) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagetoremote_unpack(v)?
@@ -1396,7 +1812,7 @@ pub fn (o &CHIDMessageFromRemote_UpdateDeviceList) pack() []byte {
 }
 
 pub fn chidmessagefromremote_updatedevicelist_unpack(buf []byte) ?CHIDMessageFromRemote_UpdateDeviceList {
-	mut res := CHIDMessageFromRemote_UpdateDeviceList{}
+	mut res := zzz_vproto_internal_new_chidmessagefromremote_updatedevicelist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1427,17 +1843,48 @@ pub fn chidmessagefromremote_updatedevicelist_unpack(buf []byte) ?CHIDMessageFro
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemote_UpdateDeviceList) eq(b CHIDMessageFromRemote_UpdateDeviceList) bool {
+	return true && a.devices.eq(b.devices)
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemote_UpdateDeviceList) ne(b CHIDMessageFromRemote_UpdateDeviceList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_UpdateDeviceList) eq(b []CHIDMessageFromRemote_UpdateDeviceList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_UpdateDeviceList) ne(b []CHIDMessageFromRemote_UpdateDeviceList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremote_updatedevicelist() CHIDMessageFromRemote_UpdateDeviceList {
 	return CHIDMessageFromRemote_UpdateDeviceList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremote_updatedevicelist(o CHIDMessageFromRemote_UpdateDeviceList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremote_updatedevicelist(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemote_UpdateDeviceList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremote_updatedevicelist_unpack(v)?
@@ -1449,29 +1896,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	request_id     u32
-	has_request_id bool
 	result         int
-	has_result     bool
 	data           []byte
-	has_data       bool
 }
 
 pub fn (o &CHIDMessageFromRemote_RequestResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_request_id {
+	if o.request_id != u32(0) {
 		res << vproto.pack_uint32_field(o.request_id, 1)
 	}
-	if o.has_result {
+	if o.result != int(0) {
 		res << vproto.pack_int32_field(o.result, 2)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 3)
 	}
 	return res
 }
 
 pub fn chidmessagefromremote_requestresponse_unpack(buf []byte) ?CHIDMessageFromRemote_RequestResponse {
-	mut res := CHIDMessageFromRemote_RequestResponse{}
+	mut res := zzz_vproto_internal_new_chidmessagefromremote_requestresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1482,19 +1926,16 @@ pub fn chidmessagefromremote_requestresponse_unpack(buf []byte) ?CHIDMessageFrom
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_request_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.request_id = v
 				i = ii
 			}
 			2 {
-				res.has_result = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
 			}
 			3 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -1514,17 +1955,48 @@ pub fn chidmessagefromremote_requestresponse_unpack(buf []byte) ?CHIDMessageFrom
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemote_RequestResponse) eq(b CHIDMessageFromRemote_RequestResponse) bool {
+	return true && a.request_id == b.request_id && a.result == b.result && a.data == b.data
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemote_RequestResponse) ne(b CHIDMessageFromRemote_RequestResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_RequestResponse) eq(b []CHIDMessageFromRemote_RequestResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_RequestResponse) ne(b []CHIDMessageFromRemote_RequestResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremote_requestresponse() CHIDMessageFromRemote_RequestResponse {
 	return CHIDMessageFromRemote_RequestResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremote_requestresponse(o CHIDMessageFromRemote_RequestResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremote_requestresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemote_RequestResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremote_requestresponse_unpack(v)?
@@ -1536,13 +2008,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 	reports        []CHIDDeviceInputReport
 }
 
 pub fn (o &CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	// [packed=false]
@@ -1553,7 +2024,7 @@ pub fn (o &CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) pack() []b
 }
 
 pub fn chidmessagefromremotedeviceinputreports_deviceinputreport_unpack(buf []byte) ?CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport {
-	mut res := CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport{}
+	mut res := zzz_vproto_internal_new_chidmessagefromremotedeviceinputreports_deviceinputreport()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1564,7 +2035,6 @@ pub fn chidmessagefromremotedeviceinputreports_deviceinputreport_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -1590,17 +2060,48 @@ pub fn chidmessagefromremotedeviceinputreports_deviceinputreport_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) eq(b CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) bool {
+	return true && a.device == b.device && a.reports.eq(b.reports)
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) ne(b CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) eq(b []CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) ne(b []CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremotedeviceinputreports_deviceinputreport() CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport {
 	return CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremotedeviceinputreports_deviceinputreport(o CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremotedeviceinputreports_deviceinputreport(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemoteDeviceInputReports_DeviceInputReport) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremotedeviceinputreports_deviceinputreport_unpack(v)?
@@ -1625,7 +2126,7 @@ pub fn (o &CHIDMessageFromRemote_DeviceInputReports) pack() []byte {
 }
 
 pub fn chidmessagefromremote_deviceinputreports_unpack(buf []byte) ?CHIDMessageFromRemote_DeviceInputReports {
-	mut res := CHIDMessageFromRemote_DeviceInputReports{}
+	mut res := zzz_vproto_internal_new_chidmessagefromremote_deviceinputreports()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1657,17 +2158,48 @@ pub fn chidmessagefromremote_deviceinputreports_unpack(buf []byte) ?CHIDMessageF
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemote_DeviceInputReports) eq(b CHIDMessageFromRemote_DeviceInputReports) bool {
+	return true && a.device_reports.eq(b.device_reports)
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemote_DeviceInputReports) ne(b CHIDMessageFromRemote_DeviceInputReports) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_DeviceInputReports) eq(b []CHIDMessageFromRemote_DeviceInputReports) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_DeviceInputReports) ne(b []CHIDMessageFromRemote_DeviceInputReports) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremote_deviceinputreports() CHIDMessageFromRemote_DeviceInputReports {
 	return CHIDMessageFromRemote_DeviceInputReports{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremote_deviceinputreports(o CHIDMessageFromRemote_DeviceInputReports, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremote_deviceinputreports(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemote_DeviceInputReports) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremote_deviceinputreports_unpack(v)?
@@ -1679,19 +2211,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	device         u32
-	has_device     bool
 }
 
 pub fn (o &CHIDMessageFromRemote_CloseDevice) pack() []byte {
 	mut res := []byte{}
-	if o.has_device {
+	if o.device != u32(0) {
 		res << vproto.pack_uint32_field(o.device, 1)
 	}
 	return res
 }
 
 pub fn chidmessagefromremote_closedevice_unpack(buf []byte) ?CHIDMessageFromRemote_CloseDevice {
-	mut res := CHIDMessageFromRemote_CloseDevice{}
+	mut res := zzz_vproto_internal_new_chidmessagefromremote_closedevice()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1702,7 +2233,6 @@ pub fn chidmessagefromremote_closedevice_unpack(buf []byte) ?CHIDMessageFromRemo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device = v
 				i = ii
@@ -1722,17 +2252,48 @@ pub fn chidmessagefromremote_closedevice_unpack(buf []byte) ?CHIDMessageFromRemo
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemote_CloseDevice) eq(b CHIDMessageFromRemote_CloseDevice) bool {
+	return true && a.device == b.device
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemote_CloseDevice) ne(b CHIDMessageFromRemote_CloseDevice) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_CloseDevice) eq(b []CHIDMessageFromRemote_CloseDevice) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_CloseDevice) ne(b []CHIDMessageFromRemote_CloseDevice) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremote_closedevice() CHIDMessageFromRemote_CloseDevice {
 	return CHIDMessageFromRemote_CloseDevice{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremote_closedevice(o CHIDMessageFromRemote_CloseDevice, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremote_closedevice(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemote_CloseDevice) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremote_closedevice_unpack(v)?
@@ -1750,21 +2311,52 @@ pub fn (o &CHIDMessageFromRemote_CloseAllDevices) pack() []byte {
 }
 
 pub fn chidmessagefromremote_closealldevices_unpack(buf []byte) ?CHIDMessageFromRemote_CloseAllDevices {
-	res := CHIDMessageFromRemote_CloseAllDevices{}
+	res := zzz_vproto_internal_new_chidmessagefromremote_closealldevices()
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemote_CloseAllDevices) eq(b CHIDMessageFromRemote_CloseAllDevices) bool {
+	return true
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemote_CloseAllDevices) ne(b CHIDMessageFromRemote_CloseAllDevices) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_CloseAllDevices) eq(b []CHIDMessageFromRemote_CloseAllDevices) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote_CloseAllDevices) ne(b []CHIDMessageFromRemote_CloseAllDevices) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremote_closealldevices() CHIDMessageFromRemote_CloseAllDevices {
 	return CHIDMessageFromRemote_CloseAllDevices{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremote_closealldevices(o CHIDMessageFromRemote_CloseAllDevices, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremote_closealldevices(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemote_CloseAllDevices) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremote_closealldevices_unpack(v)?
@@ -1782,21 +2374,52 @@ pub fn (o &CHIDMessageFromRemote) pack() []byte {
 }
 
 pub fn chidmessagefromremote_unpack(buf []byte) ?CHIDMessageFromRemote {
-	res := CHIDMessageFromRemote{}
+	res := zzz_vproto_internal_new_chidmessagefromremote()
 	return res
 }
 
+[inline]
+pub fn (a CHIDMessageFromRemote) eq(b CHIDMessageFromRemote) bool {
+	return true
+}
+
+[inline]
+pub fn (a CHIDMessageFromRemote) ne(b CHIDMessageFromRemote) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote) eq(b []CHIDMessageFromRemote) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHIDMessageFromRemote) ne(b []CHIDMessageFromRemote) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidmessagefromremote() CHIDMessageFromRemote {
 	return CHIDMessageFromRemote{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidmessagefromremote(o CHIDMessageFromRemote, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidmessagefromremote(buf []byte, tag_wiretype vproto.WireType) ?(int, CHIDMessageFromRemote) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidmessagefromremote_unpack(v)?

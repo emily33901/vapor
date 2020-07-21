@@ -5,37 +5,33 @@ import emily33901.vproto
 
 pub struct CSiteManagerClient_IncomingClient_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	site_instanceid     u64
-	has_site_instanceid bool
-	client_steamid      u64
-	has_client_steamid  bool
-	client_local_ip     u32
-	has_client_local_ip bool
-	connection_key      []byte
-	has_connection_key  bool
+	site_instanceid u64
+	client_steamid  u64
+	client_local_ip u32
+	connection_key  []byte
 }
 
 pub fn (o &CSiteManagerClient_IncomingClient_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_site_instanceid {
+	if o.site_instanceid != u64(0) {
 		res << vproto.pack_64bit_field(o.site_instanceid, 1)
 	}
-	if o.has_client_steamid {
+	if o.client_steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.client_steamid, 2)
 	}
-	if o.has_client_local_ip {
+	if o.client_local_ip != u32(0) {
 		res << vproto.pack_32bit_field(o.client_local_ip, 3)
 	}
-	if o.has_connection_key {
+	if o.connection_key != []byte{} {
 		res << vproto.pack_bytes_field(o.connection_key, 4)
 	}
 	return res
 }
 
 pub fn csitemanagerclient_incomingclient_request_unpack(buf []byte) ?CSiteManagerClient_IncomingClient_Request {
-	mut res := CSiteManagerClient_IncomingClient_Request{}
+	mut res := zzz_vproto_internal_new_csitemanagerclient_incomingclient_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -46,25 +42,21 @@ pub fn csitemanagerclient_incomingclient_request_unpack(buf []byte) ?CSiteManage
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_site_instanceid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_instanceid = v
 				i = ii
 			}
 			2 {
-				res.has_client_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_steamid = v
 				i = ii
 			}
 			3 {
-				res.has_client_local_ip = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_local_ip = v
 				i = ii
 			}
 			4 {
-				res.has_connection_key = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.connection_key = v
 				i = ii
@@ -84,17 +76,51 @@ pub fn csitemanagerclient_incomingclient_request_unpack(buf []byte) ?CSiteManage
 	return res
 }
 
+[inline]
+pub fn (a CSiteManagerClient_IncomingClient_Request) eq(b CSiteManagerClient_IncomingClient_Request) bool {
+	return true && a.site_instanceid == b.site_instanceid &&
+		a.client_steamid == b.client_steamid &&
+		a.client_local_ip == b.client_local_ip &&
+		a.connection_key == b.connection_key
+}
+
+[inline]
+pub fn (a CSiteManagerClient_IncomingClient_Request) ne(b CSiteManagerClient_IncomingClient_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_IncomingClient_Request) eq(b []CSiteManagerClient_IncomingClient_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_IncomingClient_Request) ne(b []CSiteManagerClient_IncomingClient_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitemanagerclient_incomingclient_request() CSiteManagerClient_IncomingClient_Request {
 	return CSiteManagerClient_IncomingClient_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitemanagerclient_incomingclient_request(o CSiteManagerClient_IncomingClient_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitemanagerclient_incomingclient_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteManagerClient_IncomingClient_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitemanagerclient_incomingclient_request_unpack(v)?
@@ -112,21 +138,52 @@ pub fn (o &CSiteManagerClient_IncomingClient_Response) pack() []byte {
 }
 
 pub fn csitemanagerclient_incomingclient_response_unpack(buf []byte) ?CSiteManagerClient_IncomingClient_Response {
-	res := CSiteManagerClient_IncomingClient_Response{}
+	res := zzz_vproto_internal_new_csitemanagerclient_incomingclient_response()
 	return res
 }
 
+[inline]
+pub fn (a CSiteManagerClient_IncomingClient_Response) eq(b CSiteManagerClient_IncomingClient_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CSiteManagerClient_IncomingClient_Response) ne(b CSiteManagerClient_IncomingClient_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_IncomingClient_Response) eq(b []CSiteManagerClient_IncomingClient_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_IncomingClient_Response) ne(b []CSiteManagerClient_IncomingClient_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitemanagerclient_incomingclient_response() CSiteManagerClient_IncomingClient_Response {
 	return CSiteManagerClient_IncomingClient_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitemanagerclient_incomingclient_response(o CSiteManagerClient_IncomingClient_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitemanagerclient_incomingclient_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteManagerClient_IncomingClient_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitemanagerclient_incomingclient_response_unpack(v)?
@@ -138,24 +195,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	eresult        u32
-	has_eresult    bool
 }
 
 pub fn (o &CSiteLicense_ClientSeatCheckout_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 2)
 	}
 	return res
 }
 
 pub fn csitelicense_clientseatcheckout_notification_unpack(buf []byte) ?CSiteLicense_ClientSeatCheckout_Notification {
-	mut res := CSiteLicense_ClientSeatCheckout_Notification{}
+	mut res := zzz_vproto_internal_new_csitelicense_clientseatcheckout_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -166,13 +221,11 @@ pub fn csitelicense_clientseatcheckout_notification_unpack(buf []byte) ?CSiteLic
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -192,17 +245,48 @@ pub fn csitelicense_clientseatcheckout_notification_unpack(buf []byte) ?CSiteLic
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_ClientSeatCheckout_Notification) eq(b CSiteLicense_ClientSeatCheckout_Notification) bool {
+	return true && a.appid == b.appid && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CSiteLicense_ClientSeatCheckout_Notification) ne(b CSiteLicense_ClientSeatCheckout_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientSeatCheckout_Notification) eq(b []CSiteLicense_ClientSeatCheckout_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientSeatCheckout_Notification) ne(b []CSiteLicense_ClientSeatCheckout_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_clientseatcheckout_notification() CSiteLicense_ClientSeatCheckout_Notification {
 	return CSiteLicense_ClientSeatCheckout_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_clientseatcheckout_notification(o CSiteLicense_ClientSeatCheckout_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_clientseatcheckout_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_ClientSeatCheckout_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_clientseatcheckout_notification_unpack(v)?
@@ -211,67 +295,57 @@ pub fn zzz_vproto_internal_unpack_csitelicense_clientseatcheckout_notification(b
 
 pub struct CSiteManagerClient_TrackedPayments_Notification_Payment {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	transid             u64
-	has_transid         bool
-	steamid             u64
-	has_steamid         bool
-	amount              i64
-	has_amount          bool
-	ecurrency           u32
-	has_ecurrency       bool
-	time_created        int
-	has_time_created    bool
-	purchase_status     int
-	has_purchase_status bool
-	machine_name        string
-	has_machine_name    bool
-	persona_name        string
-	has_persona_name    bool
-	profile_url         string
-	has_profile_url     bool
-	avatar_url          string
-	has_avatar_url      bool
+	transid         u64
+	steamid         u64
+	amount          i64
+	ecurrency       u32
+	time_created    int
+	purchase_status int
+	machine_name    string
+	persona_name    string
+	profile_url     string
+	avatar_url      string
 }
 
 pub fn (o &CSiteManagerClient_TrackedPayments_Notification_Payment) pack() []byte {
 	mut res := []byte{}
-	if o.has_transid {
+	if o.transid != u64(0) {
 		res << vproto.pack_uint64_field(o.transid, 1)
 	}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_uint64_field(o.steamid, 2)
 	}
-	if o.has_amount {
+	if o.amount != i64(0) {
 		res << vproto.pack_int64_field(o.amount, 3)
 	}
-	if o.has_ecurrency {
+	if o.ecurrency != u32(0) {
 		res << vproto.pack_uint32_field(o.ecurrency, 4)
 	}
-	if o.has_time_created {
+	if o.time_created != int(0) {
 		res << vproto.pack_int32_field(o.time_created, 5)
 	}
-	if o.has_purchase_status {
+	if o.purchase_status != int(0) {
 		res << vproto.pack_int32_field(o.purchase_status, 6)
 	}
-	if o.has_machine_name {
+	if o.machine_name != '' {
 		res << vproto.pack_string_field(o.machine_name, 7)
 	}
-	if o.has_persona_name {
+	if o.persona_name != '' {
 		res << vproto.pack_string_field(o.persona_name, 8)
 	}
-	if o.has_profile_url {
+	if o.profile_url != '' {
 		res << vproto.pack_string_field(o.profile_url, 9)
 	}
-	if o.has_avatar_url {
+	if o.avatar_url != '' {
 		res << vproto.pack_string_field(o.avatar_url, 10)
 	}
 	return res
 }
 
 pub fn csitemanagerclient_trackedpayments_notification_payment_unpack(buf []byte) ?CSiteManagerClient_TrackedPayments_Notification_Payment {
-	mut res := CSiteManagerClient_TrackedPayments_Notification_Payment{}
+	mut res := zzz_vproto_internal_new_csitemanagerclient_trackedpayments_notification_payment()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -282,61 +356,51 @@ pub fn csitemanagerclient_trackedpayments_notification_payment_unpack(buf []byte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_transid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.transid = v
 				i = ii
 			}
 			2 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			3 {
-				res.has_amount = true
 				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
 				res.amount = v
 				i = ii
 			}
 			4 {
-				res.has_ecurrency = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ecurrency = v
 				i = ii
 			}
 			5 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			6 {
-				res.has_purchase_status = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.purchase_status = v
 				i = ii
 			}
 			7 {
-				res.has_machine_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.machine_name = v
 				i = ii
 			}
 			8 {
-				res.has_persona_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_name = v
 				i = ii
 			}
 			9 {
-				res.has_profile_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.profile_url = v
 				i = ii
 			}
 			10 {
-				res.has_avatar_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.avatar_url = v
 				i = ii
@@ -356,17 +420,54 @@ pub fn csitemanagerclient_trackedpayments_notification_payment_unpack(buf []byte
 	return res
 }
 
+[inline]
+pub fn (a CSiteManagerClient_TrackedPayments_Notification_Payment) eq(b CSiteManagerClient_TrackedPayments_Notification_Payment) bool {
+	return true && a.transid == b.transid &&
+		a.steamid == b.steamid && a.amount == b.amount &&
+		a.ecurrency == b.ecurrency && a.time_created == b.time_created &&
+		a.purchase_status == b.purchase_status &&
+		a.machine_name == b.machine_name &&
+		a.persona_name == b.persona_name &&
+		a.profile_url == b.profile_url && a.avatar_url == b.avatar_url
+}
+
+[inline]
+pub fn (a CSiteManagerClient_TrackedPayments_Notification_Payment) ne(b CSiteManagerClient_TrackedPayments_Notification_Payment) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_TrackedPayments_Notification_Payment) eq(b []CSiteManagerClient_TrackedPayments_Notification_Payment) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_TrackedPayments_Notification_Payment) ne(b []CSiteManagerClient_TrackedPayments_Notification_Payment) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitemanagerclient_trackedpayments_notification_payment() CSiteManagerClient_TrackedPayments_Notification_Payment {
 	return CSiteManagerClient_TrackedPayments_Notification_Payment{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitemanagerclient_trackedpayments_notification_payment(o CSiteManagerClient_TrackedPayments_Notification_Payment, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitemanagerclient_trackedpayments_notification_payment(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteManagerClient_TrackedPayments_Notification_Payment) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitemanagerclient_trackedpayments_notification_payment_unpack(v)?
@@ -378,13 +479,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	site_id        u64
-	has_site_id    bool
 	payments       []CSiteManagerClient_TrackedPayments_Notification_Payment
 }
 
 pub fn (o &CSiteManagerClient_TrackedPayments_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_site_id {
+	if o.site_id != u64(0) {
 		res << vproto.pack_64bit_field(o.site_id, 1)
 	}
 	// [packed=false]
@@ -396,7 +496,7 @@ pub fn (o &CSiteManagerClient_TrackedPayments_Notification) pack() []byte {
 }
 
 pub fn csitemanagerclient_trackedpayments_notification_unpack(buf []byte) ?CSiteManagerClient_TrackedPayments_Notification {
-	mut res := CSiteManagerClient_TrackedPayments_Notification{}
+	mut res := zzz_vproto_internal_new_csitemanagerclient_trackedpayments_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -407,7 +507,6 @@ pub fn csitemanagerclient_trackedpayments_notification_unpack(buf []byte) ?CSite
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_site_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_id = v
 				i = ii
@@ -434,17 +533,48 @@ pub fn csitemanagerclient_trackedpayments_notification_unpack(buf []byte) ?CSite
 	return res
 }
 
+[inline]
+pub fn (a CSiteManagerClient_TrackedPayments_Notification) eq(b CSiteManagerClient_TrackedPayments_Notification) bool {
+	return true && a.site_id == b.site_id && a.payments.eq(b.payments)
+}
+
+[inline]
+pub fn (a CSiteManagerClient_TrackedPayments_Notification) ne(b CSiteManagerClient_TrackedPayments_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_TrackedPayments_Notification) eq(b []CSiteManagerClient_TrackedPayments_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteManagerClient_TrackedPayments_Notification) ne(b []CSiteManagerClient_TrackedPayments_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitemanagerclient_trackedpayments_notification() CSiteManagerClient_TrackedPayments_Notification {
 	return CSiteManagerClient_TrackedPayments_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitemanagerclient_trackedpayments_notification(o CSiteManagerClient_TrackedPayments_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitemanagerclient_trackedpayments_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteManagerClient_TrackedPayments_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitemanagerclient_trackedpayments_notification_unpack(v)?
@@ -453,32 +583,29 @@ pub fn zzz_vproto_internal_unpack_csitemanagerclient_trackedpayments_notificatio
 
 pub struct CSiteLicense_InitiateAssociation_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	site_steamid        u64
-	has_site_steamid    bool
-	site_instanceid     u64
-	has_site_instanceid bool
-	client_local_ip     u32
-	has_client_local_ip bool
+	site_steamid    u64
+	site_instanceid u64
+	client_local_ip u32
 }
 
 pub fn (o &CSiteLicense_InitiateAssociation_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_site_steamid {
+	if o.site_steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.site_steamid, 1)
 	}
-	if o.has_site_instanceid {
+	if o.site_instanceid != u64(0) {
 		res << vproto.pack_64bit_field(o.site_instanceid, 2)
 	}
-	if o.has_client_local_ip {
+	if o.client_local_ip != u32(0) {
 		res << vproto.pack_32bit_field(o.client_local_ip, 3)
 	}
 	return res
 }
 
 pub fn csitelicense_initiateassociation_request_unpack(buf []byte) ?CSiteLicense_InitiateAssociation_Request {
-	mut res := CSiteLicense_InitiateAssociation_Request{}
+	mut res := zzz_vproto_internal_new_csitelicense_initiateassociation_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -489,19 +616,16 @@ pub fn csitelicense_initiateassociation_request_unpack(buf []byte) ?CSiteLicense
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_site_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_steamid = v
 				i = ii
 			}
 			2 {
-				res.has_site_instanceid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_instanceid = v
 				i = ii
 			}
 			3 {
-				res.has_client_local_ip = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_local_ip = v
 				i = ii
@@ -521,17 +645,50 @@ pub fn csitelicense_initiateassociation_request_unpack(buf []byte) ?CSiteLicense
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_InitiateAssociation_Request) eq(b CSiteLicense_InitiateAssociation_Request) bool {
+	return true && a.site_steamid == b.site_steamid &&
+		a.site_instanceid == b.site_instanceid &&
+		a.client_local_ip == b.client_local_ip
+}
+
+[inline]
+pub fn (a CSiteLicense_InitiateAssociation_Request) ne(b CSiteLicense_InitiateAssociation_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_InitiateAssociation_Request) eq(b []CSiteLicense_InitiateAssociation_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_InitiateAssociation_Request) ne(b []CSiteLicense_InitiateAssociation_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_initiateassociation_request() CSiteLicense_InitiateAssociation_Request {
 	return CSiteLicense_InitiateAssociation_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_initiateassociation_request(o CSiteLicense_InitiateAssociation_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_initiateassociation_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_InitiateAssociation_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_initiateassociation_request_unpack(v)?
@@ -540,22 +697,21 @@ pub fn zzz_vproto_internal_unpack_csitelicense_initiateassociation_request(buf [
 
 pub struct CSiteLicense_InitiateAssociation_Response {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	connection_key     []byte
-	has_connection_key bool
+	connection_key []byte
 }
 
 pub fn (o &CSiteLicense_InitiateAssociation_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_connection_key {
+	if o.connection_key != []byte{} {
 		res << vproto.pack_bytes_field(o.connection_key, 1)
 	}
 	return res
 }
 
 pub fn csitelicense_initiateassociation_response_unpack(buf []byte) ?CSiteLicense_InitiateAssociation_Response {
-	mut res := CSiteLicense_InitiateAssociation_Response{}
+	mut res := zzz_vproto_internal_new_csitelicense_initiateassociation_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -566,7 +722,6 @@ pub fn csitelicense_initiateassociation_response_unpack(buf []byte) ?CSiteLicens
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_connection_key = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.connection_key = v
 				i = ii
@@ -586,17 +741,48 @@ pub fn csitelicense_initiateassociation_response_unpack(buf []byte) ?CSiteLicens
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_InitiateAssociation_Response) eq(b CSiteLicense_InitiateAssociation_Response) bool {
+	return true && a.connection_key == b.connection_key
+}
+
+[inline]
+pub fn (a CSiteLicense_InitiateAssociation_Response) ne(b CSiteLicense_InitiateAssociation_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_InitiateAssociation_Response) eq(b []CSiteLicense_InitiateAssociation_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_InitiateAssociation_Response) ne(b []CSiteLicense_InitiateAssociation_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_initiateassociation_response() CSiteLicense_InitiateAssociation_Response {
 	return CSiteLicense_InitiateAssociation_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_initiateassociation_response(o CSiteLicense_InitiateAssociation_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_initiateassociation_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_InitiateAssociation_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_initiateassociation_response_unpack(v)?
@@ -608,19 +794,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	instanceid     u64
-	has_instanceid bool
 }
 
 pub fn (o &CSiteLicense_LCSAuthenticate_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_instanceid {
+	if o.instanceid != u64(0) {
 		res << vproto.pack_64bit_field(o.instanceid, 1)
 	}
 	return res
 }
 
 pub fn csitelicense_lcsauthenticate_request_unpack(buf []byte) ?CSiteLicense_LCSAuthenticate_Request {
-	mut res := CSiteLicense_LCSAuthenticate_Request{}
+	mut res := zzz_vproto_internal_new_csitelicense_lcsauthenticate_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -631,7 +816,6 @@ pub fn csitelicense_lcsauthenticate_request_unpack(buf []byte) ?CSiteLicense_LCS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_instanceid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.instanceid = v
 				i = ii
@@ -651,17 +835,48 @@ pub fn csitelicense_lcsauthenticate_request_unpack(buf []byte) ?CSiteLicense_LCS
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_LCSAuthenticate_Request) eq(b CSiteLicense_LCSAuthenticate_Request) bool {
+	return true && a.instanceid == b.instanceid
+}
+
+[inline]
+pub fn (a CSiteLicense_LCSAuthenticate_Request) ne(b CSiteLicense_LCSAuthenticate_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAuthenticate_Request) eq(b []CSiteLicense_LCSAuthenticate_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAuthenticate_Request) ne(b []CSiteLicense_LCSAuthenticate_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_lcsauthenticate_request() CSiteLicense_LCSAuthenticate_Request {
 	return CSiteLicense_LCSAuthenticate_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_lcsauthenticate_request(o CSiteLicense_LCSAuthenticate_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_lcsauthenticate_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_LCSAuthenticate_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_lcsauthenticate_request_unpack(v)?
@@ -670,37 +885,33 @@ pub fn zzz_vproto_internal_unpack_csitelicense_lcsauthenticate_request(buf []byt
 
 pub struct CSiteLicense_LCSAuthenticate_Response {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	site_id              u64
-	has_site_id          bool
-	site_name            string
-	has_site_name        bool
-	new_session          bool
-	has_new_session      bool
-	no_site_licenses     bool
-	has_no_site_licenses bool
+	site_id          u64
+	site_name        string
+	new_session      bool
+	no_site_licenses bool
 }
 
 pub fn (o &CSiteLicense_LCSAuthenticate_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_site_id {
+	if o.site_id != u64(0) {
 		res << vproto.pack_uint64_field(o.site_id, 1)
 	}
-	if o.has_site_name {
+	if o.site_name != '' {
 		res << vproto.pack_string_field(o.site_name, 2)
 	}
-	if o.has_new_session {
+	if o.new_session != bool(0) {
 		res << vproto.pack_bool_field(o.new_session, 3)
 	}
-	if o.has_no_site_licenses {
+	if o.no_site_licenses != bool(0) {
 		res << vproto.pack_bool_field(o.no_site_licenses, 4)
 	}
 	return res
 }
 
 pub fn csitelicense_lcsauthenticate_response_unpack(buf []byte) ?CSiteLicense_LCSAuthenticate_Response {
-	mut res := CSiteLicense_LCSAuthenticate_Response{}
+	mut res := zzz_vproto_internal_new_csitelicense_lcsauthenticate_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -711,25 +922,21 @@ pub fn csitelicense_lcsauthenticate_response_unpack(buf []byte) ?CSiteLicense_LC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_site_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_id = v
 				i = ii
 			}
 			2 {
-				res.has_site_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_name = v
 				i = ii
 			}
 			3 {
-				res.has_new_session = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.new_session = v
 				i = ii
 			}
 			4 {
-				res.has_no_site_licenses = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.no_site_licenses = v
 				i = ii
@@ -749,17 +956,50 @@ pub fn csitelicense_lcsauthenticate_response_unpack(buf []byte) ?CSiteLicense_LC
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_LCSAuthenticate_Response) eq(b CSiteLicense_LCSAuthenticate_Response) bool {
+	return true && a.site_id == b.site_id &&
+		a.site_name == b.site_name && a.new_session == b.new_session &&
+		a.no_site_licenses == b.no_site_licenses
+}
+
+[inline]
+pub fn (a CSiteLicense_LCSAuthenticate_Response) ne(b CSiteLicense_LCSAuthenticate_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAuthenticate_Response) eq(b []CSiteLicense_LCSAuthenticate_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAuthenticate_Response) ne(b []CSiteLicense_LCSAuthenticate_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_lcsauthenticate_response() CSiteLicense_LCSAuthenticate_Response {
 	return CSiteLicense_LCSAuthenticate_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_lcsauthenticate_response(o CSiteLicense_LCSAuthenticate_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_lcsauthenticate_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_LCSAuthenticate_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_lcsauthenticate_response_unpack(v)?
@@ -768,37 +1008,33 @@ pub fn zzz_vproto_internal_unpack_csitelicense_lcsauthenticate_response(buf []by
 
 pub struct CSiteLicense_LCSAssociateUser_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid          u64
-	has_steamid      bool
-	local_ip         u32
-	has_local_ip     bool
-	instanceid       u64
-	has_instanceid   bool
-	machine_name     string
-	has_machine_name bool
+	steamid        u64
+	local_ip       u32
+	instanceid     u64
+	machine_name   string
 }
 
 pub fn (o &CSiteLicense_LCSAssociateUser_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_local_ip {
+	if o.local_ip != u32(0) {
 		res << vproto.pack_32bit_field(o.local_ip, 2)
 	}
-	if o.has_instanceid {
+	if o.instanceid != u64(0) {
 		res << vproto.pack_64bit_field(o.instanceid, 3)
 	}
-	if o.has_machine_name {
+	if o.machine_name != '' {
 		res << vproto.pack_string_field(o.machine_name, 4)
 	}
 	return res
 }
 
 pub fn csitelicense_lcsassociateuser_request_unpack(buf []byte) ?CSiteLicense_LCSAssociateUser_Request {
-	mut res := CSiteLicense_LCSAssociateUser_Request{}
+	mut res := zzz_vproto_internal_new_csitelicense_lcsassociateuser_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -809,25 +1045,21 @@ pub fn csitelicense_lcsassociateuser_request_unpack(buf []byte) ?CSiteLicense_LC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_local_ip = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.local_ip = v
 				i = ii
 			}
 			3 {
-				res.has_instanceid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.instanceid = v
 				i = ii
 			}
 			4 {
-				res.has_machine_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.machine_name = v
 				i = ii
@@ -847,17 +1079,50 @@ pub fn csitelicense_lcsassociateuser_request_unpack(buf []byte) ?CSiteLicense_LC
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_LCSAssociateUser_Request) eq(b CSiteLicense_LCSAssociateUser_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.local_ip == b.local_ip && a.instanceid == b.instanceid &&
+		a.machine_name == b.machine_name
+}
+
+[inline]
+pub fn (a CSiteLicense_LCSAssociateUser_Request) ne(b CSiteLicense_LCSAssociateUser_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAssociateUser_Request) eq(b []CSiteLicense_LCSAssociateUser_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAssociateUser_Request) ne(b []CSiteLicense_LCSAssociateUser_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_lcsassociateuser_request() CSiteLicense_LCSAssociateUser_Request {
 	return CSiteLicense_LCSAssociateUser_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_lcsassociateuser_request(o CSiteLicense_LCSAssociateUser_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_lcsassociateuser_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_LCSAssociateUser_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_lcsassociateuser_request_unpack(v)?
@@ -875,21 +1140,52 @@ pub fn (o &CSiteLicense_LCSAssociateUser_Response) pack() []byte {
 }
 
 pub fn csitelicense_lcsassociateuser_response_unpack(buf []byte) ?CSiteLicense_LCSAssociateUser_Response {
-	res := CSiteLicense_LCSAssociateUser_Response{}
+	res := zzz_vproto_internal_new_csitelicense_lcsassociateuser_response()
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_LCSAssociateUser_Response) eq(b CSiteLicense_LCSAssociateUser_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CSiteLicense_LCSAssociateUser_Response) ne(b CSiteLicense_LCSAssociateUser_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAssociateUser_Response) eq(b []CSiteLicense_LCSAssociateUser_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_LCSAssociateUser_Response) ne(b []CSiteLicense_LCSAssociateUser_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_lcsassociateuser_response() CSiteLicense_LCSAssociateUser_Response {
 	return CSiteLicense_LCSAssociateUser_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_lcsassociateuser_response(o CSiteLicense_LCSAssociateUser_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_lcsassociateuser_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_LCSAssociateUser_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_lcsassociateuser_response_unpack(v)?
@@ -901,29 +1197,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	instanceid     u64
-	has_instanceid bool
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CSiteLicense_ClientSeatCheckout_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_instanceid {
+	if o.instanceid != u64(0) {
 		res << vproto.pack_64bit_field(o.instanceid, 2)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 3)
 	}
 	return res
 }
 
 pub fn csitelicense_clientseatcheckout_request_unpack(buf []byte) ?CSiteLicense_ClientSeatCheckout_Request {
-	mut res := CSiteLicense_ClientSeatCheckout_Request{}
+	mut res := zzz_vproto_internal_new_csitelicense_clientseatcheckout_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -934,19 +1227,16 @@ pub fn csitelicense_clientseatcheckout_request_unpack(buf []byte) ?CSiteLicense_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_instanceid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.instanceid = v
 				i = ii
 			}
 			3 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -966,17 +1256,48 @@ pub fn csitelicense_clientseatcheckout_request_unpack(buf []byte) ?CSiteLicense_
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_ClientSeatCheckout_Request) eq(b CSiteLicense_ClientSeatCheckout_Request) bool {
+	return true && a.steamid == b.steamid && a.instanceid == b.instanceid && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CSiteLicense_ClientSeatCheckout_Request) ne(b CSiteLicense_ClientSeatCheckout_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientSeatCheckout_Request) eq(b []CSiteLicense_ClientSeatCheckout_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientSeatCheckout_Request) ne(b []CSiteLicense_ClientSeatCheckout_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_clientseatcheckout_request() CSiteLicense_ClientSeatCheckout_Request {
 	return CSiteLicense_ClientSeatCheckout_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_clientseatcheckout_request(o CSiteLicense_ClientSeatCheckout_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_clientseatcheckout_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_ClientSeatCheckout_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_clientseatcheckout_request_unpack(v)?
@@ -994,21 +1315,52 @@ pub fn (o &CSiteLicense_ClientSeatCheckout_Response) pack() []byte {
 }
 
 pub fn csitelicense_clientseatcheckout_response_unpack(buf []byte) ?CSiteLicense_ClientSeatCheckout_Response {
-	res := CSiteLicense_ClientSeatCheckout_Response{}
+	res := zzz_vproto_internal_new_csitelicense_clientseatcheckout_response()
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_ClientSeatCheckout_Response) eq(b CSiteLicense_ClientSeatCheckout_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CSiteLicense_ClientSeatCheckout_Response) ne(b CSiteLicense_ClientSeatCheckout_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientSeatCheckout_Response) eq(b []CSiteLicense_ClientSeatCheckout_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientSeatCheckout_Response) ne(b []CSiteLicense_ClientSeatCheckout_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_clientseatcheckout_response() CSiteLicense_ClientSeatCheckout_Response {
 	return CSiteLicense_ClientSeatCheckout_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_clientseatcheckout_response(o CSiteLicense_ClientSeatCheckout_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_clientseatcheckout_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_ClientSeatCheckout_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_clientseatcheckout_response_unpack(v)?
@@ -1020,29 +1372,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	instanceid     u64
-	has_instanceid bool
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CSiteLicense_ClientGetAvailableSeats_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_instanceid {
+	if o.instanceid != u64(0) {
 		res << vproto.pack_64bit_field(o.instanceid, 2)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 3)
 	}
 	return res
 }
 
 pub fn csitelicense_clientgetavailableseats_request_unpack(buf []byte) ?CSiteLicense_ClientGetAvailableSeats_Request {
-	mut res := CSiteLicense_ClientGetAvailableSeats_Request{}
+	mut res := zzz_vproto_internal_new_csitelicense_clientgetavailableseats_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1053,19 +1402,16 @@ pub fn csitelicense_clientgetavailableseats_request_unpack(buf []byte) ?CSiteLic
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_instanceid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.instanceid = v
 				i = ii
 			}
 			3 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -1085,17 +1431,48 @@ pub fn csitelicense_clientgetavailableseats_request_unpack(buf []byte) ?CSiteLic
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_ClientGetAvailableSeats_Request) eq(b CSiteLicense_ClientGetAvailableSeats_Request) bool {
+	return true && a.steamid == b.steamid && a.instanceid == b.instanceid && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CSiteLicense_ClientGetAvailableSeats_Request) ne(b CSiteLicense_ClientGetAvailableSeats_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientGetAvailableSeats_Request) eq(b []CSiteLicense_ClientGetAvailableSeats_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientGetAvailableSeats_Request) ne(b []CSiteLicense_ClientGetAvailableSeats_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_clientgetavailableseats_request() CSiteLicense_ClientGetAvailableSeats_Request {
 	return CSiteLicense_ClientGetAvailableSeats_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_clientgetavailableseats_request(o CSiteLicense_ClientGetAvailableSeats_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_clientgetavailableseats_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_ClientGetAvailableSeats_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_clientgetavailableseats_request_unpack(v)?
@@ -1104,22 +1481,21 @@ pub fn zzz_vproto_internal_unpack_csitelicense_clientgetavailableseats_request(b
 
 pub struct CSiteLicense_ClientGetAvailableSeats_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	available_seats     u32
-	has_available_seats bool
+	available_seats u32
 }
 
 pub fn (o &CSiteLicense_ClientGetAvailableSeats_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_available_seats {
+	if o.available_seats != u32(0) {
 		res << vproto.pack_uint32_field(o.available_seats, 1)
 	}
 	return res
 }
 
 pub fn csitelicense_clientgetavailableseats_response_unpack(buf []byte) ?CSiteLicense_ClientGetAvailableSeats_Response {
-	mut res := CSiteLicense_ClientGetAvailableSeats_Response{}
+	mut res := zzz_vproto_internal_new_csitelicense_clientgetavailableseats_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1130,7 +1506,6 @@ pub fn csitelicense_clientgetavailableseats_response_unpack(buf []byte) ?CSiteLi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_available_seats = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.available_seats = v
 				i = ii
@@ -1150,17 +1525,48 @@ pub fn csitelicense_clientgetavailableseats_response_unpack(buf []byte) ?CSiteLi
 	return res
 }
 
+[inline]
+pub fn (a CSiteLicense_ClientGetAvailableSeats_Response) eq(b CSiteLicense_ClientGetAvailableSeats_Response) bool {
+	return true && a.available_seats == b.available_seats
+}
+
+[inline]
+pub fn (a CSiteLicense_ClientGetAvailableSeats_Response) ne(b CSiteLicense_ClientGetAvailableSeats_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientGetAvailableSeats_Response) eq(b []CSiteLicense_ClientGetAvailableSeats_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSiteLicense_ClientGetAvailableSeats_Response) ne(b []CSiteLicense_ClientGetAvailableSeats_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csitelicense_clientgetavailableseats_response() CSiteLicense_ClientGetAvailableSeats_Response {
 	return CSiteLicense_ClientGetAvailableSeats_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csitelicense_clientgetavailableseats_response(o CSiteLicense_ClientGetAvailableSeats_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csitelicense_clientgetavailableseats_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CSiteLicense_ClientGetAvailableSeats_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csitelicense_clientgetavailableseats_response_unpack(v)?

@@ -11,11 +11,19 @@ enum ENotificationSetting {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_enotificationsetting() ENotificationSetting {
+	return .k_enotificationsettingnotifyusedefault
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_enotificationsetting(e ENotificationSetting, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_enotificationsetting_packed(e []ENotificationSetting, num u32) []byte {
 	x := array{
 		data: e.data
@@ -27,12 +35,14 @@ fn zzz_vproto_internal_pack_enotificationsetting_packed(e []ENotificationSetting
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_enotificationsetting(buf []byte, tag_wiretype vproto.WireType) ?(int, ENotificationSetting) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ENotificationSetting(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_enotificationsetting_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ENotificationSetting) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -54,21 +64,52 @@ pub fn (o &CPlayer_GetMutualFriendsForIncomingInvites_Request) pack() []byte {
 }
 
 pub fn cplayer_getmutualfriendsforincominginvites_request_unpack(buf []byte) ?CPlayer_GetMutualFriendsForIncomingInvites_Request {
-	res := CPlayer_GetMutualFriendsForIncomingInvites_Request{}
+	res := zzz_vproto_internal_new_cplayer_getmutualfriendsforincominginvites_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetMutualFriendsForIncomingInvites_Request) eq(b CPlayer_GetMutualFriendsForIncomingInvites_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_GetMutualFriendsForIncomingInvites_Request) ne(b CPlayer_GetMutualFriendsForIncomingInvites_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetMutualFriendsForIncomingInvites_Request) eq(b []CPlayer_GetMutualFriendsForIncomingInvites_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetMutualFriendsForIncomingInvites_Request) ne(b []CPlayer_GetMutualFriendsForIncomingInvites_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getmutualfriendsforincominginvites_request() CPlayer_GetMutualFriendsForIncomingInvites_Request {
 	return CPlayer_GetMutualFriendsForIncomingInvites_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getmutualfriendsforincominginvites_request(o CPlayer_GetMutualFriendsForIncomingInvites_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getmutualfriendsforincominginvites_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMutualFriendsForIncomingInvites_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getmutualfriendsforincominginvites_request_unpack(v)?
@@ -80,13 +121,12 @@ mut:
 	unknown_fields            []vproto.UnknownField
 pub mut:
 	steamid                   u64
-	has_steamid               bool
 	mutual_friend_account_ids []u32
 }
 
 pub fn (o &CPlayer_IncomingInviteMutualFriendList) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	// [packed=false]
@@ -97,7 +137,7 @@ pub fn (o &CPlayer_IncomingInviteMutualFriendList) pack() []byte {
 }
 
 pub fn cplayer_incominginvitemutualfriendlist_unpack(buf []byte) ?CPlayer_IncomingInviteMutualFriendList {
-	mut res := CPlayer_IncomingInviteMutualFriendList{}
+	mut res := zzz_vproto_internal_new_cplayer_incominginvitemutualfriendlist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -108,7 +148,6 @@ pub fn cplayer_incominginvitemutualfriendlist_unpack(buf []byte) ?CPlayer_Incomi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -134,17 +173,49 @@ pub fn cplayer_incominginvitemutualfriendlist_unpack(buf []byte) ?CPlayer_Incomi
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_IncomingInviteMutualFriendList) eq(b CPlayer_IncomingInviteMutualFriendList) bool {
+	return true && a.steamid == b.steamid &&
+		a.mutual_friend_account_ids == b.mutual_friend_account_ids
+}
+
+[inline]
+pub fn (a CPlayer_IncomingInviteMutualFriendList) ne(b CPlayer_IncomingInviteMutualFriendList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_IncomingInviteMutualFriendList) eq(b []CPlayer_IncomingInviteMutualFriendList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_IncomingInviteMutualFriendList) ne(b []CPlayer_IncomingInviteMutualFriendList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_incominginvitemutualfriendlist() CPlayer_IncomingInviteMutualFriendList {
 	return CPlayer_IncomingInviteMutualFriendList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_incominginvitemutualfriendlist(o CPlayer_IncomingInviteMutualFriendList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_incominginvitemutualfriendlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_IncomingInviteMutualFriendList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_incominginvitemutualfriendlist_unpack(v)?
@@ -168,7 +239,7 @@ pub fn (o &CPlayer_GetMutualFriendsForIncomingInvites_Response) pack() []byte {
 }
 
 pub fn cplayer_getmutualfriendsforincominginvites_response_unpack(buf []byte) ?CPlayer_GetMutualFriendsForIncomingInvites_Response {
-	mut res := CPlayer_GetMutualFriendsForIncomingInvites_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getmutualfriendsforincominginvites_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -200,17 +271,48 @@ pub fn cplayer_getmutualfriendsforincominginvites_response_unpack(buf []byte) ?C
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetMutualFriendsForIncomingInvites_Response) eq(b CPlayer_GetMutualFriendsForIncomingInvites_Response) bool {
+	return true && a.incoming_invite_mutual_friends_lists.eq(b.incoming_invite_mutual_friends_lists)
+}
+
+[inline]
+pub fn (a CPlayer_GetMutualFriendsForIncomingInvites_Response) ne(b CPlayer_GetMutualFriendsForIncomingInvites_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetMutualFriendsForIncomingInvites_Response) eq(b []CPlayer_GetMutualFriendsForIncomingInvites_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetMutualFriendsForIncomingInvites_Response) ne(b []CPlayer_GetMutualFriendsForIncomingInvites_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getmutualfriendsforincominginvites_response() CPlayer_GetMutualFriendsForIncomingInvites_Response {
 	return CPlayer_GetMutualFriendsForIncomingInvites_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getmutualfriendsforincominginvites_response(o CPlayer_GetMutualFriendsForIncomingInvites_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getmutualfriendsforincominginvites_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMutualFriendsForIncomingInvites_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getmutualfriendsforincominginvites_response_unpack(v)?
@@ -219,42 +321,38 @@ pub fn zzz_vproto_internal_unpack_cplayer_getmutualfriendsforincominginvites_res
 
 pub struct CPlayer_GetOwnedGames_Request {
 mut:
-	unknown_fields                []vproto.UnknownField
+	unknown_fields            []vproto.UnknownField
 pub mut:
-	steamid                       u64
-	has_steamid                   bool
-	include_appinfo               bool
-	has_include_appinfo           bool
-	include_played_free_games     bool
-	has_include_played_free_games bool
-	appids_filter                 []u32
-	include_free_sub              bool
-	has_include_free_sub          bool
+	steamid                   u64
+	include_appinfo           bool
+	include_played_free_games bool
+	appids_filter             []u32
+	include_free_sub          bool
 }
 
 pub fn (o &CPlayer_GetOwnedGames_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_uint64_field(o.steamid, 1)
 	}
-	if o.has_include_appinfo {
+	if o.include_appinfo != bool(0) {
 		res << vproto.pack_bool_field(o.include_appinfo, 2)
 	}
-	if o.has_include_played_free_games {
+	if o.include_played_free_games != bool(0) {
 		res << vproto.pack_bool_field(o.include_played_free_games, 3)
 	}
 	// [packed=false]
 	for _, x in o.appids_filter {
 		res << vproto.pack_uint32_field(x, 4)
 	}
-	if o.has_include_free_sub {
+	if o.include_free_sub != bool(0) {
 		res << vproto.pack_bool_field(o.include_free_sub, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getownedgames_request_unpack(buf []byte) ?CPlayer_GetOwnedGames_Request {
-	mut res := CPlayer_GetOwnedGames_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getownedgames_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -265,19 +363,16 @@ pub fn cplayer_getownedgames_request_unpack(buf []byte) ?CPlayer_GetOwnedGames_R
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_include_appinfo = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_appinfo = v
 				i = ii
 			}
 			3 {
-				res.has_include_played_free_games = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_played_free_games = v
 				i = ii
@@ -289,7 +384,6 @@ pub fn cplayer_getownedgames_request_unpack(buf []byte) ?CPlayer_GetOwnedGames_R
 				i = ii
 			}
 			5 {
-				res.has_include_free_sub = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_free_sub = v
 				i = ii
@@ -309,17 +403,52 @@ pub fn cplayer_getownedgames_request_unpack(buf []byte) ?CPlayer_GetOwnedGames_R
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetOwnedGames_Request) eq(b CPlayer_GetOwnedGames_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.include_appinfo == b.include_appinfo &&
+		a.include_played_free_games == b.include_played_free_games &&
+		a.appids_filter == b.appids_filter &&
+		a.include_free_sub == b.include_free_sub
+}
+
+[inline]
+pub fn (a CPlayer_GetOwnedGames_Request) ne(b CPlayer_GetOwnedGames_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetOwnedGames_Request) eq(b []CPlayer_GetOwnedGames_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetOwnedGames_Request) ne(b []CPlayer_GetOwnedGames_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getownedgames_request() CPlayer_GetOwnedGames_Request {
 	return CPlayer_GetOwnedGames_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getownedgames_request(o CPlayer_GetOwnedGames_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetOwnedGames_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getownedgames_request_unpack(v)?
@@ -328,67 +457,57 @@ pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_request(buf []byte, tag_
 
 pub struct CPlayer_GetOwnedGames_Response_Game {
 mut:
-	unknown_fields                  []vproto.UnknownField
+	unknown_fields              []vproto.UnknownField
 pub mut:
-	appid                           int
-	has_appid                       bool
-	name                            string
-	has_name                        bool
-	playtime_2weeks                 int
-	has_playtime_2weeks             bool
-	playtime_forever                int
-	has_playtime_forever            bool
-	img_icon_url                    string
-	has_img_icon_url                bool
-	img_logo_url                    string
-	has_img_logo_url                bool
-	has_community_visible_stats     bool
-	has_has_community_visible_stats bool
-	playtime_windows_forever        int
-	has_playtime_windows_forever    bool
-	playtime_mac_forever            int
-	has_playtime_mac_forever        bool
-	playtime_linux_forever          int
-	has_playtime_linux_forever      bool
+	appid                       int
+	name                        string
+	playtime_2weeks             int
+	playtime_forever            int
+	img_icon_url                string
+	img_logo_url                string
+	has_community_visible_stats bool
+	playtime_windows_forever    int
+	playtime_mac_forever        int
+	playtime_linux_forever      int
 }
 
 pub fn (o &CPlayer_GetOwnedGames_Response_Game) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != int(0) {
 		res << vproto.pack_int32_field(o.appid, 1)
 	}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 2)
 	}
-	if o.has_playtime_2weeks {
+	if o.playtime_2weeks != int(0) {
 		res << vproto.pack_int32_field(o.playtime_2weeks, 3)
 	}
-	if o.has_playtime_forever {
+	if o.playtime_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_forever, 4)
 	}
-	if o.has_img_icon_url {
+	if o.img_icon_url != '' {
 		res << vproto.pack_string_field(o.img_icon_url, 5)
 	}
-	if o.has_img_logo_url {
+	if o.img_logo_url != '' {
 		res << vproto.pack_string_field(o.img_logo_url, 6)
 	}
-	if o.has_has_community_visible_stats {
+	if o.has_community_visible_stats != bool(0) {
 		res << vproto.pack_bool_field(o.has_community_visible_stats, 7)
 	}
-	if o.has_playtime_windows_forever {
+	if o.playtime_windows_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_windows_forever, 8)
 	}
-	if o.has_playtime_mac_forever {
+	if o.playtime_mac_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_mac_forever, 9)
 	}
-	if o.has_playtime_linux_forever {
+	if o.playtime_linux_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_linux_forever, 10)
 	}
 	return res
 }
 
 pub fn cplayer_getownedgames_response_game_unpack(buf []byte) ?CPlayer_GetOwnedGames_Response_Game {
-	mut res := CPlayer_GetOwnedGames_Response_Game{}
+	mut res := zzz_vproto_internal_new_cplayer_getownedgames_response_game()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -399,61 +518,51 @@ pub fn cplayer_getownedgames_response_game_unpack(buf []byte) ?CPlayer_GetOwnedG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			3 {
-				res.has_playtime_2weeks = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_2weeks = v
 				i = ii
 			}
 			4 {
-				res.has_playtime_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_forever = v
 				i = ii
 			}
 			5 {
-				res.has_img_icon_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.img_icon_url = v
 				i = ii
 			}
 			6 {
-				res.has_img_logo_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.img_logo_url = v
 				i = ii
 			}
 			7 {
-				res.has_has_community_visible_stats = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.has_community_visible_stats = v
 				i = ii
 			}
 			8 {
-				res.has_playtime_windows_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_windows_forever = v
 				i = ii
 			}
 			9 {
-				res.has_playtime_mac_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_mac_forever = v
 				i = ii
 			}
 			10 {
-				res.has_playtime_linux_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_linux_forever = v
 				i = ii
@@ -473,17 +582,56 @@ pub fn cplayer_getownedgames_response_game_unpack(buf []byte) ?CPlayer_GetOwnedG
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetOwnedGames_Response_Game) eq(b CPlayer_GetOwnedGames_Response_Game) bool {
+	return true && a.appid == b.appid &&
+		a.name == b.name && a.playtime_2weeks == b.playtime_2weeks &&
+		a.playtime_forever == b.playtime_forever &&
+		a.img_icon_url == b.img_icon_url &&
+		a.img_logo_url == b.img_logo_url &&
+		a.has_community_visible_stats == b.has_community_visible_stats &&
+		a.playtime_windows_forever == b.playtime_windows_forever &&
+		a.playtime_mac_forever == b.playtime_mac_forever &&
+		a.playtime_linux_forever == b.playtime_linux_forever
+}
+
+[inline]
+pub fn (a CPlayer_GetOwnedGames_Response_Game) ne(b CPlayer_GetOwnedGames_Response_Game) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetOwnedGames_Response_Game) eq(b []CPlayer_GetOwnedGames_Response_Game) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetOwnedGames_Response_Game) ne(b []CPlayer_GetOwnedGames_Response_Game) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getownedgames_response_game() CPlayer_GetOwnedGames_Response_Game {
 	return CPlayer_GetOwnedGames_Response_Game{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getownedgames_response_game(o CPlayer_GetOwnedGames_Response_Game, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_response_game(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetOwnedGames_Response_Game) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getownedgames_response_game_unpack(v)?
@@ -495,13 +643,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	game_count     u32
-	has_game_count bool
 	games          []CPlayer_GetOwnedGames_Response_Game
 }
 
 pub fn (o &CPlayer_GetOwnedGames_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_game_count {
+	if o.game_count != u32(0) {
 		res << vproto.pack_uint32_field(o.game_count, 1)
 	}
 	// [packed=false]
@@ -512,7 +659,7 @@ pub fn (o &CPlayer_GetOwnedGames_Response) pack() []byte {
 }
 
 pub fn cplayer_getownedgames_response_unpack(buf []byte) ?CPlayer_GetOwnedGames_Response {
-	mut res := CPlayer_GetOwnedGames_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getownedgames_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -523,7 +670,6 @@ pub fn cplayer_getownedgames_response_unpack(buf []byte) ?CPlayer_GetOwnedGames_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_game_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_count = v
 				i = ii
@@ -550,17 +696,48 @@ pub fn cplayer_getownedgames_response_unpack(buf []byte) ?CPlayer_GetOwnedGames_
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetOwnedGames_Response) eq(b CPlayer_GetOwnedGames_Response) bool {
+	return true && a.game_count == b.game_count && a.games.eq(b.games)
+}
+
+[inline]
+pub fn (a CPlayer_GetOwnedGames_Response) ne(b CPlayer_GetOwnedGames_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetOwnedGames_Response) eq(b []CPlayer_GetOwnedGames_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetOwnedGames_Response) ne(b []CPlayer_GetOwnedGames_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getownedgames_response() CPlayer_GetOwnedGames_Response {
 	return CPlayer_GetOwnedGames_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getownedgames_response(o CPlayer_GetOwnedGames_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetOwnedGames_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getownedgames_response_unpack(v)?
@@ -569,16 +746,15 @@ pub fn zzz_vproto_internal_unpack_cplayer_getownedgames_response(buf []byte, tag
 
 pub struct CPlayer_GetPlayNext_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	max_age_seconds     u32
-	has_max_age_seconds bool
-	ignore_appids       []u32
+	max_age_seconds u32
+	ignore_appids   []u32
 }
 
 pub fn (o &CPlayer_GetPlayNext_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_max_age_seconds {
+	if o.max_age_seconds != u32(0) {
 		res << vproto.pack_uint32_field(o.max_age_seconds, 1)
 	}
 	// [packed=false]
@@ -589,7 +765,7 @@ pub fn (o &CPlayer_GetPlayNext_Request) pack() []byte {
 }
 
 pub fn cplayer_getplaynext_request_unpack(buf []byte) ?CPlayer_GetPlayNext_Request {
-	mut res := CPlayer_GetPlayNext_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getplaynext_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -600,7 +776,6 @@ pub fn cplayer_getplaynext_request_unpack(buf []byte) ?CPlayer_GetPlayNext_Reque
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_max_age_seconds = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.max_age_seconds = v
 				i = ii
@@ -626,17 +801,48 @@ pub fn cplayer_getplaynext_request_unpack(buf []byte) ?CPlayer_GetPlayNext_Reque
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPlayNext_Request) eq(b CPlayer_GetPlayNext_Request) bool {
+	return true && a.max_age_seconds == b.max_age_seconds && a.ignore_appids == b.ignore_appids
+}
+
+[inline]
+pub fn (a CPlayer_GetPlayNext_Request) ne(b CPlayer_GetPlayNext_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPlayNext_Request) eq(b []CPlayer_GetPlayNext_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPlayNext_Request) ne(b []CPlayer_GetPlayNext_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getplaynext_request() CPlayer_GetPlayNext_Request {
 	return CPlayer_GetPlayNext_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getplaynext_request(o CPlayer_GetPlayNext_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getplaynext_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPlayNext_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getplaynext_request_unpack(v)?
@@ -645,16 +851,15 @@ pub fn zzz_vproto_internal_unpack_cplayer_getplaynext_request(buf []byte, tag_wi
 
 pub struct CPlayer_GetPlayNext_Response {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	last_update_time     u32
-	has_last_update_time bool
-	appids               []u32
+	last_update_time u32
+	appids           []u32
 }
 
 pub fn (o &CPlayer_GetPlayNext_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_last_update_time {
+	if o.last_update_time != u32(0) {
 		res << vproto.pack_uint32_field(o.last_update_time, 1)
 	}
 	// [packed=false]
@@ -665,7 +870,7 @@ pub fn (o &CPlayer_GetPlayNext_Response) pack() []byte {
 }
 
 pub fn cplayer_getplaynext_response_unpack(buf []byte) ?CPlayer_GetPlayNext_Response {
-	mut res := CPlayer_GetPlayNext_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getplaynext_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -676,7 +881,6 @@ pub fn cplayer_getplaynext_response_unpack(buf []byte) ?CPlayer_GetPlayNext_Resp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_last_update_time = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_update_time = v
 				i = ii
@@ -702,17 +906,48 @@ pub fn cplayer_getplaynext_response_unpack(buf []byte) ?CPlayer_GetPlayNext_Resp
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPlayNext_Response) eq(b CPlayer_GetPlayNext_Response) bool {
+	return true && a.last_update_time == b.last_update_time && a.appids == b.appids
+}
+
+[inline]
+pub fn (a CPlayer_GetPlayNext_Response) ne(b CPlayer_GetPlayNext_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPlayNext_Response) eq(b []CPlayer_GetPlayNext_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPlayNext_Response) ne(b []CPlayer_GetPlayNext_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getplaynext_response() CPlayer_GetPlayNext_Response {
 	return CPlayer_GetPlayNext_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getplaynext_response(o CPlayer_GetPlayNext_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getplaynext_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPlayNext_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getplaynext_response_unpack(v)?
@@ -724,19 +959,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CPlayer_GetFriendsGameplayInfo_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsgameplayinfo_request_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Request {
-	mut res := CPlayer_GetFriendsGameplayInfo_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -747,7 +981,6 @@ pub fn cplayer_getfriendsgameplayinfo_request_unpack(buf []byte) ?CPlayer_GetFri
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -767,17 +1000,48 @@ pub fn cplayer_getfriendsgameplayinfo_request_unpack(buf []byte) ?CPlayer_GetFri
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Request) eq(b CPlayer_GetFriendsGameplayInfo_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Request) ne(b CPlayer_GetFriendsGameplayInfo_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Request) eq(b []CPlayer_GetFriendsGameplayInfo_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Request) ne(b []CPlayer_GetFriendsGameplayInfo_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_request() CPlayer_GetFriendsGameplayInfo_Request {
 	return CPlayer_GetFriendsGameplayInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_request(o CPlayer_GetFriendsGameplayInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsgameplayinfo_request_unpack(v)?
@@ -786,32 +1050,29 @@ pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_request(buf []b
 
 pub struct CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	steamid                    u64
-	has_steamid                bool
-	minutes_played             u32
-	has_minutes_played         bool
-	minutes_played_forever     u32
-	has_minutes_played_forever bool
+	steamid                u64
+	minutes_played         u32
+	minutes_played_forever u32
 }
 
 pub fn (o &CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_minutes_played {
+	if o.minutes_played != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played, 2)
 	}
-	if o.has_minutes_played_forever {
+	if o.minutes_played_forever != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played_forever, 3)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo {
-	mut res := CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -822,19 +1083,16 @@ pub fn cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo_unpack(buf []
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_minutes_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played = v
 				i = ii
 			}
 			3 {
-				res.has_minutes_played_forever = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played_forever = v
 				i = ii
@@ -854,17 +1112,50 @@ pub fn cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo_unpack(buf []
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) eq(b CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) bool {
+	return true && a.steamid == b.steamid &&
+		a.minutes_played == b.minutes_played &&
+		a.minutes_played_forever == b.minutes_played_forever
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) ne(b CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) eq(b []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) ne(b []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo() CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo {
 	return CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(o CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsgameplayinfo_response_friendsgameplayinfo_unpack(v)?
@@ -873,42 +1164,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_friend
 
 pub struct CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	steamid                    u64
-	has_steamid                bool
-	minutes_played             u32
-	has_minutes_played         bool
-	minutes_played_forever     u32
-	has_minutes_played_forever bool
-	in_wishlist                bool
-	has_in_wishlist            bool
-	owned                      bool
-	has_owned                  bool
+	steamid                u64
+	minutes_played         u32
+	minutes_played_forever u32
+	in_wishlist            bool
+	owned                  bool
 }
 
 pub fn (o &CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_minutes_played {
+	if o.minutes_played != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played, 2)
 	}
-	if o.has_minutes_played_forever {
+	if o.minutes_played_forever != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played_forever, 3)
 	}
-	if o.has_in_wishlist {
+	if o.in_wishlist != bool(0) {
 		res << vproto.pack_bool_field(o.in_wishlist, 4)
 	}
-	if o.has_owned {
+	if o.owned != bool(0) {
 		res << vproto.pack_bool_field(o.owned, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsgameplayinfo_response_owngameplayinfo_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo {
-	mut res := CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_owngameplayinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -919,31 +1205,26 @@ pub fn cplayer_getfriendsgameplayinfo_response_owngameplayinfo_unpack(buf []byte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_minutes_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played = v
 				i = ii
 			}
 			3 {
-				res.has_minutes_played_forever = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played_forever = v
 				i = ii
 			}
 			4 {
-				res.has_in_wishlist = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.in_wishlist = v
 				i = ii
 			}
 			5 {
-				res.has_owned = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.owned = v
 				i = ii
@@ -963,17 +1244,51 @@ pub fn cplayer_getfriendsgameplayinfo_response_owngameplayinfo_unpack(buf []byte
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) eq(b CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) bool {
+	return true && a.steamid == b.steamid &&
+		a.minutes_played == b.minutes_played &&
+		a.minutes_played_forever == b.minutes_played_forever &&
+		a.in_wishlist == b.in_wishlist && a.owned == b.owned
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) ne(b CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) eq(b []CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) ne(b []CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_owngameplayinfo() CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo {
 	return CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(o CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsgameplayinfo_response_owngameplayinfo_unpack(v)?
@@ -985,7 +1300,6 @@ mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
 	your_info       CPlayer_GetFriendsGameplayInfo_Response_OwnGameplayInfo
-	has_your_info   bool
 	in_game         []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
 	played_recently []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
 	played_ever     []CPlayer_GetFriendsGameplayInfo_Response_FriendsGameplayInfo
@@ -995,7 +1309,7 @@ pub mut:
 
 pub fn (o &CPlayer_GetFriendsGameplayInfo_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_your_info {
+	if o.your_info.ne(zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response_owngameplayinfo()) {
 		res <<
 			zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(o.your_info, 1)
 	}
@@ -1028,7 +1342,7 @@ pub fn (o &CPlayer_GetFriendsGameplayInfo_Response) pack() []byte {
 }
 
 pub fn cplayer_getfriendsgameplayinfo_response_unpack(buf []byte) ?CPlayer_GetFriendsGameplayInfo_Response {
-	mut res := CPlayer_GetFriendsGameplayInfo_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1039,7 +1353,6 @@ pub fn cplayer_getfriendsgameplayinfo_response_unpack(buf []byte) ?CPlayer_GetFr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_your_info = true
 				ii, v := zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response_owngameplayinfo(cur_buf,
 					tag_wiretype.wire_type)?
 				res.your_info = v
@@ -1095,17 +1408,49 @@ pub fn cplayer_getfriendsgameplayinfo_response_unpack(buf []byte) ?CPlayer_GetFr
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Response) eq(b CPlayer_GetFriendsGameplayInfo_Response) bool {
+	return true && a.your_info.eq(b.your_info) && a.in_game.eq(b.in_game) && a.played_recently.eq(b.played_recently) &&
+		a.played_ever.eq(b.played_ever) && a.owns.eq(b.owns) && a.in_wishlist.eq(b.in_wishlist)
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsGameplayInfo_Response) ne(b CPlayer_GetFriendsGameplayInfo_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Response) eq(b []CPlayer_GetFriendsGameplayInfo_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsGameplayInfo_Response) ne(b []CPlayer_GetFriendsGameplayInfo_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsgameplayinfo_response() CPlayer_GetFriendsGameplayInfo_Response {
 	return CPlayer_GetFriendsGameplayInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsgameplayinfo_response(o CPlayer_GetFriendsGameplayInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsGameplayInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsgameplayinfo_response_unpack(v)?
@@ -1114,27 +1459,25 @@ pub fn zzz_vproto_internal_unpack_cplayer_getfriendsgameplayinfo_response(buf []
 
 pub struct CPlayer_GetFriendsAppsActivity_Request {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	news_language     string
-	has_news_language bool
-	request_flags     u32
-	has_request_flags bool
+	news_language  string
+	request_flags  u32
 }
 
 pub fn (o &CPlayer_GetFriendsAppsActivity_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_news_language {
+	if o.news_language != '' {
 		res << vproto.pack_string_field(o.news_language, 1)
 	}
-	if o.has_request_flags {
+	if o.request_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.request_flags, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsappsactivity_request_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Request {
-	mut res := CPlayer_GetFriendsAppsActivity_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsappsactivity_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1145,13 +1488,11 @@ pub fn cplayer_getfriendsappsactivity_request_unpack(buf []byte) ?CPlayer_GetFri
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_news_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.news_language = v
 				i = ii
 			}
 			2 {
-				res.has_request_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.request_flags = v
 				i = ii
@@ -1171,17 +1512,48 @@ pub fn cplayer_getfriendsappsactivity_request_unpack(buf []byte) ?CPlayer_GetFri
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Request) eq(b CPlayer_GetFriendsAppsActivity_Request) bool {
+	return true && a.news_language == b.news_language && a.request_flags == b.request_flags
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Request) ne(b CPlayer_GetFriendsAppsActivity_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Request) eq(b []CPlayer_GetFriendsAppsActivity_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Request) ne(b []CPlayer_GetFriendsAppsActivity_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_request() CPlayer_GetFriendsAppsActivity_Request {
 	return CPlayer_GetFriendsAppsActivity_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_request(o CPlayer_GetFriendsAppsActivity_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsappsactivity_request_unpack(v)?
@@ -1190,42 +1562,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_request(buf []b
 
 pub struct CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid                      u64
-	has_steamid                  bool
-	minutes_played_this_week     u32
-	has_minutes_played_this_week bool
-	minutes_played_two_weeks     u32
-	has_minutes_played_two_weeks bool
-	minutes_played_forever       u32
-	has_minutes_played_forever   bool
-	event_count                  u32
-	has_event_count              bool
+	steamid                  u64
+	minutes_played_this_week u32
+	minutes_played_two_weeks u32
+	minutes_played_forever   u32
+	event_count              u32
 }
 
 pub fn (o &CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_minutes_played_this_week {
+	if o.minutes_played_this_week != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played_this_week, 2)
 	}
-	if o.has_minutes_played_two_weeks {
+	if o.minutes_played_two_weeks != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played_two_weeks, 3)
 	}
-	if o.has_minutes_played_forever {
+	if o.minutes_played_forever != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_played_forever, 4)
 	}
-	if o.has_event_count {
+	if o.event_count != u32(0) {
 		res << vproto.pack_uint32_field(o.event_count, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsappsactivity_response_friendplaytime_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime {
-	mut res := CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response_friendplaytime()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1236,31 +1603,26 @@ pub fn cplayer_getfriendsappsactivity_response_friendplaytime_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_minutes_played_this_week = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played_this_week = v
 				i = ii
 			}
 			3 {
-				res.has_minutes_played_two_weeks = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played_two_weeks = v
 				i = ii
 			}
 			4 {
-				res.has_minutes_played_forever = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_played_forever = v
 				i = ii
 			}
 			5 {
-				res.has_event_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.event_count = v
 				i = ii
@@ -1280,17 +1642,52 @@ pub fn cplayer_getfriendsappsactivity_response_friendplaytime_unpack(buf []byte)
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) eq(b CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) bool {
+	return true && a.steamid == b.steamid &&
+		a.minutes_played_this_week == b.minutes_played_this_week &&
+		a.minutes_played_two_weeks == b.minutes_played_two_weeks &&
+		a.minutes_played_forever == b.minutes_played_forever &&
+		a.event_count == b.event_count
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) ne(b CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) eq(b []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) ne(b []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response_friendplaytime() CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime {
 	return CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_friendplaytime(o CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_friendplaytime(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsappsactivity_response_friendplaytime_unpack(v)?
@@ -1299,18 +1696,16 @@ pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_friend
 
 pub struct CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid             u32
-	has_appid         bool
-	friends           []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime
-	display_order     u32
-	has_display_order bool
+	appid          u32
+	friends        []CPlayer_GetFriendsAppsActivity_Response_FriendPlayTime
+	display_order  u32
 }
 
 pub fn (o &CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
@@ -1318,14 +1713,14 @@ pub fn (o &CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) pack() []byte
 		res <<
 			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_friendplaytime(x, 2)
 	}
-	if o.has_display_order {
+	if o.display_order != u32(0) {
 		res << vproto.pack_uint32_field(o.display_order, 3)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo {
-	mut res := CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response_appfriendsinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1336,7 +1731,6 @@ pub fn cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -1349,7 +1743,6 @@ pub fn cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(buf []byte)
 				i = ii
 			}
 			3 {
-				res.has_display_order = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.display_order = v
 				i = ii
@@ -1369,17 +1762,49 @@ pub fn cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(buf []byte)
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) eq(b CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) bool {
+	return true && a.appid == b.appid && a.friends.eq(b.friends) &&
+		a.display_order == b.display_order
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) ne(b CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) eq(b []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) ne(b []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response_appfriendsinfo() CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo {
 	return CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(o CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfriendsinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsappsactivity_response_appfriendsinfo_unpack(v)?
@@ -1388,18 +1813,17 @@ pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response_appfri
 
 pub struct CPlayer_GetFriendsAppsActivity_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	trending                []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	recent_purchases        []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	unowned                 []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	popular                 []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	dont_forget             []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	being_discussed         []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	new_to_group            []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	returned_to_group       []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
-	active_friend_count     u32
-	has_active_friend_count bool
+	trending            []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	recent_purchases    []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	unowned             []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	popular             []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	dont_forget         []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	being_discussed     []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	new_to_group        []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	returned_to_group   []CPlayer_GetFriendsAppsActivity_Response_AppFriendsInfo
+	active_friend_count u32 = 0
 }
 
 pub fn (o &CPlayer_GetFriendsAppsActivity_Response) pack() []byte {
@@ -1444,14 +1868,14 @@ pub fn (o &CPlayer_GetFriendsAppsActivity_Response) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response_appfriendsinfo(x, 8)
 	}
-	if o.has_active_friend_count {
+	if o.active_friend_count != u32(0) {
 		res << vproto.pack_uint32_field(o.active_friend_count, 9)
 	}
 	return res
 }
 
 pub fn cplayer_getfriendsappsactivity_response_unpack(buf []byte) ?CPlayer_GetFriendsAppsActivity_Response {
-	mut res := CPlayer_GetFriendsAppsActivity_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1518,7 +1942,6 @@ pub fn cplayer_getfriendsappsactivity_response_unpack(buf []byte) ?CPlayer_GetFr
 				i = ii
 			}
 			9 {
-				res.has_active_friend_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.active_friend_count = v
 				i = ii
@@ -1538,17 +1961,51 @@ pub fn cplayer_getfriendsappsactivity_response_unpack(buf []byte) ?CPlayer_GetFr
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Response) eq(b CPlayer_GetFriendsAppsActivity_Response) bool {
+	return true && a.trending.eq(b.trending) && a.recent_purchases.eq(b.recent_purchases) &&
+		a.unowned.eq(b.unowned) && a.popular.eq(b.popular) && a.dont_forget.eq(b.dont_forget) &&
+		a.being_discussed.eq(b.being_discussed) && a.new_to_group.eq(b.new_to_group) && a.returned_to_group.eq(b.returned_to_group) &&
+		a.active_friend_count == b.active_friend_count
+}
+
+[inline]
+pub fn (a CPlayer_GetFriendsAppsActivity_Response) ne(b CPlayer_GetFriendsAppsActivity_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Response) eq(b []CPlayer_GetFriendsAppsActivity_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetFriendsAppsActivity_Response) ne(b []CPlayer_GetFriendsAppsActivity_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getfriendsappsactivity_response() CPlayer_GetFriendsAppsActivity_Response {
 	return CPlayer_GetFriendsAppsActivity_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getfriendsappsactivity_response(o CPlayer_GetFriendsAppsActivity_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getfriendsappsactivity_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetFriendsAppsActivity_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getfriendsappsactivity_response_unpack(v)?
@@ -1560,19 +2017,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CPlayer_GetGameBadgeLevels_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getgamebadgelevels_request_unpack(buf []byte) ?CPlayer_GetGameBadgeLevels_Request {
-	mut res := CPlayer_GetGameBadgeLevels_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getgamebadgelevels_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1583,7 +2039,6 @@ pub fn cplayer_getgamebadgelevels_request_unpack(buf []byte) ?CPlayer_GetGameBad
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -1603,17 +2058,48 @@ pub fn cplayer_getgamebadgelevels_request_unpack(buf []byte) ?CPlayer_GetGameBad
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetGameBadgeLevels_Request) eq(b CPlayer_GetGameBadgeLevels_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CPlayer_GetGameBadgeLevels_Request) ne(b CPlayer_GetGameBadgeLevels_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetGameBadgeLevels_Request) eq(b []CPlayer_GetGameBadgeLevels_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetGameBadgeLevels_Request) ne(b []CPlayer_GetGameBadgeLevels_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getgamebadgelevels_request() CPlayer_GetGameBadgeLevels_Request {
 	return CPlayer_GetGameBadgeLevels_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getgamebadgelevels_request(o CPlayer_GetGameBadgeLevels_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetGameBadgeLevels_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getgamebadgelevels_request_unpack(v)?
@@ -1622,32 +2108,29 @@ pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_request(buf []byte,
 
 pub struct CPlayer_GetGameBadgeLevels_Response_Badge {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	level            int
-	has_level        bool
-	series           int
-	has_series       bool
-	border_color     u32
-	has_border_color bool
+	level          int
+	series         int
+	border_color   u32
 }
 
 pub fn (o &CPlayer_GetGameBadgeLevels_Response_Badge) pack() []byte {
 	mut res := []byte{}
-	if o.has_level {
+	if o.level != int(0) {
 		res << vproto.pack_int32_field(o.level, 1)
 	}
-	if o.has_series {
+	if o.series != int(0) {
 		res << vproto.pack_int32_field(o.series, 2)
 	}
-	if o.has_border_color {
+	if o.border_color != u32(0) {
 		res << vproto.pack_uint32_field(o.border_color, 3)
 	}
 	return res
 }
 
 pub fn cplayer_getgamebadgelevels_response_badge_unpack(buf []byte) ?CPlayer_GetGameBadgeLevels_Response_Badge {
-	mut res := CPlayer_GetGameBadgeLevels_Response_Badge{}
+	mut res := zzz_vproto_internal_new_cplayer_getgamebadgelevels_response_badge()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1658,19 +2141,16 @@ pub fn cplayer_getgamebadgelevels_response_badge_unpack(buf []byte) ?CPlayer_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_level = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.level = v
 				i = ii
 			}
 			2 {
-				res.has_series = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.series = v
 				i = ii
 			}
 			3 {
-				res.has_border_color = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.border_color = v
 				i = ii
@@ -1690,17 +2170,48 @@ pub fn cplayer_getgamebadgelevels_response_badge_unpack(buf []byte) ?CPlayer_Get
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetGameBadgeLevels_Response_Badge) eq(b CPlayer_GetGameBadgeLevels_Response_Badge) bool {
+	return true && a.level == b.level && a.series == b.series && a.border_color == b.border_color
+}
+
+[inline]
+pub fn (a CPlayer_GetGameBadgeLevels_Response_Badge) ne(b CPlayer_GetGameBadgeLevels_Response_Badge) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetGameBadgeLevels_Response_Badge) eq(b []CPlayer_GetGameBadgeLevels_Response_Badge) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetGameBadgeLevels_Response_Badge) ne(b []CPlayer_GetGameBadgeLevels_Response_Badge) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getgamebadgelevels_response_badge() CPlayer_GetGameBadgeLevels_Response_Badge {
 	return CPlayer_GetGameBadgeLevels_Response_Badge{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getgamebadgelevels_response_badge(o CPlayer_GetGameBadgeLevels_Response_Badge, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_response_badge(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetGameBadgeLevels_Response_Badge) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getgamebadgelevels_response_badge_unpack(v)?
@@ -1709,16 +2220,15 @@ pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_response_badge(buf 
 
 pub struct CPlayer_GetGameBadgeLevels_Response {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	player_level     u32
-	has_player_level bool
-	badges           []CPlayer_GetGameBadgeLevels_Response_Badge
+	player_level   u32
+	badges         []CPlayer_GetGameBadgeLevels_Response_Badge
 }
 
 pub fn (o &CPlayer_GetGameBadgeLevels_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_player_level {
+	if o.player_level != u32(0) {
 		res << vproto.pack_uint32_field(o.player_level, 1)
 	}
 	// [packed=false]
@@ -1729,7 +2239,7 @@ pub fn (o &CPlayer_GetGameBadgeLevels_Response) pack() []byte {
 }
 
 pub fn cplayer_getgamebadgelevels_response_unpack(buf []byte) ?CPlayer_GetGameBadgeLevels_Response {
-	mut res := CPlayer_GetGameBadgeLevels_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getgamebadgelevels_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1740,7 +2250,6 @@ pub fn cplayer_getgamebadgelevels_response_unpack(buf []byte) ?CPlayer_GetGameBa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_player_level = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_level = v
 				i = ii
@@ -1767,17 +2276,48 @@ pub fn cplayer_getgamebadgelevels_response_unpack(buf []byte) ?CPlayer_GetGameBa
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetGameBadgeLevels_Response) eq(b CPlayer_GetGameBadgeLevels_Response) bool {
+	return true && a.player_level == b.player_level && a.badges.eq(b.badges)
+}
+
+[inline]
+pub fn (a CPlayer_GetGameBadgeLevels_Response) ne(b CPlayer_GetGameBadgeLevels_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetGameBadgeLevels_Response) eq(b []CPlayer_GetGameBadgeLevels_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetGameBadgeLevels_Response) ne(b []CPlayer_GetGameBadgeLevels_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getgamebadgelevels_response() CPlayer_GetGameBadgeLevels_Response {
 	return CPlayer_GetGameBadgeLevels_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getgamebadgelevels_response(o CPlayer_GetGameBadgeLevels_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getgamebadgelevels_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetGameBadgeLevels_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getgamebadgelevels_response_unpack(v)?
@@ -1789,24 +2329,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	language       string
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getprofilebackground_request_unpack(buf []byte) ?CPlayer_GetProfileBackground_Request {
-	mut res := CPlayer_GetProfileBackground_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getprofilebackground_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1817,13 +2355,11 @@ pub fn cplayer_getprofilebackground_request_unpack(buf []byte) ?CPlayer_GetProfi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -1843,17 +2379,48 @@ pub fn cplayer_getprofilebackground_request_unpack(buf []byte) ?CPlayer_GetProfi
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetProfileBackground_Request) eq(b CPlayer_GetProfileBackground_Request) bool {
+	return true && a.steamid == b.steamid && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetProfileBackground_Request) ne(b CPlayer_GetProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileBackground_Request) eq(b []CPlayer_GetProfileBackground_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileBackground_Request) ne(b []CPlayer_GetProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprofilebackground_request() CPlayer_GetProfileBackground_Request {
 	return CPlayer_GetProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprofilebackground_request(o CPlayer_GetProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprofilebackground_request_unpack(v)?
@@ -1862,77 +2429,65 @@ pub fn zzz_vproto_internal_unpack_cplayer_getprofilebackground_request(buf []byt
 
 pub struct ProfileItem {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	communityitemid      u64
-	has_communityitemid  bool
-	image_small          string
-	has_image_small      bool
-	image_large          string
-	has_image_large      bool
-	name                 string
-	has_name             bool
-	item_title           string
-	has_item_title       bool
-	item_description     string
-	has_item_description bool
-	appid                u32
-	has_appid            bool
-	item_type            u32
-	has_item_type        bool
-	item_class           u32
-	has_item_class       bool
-	movie_webm           string
-	has_movie_webm       bool
-	movie_mp4            string
-	has_movie_mp4        bool
-	equipped_flags       u32
-	has_equipped_flags   bool
+	communityitemid  u64
+	image_small      string
+	image_large      string
+	name             string
+	item_title       string
+	item_description string
+	appid            u32
+	item_type        u32
+	item_class       u32
+	movie_webm       string
+	movie_mp4        string
+	equipped_flags   u32
 }
 
 pub fn (o &ProfileItem) pack() []byte {
 	mut res := []byte{}
-	if o.has_communityitemid {
+	if o.communityitemid != u64(0) {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
 	}
-	if o.has_image_small {
+	if o.image_small != '' {
 		res << vproto.pack_string_field(o.image_small, 2)
 	}
-	if o.has_image_large {
+	if o.image_large != '' {
 		res << vproto.pack_string_field(o.image_large, 3)
 	}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 4)
 	}
-	if o.has_item_title {
+	if o.item_title != '' {
 		res << vproto.pack_string_field(o.item_title, 5)
 	}
-	if o.has_item_description {
+	if o.item_description != '' {
 		res << vproto.pack_string_field(o.item_description, 6)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 7)
 	}
-	if o.has_item_type {
+	if o.item_type != u32(0) {
 		res << vproto.pack_uint32_field(o.item_type, 8)
 	}
-	if o.has_item_class {
+	if o.item_class != u32(0) {
 		res << vproto.pack_uint32_field(o.item_class, 9)
 	}
-	if o.has_movie_webm {
+	if o.movie_webm != '' {
 		res << vproto.pack_string_field(o.movie_webm, 10)
 	}
-	if o.has_movie_mp4 {
+	if o.movie_mp4 != '' {
 		res << vproto.pack_string_field(o.movie_mp4, 11)
 	}
-	if o.has_equipped_flags {
+	if o.equipped_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.equipped_flags, 12)
 	}
 	return res
 }
 
 pub fn profileitem_unpack(buf []byte) ?ProfileItem {
-	mut res := ProfileItem{}
+	mut res := zzz_vproto_internal_new_profileitem()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1943,73 +2498,61 @@ pub fn profileitem_unpack(buf []byte) ?ProfileItem {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_communityitemid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.communityitemid = v
 				i = ii
 			}
 			2 {
-				res.has_image_small = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_small = v
 				i = ii
 			}
 			3 {
-				res.has_image_large = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_large = v
 				i = ii
 			}
 			4 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			5 {
-				res.has_item_title = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.item_title = v
 				i = ii
 			}
 			6 {
-				res.has_item_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.item_description = v
 				i = ii
 			}
 			7 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			8 {
-				res.has_item_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.item_type = v
 				i = ii
 			}
 			9 {
-				res.has_item_class = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.item_class = v
 				i = ii
 			}
 			10 {
-				res.has_movie_webm = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.movie_webm = v
 				i = ii
 			}
 			11 {
-				res.has_movie_mp4 = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.movie_mp4 = v
 				i = ii
 			}
 			12 {
-				res.has_equipped_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.equipped_flags = v
 				i = ii
@@ -2029,17 +2572,54 @@ pub fn profileitem_unpack(buf []byte) ?ProfileItem {
 	return res
 }
 
+[inline]
+pub fn (a ProfileItem) eq(b ProfileItem) bool {
+	return true && a.communityitemid == b.communityitemid &&
+		a.image_small == b.image_small && a.image_large == b.image_large &&
+		a.name == b.name && a.item_title == b.item_title &&
+		a.item_description == b.item_description &&
+		a.appid == b.appid && a.item_type == b.item_type &&
+		a.item_class == b.item_class && a.movie_webm == b.movie_webm &&
+		a.movie_mp4 == b.movie_mp4 && a.equipped_flags == b.equipped_flags
+}
+
+[inline]
+pub fn (a ProfileItem) ne(b ProfileItem) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []ProfileItem) eq(b []ProfileItem) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []ProfileItem) ne(b []ProfileItem) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_profileitem() ProfileItem {
 	return ProfileItem{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_profileitem(o ProfileItem, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_profileitem(buf []byte, tag_wiretype vproto.WireType) ?(int, ProfileItem) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := profileitem_unpack(v)?
@@ -2048,22 +2628,21 @@ pub fn zzz_vproto_internal_unpack_profileitem(buf []byte, tag_wiretype vproto.Wi
 
 pub struct CPlayer_GetProfileBackground_Response {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	profile_background     ProfileItem
-	has_profile_background bool
+	profile_background ProfileItem
 }
 
 pub fn (o &CPlayer_GetProfileBackground_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_profile_background {
+	if o.profile_background.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_background, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getprofilebackground_response_unpack(buf []byte) ?CPlayer_GetProfileBackground_Response {
-	mut res := CPlayer_GetProfileBackground_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getprofilebackground_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2074,7 +2653,6 @@ pub fn cplayer_getprofilebackground_response_unpack(buf []byte) ?CPlayer_GetProf
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_profile_background = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.profile_background = v
 				i = ii
@@ -2094,17 +2672,48 @@ pub fn cplayer_getprofilebackground_response_unpack(buf []byte) ?CPlayer_GetProf
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetProfileBackground_Response) eq(b CPlayer_GetProfileBackground_Response) bool {
+	return true && a.profile_background.eq(b.profile_background)
+}
+
+[inline]
+pub fn (a CPlayer_GetProfileBackground_Response) ne(b CPlayer_GetProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileBackground_Response) eq(b []CPlayer_GetProfileBackground_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileBackground_Response) ne(b []CPlayer_GetProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprofilebackground_response() CPlayer_GetProfileBackground_Response {
 	return CPlayer_GetProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprofilebackground_response(o CPlayer_GetProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprofilebackground_response_unpack(v)?
@@ -2113,22 +2722,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getprofilebackground_response(buf []by
 
 pub struct CPlayer_SetProfileBackground_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	communityitemid     u64
-	has_communityitemid bool
+	communityitemid u64
 }
 
 pub fn (o &CPlayer_SetProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_communityitemid {
+	if o.communityitemid != u64(0) {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_setprofilebackground_request_unpack(buf []byte) ?CPlayer_SetProfileBackground_Request {
-	mut res := CPlayer_SetProfileBackground_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setprofilebackground_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2139,7 +2747,6 @@ pub fn cplayer_setprofilebackground_request_unpack(buf []byte) ?CPlayer_SetProfi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_communityitemid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.communityitemid = v
 				i = ii
@@ -2159,17 +2766,48 @@ pub fn cplayer_setprofilebackground_request_unpack(buf []byte) ?CPlayer_SetProfi
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetProfileBackground_Request) eq(b CPlayer_SetProfileBackground_Request) bool {
+	return true && a.communityitemid == b.communityitemid
+}
+
+[inline]
+pub fn (a CPlayer_SetProfileBackground_Request) ne(b CPlayer_SetProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetProfileBackground_Request) eq(b []CPlayer_SetProfileBackground_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetProfileBackground_Request) ne(b []CPlayer_SetProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setprofilebackground_request() CPlayer_SetProfileBackground_Request {
 	return CPlayer_SetProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setprofilebackground_request(o CPlayer_SetProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setprofilebackground_request_unpack(v)?
@@ -2187,21 +2825,52 @@ pub fn (o &CPlayer_SetProfileBackground_Response) pack() []byte {
 }
 
 pub fn cplayer_setprofilebackground_response_unpack(buf []byte) ?CPlayer_SetProfileBackground_Response {
-	res := CPlayer_SetProfileBackground_Response{}
+	res := zzz_vproto_internal_new_cplayer_setprofilebackground_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetProfileBackground_Response) eq(b CPlayer_SetProfileBackground_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetProfileBackground_Response) ne(b CPlayer_SetProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetProfileBackground_Response) eq(b []CPlayer_SetProfileBackground_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetProfileBackground_Response) ne(b []CPlayer_SetProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setprofilebackground_response() CPlayer_SetProfileBackground_Response {
 	return CPlayer_SetProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setprofilebackground_response(o CPlayer_SetProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setprofilebackground_response_unpack(v)?
@@ -2213,24 +2882,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	language       string
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetMiniProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getminiprofilebackground_request_unpack(buf []byte) ?CPlayer_GetMiniProfileBackground_Request {
-	mut res := CPlayer_GetMiniProfileBackground_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getminiprofilebackground_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2241,13 +2908,11 @@ pub fn cplayer_getminiprofilebackground_request_unpack(buf []byte) ?CPlayer_GetM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -2267,17 +2932,48 @@ pub fn cplayer_getminiprofilebackground_request_unpack(buf []byte) ?CPlayer_GetM
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetMiniProfileBackground_Request) eq(b CPlayer_GetMiniProfileBackground_Request) bool {
+	return true && a.steamid == b.steamid && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetMiniProfileBackground_Request) ne(b CPlayer_GetMiniProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetMiniProfileBackground_Request) eq(b []CPlayer_GetMiniProfileBackground_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetMiniProfileBackground_Request) ne(b []CPlayer_GetMiniProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getminiprofilebackground_request() CPlayer_GetMiniProfileBackground_Request {
 	return CPlayer_GetMiniProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getminiprofilebackground_request(o CPlayer_GetMiniProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getminiprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMiniProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getminiprofilebackground_request_unpack(v)?
@@ -2286,22 +2982,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getminiprofilebackground_request(buf [
 
 pub struct CPlayer_GetMiniProfileBackground_Response {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	profile_background     ProfileItem
-	has_profile_background bool
+	profile_background ProfileItem
 }
 
 pub fn (o &CPlayer_GetMiniProfileBackground_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_profile_background {
+	if o.profile_background.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_background, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getminiprofilebackground_response_unpack(buf []byte) ?CPlayer_GetMiniProfileBackground_Response {
-	mut res := CPlayer_GetMiniProfileBackground_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getminiprofilebackground_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2312,7 +3007,6 @@ pub fn cplayer_getminiprofilebackground_response_unpack(buf []byte) ?CPlayer_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_profile_background = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.profile_background = v
 				i = ii
@@ -2332,17 +3026,48 @@ pub fn cplayer_getminiprofilebackground_response_unpack(buf []byte) ?CPlayer_Get
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetMiniProfileBackground_Response) eq(b CPlayer_GetMiniProfileBackground_Response) bool {
+	return true && a.profile_background.eq(b.profile_background)
+}
+
+[inline]
+pub fn (a CPlayer_GetMiniProfileBackground_Response) ne(b CPlayer_GetMiniProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetMiniProfileBackground_Response) eq(b []CPlayer_GetMiniProfileBackground_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetMiniProfileBackground_Response) ne(b []CPlayer_GetMiniProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getminiprofilebackground_response() CPlayer_GetMiniProfileBackground_Response {
 	return CPlayer_GetMiniProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getminiprofilebackground_response(o CPlayer_GetMiniProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getminiprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetMiniProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getminiprofilebackground_response_unpack(v)?
@@ -2351,22 +3076,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getminiprofilebackground_response(buf 
 
 pub struct CPlayer_SetMiniProfileBackground_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	communityitemid     u64
-	has_communityitemid bool
+	communityitemid u64
 }
 
 pub fn (o &CPlayer_SetMiniProfileBackground_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_communityitemid {
+	if o.communityitemid != u64(0) {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_setminiprofilebackground_request_unpack(buf []byte) ?CPlayer_SetMiniProfileBackground_Request {
-	mut res := CPlayer_SetMiniProfileBackground_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setminiprofilebackground_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2377,7 +3101,6 @@ pub fn cplayer_setminiprofilebackground_request_unpack(buf []byte) ?CPlayer_SetM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_communityitemid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.communityitemid = v
 				i = ii
@@ -2397,17 +3120,48 @@ pub fn cplayer_setminiprofilebackground_request_unpack(buf []byte) ?CPlayer_SetM
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetMiniProfileBackground_Request) eq(b CPlayer_SetMiniProfileBackground_Request) bool {
+	return true && a.communityitemid == b.communityitemid
+}
+
+[inline]
+pub fn (a CPlayer_SetMiniProfileBackground_Request) ne(b CPlayer_SetMiniProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetMiniProfileBackground_Request) eq(b []CPlayer_SetMiniProfileBackground_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetMiniProfileBackground_Request) ne(b []CPlayer_SetMiniProfileBackground_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setminiprofilebackground_request() CPlayer_SetMiniProfileBackground_Request {
 	return CPlayer_SetMiniProfileBackground_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setminiprofilebackground_request(o CPlayer_SetMiniProfileBackground_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setminiprofilebackground_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetMiniProfileBackground_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setminiprofilebackground_request_unpack(v)?
@@ -2425,21 +3179,52 @@ pub fn (o &CPlayer_SetMiniProfileBackground_Response) pack() []byte {
 }
 
 pub fn cplayer_setminiprofilebackground_response_unpack(buf []byte) ?CPlayer_SetMiniProfileBackground_Response {
-	res := CPlayer_SetMiniProfileBackground_Response{}
+	res := zzz_vproto_internal_new_cplayer_setminiprofilebackground_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetMiniProfileBackground_Response) eq(b CPlayer_SetMiniProfileBackground_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetMiniProfileBackground_Response) ne(b CPlayer_SetMiniProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetMiniProfileBackground_Response) eq(b []CPlayer_SetMiniProfileBackground_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetMiniProfileBackground_Response) ne(b []CPlayer_SetMiniProfileBackground_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setminiprofilebackground_response() CPlayer_SetMiniProfileBackground_Response {
 	return CPlayer_SetMiniProfileBackground_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setminiprofilebackground_response(o CPlayer_SetMiniProfileBackground_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setminiprofilebackground_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetMiniProfileBackground_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setminiprofilebackground_response_unpack(v)?
@@ -2451,24 +3236,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	language       string
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetAvatarFrame_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getavatarframe_request_unpack(buf []byte) ?CPlayer_GetAvatarFrame_Request {
-	mut res := CPlayer_GetAvatarFrame_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getavatarframe_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2479,13 +3262,11 @@ pub fn cplayer_getavatarframe_request_unpack(buf []byte) ?CPlayer_GetAvatarFrame
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -2505,17 +3286,48 @@ pub fn cplayer_getavatarframe_request_unpack(buf []byte) ?CPlayer_GetAvatarFrame
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAvatarFrame_Request) eq(b CPlayer_GetAvatarFrame_Request) bool {
+	return true && a.steamid == b.steamid && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetAvatarFrame_Request) ne(b CPlayer_GetAvatarFrame_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAvatarFrame_Request) eq(b []CPlayer_GetAvatarFrame_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAvatarFrame_Request) ne(b []CPlayer_GetAvatarFrame_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getavatarframe_request() CPlayer_GetAvatarFrame_Request {
 	return CPlayer_GetAvatarFrame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getavatarframe_request(o CPlayer_GetAvatarFrame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getavatarframe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAvatarFrame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getavatarframe_request_unpack(v)?
@@ -2524,22 +3336,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getavatarframe_request(buf []byte, tag
 
 pub struct CPlayer_GetAvatarFrame_Response {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	avatar_frame     ProfileItem
-	has_avatar_frame bool
+	avatar_frame   ProfileItem
 }
 
 pub fn (o &CPlayer_GetAvatarFrame_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_avatar_frame {
+	if o.avatar_frame.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.avatar_frame, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getavatarframe_response_unpack(buf []byte) ?CPlayer_GetAvatarFrame_Response {
-	mut res := CPlayer_GetAvatarFrame_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getavatarframe_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2550,7 +3361,6 @@ pub fn cplayer_getavatarframe_response_unpack(buf []byte) ?CPlayer_GetAvatarFram
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_avatar_frame = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.avatar_frame = v
 				i = ii
@@ -2570,17 +3380,48 @@ pub fn cplayer_getavatarframe_response_unpack(buf []byte) ?CPlayer_GetAvatarFram
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAvatarFrame_Response) eq(b CPlayer_GetAvatarFrame_Response) bool {
+	return true && a.avatar_frame.eq(b.avatar_frame)
+}
+
+[inline]
+pub fn (a CPlayer_GetAvatarFrame_Response) ne(b CPlayer_GetAvatarFrame_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAvatarFrame_Response) eq(b []CPlayer_GetAvatarFrame_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAvatarFrame_Response) ne(b []CPlayer_GetAvatarFrame_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getavatarframe_response() CPlayer_GetAvatarFrame_Response {
 	return CPlayer_GetAvatarFrame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getavatarframe_response(o CPlayer_GetAvatarFrame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getavatarframe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAvatarFrame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getavatarframe_response_unpack(v)?
@@ -2589,22 +3430,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getavatarframe_response(buf []byte, ta
 
 pub struct CPlayer_SetAvatarFrame_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	communityitemid     u64
-	has_communityitemid bool
+	communityitemid u64
 }
 
 pub fn (o &CPlayer_SetAvatarFrame_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_communityitemid {
+	if o.communityitemid != u64(0) {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_setavatarframe_request_unpack(buf []byte) ?CPlayer_SetAvatarFrame_Request {
-	mut res := CPlayer_SetAvatarFrame_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setavatarframe_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2615,7 +3455,6 @@ pub fn cplayer_setavatarframe_request_unpack(buf []byte) ?CPlayer_SetAvatarFrame
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_communityitemid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.communityitemid = v
 				i = ii
@@ -2635,17 +3474,48 @@ pub fn cplayer_setavatarframe_request_unpack(buf []byte) ?CPlayer_SetAvatarFrame
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetAvatarFrame_Request) eq(b CPlayer_SetAvatarFrame_Request) bool {
+	return true && a.communityitemid == b.communityitemid
+}
+
+[inline]
+pub fn (a CPlayer_SetAvatarFrame_Request) ne(b CPlayer_SetAvatarFrame_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetAvatarFrame_Request) eq(b []CPlayer_SetAvatarFrame_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetAvatarFrame_Request) ne(b []CPlayer_SetAvatarFrame_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setavatarframe_request() CPlayer_SetAvatarFrame_Request {
 	return CPlayer_SetAvatarFrame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setavatarframe_request(o CPlayer_SetAvatarFrame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setavatarframe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAvatarFrame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setavatarframe_request_unpack(v)?
@@ -2663,21 +3533,52 @@ pub fn (o &CPlayer_SetAvatarFrame_Response) pack() []byte {
 }
 
 pub fn cplayer_setavatarframe_response_unpack(buf []byte) ?CPlayer_SetAvatarFrame_Response {
-	res := CPlayer_SetAvatarFrame_Response{}
+	res := zzz_vproto_internal_new_cplayer_setavatarframe_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetAvatarFrame_Response) eq(b CPlayer_SetAvatarFrame_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetAvatarFrame_Response) ne(b CPlayer_SetAvatarFrame_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetAvatarFrame_Response) eq(b []CPlayer_SetAvatarFrame_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetAvatarFrame_Response) ne(b []CPlayer_SetAvatarFrame_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setavatarframe_response() CPlayer_SetAvatarFrame_Response {
 	return CPlayer_SetAvatarFrame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setavatarframe_response(o CPlayer_SetAvatarFrame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setavatarframe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAvatarFrame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setavatarframe_response_unpack(v)?
@@ -2689,24 +3590,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	language       string
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetAnimatedAvatar_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getanimatedavatar_request_unpack(buf []byte) ?CPlayer_GetAnimatedAvatar_Request {
-	mut res := CPlayer_GetAnimatedAvatar_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getanimatedavatar_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2717,13 +3616,11 @@ pub fn cplayer_getanimatedavatar_request_unpack(buf []byte) ?CPlayer_GetAnimated
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -2743,17 +3640,48 @@ pub fn cplayer_getanimatedavatar_request_unpack(buf []byte) ?CPlayer_GetAnimated
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAnimatedAvatar_Request) eq(b CPlayer_GetAnimatedAvatar_Request) bool {
+	return true && a.steamid == b.steamid && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetAnimatedAvatar_Request) ne(b CPlayer_GetAnimatedAvatar_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAnimatedAvatar_Request) eq(b []CPlayer_GetAnimatedAvatar_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAnimatedAvatar_Request) ne(b []CPlayer_GetAnimatedAvatar_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getanimatedavatar_request() CPlayer_GetAnimatedAvatar_Request {
 	return CPlayer_GetAnimatedAvatar_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getanimatedavatar_request(o CPlayer_GetAnimatedAvatar_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getanimatedavatar_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAnimatedAvatar_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getanimatedavatar_request_unpack(v)?
@@ -2765,19 +3693,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	avatar         ProfileItem
-	has_avatar     bool
 }
 
 pub fn (o &CPlayer_GetAnimatedAvatar_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_avatar {
+	if o.avatar.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.avatar, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getanimatedavatar_response_unpack(buf []byte) ?CPlayer_GetAnimatedAvatar_Response {
-	mut res := CPlayer_GetAnimatedAvatar_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getanimatedavatar_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2788,7 +3715,6 @@ pub fn cplayer_getanimatedavatar_response_unpack(buf []byte) ?CPlayer_GetAnimate
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_avatar = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.avatar = v
 				i = ii
@@ -2808,17 +3734,48 @@ pub fn cplayer_getanimatedavatar_response_unpack(buf []byte) ?CPlayer_GetAnimate
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAnimatedAvatar_Response) eq(b CPlayer_GetAnimatedAvatar_Response) bool {
+	return true && a.avatar.eq(b.avatar)
+}
+
+[inline]
+pub fn (a CPlayer_GetAnimatedAvatar_Response) ne(b CPlayer_GetAnimatedAvatar_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAnimatedAvatar_Response) eq(b []CPlayer_GetAnimatedAvatar_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAnimatedAvatar_Response) ne(b []CPlayer_GetAnimatedAvatar_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getanimatedavatar_response() CPlayer_GetAnimatedAvatar_Response {
 	return CPlayer_GetAnimatedAvatar_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getanimatedavatar_response(o CPlayer_GetAnimatedAvatar_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getanimatedavatar_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAnimatedAvatar_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getanimatedavatar_response_unpack(v)?
@@ -2827,22 +3784,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getanimatedavatar_response(buf []byte,
 
 pub struct CPlayer_SetAnimatedAvatar_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	communityitemid     u64
-	has_communityitemid bool
+	communityitemid u64
 }
 
 pub fn (o &CPlayer_SetAnimatedAvatar_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_communityitemid {
+	if o.communityitemid != u64(0) {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_setanimatedavatar_request_unpack(buf []byte) ?CPlayer_SetAnimatedAvatar_Request {
-	mut res := CPlayer_SetAnimatedAvatar_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setanimatedavatar_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2853,7 +3809,6 @@ pub fn cplayer_setanimatedavatar_request_unpack(buf []byte) ?CPlayer_SetAnimated
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_communityitemid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.communityitemid = v
 				i = ii
@@ -2873,17 +3828,48 @@ pub fn cplayer_setanimatedavatar_request_unpack(buf []byte) ?CPlayer_SetAnimated
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetAnimatedAvatar_Request) eq(b CPlayer_SetAnimatedAvatar_Request) bool {
+	return true && a.communityitemid == b.communityitemid
+}
+
+[inline]
+pub fn (a CPlayer_SetAnimatedAvatar_Request) ne(b CPlayer_SetAnimatedAvatar_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetAnimatedAvatar_Request) eq(b []CPlayer_SetAnimatedAvatar_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetAnimatedAvatar_Request) ne(b []CPlayer_SetAnimatedAvatar_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setanimatedavatar_request() CPlayer_SetAnimatedAvatar_Request {
 	return CPlayer_SetAnimatedAvatar_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setanimatedavatar_request(o CPlayer_SetAnimatedAvatar_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setanimatedavatar_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAnimatedAvatar_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setanimatedavatar_request_unpack(v)?
@@ -2901,21 +3887,52 @@ pub fn (o &CPlayer_SetAnimatedAvatar_Response) pack() []byte {
 }
 
 pub fn cplayer_setanimatedavatar_response_unpack(buf []byte) ?CPlayer_SetAnimatedAvatar_Response {
-	res := CPlayer_SetAnimatedAvatar_Response{}
+	res := zzz_vproto_internal_new_cplayer_setanimatedavatar_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetAnimatedAvatar_Response) eq(b CPlayer_SetAnimatedAvatar_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetAnimatedAvatar_Response) ne(b CPlayer_SetAnimatedAvatar_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetAnimatedAvatar_Response) eq(b []CPlayer_SetAnimatedAvatar_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetAnimatedAvatar_Response) ne(b []CPlayer_SetAnimatedAvatar_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setanimatedavatar_response() CPlayer_SetAnimatedAvatar_Response {
 	return CPlayer_SetAnimatedAvatar_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setanimatedavatar_response(o CPlayer_SetAnimatedAvatar_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setanimatedavatar_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetAnimatedAvatar_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setanimatedavatar_response_unpack(v)?
@@ -2927,19 +3944,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	language       string
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetProfileItemsOwned_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getprofileitemsowned_request_unpack(buf []byte) ?CPlayer_GetProfileItemsOwned_Request {
-	mut res := CPlayer_GetProfileItemsOwned_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getprofileitemsowned_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2950,7 +3966,6 @@ pub fn cplayer_getprofileitemsowned_request_unpack(buf []byte) ?CPlayer_GetProfi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -2970,17 +3985,48 @@ pub fn cplayer_getprofileitemsowned_request_unpack(buf []byte) ?CPlayer_GetProfi
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetProfileItemsOwned_Request) eq(b CPlayer_GetProfileItemsOwned_Request) bool {
+	return true && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetProfileItemsOwned_Request) ne(b CPlayer_GetProfileItemsOwned_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsOwned_Request) eq(b []CPlayer_GetProfileItemsOwned_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsOwned_Request) ne(b []CPlayer_GetProfileItemsOwned_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprofileitemsowned_request() CPlayer_GetProfileItemsOwned_Request {
 	return CPlayer_GetProfileItemsOwned_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsowned_request(o CPlayer_GetProfileItemsOwned_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsowned_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsOwned_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprofileitemsowned_request_unpack(v)?
@@ -3024,7 +4070,7 @@ pub fn (o &CPlayer_GetProfileItemsOwned_Response) pack() []byte {
 }
 
 pub fn cplayer_getprofileitemsowned_response_unpack(buf []byte) ?CPlayer_GetProfileItemsOwned_Response {
-	mut res := CPlayer_GetProfileItemsOwned_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getprofileitemsowned_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3079,17 +4125,50 @@ pub fn cplayer_getprofileitemsowned_response_unpack(buf []byte) ?CPlayer_GetProf
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetProfileItemsOwned_Response) eq(b CPlayer_GetProfileItemsOwned_Response) bool {
+	return true && a.profile_backgrounds.eq(b.profile_backgrounds) &&
+		a.mini_profile_backgrounds.eq(b.mini_profile_backgrounds) && a.avatar_frames.eq(b.avatar_frames) &&
+		a.animated_avatars.eq(b.animated_avatars) && a.profile_modifiers.eq(b.profile_modifiers)
+}
+
+[inline]
+pub fn (a CPlayer_GetProfileItemsOwned_Response) ne(b CPlayer_GetProfileItemsOwned_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsOwned_Response) eq(b []CPlayer_GetProfileItemsOwned_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsOwned_Response) ne(b []CPlayer_GetProfileItemsOwned_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprofileitemsowned_response() CPlayer_GetProfileItemsOwned_Response {
 	return CPlayer_GetProfileItemsOwned_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsowned_response(o CPlayer_GetProfileItemsOwned_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsowned_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsOwned_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprofileitemsowned_response_unpack(v)?
@@ -3101,24 +4180,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	language       string
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetProfileItemsEquipped_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getprofileitemsequipped_request_unpack(buf []byte) ?CPlayer_GetProfileItemsEquipped_Request {
-	mut res := CPlayer_GetProfileItemsEquipped_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getprofileitemsequipped_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3129,13 +4206,11 @@ pub fn cplayer_getprofileitemsequipped_request_unpack(buf []byte) ?CPlayer_GetPr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -3155,17 +4230,48 @@ pub fn cplayer_getprofileitemsequipped_request_unpack(buf []byte) ?CPlayer_GetPr
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetProfileItemsEquipped_Request) eq(b CPlayer_GetProfileItemsEquipped_Request) bool {
+	return true && a.steamid == b.steamid && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetProfileItemsEquipped_Request) ne(b CPlayer_GetProfileItemsEquipped_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsEquipped_Request) eq(b []CPlayer_GetProfileItemsEquipped_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsEquipped_Request) ne(b []CPlayer_GetProfileItemsEquipped_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprofileitemsequipped_request() CPlayer_GetProfileItemsEquipped_Request {
 	return CPlayer_GetProfileItemsEquipped_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsequipped_request(o CPlayer_GetProfileItemsEquipped_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsequipped_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsEquipped_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprofileitemsequipped_request_unpack(v)?
@@ -3174,42 +4280,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsequipped_request(buf []
 
 pub struct CPlayer_GetProfileItemsEquipped_Response {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	profile_background          ProfileItem
-	has_profile_background      bool
-	mini_profile_background     ProfileItem
-	has_mini_profile_background bool
-	avatar_frame                ProfileItem
-	has_avatar_frame            bool
-	animated_avatar             ProfileItem
-	has_animated_avatar         bool
-	profile_modifier            ProfileItem
-	has_profile_modifier        bool
+	profile_background      ProfileItem
+	mini_profile_background ProfileItem
+	avatar_frame            ProfileItem
+	animated_avatar         ProfileItem
+	profile_modifier        ProfileItem
 }
 
 pub fn (o &CPlayer_GetProfileItemsEquipped_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_profile_background {
+	if o.profile_background.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_background, 1)
 	}
-	if o.has_mini_profile_background {
+	if o.mini_profile_background.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.mini_profile_background, 2)
 	}
-	if o.has_avatar_frame {
+	if o.avatar_frame.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.avatar_frame, 3)
 	}
-	if o.has_animated_avatar {
+	if o.animated_avatar.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.animated_avatar, 4)
 	}
-	if o.has_profile_modifier {
+	if o.profile_modifier.ne(zzz_vproto_internal_new_profileitem()) {
 		res << zzz_vproto_internal_pack_profileitem(o.profile_modifier, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getprofileitemsequipped_response_unpack(buf []byte) ?CPlayer_GetProfileItemsEquipped_Response {
-	mut res := CPlayer_GetProfileItemsEquipped_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getprofileitemsequipped_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3220,31 +4321,26 @@ pub fn cplayer_getprofileitemsequipped_response_unpack(buf []byte) ?CPlayer_GetP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_profile_background = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.profile_background = v
 				i = ii
 			}
 			2 {
-				res.has_mini_profile_background = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.mini_profile_background = v
 				i = ii
 			}
 			3 {
-				res.has_avatar_frame = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.avatar_frame = v
 				i = ii
 			}
 			4 {
-				res.has_animated_avatar = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.animated_avatar = v
 				i = ii
 			}
 			5 {
-				res.has_profile_modifier = true
 				ii, v := zzz_vproto_internal_unpack_profileitem(cur_buf, tag_wiretype.wire_type)?
 				res.profile_modifier = v
 				i = ii
@@ -3264,17 +4360,50 @@ pub fn cplayer_getprofileitemsequipped_response_unpack(buf []byte) ?CPlayer_GetP
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetProfileItemsEquipped_Response) eq(b CPlayer_GetProfileItemsEquipped_Response) bool {
+	return true && a.profile_background.eq(b.profile_background) &&
+		a.mini_profile_background.eq(b.mini_profile_background) && a.avatar_frame.eq(b.avatar_frame) &&
+		a.animated_avatar.eq(b.animated_avatar) && a.profile_modifier.eq(b.profile_modifier)
+}
+
+[inline]
+pub fn (a CPlayer_GetProfileItemsEquipped_Response) ne(b CPlayer_GetProfileItemsEquipped_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsEquipped_Response) eq(b []CPlayer_GetProfileItemsEquipped_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetProfileItemsEquipped_Response) ne(b []CPlayer_GetProfileItemsEquipped_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprofileitemsequipped_response() CPlayer_GetProfileItemsEquipped_Response {
 	return CPlayer_GetProfileItemsEquipped_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprofileitemsequipped_response(o CPlayer_GetProfileItemsEquipped_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsequipped_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetProfileItemsEquipped_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprofileitemsequipped_response_unpack(v)?
@@ -3283,27 +4412,25 @@ pub fn zzz_vproto_internal_unpack_cplayer_getprofileitemsequipped_response(buf [
 
 pub struct CPlayer_SetEquippedProfileItemFlags_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	communityitemid     u64
-	has_communityitemid bool
-	flags               u32
-	has_flags           bool
+	communityitemid u64
+	flags           u32
 }
 
 pub fn (o &CPlayer_SetEquippedProfileItemFlags_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_communityitemid {
+	if o.communityitemid != u64(0) {
 		res << vproto.pack_uint64_field(o.communityitemid, 1)
 	}
-	if o.has_flags {
+	if o.flags != u32(0) {
 		res << vproto.pack_uint32_field(o.flags, 2)
 	}
 	return res
 }
 
 pub fn cplayer_setequippedprofileitemflags_request_unpack(buf []byte) ?CPlayer_SetEquippedProfileItemFlags_Request {
-	mut res := CPlayer_SetEquippedProfileItemFlags_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setequippedprofileitemflags_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3314,13 +4441,11 @@ pub fn cplayer_setequippedprofileitemflags_request_unpack(buf []byte) ?CPlayer_S
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_communityitemid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.communityitemid = v
 				i = ii
 			}
 			2 {
-				res.has_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.flags = v
 				i = ii
@@ -3340,17 +4465,48 @@ pub fn cplayer_setequippedprofileitemflags_request_unpack(buf []byte) ?CPlayer_S
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetEquippedProfileItemFlags_Request) eq(b CPlayer_SetEquippedProfileItemFlags_Request) bool {
+	return true && a.communityitemid == b.communityitemid && a.flags == b.flags
+}
+
+[inline]
+pub fn (a CPlayer_SetEquippedProfileItemFlags_Request) ne(b CPlayer_SetEquippedProfileItemFlags_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetEquippedProfileItemFlags_Request) eq(b []CPlayer_SetEquippedProfileItemFlags_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetEquippedProfileItemFlags_Request) ne(b []CPlayer_SetEquippedProfileItemFlags_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setequippedprofileitemflags_request() CPlayer_SetEquippedProfileItemFlags_Request {
 	return CPlayer_SetEquippedProfileItemFlags_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setequippedprofileitemflags_request(o CPlayer_SetEquippedProfileItemFlags_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setequippedprofileitemflags_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetEquippedProfileItemFlags_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setequippedprofileitemflags_request_unpack(v)?
@@ -3368,21 +4524,52 @@ pub fn (o &CPlayer_SetEquippedProfileItemFlags_Response) pack() []byte {
 }
 
 pub fn cplayer_setequippedprofileitemflags_response_unpack(buf []byte) ?CPlayer_SetEquippedProfileItemFlags_Response {
-	res := CPlayer_SetEquippedProfileItemFlags_Response{}
+	res := zzz_vproto_internal_new_cplayer_setequippedprofileitemflags_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetEquippedProfileItemFlags_Response) eq(b CPlayer_SetEquippedProfileItemFlags_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetEquippedProfileItemFlags_Response) ne(b CPlayer_SetEquippedProfileItemFlags_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetEquippedProfileItemFlags_Response) eq(b []CPlayer_SetEquippedProfileItemFlags_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetEquippedProfileItemFlags_Response) ne(b []CPlayer_SetEquippedProfileItemFlags_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setequippedprofileitemflags_response() CPlayer_SetEquippedProfileItemFlags_Response {
 	return CPlayer_SetEquippedProfileItemFlags_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setequippedprofileitemflags_response(o CPlayer_SetEquippedProfileItemFlags_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setequippedprofileitemflags_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetEquippedProfileItemFlags_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setequippedprofileitemflags_response_unpack(v)?
@@ -3400,21 +4587,52 @@ pub fn (o &CPlayer_GetEmoticonList_Request) pack() []byte {
 }
 
 pub fn cplayer_getemoticonlist_request_unpack(buf []byte) ?CPlayer_GetEmoticonList_Request {
-	res := CPlayer_GetEmoticonList_Request{}
+	res := zzz_vproto_internal_new_cplayer_getemoticonlist_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetEmoticonList_Request) eq(b CPlayer_GetEmoticonList_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_GetEmoticonList_Request) ne(b CPlayer_GetEmoticonList_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetEmoticonList_Request) eq(b []CPlayer_GetEmoticonList_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetEmoticonList_Request) ne(b []CPlayer_GetEmoticonList_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getemoticonlist_request() CPlayer_GetEmoticonList_Request {
 	return CPlayer_GetEmoticonList_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getemoticonlist_request(o CPlayer_GetEmoticonList_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetEmoticonList_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getemoticonlist_request_unpack(v)?
@@ -3423,42 +4641,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_request(buf []byte, ta
 
 pub struct CPlayer_GetEmoticonList_Response_Emoticon {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	name               string
-	has_name           bool
-	count              int
-	has_count          bool
-	time_last_used     u32
-	has_time_last_used bool
-	use_count          u32
-	has_use_count      bool
-	time_received      u32
-	has_time_received  bool
+	name           string
+	count          int
+	time_last_used u32
+	use_count      u32
+	time_received  u32
 }
 
 pub fn (o &CPlayer_GetEmoticonList_Response_Emoticon) pack() []byte {
 	mut res := []byte{}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 1)
 	}
-	if o.has_count {
+	if o.count != int(0) {
 		res << vproto.pack_int32_field(o.count, 2)
 	}
-	if o.has_time_last_used {
+	if o.time_last_used != u32(0) {
 		res << vproto.pack_uint32_field(o.time_last_used, 3)
 	}
-	if o.has_use_count {
+	if o.use_count != u32(0) {
 		res << vproto.pack_uint32_field(o.use_count, 4)
 	}
-	if o.has_time_received {
+	if o.time_received != u32(0) {
 		res << vproto.pack_uint32_field(o.time_received, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getemoticonlist_response_emoticon_unpack(buf []byte) ?CPlayer_GetEmoticonList_Response_Emoticon {
-	mut res := CPlayer_GetEmoticonList_Response_Emoticon{}
+	mut res := zzz_vproto_internal_new_cplayer_getemoticonlist_response_emoticon()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3469,31 +4682,26 @@ pub fn cplayer_getemoticonlist_response_emoticon_unpack(buf []byte) ?CPlayer_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_time_last_used = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_last_used = v
 				i = ii
 			}
 			4 {
-				res.has_use_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.use_count = v
 				i = ii
 			}
 			5 {
-				res.has_time_received = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_received = v
 				i = ii
@@ -3513,17 +4721,50 @@ pub fn cplayer_getemoticonlist_response_emoticon_unpack(buf []byte) ?CPlayer_Get
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetEmoticonList_Response_Emoticon) eq(b CPlayer_GetEmoticonList_Response_Emoticon) bool {
+	return true && a.name == b.name &&
+		a.count == b.count && a.time_last_used == b.time_last_used &&
+		a.use_count == b.use_count && a.time_received == b.time_received
+}
+
+[inline]
+pub fn (a CPlayer_GetEmoticonList_Response_Emoticon) ne(b CPlayer_GetEmoticonList_Response_Emoticon) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetEmoticonList_Response_Emoticon) eq(b []CPlayer_GetEmoticonList_Response_Emoticon) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetEmoticonList_Response_Emoticon) ne(b []CPlayer_GetEmoticonList_Response_Emoticon) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getemoticonlist_response_emoticon() CPlayer_GetEmoticonList_Response_Emoticon {
 	return CPlayer_GetEmoticonList_Response_Emoticon{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getemoticonlist_response_emoticon(o CPlayer_GetEmoticonList_Response_Emoticon, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_response_emoticon(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetEmoticonList_Response_Emoticon) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getemoticonlist_response_emoticon_unpack(v)?
@@ -3547,7 +4788,7 @@ pub fn (o &CPlayer_GetEmoticonList_Response) pack() []byte {
 }
 
 pub fn cplayer_getemoticonlist_response_unpack(buf []byte) ?CPlayer_GetEmoticonList_Response {
-	mut res := CPlayer_GetEmoticonList_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getemoticonlist_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3579,17 +4820,48 @@ pub fn cplayer_getemoticonlist_response_unpack(buf []byte) ?CPlayer_GetEmoticonL
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetEmoticonList_Response) eq(b CPlayer_GetEmoticonList_Response) bool {
+	return true && a.emoticons.eq(b.emoticons)
+}
+
+[inline]
+pub fn (a CPlayer_GetEmoticonList_Response) ne(b CPlayer_GetEmoticonList_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetEmoticonList_Response) eq(b []CPlayer_GetEmoticonList_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetEmoticonList_Response) ne(b []CPlayer_GetEmoticonList_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getemoticonlist_response() CPlayer_GetEmoticonList_Response {
 	return CPlayer_GetEmoticonList_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getemoticonlist_response(o CPlayer_GetEmoticonList_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getemoticonlist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetEmoticonList_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getemoticonlist_response_unpack(v)?
@@ -3601,18 +4873,16 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	language       string
-	has_language   bool
 	appids         []u32
 }
 
 pub fn (o &CPlayer_GetAchievementsProgress_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_uint64_field(o.steamid, 1)
 	}
-	if o.has_language {
+	if o.language != '' {
 		res << vproto.pack_string_field(o.language, 2)
 	}
 	// [packed=false]
@@ -3623,7 +4893,7 @@ pub fn (o &CPlayer_GetAchievementsProgress_Request) pack() []byte {
 }
 
 pub fn cplayer_getachievementsprogress_request_unpack(buf []byte) ?CPlayer_GetAchievementsProgress_Request {
-	mut res := CPlayer_GetAchievementsProgress_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getachievementsprogress_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3634,13 +4904,11 @@ pub fn cplayer_getachievementsprogress_request_unpack(buf []byte) ?CPlayer_GetAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -3666,17 +4934,48 @@ pub fn cplayer_getachievementsprogress_request_unpack(buf []byte) ?CPlayer_GetAc
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAchievementsProgress_Request) eq(b CPlayer_GetAchievementsProgress_Request) bool {
+	return true && a.steamid == b.steamid && a.language == b.language && a.appids == b.appids
+}
+
+[inline]
+pub fn (a CPlayer_GetAchievementsProgress_Request) ne(b CPlayer_GetAchievementsProgress_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAchievementsProgress_Request) eq(b []CPlayer_GetAchievementsProgress_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAchievementsProgress_Request) ne(b []CPlayer_GetAchievementsProgress_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getachievementsprogress_request() CPlayer_GetAchievementsProgress_Request {
 	return CPlayer_GetAchievementsProgress_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getachievementsprogress_request(o CPlayer_GetAchievementsProgress_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAchievementsProgress_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getachievementsprogress_request_unpack(v)?
@@ -3685,47 +4984,41 @@ pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_request(buf []
 
 pub struct CPlayer_GetAchievementsProgress_Response_AchievementProgress {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid            u32
-	has_appid        bool
-	unlocked         u32
-	has_unlocked     bool
-	total            u32
-	has_total        bool
-	percentage       f32
-	has_percentage   bool
-	all_unlocked     bool
-	has_all_unlocked bool
-	cache_time       u32
-	has_cache_time   bool
+	appid          u32
+	unlocked       u32
+	total          u32
+	percentage     f32
+	all_unlocked   bool
+	cache_time     u32
 }
 
 pub fn (o &CPlayer_GetAchievementsProgress_Response_AchievementProgress) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_unlocked {
+	if o.unlocked != u32(0) {
 		res << vproto.pack_uint32_field(o.unlocked, 2)
 	}
-	if o.has_total {
+	if o.total != u32(0) {
 		res << vproto.pack_uint32_field(o.total, 3)
 	}
-	if o.has_percentage {
+	if o.percentage != f32(0) {
 		res << vproto.pack_float_field(o.percentage, 4)
 	}
-	if o.has_all_unlocked {
+	if o.all_unlocked != bool(0) {
 		res << vproto.pack_bool_field(o.all_unlocked, 5)
 	}
-	if o.has_cache_time {
+	if o.cache_time != u32(0) {
 		res << vproto.pack_uint32_field(o.cache_time, 6)
 	}
 	return res
 }
 
 pub fn cplayer_getachievementsprogress_response_achievementprogress_unpack(buf []byte) ?CPlayer_GetAchievementsProgress_Response_AchievementProgress {
-	mut res := CPlayer_GetAchievementsProgress_Response_AchievementProgress{}
+	mut res := zzz_vproto_internal_new_cplayer_getachievementsprogress_response_achievementprogress()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3736,37 +5029,31 @@ pub fn cplayer_getachievementsprogress_response_achievementprogress_unpack(buf [
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_unlocked = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.unlocked = v
 				i = ii
 			}
 			3 {
-				res.has_total = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.total = v
 				i = ii
 			}
 			4 {
-				res.has_percentage = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.percentage = v
 				i = ii
 			}
 			5 {
-				res.has_all_unlocked = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.all_unlocked = v
 				i = ii
 			}
 			6 {
-				res.has_cache_time = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cache_time = v
 				i = ii
@@ -3786,17 +5073,51 @@ pub fn cplayer_getachievementsprogress_response_achievementprogress_unpack(buf [
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAchievementsProgress_Response_AchievementProgress) eq(b CPlayer_GetAchievementsProgress_Response_AchievementProgress) bool {
+	return true && a.appid == b.appid &&
+		a.unlocked == b.unlocked && a.total == b.total &&
+		a.percentage == b.percentage && a.all_unlocked == b.all_unlocked &&
+		a.cache_time == b.cache_time
+}
+
+[inline]
+pub fn (a CPlayer_GetAchievementsProgress_Response_AchievementProgress) ne(b CPlayer_GetAchievementsProgress_Response_AchievementProgress) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAchievementsProgress_Response_AchievementProgress) eq(b []CPlayer_GetAchievementsProgress_Response_AchievementProgress) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAchievementsProgress_Response_AchievementProgress) ne(b []CPlayer_GetAchievementsProgress_Response_AchievementProgress) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getachievementsprogress_response_achievementprogress() CPlayer_GetAchievementsProgress_Response_AchievementProgress {
 	return CPlayer_GetAchievementsProgress_Response_AchievementProgress{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getachievementsprogress_response_achievementprogress(o CPlayer_GetAchievementsProgress_Response_AchievementProgress, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_response_achievementprogress(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAchievementsProgress_Response_AchievementProgress) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getachievementsprogress_response_achievementprogress_unpack(v)?
@@ -3821,7 +5142,7 @@ pub fn (o &CPlayer_GetAchievementsProgress_Response) pack() []byte {
 }
 
 pub fn cplayer_getachievementsprogress_response_unpack(buf []byte) ?CPlayer_GetAchievementsProgress_Response {
-	mut res := CPlayer_GetAchievementsProgress_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getachievementsprogress_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3853,17 +5174,48 @@ pub fn cplayer_getachievementsprogress_response_unpack(buf []byte) ?CPlayer_GetA
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetAchievementsProgress_Response) eq(b CPlayer_GetAchievementsProgress_Response) bool {
+	return true && a.achievement_progress.eq(b.achievement_progress)
+}
+
+[inline]
+pub fn (a CPlayer_GetAchievementsProgress_Response) ne(b CPlayer_GetAchievementsProgress_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetAchievementsProgress_Response) eq(b []CPlayer_GetAchievementsProgress_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetAchievementsProgress_Response) ne(b []CPlayer_GetAchievementsProgress_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getachievementsprogress_response() CPlayer_GetAchievementsProgress_Response {
 	return CPlayer_GetAchievementsProgress_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getachievementsprogress_response(o CPlayer_GetAchievementsProgress_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetAchievementsProgress_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getachievementsprogress_response_unpack(v)?
@@ -3872,27 +5224,25 @@ pub fn zzz_vproto_internal_unpack_cplayer_getachievementsprogress_response(buf [
 
 pub struct CPlayer_PostStatusToFriends_Request {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid           u32
-	has_appid       bool
-	status_text     string
-	has_status_text bool
+	appid          u32
+	status_text    string
 }
 
 pub fn (o &CPlayer_PostStatusToFriends_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_status_text {
+	if o.status_text != '' {
 		res << vproto.pack_string_field(o.status_text, 2)
 	}
 	return res
 }
 
 pub fn cplayer_poststatustofriends_request_unpack(buf []byte) ?CPlayer_PostStatusToFriends_Request {
-	mut res := CPlayer_PostStatusToFriends_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_poststatustofriends_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3903,13 +5253,11 @@ pub fn cplayer_poststatustofriends_request_unpack(buf []byte) ?CPlayer_PostStatu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_status_text = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.status_text = v
 				i = ii
@@ -3929,17 +5277,48 @@ pub fn cplayer_poststatustofriends_request_unpack(buf []byte) ?CPlayer_PostStatu
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_PostStatusToFriends_Request) eq(b CPlayer_PostStatusToFriends_Request) bool {
+	return true && a.appid == b.appid && a.status_text == b.status_text
+}
+
+[inline]
+pub fn (a CPlayer_PostStatusToFriends_Request) ne(b CPlayer_PostStatusToFriends_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_PostStatusToFriends_Request) eq(b []CPlayer_PostStatusToFriends_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_PostStatusToFriends_Request) ne(b []CPlayer_PostStatusToFriends_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_poststatustofriends_request() CPlayer_PostStatusToFriends_Request {
 	return CPlayer_PostStatusToFriends_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_poststatustofriends_request(o CPlayer_PostStatusToFriends_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_poststatustofriends_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PostStatusToFriends_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_poststatustofriends_request_unpack(v)?
@@ -3957,21 +5336,52 @@ pub fn (o &CPlayer_PostStatusToFriends_Response) pack() []byte {
 }
 
 pub fn cplayer_poststatustofriends_response_unpack(buf []byte) ?CPlayer_PostStatusToFriends_Response {
-	res := CPlayer_PostStatusToFriends_Response{}
+	res := zzz_vproto_internal_new_cplayer_poststatustofriends_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_PostStatusToFriends_Response) eq(b CPlayer_PostStatusToFriends_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_PostStatusToFriends_Response) ne(b CPlayer_PostStatusToFriends_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_PostStatusToFriends_Response) eq(b []CPlayer_PostStatusToFriends_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_PostStatusToFriends_Response) ne(b []CPlayer_PostStatusToFriends_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_poststatustofriends_response() CPlayer_PostStatusToFriends_Response {
 	return CPlayer_PostStatusToFriends_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_poststatustofriends_response(o CPlayer_PostStatusToFriends_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_poststatustofriends_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PostStatusToFriends_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_poststatustofriends_response_unpack(v)?
@@ -3983,24 +5393,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	postid         u64
-	has_postid     bool
 }
 
 pub fn (o &CPlayer_GetPostedStatus_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_uint64_field(o.steamid, 1)
 	}
-	if o.has_postid {
+	if o.postid != u64(0) {
 		res << vproto.pack_uint64_field(o.postid, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getpostedstatus_request_unpack(buf []byte) ?CPlayer_GetPostedStatus_Request {
-	mut res := CPlayer_GetPostedStatus_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getpostedstatus_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4011,13 +5419,11 @@ pub fn cplayer_getpostedstatus_request_unpack(buf []byte) ?CPlayer_GetPostedStat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_postid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.postid = v
 				i = ii
@@ -4037,17 +5443,48 @@ pub fn cplayer_getpostedstatus_request_unpack(buf []byte) ?CPlayer_GetPostedStat
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPostedStatus_Request) eq(b CPlayer_GetPostedStatus_Request) bool {
+	return true && a.steamid == b.steamid && a.postid == b.postid
+}
+
+[inline]
+pub fn (a CPlayer_GetPostedStatus_Request) ne(b CPlayer_GetPostedStatus_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPostedStatus_Request) eq(b []CPlayer_GetPostedStatus_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPostedStatus_Request) ne(b []CPlayer_GetPostedStatus_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getpostedstatus_request() CPlayer_GetPostedStatus_Request {
 	return CPlayer_GetPostedStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getpostedstatus_request(o CPlayer_GetPostedStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getpostedstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPostedStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getpostedstatus_request_unpack(v)?
@@ -4056,42 +5493,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_getpostedstatus_request(buf []byte, ta
 
 pub struct CPlayer_GetPostedStatus_Response {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	accountid       u32
-	has_accountid   bool
-	postid          u64
-	has_postid      bool
-	status_text     string
-	has_status_text bool
-	deleted         bool
-	has_deleted     bool
-	appid           u32
-	has_appid       bool
+	accountid      u32
+	postid         u64
+	status_text    string
+	deleted        bool
+	appid          u32
 }
 
 pub fn (o &CPlayer_GetPostedStatus_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 1)
 	}
-	if o.has_postid {
+	if o.postid != u64(0) {
 		res << vproto.pack_uint64_field(o.postid, 2)
 	}
-	if o.has_status_text {
+	if o.status_text != '' {
 		res << vproto.pack_string_field(o.status_text, 3)
 	}
-	if o.has_deleted {
+	if o.deleted != bool(0) {
 		res << vproto.pack_bool_field(o.deleted, 4)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getpostedstatus_response_unpack(buf []byte) ?CPlayer_GetPostedStatus_Response {
-	mut res := CPlayer_GetPostedStatus_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getpostedstatus_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4102,31 +5534,26 @@ pub fn cplayer_getpostedstatus_response_unpack(buf []byte) ?CPlayer_GetPostedSta
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_postid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.postid = v
 				i = ii
 			}
 			3 {
-				res.has_status_text = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.status_text = v
 				i = ii
 			}
 			4 {
-				res.has_deleted = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.deleted = v
 				i = ii
 			}
 			5 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -4146,17 +5573,50 @@ pub fn cplayer_getpostedstatus_response_unpack(buf []byte) ?CPlayer_GetPostedSta
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPostedStatus_Response) eq(b CPlayer_GetPostedStatus_Response) bool {
+	return true && a.accountid == b.accountid &&
+		a.postid == b.postid && a.status_text == b.status_text &&
+		a.deleted == b.deleted && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CPlayer_GetPostedStatus_Response) ne(b CPlayer_GetPostedStatus_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPostedStatus_Response) eq(b []CPlayer_GetPostedStatus_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPostedStatus_Response) ne(b []CPlayer_GetPostedStatus_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getpostedstatus_response() CPlayer_GetPostedStatus_Response {
 	return CPlayer_GetPostedStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getpostedstatus_response(o CPlayer_GetPostedStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getpostedstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPostedStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getpostedstatus_response_unpack(v)?
@@ -4168,19 +5628,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	postid         u64
-	has_postid     bool
 }
 
 pub fn (o &CPlayer_DeletePostedStatus_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_postid {
+	if o.postid != u64(0) {
 		res << vproto.pack_uint64_field(o.postid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_deletepostedstatus_request_unpack(buf []byte) ?CPlayer_DeletePostedStatus_Request {
-	mut res := CPlayer_DeletePostedStatus_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_deletepostedstatus_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4191,7 +5650,6 @@ pub fn cplayer_deletepostedstatus_request_unpack(buf []byte) ?CPlayer_DeletePost
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_postid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.postid = v
 				i = ii
@@ -4211,17 +5669,48 @@ pub fn cplayer_deletepostedstatus_request_unpack(buf []byte) ?CPlayer_DeletePost
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_DeletePostedStatus_Request) eq(b CPlayer_DeletePostedStatus_Request) bool {
+	return true && a.postid == b.postid
+}
+
+[inline]
+pub fn (a CPlayer_DeletePostedStatus_Request) ne(b CPlayer_DeletePostedStatus_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_DeletePostedStatus_Request) eq(b []CPlayer_DeletePostedStatus_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_DeletePostedStatus_Request) ne(b []CPlayer_DeletePostedStatus_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_deletepostedstatus_request() CPlayer_DeletePostedStatus_Request {
 	return CPlayer_DeletePostedStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_deletepostedstatus_request(o CPlayer_DeletePostedStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_deletepostedstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_DeletePostedStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_deletepostedstatus_request_unpack(v)?
@@ -4239,21 +5728,52 @@ pub fn (o &CPlayer_DeletePostedStatus_Response) pack() []byte {
 }
 
 pub fn cplayer_deletepostedstatus_response_unpack(buf []byte) ?CPlayer_DeletePostedStatus_Response {
-	res := CPlayer_DeletePostedStatus_Response{}
+	res := zzz_vproto_internal_new_cplayer_deletepostedstatus_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_DeletePostedStatus_Response) eq(b CPlayer_DeletePostedStatus_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_DeletePostedStatus_Response) ne(b CPlayer_DeletePostedStatus_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_DeletePostedStatus_Response) eq(b []CPlayer_DeletePostedStatus_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_DeletePostedStatus_Response) ne(b []CPlayer_DeletePostedStatus_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_deletepostedstatus_response() CPlayer_DeletePostedStatus_Response {
 	return CPlayer_DeletePostedStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_deletepostedstatus_response(o CPlayer_DeletePostedStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_deletepostedstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_DeletePostedStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_deletepostedstatus_response_unpack(v)?
@@ -4262,22 +5782,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_deletepostedstatus_response(buf []byte
 
 pub struct CPlayer_GetLastPlayedTimes_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	min_last_played     u32
-	has_min_last_played bool
+	min_last_played u32
 }
 
 pub fn (o &CPlayer_GetLastPlayedTimes_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_min_last_played {
+	if o.min_last_played != u32(0) {
 		res << vproto.pack_uint32_field(o.min_last_played, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getlastplayedtimes_request_unpack(buf []byte) ?CPlayer_GetLastPlayedTimes_Request {
-	mut res := CPlayer_GetLastPlayedTimes_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getlastplayedtimes_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4288,7 +5807,6 @@ pub fn cplayer_getlastplayedtimes_request_unpack(buf []byte) ?CPlayer_GetLastPla
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_min_last_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.min_last_played = v
 				i = ii
@@ -4308,17 +5826,48 @@ pub fn cplayer_getlastplayedtimes_request_unpack(buf []byte) ?CPlayer_GetLastPla
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetLastPlayedTimes_Request) eq(b CPlayer_GetLastPlayedTimes_Request) bool {
+	return true && a.min_last_played == b.min_last_played
+}
+
+[inline]
+pub fn (a CPlayer_GetLastPlayedTimes_Request) ne(b CPlayer_GetLastPlayedTimes_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetLastPlayedTimes_Request) eq(b []CPlayer_GetLastPlayedTimes_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetLastPlayedTimes_Request) ne(b []CPlayer_GetLastPlayedTimes_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getlastplayedtimes_request() CPlayer_GetLastPlayedTimes_Request {
 	return CPlayer_GetLastPlayedTimes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getlastplayedtimes_request(o CPlayer_GetLastPlayedTimes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetLastPlayedTimes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getlastplayedtimes_request_unpack(v)?
@@ -4327,87 +5876,73 @@ pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_request(buf []byte,
 
 pub struct CPlayer_GetLastPlayedTimes_Response_Game {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	appid                        int
-	has_appid                    bool
-	last_playtime                u32
-	has_last_playtime            bool
-	playtime_2weeks              int
-	has_playtime_2weeks          bool
-	playtime_forever             int
-	has_playtime_forever         bool
-	first_playtime               u32
-	has_first_playtime           bool
-	playtime_windows_forever     int
-	has_playtime_windows_forever bool
-	playtime_mac_forever         int
-	has_playtime_mac_forever     bool
-	playtime_linux_forever       int
-	has_playtime_linux_forever   bool
-	first_windows_playtime       u32
-	has_first_windows_playtime   bool
-	first_mac_playtime           u32
-	has_first_mac_playtime       bool
-	first_linux_playtime         u32
-	has_first_linux_playtime     bool
-	last_windows_playtime        u32
-	has_last_windows_playtime    bool
-	last_mac_playtime            u32
-	has_last_mac_playtime        bool
-	last_linux_playtime          u32
-	has_last_linux_playtime      bool
+	appid                    int
+	last_playtime            u32
+	playtime_2weeks          int
+	playtime_forever         int
+	first_playtime           u32
+	playtime_windows_forever int
+	playtime_mac_forever     int
+	playtime_linux_forever   int
+	first_windows_playtime   u32
+	first_mac_playtime       u32
+	first_linux_playtime     u32
+	last_windows_playtime    u32
+	last_mac_playtime        u32
+	last_linux_playtime      u32
 }
 
 pub fn (o &CPlayer_GetLastPlayedTimes_Response_Game) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != int(0) {
 		res << vproto.pack_int32_field(o.appid, 1)
 	}
-	if o.has_last_playtime {
+	if o.last_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.last_playtime, 2)
 	}
-	if o.has_playtime_2weeks {
+	if o.playtime_2weeks != int(0) {
 		res << vproto.pack_int32_field(o.playtime_2weeks, 3)
 	}
-	if o.has_playtime_forever {
+	if o.playtime_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_forever, 4)
 	}
-	if o.has_first_playtime {
+	if o.first_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.first_playtime, 5)
 	}
-	if o.has_playtime_windows_forever {
+	if o.playtime_windows_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_windows_forever, 6)
 	}
-	if o.has_playtime_mac_forever {
+	if o.playtime_mac_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_mac_forever, 7)
 	}
-	if o.has_playtime_linux_forever {
+	if o.playtime_linux_forever != int(0) {
 		res << vproto.pack_int32_field(o.playtime_linux_forever, 8)
 	}
-	if o.has_first_windows_playtime {
+	if o.first_windows_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.first_windows_playtime, 9)
 	}
-	if o.has_first_mac_playtime {
+	if o.first_mac_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.first_mac_playtime, 10)
 	}
-	if o.has_first_linux_playtime {
+	if o.first_linux_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.first_linux_playtime, 11)
 	}
-	if o.has_last_windows_playtime {
+	if o.last_windows_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.last_windows_playtime, 12)
 	}
-	if o.has_last_mac_playtime {
+	if o.last_mac_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.last_mac_playtime, 13)
 	}
-	if o.has_last_linux_playtime {
+	if o.last_linux_playtime != u32(0) {
 		res << vproto.pack_uint32_field(o.last_linux_playtime, 14)
 	}
 	return res
 }
 
 pub fn cplayer_getlastplayedtimes_response_game_unpack(buf []byte) ?CPlayer_GetLastPlayedTimes_Response_Game {
-	mut res := CPlayer_GetLastPlayedTimes_Response_Game{}
+	mut res := zzz_vproto_internal_new_cplayer_getlastplayedtimes_response_game()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4418,85 +5953,71 @@ pub fn cplayer_getlastplayedtimes_response_game_unpack(buf []byte) ?CPlayer_GetL
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_last_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_playtime = v
 				i = ii
 			}
 			3 {
-				res.has_playtime_2weeks = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_2weeks = v
 				i = ii
 			}
 			4 {
-				res.has_playtime_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_forever = v
 				i = ii
 			}
 			5 {
-				res.has_first_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.first_playtime = v
 				i = ii
 			}
 			6 {
-				res.has_playtime_windows_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_windows_forever = v
 				i = ii
 			}
 			7 {
-				res.has_playtime_mac_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_mac_forever = v
 				i = ii
 			}
 			8 {
-				res.has_playtime_linux_forever = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_linux_forever = v
 				i = ii
 			}
 			9 {
-				res.has_first_windows_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.first_windows_playtime = v
 				i = ii
 			}
 			10 {
-				res.has_first_mac_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.first_mac_playtime = v
 				i = ii
 			}
 			11 {
-				res.has_first_linux_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.first_linux_playtime = v
 				i = ii
 			}
 			12 {
-				res.has_last_windows_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_windows_playtime = v
 				i = ii
 			}
 			13 {
-				res.has_last_mac_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_mac_playtime = v
 				i = ii
 			}
 			14 {
-				res.has_last_linux_playtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_linux_playtime = v
 				i = ii
@@ -4516,17 +6037,61 @@ pub fn cplayer_getlastplayedtimes_response_game_unpack(buf []byte) ?CPlayer_GetL
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetLastPlayedTimes_Response_Game) eq(b CPlayer_GetLastPlayedTimes_Response_Game) bool {
+	return true && a.appid == b.appid &&
+		a.last_playtime == b.last_playtime &&
+		a.playtime_2weeks == b.playtime_2weeks &&
+		a.playtime_forever == b.playtime_forever &&
+		a.first_playtime == b.first_playtime &&
+		a.playtime_windows_forever == b.playtime_windows_forever &&
+		a.playtime_mac_forever == b.playtime_mac_forever &&
+		a.playtime_linux_forever == b.playtime_linux_forever &&
+		a.first_windows_playtime == b.first_windows_playtime &&
+		a.first_mac_playtime == b.first_mac_playtime &&
+		a.first_linux_playtime == b.first_linux_playtime &&
+		a.last_windows_playtime == b.last_windows_playtime &&
+		a.last_mac_playtime == b.last_mac_playtime &&
+		a.last_linux_playtime == b.last_linux_playtime
+}
+
+[inline]
+pub fn (a CPlayer_GetLastPlayedTimes_Response_Game) ne(b CPlayer_GetLastPlayedTimes_Response_Game) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetLastPlayedTimes_Response_Game) eq(b []CPlayer_GetLastPlayedTimes_Response_Game) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetLastPlayedTimes_Response_Game) ne(b []CPlayer_GetLastPlayedTimes_Response_Game) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getlastplayedtimes_response_game() CPlayer_GetLastPlayedTimes_Response_Game {
 	return CPlayer_GetLastPlayedTimes_Response_Game{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getlastplayedtimes_response_game(o CPlayer_GetLastPlayedTimes_Response_Game, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_response_game(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetLastPlayedTimes_Response_Game) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getlastplayedtimes_response_game_unpack(v)?
@@ -4550,7 +6115,7 @@ pub fn (o &CPlayer_GetLastPlayedTimes_Response) pack() []byte {
 }
 
 pub fn cplayer_getlastplayedtimes_response_unpack(buf []byte) ?CPlayer_GetLastPlayedTimes_Response {
-	mut res := CPlayer_GetLastPlayedTimes_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getlastplayedtimes_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4582,17 +6147,48 @@ pub fn cplayer_getlastplayedtimes_response_unpack(buf []byte) ?CPlayer_GetLastPl
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetLastPlayedTimes_Response) eq(b CPlayer_GetLastPlayedTimes_Response) bool {
+	return true && a.games.eq(b.games)
+}
+
+[inline]
+pub fn (a CPlayer_GetLastPlayedTimes_Response) ne(b CPlayer_GetLastPlayedTimes_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetLastPlayedTimes_Response) eq(b []CPlayer_GetLastPlayedTimes_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetLastPlayedTimes_Response) ne(b []CPlayer_GetLastPlayedTimes_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getlastplayedtimes_response() CPlayer_GetLastPlayedTimes_Response {
 	return CPlayer_GetLastPlayedTimes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getlastplayedtimes_response(o CPlayer_GetLastPlayedTimes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getlastplayedtimes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetLastPlayedTimes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getlastplayedtimes_response_unpack(v)?
@@ -4610,21 +6206,52 @@ pub fn (o &CPlayer_AcceptSSA_Request) pack() []byte {
 }
 
 pub fn cplayer_acceptssa_request_unpack(buf []byte) ?CPlayer_AcceptSSA_Request {
-	res := CPlayer_AcceptSSA_Request{}
+	res := zzz_vproto_internal_new_cplayer_acceptssa_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_AcceptSSA_Request) eq(b CPlayer_AcceptSSA_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_AcceptSSA_Request) ne(b CPlayer_AcceptSSA_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_AcceptSSA_Request) eq(b []CPlayer_AcceptSSA_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_AcceptSSA_Request) ne(b []CPlayer_AcceptSSA_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_acceptssa_request() CPlayer_AcceptSSA_Request {
 	return CPlayer_AcceptSSA_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_acceptssa_request(o CPlayer_AcceptSSA_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_acceptssa_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AcceptSSA_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_acceptssa_request_unpack(v)?
@@ -4642,21 +6269,52 @@ pub fn (o &CPlayer_AcceptSSA_Response) pack() []byte {
 }
 
 pub fn cplayer_acceptssa_response_unpack(buf []byte) ?CPlayer_AcceptSSA_Response {
-	res := CPlayer_AcceptSSA_Response{}
+	res := zzz_vproto_internal_new_cplayer_acceptssa_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_AcceptSSA_Response) eq(b CPlayer_AcceptSSA_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_AcceptSSA_Response) ne(b CPlayer_AcceptSSA_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_AcceptSSA_Response) eq(b []CPlayer_AcceptSSA_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_AcceptSSA_Response) ne(b []CPlayer_AcceptSSA_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_acceptssa_response() CPlayer_AcceptSSA_Response {
 	return CPlayer_AcceptSSA_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_acceptssa_response(o CPlayer_AcceptSSA_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_acceptssa_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AcceptSSA_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_acceptssa_response_unpack(v)?
@@ -4674,21 +6332,52 @@ pub fn (o &CPlayer_GetNicknameList_Request) pack() []byte {
 }
 
 pub fn cplayer_getnicknamelist_request_unpack(buf []byte) ?CPlayer_GetNicknameList_Request {
-	res := CPlayer_GetNicknameList_Request{}
+	res := zzz_vproto_internal_new_cplayer_getnicknamelist_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetNicknameList_Request) eq(b CPlayer_GetNicknameList_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_GetNicknameList_Request) ne(b CPlayer_GetNicknameList_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetNicknameList_Request) eq(b []CPlayer_GetNicknameList_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetNicknameList_Request) ne(b []CPlayer_GetNicknameList_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getnicknamelist_request() CPlayer_GetNicknameList_Request {
 	return CPlayer_GetNicknameList_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getnicknamelist_request(o CPlayer_GetNicknameList_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getnicknamelist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNicknameList_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getnicknamelist_request_unpack(v)?
@@ -4700,24 +6389,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	accountid      u32
-	has_accountid  bool
 	nickname       string
-	has_nickname   bool
 }
 
 pub fn (o &CPlayer_GetNicknameList_Response_PlayerNickname) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_32bit_field(o.accountid, 1)
 	}
-	if o.has_nickname {
+	if o.nickname != '' {
 		res << vproto.pack_string_field(o.nickname, 2)
 	}
 	return res
 }
 
 pub fn cplayer_getnicknamelist_response_playernickname_unpack(buf []byte) ?CPlayer_GetNicknameList_Response_PlayerNickname {
-	mut res := CPlayer_GetNicknameList_Response_PlayerNickname{}
+	mut res := zzz_vproto_internal_new_cplayer_getnicknamelist_response_playernickname()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4728,13 +6415,11 @@ pub fn cplayer_getnicknamelist_response_playernickname_unpack(buf []byte) ?CPlay
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_nickname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.nickname = v
 				i = ii
@@ -4754,17 +6439,48 @@ pub fn cplayer_getnicknamelist_response_playernickname_unpack(buf []byte) ?CPlay
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetNicknameList_Response_PlayerNickname) eq(b CPlayer_GetNicknameList_Response_PlayerNickname) bool {
+	return true && a.accountid == b.accountid && a.nickname == b.nickname
+}
+
+[inline]
+pub fn (a CPlayer_GetNicknameList_Response_PlayerNickname) ne(b CPlayer_GetNicknameList_Response_PlayerNickname) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetNicknameList_Response_PlayerNickname) eq(b []CPlayer_GetNicknameList_Response_PlayerNickname) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetNicknameList_Response_PlayerNickname) ne(b []CPlayer_GetNicknameList_Response_PlayerNickname) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getnicknamelist_response_playernickname() CPlayer_GetNicknameList_Response_PlayerNickname {
 	return CPlayer_GetNicknameList_Response_PlayerNickname{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getnicknamelist_response_playernickname(o CPlayer_GetNicknameList_Response_PlayerNickname, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getnicknamelist_response_playernickname(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNicknameList_Response_PlayerNickname) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getnicknamelist_response_playernickname_unpack(v)?
@@ -4788,7 +6504,7 @@ pub fn (o &CPlayer_GetNicknameList_Response) pack() []byte {
 }
 
 pub fn cplayer_getnicknamelist_response_unpack(buf []byte) ?CPlayer_GetNicknameList_Response {
-	mut res := CPlayer_GetNicknameList_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getnicknamelist_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4820,17 +6536,48 @@ pub fn cplayer_getnicknamelist_response_unpack(buf []byte) ?CPlayer_GetNicknameL
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetNicknameList_Response) eq(b CPlayer_GetNicknameList_Response) bool {
+	return true && a.nicknames.eq(b.nicknames)
+}
+
+[inline]
+pub fn (a CPlayer_GetNicknameList_Response) ne(b CPlayer_GetNicknameList_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetNicknameList_Response) eq(b []CPlayer_GetNicknameList_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetNicknameList_Response) ne(b []CPlayer_GetNicknameList_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getnicknamelist_response() CPlayer_GetNicknameList_Response {
 	return CPlayer_GetNicknameList_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getnicknamelist_response(o CPlayer_GetNicknameList_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getnicknamelist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNicknameList_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getnicknamelist_response_unpack(v)?
@@ -4848,21 +6595,52 @@ pub fn (o &CPlayer_GetPerFriendPreferences_Request) pack() []byte {
 }
 
 pub fn cplayer_getperfriendpreferences_request_unpack(buf []byte) ?CPlayer_GetPerFriendPreferences_Request {
-	res := CPlayer_GetPerFriendPreferences_Request{}
+	res := zzz_vproto_internal_new_cplayer_getperfriendpreferences_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPerFriendPreferences_Request) eq(b CPlayer_GetPerFriendPreferences_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_GetPerFriendPreferences_Request) ne(b CPlayer_GetPerFriendPreferences_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPerFriendPreferences_Request) eq(b []CPlayer_GetPerFriendPreferences_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPerFriendPreferences_Request) ne(b []CPlayer_GetPerFriendPreferences_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getperfriendpreferences_request() CPlayer_GetPerFriendPreferences_Request {
 	return CPlayer_GetPerFriendPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getperfriendpreferences_request(o CPlayer_GetPerFriendPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getperfriendpreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPerFriendPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getperfriendpreferences_request_unpack(v)?
@@ -4871,62 +6649,53 @@ pub fn zzz_vproto_internal_unpack_cplayer_getperfriendpreferences_request(buf []
 
 pub struct PerFriendPreferences {
 mut:
-	unknown_fields                 []vproto.UnknownField
+	unknown_fields             []vproto.UnknownField
 pub mut:
-	accountid                      u32
-	has_accountid                  bool
-	nickname                       string
-	has_nickname                   bool
-	notifications_showingame       ENotificationSetting
-	has_notifications_showingame   bool
-	notifications_showonline       ENotificationSetting
-	has_notifications_showonline   bool
-	notifications_showmessages     ENotificationSetting
-	has_notifications_showmessages bool
-	sounds_showingame              ENotificationSetting
-	has_sounds_showingame          bool
-	sounds_showonline              ENotificationSetting
-	has_sounds_showonline          bool
-	sounds_showmessages            ENotificationSetting
-	has_sounds_showmessages        bool
-	notifications_sendmobile       ENotificationSetting
-	has_notifications_sendmobile   bool
+	accountid                  u32
+	nickname                   string
+	notifications_showingame   ENotificationSetting = .k_enotificationsettingnotifyusedefault
+	notifications_showonline   ENotificationSetting = .k_enotificationsettingnotifyusedefault
+	notifications_showmessages ENotificationSetting = .k_enotificationsettingnotifyusedefault
+	sounds_showingame          ENotificationSetting = .k_enotificationsettingnotifyusedefault
+	sounds_showonline          ENotificationSetting = .k_enotificationsettingnotifyusedefault
+	sounds_showmessages        ENotificationSetting = .k_enotificationsettingnotifyusedefault
+	notifications_sendmobile   ENotificationSetting = .k_enotificationsettingnotifyusedefault
 }
 
 pub fn (o &PerFriendPreferences) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_32bit_field(o.accountid, 1)
 	}
-	if o.has_nickname {
+	if o.nickname != '' {
 		res << vproto.pack_string_field(o.nickname, 2)
 	}
-	if o.has_notifications_showingame {
+	if o.notifications_showingame != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.notifications_showingame, 3)
 	}
-	if o.has_notifications_showonline {
+	if o.notifications_showonline != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.notifications_showonline, 4)
 	}
-	if o.has_notifications_showmessages {
+	if o.notifications_showmessages != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.notifications_showmessages, 5)
 	}
-	if o.has_sounds_showingame {
+	if o.sounds_showingame != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.sounds_showingame, 6)
 	}
-	if o.has_sounds_showonline {
+	if o.sounds_showonline != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.sounds_showonline, 7)
 	}
-	if o.has_sounds_showmessages {
+	if o.sounds_showmessages != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.sounds_showmessages, 8)
 	}
-	if o.has_notifications_sendmobile {
+	if o.notifications_sendmobile != zzz_vproto_internal_new_enotificationsetting() {
 		res << zzz_vproto_internal_pack_enotificationsetting(o.notifications_sendmobile, 9)
 	}
 	return res
 }
 
 pub fn perfriendpreferences_unpack(buf []byte) ?PerFriendPreferences {
-	mut res := PerFriendPreferences{}
+	mut res := zzz_vproto_internal_new_perfriendpreferences()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4937,55 +6706,46 @@ pub fn perfriendpreferences_unpack(buf []byte) ?PerFriendPreferences {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_nickname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.nickname = v
 				i = ii
 			}
 			3 {
-				res.has_notifications_showingame = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.notifications_showingame = v
 				i = ii
 			}
 			4 {
-				res.has_notifications_showonline = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.notifications_showonline = v
 				i = ii
 			}
 			5 {
-				res.has_notifications_showmessages = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.notifications_showmessages = v
 				i = ii
 			}
 			6 {
-				res.has_sounds_showingame = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.sounds_showingame = v
 				i = ii
 			}
 			7 {
-				res.has_sounds_showonline = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.sounds_showonline = v
 				i = ii
 			}
 			8 {
-				res.has_sounds_showmessages = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.sounds_showmessages = v
 				i = ii
 			}
 			9 {
-				res.has_notifications_sendmobile = true
 				ii, v := zzz_vproto_internal_unpack_enotificationsetting(cur_buf, tag_wiretype.wire_type)?
 				res.notifications_sendmobile = v
 				i = ii
@@ -5005,17 +6765,55 @@ pub fn perfriendpreferences_unpack(buf []byte) ?PerFriendPreferences {
 	return res
 }
 
+[inline]
+pub fn (a PerFriendPreferences) eq(b PerFriendPreferences) bool {
+	return true && a.accountid == b.accountid &&
+		a.nickname == b.nickname && a.notifications_showingame == b.notifications_showingame &&
+		a.notifications_showonline == b.notifications_showonline &&
+		a.notifications_showmessages == b.notifications_showmessages &&
+		a.sounds_showingame == b.sounds_showingame &&
+		a.sounds_showonline == b.sounds_showonline &&
+		a.sounds_showmessages == b.sounds_showmessages &&
+		a.notifications_sendmobile == b.notifications_sendmobile
+}
+
+[inline]
+pub fn (a PerFriendPreferences) ne(b PerFriendPreferences) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PerFriendPreferences) eq(b []PerFriendPreferences) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PerFriendPreferences) ne(b []PerFriendPreferences) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_perfriendpreferences() PerFriendPreferences {
 	return PerFriendPreferences{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_perfriendpreferences(o PerFriendPreferences, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_perfriendpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, PerFriendPreferences) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := perfriendpreferences_unpack(v)?
@@ -5039,7 +6837,7 @@ pub fn (o &CPlayer_GetPerFriendPreferences_Response) pack() []byte {
 }
 
 pub fn cplayer_getperfriendpreferences_response_unpack(buf []byte) ?CPlayer_GetPerFriendPreferences_Response {
-	mut res := CPlayer_GetPerFriendPreferences_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getperfriendpreferences_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5070,17 +6868,48 @@ pub fn cplayer_getperfriendpreferences_response_unpack(buf []byte) ?CPlayer_GetP
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPerFriendPreferences_Response) eq(b CPlayer_GetPerFriendPreferences_Response) bool {
+	return true && a.preferences.eq(b.preferences)
+}
+
+[inline]
+pub fn (a CPlayer_GetPerFriendPreferences_Response) ne(b CPlayer_GetPerFriendPreferences_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPerFriendPreferences_Response) eq(b []CPlayer_GetPerFriendPreferences_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPerFriendPreferences_Response) ne(b []CPlayer_GetPerFriendPreferences_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getperfriendpreferences_response() CPlayer_GetPerFriendPreferences_Response {
 	return CPlayer_GetPerFriendPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getperfriendpreferences_response(o CPlayer_GetPerFriendPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getperfriendpreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPerFriendPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getperfriendpreferences_response_unpack(v)?
@@ -5089,22 +6918,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getperfriendpreferences_response(buf [
 
 pub struct CPlayer_SetPerFriendPreferences_Request {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	preferences     PerFriendPreferences
-	has_preferences bool
+	preferences    PerFriendPreferences
 }
 
 pub fn (o &CPlayer_SetPerFriendPreferences_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_preferences {
+	if o.preferences.ne(zzz_vproto_internal_new_perfriendpreferences()) {
 		res << zzz_vproto_internal_pack_perfriendpreferences(o.preferences, 1)
 	}
 	return res
 }
 
 pub fn cplayer_setperfriendpreferences_request_unpack(buf []byte) ?CPlayer_SetPerFriendPreferences_Request {
-	mut res := CPlayer_SetPerFriendPreferences_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setperfriendpreferences_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5115,7 +6943,6 @@ pub fn cplayer_setperfriendpreferences_request_unpack(buf []byte) ?CPlayer_SetPe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_preferences = true
 				ii, v := zzz_vproto_internal_unpack_perfriendpreferences(cur_buf, tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
@@ -5135,17 +6962,48 @@ pub fn cplayer_setperfriendpreferences_request_unpack(buf []byte) ?CPlayer_SetPe
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetPerFriendPreferences_Request) eq(b CPlayer_SetPerFriendPreferences_Request) bool {
+	return true && a.preferences.eq(b.preferences)
+}
+
+[inline]
+pub fn (a CPlayer_SetPerFriendPreferences_Request) ne(b CPlayer_SetPerFriendPreferences_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetPerFriendPreferences_Request) eq(b []CPlayer_SetPerFriendPreferences_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetPerFriendPreferences_Request) ne(b []CPlayer_SetPerFriendPreferences_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setperfriendpreferences_request() CPlayer_SetPerFriendPreferences_Request {
 	return CPlayer_SetPerFriendPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setperfriendpreferences_request(o CPlayer_SetPerFriendPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setperfriendpreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetPerFriendPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setperfriendpreferences_request_unpack(v)?
@@ -5163,21 +7021,52 @@ pub fn (o &CPlayer_SetPerFriendPreferences_Response) pack() []byte {
 }
 
 pub fn cplayer_setperfriendpreferences_response_unpack(buf []byte) ?CPlayer_SetPerFriendPreferences_Response {
-	res := CPlayer_SetPerFriendPreferences_Response{}
+	res := zzz_vproto_internal_new_cplayer_setperfriendpreferences_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetPerFriendPreferences_Response) eq(b CPlayer_SetPerFriendPreferences_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetPerFriendPreferences_Response) ne(b CPlayer_SetPerFriendPreferences_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetPerFriendPreferences_Response) eq(b []CPlayer_SetPerFriendPreferences_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetPerFriendPreferences_Response) ne(b []CPlayer_SetPerFriendPreferences_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setperfriendpreferences_response() CPlayer_SetPerFriendPreferences_Response {
 	return CPlayer_SetPerFriendPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setperfriendpreferences_response(o CPlayer_SetPerFriendPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setperfriendpreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetPerFriendPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setperfriendpreferences_response_unpack(v)?
@@ -5189,19 +7078,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CPlayer_AddFriend_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_addfriend_request_unpack(buf []byte) ?CPlayer_AddFriend_Request {
-	mut res := CPlayer_AddFriend_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_addfriend_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5212,7 +7100,6 @@ pub fn cplayer_addfriend_request_unpack(buf []byte) ?CPlayer_AddFriend_Request {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -5232,17 +7119,48 @@ pub fn cplayer_addfriend_request_unpack(buf []byte) ?CPlayer_AddFriend_Request {
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_AddFriend_Request) eq(b CPlayer_AddFriend_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CPlayer_AddFriend_Request) ne(b CPlayer_AddFriend_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_AddFriend_Request) eq(b []CPlayer_AddFriend_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_AddFriend_Request) ne(b []CPlayer_AddFriend_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_addfriend_request() CPlayer_AddFriend_Request {
 	return CPlayer_AddFriend_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_addfriend_request(o CPlayer_AddFriend_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_addfriend_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AddFriend_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_addfriend_request_unpack(v)?
@@ -5251,32 +7169,29 @@ pub fn zzz_vproto_internal_unpack_cplayer_addfriend_request(buf []byte, tag_wire
 
 pub struct CPlayer_AddFriend_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	invite_sent             bool
-	has_invite_sent         bool
-	friend_relationship     u32
-	has_friend_relationship bool
-	result                  int
-	has_result              bool
+	invite_sent         bool
+	friend_relationship u32
+	result              int
 }
 
 pub fn (o &CPlayer_AddFriend_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_invite_sent {
+	if o.invite_sent != bool(0) {
 		res << vproto.pack_bool_field(o.invite_sent, 1)
 	}
-	if o.has_friend_relationship {
+	if o.friend_relationship != u32(0) {
 		res << vproto.pack_uint32_field(o.friend_relationship, 2)
 	}
-	if o.has_result {
+	if o.result != int(0) {
 		res << vproto.pack_int32_field(o.result, 3)
 	}
 	return res
 }
 
 pub fn cplayer_addfriend_response_unpack(buf []byte) ?CPlayer_AddFriend_Response {
-	mut res := CPlayer_AddFriend_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_addfriend_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5287,19 +7202,16 @@ pub fn cplayer_addfriend_response_unpack(buf []byte) ?CPlayer_AddFriend_Response
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_invite_sent = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_sent = v
 				i = ii
 			}
 			2 {
-				res.has_friend_relationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.friend_relationship = v
 				i = ii
 			}
 			3 {
-				res.has_result = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
@@ -5319,17 +7231,50 @@ pub fn cplayer_addfriend_response_unpack(buf []byte) ?CPlayer_AddFriend_Response
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_AddFriend_Response) eq(b CPlayer_AddFriend_Response) bool {
+	return true && a.invite_sent == b.invite_sent &&
+		a.friend_relationship == b.friend_relationship &&
+		a.result == b.result
+}
+
+[inline]
+pub fn (a CPlayer_AddFriend_Response) ne(b CPlayer_AddFriend_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_AddFriend_Response) eq(b []CPlayer_AddFriend_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_AddFriend_Response) ne(b []CPlayer_AddFriend_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_addfriend_response() CPlayer_AddFriend_Response {
 	return CPlayer_AddFriend_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_addfriend_response(o CPlayer_AddFriend_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_addfriend_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_AddFriend_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_addfriend_response_unpack(v)?
@@ -5341,19 +7286,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CPlayer_RemoveFriend_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_removefriend_request_unpack(buf []byte) ?CPlayer_RemoveFriend_Request {
-	mut res := CPlayer_RemoveFriend_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_removefriend_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5364,7 +7308,6 @@ pub fn cplayer_removefriend_request_unpack(buf []byte) ?CPlayer_RemoveFriend_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -5384,17 +7327,48 @@ pub fn cplayer_removefriend_request_unpack(buf []byte) ?CPlayer_RemoveFriend_Req
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_RemoveFriend_Request) eq(b CPlayer_RemoveFriend_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CPlayer_RemoveFriend_Request) ne(b CPlayer_RemoveFriend_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_RemoveFriend_Request) eq(b []CPlayer_RemoveFriend_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_RemoveFriend_Request) ne(b []CPlayer_RemoveFriend_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_removefriend_request() CPlayer_RemoveFriend_Request {
 	return CPlayer_RemoveFriend_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_removefriend_request(o CPlayer_RemoveFriend_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_removefriend_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_RemoveFriend_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_removefriend_request_unpack(v)?
@@ -5403,22 +7377,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_removefriend_request(buf []byte, tag_w
 
 pub struct CPlayer_RemoveFriend_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	friend_relationship     u32
-	has_friend_relationship bool
+	friend_relationship u32
 }
 
 pub fn (o &CPlayer_RemoveFriend_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_friend_relationship {
+	if o.friend_relationship != u32(0) {
 		res << vproto.pack_uint32_field(o.friend_relationship, 1)
 	}
 	return res
 }
 
 pub fn cplayer_removefriend_response_unpack(buf []byte) ?CPlayer_RemoveFriend_Response {
-	mut res := CPlayer_RemoveFriend_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_removefriend_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5429,7 +7402,6 @@ pub fn cplayer_removefriend_response_unpack(buf []byte) ?CPlayer_RemoveFriend_Re
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_friend_relationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.friend_relationship = v
 				i = ii
@@ -5449,17 +7421,48 @@ pub fn cplayer_removefriend_response_unpack(buf []byte) ?CPlayer_RemoveFriend_Re
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_RemoveFriend_Response) eq(b CPlayer_RemoveFriend_Response) bool {
+	return true && a.friend_relationship == b.friend_relationship
+}
+
+[inline]
+pub fn (a CPlayer_RemoveFriend_Response) ne(b CPlayer_RemoveFriend_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_RemoveFriend_Response) eq(b []CPlayer_RemoveFriend_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_RemoveFriend_Response) ne(b []CPlayer_RemoveFriend_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_removefriend_response() CPlayer_RemoveFriend_Response {
 	return CPlayer_RemoveFriend_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_removefriend_response(o CPlayer_RemoveFriend_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_removefriend_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_RemoveFriend_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_removefriend_response_unpack(v)?
@@ -5471,24 +7474,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	unignore       bool
-	has_unignore   bool
 }
 
 pub fn (o &CPlayer_IgnoreFriend_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_unignore {
+	if o.unignore != bool(0) {
 		res << vproto.pack_bool_field(o.unignore, 2)
 	}
 	return res
 }
 
 pub fn cplayer_ignorefriend_request_unpack(buf []byte) ?CPlayer_IgnoreFriend_Request {
-	mut res := CPlayer_IgnoreFriend_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_ignorefriend_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5499,13 +7500,11 @@ pub fn cplayer_ignorefriend_request_unpack(buf []byte) ?CPlayer_IgnoreFriend_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_unignore = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.unignore = v
 				i = ii
@@ -5525,17 +7524,48 @@ pub fn cplayer_ignorefriend_request_unpack(buf []byte) ?CPlayer_IgnoreFriend_Req
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_IgnoreFriend_Request) eq(b CPlayer_IgnoreFriend_Request) bool {
+	return true && a.steamid == b.steamid && a.unignore == b.unignore
+}
+
+[inline]
+pub fn (a CPlayer_IgnoreFriend_Request) ne(b CPlayer_IgnoreFriend_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_IgnoreFriend_Request) eq(b []CPlayer_IgnoreFriend_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_IgnoreFriend_Request) ne(b []CPlayer_IgnoreFriend_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_ignorefriend_request() CPlayer_IgnoreFriend_Request {
 	return CPlayer_IgnoreFriend_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_ignorefriend_request(o CPlayer_IgnoreFriend_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_ignorefriend_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_IgnoreFriend_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_ignorefriend_request_unpack(v)?
@@ -5544,22 +7574,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_ignorefriend_request(buf []byte, tag_w
 
 pub struct CPlayer_IgnoreFriend_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	friend_relationship     u32
-	has_friend_relationship bool
+	friend_relationship u32
 }
 
 pub fn (o &CPlayer_IgnoreFriend_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_friend_relationship {
+	if o.friend_relationship != u32(0) {
 		res << vproto.pack_uint32_field(o.friend_relationship, 1)
 	}
 	return res
 }
 
 pub fn cplayer_ignorefriend_response_unpack(buf []byte) ?CPlayer_IgnoreFriend_Response {
-	mut res := CPlayer_IgnoreFriend_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_ignorefriend_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5570,7 +7599,6 @@ pub fn cplayer_ignorefriend_response_unpack(buf []byte) ?CPlayer_IgnoreFriend_Re
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_friend_relationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.friend_relationship = v
 				i = ii
@@ -5590,17 +7618,48 @@ pub fn cplayer_ignorefriend_response_unpack(buf []byte) ?CPlayer_IgnoreFriend_Re
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_IgnoreFriend_Response) eq(b CPlayer_IgnoreFriend_Response) bool {
+	return true && a.friend_relationship == b.friend_relationship
+}
+
+[inline]
+pub fn (a CPlayer_IgnoreFriend_Response) ne(b CPlayer_IgnoreFriend_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_IgnoreFriend_Response) eq(b []CPlayer_IgnoreFriend_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_IgnoreFriend_Response) ne(b []CPlayer_IgnoreFriend_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_ignorefriend_response() CPlayer_IgnoreFriend_Response {
 	return CPlayer_IgnoreFriend_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_ignorefriend_response(o CPlayer_IgnoreFriend_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_ignorefriend_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_IgnoreFriend_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_ignorefriend_response_unpack(v)?
@@ -5618,21 +7677,52 @@ pub fn (o &CPlayer_GetCommunityPreferences_Request) pack() []byte {
 }
 
 pub fn cplayer_getcommunitypreferences_request_unpack(buf []byte) ?CPlayer_GetCommunityPreferences_Request {
-	res := CPlayer_GetCommunityPreferences_Request{}
+	res := zzz_vproto_internal_new_cplayer_getcommunitypreferences_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetCommunityPreferences_Request) eq(b CPlayer_GetCommunityPreferences_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_GetCommunityPreferences_Request) ne(b CPlayer_GetCommunityPreferences_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetCommunityPreferences_Request) eq(b []CPlayer_GetCommunityPreferences_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetCommunityPreferences_Request) ne(b []CPlayer_GetCommunityPreferences_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getcommunitypreferences_request() CPlayer_GetCommunityPreferences_Request {
 	return CPlayer_GetCommunityPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getcommunitypreferences_request(o CPlayer_GetCommunityPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getcommunitypreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetCommunityPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getcommunitypreferences_request_unpack(v)?
@@ -5641,37 +7731,33 @@ pub fn zzz_vproto_internal_unpack_cplayer_getcommunitypreferences_request(buf []
 
 pub struct CPlayer_CommunityPreferences {
 mut:
-	unknown_fields                  []vproto.UnknownField
+	unknown_fields              []vproto.UnknownField
 pub mut:
-	hide_adult_content_violence     bool
-	has_hide_adult_content_violence bool
-	hide_adult_content_sex          bool
-	has_hide_adult_content_sex      bool
-	parenthesize_nicknames          bool
-	has_parenthesize_nicknames      bool
-	timestamp_updated               u32
-	has_timestamp_updated           bool
+	hide_adult_content_violence bool = true
+	hide_adult_content_sex      bool = true
+	parenthesize_nicknames      bool = false
+	timestamp_updated           u32
 }
 
 pub fn (o &CPlayer_CommunityPreferences) pack() []byte {
 	mut res := []byte{}
-	if o.has_hide_adult_content_violence {
+	if o.hide_adult_content_violence != bool(0) {
 		res << vproto.pack_bool_field(o.hide_adult_content_violence, 1)
 	}
-	if o.has_hide_adult_content_sex {
+	if o.hide_adult_content_sex != bool(0) {
 		res << vproto.pack_bool_field(o.hide_adult_content_sex, 2)
 	}
-	if o.has_parenthesize_nicknames {
+	if o.parenthesize_nicknames != bool(0) {
 		res << vproto.pack_bool_field(o.parenthesize_nicknames, 4)
 	}
-	if o.has_timestamp_updated {
+	if o.timestamp_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp_updated, 3)
 	}
 	return res
 }
 
 pub fn cplayer_communitypreferences_unpack(buf []byte) ?CPlayer_CommunityPreferences {
-	mut res := CPlayer_CommunityPreferences{}
+	mut res := zzz_vproto_internal_new_cplayer_communitypreferences()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5682,25 +7768,21 @@ pub fn cplayer_communitypreferences_unpack(buf []byte) ?CPlayer_CommunityPrefere
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_hide_adult_content_violence = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.hide_adult_content_violence = v
 				i = ii
 			}
 			2 {
-				res.has_hide_adult_content_sex = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.hide_adult_content_sex = v
 				i = ii
 			}
 			4 {
-				res.has_parenthesize_nicknames = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.parenthesize_nicknames = v
 				i = ii
 			}
 			3 {
-				res.has_timestamp_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp_updated = v
 				i = ii
@@ -5720,17 +7802,51 @@ pub fn cplayer_communitypreferences_unpack(buf []byte) ?CPlayer_CommunityPrefere
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_CommunityPreferences) eq(b CPlayer_CommunityPreferences) bool {
+	return true && a.hide_adult_content_violence == b.hide_adult_content_violence &&
+		a.hide_adult_content_sex == b.hide_adult_content_sex &&
+		a.parenthesize_nicknames == b.parenthesize_nicknames &&
+		a.timestamp_updated == b.timestamp_updated
+}
+
+[inline]
+pub fn (a CPlayer_CommunityPreferences) ne(b CPlayer_CommunityPreferences) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_CommunityPreferences) eq(b []CPlayer_CommunityPreferences) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_CommunityPreferences) ne(b []CPlayer_CommunityPreferences) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_communitypreferences() CPlayer_CommunityPreferences {
 	return CPlayer_CommunityPreferences{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_communitypreferences(o CPlayer_CommunityPreferences, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_communitypreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_CommunityPreferences) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_communitypreferences_unpack(v)?
@@ -5739,22 +7855,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_communitypreferences(buf []byte, tag_w
 
 pub struct CPlayer_GetCommunityPreferences_Response {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	preferences     CPlayer_CommunityPreferences
-	has_preferences bool
+	preferences    CPlayer_CommunityPreferences
 }
 
 pub fn (o &CPlayer_GetCommunityPreferences_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_preferences {
+	if o.preferences.ne(zzz_vproto_internal_new_cplayer_communitypreferences()) {
 		res << zzz_vproto_internal_pack_cplayer_communitypreferences(o.preferences, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getcommunitypreferences_response_unpack(buf []byte) ?CPlayer_GetCommunityPreferences_Response {
-	mut res := CPlayer_GetCommunityPreferences_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getcommunitypreferences_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5765,7 +7880,6 @@ pub fn cplayer_getcommunitypreferences_response_unpack(buf []byte) ?CPlayer_GetC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_preferences = true
 				ii, v := zzz_vproto_internal_unpack_cplayer_communitypreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.preferences = v
@@ -5786,17 +7900,48 @@ pub fn cplayer_getcommunitypreferences_response_unpack(buf []byte) ?CPlayer_GetC
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetCommunityPreferences_Response) eq(b CPlayer_GetCommunityPreferences_Response) bool {
+	return true && a.preferences.eq(b.preferences)
+}
+
+[inline]
+pub fn (a CPlayer_GetCommunityPreferences_Response) ne(b CPlayer_GetCommunityPreferences_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetCommunityPreferences_Response) eq(b []CPlayer_GetCommunityPreferences_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetCommunityPreferences_Response) ne(b []CPlayer_GetCommunityPreferences_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getcommunitypreferences_response() CPlayer_GetCommunityPreferences_Response {
 	return CPlayer_GetCommunityPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getcommunitypreferences_response(o CPlayer_GetCommunityPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getcommunitypreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetCommunityPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getcommunitypreferences_response_unpack(v)?
@@ -5805,22 +7950,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_getcommunitypreferences_response(buf [
 
 pub struct CPlayer_SetCommunityPreferences_Request {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	preferences     CPlayer_CommunityPreferences
-	has_preferences bool
+	preferences    CPlayer_CommunityPreferences
 }
 
 pub fn (o &CPlayer_SetCommunityPreferences_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_preferences {
+	if o.preferences.ne(zzz_vproto_internal_new_cplayer_communitypreferences()) {
 		res << zzz_vproto_internal_pack_cplayer_communitypreferences(o.preferences, 1)
 	}
 	return res
 }
 
 pub fn cplayer_setcommunitypreferences_request_unpack(buf []byte) ?CPlayer_SetCommunityPreferences_Request {
-	mut res := CPlayer_SetCommunityPreferences_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_setcommunitypreferences_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5831,7 +7975,6 @@ pub fn cplayer_setcommunitypreferences_request_unpack(buf []byte) ?CPlayer_SetCo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_preferences = true
 				ii, v := zzz_vproto_internal_unpack_cplayer_communitypreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.preferences = v
@@ -5852,17 +7995,48 @@ pub fn cplayer_setcommunitypreferences_request_unpack(buf []byte) ?CPlayer_SetCo
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetCommunityPreferences_Request) eq(b CPlayer_SetCommunityPreferences_Request) bool {
+	return true && a.preferences.eq(b.preferences)
+}
+
+[inline]
+pub fn (a CPlayer_SetCommunityPreferences_Request) ne(b CPlayer_SetCommunityPreferences_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetCommunityPreferences_Request) eq(b []CPlayer_SetCommunityPreferences_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetCommunityPreferences_Request) ne(b []CPlayer_SetCommunityPreferences_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setcommunitypreferences_request() CPlayer_SetCommunityPreferences_Request {
 	return CPlayer_SetCommunityPreferences_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setcommunitypreferences_request(o CPlayer_SetCommunityPreferences_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setcommunitypreferences_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetCommunityPreferences_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setcommunitypreferences_request_unpack(v)?
@@ -5880,21 +8054,52 @@ pub fn (o &CPlayer_SetCommunityPreferences_Response) pack() []byte {
 }
 
 pub fn cplayer_setcommunitypreferences_response_unpack(buf []byte) ?CPlayer_SetCommunityPreferences_Response {
-	res := CPlayer_SetCommunityPreferences_Response{}
+	res := zzz_vproto_internal_new_cplayer_setcommunitypreferences_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_SetCommunityPreferences_Response) eq(b CPlayer_SetCommunityPreferences_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_SetCommunityPreferences_Response) ne(b CPlayer_SetCommunityPreferences_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_SetCommunityPreferences_Response) eq(b []CPlayer_SetCommunityPreferences_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_SetCommunityPreferences_Response) ne(b []CPlayer_SetCommunityPreferences_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_setcommunitypreferences_response() CPlayer_SetCommunityPreferences_Response {
 	return CPlayer_SetCommunityPreferences_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_setcommunitypreferences_response(o CPlayer_SetCommunityPreferences_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_setcommunitypreferences_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_SetCommunityPreferences_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_setcommunitypreferences_response_unpack(v)?
@@ -5906,19 +8111,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	language       int
-	has_language   bool
 }
 
 pub fn (o &CPlayer_GetNewSteamAnnouncementState_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getnewsteamannouncementstate_request_unpack(buf []byte) ?CPlayer_GetNewSteamAnnouncementState_Request {
-	mut res := CPlayer_GetNewSteamAnnouncementState_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getnewsteamannouncementstate_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5929,7 +8133,6 @@ pub fn cplayer_getnewsteamannouncementstate_request_unpack(buf []byte) ?CPlayer_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -5949,17 +8152,48 @@ pub fn cplayer_getnewsteamannouncementstate_request_unpack(buf []byte) ?CPlayer_
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetNewSteamAnnouncementState_Request) eq(b CPlayer_GetNewSteamAnnouncementState_Request) bool {
+	return true && a.language == b.language
+}
+
+[inline]
+pub fn (a CPlayer_GetNewSteamAnnouncementState_Request) ne(b CPlayer_GetNewSteamAnnouncementState_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetNewSteamAnnouncementState_Request) eq(b []CPlayer_GetNewSteamAnnouncementState_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetNewSteamAnnouncementState_Request) ne(b []CPlayer_GetNewSteamAnnouncementState_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getnewsteamannouncementstate_request() CPlayer_GetNewSteamAnnouncementState_Request {
 	return CPlayer_GetNewSteamAnnouncementState_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getnewsteamannouncementstate_request(o CPlayer_GetNewSteamAnnouncementState_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getnewsteamannouncementstate_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNewSteamAnnouncementState_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getnewsteamannouncementstate_request_unpack(v)?
@@ -5968,42 +8202,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_getnewsteamannouncementstate_request(b
 
 pub struct CPlayer_GetNewSteamAnnouncementState_Response {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	state                     int
-	has_state                 bool
-	announcement_headline     string
-	has_announcement_headline bool
-	announcement_url          string
-	has_announcement_url      bool
-	time_posted               u32
-	has_time_posted           bool
-	announcement_gid          u64
-	has_announcement_gid      bool
+	state                 int
+	announcement_headline string
+	announcement_url      string
+	time_posted           u32
+	announcement_gid      u64
 }
 
 pub fn (o &CPlayer_GetNewSteamAnnouncementState_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_state {
+	if o.state != int(0) {
 		res << vproto.pack_int32_field(o.state, 1)
 	}
-	if o.has_announcement_headline {
+	if o.announcement_headline != '' {
 		res << vproto.pack_string_field(o.announcement_headline, 2)
 	}
-	if o.has_announcement_url {
+	if o.announcement_url != '' {
 		res << vproto.pack_string_field(o.announcement_url, 3)
 	}
-	if o.has_time_posted {
+	if o.time_posted != u32(0) {
 		res << vproto.pack_uint32_field(o.time_posted, 4)
 	}
-	if o.has_announcement_gid {
+	if o.announcement_gid != u64(0) {
 		res << vproto.pack_uint64_field(o.announcement_gid, 5)
 	}
 	return res
 }
 
 pub fn cplayer_getnewsteamannouncementstate_response_unpack(buf []byte) ?CPlayer_GetNewSteamAnnouncementState_Response {
-	mut res := CPlayer_GetNewSteamAnnouncementState_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getnewsteamannouncementstate_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6014,31 +8243,26 @@ pub fn cplayer_getnewsteamannouncementstate_response_unpack(buf []byte) ?CPlayer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_state = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.state = v
 				i = ii
 			}
 			2 {
-				res.has_announcement_headline = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_headline = v
 				i = ii
 			}
 			3 {
-				res.has_announcement_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_url = v
 				i = ii
 			}
 			4 {
-				res.has_time_posted = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_posted = v
 				i = ii
 			}
 			5 {
-				res.has_announcement_gid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_gid = v
 				i = ii
@@ -6058,17 +8282,51 @@ pub fn cplayer_getnewsteamannouncementstate_response_unpack(buf []byte) ?CPlayer
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetNewSteamAnnouncementState_Response) eq(b CPlayer_GetNewSteamAnnouncementState_Response) bool {
+	return true && a.state == b.state &&
+		a.announcement_headline == b.announcement_headline &&
+		a.announcement_url == b.announcement_url &&
+		a.time_posted == b.time_posted && a.announcement_gid == b.announcement_gid
+}
+
+[inline]
+pub fn (a CPlayer_GetNewSteamAnnouncementState_Response) ne(b CPlayer_GetNewSteamAnnouncementState_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetNewSteamAnnouncementState_Response) eq(b []CPlayer_GetNewSteamAnnouncementState_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetNewSteamAnnouncementState_Response) ne(b []CPlayer_GetNewSteamAnnouncementState_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getnewsteamannouncementstate_response() CPlayer_GetNewSteamAnnouncementState_Response {
 	return CPlayer_GetNewSteamAnnouncementState_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getnewsteamannouncementstate_response(o CPlayer_GetNewSteamAnnouncementState_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getnewsteamannouncementstate_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetNewSteamAnnouncementState_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getnewsteamannouncementstate_response_unpack(v)?
@@ -6077,27 +8335,25 @@ pub fn zzz_vproto_internal_unpack_cplayer_getnewsteamannouncementstate_response(
 
 pub struct CPlayer_UpdateSteamAnnouncementLastRead_Request {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	announcement_gid     u64
-	has_announcement_gid bool
-	time_posted          u32
-	has_time_posted      bool
+	announcement_gid u64
+	time_posted      u32
 }
 
 pub fn (o &CPlayer_UpdateSteamAnnouncementLastRead_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_announcement_gid {
+	if o.announcement_gid != u64(0) {
 		res << vproto.pack_uint64_field(o.announcement_gid, 1)
 	}
-	if o.has_time_posted {
+	if o.time_posted != u32(0) {
 		res << vproto.pack_uint32_field(o.time_posted, 2)
 	}
 	return res
 }
 
 pub fn cplayer_updatesteamannouncementlastread_request_unpack(buf []byte) ?CPlayer_UpdateSteamAnnouncementLastRead_Request {
-	mut res := CPlayer_UpdateSteamAnnouncementLastRead_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_updatesteamannouncementlastread_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6108,13 +8364,11 @@ pub fn cplayer_updatesteamannouncementlastread_request_unpack(buf []byte) ?CPlay
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_announcement_gid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_gid = v
 				i = ii
 			}
 			2 {
-				res.has_time_posted = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_posted = v
 				i = ii
@@ -6134,17 +8388,48 @@ pub fn cplayer_updatesteamannouncementlastread_request_unpack(buf []byte) ?CPlay
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_UpdateSteamAnnouncementLastRead_Request) eq(b CPlayer_UpdateSteamAnnouncementLastRead_Request) bool {
+	return true && a.announcement_gid == b.announcement_gid && a.time_posted == b.time_posted
+}
+
+[inline]
+pub fn (a CPlayer_UpdateSteamAnnouncementLastRead_Request) ne(b CPlayer_UpdateSteamAnnouncementLastRead_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_UpdateSteamAnnouncementLastRead_Request) eq(b []CPlayer_UpdateSteamAnnouncementLastRead_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_UpdateSteamAnnouncementLastRead_Request) ne(b []CPlayer_UpdateSteamAnnouncementLastRead_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_updatesteamannouncementlastread_request() CPlayer_UpdateSteamAnnouncementLastRead_Request {
 	return CPlayer_UpdateSteamAnnouncementLastRead_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_updatesteamannouncementlastread_request(o CPlayer_UpdateSteamAnnouncementLastRead_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_updatesteamannouncementlastread_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_UpdateSteamAnnouncementLastRead_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_updatesteamannouncementlastread_request_unpack(v)?
@@ -6162,21 +8447,52 @@ pub fn (o &CPlayer_UpdateSteamAnnouncementLastRead_Response) pack() []byte {
 }
 
 pub fn cplayer_updatesteamannouncementlastread_response_unpack(buf []byte) ?CPlayer_UpdateSteamAnnouncementLastRead_Response {
-	res := CPlayer_UpdateSteamAnnouncementLastRead_Response{}
+	res := zzz_vproto_internal_new_cplayer_updatesteamannouncementlastread_response()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_UpdateSteamAnnouncementLastRead_Response) eq(b CPlayer_UpdateSteamAnnouncementLastRead_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_UpdateSteamAnnouncementLastRead_Response) ne(b CPlayer_UpdateSteamAnnouncementLastRead_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_UpdateSteamAnnouncementLastRead_Response) eq(b []CPlayer_UpdateSteamAnnouncementLastRead_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_UpdateSteamAnnouncementLastRead_Response) ne(b []CPlayer_UpdateSteamAnnouncementLastRead_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_updatesteamannouncementlastread_response() CPlayer_UpdateSteamAnnouncementLastRead_Response {
 	return CPlayer_UpdateSteamAnnouncementLastRead_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_updatesteamannouncementlastread_response(o CPlayer_UpdateSteamAnnouncementLastRead_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_updatesteamannouncementlastread_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_UpdateSteamAnnouncementLastRead_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_updatesteamannouncementlastread_response_unpack(v)?
@@ -6194,21 +8510,52 @@ pub fn (o &CPlayer_GetPrivacySettings_Request) pack() []byte {
 }
 
 pub fn cplayer_getprivacysettings_request_unpack(buf []byte) ?CPlayer_GetPrivacySettings_Request {
-	res := CPlayer_GetPrivacySettings_Request{}
+	res := zzz_vproto_internal_new_cplayer_getprivacysettings_request()
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPrivacySettings_Request) eq(b CPlayer_GetPrivacySettings_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPlayer_GetPrivacySettings_Request) ne(b CPlayer_GetPrivacySettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPrivacySettings_Request) eq(b []CPlayer_GetPrivacySettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPrivacySettings_Request) ne(b []CPlayer_GetPrivacySettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprivacysettings_request() CPlayer_GetPrivacySettings_Request {
 	return CPlayer_GetPrivacySettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprivacysettings_request(o CPlayer_GetPrivacySettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprivacysettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPrivacySettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprivacysettings_request_unpack(v)?
@@ -6217,47 +8564,41 @@ pub fn zzz_vproto_internal_unpack_cplayer_getprivacysettings_request(buf []byte,
 
 pub struct CPrivacySettings {
 mut:
-	unknown_fields                []vproto.UnknownField
+	unknown_fields            []vproto.UnknownField
 pub mut:
-	privacy_state                 int
-	has_privacy_state             bool
-	privacy_state_inventory       int
-	has_privacy_state_inventory   bool
-	privacy_state_gifts           int
-	has_privacy_state_gifts       bool
-	privacy_state_ownedgames      int
-	has_privacy_state_ownedgames  bool
-	privacy_state_playtime        int
-	has_privacy_state_playtime    bool
-	privacy_state_friendslist     int
-	has_privacy_state_friendslist bool
+	privacy_state             int
+	privacy_state_inventory   int
+	privacy_state_gifts       int
+	privacy_state_ownedgames  int
+	privacy_state_playtime    int
+	privacy_state_friendslist int
 }
 
 pub fn (o &CPrivacySettings) pack() []byte {
 	mut res := []byte{}
-	if o.has_privacy_state {
+	if o.privacy_state != int(0) {
 		res << vproto.pack_int32_field(o.privacy_state, 1)
 	}
-	if o.has_privacy_state_inventory {
+	if o.privacy_state_inventory != int(0) {
 		res << vproto.pack_int32_field(o.privacy_state_inventory, 2)
 	}
-	if o.has_privacy_state_gifts {
+	if o.privacy_state_gifts != int(0) {
 		res << vproto.pack_int32_field(o.privacy_state_gifts, 3)
 	}
-	if o.has_privacy_state_ownedgames {
+	if o.privacy_state_ownedgames != int(0) {
 		res << vproto.pack_int32_field(o.privacy_state_ownedgames, 4)
 	}
-	if o.has_privacy_state_playtime {
+	if o.privacy_state_playtime != int(0) {
 		res << vproto.pack_int32_field(o.privacy_state_playtime, 5)
 	}
-	if o.has_privacy_state_friendslist {
+	if o.privacy_state_friendslist != int(0) {
 		res << vproto.pack_int32_field(o.privacy_state_friendslist, 6)
 	}
 	return res
 }
 
 pub fn cprivacysettings_unpack(buf []byte) ?CPrivacySettings {
-	mut res := CPrivacySettings{}
+	mut res := zzz_vproto_internal_new_cprivacysettings()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6268,37 +8609,31 @@ pub fn cprivacysettings_unpack(buf []byte) ?CPrivacySettings {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_privacy_state = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_state = v
 				i = ii
 			}
 			2 {
-				res.has_privacy_state_inventory = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_state_inventory = v
 				i = ii
 			}
 			3 {
-				res.has_privacy_state_gifts = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_state_gifts = v
 				i = ii
 			}
 			4 {
-				res.has_privacy_state_ownedgames = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_state_ownedgames = v
 				i = ii
 			}
 			5 {
-				res.has_privacy_state_playtime = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_state_playtime = v
 				i = ii
 			}
 			6 {
-				res.has_privacy_state_friendslist = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_state_friendslist = v
 				i = ii
@@ -6318,17 +8653,53 @@ pub fn cprivacysettings_unpack(buf []byte) ?CPrivacySettings {
 	return res
 }
 
+[inline]
+pub fn (a CPrivacySettings) eq(b CPrivacySettings) bool {
+	return true && a.privacy_state == b.privacy_state &&
+		a.privacy_state_inventory == b.privacy_state_inventory &&
+		a.privacy_state_gifts == b.privacy_state_gifts &&
+		a.privacy_state_ownedgames == b.privacy_state_ownedgames &&
+		a.privacy_state_playtime == b.privacy_state_playtime &&
+		a.privacy_state_friendslist == b.privacy_state_friendslist
+}
+
+[inline]
+pub fn (a CPrivacySettings) ne(b CPrivacySettings) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPrivacySettings) eq(b []CPrivacySettings) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPrivacySettings) ne(b []CPrivacySettings) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cprivacysettings() CPrivacySettings {
 	return CPrivacySettings{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cprivacysettings(o CPrivacySettings, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cprivacysettings(buf []byte, tag_wiretype vproto.WireType) ?(int, CPrivacySettings) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cprivacysettings_unpack(v)?
@@ -6337,22 +8708,21 @@ pub fn zzz_vproto_internal_unpack_cprivacysettings(buf []byte, tag_wiretype vpro
 
 pub struct CPlayer_GetPrivacySettings_Response {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	privacy_settings     CPrivacySettings
-	has_privacy_settings bool
+	privacy_settings CPrivacySettings
 }
 
 pub fn (o &CPlayer_GetPrivacySettings_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_privacy_settings {
+	if o.privacy_settings.ne(zzz_vproto_internal_new_cprivacysettings()) {
 		res << zzz_vproto_internal_pack_cprivacysettings(o.privacy_settings, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getprivacysettings_response_unpack(buf []byte) ?CPlayer_GetPrivacySettings_Response {
-	mut res := CPlayer_GetPrivacySettings_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getprivacysettings_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6363,7 +8733,6 @@ pub fn cplayer_getprivacysettings_response_unpack(buf []byte) ?CPlayer_GetPrivac
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_privacy_settings = true
 				ii, v := zzz_vproto_internal_unpack_cprivacysettings(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_settings = v
 				i = ii
@@ -6383,17 +8752,48 @@ pub fn cplayer_getprivacysettings_response_unpack(buf []byte) ?CPlayer_GetPrivac
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetPrivacySettings_Response) eq(b CPlayer_GetPrivacySettings_Response) bool {
+	return true && a.privacy_settings.eq(b.privacy_settings)
+}
+
+[inline]
+pub fn (a CPlayer_GetPrivacySettings_Response) ne(b CPlayer_GetPrivacySettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetPrivacySettings_Response) eq(b []CPlayer_GetPrivacySettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetPrivacySettings_Response) ne(b []CPlayer_GetPrivacySettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getprivacysettings_response() CPlayer_GetPrivacySettings_Response {
 	return CPlayer_GetPrivacySettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getprivacysettings_response(o CPlayer_GetPrivacySettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getprivacysettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetPrivacySettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getprivacysettings_response_unpack(v)?
@@ -6405,19 +8805,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CPlayer_GetDurationControl_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_getdurationcontrol_request_unpack(buf []byte) ?CPlayer_GetDurationControl_Request {
-	mut res := CPlayer_GetDurationControl_Request{}
+	mut res := zzz_vproto_internal_new_cplayer_getdurationcontrol_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6428,7 +8827,6 @@ pub fn cplayer_getdurationcontrol_request_unpack(buf []byte) ?CPlayer_GetDuratio
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -6448,17 +8846,48 @@ pub fn cplayer_getdurationcontrol_request_unpack(buf []byte) ?CPlayer_GetDuratio
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetDurationControl_Request) eq(b CPlayer_GetDurationControl_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CPlayer_GetDurationControl_Request) ne(b CPlayer_GetDurationControl_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetDurationControl_Request) eq(b []CPlayer_GetDurationControl_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetDurationControl_Request) ne(b []CPlayer_GetDurationControl_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getdurationcontrol_request() CPlayer_GetDurationControl_Request {
 	return CPlayer_GetDurationControl_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getdurationcontrol_request(o CPlayer_GetDurationControl_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getdurationcontrol_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetDurationControl_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getdurationcontrol_request_unpack(v)?
@@ -6467,47 +8896,41 @@ pub fn zzz_vproto_internal_unpack_cplayer_getdurationcontrol_request(buf []byte,
 
 pub struct CPlayer_GetDurationControl_Response {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	is_enabled                bool
-	has_is_enabled            bool
-	seconds                   int
-	has_seconds               bool
-	seconds_today             int
-	has_seconds_today         bool
-	is_steamchina_account     bool
-	has_is_steamchina_account bool
-	is_age_verified           bool
-	has_is_age_verified       bool
-	seconds_allowed_today     u32
-	has_seconds_allowed_today bool
+	is_enabled            bool
+	seconds               int
+	seconds_today         int
+	is_steamchina_account bool
+	is_age_verified       bool
+	seconds_allowed_today u32
 }
 
 pub fn (o &CPlayer_GetDurationControl_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_is_enabled {
+	if o.is_enabled != bool(0) {
 		res << vproto.pack_bool_field(o.is_enabled, 1)
 	}
-	if o.has_seconds {
+	if o.seconds != int(0) {
 		res << vproto.pack_int32_field(o.seconds, 2)
 	}
-	if o.has_seconds_today {
+	if o.seconds_today != int(0) {
 		res << vproto.pack_int32_field(o.seconds_today, 3)
 	}
-	if o.has_is_steamchina_account {
+	if o.is_steamchina_account != bool(0) {
 		res << vproto.pack_bool_field(o.is_steamchina_account, 4)
 	}
-	if o.has_is_age_verified {
+	if o.is_age_verified != bool(0) {
 		res << vproto.pack_bool_field(o.is_age_verified, 5)
 	}
-	if o.has_seconds_allowed_today {
+	if o.seconds_allowed_today != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_allowed_today, 6)
 	}
 	return res
 }
 
 pub fn cplayer_getdurationcontrol_response_unpack(buf []byte) ?CPlayer_GetDurationControl_Response {
-	mut res := CPlayer_GetDurationControl_Response{}
+	mut res := zzz_vproto_internal_new_cplayer_getdurationcontrol_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6518,37 +8941,31 @@ pub fn cplayer_getdurationcontrol_response_unpack(buf []byte) ?CPlayer_GetDurati
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_is_enabled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_enabled = v
 				i = ii
 			}
 			2 {
-				res.has_seconds = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds = v
 				i = ii
 			}
 			3 {
-				res.has_seconds_today = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_today = v
 				i = ii
 			}
 			4 {
-				res.has_is_steamchina_account = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_steamchina_account = v
 				i = ii
 			}
 			5 {
-				res.has_is_age_verified = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_age_verified = v
 				i = ii
 			}
 			6 {
-				res.has_seconds_allowed_today = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_allowed_today = v
 				i = ii
@@ -6568,17 +8985,52 @@ pub fn cplayer_getdurationcontrol_response_unpack(buf []byte) ?CPlayer_GetDurati
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_GetDurationControl_Response) eq(b CPlayer_GetDurationControl_Response) bool {
+	return true && a.is_enabled == b.is_enabled &&
+		a.seconds == b.seconds && a.seconds_today == b.seconds_today &&
+		a.is_steamchina_account == b.is_steamchina_account &&
+		a.is_age_verified == b.is_age_verified &&
+		a.seconds_allowed_today == b.seconds_allowed_today
+}
+
+[inline]
+pub fn (a CPlayer_GetDurationControl_Response) ne(b CPlayer_GetDurationControl_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_GetDurationControl_Response) eq(b []CPlayer_GetDurationControl_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_GetDurationControl_Response) ne(b []CPlayer_GetDurationControl_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_getdurationcontrol_response() CPlayer_GetDurationControl_Response {
 	return CPlayer_GetDurationControl_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_getdurationcontrol_response(o CPlayer_GetDurationControl_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_getdurationcontrol_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_GetDurationControl_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_getdurationcontrol_response_unpack(v)?
@@ -6602,7 +9054,7 @@ pub fn (o &CPlayer_LastPlayedTimes_Notification) pack() []byte {
 }
 
 pub fn cplayer_lastplayedtimes_notification_unpack(buf []byte) ?CPlayer_LastPlayedTimes_Notification {
-	mut res := CPlayer_LastPlayedTimes_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_lastplayedtimes_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6634,17 +9086,48 @@ pub fn cplayer_lastplayedtimes_notification_unpack(buf []byte) ?CPlayer_LastPlay
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_LastPlayedTimes_Notification) eq(b CPlayer_LastPlayedTimes_Notification) bool {
+	return true && a.games.eq(b.games)
+}
+
+[inline]
+pub fn (a CPlayer_LastPlayedTimes_Notification) ne(b CPlayer_LastPlayedTimes_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_LastPlayedTimes_Notification) eq(b []CPlayer_LastPlayedTimes_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_LastPlayedTimes_Notification) ne(b []CPlayer_LastPlayedTimes_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_lastplayedtimes_notification() CPlayer_LastPlayedTimes_Notification {
 	return CPlayer_LastPlayedTimes_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_lastplayedtimes_notification(o CPlayer_LastPlayedTimes_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_lastplayedtimes_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_LastPlayedTimes_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_lastplayedtimes_notification_unpack(v)?
@@ -6653,32 +9136,29 @@ pub fn zzz_vproto_internal_unpack_cplayer_lastplayedtimes_notification(buf []byt
 
 pub struct CPlayer_FriendNicknameChanged_Notification {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	accountid           u32
-	has_accountid       bool
-	nickname            string
-	has_nickname        bool
-	is_echo_to_self     bool
-	has_is_echo_to_self bool
+	accountid       u32
+	nickname        string
+	is_echo_to_self bool
 }
 
 pub fn (o &CPlayer_FriendNicknameChanged_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_32bit_field(o.accountid, 1)
 	}
-	if o.has_nickname {
+	if o.nickname != '' {
 		res << vproto.pack_string_field(o.nickname, 2)
 	}
-	if o.has_is_echo_to_self {
+	if o.is_echo_to_self != bool(0) {
 		res << vproto.pack_bool_field(o.is_echo_to_self, 3)
 	}
 	return res
 }
 
 pub fn cplayer_friendnicknamechanged_notification_unpack(buf []byte) ?CPlayer_FriendNicknameChanged_Notification {
-	mut res := CPlayer_FriendNicknameChanged_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_friendnicknamechanged_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6689,19 +9169,16 @@ pub fn cplayer_friendnicknamechanged_notification_unpack(buf []byte) ?CPlayer_Fr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_nickname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.nickname = v
 				i = ii
 			}
 			3 {
-				res.has_is_echo_to_self = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_echo_to_self = v
 				i = ii
@@ -6721,17 +9198,49 @@ pub fn cplayer_friendnicknamechanged_notification_unpack(buf []byte) ?CPlayer_Fr
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_FriendNicknameChanged_Notification) eq(b CPlayer_FriendNicknameChanged_Notification) bool {
+	return true && a.accountid == b.accountid &&
+		a.nickname == b.nickname && a.is_echo_to_self == b.is_echo_to_self
+}
+
+[inline]
+pub fn (a CPlayer_FriendNicknameChanged_Notification) ne(b CPlayer_FriendNicknameChanged_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_FriendNicknameChanged_Notification) eq(b []CPlayer_FriendNicknameChanged_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_FriendNicknameChanged_Notification) ne(b []CPlayer_FriendNicknameChanged_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_friendnicknamechanged_notification() CPlayer_FriendNicknameChanged_Notification {
 	return CPlayer_FriendNicknameChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_friendnicknamechanged_notification(o CPlayer_FriendNicknameChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_friendnicknamechanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_FriendNicknameChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_friendnicknamechanged_notification_unpack(v)?
@@ -6743,19 +9252,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	accountid      u32
-	has_accountid  bool
 }
 
 pub fn (o &CPlayer_FriendEquippedProfileItemsChanged_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_32bit_field(o.accountid, 1)
 	}
 	return res
 }
 
 pub fn cplayer_friendequippedprofileitemschanged_notification_unpack(buf []byte) ?CPlayer_FriendEquippedProfileItemsChanged_Notification {
-	mut res := CPlayer_FriendEquippedProfileItemsChanged_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_friendequippedprofileitemschanged_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6766,7 +9274,6 @@ pub fn cplayer_friendequippedprofileitemschanged_notification_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
@@ -6786,17 +9293,48 @@ pub fn cplayer_friendequippedprofileitemschanged_notification_unpack(buf []byte)
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_FriendEquippedProfileItemsChanged_Notification) eq(b CPlayer_FriendEquippedProfileItemsChanged_Notification) bool {
+	return true && a.accountid == b.accountid
+}
+
+[inline]
+pub fn (a CPlayer_FriendEquippedProfileItemsChanged_Notification) ne(b CPlayer_FriendEquippedProfileItemsChanged_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_FriendEquippedProfileItemsChanged_Notification) eq(b []CPlayer_FriendEquippedProfileItemsChanged_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_FriendEquippedProfileItemsChanged_Notification) ne(b []CPlayer_FriendEquippedProfileItemsChanged_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_friendequippedprofileitemschanged_notification() CPlayer_FriendEquippedProfileItemsChanged_Notification {
 	return CPlayer_FriendEquippedProfileItemsChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_friendequippedprofileitemschanged_notification(o CPlayer_FriendEquippedProfileItemsChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_friendequippedprofileitemschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_FriendEquippedProfileItemsChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_friendequippedprofileitemschanged_notification_unpack(v)?
@@ -6805,42 +9343,37 @@ pub fn zzz_vproto_internal_unpack_cplayer_friendequippedprofileitemschanged_noti
 
 pub struct CPlayer_NewSteamAnnouncementState_Notification {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	state                     int
-	has_state                 bool
-	announcement_headline     string
-	has_announcement_headline bool
-	announcement_url          string
-	has_announcement_url      bool
-	time_posted               u32
-	has_time_posted           bool
-	announcement_gid          u64
-	has_announcement_gid      bool
+	state                 int
+	announcement_headline string
+	announcement_url      string
+	time_posted           u32
+	announcement_gid      u64
 }
 
 pub fn (o &CPlayer_NewSteamAnnouncementState_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_state {
+	if o.state != int(0) {
 		res << vproto.pack_int32_field(o.state, 1)
 	}
-	if o.has_announcement_headline {
+	if o.announcement_headline != '' {
 		res << vproto.pack_string_field(o.announcement_headline, 2)
 	}
-	if o.has_announcement_url {
+	if o.announcement_url != '' {
 		res << vproto.pack_string_field(o.announcement_url, 3)
 	}
-	if o.has_time_posted {
+	if o.time_posted != u32(0) {
 		res << vproto.pack_uint32_field(o.time_posted, 4)
 	}
-	if o.has_announcement_gid {
+	if o.announcement_gid != u64(0) {
 		res << vproto.pack_uint64_field(o.announcement_gid, 5)
 	}
 	return res
 }
 
 pub fn cplayer_newsteamannouncementstate_notification_unpack(buf []byte) ?CPlayer_NewSteamAnnouncementState_Notification {
-	mut res := CPlayer_NewSteamAnnouncementState_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_newsteamannouncementstate_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6851,31 +9384,26 @@ pub fn cplayer_newsteamannouncementstate_notification_unpack(buf []byte) ?CPlaye
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_state = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.state = v
 				i = ii
 			}
 			2 {
-				res.has_announcement_headline = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_headline = v
 				i = ii
 			}
 			3 {
-				res.has_announcement_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_url = v
 				i = ii
 			}
 			4 {
-				res.has_time_posted = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_posted = v
 				i = ii
 			}
 			5 {
-				res.has_announcement_gid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.announcement_gid = v
 				i = ii
@@ -6895,17 +9423,51 @@ pub fn cplayer_newsteamannouncementstate_notification_unpack(buf []byte) ?CPlaye
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_NewSteamAnnouncementState_Notification) eq(b CPlayer_NewSteamAnnouncementState_Notification) bool {
+	return true && a.state == b.state &&
+		a.announcement_headline == b.announcement_headline &&
+		a.announcement_url == b.announcement_url &&
+		a.time_posted == b.time_posted && a.announcement_gid == b.announcement_gid
+}
+
+[inline]
+pub fn (a CPlayer_NewSteamAnnouncementState_Notification) ne(b CPlayer_NewSteamAnnouncementState_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_NewSteamAnnouncementState_Notification) eq(b []CPlayer_NewSteamAnnouncementState_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_NewSteamAnnouncementState_Notification) ne(b []CPlayer_NewSteamAnnouncementState_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_newsteamannouncementstate_notification() CPlayer_NewSteamAnnouncementState_Notification {
 	return CPlayer_NewSteamAnnouncementState_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_newsteamannouncementstate_notification(o CPlayer_NewSteamAnnouncementState_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_newsteamannouncementstate_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_NewSteamAnnouncementState_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_newsteamannouncementstate_notification_unpack(v)?
@@ -6914,22 +9476,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_newsteamannouncementstate_notification
 
 pub struct CPlayer_CommunityPreferencesChanged_Notification {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	preferences     CPlayer_CommunityPreferences
-	has_preferences bool
+	preferences    CPlayer_CommunityPreferences
 }
 
 pub fn (o &CPlayer_CommunityPreferencesChanged_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_preferences {
+	if o.preferences.ne(zzz_vproto_internal_new_cplayer_communitypreferences()) {
 		res << zzz_vproto_internal_pack_cplayer_communitypreferences(o.preferences, 1)
 	}
 	return res
 }
 
 pub fn cplayer_communitypreferenceschanged_notification_unpack(buf []byte) ?CPlayer_CommunityPreferencesChanged_Notification {
-	mut res := CPlayer_CommunityPreferencesChanged_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_communitypreferenceschanged_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6940,7 +9501,6 @@ pub fn cplayer_communitypreferenceschanged_notification_unpack(buf []byte) ?CPla
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_preferences = true
 				ii, v := zzz_vproto_internal_unpack_cplayer_communitypreferences(cur_buf,
 					tag_wiretype.wire_type)?
 				res.preferences = v
@@ -6961,17 +9521,48 @@ pub fn cplayer_communitypreferenceschanged_notification_unpack(buf []byte) ?CPla
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_CommunityPreferencesChanged_Notification) eq(b CPlayer_CommunityPreferencesChanged_Notification) bool {
+	return true && a.preferences.eq(b.preferences)
+}
+
+[inline]
+pub fn (a CPlayer_CommunityPreferencesChanged_Notification) ne(b CPlayer_CommunityPreferencesChanged_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_CommunityPreferencesChanged_Notification) eq(b []CPlayer_CommunityPreferencesChanged_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_CommunityPreferencesChanged_Notification) ne(b []CPlayer_CommunityPreferencesChanged_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_communitypreferenceschanged_notification() CPlayer_CommunityPreferencesChanged_Notification {
 	return CPlayer_CommunityPreferencesChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_communitypreferenceschanged_notification(o CPlayer_CommunityPreferencesChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_communitypreferenceschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_CommunityPreferencesChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_communitypreferenceschanged_notification_unpack(v)?
@@ -6980,27 +9571,25 @@ pub fn zzz_vproto_internal_unpack_cplayer_communitypreferenceschanged_notificati
 
 pub struct CPlayer_PerFriendPreferencesChanged_Notification {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	accountid       u32
-	has_accountid   bool
-	preferences     PerFriendPreferences
-	has_preferences bool
+	accountid      u32
+	preferences    PerFriendPreferences
 }
 
 pub fn (o &CPlayer_PerFriendPreferencesChanged_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_32bit_field(o.accountid, 1)
 	}
-	if o.has_preferences {
+	if o.preferences.ne(zzz_vproto_internal_new_perfriendpreferences()) {
 		res << zzz_vproto_internal_pack_perfriendpreferences(o.preferences, 2)
 	}
 	return res
 }
 
 pub fn cplayer_perfriendpreferenceschanged_notification_unpack(buf []byte) ?CPlayer_PerFriendPreferencesChanged_Notification {
-	mut res := CPlayer_PerFriendPreferencesChanged_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_perfriendpreferenceschanged_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7011,13 +9600,11 @@ pub fn cplayer_perfriendpreferenceschanged_notification_unpack(buf []byte) ?CPla
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_preferences = true
 				ii, v := zzz_vproto_internal_unpack_perfriendpreferences(cur_buf, tag_wiretype.wire_type)?
 				res.preferences = v
 				i = ii
@@ -7037,17 +9624,48 @@ pub fn cplayer_perfriendpreferenceschanged_notification_unpack(buf []byte) ?CPla
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_PerFriendPreferencesChanged_Notification) eq(b CPlayer_PerFriendPreferencesChanged_Notification) bool {
+	return true && a.accountid == b.accountid && a.preferences.eq(b.preferences)
+}
+
+[inline]
+pub fn (a CPlayer_PerFriendPreferencesChanged_Notification) ne(b CPlayer_PerFriendPreferencesChanged_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_PerFriendPreferencesChanged_Notification) eq(b []CPlayer_PerFriendPreferencesChanged_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_PerFriendPreferencesChanged_Notification) ne(b []CPlayer_PerFriendPreferencesChanged_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_perfriendpreferenceschanged_notification() CPlayer_PerFriendPreferencesChanged_Notification {
 	return CPlayer_PerFriendPreferencesChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_perfriendpreferenceschanged_notification(o CPlayer_PerFriendPreferencesChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_perfriendpreferenceschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PerFriendPreferencesChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_perfriendpreferenceschanged_notification_unpack(v)?
@@ -7056,22 +9674,21 @@ pub fn zzz_vproto_internal_unpack_cplayer_perfriendpreferenceschanged_notificati
 
 pub struct CPlayer_PrivacySettingsChanged_Notification {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	privacy_settings     CPrivacySettings
-	has_privacy_settings bool
+	privacy_settings CPrivacySettings
 }
 
 pub fn (o &CPlayer_PrivacySettingsChanged_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_privacy_settings {
+	if o.privacy_settings.ne(zzz_vproto_internal_new_cprivacysettings()) {
 		res << zzz_vproto_internal_pack_cprivacysettings(o.privacy_settings, 1)
 	}
 	return res
 }
 
 pub fn cplayer_privacysettingschanged_notification_unpack(buf []byte) ?CPlayer_PrivacySettingsChanged_Notification {
-	mut res := CPlayer_PrivacySettingsChanged_Notification{}
+	mut res := zzz_vproto_internal_new_cplayer_privacysettingschanged_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7082,7 +9699,6 @@ pub fn cplayer_privacysettingschanged_notification_unpack(buf []byte) ?CPlayer_P
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_privacy_settings = true
 				ii, v := zzz_vproto_internal_unpack_cprivacysettings(cur_buf, tag_wiretype.wire_type)?
 				res.privacy_settings = v
 				i = ii
@@ -7102,17 +9718,48 @@ pub fn cplayer_privacysettingschanged_notification_unpack(buf []byte) ?CPlayer_P
 	return res
 }
 
+[inline]
+pub fn (a CPlayer_PrivacySettingsChanged_Notification) eq(b CPlayer_PrivacySettingsChanged_Notification) bool {
+	return true && a.privacy_settings.eq(b.privacy_settings)
+}
+
+[inline]
+pub fn (a CPlayer_PrivacySettingsChanged_Notification) ne(b CPlayer_PrivacySettingsChanged_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPlayer_PrivacySettingsChanged_Notification) eq(b []CPlayer_PrivacySettingsChanged_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPlayer_PrivacySettingsChanged_Notification) ne(b []CPlayer_PrivacySettingsChanged_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cplayer_privacysettingschanged_notification() CPlayer_PrivacySettingsChanged_Notification {
 	return CPlayer_PrivacySettingsChanged_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cplayer_privacysettingschanged_notification(o CPlayer_PrivacySettingsChanged_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cplayer_privacysettingschanged_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPlayer_PrivacySettingsChanged_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cplayer_privacysettingschanged_notification_unpack(v)?

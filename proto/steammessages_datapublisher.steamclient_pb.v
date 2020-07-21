@@ -5,67 +5,57 @@ import emily33901.vproto
 
 pub struct CDataPublisher_ClientContentCorruptionReport_Notification {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	appid                 u32
-	has_appid             bool
-	depotid               u32
-	has_depotid           bool
-	download_source       string
-	has_download_source   bool
-	objectid              string
-	has_objectid          bool
-	cellid                u32
-	has_cellid            bool
-	is_manifest           bool
-	has_is_manifest       bool
-	object_size           u64
-	has_object_size       bool
-	corruption_type       u32
-	has_corruption_type   bool
-	used_https            bool
-	has_used_https        bool
-	oc_proxy_detected     bool
-	has_oc_proxy_detected bool
+	appid             u32
+	depotid           u32
+	download_source   string
+	objectid          string
+	cellid            u32
+	is_manifest       bool
+	object_size       u64
+	corruption_type   u32
+	used_https        bool
+	oc_proxy_detected bool
 }
 
 pub fn (o &CDataPublisher_ClientContentCorruptionReport_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_depotid {
+	if o.depotid != u32(0) {
 		res << vproto.pack_uint32_field(o.depotid, 2)
 	}
-	if o.has_download_source {
+	if o.download_source != '' {
 		res << vproto.pack_string_field(o.download_source, 3)
 	}
-	if o.has_objectid {
+	if o.objectid != '' {
 		res << vproto.pack_string_field(o.objectid, 4)
 	}
-	if o.has_cellid {
+	if o.cellid != u32(0) {
 		res << vproto.pack_uint32_field(o.cellid, 5)
 	}
-	if o.has_is_manifest {
+	if o.is_manifest != bool(0) {
 		res << vproto.pack_bool_field(o.is_manifest, 6)
 	}
-	if o.has_object_size {
+	if o.object_size != u64(0) {
 		res << vproto.pack_uint64_field(o.object_size, 7)
 	}
-	if o.has_corruption_type {
+	if o.corruption_type != u32(0) {
 		res << vproto.pack_uint32_field(o.corruption_type, 8)
 	}
-	if o.has_used_https {
+	if o.used_https != bool(0) {
 		res << vproto.pack_bool_field(o.used_https, 9)
 	}
-	if o.has_oc_proxy_detected {
+	if o.oc_proxy_detected != bool(0) {
 		res << vproto.pack_bool_field(o.oc_proxy_detected, 10)
 	}
 	return res
 }
 
 pub fn cdatapublisher_clientcontentcorruptionreport_notification_unpack(buf []byte) ?CDataPublisher_ClientContentCorruptionReport_Notification {
-	mut res := CDataPublisher_ClientContentCorruptionReport_Notification{}
+	mut res := zzz_vproto_internal_new_cdatapublisher_clientcontentcorruptionreport_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -76,61 +66,51 @@ pub fn cdatapublisher_clientcontentcorruptionreport_notification_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_depotid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.depotid = v
 				i = ii
 			}
 			3 {
-				res.has_download_source = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.download_source = v
 				i = ii
 			}
 			4 {
-				res.has_objectid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.objectid = v
 				i = ii
 			}
 			5 {
-				res.has_cellid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cellid = v
 				i = ii
 			}
 			6 {
-				res.has_is_manifest = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_manifest = v
 				i = ii
 			}
 			7 {
-				res.has_object_size = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.object_size = v
 				i = ii
 			}
 			8 {
-				res.has_corruption_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.corruption_type = v
 				i = ii
 			}
 			9 {
-				res.has_used_https = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.used_https = v
 				i = ii
 			}
 			10 {
-				res.has_oc_proxy_detected = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.oc_proxy_detected = v
 				i = ii
@@ -150,17 +130,53 @@ pub fn cdatapublisher_clientcontentcorruptionreport_notification_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CDataPublisher_ClientContentCorruptionReport_Notification) eq(b CDataPublisher_ClientContentCorruptionReport_Notification) bool {
+	return true && a.appid == b.appid &&
+		a.depotid == b.depotid && a.download_source == b.download_source &&
+		a.objectid == b.objectid && a.cellid == b.cellid &&
+		a.is_manifest == b.is_manifest && a.object_size == b.object_size &&
+		a.corruption_type == b.corruption_type &&
+		a.used_https == b.used_https && a.oc_proxy_detected == b.oc_proxy_detected
+}
+
+[inline]
+pub fn (a CDataPublisher_ClientContentCorruptionReport_Notification) ne(b CDataPublisher_ClientContentCorruptionReport_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDataPublisher_ClientContentCorruptionReport_Notification) eq(b []CDataPublisher_ClientContentCorruptionReport_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDataPublisher_ClientContentCorruptionReport_Notification) ne(b []CDataPublisher_ClientContentCorruptionReport_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdatapublisher_clientcontentcorruptionreport_notification() CDataPublisher_ClientContentCorruptionReport_Notification {
 	return CDataPublisher_ClientContentCorruptionReport_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdatapublisher_clientcontentcorruptionreport_notification(o CDataPublisher_ClientContentCorruptionReport_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdatapublisher_clientcontentcorruptionreport_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CDataPublisher_ClientContentCorruptionReport_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdatapublisher_clientcontentcorruptionreport_notification_unpack(v)?
@@ -169,27 +185,25 @@ pub fn zzz_vproto_internal_unpack_cdatapublisher_clientcontentcorruptionreport_n
 
 pub struct CValveHWSurvey_GetSurveySchedule_Request {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	surveydatetoken            string
-	has_surveydatetoken        bool
-	surveydatetokenversion     u64
-	has_surveydatetokenversion bool
+	surveydatetoken        string
+	surveydatetokenversion u64
 }
 
 pub fn (o &CValveHWSurvey_GetSurveySchedule_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_surveydatetoken {
+	if o.surveydatetoken != '' {
 		res << vproto.pack_string_field(o.surveydatetoken, 1)
 	}
-	if o.has_surveydatetokenversion {
+	if o.surveydatetokenversion != u64(0) {
 		res << vproto.pack_64bit_field(o.surveydatetokenversion, 2)
 	}
 	return res
 }
 
 pub fn cvalvehwsurvey_getsurveyschedule_request_unpack(buf []byte) ?CValveHWSurvey_GetSurveySchedule_Request {
-	mut res := CValveHWSurvey_GetSurveySchedule_Request{}
+	mut res := zzz_vproto_internal_new_cvalvehwsurvey_getsurveyschedule_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -200,13 +214,11 @@ pub fn cvalvehwsurvey_getsurveyschedule_request_unpack(buf []byte) ?CValveHWSurv
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_surveydatetoken = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.surveydatetoken = v
 				i = ii
 			}
 			2 {
-				res.has_surveydatetokenversion = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.surveydatetokenversion = v
 				i = ii
@@ -226,17 +238,49 @@ pub fn cvalvehwsurvey_getsurveyschedule_request_unpack(buf []byte) ?CValveHWSurv
 	return res
 }
 
+[inline]
+pub fn (a CValveHWSurvey_GetSurveySchedule_Request) eq(b CValveHWSurvey_GetSurveySchedule_Request) bool {
+	return true && a.surveydatetoken == b.surveydatetoken &&
+		a.surveydatetokenversion == b.surveydatetokenversion
+}
+
+[inline]
+pub fn (a CValveHWSurvey_GetSurveySchedule_Request) ne(b CValveHWSurvey_GetSurveySchedule_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CValveHWSurvey_GetSurveySchedule_Request) eq(b []CValveHWSurvey_GetSurveySchedule_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CValveHWSurvey_GetSurveySchedule_Request) ne(b []CValveHWSurvey_GetSurveySchedule_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvalvehwsurvey_getsurveyschedule_request() CValveHWSurvey_GetSurveySchedule_Request {
 	return CValveHWSurvey_GetSurveySchedule_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvalvehwsurvey_getsurveyschedule_request(o CValveHWSurvey_GetSurveySchedule_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvalvehwsurvey_getsurveyschedule_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CValveHWSurvey_GetSurveySchedule_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvalvehwsurvey_getsurveyschedule_request_unpack(v)?
@@ -245,27 +289,25 @@ pub fn zzz_vproto_internal_unpack_cvalvehwsurvey_getsurveyschedule_request(buf [
 
 pub struct CValveHWSurvey_GetSurveySchedule_Response {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	surveydatetoken            u32
-	has_surveydatetoken        bool
-	surveydatetokenversion     u64
-	has_surveydatetokenversion bool
+	surveydatetoken        u32
+	surveydatetokenversion u64
 }
 
 pub fn (o &CValveHWSurvey_GetSurveySchedule_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_surveydatetoken {
+	if o.surveydatetoken != u32(0) {
 		res << vproto.pack_uint32_field(o.surveydatetoken, 1)
 	}
-	if o.has_surveydatetokenversion {
+	if o.surveydatetokenversion != u64(0) {
 		res << vproto.pack_64bit_field(o.surveydatetokenversion, 2)
 	}
 	return res
 }
 
 pub fn cvalvehwsurvey_getsurveyschedule_response_unpack(buf []byte) ?CValveHWSurvey_GetSurveySchedule_Response {
-	mut res := CValveHWSurvey_GetSurveySchedule_Response{}
+	mut res := zzz_vproto_internal_new_cvalvehwsurvey_getsurveyschedule_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -276,13 +318,11 @@ pub fn cvalvehwsurvey_getsurveyschedule_response_unpack(buf []byte) ?CValveHWSur
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_surveydatetoken = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.surveydatetoken = v
 				i = ii
 			}
 			2 {
-				res.has_surveydatetokenversion = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.surveydatetokenversion = v
 				i = ii
@@ -302,17 +342,49 @@ pub fn cvalvehwsurvey_getsurveyschedule_response_unpack(buf []byte) ?CValveHWSur
 	return res
 }
 
+[inline]
+pub fn (a CValveHWSurvey_GetSurveySchedule_Response) eq(b CValveHWSurvey_GetSurveySchedule_Response) bool {
+	return true && a.surveydatetoken == b.surveydatetoken &&
+		a.surveydatetokenversion == b.surveydatetokenversion
+}
+
+[inline]
+pub fn (a CValveHWSurvey_GetSurveySchedule_Response) ne(b CValveHWSurvey_GetSurveySchedule_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CValveHWSurvey_GetSurveySchedule_Response) eq(b []CValveHWSurvey_GetSurveySchedule_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CValveHWSurvey_GetSurveySchedule_Response) ne(b []CValveHWSurvey_GetSurveySchedule_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvalvehwsurvey_getsurveyschedule_response() CValveHWSurvey_GetSurveySchedule_Response {
 	return CValveHWSurvey_GetSurveySchedule_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvalvehwsurvey_getsurveyschedule_response(o CValveHWSurvey_GetSurveySchedule_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvalvehwsurvey_getsurveyschedule_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CValveHWSurvey_GetSurveySchedule_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvalvehwsurvey_getsurveyschedule_response_unpack(v)?

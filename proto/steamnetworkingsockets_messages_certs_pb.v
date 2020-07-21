@@ -5,42 +5,37 @@ import emily33901.vproto
 
 pub struct CMsgSteamNetworkingIdentityLegacyBinary {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	steam_id             u64
-	has_steam_id         bool
-	xbox_pairwise_id     string
-	has_xbox_pairwise_id bool
-	generic_bytes        []byte
-	has_generic_bytes    bool
-	generic_string       string
-	has_generic_string   bool
-	ipv6_and_port        []byte
-	has_ipv6_and_port    bool
+	steam_id         u64
+	xbox_pairwise_id string
+	generic_bytes    []byte
+	generic_string   string
+	ipv6_and_port    []byte
 }
 
 pub fn (o &CMsgSteamNetworkingIdentityLegacyBinary) pack() []byte {
 	mut res := []byte{}
-	if o.has_steam_id {
+	if o.steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.steam_id, 16)
 	}
-	if o.has_xbox_pairwise_id {
+	if o.xbox_pairwise_id != '' {
 		res << vproto.pack_string_field(o.xbox_pairwise_id, 17)
 	}
-	if o.has_generic_bytes {
+	if o.generic_bytes != []byte{} {
 		res << vproto.pack_bytes_field(o.generic_bytes, 2)
 	}
-	if o.has_generic_string {
+	if o.generic_string != '' {
 		res << vproto.pack_string_field(o.generic_string, 3)
 	}
-	if o.has_ipv6_and_port {
+	if o.ipv6_and_port != []byte{} {
 		res << vproto.pack_bytes_field(o.ipv6_and_port, 4)
 	}
 	return res
 }
 
 pub fn cmsgsteamnetworkingidentitylegacybinary_unpack(buf []byte) ?CMsgSteamNetworkingIdentityLegacyBinary {
-	mut res := CMsgSteamNetworkingIdentityLegacyBinary{}
+	mut res := zzz_vproto_internal_new_cmsgsteamnetworkingidentitylegacybinary()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -51,31 +46,26 @@ pub fn cmsgsteamnetworkingidentitylegacybinary_unpack(buf []byte) ?CMsgSteamNetw
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			16 {
-				res.has_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steam_id = v
 				i = ii
 			}
 			17 {
-				res.has_xbox_pairwise_id = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.xbox_pairwise_id = v
 				i = ii
 			}
 			2 {
-				res.has_generic_bytes = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.generic_bytes = v
 				i = ii
 			}
 			3 {
-				res.has_generic_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.generic_string = v
 				i = ii
 			}
 			4 {
-				res.has_ipv6_and_port = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.ipv6_and_port = v
 				i = ii
@@ -95,17 +85,52 @@ pub fn cmsgsteamnetworkingidentitylegacybinary_unpack(buf []byte) ?CMsgSteamNetw
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamNetworkingIdentityLegacyBinary) eq(b CMsgSteamNetworkingIdentityLegacyBinary) bool {
+	return true && a.steam_id == b.steam_id &&
+		a.xbox_pairwise_id == b.xbox_pairwise_id &&
+		a.generic_bytes == b.generic_bytes &&
+		a.generic_string == b.generic_string &&
+		a.ipv6_and_port == b.ipv6_and_port
+}
+
+[inline]
+pub fn (a CMsgSteamNetworkingIdentityLegacyBinary) ne(b CMsgSteamNetworkingIdentityLegacyBinary) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamNetworkingIdentityLegacyBinary) eq(b []CMsgSteamNetworkingIdentityLegacyBinary) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamNetworkingIdentityLegacyBinary) ne(b []CMsgSteamNetworkingIdentityLegacyBinary) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamnetworkingidentitylegacybinary() CMsgSteamNetworkingIdentityLegacyBinary {
 	return CMsgSteamNetworkingIdentityLegacyBinary{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingidentitylegacybinary(o CMsgSteamNetworkingIdentityLegacyBinary, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingidentitylegacybinary(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingIdentityLegacyBinary) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamnetworkingidentitylegacybinary_unpack(v)?
@@ -119,11 +144,19 @@ enum CMsgSteamDatagramCertificate_EKeyType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_cmsgsteamdatagramcertificate_ekeytype() CMsgSteamDatagramCertificate_EKeyType {
+	return .invalid
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype(e CMsgSteamDatagramCertificate_EKeyType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype_packed(e []CMsgSteamDatagramCertificate_EKeyType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -135,12 +168,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype_packed(e []CMs
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCertificate_EKeyType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, CMsgSteamDatagramCertificate_EKeyType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramCertificate_EKeyType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -153,52 +188,45 @@ fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype_packed(buf [
 
 pub struct CMsgSteamDatagramCertificate {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields            []vproto.UnknownField
 pub mut:
-	key_type                   CMsgSteamDatagramCertificate_EKeyType
-	has_key_type               bool
-	key_data                   []byte
-	has_key_data               bool
-	legacy_steam_id            u64
-	has_legacy_steam_id        bool
-	legacy_identity_binary     CMsgSteamNetworkingIdentityLegacyBinary
-	has_legacy_identity_binary bool
-	identity_string            string
-	has_identity_string        bool
-	gameserver_datacenter_ids  []u32
-	time_created               u32
-	has_time_created           bool
-	time_expiry                u32
-	has_time_expiry            bool
-	app_ids                    []u32
+	key_type                  CMsgSteamDatagramCertificate_EKeyType = .invalid
+	key_data                  []byte
+	legacy_steam_id           u64
+	legacy_identity_binary    CMsgSteamNetworkingIdentityLegacyBinary
+	identity_string           string
+	gameserver_datacenter_ids []u32
+	time_created              u32
+	time_expiry               u32
+	app_ids                   []u32
 }
 
 pub fn (o &CMsgSteamDatagramCertificate) pack() []byte {
 	mut res := []byte{}
-	if o.has_key_type {
+	if o.key_type != zzz_vproto_internal_new_cmsgsteamdatagramcertificate_ekeytype() {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificate_ekeytype(o.key_type, 1)
 	}
-	if o.has_key_data {
+	if o.key_data != []byte{} {
 		res << vproto.pack_bytes_field(o.key_data, 2)
 	}
-	if o.has_legacy_steam_id {
+	if o.legacy_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.legacy_steam_id, 4)
 	}
-	if o.has_legacy_identity_binary {
+	if o.legacy_identity_binary.ne(zzz_vproto_internal_new_cmsgsteamnetworkingidentitylegacybinary()) {
 		res <<
 			zzz_vproto_internal_pack_cmsgsteamnetworkingidentitylegacybinary(o.legacy_identity_binary, 11)
 	}
-	if o.has_identity_string {
+	if o.identity_string != '' {
 		res << vproto.pack_string_field(o.identity_string, 12)
 	}
 	// [packed=false]
 	for _, x in o.gameserver_datacenter_ids {
 		res << vproto.pack_32bit_field(x, 5)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_32bit_field(o.time_created, 8)
 	}
-	if o.has_time_expiry {
+	if o.time_expiry != u32(0) {
 		res << vproto.pack_32bit_field(o.time_expiry, 9)
 	}
 	// [packed=false]
@@ -209,7 +237,7 @@ pub fn (o &CMsgSteamDatagramCertificate) pack() []byte {
 }
 
 pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertificate {
-	mut res := CMsgSteamDatagramCertificate{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramcertificate()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -220,33 +248,28 @@ pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertifi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key_type = true
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype(cur_buf,
 					tag_wiretype.wire_type)?
 				res.key_type = v
 				i = ii
 			}
 			2 {
-				res.has_key_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.key_data = v
 				i = ii
 			}
 			4 {
-				res.has_legacy_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_steam_id = v
 				i = ii
 			}
 			11 {
-				res.has_legacy_identity_binary = true
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingidentitylegacybinary(cur_buf,
 					tag_wiretype.wire_type)?
 				res.legacy_identity_binary = v
 				i = ii
 			}
 			12 {
-				res.has_identity_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.identity_string = v
 				i = ii
@@ -258,13 +281,11 @@ pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertifi
 				i = ii
 			}
 			8 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			9 {
-				res.has_time_expiry = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_expiry = v
 				i = ii
@@ -290,17 +311,54 @@ pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertifi
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramCertificate) eq(b CMsgSteamDatagramCertificate) bool {
+	return true && a.key_type == b.key_type &&
+		a.key_data == b.key_data &&
+		a.legacy_steam_id == b.legacy_steam_id && a.legacy_identity_binary.eq(b.legacy_identity_binary) &&
+		a.identity_string == b.identity_string &&
+		a.gameserver_datacenter_ids == b.gameserver_datacenter_ids &&
+		a.time_created == b.time_created &&
+		a.time_expiry == b.time_expiry && a.app_ids == b.app_ids
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramCertificate) ne(b CMsgSteamDatagramCertificate) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCertificate) eq(b []CMsgSteamDatagramCertificate) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCertificate) ne(b []CMsgSteamDatagramCertificate) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramcertificate() CMsgSteamDatagramCertificate {
 	return CMsgSteamDatagramCertificate{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificate(o CMsgSteamDatagramCertificate, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCertificate) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramcertificate_unpack(v)?
@@ -309,37 +367,33 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate(buf []byte, tag_w
 
 pub struct CMsgSteamDatagramCertificateSigned {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	cert                 []byte
-	has_cert             bool
-	ca_key_id            u64
-	has_ca_key_id        bool
-	ca_signature         []byte
-	has_ca_signature     bool
-	private_key_data     []byte
-	has_private_key_data bool
+	cert             []byte
+	ca_key_id        u64
+	ca_signature     []byte
+	private_key_data []byte
 }
 
 pub fn (o &CMsgSteamDatagramCertificateSigned) pack() []byte {
 	mut res := []byte{}
-	if o.has_cert {
+	if o.cert != []byte{} {
 		res << vproto.pack_bytes_field(o.cert, 4)
 	}
-	if o.has_ca_key_id {
+	if o.ca_key_id != u64(0) {
 		res << vproto.pack_64bit_field(o.ca_key_id, 5)
 	}
-	if o.has_ca_signature {
+	if o.ca_signature != []byte{} {
 		res << vproto.pack_bytes_field(o.ca_signature, 6)
 	}
-	if o.has_private_key_data {
+	if o.private_key_data != []byte{} {
 		res << vproto.pack_bytes_field(o.private_key_data, 1)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramcertificatesigned_unpack(buf []byte) ?CMsgSteamDatagramCertificateSigned {
-	mut res := CMsgSteamDatagramCertificateSigned{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramcertificatesigned()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -350,25 +404,21 @@ pub fn cmsgsteamdatagramcertificatesigned_unpack(buf []byte) ?CMsgSteamDatagramC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			4 {
-				res.has_cert = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.cert = v
 				i = ii
 			}
 			5 {
-				res.has_ca_key_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.ca_key_id = v
 				i = ii
 			}
 			6 {
-				res.has_ca_signature = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.ca_signature = v
 				i = ii
 			}
 			1 {
-				res.has_private_key_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.private_key_data = v
 				i = ii
@@ -388,17 +438,50 @@ pub fn cmsgsteamdatagramcertificatesigned_unpack(buf []byte) ?CMsgSteamDatagramC
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramCertificateSigned) eq(b CMsgSteamDatagramCertificateSigned) bool {
+	return true && a.cert == b.cert &&
+		a.ca_key_id == b.ca_key_id && a.ca_signature == b.ca_signature &&
+		a.private_key_data == b.private_key_data
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramCertificateSigned) ne(b CMsgSteamDatagramCertificateSigned) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCertificateSigned) eq(b []CMsgSteamDatagramCertificateSigned) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCertificateSigned) ne(b []CMsgSteamDatagramCertificateSigned) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramcertificatesigned() CMsgSteamDatagramCertificateSigned {
 	return CMsgSteamDatagramCertificateSigned{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificatesigned(o CMsgSteamDatagramCertificateSigned, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCertificateSigned) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramcertificatesigned_unpack(v)?
@@ -410,19 +493,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	cert           CMsgSteamDatagramCertificate
-	has_cert       bool
 }
 
 pub fn (o &CMsgSteamDatagramCertificateRequest) pack() []byte {
 	mut res := []byte{}
-	if o.has_cert {
+	if o.cert.ne(zzz_vproto_internal_new_cmsgsteamdatagramcertificate()) {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificate(o.cert, 1)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramcertificaterequest_unpack(buf []byte) ?CMsgSteamDatagramCertificateRequest {
-	mut res := CMsgSteamDatagramCertificateRequest{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramcertificaterequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -433,7 +515,6 @@ pub fn cmsgsteamdatagramcertificaterequest_unpack(buf []byte) ?CMsgSteamDatagram
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_cert = true
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate(cur_buf,
 					tag_wiretype.wire_type)?
 				res.cert = v
@@ -454,17 +535,48 @@ pub fn cmsgsteamdatagramcertificaterequest_unpack(buf []byte) ?CMsgSteamDatagram
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramCertificateRequest) eq(b CMsgSteamDatagramCertificateRequest) bool {
+	return true && a.cert.eq(b.cert)
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramCertificateRequest) ne(b CMsgSteamDatagramCertificateRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCertificateRequest) eq(b []CMsgSteamDatagramCertificateRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCertificateRequest) ne(b []CMsgSteamDatagramCertificateRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramcertificaterequest() CMsgSteamDatagramCertificateRequest {
 	return CMsgSteamDatagramCertificateRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramcertificaterequest(o CMsgSteamDatagramCertificateRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramcertificaterequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCertificateRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramcertificaterequest_unpack(v)?

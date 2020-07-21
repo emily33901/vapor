@@ -5,37 +5,33 @@ import emily33901.vproto
 
 pub struct CMsgSteamDatagramRelayAuthTicket_ExtraField {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	name              string
-	has_name          bool
-	string_value      string
-	has_string_value  bool
-	int64_value       i64
-	has_int64_value   bool
-	fixed64_value     u64
-	has_fixed64_value bool
+	name           string
+	string_value   string
+	int64_value    i64
+	fixed64_value  u64
 }
 
 pub fn (o &CMsgSteamDatagramRelayAuthTicket_ExtraField) pack() []byte {
 	mut res := []byte{}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 1)
 	}
-	if o.has_string_value {
+	if o.string_value != '' {
 		res << vproto.pack_string_field(o.string_value, 2)
 	}
-	if o.has_int64_value {
+	if o.int64_value != i64(0) {
 		res << vproto.pack_sint64_field(o.int64_value, 3)
 	}
-	if o.has_fixed64_value {
+	if o.fixed64_value != u64(0) {
 		res << vproto.pack_64bit_field(o.fixed64_value, 5)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramrelayauthticket_extrafield_unpack(buf []byte) ?CMsgSteamDatagramRelayAuthTicket_ExtraField {
-	mut res := CMsgSteamDatagramRelayAuthTicket_ExtraField{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramrelayauthticket_extrafield()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -46,25 +42,21 @@ pub fn cmsgsteamdatagramrelayauthticket_extrafield_unpack(buf []byte) ?CMsgSteam
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			2 {
-				res.has_string_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.string_value = v
 				i = ii
 			}
 			3 {
-				res.has_int64_value = true
 				ii, v := vproto.unpack_sint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.int64_value = v
 				i = ii
 			}
 			5 {
-				res.has_fixed64_value = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.fixed64_value = v
 				i = ii
@@ -84,17 +76,50 @@ pub fn cmsgsteamdatagramrelayauthticket_extrafield_unpack(buf []byte) ?CMsgSteam
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramRelayAuthTicket_ExtraField) eq(b CMsgSteamDatagramRelayAuthTicket_ExtraField) bool {
+	return true && a.name == b.name &&
+		a.string_value == b.string_value &&
+		a.int64_value == b.int64_value && a.fixed64_value == b.fixed64_value
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramRelayAuthTicket_ExtraField) ne(b CMsgSteamDatagramRelayAuthTicket_ExtraField) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramRelayAuthTicket_ExtraField) eq(b []CMsgSteamDatagramRelayAuthTicket_ExtraField) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramRelayAuthTicket_ExtraField) ne(b []CMsgSteamDatagramRelayAuthTicket_ExtraField) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramrelayauthticket_extrafield() CMsgSteamDatagramRelayAuthTicket_ExtraField {
 	return CMsgSteamDatagramRelayAuthTicket_ExtraField{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticket_extrafield(o CMsgSteamDatagramRelayAuthTicket_ExtraField, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticket_extrafield(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRelayAuthTicket_ExtraField) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramrelayauthticket_extrafield_unpack(v)?
@@ -103,87 +128,74 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticket_extrafield(bu
 
 pub struct CMsgSteamDatagramRelayAuthTicket {
 mut:
-	unknown_fields                               []vproto.UnknownField
+	unknown_fields                           []vproto.UnknownField
 pub mut:
-	time_expiry                                  u32
-	has_time_expiry                              bool
-	authorized_client_identity_string            string
-	has_authorized_client_identity_string        bool
-	gameserver_identity_string                   string
-	has_gameserver_identity_string               bool
-	authorized_public_ip                         u32
-	has_authorized_public_ip                     bool
-	gameserver_address                           []byte
-	has_gameserver_address                       bool
-	app_id                                       u32
-	has_app_id                                   bool
-	virtual_port                                 u32
-	has_virtual_port                             bool
-	extra_fields                                 []CMsgSteamDatagramRelayAuthTicket_ExtraField
-	legacy_authorized_steam_id                   u64
-	has_legacy_authorized_steam_id               bool
-	legacy_gameserver_steam_id                   u64
-	has_legacy_gameserver_steam_id               bool
-	legacy_gameserver_net_id                     u64
-	has_legacy_gameserver_net_id                 bool
-	legacy_gameserver_pop_id                     u32
-	has_legacy_gameserver_pop_id                 bool
-	legacy_authorized_client_identity_binary     []byte
-	has_legacy_authorized_client_identity_binary bool
-	legacy_gameserver_identity_binary            []byte
-	has_legacy_gameserver_identity_binary        bool
+	time_expiry                              u32
+	authorized_client_identity_string        string
+	gameserver_identity_string               string
+	authorized_public_ip                     u32
+	gameserver_address                       []byte
+	app_id                                   u32
+	virtual_port                             u32
+	extra_fields                             []CMsgSteamDatagramRelayAuthTicket_ExtraField
+	legacy_authorized_steam_id               u64
+	legacy_gameserver_steam_id               u64
+	legacy_gameserver_net_id                 u64
+	legacy_gameserver_pop_id                 u32
+	legacy_authorized_client_identity_binary []byte
+	legacy_gameserver_identity_binary        []byte
 }
 
 pub fn (o &CMsgSteamDatagramRelayAuthTicket) pack() []byte {
 	mut res := []byte{}
-	if o.has_time_expiry {
+	if o.time_expiry != u32(0) {
 		res << vproto.pack_32bit_field(o.time_expiry, 1)
 	}
-	if o.has_authorized_client_identity_string {
+	if o.authorized_client_identity_string != '' {
 		res << vproto.pack_string_field(o.authorized_client_identity_string, 14)
 	}
-	if o.has_gameserver_identity_string {
+	if o.gameserver_identity_string != '' {
 		res << vproto.pack_string_field(o.gameserver_identity_string, 15)
 	}
-	if o.has_authorized_public_ip {
+	if o.authorized_public_ip != u32(0) {
 		res << vproto.pack_32bit_field(o.authorized_public_ip, 3)
 	}
-	if o.has_gameserver_address {
+	if o.gameserver_address != []byte{} {
 		res << vproto.pack_bytes_field(o.gameserver_address, 11)
 	}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 7)
 	}
-	if o.has_virtual_port {
+	if o.virtual_port != u32(0) {
 		res << vproto.pack_uint32_field(o.virtual_port, 10)
 	}
 	// [packed=false]
 	for _, x in o.extra_fields {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticket_extrafield(x, 8)
 	}
-	if o.has_legacy_authorized_steam_id {
+	if o.legacy_authorized_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.legacy_authorized_steam_id, 2)
 	}
-	if o.has_legacy_gameserver_steam_id {
+	if o.legacy_gameserver_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.legacy_gameserver_steam_id, 4)
 	}
-	if o.has_legacy_gameserver_net_id {
+	if o.legacy_gameserver_net_id != u64(0) {
 		res << vproto.pack_64bit_field(o.legacy_gameserver_net_id, 5)
 	}
-	if o.has_legacy_gameserver_pop_id {
+	if o.legacy_gameserver_pop_id != u32(0) {
 		res << vproto.pack_32bit_field(o.legacy_gameserver_pop_id, 9)
 	}
-	if o.has_legacy_authorized_client_identity_binary {
+	if o.legacy_authorized_client_identity_binary != []byte{} {
 		res << vproto.pack_bytes_field(o.legacy_authorized_client_identity_binary, 12)
 	}
-	if o.has_legacy_gameserver_identity_binary {
+	if o.legacy_gameserver_identity_binary != []byte{} {
 		res << vproto.pack_bytes_field(o.legacy_gameserver_identity_binary, 13)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramrelayauthticket_unpack(buf []byte) ?CMsgSteamDatagramRelayAuthTicket {
-	mut res := CMsgSteamDatagramRelayAuthTicket{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramrelayauthticket()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -194,43 +206,36 @@ pub fn cmsgsteamdatagramrelayauthticket_unpack(buf []byte) ?CMsgSteamDatagramRel
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_time_expiry = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_expiry = v
 				i = ii
 			}
 			14 {
-				res.has_authorized_client_identity_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.authorized_client_identity_string = v
 				i = ii
 			}
 			15 {
-				res.has_gameserver_identity_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.gameserver_identity_string = v
 				i = ii
 			}
 			3 {
-				res.has_authorized_public_ip = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.authorized_public_ip = v
 				i = ii
 			}
 			11 {
-				res.has_gameserver_address = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.gameserver_address = v
 				i = ii
 			}
 			7 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
 			}
 			10 {
-				res.has_virtual_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.virtual_port = v
 				i = ii
@@ -243,37 +248,31 @@ pub fn cmsgsteamdatagramrelayauthticket_unpack(buf []byte) ?CMsgSteamDatagramRel
 				i = ii
 			}
 			2 {
-				res.has_legacy_authorized_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_authorized_steam_id = v
 				i = ii
 			}
 			4 {
-				res.has_legacy_gameserver_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_gameserver_steam_id = v
 				i = ii
 			}
 			5 {
-				res.has_legacy_gameserver_net_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_gameserver_net_id = v
 				i = ii
 			}
 			9 {
-				res.has_legacy_gameserver_pop_id = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_gameserver_pop_id = v
 				i = ii
 			}
 			12 {
-				res.has_legacy_authorized_client_identity_binary = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_authorized_client_identity_binary = v
 				i = ii
 			}
 			13 {
-				res.has_legacy_gameserver_identity_binary = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_gameserver_identity_binary = v
 				i = ii
@@ -293,17 +292,59 @@ pub fn cmsgsteamdatagramrelayauthticket_unpack(buf []byte) ?CMsgSteamDatagramRel
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramRelayAuthTicket) eq(b CMsgSteamDatagramRelayAuthTicket) bool {
+	return true && a.time_expiry == b.time_expiry &&
+		a.authorized_client_identity_string == b.authorized_client_identity_string &&
+		a.gameserver_identity_string == b.gameserver_identity_string &&
+		a.authorized_public_ip == b.authorized_public_ip &&
+		a.gameserver_address == b.gameserver_address &&
+		a.app_id == b.app_id && a.virtual_port == b.virtual_port && a.extra_fields.eq(b.extra_fields) &&
+		a.legacy_authorized_steam_id == b.legacy_authorized_steam_id &&
+		a.legacy_gameserver_steam_id == b.legacy_gameserver_steam_id &&
+		a.legacy_gameserver_net_id == b.legacy_gameserver_net_id &&
+		a.legacy_gameserver_pop_id == b.legacy_gameserver_pop_id &&
+		a.legacy_authorized_client_identity_binary == b.legacy_authorized_client_identity_binary &&
+		a.legacy_gameserver_identity_binary == b.legacy_gameserver_identity_binary
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramRelayAuthTicket) ne(b CMsgSteamDatagramRelayAuthTicket) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramRelayAuthTicket) eq(b []CMsgSteamDatagramRelayAuthTicket) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramRelayAuthTicket) ne(b []CMsgSteamDatagramRelayAuthTicket) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramrelayauthticket() CMsgSteamDatagramRelayAuthTicket {
 	return CMsgSteamDatagramRelayAuthTicket{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrelayauthticket(o CMsgSteamDatagramRelayAuthTicket, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRelayAuthTicket) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramrelayauthticket_unpack(v)?
@@ -312,37 +353,33 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelayauthticket(buf []byte, t
 
 pub struct CMsgSteamDatagramSignedRelayAuthTicket {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	reserved_do_not_use     u64
-	has_reserved_do_not_use bool
-	key_id                  u64
-	has_key_id              bool
-	ticket                  []byte
-	has_ticket              bool
-	signature               []byte
-	has_signature           bool
+	reserved_do_not_use u64
+	key_id              u64
+	ticket              []byte
+	signature           []byte
 }
 
 pub fn (o &CMsgSteamDatagramSignedRelayAuthTicket) pack() []byte {
 	mut res := []byte{}
-	if o.has_reserved_do_not_use {
+	if o.reserved_do_not_use != u64(0) {
 		res << vproto.pack_64bit_field(o.reserved_do_not_use, 1)
 	}
-	if o.has_key_id {
+	if o.key_id != u64(0) {
 		res << vproto.pack_64bit_field(o.key_id, 2)
 	}
-	if o.has_ticket {
+	if o.ticket != []byte{} {
 		res << vproto.pack_bytes_field(o.ticket, 3)
 	}
-	if o.has_signature {
+	if o.signature != []byte{} {
 		res << vproto.pack_bytes_field(o.signature, 4)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramsignedrelayauthticket_unpack(buf []byte) ?CMsgSteamDatagramSignedRelayAuthTicket {
-	mut res := CMsgSteamDatagramSignedRelayAuthTicket{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramsignedrelayauthticket()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -353,25 +390,21 @@ pub fn cmsgsteamdatagramsignedrelayauthticket_unpack(buf []byte) ?CMsgSteamDatag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_reserved_do_not_use = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.reserved_do_not_use = v
 				i = ii
 			}
 			2 {
-				res.has_key_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.key_id = v
 				i = ii
 			}
 			3 {
-				res.has_ticket = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.ticket = v
 				i = ii
 			}
 			4 {
-				res.has_signature = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.signature = v
 				i = ii
@@ -391,17 +424,50 @@ pub fn cmsgsteamdatagramsignedrelayauthticket_unpack(buf []byte) ?CMsgSteamDatag
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramSignedRelayAuthTicket) eq(b CMsgSteamDatagramSignedRelayAuthTicket) bool {
+	return true && a.reserved_do_not_use == b.reserved_do_not_use &&
+		a.key_id == b.key_id && a.ticket == b.ticket &&
+		a.signature == b.signature
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramSignedRelayAuthTicket) ne(b CMsgSteamDatagramSignedRelayAuthTicket) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramSignedRelayAuthTicket) eq(b []CMsgSteamDatagramSignedRelayAuthTicket) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramSignedRelayAuthTicket) ne(b []CMsgSteamDatagramSignedRelayAuthTicket) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramsignedrelayauthticket() CMsgSteamDatagramSignedRelayAuthTicket {
 	return CMsgSteamDatagramSignedRelayAuthTicket{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramsignedrelayauthticket(o CMsgSteamDatagramSignedRelayAuthTicket, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramsignedrelayauthticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramSignedRelayAuthTicket) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramsignedrelayauthticket_unpack(v)?
@@ -410,21 +476,19 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramsignedrelayauthticket(buf []b
 
 pub struct CMsgSteamDatagramCachedCredentialsForApp {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	private_key     []byte
-	has_private_key bool
-	cert            []byte
-	has_cert        bool
-	relay_tickets   [][]byte
+	private_key    []byte
+	cert           []byte
+	relay_tickets  [][]byte
 }
 
 pub fn (o &CMsgSteamDatagramCachedCredentialsForApp) pack() []byte {
 	mut res := []byte{}
-	if o.has_private_key {
+	if o.private_key != []byte{} {
 		res << vproto.pack_bytes_field(o.private_key, 1)
 	}
-	if o.has_cert {
+	if o.cert != []byte{} {
 		res << vproto.pack_bytes_field(o.cert, 2)
 	}
 	// [packed=false]
@@ -435,7 +499,7 @@ pub fn (o &CMsgSteamDatagramCachedCredentialsForApp) pack() []byte {
 }
 
 pub fn cmsgsteamdatagramcachedcredentialsforapp_unpack(buf []byte) ?CMsgSteamDatagramCachedCredentialsForApp {
-	mut res := CMsgSteamDatagramCachedCredentialsForApp{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramcachedcredentialsforapp()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -446,13 +510,11 @@ pub fn cmsgsteamdatagramcachedcredentialsforapp_unpack(buf []byte) ?CMsgSteamDat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_private_key = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.private_key = v
 				i = ii
 			}
 			2 {
-				res.has_cert = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.cert = v
 				i = ii
@@ -478,17 +540,49 @@ pub fn cmsgsteamdatagramcachedcredentialsforapp_unpack(buf []byte) ?CMsgSteamDat
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramCachedCredentialsForApp) eq(b CMsgSteamDatagramCachedCredentialsForApp) bool {
+	return true && a.private_key == b.private_key &&
+		a.cert == b.cert && a.relay_tickets == b.relay_tickets
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramCachedCredentialsForApp) ne(b CMsgSteamDatagramCachedCredentialsForApp) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCachedCredentialsForApp) eq(b []CMsgSteamDatagramCachedCredentialsForApp) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramCachedCredentialsForApp) ne(b []CMsgSteamDatagramCachedCredentialsForApp) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramcachedcredentialsforapp() CMsgSteamDatagramCachedCredentialsForApp {
 	return CMsgSteamDatagramCachedCredentialsForApp{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramcachedcredentialsforapp(o CMsgSteamDatagramCachedCredentialsForApp, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramcachedcredentialsforapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramCachedCredentialsForApp) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramcachedcredentialsforapp_unpack(v)?
@@ -497,52 +591,45 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramcachedcredentialsforapp(buf [
 
 pub struct CMsgSteamDatagramGameCoordinatorServerLogin {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	time_generated             u32
-	has_time_generated         bool
-	appid                      u32
-	has_appid                  bool
-	routing                    []byte
-	has_routing                bool
-	appdata                    []byte
-	has_appdata                bool
-	legacy_identity_binary     []byte
-	has_legacy_identity_binary bool
-	identity_string            string
-	has_identity_string        bool
-	dummy_steam_id             u64
-	has_dummy_steam_id         bool
+	time_generated         u32
+	appid                  u32
+	routing                []byte
+	appdata                []byte
+	legacy_identity_binary []byte
+	identity_string        string
+	dummy_steam_id         u64
 }
 
 pub fn (o &CMsgSteamDatagramGameCoordinatorServerLogin) pack() []byte {
 	mut res := []byte{}
-	if o.has_time_generated {
+	if o.time_generated != u32(0) {
 		res << vproto.pack_uint32_field(o.time_generated, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_routing {
+	if o.routing != []byte{} {
 		res << vproto.pack_bytes_field(o.routing, 3)
 	}
-	if o.has_appdata {
+	if o.appdata != []byte{} {
 		res << vproto.pack_bytes_field(o.appdata, 4)
 	}
-	if o.has_legacy_identity_binary {
+	if o.legacy_identity_binary != []byte{} {
 		res << vproto.pack_bytes_field(o.legacy_identity_binary, 5)
 	}
-	if o.has_identity_string {
+	if o.identity_string != '' {
 		res << vproto.pack_string_field(o.identity_string, 6)
 	}
-	if o.has_dummy_steam_id {
+	if o.dummy_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.dummy_steam_id, 99)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramgamecoordinatorserverlogin_unpack(buf []byte) ?CMsgSteamDatagramGameCoordinatorServerLogin {
-	mut res := CMsgSteamDatagramGameCoordinatorServerLogin{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramgamecoordinatorserverlogin()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -553,43 +640,36 @@ pub fn cmsgsteamdatagramgamecoordinatorserverlogin_unpack(buf []byte) ?CMsgSteam
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_time_generated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_generated = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				res.has_routing = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.routing = v
 				i = ii
 			}
 			4 {
-				res.has_appdata = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.appdata = v
 				i = ii
 			}
 			5 {
-				res.has_legacy_identity_binary = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.legacy_identity_binary = v
 				i = ii
 			}
 			6 {
-				res.has_identity_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.identity_string = v
 				i = ii
 			}
 			99 {
-				res.has_dummy_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.dummy_steam_id = v
 				i = ii
@@ -609,17 +689,52 @@ pub fn cmsgsteamdatagramgamecoordinatorserverlogin_unpack(buf []byte) ?CMsgSteam
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramGameCoordinatorServerLogin) eq(b CMsgSteamDatagramGameCoordinatorServerLogin) bool {
+	return true && a.time_generated == b.time_generated &&
+		a.appid == b.appid && a.routing == b.routing &&
+		a.appdata == b.appdata && a.legacy_identity_binary == b.legacy_identity_binary &&
+		a.identity_string == b.identity_string &&
+		a.dummy_steam_id == b.dummy_steam_id
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramGameCoordinatorServerLogin) ne(b CMsgSteamDatagramGameCoordinatorServerLogin) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramGameCoordinatorServerLogin) eq(b []CMsgSteamDatagramGameCoordinatorServerLogin) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramGameCoordinatorServerLogin) ne(b []CMsgSteamDatagramGameCoordinatorServerLogin) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramgamecoordinatorserverlogin() CMsgSteamDatagramGameCoordinatorServerLogin {
 	return CMsgSteamDatagramGameCoordinatorServerLogin{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgamecoordinatorserverlogin(o CMsgSteamDatagramGameCoordinatorServerLogin, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgamecoordinatorserverlogin(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameCoordinatorServerLogin) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramgamecoordinatorserverlogin_unpack(v)?
@@ -631,29 +746,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	cert           CMsgSteamDatagramCertificateSigned
-	has_cert       bool
 	login          []byte
-	has_login      bool
 	signature      []byte
-	has_signature  bool
 }
 
 pub fn (o &CMsgSteamDatagramSignedGameCoordinatorServerLogin) pack() []byte {
 	mut res := []byte{}
-	if o.has_cert {
+	if o.cert.ne(zzz_vproto_internal_new_cmsgsteamdatagramcertificatesigned()) {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificatesigned(o.cert, 1)
 	}
-	if o.has_login {
+	if o.login != []byte{} {
 		res << vproto.pack_bytes_field(o.login, 2)
 	}
-	if o.has_signature {
+	if o.signature != []byte{} {
 		res << vproto.pack_bytes_field(o.signature, 3)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramsignedgamecoordinatorserverlogin_unpack(buf []byte) ?CMsgSteamDatagramSignedGameCoordinatorServerLogin {
-	mut res := CMsgSteamDatagramSignedGameCoordinatorServerLogin{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramsignedgamecoordinatorserverlogin()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -664,20 +776,17 @@ pub fn cmsgsteamdatagramsignedgamecoordinatorserverlogin_unpack(buf []byte) ?CMs
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_cert = true
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
 					tag_wiretype.wire_type)?
 				res.cert = v
 				i = ii
 			}
 			2 {
-				res.has_login = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.login = v
 				i = ii
 			}
 			3 {
-				res.has_signature = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.signature = v
 				i = ii
@@ -697,17 +806,48 @@ pub fn cmsgsteamdatagramsignedgamecoordinatorserverlogin_unpack(buf []byte) ?CMs
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramSignedGameCoordinatorServerLogin) eq(b CMsgSteamDatagramSignedGameCoordinatorServerLogin) bool {
+	return true && a.cert.eq(b.cert) && a.login == b.login && a.signature == b.signature
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramSignedGameCoordinatorServerLogin) ne(b CMsgSteamDatagramSignedGameCoordinatorServerLogin) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramSignedGameCoordinatorServerLogin) eq(b []CMsgSteamDatagramSignedGameCoordinatorServerLogin) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramSignedGameCoordinatorServerLogin) ne(b []CMsgSteamDatagramSignedGameCoordinatorServerLogin) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramsignedgamecoordinatorserverlogin() CMsgSteamDatagramSignedGameCoordinatorServerLogin {
 	return CMsgSteamDatagramSignedGameCoordinatorServerLogin{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramsignedgamecoordinatorserverlogin(o CMsgSteamDatagramSignedGameCoordinatorServerLogin, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramsignedgamecoordinatorserverlogin(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramSignedGameCoordinatorServerLogin) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramsignedgamecoordinatorserverlogin_unpack(v)?
@@ -716,37 +856,33 @@ pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramsignedgamecoordinatorserverlo
 
 pub struct CMsgSteamDatagramHostedServerAddressPlaintext {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	ipv4               u32
-	has_ipv4           bool
-	ipv6               []byte
-	has_ipv6           bool
-	port               u32
-	has_port           bool
-	routing_secret     u64
-	has_routing_secret bool
+	ipv4           u32
+	ipv6           []byte
+	port           u32
+	routing_secret u64
 }
 
 pub fn (o &CMsgSteamDatagramHostedServerAddressPlaintext) pack() []byte {
 	mut res := []byte{}
-	if o.has_ipv4 {
+	if o.ipv4 != u32(0) {
 		res << vproto.pack_32bit_field(o.ipv4, 1)
 	}
-	if o.has_ipv6 {
+	if o.ipv6 != []byte{} {
 		res << vproto.pack_bytes_field(o.ipv6, 2)
 	}
-	if o.has_port {
+	if o.port != u32(0) {
 		res << vproto.pack_uint32_field(o.port, 3)
 	}
-	if o.has_routing_secret {
+	if o.routing_secret != u64(0) {
 		res << vproto.pack_64bit_field(o.routing_secret, 4)
 	}
 	return res
 }
 
 pub fn cmsgsteamdatagramhostedserveraddressplaintext_unpack(buf []byte) ?CMsgSteamDatagramHostedServerAddressPlaintext {
-	mut res := CMsgSteamDatagramHostedServerAddressPlaintext{}
+	mut res := zzz_vproto_internal_new_cmsgsteamdatagramhostedserveraddressplaintext()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -757,25 +893,21 @@ pub fn cmsgsteamdatagramhostedserveraddressplaintext_unpack(buf []byte) ?CMsgSte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_ipv4 = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.ipv4 = v
 				i = ii
 			}
 			2 {
-				res.has_ipv6 = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.ipv6 = v
 				i = ii
 			}
 			3 {
-				res.has_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.port = v
 				i = ii
 			}
 			4 {
-				res.has_routing_secret = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.routing_secret = v
 				i = ii
@@ -795,17 +927,50 @@ pub fn cmsgsteamdatagramhostedserveraddressplaintext_unpack(buf []byte) ?CMsgSte
 	return res
 }
 
+[inline]
+pub fn (a CMsgSteamDatagramHostedServerAddressPlaintext) eq(b CMsgSteamDatagramHostedServerAddressPlaintext) bool {
+	return true && a.ipv4 == b.ipv4 &&
+		a.ipv6 == b.ipv6 && a.port == b.port &&
+		a.routing_secret == b.routing_secret
+}
+
+[inline]
+pub fn (a CMsgSteamDatagramHostedServerAddressPlaintext) ne(b CMsgSteamDatagramHostedServerAddressPlaintext) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramHostedServerAddressPlaintext) eq(b []CMsgSteamDatagramHostedServerAddressPlaintext) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgSteamDatagramHostedServerAddressPlaintext) ne(b []CMsgSteamDatagramHostedServerAddressPlaintext) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgsteamdatagramhostedserveraddressplaintext() CMsgSteamDatagramHostedServerAddressPlaintext {
 	return CMsgSteamDatagramHostedServerAddressPlaintext{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgsteamdatagramhostedserveraddressplaintext(o CMsgSteamDatagramHostedServerAddressPlaintext, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramhostedserveraddressplaintext(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramHostedServerAddressPlaintext) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgsteamdatagramhostedserveraddressplaintext_unpack(v)?

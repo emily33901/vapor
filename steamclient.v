@@ -95,6 +95,8 @@ pub fn (mut s SteamClient) frame() ? {
 			s.process_and_dispatch_packet(p)?
 		} else {
 			// If we get here we got disconnected...
+			// TODO check whether it was user intended or not
+			// because we should try to reconnect here
 			s.shutdown()?
 			break
 		}
@@ -139,17 +141,18 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 				target_job_id = full_header.target_job_id
 				msg_body = p.body[sizeof(MsgHeader)..].clone()
 			}
-			else {}
+
+			else{}
 		}
 	} else {
 		full_header := &MsgHdrProtobuf(p.body.data)
 		if full_header.header_length > 0 {
 			header := proto.cmsgprotobufheader_unpack(p.body[sizeof(MsgHdrProtobuf)..int(sizeof(MsgHdrProtobuf)) +
 				full_header.header_length])?
-			if header.has_steamid {
+			if header.steamid != 0 {
 				s.steam_id = steamid(header.steamid)
 			}
-			if header.has_client_sessionid {
+			if header.client_sessionid != 0 {
 				s.session_id = header.client_sessionid
 			}
 			source_job_id = header.jobid_source
@@ -198,12 +201,9 @@ fn (mut s SteamClient) write_non_protobuf_message(m Message) ? {
 // write_message_internal writes a Message to the CM
 fn (mut s SteamClient) write_message_internal(m Message) ? {
 	mut header := proto.CMsgProtoBufHeader{}
-	header.has_steamid = true
 	header.steamid = s.steam_id
-	header.has_client_sessionid = true
 	header.client_sessionid = s.session_id
 	if m.target != 0 {
-		header.has_jobid_target = true
 		header.jobid_target = m.target
 	}
 	packed_header := header.pack()

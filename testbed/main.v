@@ -38,7 +38,10 @@ fn (mut t Testbed) handle_callback(cb vapor.Callback) ? {
 	match cb {
 		vapor.ConnectedCallback {
 			println('Connected!')
-			user.logon(t.secrets.username, t.secrets.password)?
+			user.logon({
+				username: t.secrets.username, 
+				password: t.secrets.password
+			})?
 		}
 		vapor.DisconnectedCallback {
 			println('Disconnected!')

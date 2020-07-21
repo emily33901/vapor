@@ -22,11 +22,19 @@ enum ERemoteClientBroadcastMsg {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eremoteclientbroadcastmsg() ERemoteClientBroadcastMsg {
+	return .k_eremoteclientbroadcastmsgdiscovery
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremoteclientbroadcastmsg(e ERemoteClientBroadcastMsg, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremoteclientbroadcastmsg_packed(e []ERemoteClientBroadcastMsg, num u32) []byte {
 	x := array{
 		data: e.data
@@ -38,12 +46,14 @@ fn zzz_vproto_internal_pack_eremoteclientbroadcastmsg_packed(e []ERemoteClientBr
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremoteclientbroadcastmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, ERemoteClientBroadcastMsg) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ERemoteClientBroadcastMsg(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremoteclientbroadcastmsg_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ERemoteClientBroadcastMsg) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -64,11 +74,19 @@ enum ERemoteClientService {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eremoteclientservice() ERemoteClientService {
+	return .k_eremoteclientservicenone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremoteclientservice(e ERemoteClientService, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremoteclientservice_packed(e []ERemoteClientService, num u32) []byte {
 	x := array{
 		data: e.data
@@ -80,12 +98,14 @@ fn zzz_vproto_internal_pack_eremoteclientservice_packed(e []ERemoteClientService
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremoteclientservice(buf []byte, tag_wiretype vproto.WireType) ?(int, ERemoteClientService) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ERemoteClientService(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremoteclientservice_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ERemoteClientService) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -110,11 +130,19 @@ enum ERemoteDeviceAuthorizationResult {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eremotedeviceauthorizationresult() ERemoteDeviceAuthorizationResult {
+	return .k_eremotedeviceauthorizationsuccess
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremotedeviceauthorizationresult(e ERemoteDeviceAuthorizationResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremotedeviceauthorizationresult_packed(e []ERemoteDeviceAuthorizationResult, num u32) []byte {
 	x := array{
 		data: e.data
@@ -126,12 +154,14 @@ fn zzz_vproto_internal_pack_eremotedeviceauthorizationresult_packed(e []ERemoteD
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremotedeviceauthorizationresult(buf []byte, tag_wiretype vproto.WireType) ?(int, ERemoteDeviceAuthorizationResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ERemoteDeviceAuthorizationResult(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremotedeviceauthorizationresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ERemoteDeviceAuthorizationResult) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -152,11 +182,19 @@ enum EStreamDeviceFormFactor {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamdeviceformfactor() EStreamDeviceFormFactor {
+	return .k_estreamdeviceformfactorunknown
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamdeviceformfactor(e EStreamDeviceFormFactor, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamdeviceformfactor_packed(e []EStreamDeviceFormFactor, num u32) []byte {
 	x := array{
 		data: e.data
@@ -168,12 +206,14 @@ fn zzz_vproto_internal_pack_estreamdeviceformfactor_packed(e []EStreamDeviceForm
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamdeviceformfactor(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamDeviceFormFactor) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamDeviceFormFactor(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamdeviceformfactor_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamDeviceFormFactor) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -196,11 +236,19 @@ enum EStreamTransport {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamtransport() EStreamTransport {
+	return .k_estreamtransportnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamtransport(e EStreamTransport, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamtransport_packed(e []EStreamTransport, num u32) []byte {
 	x := array{
 		data: e.data
@@ -212,12 +260,14 @@ fn zzz_vproto_internal_pack_estreamtransport_packed(e []EStreamTransport, num u3
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamtransport(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamTransport) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamTransport(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamtransport_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamTransport) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -237,11 +287,19 @@ enum EStreamInterface {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreaminterface() EStreamInterface {
+	return .k_estreaminterfacedefault
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreaminterface(e EStreamInterface, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreaminterface_packed(e []EStreamInterface, num u32) []byte {
 	x := array{
 		data: e.data
@@ -253,12 +311,14 @@ fn zzz_vproto_internal_pack_estreaminterface_packed(e []EStreamInterface, num u3
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreaminterface(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamInterface) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamInterface(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreaminterface_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamInterface) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -289,11 +349,19 @@ enum ERemoteDeviceStreamingResult {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eremotedevicestreamingresult() ERemoteDeviceStreamingResult {
+	return .k_eremotedevicestreamingsuccess
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremotedevicestreamingresult(e ERemoteDeviceStreamingResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eremotedevicestreamingresult_packed(e []ERemoteDeviceStreamingResult, num u32) []byte {
 	x := array{
 		data: e.data
@@ -305,12 +373,14 @@ fn zzz_vproto_internal_pack_eremotedevicestreamingresult_packed(e []ERemoteDevic
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremotedevicestreamingresult(buf []byte, tag_wiretype vproto.WireType) ?(int, ERemoteDeviceStreamingResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ERemoteDeviceStreamingResult(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eremotedevicestreamingresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ERemoteDeviceStreamingResult) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -323,42 +393,37 @@ fn zzz_vproto_internal_unpack_eremotedevicestreamingresult_packed(buf []byte, ta
 
 pub struct CMsgRemoteClientBroadcastHeader {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	client_id        u64
-	has_client_id    bool
-	msg_type         ERemoteClientBroadcastMsg
-	has_msg_type     bool
-	instance_id      u64
-	has_instance_id  bool
-	device_id        u64
-	has_device_id    bool
-	device_token     []byte
-	has_device_token bool
+	client_id      u64
+	msg_type       ERemoteClientBroadcastMsg = .k_eremoteclientbroadcastmsgdiscovery
+	instance_id    u64
+	device_id      u64
+	device_token   []byte
 }
 
 pub fn (o &CMsgRemoteClientBroadcastHeader) pack() []byte {
 	mut res := []byte{}
-	if o.has_client_id {
+	if o.client_id != u64(0) {
 		res << vproto.pack_uint64_field(o.client_id, 1)
 	}
-	if o.has_msg_type {
+	if o.msg_type != zzz_vproto_internal_new_eremoteclientbroadcastmsg() {
 		res << zzz_vproto_internal_pack_eremoteclientbroadcastmsg(o.msg_type, 2)
 	}
-	if o.has_instance_id {
+	if o.instance_id != u64(0) {
 		res << vproto.pack_uint64_field(o.instance_id, 3)
 	}
-	if o.has_device_id {
+	if o.device_id != u64(0) {
 		res << vproto.pack_uint64_field(o.device_id, 4)
 	}
-	if o.has_device_token {
+	if o.device_token != []byte{} {
 		res << vproto.pack_bytes_field(o.device_token, 5)
 	}
 	return res
 }
 
 pub fn cmsgremoteclientbroadcastheader_unpack(buf []byte) ?CMsgRemoteClientBroadcastHeader {
-	mut res := CMsgRemoteClientBroadcastHeader{}
+	mut res := zzz_vproto_internal_new_cmsgremoteclientbroadcastheader()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -369,32 +434,27 @@ pub fn cmsgremoteclientbroadcastheader_unpack(buf []byte) ?CMsgRemoteClientBroad
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_client_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_id = v
 				i = ii
 			}
 			2 {
-				res.has_msg_type = true
 				ii, v := zzz_vproto_internal_unpack_eremoteclientbroadcastmsg(cur_buf,
 					tag_wiretype.wire_type)?
 				res.msg_type = v
 				i = ii
 			}
 			3 {
-				res.has_instance_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.instance_id = v
 				i = ii
 			}
 			4 {
-				res.has_device_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_id = v
 				i = ii
 			}
 			5 {
-				res.has_device_token = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_token = v
 				i = ii
@@ -414,17 +474,50 @@ pub fn cmsgremoteclientbroadcastheader_unpack(buf []byte) ?CMsgRemoteClientBroad
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteClientBroadcastHeader) eq(b CMsgRemoteClientBroadcastHeader) bool {
+	return true && a.client_id == b.client_id &&
+		a.msg_type == b.msg_type && a.instance_id == b.instance_id &&
+		a.device_id == b.device_id && a.device_token == b.device_token
+}
+
+[inline]
+pub fn (a CMsgRemoteClientBroadcastHeader) ne(b CMsgRemoteClientBroadcastHeader) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastHeader) eq(b []CMsgRemoteClientBroadcastHeader) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastHeader) ne(b []CMsgRemoteClientBroadcastHeader) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremoteclientbroadcastheader() CMsgRemoteClientBroadcastHeader {
 	return CMsgRemoteClientBroadcastHeader{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremoteclientbroadcastheader(o CMsgRemoteClientBroadcastHeader, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcastheader(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientBroadcastHeader) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremoteclientbroadcastheader_unpack(v)?
@@ -433,27 +526,25 @@ pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcastheader(buf []byte, ta
 
 pub struct CMsgRemoteClientBroadcastStatus_User {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid         u64
-	has_steamid     bool
-	auth_key_id     u32
-	has_auth_key_id bool
+	steamid        u64
+	auth_key_id    u32
 }
 
 pub fn (o &CMsgRemoteClientBroadcastStatus_User) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_auth_key_id {
+	if o.auth_key_id != u32(0) {
 		res << vproto.pack_uint32_field(o.auth_key_id, 2)
 	}
 	return res
 }
 
 pub fn cmsgremoteclientbroadcaststatus_user_unpack(buf []byte) ?CMsgRemoteClientBroadcastStatus_User {
-	mut res := CMsgRemoteClientBroadcastStatus_User{}
+	mut res := zzz_vproto_internal_new_cmsgremoteclientbroadcaststatus_user()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -464,13 +555,11 @@ pub fn cmsgremoteclientbroadcaststatus_user_unpack(buf []byte) ?CMsgRemoteClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_auth_key_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_key_id = v
 				i = ii
@@ -490,17 +579,48 @@ pub fn cmsgremoteclientbroadcaststatus_user_unpack(buf []byte) ?CMsgRemoteClient
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteClientBroadcastStatus_User) eq(b CMsgRemoteClientBroadcastStatus_User) bool {
+	return true && a.steamid == b.steamid && a.auth_key_id == b.auth_key_id
+}
+
+[inline]
+pub fn (a CMsgRemoteClientBroadcastStatus_User) ne(b CMsgRemoteClientBroadcastStatus_User) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastStatus_User) eq(b []CMsgRemoteClientBroadcastStatus_User) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastStatus_User) ne(b []CMsgRemoteClientBroadcastStatus_User) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremoteclientbroadcaststatus_user() CMsgRemoteClientBroadcastStatus_User {
 	return CMsgRemoteClientBroadcastStatus_User{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremoteclientbroadcaststatus_user(o CMsgRemoteClientBroadcastStatus_User, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcaststatus_user(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientBroadcastStatus_User) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremoteclientbroadcaststatus_user_unpack(v)?
@@ -509,117 +629,100 @@ pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcaststatus_user(buf []byt
 
 pub struct CMsgRemoteClientBroadcastStatus {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	version                     int
-	has_version                 bool
-	min_version                 int
-	has_min_version             bool
-	connect_port                u32
-	has_connect_port            bool
-	hostname                    string
-	has_hostname                bool
-	enabled_services            u32
-	has_enabled_services        bool
-	ostype                      int
-	has_ostype                  bool
-	is64bit                     bool
-	has_is64bit                 bool
-	users                       []CMsgRemoteClientBroadcastStatus_User
-	euniverse                   int
-	has_euniverse               bool
-	timestamp                   u32
-	has_timestamp               bool
-	screen_locked               bool
-	has_screen_locked           bool
-	games_running               bool
-	has_games_running           bool
-	mac_addresses               []string
-	download_lan_peer_group     u32
-	has_download_lan_peer_group bool
-	broadcasting_active         bool
-	has_broadcasting_active     bool
-	vr_active                   bool
-	has_vr_active               bool
-	content_cache_port          u32
-	has_content_cache_port      bool
-	ip_addresses                []string
-	public_ip_address           string
-	has_public_ip_address       bool
-	remoteplay_active           bool
-	has_remoteplay_active       bool
+	version                 int
+	min_version             int
+	connect_port            u32
+	hostname                string
+	enabled_services        u32
+	ostype                  int = 0
+	is64bit                 bool
+	users                   []CMsgRemoteClientBroadcastStatus_User
+	euniverse               int
+	timestamp               u32
+	screen_locked           bool
+	games_running           bool
+	mac_addresses           []string
+	download_lan_peer_group u32
+	broadcasting_active     bool
+	vr_active               bool
+	content_cache_port      u32
+	ip_addresses            []string
+	public_ip_address       string
+	remoteplay_active       bool
 }
 
 pub fn (o &CMsgRemoteClientBroadcastStatus) pack() []byte {
 	mut res := []byte{}
-	if o.has_version {
+	if o.version != int(0) {
 		res << vproto.pack_int32_field(o.version, 1)
 	}
-	if o.has_min_version {
+	if o.min_version != int(0) {
 		res << vproto.pack_int32_field(o.min_version, 2)
 	}
-	if o.has_connect_port {
+	if o.connect_port != u32(0) {
 		res << vproto.pack_uint32_field(o.connect_port, 3)
 	}
-	if o.has_hostname {
+	if o.hostname != '' {
 		res << vproto.pack_string_field(o.hostname, 4)
 	}
-	if o.has_enabled_services {
+	if o.enabled_services != u32(0) {
 		res << vproto.pack_uint32_field(o.enabled_services, 6)
 	}
-	if o.has_ostype {
+	if o.ostype != int(0) {
 		res << vproto.pack_int32_field(o.ostype, 7)
 	}
-	if o.has_is64bit {
+	if o.is64bit != bool(0) {
 		res << vproto.pack_bool_field(o.is64bit, 8)
 	}
 	// [packed=false]
 	for _, x in o.users {
 		res << zzz_vproto_internal_pack_cmsgremoteclientbroadcaststatus_user(x, 9)
 	}
-	if o.has_euniverse {
+	if o.euniverse != int(0) {
 		res << vproto.pack_int32_field(o.euniverse, 11)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 12)
 	}
-	if o.has_screen_locked {
+	if o.screen_locked != bool(0) {
 		res << vproto.pack_bool_field(o.screen_locked, 13)
 	}
-	if o.has_games_running {
+	if o.games_running != bool(0) {
 		res << vproto.pack_bool_field(o.games_running, 14)
 	}
 	// [packed=false]
 	for _, x in o.mac_addresses {
 		res << vproto.pack_string_field(x, 15)
 	}
-	if o.has_download_lan_peer_group {
+	if o.download_lan_peer_group != u32(0) {
 		res << vproto.pack_uint32_field(o.download_lan_peer_group, 16)
 	}
-	if o.has_broadcasting_active {
+	if o.broadcasting_active != bool(0) {
 		res << vproto.pack_bool_field(o.broadcasting_active, 17)
 	}
-	if o.has_vr_active {
+	if o.vr_active != bool(0) {
 		res << vproto.pack_bool_field(o.vr_active, 18)
 	}
-	if o.has_content_cache_port {
+	if o.content_cache_port != u32(0) {
 		res << vproto.pack_uint32_field(o.content_cache_port, 19)
 	}
 	// [packed=false]
 	for _, x in o.ip_addresses {
 		res << vproto.pack_string_field(x, 20)
 	}
-	if o.has_public_ip_address {
+	if o.public_ip_address != '' {
 		res << vproto.pack_string_field(o.public_ip_address, 21)
 	}
-	if o.has_remoteplay_active {
+	if o.remoteplay_active != bool(0) {
 		res << vproto.pack_bool_field(o.remoteplay_active, 22)
 	}
 	return res
 }
 
 pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroadcastStatus {
-	mut res := CMsgRemoteClientBroadcastStatus{}
+	mut res := zzz_vproto_internal_new_cmsgremoteclientbroadcaststatus()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -630,43 +733,36 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_version = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.version = v
 				i = ii
 			}
 			2 {
-				res.has_min_version = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.min_version = v
 				i = ii
 			}
 			3 {
-				res.has_connect_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.connect_port = v
 				i = ii
 			}
 			4 {
-				res.has_hostname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.hostname = v
 				i = ii
 			}
 			6 {
-				res.has_enabled_services = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.enabled_services = v
 				i = ii
 			}
 			7 {
-				res.has_ostype = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ostype = v
 				i = ii
 			}
 			8 {
-				res.has_is64bit = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is64bit = v
 				i = ii
@@ -679,25 +775,21 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 				i = ii
 			}
 			11 {
-				res.has_euniverse = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.euniverse = v
 				i = ii
 			}
 			12 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
 			}
 			13 {
-				res.has_screen_locked = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.screen_locked = v
 				i = ii
 			}
 			14 {
-				res.has_games_running = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.games_running = v
 				i = ii
@@ -709,25 +801,21 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 				i = ii
 			}
 			16 {
-				res.has_download_lan_peer_group = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.download_lan_peer_group = v
 				i = ii
 			}
 			17 {
-				res.has_broadcasting_active = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.broadcasting_active = v
 				i = ii
 			}
 			18 {
-				res.has_vr_active = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.vr_active = v
 				i = ii
 			}
 			19 {
-				res.has_content_cache_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.content_cache_port = v
 				i = ii
@@ -739,13 +827,11 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 				i = ii
 			}
 			21 {
-				res.has_public_ip_address = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.public_ip_address = v
 				i = ii
 			}
 			22 {
-				res.has_remoteplay_active = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.remoteplay_active = v
 				i = ii
@@ -765,17 +851,61 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteClientBroadcastStatus) eq(b CMsgRemoteClientBroadcastStatus) bool {
+	return true && a.version == b.version &&
+		a.min_version == b.min_version && a.connect_port == b.connect_port &&
+		a.hostname == b.hostname && a.enabled_services == b.enabled_services &&
+		a.ostype == b.ostype && a.is64bit == b.is64bit && a.users.eq(b.users) &&
+		a.euniverse == b.euniverse && a.timestamp == b.timestamp &&
+		a.screen_locked == b.screen_locked &&
+		a.games_running == b.games_running &&
+		a.mac_addresses == b.mac_addresses &&
+		a.download_lan_peer_group == b.download_lan_peer_group &&
+		a.broadcasting_active == b.broadcasting_active &&
+		a.vr_active == b.vr_active && a.content_cache_port == b.content_cache_port &&
+		a.ip_addresses == b.ip_addresses &&
+		a.public_ip_address == b.public_ip_address &&
+		a.remoteplay_active == b.remoteplay_active
+}
+
+[inline]
+pub fn (a CMsgRemoteClientBroadcastStatus) ne(b CMsgRemoteClientBroadcastStatus) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastStatus) eq(b []CMsgRemoteClientBroadcastStatus) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastStatus) ne(b []CMsgRemoteClientBroadcastStatus) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremoteclientbroadcaststatus() CMsgRemoteClientBroadcastStatus {
 	return CMsgRemoteClientBroadcastStatus{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremoteclientbroadcaststatus(o CMsgRemoteClientBroadcastStatus, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcaststatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientBroadcastStatus) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremoteclientbroadcaststatus_unpack(v)?
@@ -787,13 +917,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	seq_num        u32
-	has_seq_num    bool
 	client_ids     []u64
 }
 
 pub fn (o &CMsgRemoteClientBroadcastDiscovery) pack() []byte {
 	mut res := []byte{}
-	if o.has_seq_num {
+	if o.seq_num != u32(0) {
 		res << vproto.pack_uint32_field(o.seq_num, 1)
 	}
 	// [packed=false]
@@ -804,7 +933,7 @@ pub fn (o &CMsgRemoteClientBroadcastDiscovery) pack() []byte {
 }
 
 pub fn cmsgremoteclientbroadcastdiscovery_unpack(buf []byte) ?CMsgRemoteClientBroadcastDiscovery {
-	mut res := CMsgRemoteClientBroadcastDiscovery{}
+	mut res := zzz_vproto_internal_new_cmsgremoteclientbroadcastdiscovery()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -815,7 +944,6 @@ pub fn cmsgremoteclientbroadcastdiscovery_unpack(buf []byte) ?CMsgRemoteClientBr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_seq_num = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seq_num = v
 				i = ii
@@ -841,17 +969,48 @@ pub fn cmsgremoteclientbroadcastdiscovery_unpack(buf []byte) ?CMsgRemoteClientBr
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteClientBroadcastDiscovery) eq(b CMsgRemoteClientBroadcastDiscovery) bool {
+	return true && a.seq_num == b.seq_num && a.client_ids == b.client_ids
+}
+
+[inline]
+pub fn (a CMsgRemoteClientBroadcastDiscovery) ne(b CMsgRemoteClientBroadcastDiscovery) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastDiscovery) eq(b []CMsgRemoteClientBroadcastDiscovery) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastDiscovery) ne(b []CMsgRemoteClientBroadcastDiscovery) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremoteclientbroadcastdiscovery() CMsgRemoteClientBroadcastDiscovery {
 	return CMsgRemoteClientBroadcastDiscovery{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremoteclientbroadcastdiscovery(o CMsgRemoteClientBroadcastDiscovery, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcastdiscovery(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientBroadcastDiscovery) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremoteclientbroadcastdiscovery_unpack(v)?
@@ -875,7 +1034,7 @@ pub fn (o &CMsgRemoteClientBroadcastClientIDDeconflict) pack() []byte {
 }
 
 pub fn cmsgremoteclientbroadcastclientiddeconflict_unpack(buf []byte) ?CMsgRemoteClientBroadcastClientIDDeconflict {
-	mut res := CMsgRemoteClientBroadcastClientIDDeconflict{}
+	mut res := zzz_vproto_internal_new_cmsgremoteclientbroadcastclientiddeconflict()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -906,17 +1065,48 @@ pub fn cmsgremoteclientbroadcastclientiddeconflict_unpack(buf []byte) ?CMsgRemot
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteClientBroadcastClientIDDeconflict) eq(b CMsgRemoteClientBroadcastClientIDDeconflict) bool {
+	return true && a.client_ids == b.client_ids
+}
+
+[inline]
+pub fn (a CMsgRemoteClientBroadcastClientIDDeconflict) ne(b CMsgRemoteClientBroadcastClientIDDeconflict) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastClientIDDeconflict) eq(b []CMsgRemoteClientBroadcastClientIDDeconflict) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteClientBroadcastClientIDDeconflict) ne(b []CMsgRemoteClientBroadcastClientIDDeconflict) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremoteclientbroadcastclientiddeconflict() CMsgRemoteClientBroadcastClientIDDeconflict {
 	return CMsgRemoteClientBroadcastClientIDDeconflict{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremoteclientbroadcastclientiddeconflict(o CMsgRemoteClientBroadcastClientIDDeconflict, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcastclientiddeconflict(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteClientBroadcastClientIDDeconflict) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremoteclientbroadcastclientiddeconflict_unpack(v)?
@@ -925,63 +1115,54 @@ pub fn zzz_vproto_internal_unpack_cmsgremoteclientbroadcastclientiddeconflict(bu
 
 pub struct CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	password                   []byte
-	has_password               bool
-	identifier                 u64
-	has_identifier             bool
-	payload                    []byte
-	has_payload                bool
-	timestamp                  u32
-	has_timestamp              bool
-	usage                      CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage
-	has_usage                  bool
-	device_name                string
-	has_device_name            bool
-	device_model               string
-	has_device_model           bool
-	device_serial              string
-	has_device_serial          bool
-	device_provisioning_id     u32
-	has_device_provisioning_id bool
+	password               []byte
+	identifier             u64
+	payload                []byte
+	timestamp              u32
+	usage                  CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage = .k_ekeyescrowusagestreamingdevice
+	device_name            string
+	device_model           string
+	device_serial          string
+	device_provisioning_id u32
 }
 
 pub fn (o &CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) pack() []byte {
 	mut res := []byte{}
-	if o.has_password {
+	if o.password != []byte{} {
 		res << vproto.pack_bytes_field(o.password, 1)
 	}
-	if o.has_identifier {
+	if o.identifier != u64(0) {
 		res << vproto.pack_uint64_field(o.identifier, 2)
 	}
-	if o.has_payload {
+	if o.payload != []byte{} {
 		res << vproto.pack_bytes_field(o.payload, 3)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 4)
 	}
-	if o.has_usage {
+	if o.usage != zzz_vproto_internal_new_cmsgremotedeviceauthorizationrequest_ekeyescrowusage() {
 		res <<
 			zzz_vproto_internal_pack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage(o.usage, 5)
 	}
-	if o.has_device_name {
+	if o.device_name != '' {
 		res << vproto.pack_string_field(o.device_name, 6)
 	}
-	if o.has_device_model {
+	if o.device_model != '' {
 		res << vproto.pack_string_field(o.device_model, 7)
 	}
-	if o.has_device_serial {
+	if o.device_serial != '' {
 		res << vproto.pack_string_field(o.device_serial, 8)
 	}
-	if o.has_device_provisioning_id {
+	if o.device_provisioning_id != u32(0) {
 		res << vproto.pack_uint32_field(o.device_provisioning_id, 9)
 	}
 	return res
 }
 
 pub fn cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket_unpack(buf []byte) ?CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket {
-	mut res := CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket{}
+	mut res := zzz_vproto_internal_new_cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -992,56 +1173,47 @@ pub fn cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_password = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			2 {
-				res.has_identifier = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.identifier = v
 				i = ii
 			}
 			3 {
-				res.has_payload = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.payload = v
 				i = ii
 			}
 			4 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
 			}
 			5 {
-				res.has_usage = true
 				ii, v := zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage(cur_buf,
 					tag_wiretype.wire_type)?
 				res.usage = v
 				i = ii
 			}
 			6 {
-				res.has_device_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_name = v
 				i = ii
 			}
 			7 {
-				res.has_device_model = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_model = v
 				i = ii
 			}
 			8 {
-				res.has_device_serial = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_serial = v
 				i = ii
 			}
 			9 {
-				res.has_device_provisioning_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_provisioning_id = v
 				i = ii
@@ -1061,17 +1233,53 @@ pub fn cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket_unpack(buf []byte)
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) eq(b CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) bool {
+	return true && a.password == b.password &&
+		a.identifier == b.identifier && a.payload == b.payload &&
+		a.timestamp == b.timestamp && a.usage == b.usage &&
+		a.device_name == b.device_name && a.device_model == b.device_model &&
+		a.device_serial == b.device_serial &&
+		a.device_provisioning_id == b.device_provisioning_id
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) ne(b CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) eq(b []CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) ne(b []CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket() CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket {
 	return CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket(o CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceAuthorizationRequest_CKeyEscrow_Ticket) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket_unpack(v)?
@@ -1084,11 +1292,19 @@ enum CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_cmsgremotedeviceauthorizationrequest_ekeyescrowusage() CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage {
+	return .k_ekeyescrowusagestreamingdevice
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage(e CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage_packed(e []CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage, num u32) []byte {
 	x := array{
 		data: e.data
@@ -1100,12 +1316,14 @@ fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgRemoteDeviceAuthorizationRequest_EKeyEscrowUsage) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -1122,14 +1340,13 @@ mut:
 pub mut:
 	device_token      []byte
 	device_name       string
-	has_device_name   bool
 	encrypted_request []byte
 }
 
 pub fn (o &CMsgRemoteDeviceAuthorizationRequest) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_bytes_field(o.device_token, 1)
-	if o.has_device_name {
+	if o.device_name != '' {
 		res << vproto.pack_string_field(o.device_name, 2)
 	}
 	res << vproto.pack_bytes_field(o.encrypted_request, 3)
@@ -1137,7 +1354,7 @@ pub fn (o &CMsgRemoteDeviceAuthorizationRequest) pack() []byte {
 }
 
 pub fn cmsgremotedeviceauthorizationrequest_unpack(buf []byte) ?CMsgRemoteDeviceAuthorizationRequest {
-	mut res := CMsgRemoteDeviceAuthorizationRequest{}
+	mut res := zzz_vproto_internal_new_cmsgremotedeviceauthorizationrequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1153,7 +1370,6 @@ pub fn cmsgremotedeviceauthorizationrequest_unpack(buf []byte) ?CMsgRemoteDevice
 				i = ii
 			}
 			2 {
-				res.has_device_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_name = v
 				i = ii
@@ -1178,17 +1394,49 @@ pub fn cmsgremotedeviceauthorizationrequest_unpack(buf []byte) ?CMsgRemoteDevice
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationRequest) eq(b CMsgRemoteDeviceAuthorizationRequest) bool {
+	return true && a.device_token == b.device_token &&
+		a.device_name == b.device_name && a.encrypted_request == b.encrypted_request
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationRequest) ne(b CMsgRemoteDeviceAuthorizationRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationRequest) eq(b []CMsgRemoteDeviceAuthorizationRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationRequest) ne(b []CMsgRemoteDeviceAuthorizationRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedeviceauthorizationrequest() CMsgRemoteDeviceAuthorizationRequest {
 	return CMsgRemoteDeviceAuthorizationRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationrequest(o CMsgRemoteDeviceAuthorizationRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceAuthorizationRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedeviceauthorizationrequest_unpack(v)?
@@ -1206,21 +1454,52 @@ pub fn (o &CMsgRemoteDeviceAuthorizationCancelRequest) pack() []byte {
 }
 
 pub fn cmsgremotedeviceauthorizationcancelrequest_unpack(buf []byte) ?CMsgRemoteDeviceAuthorizationCancelRequest {
-	res := CMsgRemoteDeviceAuthorizationCancelRequest{}
+	res := zzz_vproto_internal_new_cmsgremotedeviceauthorizationcancelrequest()
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationCancelRequest) eq(b CMsgRemoteDeviceAuthorizationCancelRequest) bool {
+	return true
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationCancelRequest) ne(b CMsgRemoteDeviceAuthorizationCancelRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationCancelRequest) eq(b []CMsgRemoteDeviceAuthorizationCancelRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationCancelRequest) ne(b []CMsgRemoteDeviceAuthorizationCancelRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedeviceauthorizationcancelrequest() CMsgRemoteDeviceAuthorizationCancelRequest {
 	return CMsgRemoteDeviceAuthorizationCancelRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationcancelrequest(o CMsgRemoteDeviceAuthorizationCancelRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationcancelrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceAuthorizationCancelRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedeviceauthorizationcancelrequest_unpack(v)?
@@ -1233,20 +1512,19 @@ mut:
 pub mut:
 	result         ERemoteDeviceAuthorizationResult
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CMsgRemoteDeviceAuthorizationResponse) pack() []byte {
 	mut res := []byte{}
 	res << zzz_vproto_internal_pack_eremotedeviceauthorizationresult(o.result, 1)
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 2)
 	}
 	return res
 }
 
 pub fn cmsgremotedeviceauthorizationresponse_unpack(buf []byte) ?CMsgRemoteDeviceAuthorizationResponse {
-	mut res := CMsgRemoteDeviceAuthorizationResponse{}
+	mut res := zzz_vproto_internal_new_cmsgremotedeviceauthorizationresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1263,7 +1541,6 @@ pub fn cmsgremotedeviceauthorizationresponse_unpack(buf []byte) ?CMsgRemoteDevic
 				i = ii
 			}
 			2 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1283,17 +1560,48 @@ pub fn cmsgremotedeviceauthorizationresponse_unpack(buf []byte) ?CMsgRemoteDevic
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationResponse) eq(b CMsgRemoteDeviceAuthorizationResponse) bool {
+	return true && a.result == b.result && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceAuthorizationResponse) ne(b CMsgRemoteDeviceAuthorizationResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationResponse) eq(b []CMsgRemoteDeviceAuthorizationResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceAuthorizationResponse) ne(b []CMsgRemoteDeviceAuthorizationResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedeviceauthorizationresponse() CMsgRemoteDeviceAuthorizationResponse {
 	return CMsgRemoteDeviceAuthorizationResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedeviceauthorizationresponse(o CMsgRemoteDeviceAuthorizationResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceAuthorizationResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedeviceauthorizationresponse_unpack(v)?
@@ -1302,27 +1610,25 @@ pub fn zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationresponse(buf []by
 
 pub struct CMsgRemoteDeviceStreamingRequest_ReservedGamepad {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	controller_type        u32
-	has_controller_type    bool
-	controller_subtype     u32
-	has_controller_subtype bool
+	controller_type    u32
+	controller_subtype u32
 }
 
 pub fn (o &CMsgRemoteDeviceStreamingRequest_ReservedGamepad) pack() []byte {
 	mut res := []byte{}
-	if o.has_controller_type {
+	if o.controller_type != u32(0) {
 		res << vproto.pack_uint32_field(o.controller_type, 1)
 	}
-	if o.has_controller_subtype {
+	if o.controller_subtype != u32(0) {
 		res << vproto.pack_uint32_field(o.controller_subtype, 2)
 	}
 	return res
 }
 
 pub fn cmsgremotedevicestreamingrequest_reservedgamepad_unpack(buf []byte) ?CMsgRemoteDeviceStreamingRequest_ReservedGamepad {
-	mut res := CMsgRemoteDeviceStreamingRequest_ReservedGamepad{}
+	mut res := zzz_vproto_internal_new_cmsgremotedevicestreamingrequest_reservedgamepad()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1333,13 +1639,11 @@ pub fn cmsgremotedevicestreamingrequest_reservedgamepad_unpack(buf []byte) ?CMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_controller_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_type = v
 				i = ii
 			}
 			2 {
-				res.has_controller_subtype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_subtype = v
 				i = ii
@@ -1359,17 +1663,49 @@ pub fn cmsgremotedevicestreamingrequest_reservedgamepad_unpack(buf []byte) ?CMsg
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingRequest_ReservedGamepad) eq(b CMsgRemoteDeviceStreamingRequest_ReservedGamepad) bool {
+	return true && a.controller_type == b.controller_type &&
+		a.controller_subtype == b.controller_subtype
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingRequest_ReservedGamepad) ne(b CMsgRemoteDeviceStreamingRequest_ReservedGamepad) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingRequest_ReservedGamepad) eq(b []CMsgRemoteDeviceStreamingRequest_ReservedGamepad) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingRequest_ReservedGamepad) ne(b []CMsgRemoteDeviceStreamingRequest_ReservedGamepad) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedevicestreamingrequest_reservedgamepad() CMsgRemoteDeviceStreamingRequest_ReservedGamepad {
 	return CMsgRemoteDeviceStreamingRequest_ReservedGamepad{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedevicestreamingrequest_reservedgamepad(o CMsgRemoteDeviceStreamingRequest_ReservedGamepad, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingrequest_reservedgamepad(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceStreamingRequest_ReservedGamepad) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedevicestreamingrequest_reservedgamepad_unpack(v)?
@@ -1378,114 +1714,97 @@ pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingrequest_reservedgamep
 
 pub struct CMsgRemoteDeviceStreamingRequest {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	request_id                 u32
-	maximum_resolution_x       int
-	has_maximum_resolution_x   bool
-	maximum_resolution_y       int
-	has_maximum_resolution_y   bool
-	audio_channel_count        int
-	has_audio_channel_count    bool
-	device_version             string
-	has_device_version         bool
-	stream_desktop             bool
-	has_stream_desktop         bool
-	device_token               []byte
-	has_device_token           bool
-	pin                        []byte
-	has_pin                    bool
-	enable_video_streaming     bool
-	has_enable_video_streaming bool
-	enable_audio_streaming     bool
-	has_enable_audio_streaming bool
-	enable_input_streaming     bool
-	has_enable_input_streaming bool
-	network_test               bool
-	has_network_test           bool
-	client_id                  u64
-	has_client_id              bool
-	supported_transport        []EStreamTransport
-	restricted                 bool
-	has_restricted             bool
-	form_factor                EStreamDeviceFormFactor
-	has_form_factor            bool
-	gamepad_count              int
-	has_gamepad_count          bool
-	gamepads                   []CMsgRemoteDeviceStreamingRequest_ReservedGamepad
-	gameid                     u64
-	has_gameid                 bool
-	stream_interface           EStreamInterface
-	has_stream_interface       bool
+	request_id             u32
+	maximum_resolution_x   int
+	maximum_resolution_y   int
+	audio_channel_count    int = 2
+	device_version         string
+	stream_desktop         bool
+	device_token           []byte
+	pin                    []byte
+	enable_video_streaming bool = true
+	enable_audio_streaming bool = true
+	enable_input_streaming bool = true
+	network_test           bool
+	client_id              u64
+	supported_transport    []EStreamTransport
+	restricted             bool
+	form_factor            EStreamDeviceFormFactor = .k_estreamdeviceformfactorunknown
+	gamepad_count          int
+	gamepads               []CMsgRemoteDeviceStreamingRequest_ReservedGamepad
+	gameid                 u64
+	stream_interface       EStreamInterface = .k_estreaminterfacedefault
 }
 
 pub fn (o &CMsgRemoteDeviceStreamingRequest) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.request_id, 1)
-	if o.has_maximum_resolution_x {
+	if o.maximum_resolution_x != int(0) {
 		res << vproto.pack_int32_field(o.maximum_resolution_x, 2)
 	}
-	if o.has_maximum_resolution_y {
+	if o.maximum_resolution_y != int(0) {
 		res << vproto.pack_int32_field(o.maximum_resolution_y, 3)
 	}
-	if o.has_audio_channel_count {
+	if o.audio_channel_count != int(0) {
 		res << vproto.pack_int32_field(o.audio_channel_count, 4)
 	}
-	if o.has_device_version {
+	if o.device_version != '' {
 		res << vproto.pack_string_field(o.device_version, 5)
 	}
-	if o.has_stream_desktop {
+	if o.stream_desktop != bool(0) {
 		res << vproto.pack_bool_field(o.stream_desktop, 6)
 	}
-	if o.has_device_token {
+	if o.device_token != []byte{} {
 		res << vproto.pack_bytes_field(o.device_token, 7)
 	}
-	if o.has_pin {
+	if o.pin != []byte{} {
 		res << vproto.pack_bytes_field(o.pin, 8)
 	}
-	if o.has_enable_video_streaming {
+	if o.enable_video_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_video_streaming, 9)
 	}
-	if o.has_enable_audio_streaming {
+	if o.enable_audio_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_audio_streaming, 10)
 	}
-	if o.has_enable_input_streaming {
+	if o.enable_input_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_input_streaming, 11)
 	}
-	if o.has_network_test {
+	if o.network_test != bool(0) {
 		res << vproto.pack_bool_field(o.network_test, 12)
 	}
-	if o.has_client_id {
+	if o.client_id != u64(0) {
 		res << vproto.pack_uint64_field(o.client_id, 13)
 	}
 	// [packed=false]
 	for _, x in o.supported_transport {
 		res << zzz_vproto_internal_pack_estreamtransport(x, 14)
 	}
-	if o.has_restricted {
+	if o.restricted != bool(0) {
 		res << vproto.pack_bool_field(o.restricted, 15)
 	}
-	if o.has_form_factor {
+	if o.form_factor != zzz_vproto_internal_new_estreamdeviceformfactor() {
 		res << zzz_vproto_internal_pack_estreamdeviceformfactor(o.form_factor, 16)
 	}
-	if o.has_gamepad_count {
+	if o.gamepad_count != int(0) {
 		res << vproto.pack_int32_field(o.gamepad_count, 17)
 	}
 	// [packed=false]
 	for _, x in o.gamepads {
 		res << zzz_vproto_internal_pack_cmsgremotedevicestreamingrequest_reservedgamepad(x, 18)
 	}
-	if o.has_gameid {
+	if o.gameid != u64(0) {
 		res << vproto.pack_uint64_field(o.gameid, 19)
 	}
-	if o.has_stream_interface {
+	if o.stream_interface != zzz_vproto_internal_new_estreaminterface() {
 		res << zzz_vproto_internal_pack_estreaminterface(o.stream_interface, 20)
 	}
 	return res
 }
 
 pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStreamingRequest {
-	mut res := CMsgRemoteDeviceStreamingRequest{}
+	mut res := zzz_vproto_internal_new_cmsgremotedevicestreamingrequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1501,73 +1820,61 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 				i = ii
 			}
 			2 {
-				res.has_maximum_resolution_x = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_resolution_x = v
 				i = ii
 			}
 			3 {
-				res.has_maximum_resolution_y = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_resolution_y = v
 				i = ii
 			}
 			4 {
-				res.has_audio_channel_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.audio_channel_count = v
 				i = ii
 			}
 			5 {
-				res.has_device_version = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_version = v
 				i = ii
 			}
 			6 {
-				res.has_stream_desktop = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.stream_desktop = v
 				i = ii
 			}
 			7 {
-				res.has_device_token = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_token = v
 				i = ii
 			}
 			8 {
-				res.has_pin = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.pin = v
 				i = ii
 			}
 			9 {
-				res.has_enable_video_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_video_streaming = v
 				i = ii
 			}
 			10 {
-				res.has_enable_audio_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_audio_streaming = v
 				i = ii
 			}
 			11 {
-				res.has_enable_input_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_input_streaming = v
 				i = ii
 			}
 			12 {
-				res.has_network_test = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.network_test = v
 				i = ii
 			}
 			13 {
-				res.has_client_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_id = v
 				i = ii
@@ -1579,19 +1886,16 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 				i = ii
 			}
 			15 {
-				res.has_restricted = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.restricted = v
 				i = ii
 			}
 			16 {
-				res.has_form_factor = true
 				ii, v := zzz_vproto_internal_unpack_estreamdeviceformfactor(cur_buf, tag_wiretype.wire_type)?
 				res.form_factor = v
 				i = ii
 			}
 			17 {
-				res.has_gamepad_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.gamepad_count = v
 				i = ii
@@ -1604,13 +1908,11 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 				i = ii
 			}
 			19 {
-				res.has_gameid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.gameid = v
 				i = ii
 			}
 			20 {
-				res.has_stream_interface = true
 				ii, v := zzz_vproto_internal_unpack_estreaminterface(cur_buf, tag_wiretype.wire_type)?
 				res.stream_interface = v
 				i = ii
@@ -1630,17 +1932,62 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingRequest) eq(b CMsgRemoteDeviceStreamingRequest) bool {
+	return true && a.request_id == b.request_id &&
+		a.maximum_resolution_x == b.maximum_resolution_x &&
+		a.maximum_resolution_y == b.maximum_resolution_y &&
+		a.audio_channel_count == b.audio_channel_count &&
+		a.device_version == b.device_version &&
+		a.stream_desktop == b.stream_desktop &&
+		a.device_token == b.device_token &&
+		a.pin == b.pin && a.enable_video_streaming == b.enable_video_streaming &&
+		a.enable_audio_streaming == b.enable_audio_streaming &&
+		a.enable_input_streaming == b.enable_input_streaming &&
+		a.network_test == b.network_test &&
+		a.client_id == b.client_id && a.supported_transport == b.supported_transport &&
+		a.restricted == b.restricted && a.form_factor == b.form_factor &&
+		a.gamepad_count == b.gamepad_count && a.gamepads.eq(b.gamepads) &&
+		a.gameid == b.gameid && a.stream_interface == b.stream_interface
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingRequest) ne(b CMsgRemoteDeviceStreamingRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingRequest) eq(b []CMsgRemoteDeviceStreamingRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingRequest) ne(b []CMsgRemoteDeviceStreamingRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedevicestreamingrequest() CMsgRemoteDeviceStreamingRequest {
 	return CMsgRemoteDeviceStreamingRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedevicestreamingrequest(o CMsgRemoteDeviceStreamingRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceStreamingRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedevicestreamingrequest_unpack(v)?
@@ -1661,7 +2008,7 @@ pub fn (o &CMsgRemoteDeviceStreamingCancelRequest) pack() []byte {
 }
 
 pub fn cmsgremotedevicestreamingcancelrequest_unpack(buf []byte) ?CMsgRemoteDeviceStreamingCancelRequest {
-	mut res := CMsgRemoteDeviceStreamingCancelRequest{}
+	mut res := zzz_vproto_internal_new_cmsgremotedevicestreamingcancelrequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1691,17 +2038,48 @@ pub fn cmsgremotedevicestreamingcancelrequest_unpack(buf []byte) ?CMsgRemoteDevi
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingCancelRequest) eq(b CMsgRemoteDeviceStreamingCancelRequest) bool {
+	return true && a.request_id == b.request_id
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingCancelRequest) ne(b CMsgRemoteDeviceStreamingCancelRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingCancelRequest) eq(b []CMsgRemoteDeviceStreamingCancelRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingCancelRequest) ne(b []CMsgRemoteDeviceStreamingCancelRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedevicestreamingcancelrequest() CMsgRemoteDeviceStreamingCancelRequest {
 	return CMsgRemoteDeviceStreamingCancelRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedevicestreamingcancelrequest(o CMsgRemoteDeviceStreamingCancelRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingcancelrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceStreamingCancelRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedevicestreamingcancelrequest_unpack(v)?
@@ -1714,20 +2092,19 @@ mut:
 pub mut:
 	request_id     u32
 	progress       f32
-	has_progress   bool
 }
 
 pub fn (o &CMsgRemoteDeviceStreamingProgress) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.request_id, 1)
-	if o.has_progress {
+	if o.progress != f32(0) {
 		res << vproto.pack_float_field(o.progress, 2)
 	}
 	return res
 }
 
 pub fn cmsgremotedevicestreamingprogress_unpack(buf []byte) ?CMsgRemoteDeviceStreamingProgress {
-	mut res := CMsgRemoteDeviceStreamingProgress{}
+	mut res := zzz_vproto_internal_new_cmsgremotedevicestreamingprogress()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1743,7 +2120,6 @@ pub fn cmsgremotedevicestreamingprogress_unpack(buf []byte) ?CMsgRemoteDeviceStr
 				i = ii
 			}
 			2 {
-				res.has_progress = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.progress = v
 				i = ii
@@ -1763,17 +2139,48 @@ pub fn cmsgremotedevicestreamingprogress_unpack(buf []byte) ?CMsgRemoteDeviceStr
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingProgress) eq(b CMsgRemoteDeviceStreamingProgress) bool {
+	return true && a.request_id == b.request_id && a.progress == b.progress
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingProgress) ne(b CMsgRemoteDeviceStreamingProgress) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingProgress) eq(b []CMsgRemoteDeviceStreamingProgress) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingProgress) ne(b []CMsgRemoteDeviceStreamingProgress) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedevicestreamingprogress() CMsgRemoteDeviceStreamingProgress {
 	return CMsgRemoteDeviceStreamingProgress{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedevicestreamingprogress(o CMsgRemoteDeviceStreamingProgress, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingprogress(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceStreamingProgress) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedevicestreamingprogress_unpack(v)?
@@ -1782,46 +2189,41 @@ pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingprogress(buf []byte, 
 
 pub struct CMsgRemoteDeviceStreamingResponse {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	request_id                u32
-	result                    ERemoteDeviceStreamingResult
-	port                      u32
-	has_port                  bool
-	encrypted_session_key     []byte
-	has_encrypted_session_key bool
-	transport                 EStreamTransport
-	has_transport             bool
-	relay_server              string
-	has_relay_server          bool
-	cert                      string
-	has_cert                  bool
+	request_id            u32
+	result                ERemoteDeviceStreamingResult
+	port                  u32
+	encrypted_session_key []byte
+	transport             EStreamTransport = .k_estreamtransportudp
+	relay_server          string
+	cert                  string
 }
 
 pub fn (o &CMsgRemoteDeviceStreamingResponse) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.request_id, 1)
 	res << zzz_vproto_internal_pack_eremotedevicestreamingresult(o.result, 2)
-	if o.has_port {
+	if o.port != u32(0) {
 		res << vproto.pack_uint32_field(o.port, 3)
 	}
-	if o.has_encrypted_session_key {
+	if o.encrypted_session_key != []byte{} {
 		res << vproto.pack_bytes_field(o.encrypted_session_key, 4)
 	}
-	if o.has_transport {
+	if o.transport != zzz_vproto_internal_new_estreamtransport() {
 		res << zzz_vproto_internal_pack_estreamtransport(o.transport, 6)
 	}
-	if o.has_relay_server {
+	if o.relay_server != '' {
 		res << vproto.pack_string_field(o.relay_server, 7)
 	}
-	if o.has_cert {
+	if o.cert != '' {
 		res << vproto.pack_string_field(o.cert, 8)
 	}
 	return res
 }
 
 pub fn cmsgremotedevicestreamingresponse_unpack(buf []byte) ?CMsgRemoteDeviceStreamingResponse {
-	mut res := CMsgRemoteDeviceStreamingResponse{}
+	mut res := zzz_vproto_internal_new_cmsgremotedevicestreamingresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1843,31 +2245,26 @@ pub fn cmsgremotedevicestreamingresponse_unpack(buf []byte) ?CMsgRemoteDeviceStr
 				i = ii
 			}
 			3 {
-				res.has_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.port = v
 				i = ii
 			}
 			4 {
-				res.has_encrypted_session_key = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.encrypted_session_key = v
 				i = ii
 			}
 			6 {
-				res.has_transport = true
 				ii, v := zzz_vproto_internal_unpack_estreamtransport(cur_buf, tag_wiretype.wire_type)?
 				res.transport = v
 				i = ii
 			}
 			7 {
-				res.has_relay_server = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.relay_server = v
 				i = ii
 			}
 			8 {
-				res.has_cert = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.cert = v
 				i = ii
@@ -1887,17 +2284,52 @@ pub fn cmsgremotedevicestreamingresponse_unpack(buf []byte) ?CMsgRemoteDeviceStr
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingResponse) eq(b CMsgRemoteDeviceStreamingResponse) bool {
+	return true && a.request_id == b.request_id &&
+		a.result == b.result && a.port == b.port &&
+		a.encrypted_session_key == b.encrypted_session_key &&
+		a.transport == b.transport && a.relay_server == b.relay_server &&
+		a.cert == b.cert
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceStreamingResponse) ne(b CMsgRemoteDeviceStreamingResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingResponse) eq(b []CMsgRemoteDeviceStreamingResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamingResponse) ne(b []CMsgRemoteDeviceStreamingResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedevicestreamingresponse() CMsgRemoteDeviceStreamingResponse {
 	return CMsgRemoteDeviceStreamingResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedevicestreamingresponse(o CMsgRemoteDeviceStreamingResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamingresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceStreamingResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedevicestreamingresponse_unpack(v)?
@@ -1910,20 +2342,19 @@ mut:
 pub mut:
 	challenge      []byte
 	request_id     u32
-	has_request_id bool
 }
 
 pub fn (o &CMsgRemoteDeviceProofRequest) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_bytes_field(o.challenge, 1)
-	if o.has_request_id {
+	if o.request_id != u32(0) {
 		res << vproto.pack_uint32_field(o.request_id, 2)
 	}
 	return res
 }
 
 pub fn cmsgremotedeviceproofrequest_unpack(buf []byte) ?CMsgRemoteDeviceProofRequest {
-	mut res := CMsgRemoteDeviceProofRequest{}
+	mut res := zzz_vproto_internal_new_cmsgremotedeviceproofrequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1939,7 +2370,6 @@ pub fn cmsgremotedeviceproofrequest_unpack(buf []byte) ?CMsgRemoteDeviceProofReq
 				i = ii
 			}
 			2 {
-				res.has_request_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.request_id = v
 				i = ii
@@ -1959,17 +2389,48 @@ pub fn cmsgremotedeviceproofrequest_unpack(buf []byte) ?CMsgRemoteDeviceProofReq
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceProofRequest) eq(b CMsgRemoteDeviceProofRequest) bool {
+	return true && a.challenge == b.challenge && a.request_id == b.request_id
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceProofRequest) ne(b CMsgRemoteDeviceProofRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceProofRequest) eq(b []CMsgRemoteDeviceProofRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceProofRequest) ne(b []CMsgRemoteDeviceProofRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedeviceproofrequest() CMsgRemoteDeviceProofRequest {
 	return CMsgRemoteDeviceProofRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedeviceproofrequest(o CMsgRemoteDeviceProofRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedeviceproofrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceProofRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedeviceproofrequest_unpack(v)?
@@ -1982,20 +2443,19 @@ mut:
 pub mut:
 	response       []byte
 	request_id     u32
-	has_request_id bool
 }
 
 pub fn (o &CMsgRemoteDeviceProofResponse) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_bytes_field(o.response, 1)
-	if o.has_request_id {
+	if o.request_id != u32(0) {
 		res << vproto.pack_uint32_field(o.request_id, 2)
 	}
 	return res
 }
 
 pub fn cmsgremotedeviceproofresponse_unpack(buf []byte) ?CMsgRemoteDeviceProofResponse {
-	mut res := CMsgRemoteDeviceProofResponse{}
+	mut res := zzz_vproto_internal_new_cmsgremotedeviceproofresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2011,7 +2471,6 @@ pub fn cmsgremotedeviceproofresponse_unpack(buf []byte) ?CMsgRemoteDeviceProofRe
 				i = ii
 			}
 			2 {
-				res.has_request_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.request_id = v
 				i = ii
@@ -2031,17 +2490,48 @@ pub fn cmsgremotedeviceproofresponse_unpack(buf []byte) ?CMsgRemoteDeviceProofRe
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceProofResponse) eq(b CMsgRemoteDeviceProofResponse) bool {
+	return true && a.response == b.response && a.request_id == b.request_id
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceProofResponse) ne(b CMsgRemoteDeviceProofResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceProofResponse) eq(b []CMsgRemoteDeviceProofResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceProofResponse) ne(b []CMsgRemoteDeviceProofResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedeviceproofresponse() CMsgRemoteDeviceProofResponse {
 	return CMsgRemoteDeviceProofResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedeviceproofresponse(o CMsgRemoteDeviceProofResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedeviceproofresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceProofResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedeviceproofresponse_unpack(v)?
@@ -2053,24 +2543,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	token          []byte
-	has_token      bool
 	payload        []byte
-	has_payload    bool
 }
 
 pub fn (o &CMsgRemoteDeviceStreamTransportSignal) pack() []byte {
 	mut res := []byte{}
-	if o.has_token {
+	if o.token != []byte{} {
 		res << vproto.pack_bytes_field(o.token, 1)
 	}
-	if o.has_payload {
+	if o.payload != []byte{} {
 		res << vproto.pack_bytes_field(o.payload, 2)
 	}
 	return res
 }
 
 pub fn cmsgremotedevicestreamtransportsignal_unpack(buf []byte) ?CMsgRemoteDeviceStreamTransportSignal {
-	mut res := CMsgRemoteDeviceStreamTransportSignal{}
+	mut res := zzz_vproto_internal_new_cmsgremotedevicestreamtransportsignal()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2081,13 +2569,11 @@ pub fn cmsgremotedevicestreamtransportsignal_unpack(buf []byte) ?CMsgRemoteDevic
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_token = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.token = v
 				i = ii
 			}
 			2 {
-				res.has_payload = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.payload = v
 				i = ii
@@ -2107,17 +2593,48 @@ pub fn cmsgremotedevicestreamtransportsignal_unpack(buf []byte) ?CMsgRemoteDevic
 	return res
 }
 
+[inline]
+pub fn (a CMsgRemoteDeviceStreamTransportSignal) eq(b CMsgRemoteDeviceStreamTransportSignal) bool {
+	return true && a.token == b.token && a.payload == b.payload
+}
+
+[inline]
+pub fn (a CMsgRemoteDeviceStreamTransportSignal) ne(b CMsgRemoteDeviceStreamTransportSignal) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamTransportSignal) eq(b []CMsgRemoteDeviceStreamTransportSignal) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgRemoteDeviceStreamTransportSignal) ne(b []CMsgRemoteDeviceStreamTransportSignal) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgremotedevicestreamtransportsignal() CMsgRemoteDeviceStreamTransportSignal {
 	return CMsgRemoteDeviceStreamTransportSignal{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgremotedevicestreamtransportsignal(o CMsgRemoteDeviceStreamTransportSignal, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgremotedevicestreamtransportsignal(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRemoteDeviceStreamTransportSignal) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgremotedevicestreamtransportsignal_unpack(v)?

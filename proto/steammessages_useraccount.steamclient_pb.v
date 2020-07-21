@@ -12,11 +12,19 @@ enum EInternalAccountType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_einternalaccounttype() EInternalAccountType {
+	return .k_einternalsteamaccounttype
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_einternalaccounttype(e EInternalAccountType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_einternalaccounttype_packed(e []EInternalAccountType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -28,12 +36,14 @@ fn zzz_vproto_internal_pack_einternalaccounttype_packed(e []EInternalAccountType
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_einternalaccounttype(buf []byte, tag_wiretype vproto.WireType) ?(int, EInternalAccountType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EInternalAccountType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_einternalaccounttype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EInternalAccountType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -57,11 +67,19 @@ enum EExternalAccountType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eexternalaccounttype() EExternalAccountType {
+	return .k_eexternalnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eexternalaccounttype(e EExternalAccountType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eexternalaccounttype_packed(e []EExternalAccountType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -73,12 +91,14 @@ fn zzz_vproto_internal_pack_eexternalaccounttype_packed(e []EExternalAccountType
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eexternalaccounttype(buf []byte, tag_wiretype vproto.WireType) ?(int, EExternalAccountType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EExternalAccountType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eexternalaccounttype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EExternalAccountType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -91,22 +111,21 @@ fn zzz_vproto_internal_unpack_eexternalaccounttype_packed(buf []byte, tag_wirety
 
 pub struct CUserAccount_GetAvailableValveDiscountPromotions_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	country_code     string
-	has_country_code bool
+	country_code   string
 }
 
 pub fn (o &CUserAccount_GetAvailableValveDiscountPromotions_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_country_code {
+	if o.country_code != '' {
 		res << vproto.pack_string_field(o.country_code, 1)
 	}
 	return res
 }
 
 pub fn cuseraccount_getavailablevalvediscountpromotions_request_unpack(buf []byte) ?CUserAccount_GetAvailableValveDiscountPromotions_Request {
-	mut res := CUserAccount_GetAvailableValveDiscountPromotions_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -117,7 +136,6 @@ pub fn cuseraccount_getavailablevalvediscountpromotions_request_unpack(buf []byt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_country_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.country_code = v
 				i = ii
@@ -137,17 +155,48 @@ pub fn cuseraccount_getavailablevalvediscountpromotions_request_unpack(buf []byt
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetAvailableValveDiscountPromotions_Request) eq(b CUserAccount_GetAvailableValveDiscountPromotions_Request) bool {
+	return true && a.country_code == b.country_code
+}
+
+[inline]
+pub fn (a CUserAccount_GetAvailableValveDiscountPromotions_Request) ne(b CUserAccount_GetAvailableValveDiscountPromotions_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAvailableValveDiscountPromotions_Request) eq(b []CUserAccount_GetAvailableValveDiscountPromotions_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAvailableValveDiscountPromotions_Request) ne(b []CUserAccount_GetAvailableValveDiscountPromotions_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_request() CUserAccount_GetAvailableValveDiscountPromotions_Request {
 	return CUserAccount_GetAvailableValveDiscountPromotions_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_request(o CUserAccount_GetAvailableValveDiscountPromotions_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAvailableValveDiscountPromotions_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getavailablevalvediscountpromotions_request_unpack(v)?
@@ -156,72 +205,61 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotio
 
 pub struct CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails {
 mut:
-	unknown_fields                      []vproto.UnknownField
+	unknown_fields                  []vproto.UnknownField
 pub mut:
-	promotionid                         u32
-	has_promotionid                     bool
-	promotion_description               string
-	has_promotion_description           bool
-	minimum_cart_amount                 i64
-	has_minimum_cart_amount             bool
-	minimum_cart_amount_for_display     i64
-	has_minimum_cart_amount_for_display bool
-	discount_amount                     i64
-	has_discount_amount                 bool
-	currency_code                       int
-	has_currency_code                   bool
-	available_use_count                 int
-	has_available_use_count             bool
-	promotional_discount_type           int
-	has_promotional_discount_type       bool
-	loyalty_reward_id                   int
-	has_loyalty_reward_id               bool
-	localized_name_token                string
-	has_localized_name_token            bool
-	max_use_count                       int
-	has_max_use_count                   bool
+	promotionid                     u32
+	promotion_description           string
+	minimum_cart_amount             i64
+	minimum_cart_amount_for_display i64
+	discount_amount                 i64
+	currency_code                   int
+	available_use_count             int
+	promotional_discount_type       int
+	loyalty_reward_id               int
+	localized_name_token            string
+	max_use_count                   int
 }
 
 pub fn (o &CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) pack() []byte {
 	mut res := []byte{}
-	if o.has_promotionid {
+	if o.promotionid != u32(0) {
 		res << vproto.pack_uint32_field(o.promotionid, 1)
 	}
-	if o.has_promotion_description {
+	if o.promotion_description != '' {
 		res << vproto.pack_string_field(o.promotion_description, 2)
 	}
-	if o.has_minimum_cart_amount {
+	if o.minimum_cart_amount != i64(0) {
 		res << vproto.pack_int64_field(o.minimum_cart_amount, 3)
 	}
-	if o.has_minimum_cart_amount_for_display {
+	if o.minimum_cart_amount_for_display != i64(0) {
 		res << vproto.pack_int64_field(o.minimum_cart_amount_for_display, 4)
 	}
-	if o.has_discount_amount {
+	if o.discount_amount != i64(0) {
 		res << vproto.pack_int64_field(o.discount_amount, 5)
 	}
-	if o.has_currency_code {
+	if o.currency_code != int(0) {
 		res << vproto.pack_int32_field(o.currency_code, 6)
 	}
-	if o.has_available_use_count {
+	if o.available_use_count != int(0) {
 		res << vproto.pack_int32_field(o.available_use_count, 7)
 	}
-	if o.has_promotional_discount_type {
+	if o.promotional_discount_type != int(0) {
 		res << vproto.pack_int32_field(o.promotional_discount_type, 8)
 	}
-	if o.has_loyalty_reward_id {
+	if o.loyalty_reward_id != int(0) {
 		res << vproto.pack_int32_field(o.loyalty_reward_id, 9)
 	}
-	if o.has_localized_name_token {
+	if o.localized_name_token != '' {
 		res << vproto.pack_string_field(o.localized_name_token, 10)
 	}
-	if o.has_max_use_count {
+	if o.max_use_count != int(0) {
 		res << vproto.pack_int32_field(o.max_use_count, 11)
 	}
 	return res
 }
 
 pub fn cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails_unpack(buf []byte) ?CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails {
-	mut res := CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails{}
+	mut res := zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -232,67 +270,56 @@ pub fn cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_promotionid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.promotionid = v
 				i = ii
 			}
 			2 {
-				res.has_promotion_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.promotion_description = v
 				i = ii
 			}
 			3 {
-				res.has_minimum_cart_amount = true
 				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
 				res.minimum_cart_amount = v
 				i = ii
 			}
 			4 {
-				res.has_minimum_cart_amount_for_display = true
 				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
 				res.minimum_cart_amount_for_display = v
 				i = ii
 			}
 			5 {
-				res.has_discount_amount = true
 				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
 				res.discount_amount = v
 				i = ii
 			}
 			6 {
-				res.has_currency_code = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.currency_code = v
 				i = ii
 			}
 			7 {
-				res.has_available_use_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.available_use_count = v
 				i = ii
 			}
 			8 {
-				res.has_promotional_discount_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.promotional_discount_type = v
 				i = ii
 			}
 			9 {
-				res.has_loyalty_reward_id = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.loyalty_reward_id = v
 				i = ii
 			}
 			10 {
-				res.has_localized_name_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.localized_name_token = v
 				i = ii
 			}
 			11 {
-				res.has_max_use_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.max_use_count = v
 				i = ii
@@ -312,17 +339,58 @@ pub fn cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpr
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) eq(b CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) bool {
+	return true && a.promotionid == b.promotionid &&
+		a.promotion_description == b.promotion_description &&
+		a.minimum_cart_amount == b.minimum_cart_amount &&
+		a.minimum_cart_amount_for_display == b.minimum_cart_amount_for_display &&
+		a.discount_amount == b.discount_amount &&
+		a.currency_code == b.currency_code &&
+		a.available_use_count == b.available_use_count &&
+		a.promotional_discount_type == b.promotional_discount_type &&
+		a.loyalty_reward_id == b.loyalty_reward_id &&
+		a.localized_name_token == b.localized_name_token &&
+		a.max_use_count == b.max_use_count
+}
+
+[inline]
+pub fn (a CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) ne(b CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) eq(b []CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) ne(b []CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails() CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails {
 	return CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails(o CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAvailableValveDiscountPromotions_Response_ValveDiscountPromotionDetails) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getavailablevalvediscountpromotions_response_valvediscountpromotiondetails_unpack(v)?
@@ -347,7 +415,7 @@ pub fn (o &CUserAccount_GetAvailableValveDiscountPromotions_Response) pack() []b
 }
 
 pub fn cuseraccount_getavailablevalvediscountpromotions_response_unpack(buf []byte) ?CUserAccount_GetAvailableValveDiscountPromotions_Response {
-	mut res := CUserAccount_GetAvailableValveDiscountPromotions_Response{}
+	mut res := zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -379,17 +447,48 @@ pub fn cuseraccount_getavailablevalvediscountpromotions_response_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetAvailableValveDiscountPromotions_Response) eq(b CUserAccount_GetAvailableValveDiscountPromotions_Response) bool {
+	return true && a.promotions.eq(b.promotions)
+}
+
+[inline]
+pub fn (a CUserAccount_GetAvailableValveDiscountPromotions_Response) ne(b CUserAccount_GetAvailableValveDiscountPromotions_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAvailableValveDiscountPromotions_Response) eq(b []CUserAccount_GetAvailableValveDiscountPromotions_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAvailableValveDiscountPromotions_Response) ne(b []CUserAccount_GetAvailableValveDiscountPromotions_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getavailablevalvediscountpromotions_response() CUserAccount_GetAvailableValveDiscountPromotions_Response {
 	return CUserAccount_GetAvailableValveDiscountPromotions_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getavailablevalvediscountpromotions_response(o CUserAccount_GetAvailableValveDiscountPromotions_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getavailablevalvediscountpromotions_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAvailableValveDiscountPromotions_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getavailablevalvediscountpromotions_response_unpack(v)?
@@ -407,21 +506,52 @@ pub fn (o &CUserAccount_GetAccountLinkStatus_Request) pack() []byte {
 }
 
 pub fn cuseraccount_getaccountlinkstatus_request_unpack(buf []byte) ?CUserAccount_GetAccountLinkStatus_Request {
-	res := CUserAccount_GetAccountLinkStatus_Request{}
+	res := zzz_vproto_internal_new_cuseraccount_getaccountlinkstatus_request()
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetAccountLinkStatus_Request) eq(b CUserAccount_GetAccountLinkStatus_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CUserAccount_GetAccountLinkStatus_Request) ne(b CUserAccount_GetAccountLinkStatus_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAccountLinkStatus_Request) eq(b []CUserAccount_GetAccountLinkStatus_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAccountLinkStatus_Request) ne(b []CUserAccount_GetAccountLinkStatus_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getaccountlinkstatus_request() CUserAccount_GetAccountLinkStatus_Request {
 	return CUserAccount_GetAccountLinkStatus_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getaccountlinkstatus_request(o CUserAccount_GetAccountLinkStatus_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getaccountlinkstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAccountLinkStatus_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getaccountlinkstatus_request_unpack(v)?
@@ -430,32 +560,29 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_getaccountlinkstatus_request(buf 
 
 pub struct CUserAccount_GetAccountLinkStatus_Response {
 mut:
-	unknown_fields                 []vproto.UnknownField
+	unknown_fields             []vproto.UnknownField
 pub mut:
-	pwid                           u32
-	has_pwid                       bool
-	identity_verification          u32
-	has_identity_verification      bool
-	performed_age_verification     bool
-	has_performed_age_verification bool
+	pwid                       u32
+	identity_verification      u32
+	performed_age_verification bool
 }
 
 pub fn (o &CUserAccount_GetAccountLinkStatus_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_pwid {
+	if o.pwid != u32(0) {
 		res << vproto.pack_uint32_field(o.pwid, 1)
 	}
-	if o.has_identity_verification {
+	if o.identity_verification != u32(0) {
 		res << vproto.pack_uint32_field(o.identity_verification, 2)
 	}
-	if o.has_performed_age_verification {
+	if o.performed_age_verification != bool(0) {
 		res << vproto.pack_bool_field(o.performed_age_verification, 3)
 	}
 	return res
 }
 
 pub fn cuseraccount_getaccountlinkstatus_response_unpack(buf []byte) ?CUserAccount_GetAccountLinkStatus_Response {
-	mut res := CUserAccount_GetAccountLinkStatus_Response{}
+	mut res := zzz_vproto_internal_new_cuseraccount_getaccountlinkstatus_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -466,19 +593,16 @@ pub fn cuseraccount_getaccountlinkstatus_response_unpack(buf []byte) ?CUserAccou
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_pwid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.pwid = v
 				i = ii
 			}
 			2 {
-				res.has_identity_verification = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.identity_verification = v
 				i = ii
 			}
 			3 {
-				res.has_performed_age_verification = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.performed_age_verification = v
 				i = ii
@@ -498,17 +622,50 @@ pub fn cuseraccount_getaccountlinkstatus_response_unpack(buf []byte) ?CUserAccou
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetAccountLinkStatus_Response) eq(b CUserAccount_GetAccountLinkStatus_Response) bool {
+	return true && a.pwid == b.pwid &&
+		a.identity_verification == b.identity_verification &&
+		a.performed_age_verification == b.performed_age_verification
+}
+
+[inline]
+pub fn (a CUserAccount_GetAccountLinkStatus_Response) ne(b CUserAccount_GetAccountLinkStatus_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAccountLinkStatus_Response) eq(b []CUserAccount_GetAccountLinkStatus_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetAccountLinkStatus_Response) ne(b []CUserAccount_GetAccountLinkStatus_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getaccountlinkstatus_response() CUserAccount_GetAccountLinkStatus_Response {
 	return CUserAccount_GetAccountLinkStatus_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getaccountlinkstatus_response(o CUserAccount_GetAccountLinkStatus_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getaccountlinkstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetAccountLinkStatus_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getaccountlinkstatus_response_unpack(v)?
@@ -520,19 +677,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CUserAccount_CancelLicenseForApp_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cuseraccount_cancellicenseforapp_request_unpack(buf []byte) ?CUserAccount_CancelLicenseForApp_Request {
-	mut res := CUserAccount_CancelLicenseForApp_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_cancellicenseforapp_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -543,7 +699,6 @@ pub fn cuseraccount_cancellicenseforapp_request_unpack(buf []byte) ?CUserAccount
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -563,17 +718,48 @@ pub fn cuseraccount_cancellicenseforapp_request_unpack(buf []byte) ?CUserAccount
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_CancelLicenseForApp_Request) eq(b CUserAccount_CancelLicenseForApp_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CUserAccount_CancelLicenseForApp_Request) ne(b CUserAccount_CancelLicenseForApp_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_CancelLicenseForApp_Request) eq(b []CUserAccount_CancelLicenseForApp_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_CancelLicenseForApp_Request) ne(b []CUserAccount_CancelLicenseForApp_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_cancellicenseforapp_request() CUserAccount_CancelLicenseForApp_Request {
 	return CUserAccount_CancelLicenseForApp_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_cancellicenseforapp_request(o CUserAccount_CancelLicenseForApp_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_cancellicenseforapp_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CancelLicenseForApp_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_cancellicenseforapp_request_unpack(v)?
@@ -591,21 +777,52 @@ pub fn (o &CUserAccount_CancelLicenseForApp_Response) pack() []byte {
 }
 
 pub fn cuseraccount_cancellicenseforapp_response_unpack(buf []byte) ?CUserAccount_CancelLicenseForApp_Response {
-	res := CUserAccount_CancelLicenseForApp_Response{}
+	res := zzz_vproto_internal_new_cuseraccount_cancellicenseforapp_response()
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_CancelLicenseForApp_Response) eq(b CUserAccount_CancelLicenseForApp_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CUserAccount_CancelLicenseForApp_Response) ne(b CUserAccount_CancelLicenseForApp_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_CancelLicenseForApp_Response) eq(b []CUserAccount_CancelLicenseForApp_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_CancelLicenseForApp_Response) ne(b []CUserAccount_CancelLicenseForApp_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_cancellicenseforapp_response() CUserAccount_CancelLicenseForApp_Response {
 	return CUserAccount_CancelLicenseForApp_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_cancellicenseforapp_response(o CUserAccount_CancelLicenseForApp_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_cancellicenseforapp_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CancelLicenseForApp_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_cancellicenseforapp_response_unpack(v)?
@@ -614,32 +831,29 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_cancellicenseforapp_response(buf 
 
 pub struct CUserAccount_CreateFriendInviteToken_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	invite_limit        u32
-	has_invite_limit    bool
-	invite_duration     u32
-	has_invite_duration bool
-	invite_note         string
-	has_invite_note     bool
+	invite_limit    u32
+	invite_duration u32
+	invite_note     string
 }
 
 pub fn (o &CUserAccount_CreateFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_invite_limit {
+	if o.invite_limit != u32(0) {
 		res << vproto.pack_uint32_field(o.invite_limit, 1)
 	}
-	if o.has_invite_duration {
+	if o.invite_duration != u32(0) {
 		res << vproto.pack_uint32_field(o.invite_duration, 2)
 	}
-	if o.has_invite_note {
+	if o.invite_note != '' {
 		res << vproto.pack_string_field(o.invite_note, 3)
 	}
 	return res
 }
 
 pub fn cuseraccount_createfriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_CreateFriendInviteToken_Request {
-	mut res := CUserAccount_CreateFriendInviteToken_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_createfriendinvitetoken_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -650,19 +864,16 @@ pub fn cuseraccount_createfriendinvitetoken_request_unpack(buf []byte) ?CUserAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_invite_limit = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_limit = v
 				i = ii
 			}
 			2 {
-				res.has_invite_duration = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_duration = v
 				i = ii
 			}
 			3 {
-				res.has_invite_note = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_note = v
 				i = ii
@@ -682,17 +893,50 @@ pub fn cuseraccount_createfriendinvitetoken_request_unpack(buf []byte) ?CUserAcc
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_CreateFriendInviteToken_Request) eq(b CUserAccount_CreateFriendInviteToken_Request) bool {
+	return true && a.invite_limit == b.invite_limit &&
+		a.invite_duration == b.invite_duration &&
+		a.invite_note == b.invite_note
+}
+
+[inline]
+pub fn (a CUserAccount_CreateFriendInviteToken_Request) ne(b CUserAccount_CreateFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_CreateFriendInviteToken_Request) eq(b []CUserAccount_CreateFriendInviteToken_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_CreateFriendInviteToken_Request) ne(b []CUserAccount_CreateFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_createfriendinvitetoken_request() CUserAccount_CreateFriendInviteToken_Request {
 	return CUserAccount_CreateFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_createfriendinvitetoken_request(o CUserAccount_CreateFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_createfriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CreateFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_createfriendinvitetoken_request_unpack(v)?
@@ -701,42 +945,37 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_createfriendinvitetoken_request(b
 
 pub struct CUserAccount_CreateFriendInviteToken_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	invite_token        string
-	has_invite_token    bool
-	invite_limit        u64
-	has_invite_limit    bool
-	invite_duration     u64
-	has_invite_duration bool
-	time_created        u32
-	has_time_created    bool
-	valid               bool
-	has_valid           bool
+	invite_token    string
+	invite_limit    u64
+	invite_duration u64
+	time_created    u32
+	valid           bool
 }
 
 pub fn (o &CUserAccount_CreateFriendInviteToken_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_invite_token {
+	if o.invite_token != '' {
 		res << vproto.pack_string_field(o.invite_token, 1)
 	}
-	if o.has_invite_limit {
+	if o.invite_limit != u64(0) {
 		res << vproto.pack_uint64_field(o.invite_limit, 2)
 	}
-	if o.has_invite_duration {
+	if o.invite_duration != u64(0) {
 		res << vproto.pack_uint64_field(o.invite_duration, 3)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_32bit_field(o.time_created, 4)
 	}
-	if o.has_valid {
+	if o.valid != bool(0) {
 		res << vproto.pack_bool_field(o.valid, 5)
 	}
 	return res
 }
 
 pub fn cuseraccount_createfriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_CreateFriendInviteToken_Response {
-	mut res := CUserAccount_CreateFriendInviteToken_Response{}
+	mut res := zzz_vproto_internal_new_cuseraccount_createfriendinvitetoken_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -747,31 +986,26 @@ pub fn cuseraccount_createfriendinvitetoken_response_unpack(buf []byte) ?CUserAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_invite_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_token = v
 				i = ii
 			}
 			2 {
-				res.has_invite_limit = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_limit = v
 				i = ii
 			}
 			3 {
-				res.has_invite_duration = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_duration = v
 				i = ii
 			}
 			4 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			5 {
-				res.has_valid = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.valid = v
 				i = ii
@@ -791,17 +1025,52 @@ pub fn cuseraccount_createfriendinvitetoken_response_unpack(buf []byte) ?CUserAc
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_CreateFriendInviteToken_Response) eq(b CUserAccount_CreateFriendInviteToken_Response) bool {
+	return true && a.invite_token == b.invite_token &&
+		a.invite_limit == b.invite_limit &&
+		a.invite_duration == b.invite_duration &&
+		a.time_created == b.time_created &&
+		a.valid == b.valid
+}
+
+[inline]
+pub fn (a CUserAccount_CreateFriendInviteToken_Response) ne(b CUserAccount_CreateFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_CreateFriendInviteToken_Response) eq(b []CUserAccount_CreateFriendInviteToken_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_CreateFriendInviteToken_Response) ne(b []CUserAccount_CreateFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_createfriendinvitetoken_response() CUserAccount_CreateFriendInviteToken_Response {
 	return CUserAccount_CreateFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_createfriendinvitetoken_response(o CUserAccount_CreateFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_createfriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_CreateFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_createfriendinvitetoken_response_unpack(v)?
@@ -819,21 +1088,52 @@ pub fn (o &CUserAccount_GetFriendInviteTokens_Request) pack() []byte {
 }
 
 pub fn cuseraccount_getfriendinvitetokens_request_unpack(buf []byte) ?CUserAccount_GetFriendInviteTokens_Request {
-	res := CUserAccount_GetFriendInviteTokens_Request{}
+	res := zzz_vproto_internal_new_cuseraccount_getfriendinvitetokens_request()
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetFriendInviteTokens_Request) eq(b CUserAccount_GetFriendInviteTokens_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CUserAccount_GetFriendInviteTokens_Request) ne(b CUserAccount_GetFriendInviteTokens_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetFriendInviteTokens_Request) eq(b []CUserAccount_GetFriendInviteTokens_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetFriendInviteTokens_Request) ne(b []CUserAccount_GetFriendInviteTokens_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getfriendinvitetokens_request() CUserAccount_GetFriendInviteTokens_Request {
 	return CUserAccount_GetFriendInviteTokens_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getfriendinvitetokens_request(o CUserAccount_GetFriendInviteTokens_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getfriendinvitetokens_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetFriendInviteTokens_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getfriendinvitetokens_request_unpack(v)?
@@ -857,7 +1157,7 @@ pub fn (o &CUserAccount_GetFriendInviteTokens_Response) pack() []byte {
 }
 
 pub fn cuseraccount_getfriendinvitetokens_response_unpack(buf []byte) ?CUserAccount_GetFriendInviteTokens_Response {
-	mut res := CUserAccount_GetFriendInviteTokens_Response{}
+	mut res := zzz_vproto_internal_new_cuseraccount_getfriendinvitetokens_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -889,17 +1189,48 @@ pub fn cuseraccount_getfriendinvitetokens_response_unpack(buf []byte) ?CUserAcco
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_GetFriendInviteTokens_Response) eq(b CUserAccount_GetFriendInviteTokens_Response) bool {
+	return true && a.tokens.eq(b.tokens)
+}
+
+[inline]
+pub fn (a CUserAccount_GetFriendInviteTokens_Response) ne(b CUserAccount_GetFriendInviteTokens_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_GetFriendInviteTokens_Response) eq(b []CUserAccount_GetFriendInviteTokens_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_GetFriendInviteTokens_Response) ne(b []CUserAccount_GetFriendInviteTokens_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_getfriendinvitetokens_response() CUserAccount_GetFriendInviteTokens_Response {
 	return CUserAccount_GetFriendInviteTokens_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_getfriendinvitetokens_response(o CUserAccount_GetFriendInviteTokens_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_getfriendinvitetokens_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_GetFriendInviteTokens_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_getfriendinvitetokens_response_unpack(v)?
@@ -908,27 +1239,25 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_getfriendinvitetokens_response(bu
 
 pub struct CUserAccount_ViewFriendInviteToken_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid          u64
-	has_steamid      bool
-	invite_token     string
-	has_invite_token bool
+	steamid        u64
+	invite_token   string
 }
 
 pub fn (o &CUserAccount_ViewFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_invite_token {
+	if o.invite_token != '' {
 		res << vproto.pack_string_field(o.invite_token, 2)
 	}
 	return res
 }
 
 pub fn cuseraccount_viewfriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_ViewFriendInviteToken_Request {
-	mut res := CUserAccount_ViewFriendInviteToken_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_viewfriendinvitetoken_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -939,13 +1268,11 @@ pub fn cuseraccount_viewfriendinvitetoken_request_unpack(buf []byte) ?CUserAccou
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_invite_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_token = v
 				i = ii
@@ -965,17 +1292,48 @@ pub fn cuseraccount_viewfriendinvitetoken_request_unpack(buf []byte) ?CUserAccou
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_ViewFriendInviteToken_Request) eq(b CUserAccount_ViewFriendInviteToken_Request) bool {
+	return true && a.steamid == b.steamid && a.invite_token == b.invite_token
+}
+
+[inline]
+pub fn (a CUserAccount_ViewFriendInviteToken_Request) ne(b CUserAccount_ViewFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_ViewFriendInviteToken_Request) eq(b []CUserAccount_ViewFriendInviteToken_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_ViewFriendInviteToken_Request) ne(b []CUserAccount_ViewFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_viewfriendinvitetoken_request() CUserAccount_ViewFriendInviteToken_Request {
 	return CUserAccount_ViewFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_viewfriendinvitetoken_request(o CUserAccount_ViewFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_viewfriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_ViewFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_viewfriendinvitetoken_request_unpack(v)?
@@ -984,32 +1342,29 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_viewfriendinvitetoken_request(buf
 
 pub struct CUserAccount_ViewFriendInviteToken_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	valid               bool
-	has_valid           bool
-	steamid             u64
-	has_steamid         bool
-	invite_duration     u64
-	has_invite_duration bool
+	valid           bool
+	steamid         u64
+	invite_duration u64
 }
 
 pub fn (o &CUserAccount_ViewFriendInviteToken_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_valid {
+	if o.valid != bool(0) {
 		res << vproto.pack_bool_field(o.valid, 1)
 	}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_uint64_field(o.steamid, 2)
 	}
-	if o.has_invite_duration {
+	if o.invite_duration != u64(0) {
 		res << vproto.pack_uint64_field(o.invite_duration, 3)
 	}
 	return res
 }
 
 pub fn cuseraccount_viewfriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_ViewFriendInviteToken_Response {
-	mut res := CUserAccount_ViewFriendInviteToken_Response{}
+	mut res := zzz_vproto_internal_new_cuseraccount_viewfriendinvitetoken_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1020,19 +1375,16 @@ pub fn cuseraccount_viewfriendinvitetoken_response_unpack(buf []byte) ?CUserAcco
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_valid = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.valid = v
 				i = ii
 			}
 			2 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			3 {
-				res.has_invite_duration = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_duration = v
 				i = ii
@@ -1052,17 +1404,49 @@ pub fn cuseraccount_viewfriendinvitetoken_response_unpack(buf []byte) ?CUserAcco
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_ViewFriendInviteToken_Response) eq(b CUserAccount_ViewFriendInviteToken_Response) bool {
+	return true && a.valid == b.valid &&
+		a.steamid == b.steamid && a.invite_duration == b.invite_duration
+}
+
+[inline]
+pub fn (a CUserAccount_ViewFriendInviteToken_Response) ne(b CUserAccount_ViewFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_ViewFriendInviteToken_Response) eq(b []CUserAccount_ViewFriendInviteToken_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_ViewFriendInviteToken_Response) ne(b []CUserAccount_ViewFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_viewfriendinvitetoken_response() CUserAccount_ViewFriendInviteToken_Response {
 	return CUserAccount_ViewFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_viewfriendinvitetoken_response(o CUserAccount_ViewFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_viewfriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_ViewFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_viewfriendinvitetoken_response_unpack(v)?
@@ -1071,27 +1455,25 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_viewfriendinvitetoken_response(bu
 
 pub struct CUserAccount_RedeemFriendInviteToken_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid          u64
-	has_steamid      bool
-	invite_token     string
-	has_invite_token bool
+	steamid        u64
+	invite_token   string
 }
 
 pub fn (o &CUserAccount_RedeemFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_invite_token {
+	if o.invite_token != '' {
 		res << vproto.pack_string_field(o.invite_token, 2)
 	}
 	return res
 }
 
 pub fn cuseraccount_redeemfriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_RedeemFriendInviteToken_Request {
-	mut res := CUserAccount_RedeemFriendInviteToken_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_redeemfriendinvitetoken_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1102,13 +1484,11 @@ pub fn cuseraccount_redeemfriendinvitetoken_request_unpack(buf []byte) ?CUserAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_invite_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_token = v
 				i = ii
@@ -1128,17 +1508,48 @@ pub fn cuseraccount_redeemfriendinvitetoken_request_unpack(buf []byte) ?CUserAcc
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_RedeemFriendInviteToken_Request) eq(b CUserAccount_RedeemFriendInviteToken_Request) bool {
+	return true && a.steamid == b.steamid && a.invite_token == b.invite_token
+}
+
+[inline]
+pub fn (a CUserAccount_RedeemFriendInviteToken_Request) ne(b CUserAccount_RedeemFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_RedeemFriendInviteToken_Request) eq(b []CUserAccount_RedeemFriendInviteToken_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_RedeemFriendInviteToken_Request) ne(b []CUserAccount_RedeemFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_redeemfriendinvitetoken_request() CUserAccount_RedeemFriendInviteToken_Request {
 	return CUserAccount_RedeemFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_redeemfriendinvitetoken_request(o CUserAccount_RedeemFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_redeemfriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RedeemFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_redeemfriendinvitetoken_request_unpack(v)?
@@ -1156,21 +1567,52 @@ pub fn (o &CUserAccount_RedeemFriendInviteToken_Response) pack() []byte {
 }
 
 pub fn cuseraccount_redeemfriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_RedeemFriendInviteToken_Response {
-	res := CUserAccount_RedeemFriendInviteToken_Response{}
+	res := zzz_vproto_internal_new_cuseraccount_redeemfriendinvitetoken_response()
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_RedeemFriendInviteToken_Response) eq(b CUserAccount_RedeemFriendInviteToken_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CUserAccount_RedeemFriendInviteToken_Response) ne(b CUserAccount_RedeemFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_RedeemFriendInviteToken_Response) eq(b []CUserAccount_RedeemFriendInviteToken_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_RedeemFriendInviteToken_Response) ne(b []CUserAccount_RedeemFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_redeemfriendinvitetoken_response() CUserAccount_RedeemFriendInviteToken_Response {
 	return CUserAccount_RedeemFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_redeemfriendinvitetoken_response(o CUserAccount_RedeemFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_redeemfriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RedeemFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_redeemfriendinvitetoken_response_unpack(v)?
@@ -1179,22 +1621,21 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_redeemfriendinvitetoken_response(
 
 pub struct CUserAccount_RevokeFriendInviteToken_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	invite_token     string
-	has_invite_token bool
+	invite_token   string
 }
 
 pub fn (o &CUserAccount_RevokeFriendInviteToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_invite_token {
+	if o.invite_token != '' {
 		res << vproto.pack_string_field(o.invite_token, 1)
 	}
 	return res
 }
 
 pub fn cuseraccount_revokefriendinvitetoken_request_unpack(buf []byte) ?CUserAccount_RevokeFriendInviteToken_Request {
-	mut res := CUserAccount_RevokeFriendInviteToken_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_revokefriendinvitetoken_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1205,7 +1646,6 @@ pub fn cuseraccount_revokefriendinvitetoken_request_unpack(buf []byte) ?CUserAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_invite_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.invite_token = v
 				i = ii
@@ -1225,17 +1665,48 @@ pub fn cuseraccount_revokefriendinvitetoken_request_unpack(buf []byte) ?CUserAcc
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_RevokeFriendInviteToken_Request) eq(b CUserAccount_RevokeFriendInviteToken_Request) bool {
+	return true && a.invite_token == b.invite_token
+}
+
+[inline]
+pub fn (a CUserAccount_RevokeFriendInviteToken_Request) ne(b CUserAccount_RevokeFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_RevokeFriendInviteToken_Request) eq(b []CUserAccount_RevokeFriendInviteToken_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_RevokeFriendInviteToken_Request) ne(b []CUserAccount_RevokeFriendInviteToken_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_revokefriendinvitetoken_request() CUserAccount_RevokeFriendInviteToken_Request {
 	return CUserAccount_RevokeFriendInviteToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_revokefriendinvitetoken_request(o CUserAccount_RevokeFriendInviteToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_revokefriendinvitetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RevokeFriendInviteToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_revokefriendinvitetoken_request_unpack(v)?
@@ -1253,21 +1724,52 @@ pub fn (o &CUserAccount_RevokeFriendInviteToken_Response) pack() []byte {
 }
 
 pub fn cuseraccount_revokefriendinvitetoken_response_unpack(buf []byte) ?CUserAccount_RevokeFriendInviteToken_Response {
-	res := CUserAccount_RevokeFriendInviteToken_Response{}
+	res := zzz_vproto_internal_new_cuseraccount_revokefriendinvitetoken_response()
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_RevokeFriendInviteToken_Response) eq(b CUserAccount_RevokeFriendInviteToken_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CUserAccount_RevokeFriendInviteToken_Response) ne(b CUserAccount_RevokeFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_RevokeFriendInviteToken_Response) eq(b []CUserAccount_RevokeFriendInviteToken_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_RevokeFriendInviteToken_Response) ne(b []CUserAccount_RevokeFriendInviteToken_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_revokefriendinvitetoken_response() CUserAccount_RevokeFriendInviteToken_Response {
 	return CUserAccount_RevokeFriendInviteToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_revokefriendinvitetoken_response(o CUserAccount_RevokeFriendInviteToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_revokefriendinvitetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RevokeFriendInviteToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_revokefriendinvitetoken_response_unpack(v)?
@@ -1276,22 +1778,21 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_revokefriendinvitetoken_response(
 
 pub struct CUserAccount_RegisterCompatTool_Request {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	compat_tool     u32
-	has_compat_tool bool
+	compat_tool    u32
 }
 
 pub fn (o &CUserAccount_RegisterCompatTool_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_compat_tool {
+	if o.compat_tool != u32(0) {
 		res << vproto.pack_uint32_field(o.compat_tool, 1)
 	}
 	return res
 }
 
 pub fn cuseraccount_registercompattool_request_unpack(buf []byte) ?CUserAccount_RegisterCompatTool_Request {
-	mut res := CUserAccount_RegisterCompatTool_Request{}
+	mut res := zzz_vproto_internal_new_cuseraccount_registercompattool_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1302,7 +1803,6 @@ pub fn cuseraccount_registercompattool_request_unpack(buf []byte) ?CUserAccount_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_compat_tool = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.compat_tool = v
 				i = ii
@@ -1322,17 +1822,48 @@ pub fn cuseraccount_registercompattool_request_unpack(buf []byte) ?CUserAccount_
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_RegisterCompatTool_Request) eq(b CUserAccount_RegisterCompatTool_Request) bool {
+	return true && a.compat_tool == b.compat_tool
+}
+
+[inline]
+pub fn (a CUserAccount_RegisterCompatTool_Request) ne(b CUserAccount_RegisterCompatTool_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_RegisterCompatTool_Request) eq(b []CUserAccount_RegisterCompatTool_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_RegisterCompatTool_Request) ne(b []CUserAccount_RegisterCompatTool_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_registercompattool_request() CUserAccount_RegisterCompatTool_Request {
 	return CUserAccount_RegisterCompatTool_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_registercompattool_request(o CUserAccount_RegisterCompatTool_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_registercompattool_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RegisterCompatTool_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_registercompattool_request_unpack(v)?
@@ -1350,21 +1881,52 @@ pub fn (o &CUserAccount_RegisterCompatTool_Response) pack() []byte {
 }
 
 pub fn cuseraccount_registercompattool_response_unpack(buf []byte) ?CUserAccount_RegisterCompatTool_Response {
-	res := CUserAccount_RegisterCompatTool_Response{}
+	res := zzz_vproto_internal_new_cuseraccount_registercompattool_response()
 	return res
 }
 
+[inline]
+pub fn (a CUserAccount_RegisterCompatTool_Response) eq(b CUserAccount_RegisterCompatTool_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CUserAccount_RegisterCompatTool_Response) ne(b CUserAccount_RegisterCompatTool_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CUserAccount_RegisterCompatTool_Response) eq(b []CUserAccount_RegisterCompatTool_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CUserAccount_RegisterCompatTool_Response) ne(b []CUserAccount_RegisterCompatTool_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cuseraccount_registercompattool_response() CUserAccount_RegisterCompatTool_Response {
 	return CUserAccount_RegisterCompatTool_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cuseraccount_registercompattool_response(o CUserAccount_RegisterCompatTool_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cuseraccount_registercompattool_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CUserAccount_RegisterCompatTool_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cuseraccount_registercompattool_response_unpack(v)?
@@ -1373,37 +1935,33 @@ pub fn zzz_vproto_internal_unpack_cuseraccount_registercompattool_response(buf [
 
 pub struct CAccountLinking_GetLinkedAccountInfo_Request {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	account_type            EInternalAccountType
-	has_account_type        bool
-	account_id              u64
-	has_account_id          bool
-	filter                  EExternalAccountType
-	has_filter              bool
-	return_access_token     bool
-	has_return_access_token bool
+	account_type        EInternalAccountType = .k_einternalsteamaccounttype
+	account_id          u64
+	filter              EExternalAccountType = .k_eexternalnone
+	return_access_token bool
 }
 
 pub fn (o &CAccountLinking_GetLinkedAccountInfo_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_account_type {
+	if o.account_type != zzz_vproto_internal_new_einternalaccounttype() {
 		res << zzz_vproto_internal_pack_einternalaccounttype(o.account_type, 1)
 	}
-	if o.has_account_id {
+	if o.account_id != u64(0) {
 		res << vproto.pack_uint64_field(o.account_id, 2)
 	}
-	if o.has_filter {
+	if o.filter != zzz_vproto_internal_new_eexternalaccounttype() {
 		res << zzz_vproto_internal_pack_eexternalaccounttype(o.filter, 3)
 	}
-	if o.has_return_access_token {
+	if o.return_access_token != bool(0) {
 		res << vproto.pack_bool_field(o.return_access_token, 4)
 	}
 	return res
 }
 
 pub fn caccountlinking_getlinkedaccountinfo_request_unpack(buf []byte) ?CAccountLinking_GetLinkedAccountInfo_Request {
-	mut res := CAccountLinking_GetLinkedAccountInfo_Request{}
+	mut res := zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1414,25 +1972,21 @@ pub fn caccountlinking_getlinkedaccountinfo_request_unpack(buf []byte) ?CAccount
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_account_type = true
 				ii, v := zzz_vproto_internal_unpack_einternalaccounttype(cur_buf, tag_wiretype.wire_type)?
 				res.account_type = v
 				i = ii
 			}
 			2 {
-				res.has_account_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.account_id = v
 				i = ii
 			}
 			3 {
-				res.has_filter = true
 				ii, v := zzz_vproto_internal_unpack_eexternalaccounttype(cur_buf, tag_wiretype.wire_type)?
 				res.filter = v
 				i = ii
 			}
 			4 {
-				res.has_return_access_token = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_access_token = v
 				i = ii
@@ -1452,17 +2006,50 @@ pub fn caccountlinking_getlinkedaccountinfo_request_unpack(buf []byte) ?CAccount
 	return res
 }
 
+[inline]
+pub fn (a CAccountLinking_GetLinkedAccountInfo_Request) eq(b CAccountLinking_GetLinkedAccountInfo_Request) bool {
+	return true && a.account_type == b.account_type &&
+		a.account_id == b.account_id && a.filter == b.filter &&
+		a.return_access_token == b.return_access_token
+}
+
+[inline]
+pub fn (a CAccountLinking_GetLinkedAccountInfo_Request) ne(b CAccountLinking_GetLinkedAccountInfo_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountLinking_GetLinkedAccountInfo_Request) eq(b []CAccountLinking_GetLinkedAccountInfo_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountLinking_GetLinkedAccountInfo_Request) ne(b []CAccountLinking_GetLinkedAccountInfo_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_request() CAccountLinking_GetLinkedAccountInfo_Request {
 	return CAccountLinking_GetLinkedAccountInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_request(o CAccountLinking_GetLinkedAccountInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinking_GetLinkedAccountInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccountlinking_getlinkedaccountinfo_request_unpack(v)?
@@ -1471,52 +2058,45 @@ pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_request(b
 
 pub struct CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	external_type           EExternalAccountType
-	has_external_type       bool
-	external_id             string
-	has_external_id         bool
-	external_user_name      string
-	has_external_user_name  bool
-	external_url            string
-	has_external_url        bool
-	access_token            string
-	has_access_token        bool
-	access_token_secret     string
-	has_access_token_secret bool
-	is_valid                bool
-	has_is_valid            bool
+	external_type       EExternalAccountType = .k_eexternalnone
+	external_id         string
+	external_user_name  string
+	external_url        string
+	access_token        string
+	access_token_secret string
+	is_valid            bool
 }
 
 pub fn (o &CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_external_type {
+	if o.external_type != zzz_vproto_internal_new_eexternalaccounttype() {
 		res << zzz_vproto_internal_pack_eexternalaccounttype(o.external_type, 1)
 	}
-	if o.has_external_id {
+	if o.external_id != '' {
 		res << vproto.pack_string_field(o.external_id, 2)
 	}
-	if o.has_external_user_name {
+	if o.external_user_name != '' {
 		res << vproto.pack_string_field(o.external_user_name, 3)
 	}
-	if o.has_external_url {
+	if o.external_url != '' {
 		res << vproto.pack_string_field(o.external_url, 4)
 	}
-	if o.has_access_token {
+	if o.access_token != '' {
 		res << vproto.pack_string_field(o.access_token, 5)
 	}
-	if o.has_access_token_secret {
+	if o.access_token_secret != '' {
 		res << vproto.pack_string_field(o.access_token_secret, 6)
 	}
-	if o.has_is_valid {
+	if o.is_valid != bool(0) {
 		res << vproto.pack_bool_field(o.is_valid, 7)
 	}
 	return res
 }
 
 pub fn caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response_unpack(buf []byte) ?CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response {
-	mut res := CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response{}
+	mut res := zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1527,43 +2107,36 @@ pub fn caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_respo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_external_type = true
 				ii, v := zzz_vproto_internal_unpack_eexternalaccounttype(cur_buf, tag_wiretype.wire_type)?
 				res.external_type = v
 				i = ii
 			}
 			2 {
-				res.has_external_id = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.external_id = v
 				i = ii
 			}
 			3 {
-				res.has_external_user_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.external_user_name = v
 				i = ii
 			}
 			4 {
-				res.has_external_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.external_url = v
 				i = ii
 			}
 			5 {
-				res.has_access_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.access_token = v
 				i = ii
 			}
 			6 {
-				res.has_access_token_secret = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.access_token_secret = v
 				i = ii
 			}
 			7 {
-				res.has_is_valid = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_valid = v
 				i = ii
@@ -1583,17 +2156,53 @@ pub fn caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_respo
 	return res
 }
 
+[inline]
+pub fn (a CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) eq(b CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) bool {
+	return true && a.external_type == b.external_type &&
+		a.external_id == b.external_id && a.external_user_name == b.external_user_name &&
+		a.external_url == b.external_url &&
+		a.access_token == b.access_token &&
+		a.access_token_secret == b.access_token_secret &&
+		a.is_valid == b.is_valid
+}
+
+[inline]
+pub fn (a CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) ne(b CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) eq(b []CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) ne(b []CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response() CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response {
 	return CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response(o CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinking_GetLinkedAccountInfo_Response_CExternalAccountTuple_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccountlinking_getlinkedaccountinfo_response_cexternalaccounttuple_response_unpack(v)?
@@ -1618,7 +2227,7 @@ pub fn (o &CAccountLinking_GetLinkedAccountInfo_Response) pack() []byte {
 }
 
 pub fn caccountlinking_getlinkedaccountinfo_response_unpack(buf []byte) ?CAccountLinking_GetLinkedAccountInfo_Response {
-	mut res := CAccountLinking_GetLinkedAccountInfo_Response{}
+	mut res := zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1650,17 +2259,48 @@ pub fn caccountlinking_getlinkedaccountinfo_response_unpack(buf []byte) ?CAccoun
 	return res
 }
 
+[inline]
+pub fn (a CAccountLinking_GetLinkedAccountInfo_Response) eq(b CAccountLinking_GetLinkedAccountInfo_Response) bool {
+	return true && a.external_accounts.eq(b.external_accounts)
+}
+
+[inline]
+pub fn (a CAccountLinking_GetLinkedAccountInfo_Response) ne(b CAccountLinking_GetLinkedAccountInfo_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountLinking_GetLinkedAccountInfo_Response) eq(b []CAccountLinking_GetLinkedAccountInfo_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountLinking_GetLinkedAccountInfo_Response) ne(b []CAccountLinking_GetLinkedAccountInfo_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccountlinking_getlinkedaccountinfo_response() CAccountLinking_GetLinkedAccountInfo_Response {
 	return CAccountLinking_GetLinkedAccountInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccountlinking_getlinkedaccountinfo_response(o CAccountLinking_GetLinkedAccountInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountLinking_GetLinkedAccountInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccountlinking_getlinkedaccountinfo_response_unpack(v)?
@@ -1669,37 +2309,33 @@ pub fn zzz_vproto_internal_unpack_caccountlinking_getlinkedaccountinfo_response(
 
 pub struct CEmbeddedClient_AuthorizeCurrentDevice_Request {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid         u64
-	has_steamid     bool
-	appid           u32
-	has_appid       bool
-	device_info     string
-	has_device_info bool
-	deviceid        u32
-	has_deviceid    bool
+	steamid        u64
+	appid          u32
+	device_info    string
+	deviceid       u32
 }
 
 pub fn (o &CEmbeddedClient_AuthorizeCurrentDevice_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_device_info {
+	if o.device_info != '' {
 		res << vproto.pack_string_field(o.device_info, 3)
 	}
-	if o.has_deviceid {
+	if o.deviceid != u32(0) {
 		res << vproto.pack_uint32_field(o.deviceid, 4)
 	}
 	return res
 }
 
 pub fn cembeddedclient_authorizecurrentdevice_request_unpack(buf []byte) ?CEmbeddedClient_AuthorizeCurrentDevice_Request {
-	mut res := CEmbeddedClient_AuthorizeCurrentDevice_Request{}
+	mut res := zzz_vproto_internal_new_cembeddedclient_authorizecurrentdevice_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1710,25 +2346,21 @@ pub fn cembeddedclient_authorizecurrentdevice_request_unpack(buf []byte) ?CEmbed
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				res.has_device_info = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_info = v
 				i = ii
 			}
 			4 {
-				res.has_deviceid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deviceid = v
 				i = ii
@@ -1748,17 +2380,50 @@ pub fn cembeddedclient_authorizecurrentdevice_request_unpack(buf []byte) ?CEmbed
 	return res
 }
 
+[inline]
+pub fn (a CEmbeddedClient_AuthorizeCurrentDevice_Request) eq(b CEmbeddedClient_AuthorizeCurrentDevice_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.appid == b.appid && a.device_info == b.device_info &&
+		a.deviceid == b.deviceid
+}
+
+[inline]
+pub fn (a CEmbeddedClient_AuthorizeCurrentDevice_Request) ne(b CEmbeddedClient_AuthorizeCurrentDevice_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CEmbeddedClient_AuthorizeCurrentDevice_Request) eq(b []CEmbeddedClient_AuthorizeCurrentDevice_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CEmbeddedClient_AuthorizeCurrentDevice_Request) ne(b []CEmbeddedClient_AuthorizeCurrentDevice_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cembeddedclient_authorizecurrentdevice_request() CEmbeddedClient_AuthorizeCurrentDevice_Request {
 	return CEmbeddedClient_AuthorizeCurrentDevice_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cembeddedclient_authorizecurrentdevice_request(o CEmbeddedClient_AuthorizeCurrentDevice_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cembeddedclient_authorizecurrentdevice_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClient_AuthorizeCurrentDevice_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cembeddedclient_authorizecurrentdevice_request_unpack(v)?
@@ -1767,37 +2432,33 @@ pub fn zzz_vproto_internal_unpack_cembeddedclient_authorizecurrentdevice_request
 
 pub struct CEmbeddedClient_Token {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid          u64
-	has_steamid      bool
-	client_token     []byte
-	has_client_token bool
-	expiry           u32
-	has_expiry       bool
-	deviceid         u32
-	has_deviceid     bool
+	steamid        u64
+	client_token   []byte
+	expiry         u32
+	deviceid       u32
 }
 
 pub fn (o &CEmbeddedClient_Token) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_client_token {
+	if o.client_token != []byte{} {
 		res << vproto.pack_bytes_field(o.client_token, 2)
 	}
-	if o.has_expiry {
+	if o.expiry != u32(0) {
 		res << vproto.pack_uint32_field(o.expiry, 3)
 	}
-	if o.has_deviceid {
+	if o.deviceid != u32(0) {
 		res << vproto.pack_uint32_field(o.deviceid, 4)
 	}
 	return res
 }
 
 pub fn cembeddedclient_token_unpack(buf []byte) ?CEmbeddedClient_Token {
-	mut res := CEmbeddedClient_Token{}
+	mut res := zzz_vproto_internal_new_cembeddedclient_token()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1808,25 +2469,21 @@ pub fn cembeddedclient_token_unpack(buf []byte) ?CEmbeddedClient_Token {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_client_token = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_token = v
 				i = ii
 			}
 			3 {
-				res.has_expiry = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.expiry = v
 				i = ii
 			}
 			4 {
-				res.has_deviceid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deviceid = v
 				i = ii
@@ -1846,17 +2503,50 @@ pub fn cembeddedclient_token_unpack(buf []byte) ?CEmbeddedClient_Token {
 	return res
 }
 
+[inline]
+pub fn (a CEmbeddedClient_Token) eq(b CEmbeddedClient_Token) bool {
+	return true && a.steamid == b.steamid &&
+		a.client_token == b.client_token &&
+		a.expiry == b.expiry && a.deviceid == b.deviceid
+}
+
+[inline]
+pub fn (a CEmbeddedClient_Token) ne(b CEmbeddedClient_Token) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CEmbeddedClient_Token) eq(b []CEmbeddedClient_Token) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CEmbeddedClient_Token) ne(b []CEmbeddedClient_Token) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cembeddedclient_token() CEmbeddedClient_Token {
 	return CEmbeddedClient_Token{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cembeddedclient_token(o CEmbeddedClient_Token, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cembeddedclient_token(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClient_Token) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cembeddedclient_token_unpack(v)?
@@ -1868,24 +2558,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	result         u32
-	has_result     bool
 	token          CEmbeddedClient_Token
-	has_token      bool
 }
 
 pub fn (o &CEmbeddedClient_AuthorizeDevice_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_result {
+	if o.result != u32(0) {
 		res << vproto.pack_uint32_field(o.result, 1)
 	}
-	if o.has_token {
+	if o.token.ne(zzz_vproto_internal_new_cembeddedclient_token()) {
 		res << zzz_vproto_internal_pack_cembeddedclient_token(o.token, 2)
 	}
 	return res
 }
 
 pub fn cembeddedclient_authorizedevice_response_unpack(buf []byte) ?CEmbeddedClient_AuthorizeDevice_Response {
-	mut res := CEmbeddedClient_AuthorizeDevice_Response{}
+	mut res := zzz_vproto_internal_new_cembeddedclient_authorizedevice_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1896,13 +2584,11 @@ pub fn cembeddedclient_authorizedevice_response_unpack(buf []byte) ?CEmbeddedCli
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_result = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
 			}
 			2 {
-				res.has_token = true
 				ii, v := zzz_vproto_internal_unpack_cembeddedclient_token(cur_buf, tag_wiretype.wire_type)?
 				res.token = v
 				i = ii
@@ -1922,17 +2608,48 @@ pub fn cembeddedclient_authorizedevice_response_unpack(buf []byte) ?CEmbeddedCli
 	return res
 }
 
+[inline]
+pub fn (a CEmbeddedClient_AuthorizeDevice_Response) eq(b CEmbeddedClient_AuthorizeDevice_Response) bool {
+	return true && a.result == b.result && a.token.eq(b.token)
+}
+
+[inline]
+pub fn (a CEmbeddedClient_AuthorizeDevice_Response) ne(b CEmbeddedClient_AuthorizeDevice_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CEmbeddedClient_AuthorizeDevice_Response) eq(b []CEmbeddedClient_AuthorizeDevice_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CEmbeddedClient_AuthorizeDevice_Response) ne(b []CEmbeddedClient_AuthorizeDevice_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cembeddedclient_authorizedevice_response() CEmbeddedClient_AuthorizeDevice_Response {
 	return CEmbeddedClient_AuthorizeDevice_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cembeddedclient_authorizedevice_response(o CEmbeddedClient_AuthorizeDevice_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cembeddedclient_authorizedevice_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEmbeddedClient_AuthorizeDevice_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cembeddedclient_authorizedevice_response_unpack(v)?

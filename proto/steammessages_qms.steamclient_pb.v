@@ -12,11 +12,19 @@ enum EGameSearchAction {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_egamesearchaction() EGameSearchAction {
+	return .k_egamesearchaction_none
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_egamesearchaction(e EGameSearchAction, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_egamesearchaction_packed(e []EGameSearchAction, num u32) []byte {
 	x := array{
 		data: e.data
@@ -28,12 +36,14 @@ fn zzz_vproto_internal_pack_egamesearchaction_packed(e []EGameSearchAction, num 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_egamesearchaction(buf []byte, tag_wiretype vproto.WireType) ?(int, EGameSearchAction) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EGameSearchAction(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_egamesearchaction_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EGameSearchAction) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -56,11 +66,19 @@ enum EGameSearchResult {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_egamesearchresult() EGameSearchResult {
+	return .k_egamesearchresult_invalid
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_egamesearchresult(e EGameSearchResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_egamesearchresult_packed(e []EGameSearchResult, num u32) []byte {
 	x := array{
 		data: e.data
@@ -72,12 +90,14 @@ fn zzz_vproto_internal_pack_egamesearchresult_packed(e []EGameSearchResult, num 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_egamesearchresult(buf []byte, tag_wiretype vproto.WireType) ?(int, EGameSearchResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EGameSearchResult(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_egamesearchresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EGameSearchResult) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -93,13 +113,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key_name       string
-	has_key_name   bool
 	value          []string
 }
 
 pub fn (o &GameSearchParam) pack() []byte {
 	mut res := []byte{}
-	if o.has_key_name {
+	if o.key_name != '' {
 		res << vproto.pack_string_field(o.key_name, 1)
 	}
 	// [packed=false]
@@ -110,7 +129,7 @@ pub fn (o &GameSearchParam) pack() []byte {
 }
 
 pub fn gamesearchparam_unpack(buf []byte) ?GameSearchParam {
-	mut res := GameSearchParam{}
+	mut res := zzz_vproto_internal_new_gamesearchparam()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -121,7 +140,6 @@ pub fn gamesearchparam_unpack(buf []byte) ?GameSearchParam {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key_name = v
 				i = ii
@@ -147,17 +165,48 @@ pub fn gamesearchparam_unpack(buf []byte) ?GameSearchParam {
 	return res
 }
 
+[inline]
+pub fn (a GameSearchParam) eq(b GameSearchParam) bool {
+	return true && a.key_name == b.key_name && a.value == b.value
+}
+
+[inline]
+pub fn (a GameSearchParam) ne(b GameSearchParam) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []GameSearchParam) eq(b []GameSearchParam) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []GameSearchParam) ne(b []GameSearchParam) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_gamesearchparam() GameSearchParam {
 	return GameSearchParam{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_gamesearchparam(o GameSearchParam, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_gamesearchparam(buf []byte, tag_wiretype vproto.WireType) ?(int, GameSearchParam) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := gamesearchparam_unpack(v)?
@@ -166,52 +215,46 @@ pub fn zzz_vproto_internal_unpack_gamesearchparam(buf []byte, tag_wiretype vprot
 
 pub struct CQueuedMatchmaking_SearchForGame_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid            u32
-	has_appid        bool
-	action           EGameSearchAction
-	has_action       bool
-	params           []GameSearchParam
-	player_min       u32
-	has_player_min   bool
-	player_max       u32
-	has_player_max   bool
-	steamidlobby     u64
-	has_steamidlobby bool
-	searchid         u64
-	has_searchid     bool
+	appid          u32
+	action         EGameSearchAction = .k_egamesearchaction_none
+	params         []GameSearchParam
+	player_min     u32
+	player_max     u32
+	steamidlobby   u64
+	searchid       u64
 }
 
 pub fn (o &CQueuedMatchmaking_SearchForGame_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_action {
+	if o.action != zzz_vproto_internal_new_egamesearchaction() {
 		res << zzz_vproto_internal_pack_egamesearchaction(o.action, 2)
 	}
 	// [packed=false]
 	for _, x in o.params {
 		res << zzz_vproto_internal_pack_gamesearchparam(x, 3)
 	}
-	if o.has_player_min {
+	if o.player_min != u32(0) {
 		res << vproto.pack_uint32_field(o.player_min, 4)
 	}
-	if o.has_player_max {
+	if o.player_max != u32(0) {
 		res << vproto.pack_uint32_field(o.player_max, 5)
 	}
-	if o.has_steamidlobby {
+	if o.steamidlobby != u64(0) {
 		res << vproto.pack_64bit_field(o.steamidlobby, 6)
 	}
-	if o.has_searchid {
+	if o.searchid != u64(0) {
 		res << vproto.pack_uint64_field(o.searchid, 7)
 	}
 	return res
 }
 
 pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatchmaking_SearchForGame_Request {
-	mut res := CQueuedMatchmaking_SearchForGame_Request{}
+	mut res := zzz_vproto_internal_new_cqueuedmatchmaking_searchforgame_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -222,13 +265,11 @@ pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatch
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_action = true
 				ii, v := zzz_vproto_internal_unpack_egamesearchaction(cur_buf, tag_wiretype.wire_type)?
 				res.action = v
 				i = ii
@@ -240,25 +281,21 @@ pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatch
 				i = ii
 			}
 			4 {
-				res.has_player_min = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_min = v
 				i = ii
 			}
 			5 {
-				res.has_player_max = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_max = v
 				i = ii
 			}
 			6 {
-				res.has_steamidlobby = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamidlobby = v
 				i = ii
 			}
 			7 {
-				res.has_searchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.searchid = v
 				i = ii
@@ -278,17 +315,52 @@ pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatch
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmaking_SearchForGame_Request) eq(b CQueuedMatchmaking_SearchForGame_Request) bool {
+	return true && a.appid == b.appid &&
+		a.action == b.action && a.params.eq(b.params) &&
+		a.player_min == b.player_min && a.player_max == b.player_max &&
+		a.steamidlobby == b.steamidlobby &&
+		a.searchid == b.searchid
+}
+
+[inline]
+pub fn (a CQueuedMatchmaking_SearchForGame_Request) ne(b CQueuedMatchmaking_SearchForGame_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmaking_SearchForGame_Request) eq(b []CQueuedMatchmaking_SearchForGame_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmaking_SearchForGame_Request) ne(b []CQueuedMatchmaking_SearchForGame_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmaking_searchforgame_request() CQueuedMatchmaking_SearchForGame_Request {
 	return CQueuedMatchmaking_SearchForGame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmaking_searchforgame_request(o CQueuedMatchmaking_SearchForGame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmaking_searchforgame_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmaking_SearchForGame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmaking_searchforgame_request_unpack(v)?
@@ -297,77 +369,65 @@ pub fn zzz_vproto_internal_unpack_cqueuedmatchmaking_searchforgame_request(buf [
 
 pub struct CQueuedMatchmaking_SearchForGame_Response {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	gamesearchresult            EGameSearchResult
-	has_gamesearchresult        bool
-	searchid                    u64
-	has_searchid                bool
-	seconds_time_estimate       u32
-	has_seconds_time_estimate   bool
-	poll_frequency              u32
-	has_poll_frequency          bool
-	count_searching             u32
-	has_count_searching         bool
-	players_in_match            u32
-	has_players_in_match        bool
-	players_accepted            u32
-	has_players_accepted        bool
-	connect_string              string
-	has_connect_string          bool
-	steamidhost                 u64
-	has_steamidhost             bool
-	rtime_match_made            u32
-	has_rtime_match_made        bool
-	rtime_now                   u32
-	has_rtime_now               bool
-	steamid_canceled_search     u64
-	has_steamid_canceled_search bool
+	gamesearchresult        EGameSearchResult = .k_egamesearchresult_invalid
+	searchid                u64
+	seconds_time_estimate   u32
+	poll_frequency          u32
+	count_searching         u32
+	players_in_match        u32
+	players_accepted        u32
+	connect_string          string
+	steamidhost             u64
+	rtime_match_made        u32
+	rtime_now               u32
+	steamid_canceled_search u64
 }
 
 pub fn (o &CQueuedMatchmaking_SearchForGame_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_gamesearchresult {
+	if o.gamesearchresult != zzz_vproto_internal_new_egamesearchresult() {
 		res << zzz_vproto_internal_pack_egamesearchresult(o.gamesearchresult, 1)
 	}
-	if o.has_searchid {
+	if o.searchid != u64(0) {
 		res << vproto.pack_uint64_field(o.searchid, 2)
 	}
-	if o.has_seconds_time_estimate {
+	if o.seconds_time_estimate != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_time_estimate, 3)
 	}
-	if o.has_poll_frequency {
+	if o.poll_frequency != u32(0) {
 		res << vproto.pack_uint32_field(o.poll_frequency, 4)
 	}
-	if o.has_count_searching {
+	if o.count_searching != u32(0) {
 		res << vproto.pack_uint32_field(o.count_searching, 5)
 	}
-	if o.has_players_in_match {
+	if o.players_in_match != u32(0) {
 		res << vproto.pack_uint32_field(o.players_in_match, 6)
 	}
-	if o.has_players_accepted {
+	if o.players_accepted != u32(0) {
 		res << vproto.pack_uint32_field(o.players_accepted, 7)
 	}
-	if o.has_connect_string {
+	if o.connect_string != '' {
 		res << vproto.pack_string_field(o.connect_string, 9)
 	}
-	if o.has_steamidhost {
+	if o.steamidhost != u64(0) {
 		res << vproto.pack_64bit_field(o.steamidhost, 10)
 	}
-	if o.has_rtime_match_made {
+	if o.rtime_match_made != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_match_made, 11)
 	}
-	if o.has_rtime_now {
+	if o.rtime_now != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_now, 12)
 	}
-	if o.has_steamid_canceled_search {
+	if o.steamid_canceled_search != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_canceled_search, 13)
 	}
 	return res
 }
 
 pub fn cqueuedmatchmaking_searchforgame_response_unpack(buf []byte) ?CQueuedMatchmaking_SearchForGame_Response {
-	mut res := CQueuedMatchmaking_SearchForGame_Response{}
+	mut res := zzz_vproto_internal_new_cqueuedmatchmaking_searchforgame_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -378,73 +438,61 @@ pub fn cqueuedmatchmaking_searchforgame_response_unpack(buf []byte) ?CQueuedMatc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_gamesearchresult = true
 				ii, v := zzz_vproto_internal_unpack_egamesearchresult(cur_buf, tag_wiretype.wire_type)?
 				res.gamesearchresult = v
 				i = ii
 			}
 			2 {
-				res.has_searchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.searchid = v
 				i = ii
 			}
 			3 {
-				res.has_seconds_time_estimate = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_time_estimate = v
 				i = ii
 			}
 			4 {
-				res.has_poll_frequency = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.poll_frequency = v
 				i = ii
 			}
 			5 {
-				res.has_count_searching = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count_searching = v
 				i = ii
 			}
 			6 {
-				res.has_players_in_match = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.players_in_match = v
 				i = ii
 			}
 			7 {
-				res.has_players_accepted = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.players_accepted = v
 				i = ii
 			}
 			9 {
-				res.has_connect_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.connect_string = v
 				i = ii
 			}
 			10 {
-				res.has_steamidhost = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamidhost = v
 				i = ii
 			}
 			11 {
-				res.has_rtime_match_made = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_match_made = v
 				i = ii
 			}
 			12 {
-				res.has_rtime_now = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_now = v
 				i = ii
 			}
 			13 {
-				res.has_steamid_canceled_search = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_canceled_search = v
 				i = ii
@@ -464,17 +512,56 @@ pub fn cqueuedmatchmaking_searchforgame_response_unpack(buf []byte) ?CQueuedMatc
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmaking_SearchForGame_Response) eq(b CQueuedMatchmaking_SearchForGame_Response) bool {
+	return true && a.gamesearchresult == b.gamesearchresult &&
+		a.searchid == b.searchid && a.seconds_time_estimate == b.seconds_time_estimate &&
+		a.poll_frequency == b.poll_frequency &&
+		a.count_searching == b.count_searching &&
+		a.players_in_match == b.players_in_match &&
+		a.players_accepted == b.players_accepted &&
+		a.connect_string == b.connect_string &&
+		a.steamidhost == b.steamidhost && a.rtime_match_made == b.rtime_match_made &&
+		a.rtime_now == b.rtime_now && a.steamid_canceled_search == b.steamid_canceled_search
+}
+
+[inline]
+pub fn (a CQueuedMatchmaking_SearchForGame_Response) ne(b CQueuedMatchmaking_SearchForGame_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmaking_SearchForGame_Response) eq(b []CQueuedMatchmaking_SearchForGame_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmaking_SearchForGame_Response) ne(b []CQueuedMatchmaking_SearchForGame_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmaking_searchforgame_response() CQueuedMatchmaking_SearchForGame_Response {
 	return CQueuedMatchmaking_SearchForGame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmaking_searchforgame_response(o CQueuedMatchmaking_SearchForGame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmaking_searchforgame_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmaking_SearchForGame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmaking_searchforgame_response_unpack(v)?
@@ -483,57 +570,50 @@ pub fn zzz_vproto_internal_unpack_cqueuedmatchmaking_searchforgame_response(buf 
 
 pub struct CQueuedMatchmakingGameHost_SearchForPlayers_Request {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields       []vproto.UnknownField
 pub mut:
-	appid                    u32
-	has_appid                bool
-	action                   EGameSearchAction
-	has_action               bool
-	params                   []GameSearchParam
-	player_min               u32
-	has_player_min           bool
-	player_max               u32
-	has_player_max           bool
-	player_max_team_size     u32
-	has_player_max_team_size bool
-	connection_string        string
-	has_connection_string    bool
-	searchid                 u64
-	has_searchid             bool
+	appid                u32
+	action               EGameSearchAction = .k_egamesearchaction_none
+	params               []GameSearchParam
+	player_min           u32
+	player_max           u32
+	player_max_team_size u32
+	connection_string    string
+	searchid             u64
 }
 
 pub fn (o &CQueuedMatchmakingGameHost_SearchForPlayers_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_action {
+	if o.action != zzz_vproto_internal_new_egamesearchaction() {
 		res << zzz_vproto_internal_pack_egamesearchaction(o.action, 2)
 	}
 	// [packed=false]
 	for _, x in o.params {
 		res << zzz_vproto_internal_pack_gamesearchparam(x, 3)
 	}
-	if o.has_player_min {
+	if o.player_min != u32(0) {
 		res << vproto.pack_uint32_field(o.player_min, 4)
 	}
-	if o.has_player_max {
+	if o.player_max != u32(0) {
 		res << vproto.pack_uint32_field(o.player_max, 5)
 	}
-	if o.has_player_max_team_size {
+	if o.player_max_team_size != u32(0) {
 		res << vproto.pack_uint32_field(o.player_max_team_size, 6)
 	}
-	if o.has_connection_string {
+	if o.connection_string != '' {
 		res << vproto.pack_string_field(o.connection_string, 7)
 	}
-	if o.has_searchid {
+	if o.searchid != u64(0) {
 		res << vproto.pack_uint64_field(o.searchid, 8)
 	}
 	return res
 }
 
 pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SearchForPlayers_Request {
-	mut res := CQueuedMatchmakingGameHost_SearchForPlayers_Request{}
+	mut res := zzz_vproto_internal_new_cqueuedmatchmakinggamehost_searchforplayers_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -544,13 +624,11 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_action = true
 				ii, v := zzz_vproto_internal_unpack_egamesearchaction(cur_buf, tag_wiretype.wire_type)?
 				res.action = v
 				i = ii
@@ -562,31 +640,26 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?C
 				i = ii
 			}
 			4 {
-				res.has_player_min = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_min = v
 				i = ii
 			}
 			5 {
-				res.has_player_max = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_max = v
 				i = ii
 			}
 			6 {
-				res.has_player_max_team_size = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_max_team_size = v
 				i = ii
 			}
 			7 {
-				res.has_connection_string = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.connection_string = v
 				i = ii
 			}
 			8 {
-				res.has_searchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.searchid = v
 				i = ii
@@ -606,17 +679,53 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?C
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SearchForPlayers_Request) eq(b CQueuedMatchmakingGameHost_SearchForPlayers_Request) bool {
+	return true && a.appid == b.appid &&
+		a.action == b.action && a.params.eq(b.params) &&
+		a.player_min == b.player_min && a.player_max == b.player_max &&
+		a.player_max_team_size == b.player_max_team_size &&
+		a.connection_string == b.connection_string &&
+		a.searchid == b.searchid
+}
+
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SearchForPlayers_Request) ne(b CQueuedMatchmakingGameHost_SearchForPlayers_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SearchForPlayers_Request) eq(b []CQueuedMatchmakingGameHost_SearchForPlayers_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SearchForPlayers_Request) ne(b []CQueuedMatchmakingGameHost_SearchForPlayers_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_searchforplayers_request() CQueuedMatchmakingGameHost_SearchForPlayers_Request {
 	return CQueuedMatchmakingGameHost_SearchForPlayers_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_searchforplayers_request(o CQueuedMatchmakingGameHost_SearchForPlayers_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_searchforplayers_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SearchForPlayers_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmakinggamehost_searchforplayers_request_unpack(v)?
@@ -625,37 +734,34 @@ pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_searchforplayers_re
 
 pub struct PlayerFound {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid         u64
-	has_steamid     bool
-	action          EGameSearchAction
-	has_action      bool
-	params          []GameSearchParam
-	team_number     u32
-	has_team_number bool
+	steamid        u64
+	action         EGameSearchAction = .k_egamesearchaction_none
+	params         []GameSearchParam
+	team_number    u32
 }
 
 pub fn (o &PlayerFound) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_action {
+	if o.action != zzz_vproto_internal_new_egamesearchaction() {
 		res << zzz_vproto_internal_pack_egamesearchaction(o.action, 2)
 	}
 	// [packed=false]
 	for _, x in o.params {
 		res << zzz_vproto_internal_pack_gamesearchparam(x, 3)
 	}
-	if o.has_team_number {
+	if o.team_number != u32(0) {
 		res << vproto.pack_uint32_field(o.team_number, 4)
 	}
 	return res
 }
 
 pub fn playerfound_unpack(buf []byte) ?PlayerFound {
-	mut res := PlayerFound{}
+	mut res := zzz_vproto_internal_new_playerfound()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -666,13 +772,11 @@ pub fn playerfound_unpack(buf []byte) ?PlayerFound {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_action = true
 				ii, v := zzz_vproto_internal_unpack_egamesearchaction(cur_buf, tag_wiretype.wire_type)?
 				res.action = v
 				i = ii
@@ -684,7 +788,6 @@ pub fn playerfound_unpack(buf []byte) ?PlayerFound {
 				i = ii
 			}
 			4 {
-				res.has_team_number = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.team_number = v
 				i = ii
@@ -704,17 +807,50 @@ pub fn playerfound_unpack(buf []byte) ?PlayerFound {
 	return res
 }
 
+[inline]
+pub fn (a PlayerFound) eq(b PlayerFound) bool {
+	return true && a.steamid == b.steamid &&
+		a.action == b.action && a.params.eq(b.params) &&
+		a.team_number == b.team_number
+}
+
+[inline]
+pub fn (a PlayerFound) ne(b PlayerFound) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PlayerFound) eq(b []PlayerFound) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PlayerFound) ne(b []PlayerFound) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_playerfound() PlayerFound {
 	return PlayerFound{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_playerfound(o PlayerFound, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_playerfound(buf []byte, tag_wiretype vproto.WireType) ?(int, PlayerFound) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := playerfound_unpack(v)?
@@ -723,52 +859,46 @@ pub fn zzz_vproto_internal_unpack_playerfound(buf []byte, tag_wiretype vproto.Wi
 
 pub struct CQueuedMatchmakingGameHost_SearchForPlayers_Response {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	gamesearchresult     EGameSearchResult
-	has_gamesearchresult bool
-	searchid             u64
-	has_searchid         bool
-	poll_frequency       u32
-	has_poll_frequency   bool
-	matchid              u64
-	has_matchid          bool
-	players              []PlayerFound
-	rtime_match_made     u32
-	has_rtime_match_made bool
-	rtime_now            u32
-	has_rtime_now        bool
+	gamesearchresult EGameSearchResult = .k_egamesearchresult_invalid
+	searchid         u64
+	poll_frequency   u32
+	matchid          u64
+	players          []PlayerFound
+	rtime_match_made u32
+	rtime_now        u32
 }
 
 pub fn (o &CQueuedMatchmakingGameHost_SearchForPlayers_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_gamesearchresult {
+	if o.gamesearchresult != zzz_vproto_internal_new_egamesearchresult() {
 		res << zzz_vproto_internal_pack_egamesearchresult(o.gamesearchresult, 1)
 	}
-	if o.has_searchid {
+	if o.searchid != u64(0) {
 		res << vproto.pack_uint64_field(o.searchid, 2)
 	}
-	if o.has_poll_frequency {
+	if o.poll_frequency != u32(0) {
 		res << vproto.pack_uint32_field(o.poll_frequency, 3)
 	}
-	if o.has_matchid {
+	if o.matchid != u64(0) {
 		res << vproto.pack_uint64_field(o.matchid, 4)
 	}
 	// [packed=false]
 	for _, x in o.players {
 		res << zzz_vproto_internal_pack_playerfound(x, 5)
 	}
-	if o.has_rtime_match_made {
+	if o.rtime_match_made != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_match_made, 6)
 	}
-	if o.has_rtime_now {
+	if o.rtime_now != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_now, 7)
 	}
 	return res
 }
 
 pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SearchForPlayers_Response {
-	mut res := CQueuedMatchmakingGameHost_SearchForPlayers_Response{}
+	mut res := zzz_vproto_internal_new_cqueuedmatchmakinggamehost_searchforplayers_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -779,25 +909,21 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_gamesearchresult = true
 				ii, v := zzz_vproto_internal_unpack_egamesearchresult(cur_buf, tag_wiretype.wire_type)?
 				res.gamesearchresult = v
 				i = ii
 			}
 			2 {
-				res.has_searchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.searchid = v
 				i = ii
 			}
 			3 {
-				res.has_poll_frequency = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.poll_frequency = v
 				i = ii
 			}
 			4 {
-				res.has_matchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.matchid = v
 				i = ii
@@ -809,13 +935,11 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?
 				i = ii
 			}
 			6 {
-				res.has_rtime_match_made = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_match_made = v
 				i = ii
 			}
 			7 {
-				res.has_rtime_now = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_now = v
 				i = ii
@@ -835,17 +959,52 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SearchForPlayers_Response) eq(b CQueuedMatchmakingGameHost_SearchForPlayers_Response) bool {
+	return true && a.gamesearchresult == b.gamesearchresult &&
+		a.searchid == b.searchid && a.poll_frequency == b.poll_frequency &&
+		a.matchid == b.matchid && a.players.eq(b.players) &&
+		a.rtime_match_made == b.rtime_match_made &&
+		a.rtime_now == b.rtime_now
+}
+
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SearchForPlayers_Response) ne(b CQueuedMatchmakingGameHost_SearchForPlayers_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SearchForPlayers_Response) eq(b []CQueuedMatchmakingGameHost_SearchForPlayers_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SearchForPlayers_Response) ne(b []CQueuedMatchmakingGameHost_SearchForPlayers_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_searchforplayers_response() CQueuedMatchmakingGameHost_SearchForPlayers_Response {
 	return CQueuedMatchmakingGameHost_SearchForPlayers_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_searchforplayers_response(o CQueuedMatchmakingGameHost_SearchForPlayers_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_searchforplayers_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SearchForPlayers_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmakinggamehost_searchforplayers_response_unpack(v)?
@@ -857,24 +1016,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	value          u32
-	has_value      bool
 }
 
 pub fn (o &PlayerResult) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_value {
+	if o.value != u32(0) {
 		res << vproto.pack_uint32_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn playerresult_unpack(buf []byte) ?PlayerResult {
-	mut res := PlayerResult{}
+	mut res := zzz_vproto_internal_new_playerresult()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -885,13 +1042,11 @@ pub fn playerresult_unpack(buf []byte) ?PlayerResult {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -911,17 +1066,48 @@ pub fn playerresult_unpack(buf []byte) ?PlayerResult {
 	return res
 }
 
+[inline]
+pub fn (a PlayerResult) eq(b PlayerResult) bool {
+	return true && a.steamid == b.steamid && a.value == b.value
+}
+
+[inline]
+pub fn (a PlayerResult) ne(b PlayerResult) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PlayerResult) eq(b []PlayerResult) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PlayerResult) ne(b []PlayerResult) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_playerresult() PlayerResult {
 	return PlayerResult{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_playerresult(o PlayerResult, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_playerresult(buf []byte, tag_wiretype vproto.WireType) ?(int, PlayerResult) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := playerresult_unpack(v)?
@@ -933,18 +1119,16 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	matchid        u64
-	has_matchid    bool
 	player_results []PlayerResult
 }
 
 pub fn (o &CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_matchid {
+	if o.matchid != u64(0) {
 		res << vproto.pack_uint64_field(o.matchid, 2)
 	}
 	// [packed=false]
@@ -955,7 +1139,7 @@ pub fn (o &CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) pack() []byte 
 }
 
 pub fn cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SubmitPlayerResult_Request {
-	mut res := CQueuedMatchmakingGameHost_SubmitPlayerResult_Request{}
+	mut res := zzz_vproto_internal_new_cqueuedmatchmakinggamehost_submitplayerresult_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -966,13 +1150,11 @@ pub fn cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(buf []byte) 
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_matchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.matchid = v
 				i = ii
@@ -998,17 +1180,49 @@ pub fn cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(buf []byte) 
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) eq(b CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) bool {
+	return true && a.appid == b.appid &&
+		a.matchid == b.matchid && a.player_results.eq(b.player_results)
+}
+
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) ne(b CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) eq(b []CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) ne(b []CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_submitplayerresult_request() CQueuedMatchmakingGameHost_SubmitPlayerResult_Request {
 	return CQueuedMatchmakingGameHost_SubmitPlayerResult_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_submitplayerresult_request(o CQueuedMatchmakingGameHost_SubmitPlayerResult_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_submitplayerresult_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SubmitPlayerResult_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(v)?
@@ -1026,21 +1240,52 @@ pub fn (o &CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) pack() []byte
 }
 
 pub fn cqueuedmatchmakinggamehost_submitplayerresult_response_unpack(buf []byte) ?CQueuedMatchmakingGameHost_SubmitPlayerResult_Response {
-	res := CQueuedMatchmakingGameHost_SubmitPlayerResult_Response{}
+	res := zzz_vproto_internal_new_cqueuedmatchmakinggamehost_submitplayerresult_response()
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) eq(b CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) ne(b CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) eq(b []CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) ne(b []CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_submitplayerresult_response() CQueuedMatchmakingGameHost_SubmitPlayerResult_Response {
 	return CQueuedMatchmakingGameHost_SubmitPlayerResult_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_submitplayerresult_response(o CQueuedMatchmakingGameHost_SubmitPlayerResult_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_submitplayerresult_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_SubmitPlayerResult_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmakinggamehost_submitplayerresult_response_unpack(v)?
@@ -1052,24 +1297,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	matchid        u64
-	has_matchid    bool
 }
 
 pub fn (o &CQueuedMatchmakingGameHost_EndGame_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_matchid {
+	if o.matchid != u64(0) {
 		res << vproto.pack_uint64_field(o.matchid, 2)
 	}
 	return res
 }
 
 pub fn cqueuedmatchmakinggamehost_endgame_request_unpack(buf []byte) ?CQueuedMatchmakingGameHost_EndGame_Request {
-	mut res := CQueuedMatchmakingGameHost_EndGame_Request{}
+	mut res := zzz_vproto_internal_new_cqueuedmatchmakinggamehost_endgame_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1080,13 +1323,11 @@ pub fn cqueuedmatchmakinggamehost_endgame_request_unpack(buf []byte) ?CQueuedMat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_matchid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.matchid = v
 				i = ii
@@ -1106,17 +1347,48 @@ pub fn cqueuedmatchmakinggamehost_endgame_request_unpack(buf []byte) ?CQueuedMat
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_EndGame_Request) eq(b CQueuedMatchmakingGameHost_EndGame_Request) bool {
+	return true && a.appid == b.appid && a.matchid == b.matchid
+}
+
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_EndGame_Request) ne(b CQueuedMatchmakingGameHost_EndGame_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_EndGame_Request) eq(b []CQueuedMatchmakingGameHost_EndGame_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_EndGame_Request) ne(b []CQueuedMatchmakingGameHost_EndGame_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_endgame_request() CQueuedMatchmakingGameHost_EndGame_Request {
 	return CQueuedMatchmakingGameHost_EndGame_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_endgame_request(o CQueuedMatchmakingGameHost_EndGame_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_endgame_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_EndGame_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmakinggamehost_endgame_request_unpack(v)?
@@ -1134,21 +1406,52 @@ pub fn (o &CQueuedMatchmakingGameHost_EndGame_Response) pack() []byte {
 }
 
 pub fn cqueuedmatchmakinggamehost_endgame_response_unpack(buf []byte) ?CQueuedMatchmakingGameHost_EndGame_Response {
-	res := CQueuedMatchmakingGameHost_EndGame_Response{}
+	res := zzz_vproto_internal_new_cqueuedmatchmakinggamehost_endgame_response()
 	return res
 }
 
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_EndGame_Response) eq(b CQueuedMatchmakingGameHost_EndGame_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CQueuedMatchmakingGameHost_EndGame_Response) ne(b CQueuedMatchmakingGameHost_EndGame_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_EndGame_Response) eq(b []CQueuedMatchmakingGameHost_EndGame_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQueuedMatchmakingGameHost_EndGame_Response) ne(b []CQueuedMatchmakingGameHost_EndGame_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cqueuedmatchmakinggamehost_endgame_response() CQueuedMatchmakingGameHost_EndGame_Response {
 	return CQueuedMatchmakingGameHost_EndGame_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cqueuedmatchmakinggamehost_endgame_response(o CQueuedMatchmakingGameHost_EndGame_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cqueuedmatchmakinggamehost_endgame_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CQueuedMatchmakingGameHost_EndGame_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cqueuedmatchmakinggamehost_endgame_response_unpack(v)?

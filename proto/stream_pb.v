@@ -13,11 +13,19 @@ enum EStreamChannel {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamchannel() EStreamChannel {
+	return .k_estreamchannelinvalid
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamchannel(e EStreamChannel, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamchannel_packed(e []EStreamChannel, num u32) []byte {
 	x := array{
 		data: e.data
@@ -29,12 +37,14 @@ fn zzz_vproto_internal_pack_estreamchannel_packed(e []EStreamChannel, num u32) [
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamchannel(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamChannel) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamChannel(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamchannel_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamChannel) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -52,11 +62,19 @@ enum EStreamDiscoveryMessage {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamdiscoverymessage() EStreamDiscoveryMessage {
+	return .k_estreamdiscoverypingrequest
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamdiscoverymessage(e EStreamDiscoveryMessage, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamdiscoverymessage_packed(e []EStreamDiscoveryMessage, num u32) []byte {
 	x := array{
 		data: e.data
@@ -68,12 +86,14 @@ fn zzz_vproto_internal_pack_estreamdiscoverymessage_packed(e []EStreamDiscoveryM
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamdiscoverymessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamDiscoveryMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamDiscoveryMessage(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamdiscoverymessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamDiscoveryMessage) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -173,11 +193,19 @@ enum EStreamControlMessage {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamcontrolmessage() EStreamControlMessage {
+	return .k_estreamcontrolauthenticationrequest
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamcontrolmessage(e EStreamControlMessage, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamcontrolmessage_packed(e []EStreamControlMessage, num u32) []byte {
 	x := array{
 		data: e.data
@@ -189,12 +217,14 @@ fn zzz_vproto_internal_pack_estreamcontrolmessage_packed(e []EStreamControlMessa
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamcontrolmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamControlMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamControlMessage(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamcontrolmessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamControlMessage) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -212,11 +242,19 @@ enum EStreamVersion {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamversion() EStreamVersion {
+	return .k_estreamversionnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamversion(e EStreamVersion, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamversion_packed(e []EStreamVersion, num u32) []byte {
 	x := array{
 		data: e.data
@@ -228,12 +266,14 @@ fn zzz_vproto_internal_pack_estreamversion_packed(e []EStreamVersion, num u32) [
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamversion(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamVersion) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamVersion(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamversion_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamVersion) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -255,11 +295,19 @@ enum EStreamAudioCodec {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamaudiocodec() EStreamAudioCodec {
+	return .k_estreamaudiocodecnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamaudiocodec(e EStreamAudioCodec, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamaudiocodec_packed(e []EStreamAudioCodec, num u32) []byte {
 	x := array{
 		data: e.data
@@ -271,12 +319,14 @@ fn zzz_vproto_internal_pack_estreamaudiocodec_packed(e []EStreamAudioCodec, num 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamaudiocodec(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamAudioCodec) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamAudioCodec(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamaudiocodec_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamAudioCodec) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -300,11 +350,19 @@ enum EStreamVideoCodec {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamvideocodec() EStreamVideoCodec {
+	return .k_estreamvideocodecnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamvideocodec(e EStreamVideoCodec, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamvideocodec_packed(e []EStreamVideoCodec, num u32) []byte {
 	x := array{
 		data: e.data
@@ -316,12 +374,14 @@ fn zzz_vproto_internal_pack_estreamvideocodec_packed(e []EStreamVideoCodec, num 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamvideocodec(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamVideoCodec) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamVideoCodec(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamvideocodec_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamVideoCodec) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -340,11 +400,19 @@ enum EStreamQualityPreference {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamqualitypreference() EStreamQualityPreference {
+	return .k_estreamqualityfast
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamqualitypreference(e EStreamQualityPreference, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamqualitypreference_packed(e []EStreamQualityPreference, num u32) []byte {
 	x := array{
 		data: e.data
@@ -356,12 +424,14 @@ fn zzz_vproto_internal_pack_estreamqualitypreference_packed(e []EStreamQualityPr
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamqualitypreference(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamQualityPreference) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamQualityPreference(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamqualitypreference_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamQualityPreference) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -379,11 +449,19 @@ enum EStreamBitrate {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreambitrate() EStreamBitrate {
+	return .k_estreambitrateautodetect
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreambitrate(e EStreamBitrate, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreambitrate_packed(e []EStreamBitrate, num u32) []byte {
 	x := array{
 		data: e.data
@@ -395,12 +473,14 @@ fn zzz_vproto_internal_pack_estreambitrate_packed(e []EStreamBitrate, num u32) [
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreambitrate(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamBitrate) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamBitrate(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreambitrate_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamBitrate) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -421,11 +501,19 @@ enum EStreamP2PScope {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamp2pscope() EStreamP2PScope {
+	return .k_estreamp2pscopeunknown
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamp2pscope(e EStreamP2PScope, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamp2pscope_packed(e []EStreamP2PScope, num u32) []byte {
 	x := array{
 		data: e.data
@@ -437,12 +525,14 @@ fn zzz_vproto_internal_pack_estreamp2pscope_packed(e []EStreamP2PScope, num u32)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamp2pscope(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamP2PScope) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamP2PScope(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamp2pscope_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamP2PScope) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -460,11 +550,19 @@ enum EStreamHostPlayAudioPreference {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamhostplayaudiopreference() EStreamHostPlayAudioPreference {
+	return .k_estreamhostplayaudiodefault
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamhostplayaudiopreference(e EStreamHostPlayAudioPreference, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamhostplayaudiopreference_packed(e []EStreamHostPlayAudioPreference, num u32) []byte {
 	x := array{
 		data: e.data
@@ -476,12 +574,14 @@ fn zzz_vproto_internal_pack_estreamhostplayaudiopreference_packed(e []EStreamHos
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamhostplayaudiopreference(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamHostPlayAudioPreference) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamHostPlayAudioPreference(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamhostplayaudiopreference_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamHostPlayAudioPreference) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -500,11 +600,19 @@ enum EStreamingDataType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamingdatatype() EStreamingDataType {
+	return .k_estreamingaudiodata
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamingdatatype(e EStreamingDataType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamingdatatype_packed(e []EStreamingDataType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -516,12 +624,14 @@ fn zzz_vproto_internal_pack_estreamingdatatype_packed(e []EStreamingDataType, nu
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamingdatatype(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamingDataType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamingDataType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamingdatatype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamingDataType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -543,11 +653,19 @@ enum EStreamMouseButton {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreammousebutton() EStreamMouseButton {
+	return .k_estreammousebuttonleft
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreammousebutton(e EStreamMouseButton, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreammousebutton_packed(e []EStreamMouseButton, num u32) []byte {
 	x := array{
 		data: e.data
@@ -559,12 +677,14 @@ fn zzz_vproto_internal_pack_estreammousebutton_packed(e []EStreamMouseButton, nu
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreammousebutton(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamMouseButton) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamMouseButton(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreammousebutton_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamMouseButton) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -584,11 +704,19 @@ enum EStreamMouseWheelDirection {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreammousewheeldirection() EStreamMouseWheelDirection {
+	return .k_estreammousewheelup
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreammousewheeldirection(e EStreamMouseWheelDirection, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreammousewheeldirection_packed(e []EStreamMouseWheelDirection, num u32) []byte {
 	x := array{
 		data: e.data
@@ -600,12 +728,14 @@ fn zzz_vproto_internal_pack_estreammousewheeldirection_packed(e []EStreamMouseWh
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreammousewheeldirection(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamMouseWheelDirection) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamMouseWheelDirection(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreammousewheeldirection_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamMouseWheelDirection) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -628,11 +758,19 @@ enum EStreamFramerateLimiter {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamframeratelimiter() EStreamFramerateLimiter {
+	return .k_estreamframerateslowcapture
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamframeratelimiter(e EStreamFramerateLimiter, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamframeratelimiter_packed(e []EStreamFramerateLimiter, num u32) []byte {
 	x := array{
 		data: e.data
@@ -644,12 +782,14 @@ fn zzz_vproto_internal_pack_estreamframeratelimiter_packed(e []EStreamFramerateL
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamframeratelimiter(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamFramerateLimiter) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamFramerateLimiter(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamframeratelimiter_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamFramerateLimiter) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -669,11 +809,19 @@ enum EStreamActivity {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamactivity() EStreamActivity {
+	return .k_estreamactivityidle
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamactivity(e EStreamActivity, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamactivity_packed(e []EStreamActivity, num u32) []byte {
 	x := array{
 		data: e.data
@@ -685,12 +833,14 @@ fn zzz_vproto_internal_pack_estreamactivity_packed(e []EStreamActivity, num u32)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamactivity(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamActivity) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamActivity(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamactivity_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamActivity) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -708,11 +858,19 @@ enum EStreamDataMessage {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamdatamessage() EStreamDataMessage {
+	return .k_estreamdatapacket
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamdatamessage(e EStreamDataMessage, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamdatamessage_packed(e []EStreamDataMessage, num u32) []byte {
 	x := array{
 		data: e.data
@@ -724,12 +882,14 @@ fn zzz_vproto_internal_pack_estreamdatamessage_packed(e []EStreamDataMessage, nu
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamdatamessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamDataMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamDataMessage(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamdatamessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamDataMessage) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -748,11 +908,19 @@ enum EAudioFormat {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eaudioformat() EAudioFormat {
+	return .k_eaudioformatnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eaudioformat(e EAudioFormat, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eaudioformat_packed(e []EAudioFormat, num u32) []byte {
 	x := array{
 		data: e.data
@@ -764,12 +932,14 @@ fn zzz_vproto_internal_pack_eaudioformat_packed(e []EAudioFormat, num u32) []byt
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eaudioformat(buf []byte, tag_wiretype vproto.WireType) ?(int, EAudioFormat) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EAudioFormat(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eaudioformat_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EAudioFormat) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -788,11 +958,19 @@ enum EVideoFormat {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_evideoformat() EVideoFormat {
+	return .k_evideoformatnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_evideoformat(e EVideoFormat, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_evideoformat_packed(e []EVideoFormat, num u32) []byte {
 	x := array{
 		data: e.data
@@ -804,12 +982,14 @@ fn zzz_vproto_internal_pack_evideoformat_packed(e []EVideoFormat, num u32) []byt
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_evideoformat(buf []byte, tag_wiretype vproto.WireType) ?(int, EVideoFormat) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EVideoFormat(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_evideoformat_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EVideoFormat) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -831,11 +1011,19 @@ enum EStreamStatsMessage {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamstatsmessage() EStreamStatsMessage {
+	return .k_estreamstatsframeevents
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamstatsmessage(e EStreamStatsMessage, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamstatsmessage_packed(e []EStreamStatsMessage, num u32) []byte {
 	x := array{
 		data: e.data
@@ -847,12 +1035,14 @@ fn zzz_vproto_internal_pack_estreamstatsmessage_packed(e []EStreamStatsMessage, 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamstatsmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamStatsMessage) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamStatsMessage(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamstatsmessage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamStatsMessage) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -887,11 +1077,19 @@ enum EStreamFrameEvent {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamframeevent() EStreamFrameEvent {
+	return .k_estreaminputeventstart
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamframeevent(e EStreamFrameEvent, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamframeevent_packed(e []EStreamFrameEvent, num u32) []byte {
 	x := array{
 		data: e.data
@@ -903,12 +1101,14 @@ fn zzz_vproto_internal_pack_estreamframeevent_packed(e []EStreamFrameEvent, num 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamframeevent(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamFrameEvent) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamFrameEvent(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamframeevent_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamFrameEvent) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -932,11 +1132,19 @@ enum EStreamFrameResult {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_estreamframeresult() EStreamFrameResult {
+	return .k_estreamframeresultpending
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamframeresult(e EStreamFrameResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_estreamframeresult_packed(e []EStreamFrameResult, num u32) []byte {
 	x := array{
 		data: e.data
@@ -948,12 +1156,14 @@ fn zzz_vproto_internal_pack_estreamframeresult_packed(e []EStreamFrameResult, nu
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamframeresult(buf []byte, tag_wiretype vproto.WireType) ?(int, EStreamFrameResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EStreamFrameResult(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_estreamframeresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EStreamFrameResult) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -988,11 +1198,19 @@ enum EFrameAccumulatedStat {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eframeaccumulatedstat() EFrameAccumulatedStat {
+	return .k_eframestatfps
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eframeaccumulatedstat(e EFrameAccumulatedStat, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eframeaccumulatedstat_packed(e []EFrameAccumulatedStat, num u32) []byte {
 	x := array{
 		data: e.data
@@ -1004,12 +1222,14 @@ fn zzz_vproto_internal_pack_eframeaccumulatedstat_packed(e []EFrameAccumulatedSt
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eframeaccumulatedstat(buf []byte, tag_wiretype vproto.WireType) ?(int, EFrameAccumulatedStat) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EFrameAccumulatedStat(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eframeaccumulatedstat_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EFrameAccumulatedStat) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -1028,11 +1248,19 @@ enum ELogFileType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_elogfiletype() ELogFileType {
+	return .k_elogfilesystemboot
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_elogfiletype(e ELogFileType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_elogfiletype_packed(e []ELogFileType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -1044,12 +1272,14 @@ fn zzz_vproto_internal_pack_elogfiletype_packed(e []ELogFileType, num u32) []byt
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_elogfiletype(buf []byte, tag_wiretype vproto.WireType) ?(int, ELogFileType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, ELogFileType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_elogfiletype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ELogFileType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -1062,27 +1292,25 @@ fn zzz_vproto_internal_unpack_elogfiletype_packed(buf []byte, tag_wiretype vprot
 
 pub struct CDiscoveryPingRequest {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	sequence                  u32
-	has_sequence              bool
-	packet_size_requested     u32
-	has_packet_size_requested bool
+	sequence              u32
+	packet_size_requested u32
 }
 
 pub fn (o &CDiscoveryPingRequest) pack() []byte {
 	mut res := []byte{}
-	if o.has_sequence {
+	if o.sequence != u32(0) {
 		res << vproto.pack_uint32_field(o.sequence, 1)
 	}
-	if o.has_packet_size_requested {
+	if o.packet_size_requested != u32(0) {
 		res << vproto.pack_uint32_field(o.packet_size_requested, 2)
 	}
 	return res
 }
 
 pub fn cdiscoverypingrequest_unpack(buf []byte) ?CDiscoveryPingRequest {
-	mut res := CDiscoveryPingRequest{}
+	mut res := zzz_vproto_internal_new_cdiscoverypingrequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1093,13 +1321,11 @@ pub fn cdiscoverypingrequest_unpack(buf []byte) ?CDiscoveryPingRequest {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_sequence = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.sequence = v
 				i = ii
 			}
 			2 {
-				res.has_packet_size_requested = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.packet_size_requested = v
 				i = ii
@@ -1119,17 +1345,48 @@ pub fn cdiscoverypingrequest_unpack(buf []byte) ?CDiscoveryPingRequest {
 	return res
 }
 
+[inline]
+pub fn (a CDiscoveryPingRequest) eq(b CDiscoveryPingRequest) bool {
+	return true && a.sequence == b.sequence && a.packet_size_requested == b.packet_size_requested
+}
+
+[inline]
+pub fn (a CDiscoveryPingRequest) ne(b CDiscoveryPingRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDiscoveryPingRequest) eq(b []CDiscoveryPingRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDiscoveryPingRequest) ne(b []CDiscoveryPingRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdiscoverypingrequest() CDiscoveryPingRequest {
 	return CDiscoveryPingRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdiscoverypingrequest(o CDiscoveryPingRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdiscoverypingrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CDiscoveryPingRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdiscoverypingrequest_unpack(v)?
@@ -1138,27 +1395,25 @@ pub fn zzz_vproto_internal_unpack_cdiscoverypingrequest(buf []byte, tag_wiretype
 
 pub struct CDiscoveryPingResponse {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields       []vproto.UnknownField
 pub mut:
-	sequence                 u32
-	has_sequence             bool
-	packet_size_received     u32
-	has_packet_size_received bool
+	sequence             u32
+	packet_size_received u32
 }
 
 pub fn (o &CDiscoveryPingResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_sequence {
+	if o.sequence != u32(0) {
 		res << vproto.pack_uint32_field(o.sequence, 1)
 	}
-	if o.has_packet_size_received {
+	if o.packet_size_received != u32(0) {
 		res << vproto.pack_uint32_field(o.packet_size_received, 2)
 	}
 	return res
 }
 
 pub fn cdiscoverypingresponse_unpack(buf []byte) ?CDiscoveryPingResponse {
-	mut res := CDiscoveryPingResponse{}
+	mut res := zzz_vproto_internal_new_cdiscoverypingresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1169,13 +1424,11 @@ pub fn cdiscoverypingresponse_unpack(buf []byte) ?CDiscoveryPingResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_sequence = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.sequence = v
 				i = ii
 			}
 			2 {
-				res.has_packet_size_received = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.packet_size_received = v
 				i = ii
@@ -1195,17 +1448,48 @@ pub fn cdiscoverypingresponse_unpack(buf []byte) ?CDiscoveryPingResponse {
 	return res
 }
 
+[inline]
+pub fn (a CDiscoveryPingResponse) eq(b CDiscoveryPingResponse) bool {
+	return true && a.sequence == b.sequence && a.packet_size_received == b.packet_size_received
+}
+
+[inline]
+pub fn (a CDiscoveryPingResponse) ne(b CDiscoveryPingResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDiscoveryPingResponse) eq(b []CDiscoveryPingResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDiscoveryPingResponse) ne(b []CDiscoveryPingResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdiscoverypingresponse() CDiscoveryPingResponse {
 	return CDiscoveryPingResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdiscoverypingresponse(o CDiscoveryPingResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdiscoverypingresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CDiscoveryPingResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdiscoverypingresponse_unpack(v)?
@@ -1214,22 +1498,21 @@ pub fn zzz_vproto_internal_unpack_cdiscoverypingresponse(buf []byte, tag_wiretyp
 
 pub struct CStreamingClientHandshakeInfo {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	network_test     int
-	has_network_test bool
+	network_test   int
 }
 
 pub fn (o &CStreamingClientHandshakeInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_network_test {
+	if o.network_test != int(0) {
 		res << vproto.pack_int32_field(o.network_test, 2)
 	}
 	return res
 }
 
 pub fn cstreamingclienthandshakeinfo_unpack(buf []byte) ?CStreamingClientHandshakeInfo {
-	mut res := CStreamingClientHandshakeInfo{}
+	mut res := zzz_vproto_internal_new_cstreamingclienthandshakeinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1240,7 +1523,6 @@ pub fn cstreamingclienthandshakeinfo_unpack(buf []byte) ?CStreamingClientHandsha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				res.has_network_test = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.network_test = v
 				i = ii
@@ -1260,17 +1542,48 @@ pub fn cstreamingclienthandshakeinfo_unpack(buf []byte) ?CStreamingClientHandsha
 	return res
 }
 
+[inline]
+pub fn (a CStreamingClientHandshakeInfo) eq(b CStreamingClientHandshakeInfo) bool {
+	return true && a.network_test == b.network_test
+}
+
+[inline]
+pub fn (a CStreamingClientHandshakeInfo) ne(b CStreamingClientHandshakeInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingClientHandshakeInfo) eq(b []CStreamingClientHandshakeInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingClientHandshakeInfo) ne(b []CStreamingClientHandshakeInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingclienthandshakeinfo() CStreamingClientHandshakeInfo {
 	return CStreamingClientHandshakeInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingclienthandshakeinfo(o CStreamingClientHandshakeInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingclienthandshakeinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingClientHandshakeInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingclienthandshakeinfo_unpack(v)?
@@ -1291,7 +1604,7 @@ pub fn (o &CClientHandshakeMsg) pack() []byte {
 }
 
 pub fn cclienthandshakemsg_unpack(buf []byte) ?CClientHandshakeMsg {
-	mut res := CClientHandshakeMsg{}
+	mut res := zzz_vproto_internal_new_cclienthandshakemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1322,17 +1635,48 @@ pub fn cclienthandshakemsg_unpack(buf []byte) ?CClientHandshakeMsg {
 	return res
 }
 
+[inline]
+pub fn (a CClientHandshakeMsg) eq(b CClientHandshakeMsg) bool {
+	return true && a.info.eq(b.info)
+}
+
+[inline]
+pub fn (a CClientHandshakeMsg) ne(b CClientHandshakeMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CClientHandshakeMsg) eq(b []CClientHandshakeMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CClientHandshakeMsg) ne(b []CClientHandshakeMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cclienthandshakemsg() CClientHandshakeMsg {
 	return CClientHandshakeMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cclienthandshakemsg(o CClientHandshakeMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cclienthandshakemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CClientHandshakeMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cclienthandshakemsg_unpack(v)?
@@ -1344,19 +1688,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	mtu            int
-	has_mtu        bool
 }
 
 pub fn (o &CStreamingServerHandshakeInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_mtu {
+	if o.mtu != int(0) {
 		res << vproto.pack_int32_field(o.mtu, 1)
 	}
 	return res
 }
 
 pub fn cstreamingserverhandshakeinfo_unpack(buf []byte) ?CStreamingServerHandshakeInfo {
-	mut res := CStreamingServerHandshakeInfo{}
+	mut res := zzz_vproto_internal_new_cstreamingserverhandshakeinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1367,7 +1710,6 @@ pub fn cstreamingserverhandshakeinfo_unpack(buf []byte) ?CStreamingServerHandsha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_mtu = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.mtu = v
 				i = ii
@@ -1387,17 +1729,48 @@ pub fn cstreamingserverhandshakeinfo_unpack(buf []byte) ?CStreamingServerHandsha
 	return res
 }
 
+[inline]
+pub fn (a CStreamingServerHandshakeInfo) eq(b CStreamingServerHandshakeInfo) bool {
+	return true && a.mtu == b.mtu
+}
+
+[inline]
+pub fn (a CStreamingServerHandshakeInfo) ne(b CStreamingServerHandshakeInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingServerHandshakeInfo) eq(b []CStreamingServerHandshakeInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingServerHandshakeInfo) ne(b []CStreamingServerHandshakeInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingserverhandshakeinfo() CStreamingServerHandshakeInfo {
 	return CStreamingServerHandshakeInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingserverhandshakeinfo(o CStreamingServerHandshakeInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingserverhandshakeinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingServerHandshakeInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingserverhandshakeinfo_unpack(v)?
@@ -1418,7 +1791,7 @@ pub fn (o &CServerHandshakeMsg) pack() []byte {
 }
 
 pub fn cserverhandshakemsg_unpack(buf []byte) ?CServerHandshakeMsg {
-	mut res := CServerHandshakeMsg{}
+	mut res := zzz_vproto_internal_new_cserverhandshakemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1449,17 +1822,48 @@ pub fn cserverhandshakemsg_unpack(buf []byte) ?CServerHandshakeMsg {
 	return res
 }
 
+[inline]
+pub fn (a CServerHandshakeMsg) eq(b CServerHandshakeMsg) bool {
+	return true && a.info.eq(b.info)
+}
+
+[inline]
+pub fn (a CServerHandshakeMsg) ne(b CServerHandshakeMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CServerHandshakeMsg) eq(b []CServerHandshakeMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CServerHandshakeMsg) ne(b []CServerHandshakeMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cserverhandshakemsg() CServerHandshakeMsg {
 	return CServerHandshakeMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cserverhandshakemsg(o CServerHandshakeMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cserverhandshakemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CServerHandshakeMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cserverhandshakemsg_unpack(v)?
@@ -1471,24 +1875,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	token          []byte
-	has_token      bool
-	version        EStreamVersion
-	has_version    bool
+	version        EStreamVersion = .k_estreamversionnone
 }
 
 pub fn (o &CAuthenticationRequestMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_token {
+	if o.token != []byte{} {
 		res << vproto.pack_bytes_field(o.token, 1)
 	}
-	if o.has_version {
+	if o.version != zzz_vproto_internal_new_estreamversion() {
 		res << zzz_vproto_internal_pack_estreamversion(o.version, 2)
 	}
 	return res
 }
 
 pub fn cauthenticationrequestmsg_unpack(buf []byte) ?CAuthenticationRequestMsg {
-	mut res := CAuthenticationRequestMsg{}
+	mut res := zzz_vproto_internal_new_cauthenticationrequestmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1499,13 +1901,11 @@ pub fn cauthenticationrequestmsg_unpack(buf []byte) ?CAuthenticationRequestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_token = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.token = v
 				i = ii
 			}
 			2 {
-				res.has_version = true
 				ii, v := zzz_vproto_internal_unpack_estreamversion(cur_buf, tag_wiretype.wire_type)?
 				res.version = v
 				i = ii
@@ -1525,17 +1925,48 @@ pub fn cauthenticationrequestmsg_unpack(buf []byte) ?CAuthenticationRequestMsg {
 	return res
 }
 
+[inline]
+pub fn (a CAuthenticationRequestMsg) eq(b CAuthenticationRequestMsg) bool {
+	return true && a.token == b.token && a.version == b.version
+}
+
+[inline]
+pub fn (a CAuthenticationRequestMsg) ne(b CAuthenticationRequestMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAuthenticationRequestMsg) eq(b []CAuthenticationRequestMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAuthenticationRequestMsg) ne(b []CAuthenticationRequestMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cauthenticationrequestmsg() CAuthenticationRequestMsg {
 	return CAuthenticationRequestMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cauthenticationrequestmsg(o CAuthenticationRequestMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cauthenticationrequestmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CAuthenticationRequestMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cauthenticationrequestmsg_unpack(v)?
@@ -1549,11 +1980,19 @@ enum CAuthenticationResponseMsg_AuthenticationResult {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_cauthenticationresponsemsg_authenticationresult() CAuthenticationResponseMsg_AuthenticationResult {
+	return .succeeded
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult(e CAuthenticationResponseMsg_AuthenticationResult, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult_packed(e []CAuthenticationResponseMsg_AuthenticationResult, num u32) []byte {
 	x := array{
 		data: e.data
@@ -1565,12 +2004,14 @@ fn zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult_pack
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult(buf []byte, tag_wiretype vproto.WireType) ?(int, CAuthenticationResponseMsg_AuthenticationResult) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, CAuthenticationResponseMsg_AuthenticationResult(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CAuthenticationResponseMsg_AuthenticationResult) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -1585,26 +2026,24 @@ pub struct CAuthenticationResponseMsg {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	result         CAuthenticationResponseMsg_AuthenticationResult
-	has_result     bool
-	version        EStreamVersion
-	has_version    bool
+	result         CAuthenticationResponseMsg_AuthenticationResult = .succeeded
+	version        EStreamVersion = .k_estreamversionnone
 }
 
 pub fn (o &CAuthenticationResponseMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_result {
+	if o.result != zzz_vproto_internal_new_cauthenticationresponsemsg_authenticationresult() {
 		res <<
 			zzz_vproto_internal_pack_cauthenticationresponsemsg_authenticationresult(o.result, 1)
 	}
-	if o.has_version {
+	if o.version != zzz_vproto_internal_new_estreamversion() {
 		res << zzz_vproto_internal_pack_estreamversion(o.version, 2)
 	}
 	return res
 }
 
 pub fn cauthenticationresponsemsg_unpack(buf []byte) ?CAuthenticationResponseMsg {
-	mut res := CAuthenticationResponseMsg{}
+	mut res := zzz_vproto_internal_new_cauthenticationresponsemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1615,14 +2054,12 @@ pub fn cauthenticationresponsemsg_unpack(buf []byte) ?CAuthenticationResponseMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_result = true
 				ii, v := zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult(cur_buf,
 					tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
 			}
 			2 {
-				res.has_version = true
 				ii, v := zzz_vproto_internal_unpack_estreamversion(cur_buf, tag_wiretype.wire_type)?
 				res.version = v
 				i = ii
@@ -1642,17 +2079,48 @@ pub fn cauthenticationresponsemsg_unpack(buf []byte) ?CAuthenticationResponseMsg
 	return res
 }
 
+[inline]
+pub fn (a CAuthenticationResponseMsg) eq(b CAuthenticationResponseMsg) bool {
+	return true && a.result == b.result && a.version == b.version
+}
+
+[inline]
+pub fn (a CAuthenticationResponseMsg) ne(b CAuthenticationResponseMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAuthenticationResponseMsg) eq(b []CAuthenticationResponseMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAuthenticationResponseMsg) ne(b []CAuthenticationResponseMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cauthenticationresponsemsg() CAuthenticationResponseMsg {
 	return CAuthenticationResponseMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cauthenticationresponsemsg(o CAuthenticationResponseMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cauthenticationresponsemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CAuthenticationResponseMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cauthenticationresponsemsg_unpack(v)?
@@ -1670,21 +2138,52 @@ pub fn (o &CKeepAliveMsg) pack() []byte {
 }
 
 pub fn ckeepalivemsg_unpack(buf []byte) ?CKeepAliveMsg {
-	res := CKeepAliveMsg{}
+	res := zzz_vproto_internal_new_ckeepalivemsg()
 	return res
 }
 
+[inline]
+pub fn (a CKeepAliveMsg) eq(b CKeepAliveMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CKeepAliveMsg) ne(b CKeepAliveMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CKeepAliveMsg) eq(b []CKeepAliveMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CKeepAliveMsg) ne(b []CKeepAliveMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ckeepalivemsg() CKeepAliveMsg {
 	return CKeepAliveMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ckeepalivemsg(o CKeepAliveMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ckeepalivemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeepAliveMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ckeepalivemsg_unpack(v)?
@@ -1693,42 +2192,37 @@ pub fn zzz_vproto_internal_unpack_ckeepalivemsg(buf []byte, tag_wiretype vproto.
 
 pub struct CStartNetworkTestMsg {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	frames                 u32
-	has_frames             bool
-	framerate              u32
-	has_framerate          bool
-	bitrate_kbps           u32
-	has_bitrate_kbps       bool
-	burst_bitrate_kbps     u32
-	has_burst_bitrate_kbps bool
-	bandwidth_test         bool
-	has_bandwidth_test     bool
+	frames             u32
+	framerate          u32
+	bitrate_kbps       u32
+	burst_bitrate_kbps u32
+	bandwidth_test     bool
 }
 
 pub fn (o &CStartNetworkTestMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_frames {
+	if o.frames != u32(0) {
 		res << vproto.pack_uint32_field(o.frames, 1)
 	}
-	if o.has_framerate {
+	if o.framerate != u32(0) {
 		res << vproto.pack_uint32_field(o.framerate, 2)
 	}
-	if o.has_bitrate_kbps {
+	if o.bitrate_kbps != u32(0) {
 		res << vproto.pack_uint32_field(o.bitrate_kbps, 3)
 	}
-	if o.has_burst_bitrate_kbps {
+	if o.burst_bitrate_kbps != u32(0) {
 		res << vproto.pack_uint32_field(o.burst_bitrate_kbps, 4)
 	}
-	if o.has_bandwidth_test {
+	if o.bandwidth_test != bool(0) {
 		res << vproto.pack_bool_field(o.bandwidth_test, 5)
 	}
 	return res
 }
 
 pub fn cstartnetworktestmsg_unpack(buf []byte) ?CStartNetworkTestMsg {
-	mut res := CStartNetworkTestMsg{}
+	mut res := zzz_vproto_internal_new_cstartnetworktestmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1739,31 +2233,26 @@ pub fn cstartnetworktestmsg_unpack(buf []byte) ?CStartNetworkTestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_frames = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.frames = v
 				i = ii
 			}
 			2 {
-				res.has_framerate = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.framerate = v
 				i = ii
 			}
 			3 {
-				res.has_bitrate_kbps = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.bitrate_kbps = v
 				i = ii
 			}
 			4 {
-				res.has_burst_bitrate_kbps = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.burst_bitrate_kbps = v
 				i = ii
 			}
 			5 {
-				res.has_bandwidth_test = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.bandwidth_test = v
 				i = ii
@@ -1783,17 +2272,51 @@ pub fn cstartnetworktestmsg_unpack(buf []byte) ?CStartNetworkTestMsg {
 	return res
 }
 
+[inline]
+pub fn (a CStartNetworkTestMsg) eq(b CStartNetworkTestMsg) bool {
+	return true && a.frames == b.frames &&
+		a.framerate == b.framerate && a.bitrate_kbps == b.bitrate_kbps &&
+		a.burst_bitrate_kbps == b.burst_bitrate_kbps &&
+		a.bandwidth_test == b.bandwidth_test
+}
+
+[inline]
+pub fn (a CStartNetworkTestMsg) ne(b CStartNetworkTestMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStartNetworkTestMsg) eq(b []CStartNetworkTestMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStartNetworkTestMsg) ne(b []CStartNetworkTestMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstartnetworktestmsg() CStartNetworkTestMsg {
 	return CStartNetworkTestMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstartnetworktestmsg(o CStartNetworkTestMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstartnetworktestmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CStartNetworkTestMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstartnetworktestmsg_unpack(v)?
@@ -1802,36 +2325,33 @@ pub fn zzz_vproto_internal_unpack_cstartnetworktestmsg(buf []byte, tag_wiretype 
 
 pub struct CStreamVideoMode {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	width                        u32
-	height                       u32
-	refresh_rate                 u32
-	has_refresh_rate             bool
-	refresh_rate_numerator       u32
-	has_refresh_rate_numerator   bool
-	refresh_rate_denominator     u32
-	has_refresh_rate_denominator bool
+	width                    u32
+	height                   u32
+	refresh_rate             u32
+	refresh_rate_numerator   u32
+	refresh_rate_denominator u32
 }
 
 pub fn (o &CStreamVideoMode) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.width, 1)
 	res << vproto.pack_uint32_field(o.height, 2)
-	if o.has_refresh_rate {
+	if o.refresh_rate != u32(0) {
 		res << vproto.pack_uint32_field(o.refresh_rate, 3)
 	}
-	if o.has_refresh_rate_numerator {
+	if o.refresh_rate_numerator != u32(0) {
 		res << vproto.pack_uint32_field(o.refresh_rate_numerator, 4)
 	}
-	if o.has_refresh_rate_denominator {
+	if o.refresh_rate_denominator != u32(0) {
 		res << vproto.pack_uint32_field(o.refresh_rate_denominator, 5)
 	}
 	return res
 }
 
 pub fn cstreamvideomode_unpack(buf []byte) ?CStreamVideoMode {
-	mut res := CStreamVideoMode{}
+	mut res := zzz_vproto_internal_new_cstreamvideomode()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1852,19 +2372,16 @@ pub fn cstreamvideomode_unpack(buf []byte) ?CStreamVideoMode {
 				i = ii
 			}
 			3 {
-				res.has_refresh_rate = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.refresh_rate = v
 				i = ii
 			}
 			4 {
-				res.has_refresh_rate_numerator = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.refresh_rate_numerator = v
 				i = ii
 			}
 			5 {
-				res.has_refresh_rate_denominator = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.refresh_rate_denominator = v
 				i = ii
@@ -1884,17 +2401,51 @@ pub fn cstreamvideomode_unpack(buf []byte) ?CStreamVideoMode {
 	return res
 }
 
+[inline]
+pub fn (a CStreamVideoMode) eq(b CStreamVideoMode) bool {
+	return true && a.width == b.width &&
+		a.height == b.height && a.refresh_rate == b.refresh_rate &&
+		a.refresh_rate_numerator == b.refresh_rate_numerator &&
+		a.refresh_rate_denominator == b.refresh_rate_denominator
+}
+
+[inline]
+pub fn (a CStreamVideoMode) ne(b CStreamVideoMode) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamVideoMode) eq(b []CStreamVideoMode) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamVideoMode) ne(b []CStreamVideoMode) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamvideomode() CStreamVideoMode {
 	return CStreamVideoMode{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamvideomode(o CStreamVideoMode, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamvideomode(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamVideoMode) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamvideomode_unpack(v)?
@@ -1903,72 +2454,61 @@ pub fn zzz_vproto_internal_unpack_cstreamvideomode(buf []byte, tag_wiretype vpro
 
 pub struct CStreamingClientCaps {
 mut:
-	unknown_fields                       []vproto.UnknownField
+	unknown_fields                   []vproto.UnknownField
 pub mut:
-	system_info                          string
-	has_system_info                      bool
-	system_can_suspend                   bool
-	has_system_can_suspend               bool
-	maximum_decode_bitrate_kbps          int
-	has_maximum_decode_bitrate_kbps      bool
-	maximum_burst_bitrate_kbps           int
-	has_maximum_burst_bitrate_kbps       bool
-	supports_video_hevc                  bool
-	has_supports_video_hevc              bool
-	disable_steam_store                  bool
-	has_disable_steam_store              bool
-	disable_client_cursor                bool
-	has_disable_client_cursor            bool
-	disable_intel_hardware_encoding      bool
-	has_disable_intel_hardware_encoding  bool
-	disable_amd_hardware_encoding        bool
-	has_disable_amd_hardware_encoding    bool
-	disable_nvidia_hardware_encoding     bool
-	has_disable_nvidia_hardware_encoding bool
-	form_factor                          int
-	has_form_factor                      bool
+	system_info                      string
+	system_can_suspend               bool
+	maximum_decode_bitrate_kbps      int
+	maximum_burst_bitrate_kbps       int
+	supports_video_hevc              bool
+	disable_steam_store              bool
+	disable_client_cursor            bool
+	disable_intel_hardware_encoding  bool
+	disable_amd_hardware_encoding    bool
+	disable_nvidia_hardware_encoding bool
+	form_factor                      int
 }
 
 pub fn (o &CStreamingClientCaps) pack() []byte {
 	mut res := []byte{}
-	if o.has_system_info {
+	if o.system_info != '' {
 		res << vproto.pack_string_field(o.system_info, 1)
 	}
-	if o.has_system_can_suspend {
+	if o.system_can_suspend != bool(0) {
 		res << vproto.pack_bool_field(o.system_can_suspend, 2)
 	}
-	if o.has_maximum_decode_bitrate_kbps {
+	if o.maximum_decode_bitrate_kbps != int(0) {
 		res << vproto.pack_int32_field(o.maximum_decode_bitrate_kbps, 3)
 	}
-	if o.has_maximum_burst_bitrate_kbps {
+	if o.maximum_burst_bitrate_kbps != int(0) {
 		res << vproto.pack_int32_field(o.maximum_burst_bitrate_kbps, 4)
 	}
-	if o.has_supports_video_hevc {
+	if o.supports_video_hevc != bool(0) {
 		res << vproto.pack_bool_field(o.supports_video_hevc, 5)
 	}
-	if o.has_disable_steam_store {
+	if o.disable_steam_store != bool(0) {
 		res << vproto.pack_bool_field(o.disable_steam_store, 6)
 	}
-	if o.has_disable_client_cursor {
+	if o.disable_client_cursor != bool(0) {
 		res << vproto.pack_bool_field(o.disable_client_cursor, 7)
 	}
-	if o.has_disable_intel_hardware_encoding {
+	if o.disable_intel_hardware_encoding != bool(0) {
 		res << vproto.pack_bool_field(o.disable_intel_hardware_encoding, 8)
 	}
-	if o.has_disable_amd_hardware_encoding {
+	if o.disable_amd_hardware_encoding != bool(0) {
 		res << vproto.pack_bool_field(o.disable_amd_hardware_encoding, 9)
 	}
-	if o.has_disable_nvidia_hardware_encoding {
+	if o.disable_nvidia_hardware_encoding != bool(0) {
 		res << vproto.pack_bool_field(o.disable_nvidia_hardware_encoding, 10)
 	}
-	if o.has_form_factor {
+	if o.form_factor != int(0) {
 		res << vproto.pack_int32_field(o.form_factor, 11)
 	}
 	return res
 }
 
 pub fn cstreamingclientcaps_unpack(buf []byte) ?CStreamingClientCaps {
-	mut res := CStreamingClientCaps{}
+	mut res := zzz_vproto_internal_new_cstreamingclientcaps()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1979,67 +2519,56 @@ pub fn cstreamingclientcaps_unpack(buf []byte) ?CStreamingClientCaps {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_system_info = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.system_info = v
 				i = ii
 			}
 			2 {
-				res.has_system_can_suspend = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.system_can_suspend = v
 				i = ii
 			}
 			3 {
-				res.has_maximum_decode_bitrate_kbps = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_decode_bitrate_kbps = v
 				i = ii
 			}
 			4 {
-				res.has_maximum_burst_bitrate_kbps = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_burst_bitrate_kbps = v
 				i = ii
 			}
 			5 {
-				res.has_supports_video_hevc = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.supports_video_hevc = v
 				i = ii
 			}
 			6 {
-				res.has_disable_steam_store = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.disable_steam_store = v
 				i = ii
 			}
 			7 {
-				res.has_disable_client_cursor = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.disable_client_cursor = v
 				i = ii
 			}
 			8 {
-				res.has_disable_intel_hardware_encoding = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.disable_intel_hardware_encoding = v
 				i = ii
 			}
 			9 {
-				res.has_disable_amd_hardware_encoding = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.disable_amd_hardware_encoding = v
 				i = ii
 			}
 			10 {
-				res.has_disable_nvidia_hardware_encoding = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.disable_nvidia_hardware_encoding = v
 				i = ii
 			}
 			11 {
-				res.has_form_factor = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.form_factor = v
 				i = ii
@@ -2059,17 +2588,58 @@ pub fn cstreamingclientcaps_unpack(buf []byte) ?CStreamingClientCaps {
 	return res
 }
 
+[inline]
+pub fn (a CStreamingClientCaps) eq(b CStreamingClientCaps) bool {
+	return true && a.system_info == b.system_info &&
+		a.system_can_suspend == b.system_can_suspend &&
+		a.maximum_decode_bitrate_kbps == b.maximum_decode_bitrate_kbps &&
+		a.maximum_burst_bitrate_kbps == b.maximum_burst_bitrate_kbps &&
+		a.supports_video_hevc == b.supports_video_hevc &&
+		a.disable_steam_store == b.disable_steam_store &&
+		a.disable_client_cursor == b.disable_client_cursor &&
+		a.disable_intel_hardware_encoding == b.disable_intel_hardware_encoding &&
+		a.disable_amd_hardware_encoding == b.disable_amd_hardware_encoding &&
+		a.disable_nvidia_hardware_encoding == b.disable_nvidia_hardware_encoding &&
+		a.form_factor == b.form_factor
+}
+
+[inline]
+pub fn (a CStreamingClientCaps) ne(b CStreamingClientCaps) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingClientCaps) eq(b []CStreamingClientCaps) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingClientCaps) ne(b []CStreamingClientCaps) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingclientcaps() CStreamingClientCaps {
 	return CStreamingClientCaps{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingclientcaps(o CStreamingClientCaps, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingclientcaps(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingClientCaps) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingclientcaps_unpack(v)?
@@ -2078,107 +2648,89 @@ pub fn zzz_vproto_internal_unpack_cstreamingclientcaps(buf []byte, tag_wiretype 
 
 pub struct CStreamingClientConfig {
 mut:
-	unknown_fields                    []vproto.UnknownField
+	unknown_fields                []vproto.UnknownField
 pub mut:
-	quality                           EStreamQualityPreference
-	has_quality                       bool
-	maximum_resolution_x              u32
-	has_maximum_resolution_x          bool
-	maximum_resolution_y              u32
-	has_maximum_resolution_y          bool
-	maximum_framerate_numerator       u32
-	has_maximum_framerate_numerator   bool
-	maximum_framerate_denominator     u32
-	has_maximum_framerate_denominator bool
-	maximum_bitrate_kbps              int
-	has_maximum_bitrate_kbps          bool
-	enable_hardware_decoding          bool
-	has_enable_hardware_decoding      bool
-	enable_performance_overlay        bool
-	has_enable_performance_overlay    bool
-	enable_video_streaming            bool
-	has_enable_video_streaming        bool
-	enable_audio_streaming            bool
-	has_enable_audio_streaming        bool
-	enable_input_streaming            bool
-	has_enable_input_streaming        bool
-	audio_channels                    int
-	has_audio_channels                bool
-	enable_video_hevc                 bool
-	has_enable_video_hevc             bool
-	enable_performance_icons          bool
-	has_enable_performance_icons      bool
-	enable_microphone_streaming       bool
-	has_enable_microphone_streaming   bool
-	controller_overlay_hotkey         string
-	has_controller_overlay_hotkey     bool
-	enable_touch_controller           bool
-	has_enable_touch_controller       bool
-	p2p_scope                         EStreamP2PScope
-	has_p2p_scope                     bool
+	quality                       EStreamQualityPreference = .k_estreamqualitybalanced
+	maximum_resolution_x          u32
+	maximum_resolution_y          u32
+	maximum_framerate_numerator   u32
+	maximum_framerate_denominator u32
+	maximum_bitrate_kbps          int = -1
+	enable_hardware_decoding      bool = true
+	enable_performance_overlay    bool = false
+	enable_video_streaming        bool = true
+	enable_audio_streaming        bool = true
+	enable_input_streaming        bool = true
+	audio_channels                int = 2
+	enable_video_hevc             bool = false
+	enable_performance_icons      bool = true
+	enable_microphone_streaming   bool = false
+	controller_overlay_hotkey     string
+	enable_touch_controller       bool = false
+	p2p_scope                     EStreamP2PScope = .k_estreamp2pscopeunknown
 }
 
 pub fn (o &CStreamingClientConfig) pack() []byte {
 	mut res := []byte{}
-	if o.has_quality {
+	if o.quality != zzz_vproto_internal_new_estreamqualitypreference() {
 		res << zzz_vproto_internal_pack_estreamqualitypreference(o.quality, 1)
 	}
-	if o.has_maximum_resolution_x {
+	if o.maximum_resolution_x != u32(0) {
 		res << vproto.pack_uint32_field(o.maximum_resolution_x, 2)
 	}
-	if o.has_maximum_resolution_y {
+	if o.maximum_resolution_y != u32(0) {
 		res << vproto.pack_uint32_field(o.maximum_resolution_y, 3)
 	}
-	if o.has_maximum_framerate_numerator {
+	if o.maximum_framerate_numerator != u32(0) {
 		res << vproto.pack_uint32_field(o.maximum_framerate_numerator, 4)
 	}
-	if o.has_maximum_framerate_denominator {
+	if o.maximum_framerate_denominator != u32(0) {
 		res << vproto.pack_uint32_field(o.maximum_framerate_denominator, 5)
 	}
-	if o.has_maximum_bitrate_kbps {
+	if o.maximum_bitrate_kbps != int(0) {
 		res << vproto.pack_int32_field(o.maximum_bitrate_kbps, 6)
 	}
-	if o.has_enable_hardware_decoding {
+	if o.enable_hardware_decoding != bool(0) {
 		res << vproto.pack_bool_field(o.enable_hardware_decoding, 7)
 	}
-	if o.has_enable_performance_overlay {
+	if o.enable_performance_overlay != bool(0) {
 		res << vproto.pack_bool_field(o.enable_performance_overlay, 8)
 	}
-	if o.has_enable_video_streaming {
+	if o.enable_video_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_video_streaming, 9)
 	}
-	if o.has_enable_audio_streaming {
+	if o.enable_audio_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_audio_streaming, 10)
 	}
-	if o.has_enable_input_streaming {
+	if o.enable_input_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_input_streaming, 11)
 	}
-	if o.has_audio_channels {
+	if o.audio_channels != int(0) {
 		res << vproto.pack_int32_field(o.audio_channels, 12)
 	}
-	if o.has_enable_video_hevc {
+	if o.enable_video_hevc != bool(0) {
 		res << vproto.pack_bool_field(o.enable_video_hevc, 13)
 	}
-	if o.has_enable_performance_icons {
+	if o.enable_performance_icons != bool(0) {
 		res << vproto.pack_bool_field(o.enable_performance_icons, 14)
 	}
-	if o.has_enable_microphone_streaming {
+	if o.enable_microphone_streaming != bool(0) {
 		res << vproto.pack_bool_field(o.enable_microphone_streaming, 15)
 	}
-	if o.has_controller_overlay_hotkey {
+	if o.controller_overlay_hotkey != '' {
 		res << vproto.pack_string_field(o.controller_overlay_hotkey, 16)
 	}
-	if o.has_enable_touch_controller {
+	if o.enable_touch_controller != bool(0) {
 		res << vproto.pack_bool_field(o.enable_touch_controller, 17)
 	}
-	if o.has_p2p_scope {
+	if o.p2p_scope != zzz_vproto_internal_new_estreamp2pscope() {
 		res << zzz_vproto_internal_pack_estreamp2pscope(o.p2p_scope, 18)
 	}
 	return res
 }
 
 pub fn cstreamingclientconfig_unpack(buf []byte) ?CStreamingClientConfig {
-	mut res := CStreamingClientConfig{}
+	mut res := zzz_vproto_internal_new_cstreamingclientconfig()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2189,110 +2741,92 @@ pub fn cstreamingclientconfig_unpack(buf []byte) ?CStreamingClientConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_quality = true
 				ii, v := zzz_vproto_internal_unpack_estreamqualitypreference(cur_buf,
 					tag_wiretype.wire_type)?
 				res.quality = v
 				i = ii
 			}
 			2 {
-				res.has_maximum_resolution_x = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_resolution_x = v
 				i = ii
 			}
 			3 {
-				res.has_maximum_resolution_y = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_resolution_y = v
 				i = ii
 			}
 			4 {
-				res.has_maximum_framerate_numerator = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_framerate_numerator = v
 				i = ii
 			}
 			5 {
-				res.has_maximum_framerate_denominator = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_framerate_denominator = v
 				i = ii
 			}
 			6 {
-				res.has_maximum_bitrate_kbps = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.maximum_bitrate_kbps = v
 				i = ii
 			}
 			7 {
-				res.has_enable_hardware_decoding = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_hardware_decoding = v
 				i = ii
 			}
 			8 {
-				res.has_enable_performance_overlay = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_performance_overlay = v
 				i = ii
 			}
 			9 {
-				res.has_enable_video_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_video_streaming = v
 				i = ii
 			}
 			10 {
-				res.has_enable_audio_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_audio_streaming = v
 				i = ii
 			}
 			11 {
-				res.has_enable_input_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_input_streaming = v
 				i = ii
 			}
 			12 {
-				res.has_audio_channels = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.audio_channels = v
 				i = ii
 			}
 			13 {
-				res.has_enable_video_hevc = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_video_hevc = v
 				i = ii
 			}
 			14 {
-				res.has_enable_performance_icons = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_performance_icons = v
 				i = ii
 			}
 			15 {
-				res.has_enable_microphone_streaming = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_microphone_streaming = v
 				i = ii
 			}
 			16 {
-				res.has_controller_overlay_hotkey = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_overlay_hotkey = v
 				i = ii
 			}
 			17 {
-				res.has_enable_touch_controller = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_touch_controller = v
 				i = ii
 			}
 			18 {
-				res.has_p2p_scope = true
 				ii, v := zzz_vproto_internal_unpack_estreamp2pscope(cur_buf, tag_wiretype.wire_type)?
 				res.p2p_scope = v
 				i = ii
@@ -2312,17 +2846,65 @@ pub fn cstreamingclientconfig_unpack(buf []byte) ?CStreamingClientConfig {
 	return res
 }
 
+[inline]
+pub fn (a CStreamingClientConfig) eq(b CStreamingClientConfig) bool {
+	return true && a.quality == b.quality &&
+		a.maximum_resolution_x == b.maximum_resolution_x &&
+		a.maximum_resolution_y == b.maximum_resolution_y &&
+		a.maximum_framerate_numerator == b.maximum_framerate_numerator &&
+		a.maximum_framerate_denominator == b.maximum_framerate_denominator &&
+		a.maximum_bitrate_kbps == b.maximum_bitrate_kbps &&
+		a.enable_hardware_decoding == b.enable_hardware_decoding &&
+		a.enable_performance_overlay == b.enable_performance_overlay &&
+		a.enable_video_streaming == b.enable_video_streaming &&
+		a.enable_audio_streaming == b.enable_audio_streaming &&
+		a.enable_input_streaming == b.enable_input_streaming &&
+		a.audio_channels == b.audio_channels &&
+		a.enable_video_hevc == b.enable_video_hevc &&
+		a.enable_performance_icons == b.enable_performance_icons &&
+		a.enable_microphone_streaming == b.enable_microphone_streaming &&
+		a.controller_overlay_hotkey == b.controller_overlay_hotkey &&
+		a.enable_touch_controller == b.enable_touch_controller &&
+		a.p2p_scope == b.p2p_scope
+}
+
+[inline]
+pub fn (a CStreamingClientConfig) ne(b CStreamingClientConfig) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingClientConfig) eq(b []CStreamingClientConfig) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingClientConfig) ne(b []CStreamingClientConfig) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingclientconfig() CStreamingClientConfig {
 	return CStreamingClientConfig{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingclientconfig(o CStreamingClientConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingclientconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingClientConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingclientconfig_unpack(v)?
@@ -2331,62 +2913,53 @@ pub fn zzz_vproto_internal_unpack_cstreamingclientconfig(buf []byte, tag_wiretyp
 
 pub struct CStreamingServerConfig {
 mut:
-	unknown_fields                      []vproto.UnknownField
+	unknown_fields                  []vproto.UnknownField
 pub mut:
-	change_desktop_resolution           bool
-	has_change_desktop_resolution       bool
-	dynamically_adjust_resolution       bool
-	has_dynamically_adjust_resolution   bool
-	enable_capture_nvfbc                bool
-	has_enable_capture_nvfbc            bool
-	enable_hardware_encoding_nvidia     bool
-	has_enable_hardware_encoding_nvidia bool
-	enable_hardware_encoding_amd        bool
-	has_enable_hardware_encoding_amd    bool
-	enable_hardware_encoding_intel      bool
-	has_enable_hardware_encoding_intel  bool
-	software_encoding_threads           int
-	has_software_encoding_threads       bool
-	enable_traffic_priority             bool
-	has_enable_traffic_priority         bool
-	host_play_audio                     EStreamHostPlayAudioPreference
-	has_host_play_audio                 bool
+	change_desktop_resolution       bool
+	dynamically_adjust_resolution   bool
+	enable_capture_nvfbc            bool
+	enable_hardware_encoding_nvidia bool
+	enable_hardware_encoding_amd    bool
+	enable_hardware_encoding_intel  bool
+	software_encoding_threads       int
+	enable_traffic_priority         bool
+	host_play_audio                 EStreamHostPlayAudioPreference = .k_estreamhostplayaudiodefault
 }
 
 pub fn (o &CStreamingServerConfig) pack() []byte {
 	mut res := []byte{}
-	if o.has_change_desktop_resolution {
+	if o.change_desktop_resolution != bool(0) {
 		res << vproto.pack_bool_field(o.change_desktop_resolution, 1)
 	}
-	if o.has_dynamically_adjust_resolution {
+	if o.dynamically_adjust_resolution != bool(0) {
 		res << vproto.pack_bool_field(o.dynamically_adjust_resolution, 2)
 	}
-	if o.has_enable_capture_nvfbc {
+	if o.enable_capture_nvfbc != bool(0) {
 		res << vproto.pack_bool_field(o.enable_capture_nvfbc, 3)
 	}
-	if o.has_enable_hardware_encoding_nvidia {
+	if o.enable_hardware_encoding_nvidia != bool(0) {
 		res << vproto.pack_bool_field(o.enable_hardware_encoding_nvidia, 4)
 	}
-	if o.has_enable_hardware_encoding_amd {
+	if o.enable_hardware_encoding_amd != bool(0) {
 		res << vproto.pack_bool_field(o.enable_hardware_encoding_amd, 5)
 	}
-	if o.has_enable_hardware_encoding_intel {
+	if o.enable_hardware_encoding_intel != bool(0) {
 		res << vproto.pack_bool_field(o.enable_hardware_encoding_intel, 6)
 	}
-	if o.has_software_encoding_threads {
+	if o.software_encoding_threads != int(0) {
 		res << vproto.pack_int32_field(o.software_encoding_threads, 7)
 	}
-	if o.has_enable_traffic_priority {
+	if o.enable_traffic_priority != bool(0) {
 		res << vproto.pack_bool_field(o.enable_traffic_priority, 8)
 	}
-	if o.has_host_play_audio {
+	if o.host_play_audio != zzz_vproto_internal_new_estreamhostplayaudiopreference() {
 		res << zzz_vproto_internal_pack_estreamhostplayaudiopreference(o.host_play_audio, 9)
 	}
 	return res
 }
 
 pub fn cstreamingserverconfig_unpack(buf []byte) ?CStreamingServerConfig {
-	mut res := CStreamingServerConfig{}
+	mut res := zzz_vproto_internal_new_cstreamingserverconfig()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2397,55 +2970,46 @@ pub fn cstreamingserverconfig_unpack(buf []byte) ?CStreamingServerConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_change_desktop_resolution = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.change_desktop_resolution = v
 				i = ii
 			}
 			2 {
-				res.has_dynamically_adjust_resolution = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.dynamically_adjust_resolution = v
 				i = ii
 			}
 			3 {
-				res.has_enable_capture_nvfbc = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_capture_nvfbc = v
 				i = ii
 			}
 			4 {
-				res.has_enable_hardware_encoding_nvidia = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_hardware_encoding_nvidia = v
 				i = ii
 			}
 			5 {
-				res.has_enable_hardware_encoding_amd = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_hardware_encoding_amd = v
 				i = ii
 			}
 			6 {
-				res.has_enable_hardware_encoding_intel = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_hardware_encoding_intel = v
 				i = ii
 			}
 			7 {
-				res.has_software_encoding_threads = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.software_encoding_threads = v
 				i = ii
 			}
 			8 {
-				res.has_enable_traffic_priority = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_traffic_priority = v
 				i = ii
 			}
 			9 {
-				res.has_host_play_audio = true
 				ii, v := zzz_vproto_internal_unpack_estreamhostplayaudiopreference(cur_buf,
 					tag_wiretype.wire_type)?
 				res.host_play_audio = v
@@ -2466,17 +3030,56 @@ pub fn cstreamingserverconfig_unpack(buf []byte) ?CStreamingServerConfig {
 	return res
 }
 
+[inline]
+pub fn (a CStreamingServerConfig) eq(b CStreamingServerConfig) bool {
+	return true && a.change_desktop_resolution == b.change_desktop_resolution &&
+		a.dynamically_adjust_resolution == b.dynamically_adjust_resolution &&
+		a.enable_capture_nvfbc == b.enable_capture_nvfbc &&
+		a.enable_hardware_encoding_nvidia == b.enable_hardware_encoding_nvidia &&
+		a.enable_hardware_encoding_amd == b.enable_hardware_encoding_amd &&
+		a.enable_hardware_encoding_intel == b.enable_hardware_encoding_intel &&
+		a.software_encoding_threads == b.software_encoding_threads &&
+		a.enable_traffic_priority == b.enable_traffic_priority &&
+		a.host_play_audio == b.host_play_audio
+}
+
+[inline]
+pub fn (a CStreamingServerConfig) ne(b CStreamingServerConfig) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingServerConfig) eq(b []CStreamingServerConfig) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingServerConfig) ne(b []CStreamingServerConfig) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingserverconfig() CStreamingServerConfig {
 	return CStreamingServerConfig{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingserverconfig(o CStreamingServerConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingserverconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingServerConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingserverconfig_unpack(v)?
@@ -2485,47 +3088,42 @@ pub fn zzz_vproto_internal_unpack_cstreamingserverconfig(buf []byte, tag_wiretyp
 
 pub struct CNegotiatedConfig {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	reliable_data            bool
-	has_reliable_data        bool
-	selected_audio_codec     EStreamAudioCodec
-	has_selected_audio_codec bool
-	selected_video_codec     EStreamVideoCodec
-	has_selected_video_codec bool
-	available_video_modes    []CStreamVideoMode
-	enable_remote_hid        bool
-	has_enable_remote_hid    bool
-	enable_touch_input       bool
-	has_enable_touch_input   bool
+	reliable_data         bool
+	selected_audio_codec  EStreamAudioCodec = .k_estreamaudiocodecnone
+	selected_video_codec  EStreamVideoCodec = .k_estreamvideocodecnone
+	available_video_modes []CStreamVideoMode
+	enable_remote_hid     bool
+	enable_touch_input    bool
 }
 
 pub fn (o &CNegotiatedConfig) pack() []byte {
 	mut res := []byte{}
-	if o.has_reliable_data {
+	if o.reliable_data != bool(0) {
 		res << vproto.pack_bool_field(o.reliable_data, 1)
 	}
-	if o.has_selected_audio_codec {
+	if o.selected_audio_codec != zzz_vproto_internal_new_estreamaudiocodec() {
 		res << zzz_vproto_internal_pack_estreamaudiocodec(o.selected_audio_codec, 2)
 	}
-	if o.has_selected_video_codec {
+	if o.selected_video_codec != zzz_vproto_internal_new_estreamvideocodec() {
 		res << zzz_vproto_internal_pack_estreamvideocodec(o.selected_video_codec, 3)
 	}
 	// [packed=false]
 	for _, x in o.available_video_modes {
 		res << zzz_vproto_internal_pack_cstreamvideomode(x, 4)
 	}
-	if o.has_enable_remote_hid {
+	if o.enable_remote_hid != bool(0) {
 		res << vproto.pack_bool_field(o.enable_remote_hid, 5)
 	}
-	if o.has_enable_touch_input {
+	if o.enable_touch_input != bool(0) {
 		res << vproto.pack_bool_field(o.enable_touch_input, 6)
 	}
 	return res
 }
 
 pub fn cnegotiatedconfig_unpack(buf []byte) ?CNegotiatedConfig {
-	mut res := CNegotiatedConfig{}
+	mut res := zzz_vproto_internal_new_cnegotiatedconfig()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2536,19 +3134,16 @@ pub fn cnegotiatedconfig_unpack(buf []byte) ?CNegotiatedConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_reliable_data = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.reliable_data = v
 				i = ii
 			}
 			2 {
-				res.has_selected_audio_codec = true
 				ii, v := zzz_vproto_internal_unpack_estreamaudiocodec(cur_buf, tag_wiretype.wire_type)?
 				res.selected_audio_codec = v
 				i = ii
 			}
 			3 {
-				res.has_selected_video_codec = true
 				ii, v := zzz_vproto_internal_unpack_estreamvideocodec(cur_buf, tag_wiretype.wire_type)?
 				res.selected_video_codec = v
 				i = ii
@@ -2560,13 +3155,11 @@ pub fn cnegotiatedconfig_unpack(buf []byte) ?CNegotiatedConfig {
 				i = ii
 			}
 			5 {
-				res.has_enable_remote_hid = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_remote_hid = v
 				i = ii
 			}
 			6 {
-				res.has_enable_touch_input = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enable_touch_input = v
 				i = ii
@@ -2586,17 +3179,52 @@ pub fn cnegotiatedconfig_unpack(buf []byte) ?CNegotiatedConfig {
 	return res
 }
 
+[inline]
+pub fn (a CNegotiatedConfig) eq(b CNegotiatedConfig) bool {
+	return true && a.reliable_data == b.reliable_data &&
+		a.selected_audio_codec == b.selected_audio_codec &&
+		a.selected_video_codec == b.selected_video_codec && a.available_video_modes.eq(b.available_video_modes) &&
+		a.enable_remote_hid == b.enable_remote_hid &&
+		a.enable_touch_input == b.enable_touch_input
+}
+
+[inline]
+pub fn (a CNegotiatedConfig) ne(b CNegotiatedConfig) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CNegotiatedConfig) eq(b []CNegotiatedConfig) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CNegotiatedConfig) ne(b []CNegotiatedConfig) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cnegotiatedconfig() CNegotiatedConfig {
 	return CNegotiatedConfig{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cnegotiatedconfig(o CNegotiatedConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cnegotiatedconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CNegotiatedConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cnegotiatedconfig_unpack(v)?
@@ -2605,21 +3233,18 @@ pub fn zzz_vproto_internal_unpack_cnegotiatedconfig(buf []byte, tag_wiretype vpr
 
 pub struct CNegotiationInitMsg {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	reliable_data            bool
-	has_reliable_data        bool
-	supported_audio_codecs   []EStreamAudioCodec
-	supported_video_codecs   []EStreamVideoCodec
-	supports_remote_hid      bool
-	has_supports_remote_hid  bool
-	supports_touch_input     bool
-	has_supports_touch_input bool
+	reliable_data          bool
+	supported_audio_codecs []EStreamAudioCodec
+	supported_video_codecs []EStreamVideoCodec
+	supports_remote_hid    bool
+	supports_touch_input   bool
 }
 
 pub fn (o &CNegotiationInitMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_reliable_data {
+	if o.reliable_data != bool(0) {
 		res << vproto.pack_bool_field(o.reliable_data, 1)
 	}
 	// [packed=false]
@@ -2630,17 +3255,17 @@ pub fn (o &CNegotiationInitMsg) pack() []byte {
 	for _, x in o.supported_video_codecs {
 		res << zzz_vproto_internal_pack_estreamvideocodec(x, 3)
 	}
-	if o.has_supports_remote_hid {
+	if o.supports_remote_hid != bool(0) {
 		res << vproto.pack_bool_field(o.supports_remote_hid, 4)
 	}
-	if o.has_supports_touch_input {
+	if o.supports_touch_input != bool(0) {
 		res << vproto.pack_bool_field(o.supports_touch_input, 5)
 	}
 	return res
 }
 
 pub fn cnegotiationinitmsg_unpack(buf []byte) ?CNegotiationInitMsg {
-	mut res := CNegotiationInitMsg{}
+	mut res := zzz_vproto_internal_new_cnegotiationinitmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2651,7 +3276,6 @@ pub fn cnegotiationinitmsg_unpack(buf []byte) ?CNegotiationInitMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_reliable_data = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.reliable_data = v
 				i = ii
@@ -2669,13 +3293,11 @@ pub fn cnegotiationinitmsg_unpack(buf []byte) ?CNegotiationInitMsg {
 				i = ii
 			}
 			4 {
-				res.has_supports_remote_hid = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.supports_remote_hid = v
 				i = ii
 			}
 			5 {
-				res.has_supports_touch_input = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.supports_touch_input = v
 				i = ii
@@ -2695,17 +3317,52 @@ pub fn cnegotiationinitmsg_unpack(buf []byte) ?CNegotiationInitMsg {
 	return res
 }
 
+[inline]
+pub fn (a CNegotiationInitMsg) eq(b CNegotiationInitMsg) bool {
+	return true && a.reliable_data == b.reliable_data &&
+		a.supported_audio_codecs == b.supported_audio_codecs &&
+		a.supported_video_codecs == b.supported_video_codecs &&
+		a.supports_remote_hid == b.supports_remote_hid &&
+		a.supports_touch_input == b.supports_touch_input
+}
+
+[inline]
+pub fn (a CNegotiationInitMsg) ne(b CNegotiationInitMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CNegotiationInitMsg) eq(b []CNegotiationInitMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CNegotiationInitMsg) ne(b []CNegotiationInitMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cnegotiationinitmsg() CNegotiationInitMsg {
 	return CNegotiationInitMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cnegotiationinitmsg(o CNegotiationInitMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cnegotiationinitmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CNegotiationInitMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cnegotiationinitmsg_unpack(v)?
@@ -2714,29 +3371,27 @@ pub fn zzz_vproto_internal_unpack_cnegotiationinitmsg(buf []byte, tag_wiretype v
 
 pub struct CNegotiationSetConfigMsg {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	config                      CNegotiatedConfig
-	streaming_client_config     CStreamingClientConfig
-	has_streaming_client_config bool
-	streaming_client_caps       CStreamingClientCaps
-	has_streaming_client_caps   bool
+	config                  CNegotiatedConfig
+	streaming_client_config CStreamingClientConfig
+	streaming_client_caps   CStreamingClientCaps
 }
 
 pub fn (o &CNegotiationSetConfigMsg) pack() []byte {
 	mut res := []byte{}
 	res << zzz_vproto_internal_pack_cnegotiatedconfig(o.config, 1)
-	if o.has_streaming_client_config {
+	if o.streaming_client_config.ne(zzz_vproto_internal_new_cstreamingclientconfig()) {
 		res << zzz_vproto_internal_pack_cstreamingclientconfig(o.streaming_client_config, 2)
 	}
-	if o.has_streaming_client_caps {
+	if o.streaming_client_caps.ne(zzz_vproto_internal_new_cstreamingclientcaps()) {
 		res << zzz_vproto_internal_pack_cstreamingclientcaps(o.streaming_client_caps, 3)
 	}
 	return res
 }
 
 pub fn cnegotiationsetconfigmsg_unpack(buf []byte) ?CNegotiationSetConfigMsg {
-	mut res := CNegotiationSetConfigMsg{}
+	mut res := zzz_vproto_internal_new_cnegotiationsetconfigmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2752,13 +3407,11 @@ pub fn cnegotiationsetconfigmsg_unpack(buf []byte) ?CNegotiationSetConfigMsg {
 				i = ii
 			}
 			2 {
-				res.has_streaming_client_config = true
 				ii, v := zzz_vproto_internal_unpack_cstreamingclientconfig(cur_buf, tag_wiretype.wire_type)?
 				res.streaming_client_config = v
 				i = ii
 			}
 			3 {
-				res.has_streaming_client_caps = true
 				ii, v := zzz_vproto_internal_unpack_cstreamingclientcaps(cur_buf, tag_wiretype.wire_type)?
 				res.streaming_client_caps = v
 				i = ii
@@ -2778,17 +3431,49 @@ pub fn cnegotiationsetconfigmsg_unpack(buf []byte) ?CNegotiationSetConfigMsg {
 	return res
 }
 
+[inline]
+pub fn (a CNegotiationSetConfigMsg) eq(b CNegotiationSetConfigMsg) bool {
+	return true && a.config.eq(b.config) &&
+		a.streaming_client_config.eq(b.streaming_client_config) && a.streaming_client_caps.eq(b.streaming_client_caps)
+}
+
+[inline]
+pub fn (a CNegotiationSetConfigMsg) ne(b CNegotiationSetConfigMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CNegotiationSetConfigMsg) eq(b []CNegotiationSetConfigMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CNegotiationSetConfigMsg) ne(b []CNegotiationSetConfigMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cnegotiationsetconfigmsg() CNegotiationSetConfigMsg {
 	return CNegotiationSetConfigMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cnegotiationsetconfigmsg(o CNegotiationSetConfigMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cnegotiationsetconfigmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CNegotiationSetConfigMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cnegotiationsetconfigmsg_unpack(v)?
@@ -2806,21 +3491,52 @@ pub fn (o &CNegotiationCompleteMsg) pack() []byte {
 }
 
 pub fn cnegotiationcompletemsg_unpack(buf []byte) ?CNegotiationCompleteMsg {
-	res := CNegotiationCompleteMsg{}
+	res := zzz_vproto_internal_new_cnegotiationcompletemsg()
 	return res
 }
 
+[inline]
+pub fn (a CNegotiationCompleteMsg) eq(b CNegotiationCompleteMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CNegotiationCompleteMsg) ne(b CNegotiationCompleteMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CNegotiationCompleteMsg) eq(b []CNegotiationCompleteMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CNegotiationCompleteMsg) ne(b []CNegotiationCompleteMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cnegotiationcompletemsg() CNegotiationCompleteMsg {
 	return CNegotiationCompleteMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cnegotiationcompletemsg(o CNegotiationCompleteMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cnegotiationcompletemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CNegotiationCompleteMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cnegotiationcompletemsg_unpack(v)?
@@ -2832,36 +3548,32 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	channel        u32
-	codec          EStreamAudioCodec
-	has_codec      bool
+	codec          EStreamAudioCodec = .k_estreamaudiocodecnone
 	codec_data     []byte
-	has_codec_data bool
 	frequency      u32
-	has_frequency  bool
 	channels       u32
-	has_channels   bool
 }
 
 pub fn (o &CStartAudioDataMsg) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.channel, 2)
-	if o.has_codec {
+	if o.codec != zzz_vproto_internal_new_estreamaudiocodec() {
 		res << zzz_vproto_internal_pack_estreamaudiocodec(o.codec, 3)
 	}
-	if o.has_codec_data {
+	if o.codec_data != []byte{} {
 		res << vproto.pack_bytes_field(o.codec_data, 4)
 	}
-	if o.has_frequency {
+	if o.frequency != u32(0) {
 		res << vproto.pack_uint32_field(o.frequency, 5)
 	}
-	if o.has_channels {
+	if o.channels != u32(0) {
 		res << vproto.pack_uint32_field(o.channels, 6)
 	}
 	return res
 }
 
 pub fn cstartaudiodatamsg_unpack(buf []byte) ?CStartAudioDataMsg {
-	mut res := CStartAudioDataMsg{}
+	mut res := zzz_vproto_internal_new_cstartaudiodatamsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2877,25 +3589,21 @@ pub fn cstartaudiodatamsg_unpack(buf []byte) ?CStartAudioDataMsg {
 				i = ii
 			}
 			3 {
-				res.has_codec = true
 				ii, v := zzz_vproto_internal_unpack_estreamaudiocodec(cur_buf, tag_wiretype.wire_type)?
 				res.codec = v
 				i = ii
 			}
 			4 {
-				res.has_codec_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.codec_data = v
 				i = ii
 			}
 			5 {
-				res.has_frequency = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.frequency = v
 				i = ii
 			}
 			6 {
-				res.has_channels = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.channels = v
 				i = ii
@@ -2915,17 +3623,50 @@ pub fn cstartaudiodatamsg_unpack(buf []byte) ?CStartAudioDataMsg {
 	return res
 }
 
+[inline]
+pub fn (a CStartAudioDataMsg) eq(b CStartAudioDataMsg) bool {
+	return true && a.channel == b.channel &&
+		a.codec == b.codec && a.codec_data == b.codec_data &&
+		a.frequency == b.frequency && a.channels == b.channels
+}
+
+[inline]
+pub fn (a CStartAudioDataMsg) ne(b CStartAudioDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStartAudioDataMsg) eq(b []CStartAudioDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStartAudioDataMsg) ne(b []CStartAudioDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstartaudiodatamsg() CStartAudioDataMsg {
 	return CStartAudioDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstartaudiodatamsg(o CStartAudioDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstartaudiodatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CStartAudioDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstartaudiodatamsg_unpack(v)?
@@ -2943,21 +3684,52 @@ pub fn (o &CStopAudioDataMsg) pack() []byte {
 }
 
 pub fn cstopaudiodatamsg_unpack(buf []byte) ?CStopAudioDataMsg {
-	res := CStopAudioDataMsg{}
+	res := zzz_vproto_internal_new_cstopaudiodatamsg()
 	return res
 }
 
+[inline]
+pub fn (a CStopAudioDataMsg) eq(b CStopAudioDataMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CStopAudioDataMsg) ne(b CStopAudioDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStopAudioDataMsg) eq(b []CStopAudioDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStopAudioDataMsg) ne(b []CStopAudioDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstopaudiodatamsg() CStopAudioDataMsg {
 	return CStopAudioDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstopaudiodatamsg(o CStopAudioDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstopaudiodatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CStopAudioDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstopaudiodatamsg_unpack(v)?
@@ -2969,36 +3741,32 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	channel        u32
-	codec          EStreamVideoCodec
-	has_codec      bool
+	codec          EStreamVideoCodec = .k_estreamvideocodecnone
 	codec_data     []byte
-	has_codec_data bool
 	width          u32
-	has_width      bool
 	height         u32
-	has_height     bool
 }
 
 pub fn (o &CStartVideoDataMsg) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.channel, 1)
-	if o.has_codec {
+	if o.codec != zzz_vproto_internal_new_estreamvideocodec() {
 		res << zzz_vproto_internal_pack_estreamvideocodec(o.codec, 2)
 	}
-	if o.has_codec_data {
+	if o.codec_data != []byte{} {
 		res << vproto.pack_bytes_field(o.codec_data, 3)
 	}
-	if o.has_width {
+	if o.width != u32(0) {
 		res << vproto.pack_uint32_field(o.width, 4)
 	}
-	if o.has_height {
+	if o.height != u32(0) {
 		res << vproto.pack_uint32_field(o.height, 5)
 	}
 	return res
 }
 
 pub fn cstartvideodatamsg_unpack(buf []byte) ?CStartVideoDataMsg {
-	mut res := CStartVideoDataMsg{}
+	mut res := zzz_vproto_internal_new_cstartvideodatamsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3014,25 +3782,21 @@ pub fn cstartvideodatamsg_unpack(buf []byte) ?CStartVideoDataMsg {
 				i = ii
 			}
 			2 {
-				res.has_codec = true
 				ii, v := zzz_vproto_internal_unpack_estreamvideocodec(cur_buf, tag_wiretype.wire_type)?
 				res.codec = v
 				i = ii
 			}
 			3 {
-				res.has_codec_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.codec_data = v
 				i = ii
 			}
 			4 {
-				res.has_width = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.width = v
 				i = ii
 			}
 			5 {
-				res.has_height = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.height = v
 				i = ii
@@ -3052,17 +3816,50 @@ pub fn cstartvideodatamsg_unpack(buf []byte) ?CStartVideoDataMsg {
 	return res
 }
 
+[inline]
+pub fn (a CStartVideoDataMsg) eq(b CStartVideoDataMsg) bool {
+	return true && a.channel == b.channel &&
+		a.codec == b.codec && a.codec_data == b.codec_data &&
+		a.width == b.width && a.height == b.height
+}
+
+[inline]
+pub fn (a CStartVideoDataMsg) ne(b CStartVideoDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStartVideoDataMsg) eq(b []CStartVideoDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStartVideoDataMsg) ne(b []CStartVideoDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstartvideodatamsg() CStartVideoDataMsg {
 	return CStartVideoDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstartvideodatamsg(o CStartVideoDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstartvideodatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CStartVideoDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstartvideodatamsg_unpack(v)?
@@ -3080,21 +3877,52 @@ pub fn (o &CStopVideoDataMsg) pack() []byte {
 }
 
 pub fn cstopvideodatamsg_unpack(buf []byte) ?CStopVideoDataMsg {
-	res := CStopVideoDataMsg{}
+	res := zzz_vproto_internal_new_cstopvideodatamsg()
 	return res
 }
 
+[inline]
+pub fn (a CStopVideoDataMsg) eq(b CStopVideoDataMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CStopVideoDataMsg) ne(b CStopVideoDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStopVideoDataMsg) eq(b []CStopVideoDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStopVideoDataMsg) ne(b []CStopVideoDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstopvideodatamsg() CStopVideoDataMsg {
 	return CStopVideoDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstopvideodatamsg(o CStopVideoDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstopvideodatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CStopVideoDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstopvideodatamsg_unpack(v)?
@@ -3105,25 +3933,23 @@ pub struct CRecordedInput {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	@type          EStreamControlMessage
-	has_type       bool
+	@type          EStreamControlMessage = .k_estreamcontrolauthenticationrequest
 	timestamp      u32
-	has_timestamp  bool
 }
 
 pub fn (o &CRecordedInput) pack() []byte {
 	mut res := []byte{}
-	if o.has_type {
+	if o.@type != zzz_vproto_internal_new_estreamcontrolmessage() {
 		res << zzz_vproto_internal_pack_estreamcontrolmessage(o.@type, 1)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 2)
 	}
 	return res
 }
 
 pub fn crecordedinput_unpack(buf []byte) ?CRecordedInput {
-	mut res := CRecordedInput{}
+	mut res := zzz_vproto_internal_new_crecordedinput()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3134,13 +3960,11 @@ pub fn crecordedinput_unpack(buf []byte) ?CRecordedInput {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_type = true
 				ii, v := zzz_vproto_internal_unpack_estreamcontrolmessage(cur_buf, tag_wiretype.wire_type)?
 				res.@type = v
 				i = ii
 			}
 			2 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
@@ -3160,17 +3984,48 @@ pub fn crecordedinput_unpack(buf []byte) ?CRecordedInput {
 	return res
 }
 
+[inline]
+pub fn (a CRecordedInput) eq(b CRecordedInput) bool {
+	return true && a.@type == b.@type && a.timestamp == b.timestamp
+}
+
+[inline]
+pub fn (a CRecordedInput) ne(b CRecordedInput) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CRecordedInput) eq(b []CRecordedInput) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CRecordedInput) ne(b []CRecordedInput) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_crecordedinput() CRecordedInput {
 	return CRecordedInput{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_crecordedinput(o CRecordedInput, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_crecordedinput(buf []byte, tag_wiretype vproto.WireType) ?(int, CRecordedInput) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := crecordedinput_unpack(v)?
@@ -3194,7 +4049,7 @@ pub fn (o &CRecordedInputStream) pack() []byte {
 }
 
 pub fn crecordedinputstream_unpack(buf []byte) ?CRecordedInputStream {
-	mut res := CRecordedInputStream{}
+	mut res := zzz_vproto_internal_new_crecordedinputstream()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3225,17 +4080,48 @@ pub fn crecordedinputstream_unpack(buf []byte) ?CRecordedInputStream {
 	return res
 }
 
+[inline]
+pub fn (a CRecordedInputStream) eq(b CRecordedInputStream) bool {
+	return true && a.entries.eq(b.entries)
+}
+
+[inline]
+pub fn (a CRecordedInputStream) ne(b CRecordedInputStream) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CRecordedInputStream) eq(b []CRecordedInputStream) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CRecordedInputStream) ne(b []CRecordedInputStream) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_crecordedinputstream() CRecordedInputStream {
 	return CRecordedInputStream{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_crecordedinputstream(o CRecordedInputStream, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_crecordedinputstream(buf []byte, tag_wiretype vproto.WireType) ?(int, CRecordedInputStream) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := crecordedinputstream_unpack(v)?
@@ -3248,20 +4134,19 @@ mut:
 pub mut:
 	input_mark     u32
 	color          u32
-	has_color      bool
 }
 
 pub fn (o &CInputLatencyTestMsg) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.input_mark, 1)
-	if o.has_color {
+	if o.color != u32(0) {
 		res << vproto.pack_uint32_field(o.color, 2)
 	}
 	return res
 }
 
 pub fn cinputlatencytestmsg_unpack(buf []byte) ?CInputLatencyTestMsg {
-	mut res := CInputLatencyTestMsg{}
+	mut res := zzz_vproto_internal_new_cinputlatencytestmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3277,7 +4162,6 @@ pub fn cinputlatencytestmsg_unpack(buf []byte) ?CInputLatencyTestMsg {
 				i = ii
 			}
 			2 {
-				res.has_color = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.color = v
 				i = ii
@@ -3297,17 +4181,48 @@ pub fn cinputlatencytestmsg_unpack(buf []byte) ?CInputLatencyTestMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputLatencyTestMsg) eq(b CInputLatencyTestMsg) bool {
+	return true && a.input_mark == b.input_mark && a.color == b.color
+}
+
+[inline]
+pub fn (a CInputLatencyTestMsg) ne(b CInputLatencyTestMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputLatencyTestMsg) eq(b []CInputLatencyTestMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputLatencyTestMsg) ne(b []CInputLatencyTestMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputlatencytestmsg() CInputLatencyTestMsg {
 	return CInputLatencyTestMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputlatencytestmsg(o CInputLatencyTestMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputlatencytestmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputLatencyTestMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputlatencytestmsg_unpack(v)?
@@ -3316,37 +4231,33 @@ pub fn zzz_vproto_internal_unpack_cinputlatencytestmsg(buf []byte, tag_wiretype 
 
 pub struct CInputTouchFingerDownMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	input_mark       u32
-	has_input_mark   bool
-	fingerid         u64
-	has_fingerid     bool
-	x_normalized     f32
-	has_x_normalized bool
-	y_normalized     f32
-	has_y_normalized bool
+	input_mark     u32
+	fingerid       u64
+	x_normalized   f32
+	y_normalized   f32
 }
 
 pub fn (o &CInputTouchFingerDownMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
-	if o.has_fingerid {
+	if o.fingerid != u64(0) {
 		res << vproto.pack_uint64_field(o.fingerid, 2)
 	}
-	if o.has_x_normalized {
+	if o.x_normalized != f32(0) {
 		res << vproto.pack_float_field(o.x_normalized, 3)
 	}
-	if o.has_y_normalized {
+	if o.y_normalized != f32(0) {
 		res << vproto.pack_float_field(o.y_normalized, 4)
 	}
 	return res
 }
 
 pub fn cinputtouchfingerdownmsg_unpack(buf []byte) ?CInputTouchFingerDownMsg {
-	mut res := CInputTouchFingerDownMsg{}
+	mut res := zzz_vproto_internal_new_cinputtouchfingerdownmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3357,25 +4268,21 @@ pub fn cinputtouchfingerdownmsg_unpack(buf []byte) ?CInputTouchFingerDownMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
 			}
 			2 {
-				res.has_fingerid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.fingerid = v
 				i = ii
 			}
 			3 {
-				res.has_x_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.x_normalized = v
 				i = ii
 			}
 			4 {
-				res.has_y_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.y_normalized = v
 				i = ii
@@ -3395,17 +4302,50 @@ pub fn cinputtouchfingerdownmsg_unpack(buf []byte) ?CInputTouchFingerDownMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputTouchFingerDownMsg) eq(b CInputTouchFingerDownMsg) bool {
+	return true && a.input_mark == b.input_mark &&
+		a.fingerid == b.fingerid && a.x_normalized == b.x_normalized &&
+		a.y_normalized == b.y_normalized
+}
+
+[inline]
+pub fn (a CInputTouchFingerDownMsg) ne(b CInputTouchFingerDownMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputTouchFingerDownMsg) eq(b []CInputTouchFingerDownMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputTouchFingerDownMsg) ne(b []CInputTouchFingerDownMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputtouchfingerdownmsg() CInputTouchFingerDownMsg {
 	return CInputTouchFingerDownMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputtouchfingerdownmsg(o CInputTouchFingerDownMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputtouchfingerdownmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputTouchFingerDownMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputtouchfingerdownmsg_unpack(v)?
@@ -3414,37 +4354,33 @@ pub fn zzz_vproto_internal_unpack_cinputtouchfingerdownmsg(buf []byte, tag_wiret
 
 pub struct CInputTouchFingerMotionMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	input_mark       u32
-	has_input_mark   bool
-	fingerid         u64
-	has_fingerid     bool
-	x_normalized     f32
-	has_x_normalized bool
-	y_normalized     f32
-	has_y_normalized bool
+	input_mark     u32
+	fingerid       u64
+	x_normalized   f32
+	y_normalized   f32
 }
 
 pub fn (o &CInputTouchFingerMotionMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
-	if o.has_fingerid {
+	if o.fingerid != u64(0) {
 		res << vproto.pack_uint64_field(o.fingerid, 2)
 	}
-	if o.has_x_normalized {
+	if o.x_normalized != f32(0) {
 		res << vproto.pack_float_field(o.x_normalized, 3)
 	}
-	if o.has_y_normalized {
+	if o.y_normalized != f32(0) {
 		res << vproto.pack_float_field(o.y_normalized, 4)
 	}
 	return res
 }
 
 pub fn cinputtouchfingermotionmsg_unpack(buf []byte) ?CInputTouchFingerMotionMsg {
-	mut res := CInputTouchFingerMotionMsg{}
+	mut res := zzz_vproto_internal_new_cinputtouchfingermotionmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3455,25 +4391,21 @@ pub fn cinputtouchfingermotionmsg_unpack(buf []byte) ?CInputTouchFingerMotionMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
 			}
 			2 {
-				res.has_fingerid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.fingerid = v
 				i = ii
 			}
 			3 {
-				res.has_x_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.x_normalized = v
 				i = ii
 			}
 			4 {
-				res.has_y_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.y_normalized = v
 				i = ii
@@ -3493,17 +4425,50 @@ pub fn cinputtouchfingermotionmsg_unpack(buf []byte) ?CInputTouchFingerMotionMsg
 	return res
 }
 
+[inline]
+pub fn (a CInputTouchFingerMotionMsg) eq(b CInputTouchFingerMotionMsg) bool {
+	return true && a.input_mark == b.input_mark &&
+		a.fingerid == b.fingerid && a.x_normalized == b.x_normalized &&
+		a.y_normalized == b.y_normalized
+}
+
+[inline]
+pub fn (a CInputTouchFingerMotionMsg) ne(b CInputTouchFingerMotionMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputTouchFingerMotionMsg) eq(b []CInputTouchFingerMotionMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputTouchFingerMotionMsg) ne(b []CInputTouchFingerMotionMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputtouchfingermotionmsg() CInputTouchFingerMotionMsg {
 	return CInputTouchFingerMotionMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputtouchfingermotionmsg(o CInputTouchFingerMotionMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputtouchfingermotionmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputTouchFingerMotionMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputtouchfingermotionmsg_unpack(v)?
@@ -3512,37 +4477,33 @@ pub fn zzz_vproto_internal_unpack_cinputtouchfingermotionmsg(buf []byte, tag_wir
 
 pub struct CInputTouchFingerUpMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	input_mark       u32
-	has_input_mark   bool
-	fingerid         u64
-	has_fingerid     bool
-	x_normalized     f32
-	has_x_normalized bool
-	y_normalized     f32
-	has_y_normalized bool
+	input_mark     u32
+	fingerid       u64
+	x_normalized   f32
+	y_normalized   f32
 }
 
 pub fn (o &CInputTouchFingerUpMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
-	if o.has_fingerid {
+	if o.fingerid != u64(0) {
 		res << vproto.pack_uint64_field(o.fingerid, 2)
 	}
-	if o.has_x_normalized {
+	if o.x_normalized != f32(0) {
 		res << vproto.pack_float_field(o.x_normalized, 3)
 	}
-	if o.has_y_normalized {
+	if o.y_normalized != f32(0) {
 		res << vproto.pack_float_field(o.y_normalized, 4)
 	}
 	return res
 }
 
 pub fn cinputtouchfingerupmsg_unpack(buf []byte) ?CInputTouchFingerUpMsg {
-	mut res := CInputTouchFingerUpMsg{}
+	mut res := zzz_vproto_internal_new_cinputtouchfingerupmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3553,25 +4514,21 @@ pub fn cinputtouchfingerupmsg_unpack(buf []byte) ?CInputTouchFingerUpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
 			}
 			2 {
-				res.has_fingerid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.fingerid = v
 				i = ii
 			}
 			3 {
-				res.has_x_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.x_normalized = v
 				i = ii
 			}
 			4 {
-				res.has_y_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.y_normalized = v
 				i = ii
@@ -3591,17 +4548,50 @@ pub fn cinputtouchfingerupmsg_unpack(buf []byte) ?CInputTouchFingerUpMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputTouchFingerUpMsg) eq(b CInputTouchFingerUpMsg) bool {
+	return true && a.input_mark == b.input_mark &&
+		a.fingerid == b.fingerid && a.x_normalized == b.x_normalized &&
+		a.y_normalized == b.y_normalized
+}
+
+[inline]
+pub fn (a CInputTouchFingerUpMsg) ne(b CInputTouchFingerUpMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputTouchFingerUpMsg) eq(b []CInputTouchFingerUpMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputTouchFingerUpMsg) ne(b []CInputTouchFingerUpMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputtouchfingerupmsg() CInputTouchFingerUpMsg {
 	return CInputTouchFingerUpMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputtouchfingerupmsg(o CInputTouchFingerUpMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputtouchfingerupmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputTouchFingerUpMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputtouchfingerupmsg_unpack(v)?
@@ -3610,42 +4600,37 @@ pub fn zzz_vproto_internal_unpack_cinputtouchfingerupmsg(buf []byte, tag_wiretyp
 
 pub struct CInputMouseMotionMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	input_mark       u32
-	has_input_mark   bool
-	x_normalized     f32
-	has_x_normalized bool
-	y_normalized     f32
-	has_y_normalized bool
-	dx               int
-	has_dx           bool
-	dy               int
-	has_dy           bool
+	input_mark     u32
+	x_normalized   f32
+	y_normalized   f32
+	dx             int
+	dy             int
 }
 
 pub fn (o &CInputMouseMotionMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
-	if o.has_x_normalized {
+	if o.x_normalized != f32(0) {
 		res << vproto.pack_float_field(o.x_normalized, 2)
 	}
-	if o.has_y_normalized {
+	if o.y_normalized != f32(0) {
 		res << vproto.pack_float_field(o.y_normalized, 3)
 	}
-	if o.has_dx {
+	if o.dx != int(0) {
 		res << vproto.pack_int32_field(o.dx, 4)
 	}
-	if o.has_dy {
+	if o.dy != int(0) {
 		res << vproto.pack_int32_field(o.dy, 5)
 	}
 	return res
 }
 
 pub fn cinputmousemotionmsg_unpack(buf []byte) ?CInputMouseMotionMsg {
-	mut res := CInputMouseMotionMsg{}
+	mut res := zzz_vproto_internal_new_cinputmousemotionmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3656,31 +4641,26 @@ pub fn cinputmousemotionmsg_unpack(buf []byte) ?CInputMouseMotionMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
 			}
 			2 {
-				res.has_x_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.x_normalized = v
 				i = ii
 			}
 			3 {
-				res.has_y_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.y_normalized = v
 				i = ii
 			}
 			4 {
-				res.has_dx = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.dx = v
 				i = ii
 			}
 			5 {
-				res.has_dy = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.dy = v
 				i = ii
@@ -3700,17 +4680,51 @@ pub fn cinputmousemotionmsg_unpack(buf []byte) ?CInputMouseMotionMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputMouseMotionMsg) eq(b CInputMouseMotionMsg) bool {
+	return true && a.input_mark == b.input_mark &&
+		a.x_normalized == b.x_normalized &&
+		a.y_normalized == b.y_normalized &&
+		a.dx == b.dx && a.dy == b.dy
+}
+
+[inline]
+pub fn (a CInputMouseMotionMsg) ne(b CInputMouseMotionMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputMouseMotionMsg) eq(b []CInputMouseMotionMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputMouseMotionMsg) ne(b []CInputMouseMotionMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputmousemotionmsg() CInputMouseMotionMsg {
 	return CInputMouseMotionMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputmousemotionmsg(o CInputMouseMotionMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputmousemotionmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputMouseMotionMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputmousemotionmsg_unpack(v)?
@@ -3722,13 +4736,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	input_mark     u32
-	has_input_mark bool
 	direction      EStreamMouseWheelDirection
 }
 
 pub fn (o &CInputMouseWheelMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
 	res << zzz_vproto_internal_pack_estreammousewheeldirection(o.direction, 2)
@@ -3736,7 +4749,7 @@ pub fn (o &CInputMouseWheelMsg) pack() []byte {
 }
 
 pub fn cinputmousewheelmsg_unpack(buf []byte) ?CInputMouseWheelMsg {
-	mut res := CInputMouseWheelMsg{}
+	mut res := zzz_vproto_internal_new_cinputmousewheelmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3747,7 +4760,6 @@ pub fn cinputmousewheelmsg_unpack(buf []byte) ?CInputMouseWheelMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -3773,17 +4785,48 @@ pub fn cinputmousewheelmsg_unpack(buf []byte) ?CInputMouseWheelMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputMouseWheelMsg) eq(b CInputMouseWheelMsg) bool {
+	return true && a.input_mark == b.input_mark && a.direction == b.direction
+}
+
+[inline]
+pub fn (a CInputMouseWheelMsg) ne(b CInputMouseWheelMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputMouseWheelMsg) eq(b []CInputMouseWheelMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputMouseWheelMsg) ne(b []CInputMouseWheelMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputmousewheelmsg() CInputMouseWheelMsg {
 	return CInputMouseWheelMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputmousewheelmsg(o CInputMouseWheelMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputmousewheelmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputMouseWheelMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputmousewheelmsg_unpack(v)?
@@ -3795,13 +4838,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	input_mark     u32
-	has_input_mark bool
 	button         EStreamMouseButton
 }
 
 pub fn (o &CInputMouseDownMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
 	res << zzz_vproto_internal_pack_estreammousebutton(o.button, 2)
@@ -3809,7 +4851,7 @@ pub fn (o &CInputMouseDownMsg) pack() []byte {
 }
 
 pub fn cinputmousedownmsg_unpack(buf []byte) ?CInputMouseDownMsg {
-	mut res := CInputMouseDownMsg{}
+	mut res := zzz_vproto_internal_new_cinputmousedownmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3820,7 +4862,6 @@ pub fn cinputmousedownmsg_unpack(buf []byte) ?CInputMouseDownMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -3845,17 +4886,48 @@ pub fn cinputmousedownmsg_unpack(buf []byte) ?CInputMouseDownMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputMouseDownMsg) eq(b CInputMouseDownMsg) bool {
+	return true && a.input_mark == b.input_mark && a.button == b.button
+}
+
+[inline]
+pub fn (a CInputMouseDownMsg) ne(b CInputMouseDownMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputMouseDownMsg) eq(b []CInputMouseDownMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputMouseDownMsg) ne(b []CInputMouseDownMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputmousedownmsg() CInputMouseDownMsg {
 	return CInputMouseDownMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputmousedownmsg(o CInputMouseDownMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputmousedownmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputMouseDownMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputmousedownmsg_unpack(v)?
@@ -3867,13 +4939,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	input_mark     u32
-	has_input_mark bool
 	button         EStreamMouseButton
 }
 
 pub fn (o &CInputMouseUpMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
 	res << zzz_vproto_internal_pack_estreammousebutton(o.button, 2)
@@ -3881,7 +4952,7 @@ pub fn (o &CInputMouseUpMsg) pack() []byte {
 }
 
 pub fn cinputmouseupmsg_unpack(buf []byte) ?CInputMouseUpMsg {
-	mut res := CInputMouseUpMsg{}
+	mut res := zzz_vproto_internal_new_cinputmouseupmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3892,7 +4963,6 @@ pub fn cinputmouseupmsg_unpack(buf []byte) ?CInputMouseUpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -3917,17 +4987,48 @@ pub fn cinputmouseupmsg_unpack(buf []byte) ?CInputMouseUpMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputMouseUpMsg) eq(b CInputMouseUpMsg) bool {
+	return true && a.input_mark == b.input_mark && a.button == b.button
+}
+
+[inline]
+pub fn (a CInputMouseUpMsg) ne(b CInputMouseUpMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputMouseUpMsg) eq(b []CInputMouseUpMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputMouseUpMsg) ne(b []CInputMouseUpMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputmouseupmsg() CInputMouseUpMsg {
 	return CInputMouseUpMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputmouseupmsg(o CInputMouseUpMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputmouseupmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputMouseUpMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputmouseupmsg_unpack(v)?
@@ -3939,13 +5040,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	input_mark     u32
-	has_input_mark bool
 	scancode       u32
 }
 
 pub fn (o &CInputKeyDownMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
 	res << vproto.pack_uint32_field(o.scancode, 2)
@@ -3953,7 +5053,7 @@ pub fn (o &CInputKeyDownMsg) pack() []byte {
 }
 
 pub fn cinputkeydownmsg_unpack(buf []byte) ?CInputKeyDownMsg {
-	mut res := CInputKeyDownMsg{}
+	mut res := zzz_vproto_internal_new_cinputkeydownmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3964,7 +5064,6 @@ pub fn cinputkeydownmsg_unpack(buf []byte) ?CInputKeyDownMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -3989,17 +5088,48 @@ pub fn cinputkeydownmsg_unpack(buf []byte) ?CInputKeyDownMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputKeyDownMsg) eq(b CInputKeyDownMsg) bool {
+	return true && a.input_mark == b.input_mark && a.scancode == b.scancode
+}
+
+[inline]
+pub fn (a CInputKeyDownMsg) ne(b CInputKeyDownMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputKeyDownMsg) eq(b []CInputKeyDownMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputKeyDownMsg) ne(b []CInputKeyDownMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputkeydownmsg() CInputKeyDownMsg {
 	return CInputKeyDownMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputkeydownmsg(o CInputKeyDownMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputkeydownmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputKeyDownMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputkeydownmsg_unpack(v)?
@@ -4011,13 +5141,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	input_mark     u32
-	has_input_mark bool
 	scancode       u32
 }
 
 pub fn (o &CInputKeyUpMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
 	res << vproto.pack_uint32_field(o.scancode, 2)
@@ -4025,7 +5154,7 @@ pub fn (o &CInputKeyUpMsg) pack() []byte {
 }
 
 pub fn cinputkeyupmsg_unpack(buf []byte) ?CInputKeyUpMsg {
-	mut res := CInputKeyUpMsg{}
+	mut res := zzz_vproto_internal_new_cinputkeyupmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4036,7 +5165,6 @@ pub fn cinputkeyupmsg_unpack(buf []byte) ?CInputKeyUpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -4061,17 +5189,48 @@ pub fn cinputkeyupmsg_unpack(buf []byte) ?CInputKeyUpMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputKeyUpMsg) eq(b CInputKeyUpMsg) bool {
+	return true && a.input_mark == b.input_mark && a.scancode == b.scancode
+}
+
+[inline]
+pub fn (a CInputKeyUpMsg) ne(b CInputKeyUpMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputKeyUpMsg) eq(b []CInputKeyUpMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputKeyUpMsg) ne(b []CInputKeyUpMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputkeyupmsg() CInputKeyUpMsg {
 	return CInputKeyUpMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputkeyupmsg(o CInputKeyUpMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputkeyupmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputKeyUpMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputkeyupmsg_unpack(v)?
@@ -4083,13 +5242,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	input_mark     u32
-	has_input_mark bool
 	text_utf8      string
 }
 
 pub fn (o &CInputTextMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 1)
 	}
 	res << vproto.pack_string_field(o.text_utf8, 2)
@@ -4097,7 +5255,7 @@ pub fn (o &CInputTextMsg) pack() []byte {
 }
 
 pub fn cinputtextmsg_unpack(buf []byte) ?CInputTextMsg {
-	mut res := CInputTextMsg{}
+	mut res := zzz_vproto_internal_new_cinputtextmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4108,7 +5266,6 @@ pub fn cinputtextmsg_unpack(buf []byte) ?CInputTextMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -4133,17 +5290,48 @@ pub fn cinputtextmsg_unpack(buf []byte) ?CInputTextMsg {
 	return res
 }
 
+[inline]
+pub fn (a CInputTextMsg) eq(b CInputTextMsg) bool {
+	return true && a.input_mark == b.input_mark && a.text_utf8 == b.text_utf8
+}
+
+[inline]
+pub fn (a CInputTextMsg) ne(b CInputTextMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CInputTextMsg) eq(b []CInputTextMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CInputTextMsg) ne(b []CInputTextMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cinputtextmsg() CInputTextMsg {
 	return CInputTextMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cinputtextmsg(o CInputTextMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cinputtextmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CInputTextMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cinputtextmsg_unpack(v)?
@@ -4155,19 +5343,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	text           string
-	has_text       bool
 }
 
 pub fn (o &CSetTitleMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_text {
+	if o.text != '' {
 		res << vproto.pack_string_field(o.text, 1)
 	}
 	return res
 }
 
 pub fn csettitlemsg_unpack(buf []byte) ?CSetTitleMsg {
-	mut res := CSetTitleMsg{}
+	mut res := zzz_vproto_internal_new_csettitlemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4178,7 +5365,6 @@ pub fn csettitlemsg_unpack(buf []byte) ?CSetTitleMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_text = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.text = v
 				i = ii
@@ -4198,17 +5384,48 @@ pub fn csettitlemsg_unpack(buf []byte) ?CSetTitleMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetTitleMsg) eq(b CSetTitleMsg) bool {
+	return true && a.text == b.text
+}
+
+[inline]
+pub fn (a CSetTitleMsg) ne(b CSetTitleMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetTitleMsg) eq(b []CSetTitleMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetTitleMsg) ne(b []CSetTitleMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csettitlemsg() CSetTitleMsg {
 	return CSetTitleMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csettitlemsg(o CSetTitleMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csettitlemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetTitleMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csettitlemsg_unpack(v)?
@@ -4220,24 +5437,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	width          int
-	has_width      bool
 	height         int
-	has_height     bool
 }
 
 pub fn (o &CSetCaptureSizeMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_width {
+	if o.width != int(0) {
 		res << vproto.pack_int32_field(o.width, 1)
 	}
-	if o.has_height {
+	if o.height != int(0) {
 		res << vproto.pack_int32_field(o.height, 2)
 	}
 	return res
 }
 
 pub fn csetcapturesizemsg_unpack(buf []byte) ?CSetCaptureSizeMsg {
-	mut res := CSetCaptureSizeMsg{}
+	mut res := zzz_vproto_internal_new_csetcapturesizemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4248,13 +5463,11 @@ pub fn csetcapturesizemsg_unpack(buf []byte) ?CSetCaptureSizeMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_width = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.width = v
 				i = ii
 			}
 			2 {
-				res.has_height = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.height = v
 				i = ii
@@ -4274,17 +5487,48 @@ pub fn csetcapturesizemsg_unpack(buf []byte) ?CSetCaptureSizeMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetCaptureSizeMsg) eq(b CSetCaptureSizeMsg) bool {
+	return true && a.width == b.width && a.height == b.height
+}
+
+[inline]
+pub fn (a CSetCaptureSizeMsg) ne(b CSetCaptureSizeMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetCaptureSizeMsg) eq(b []CSetCaptureSizeMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetCaptureSizeMsg) ne(b []CSetCaptureSizeMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetcapturesizemsg() CSetCaptureSizeMsg {
 	return CSetCaptureSizeMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetcapturesizemsg(o CSetCaptureSizeMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetcapturesizemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetCaptureSizeMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetcapturesizemsg_unpack(v)?
@@ -4296,29 +5540,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	width          int
-	has_width      bool
 	height         int
-	has_height     bool
 	image          []byte
-	has_image      bool
 }
 
 pub fn (o &CSetIconMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_width {
+	if o.width != int(0) {
 		res << vproto.pack_int32_field(o.width, 1)
 	}
-	if o.has_height {
+	if o.height != int(0) {
 		res << vproto.pack_int32_field(o.height, 2)
 	}
-	if o.has_image {
+	if o.image != []byte{} {
 		res << vproto.pack_bytes_field(o.image, 3)
 	}
 	return res
 }
 
 pub fn cseticonmsg_unpack(buf []byte) ?CSetIconMsg {
-	mut res := CSetIconMsg{}
+	mut res := zzz_vproto_internal_new_cseticonmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4329,19 +5570,16 @@ pub fn cseticonmsg_unpack(buf []byte) ?CSetIconMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_width = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.width = v
 				i = ii
 			}
 			2 {
-				res.has_height = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.height = v
 				i = ii
 			}
 			3 {
-				res.has_image = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.image = v
 				i = ii
@@ -4361,17 +5599,48 @@ pub fn cseticonmsg_unpack(buf []byte) ?CSetIconMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetIconMsg) eq(b CSetIconMsg) bool {
+	return true && a.width == b.width && a.height == b.height && a.image == b.image
+}
+
+[inline]
+pub fn (a CSetIconMsg) ne(b CSetIconMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetIconMsg) eq(b []CSetIconMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetIconMsg) ne(b []CSetIconMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cseticonmsg() CSetIconMsg {
 	return CSetIconMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cseticonmsg(o CSetIconMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cseticonmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetIconMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cseticonmsg_unpack(v)?
@@ -4383,29 +5652,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	flags          u32
-	has_flags      bool
 	count          u32
-	has_count      bool
 	timeout_ms     u32
-	has_timeout_ms bool
 }
 
 pub fn (o &CSetFlashStateMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_flags {
+	if o.flags != u32(0) {
 		res << vproto.pack_uint32_field(o.flags, 1)
 	}
-	if o.has_count {
+	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 2)
 	}
-	if o.has_timeout_ms {
+	if o.timeout_ms != u32(0) {
 		res << vproto.pack_uint32_field(o.timeout_ms, 3)
 	}
 	return res
 }
 
 pub fn csetflashstatemsg_unpack(buf []byte) ?CSetFlashStateMsg {
-	mut res := CSetFlashStateMsg{}
+	mut res := zzz_vproto_internal_new_csetflashstatemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4416,19 +5682,16 @@ pub fn csetflashstatemsg_unpack(buf []byte) ?CSetFlashStateMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.flags = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_timeout_ms = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timeout_ms = v
 				i = ii
@@ -4448,17 +5711,48 @@ pub fn csetflashstatemsg_unpack(buf []byte) ?CSetFlashStateMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetFlashStateMsg) eq(b CSetFlashStateMsg) bool {
+	return true && a.flags == b.flags && a.count == b.count && a.timeout_ms == b.timeout_ms
+}
+
+[inline]
+pub fn (a CSetFlashStateMsg) ne(b CSetFlashStateMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetFlashStateMsg) eq(b []CSetFlashStateMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetFlashStateMsg) ne(b []CSetFlashStateMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetflashstatemsg() CSetFlashStateMsg {
 	return CSetFlashStateMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetflashstatemsg(o CSetFlashStateMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetflashstatemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetFlashStateMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetflashstatemsg_unpack(v)?
@@ -4467,27 +5761,25 @@ pub fn zzz_vproto_internal_unpack_csetflashstatemsg(buf []byte, tag_wiretype vpr
 
 pub struct CShowCursorMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	x_normalized     f32
-	has_x_normalized bool
-	y_normalized     f32
-	has_y_normalized bool
+	x_normalized   f32
+	y_normalized   f32
 }
 
 pub fn (o &CShowCursorMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_x_normalized {
+	if o.x_normalized != f32(0) {
 		res << vproto.pack_float_field(o.x_normalized, 1)
 	}
-	if o.has_y_normalized {
+	if o.y_normalized != f32(0) {
 		res << vproto.pack_float_field(o.y_normalized, 2)
 	}
 	return res
 }
 
 pub fn cshowcursormsg_unpack(buf []byte) ?CShowCursorMsg {
-	mut res := CShowCursorMsg{}
+	mut res := zzz_vproto_internal_new_cshowcursormsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4498,13 +5790,11 @@ pub fn cshowcursormsg_unpack(buf []byte) ?CShowCursorMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_x_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.x_normalized = v
 				i = ii
 			}
 			2 {
-				res.has_y_normalized = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.y_normalized = v
 				i = ii
@@ -4524,17 +5814,48 @@ pub fn cshowcursormsg_unpack(buf []byte) ?CShowCursorMsg {
 	return res
 }
 
+[inline]
+pub fn (a CShowCursorMsg) eq(b CShowCursorMsg) bool {
+	return true && a.x_normalized == b.x_normalized && a.y_normalized == b.y_normalized
+}
+
+[inline]
+pub fn (a CShowCursorMsg) ne(b CShowCursorMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CShowCursorMsg) eq(b []CShowCursorMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CShowCursorMsg) ne(b []CShowCursorMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cshowcursormsg() CShowCursorMsg {
 	return CShowCursorMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cshowcursormsg(o CShowCursorMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cshowcursormsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CShowCursorMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cshowcursormsg_unpack(v)?
@@ -4552,21 +5873,52 @@ pub fn (o &CHideCursorMsg) pack() []byte {
 }
 
 pub fn chidecursormsg_unpack(buf []byte) ?CHideCursorMsg {
-	res := CHideCursorMsg{}
+	res := zzz_vproto_internal_new_chidecursormsg()
 	return res
 }
 
+[inline]
+pub fn (a CHideCursorMsg) eq(b CHideCursorMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CHideCursorMsg) ne(b CHideCursorMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CHideCursorMsg) eq(b []CHideCursorMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CHideCursorMsg) ne(b []CHideCursorMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_chidecursormsg() CHideCursorMsg {
 	return CHideCursorMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_chidecursormsg(o CHideCursorMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_chidecursormsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CHideCursorMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := chidecursormsg_unpack(v)?
@@ -4587,7 +5939,7 @@ pub fn (o &CSetCursorMsg) pack() []byte {
 }
 
 pub fn csetcursormsg_unpack(buf []byte) ?CSetCursorMsg {
-	mut res := CSetCursorMsg{}
+	mut res := zzz_vproto_internal_new_csetcursormsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4617,17 +5969,48 @@ pub fn csetcursormsg_unpack(buf []byte) ?CSetCursorMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetCursorMsg) eq(b CSetCursorMsg) bool {
+	return true && a.cursor_id == b.cursor_id
+}
+
+[inline]
+pub fn (a CSetCursorMsg) ne(b CSetCursorMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetCursorMsg) eq(b []CSetCursorMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetCursorMsg) ne(b []CSetCursorMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetcursormsg() CSetCursorMsg {
 	return CSetCursorMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetcursormsg(o CSetCursorMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetcursormsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetCursorMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetcursormsg_unpack(v)?
@@ -4648,7 +6031,7 @@ pub fn (o &CGetCursorImageMsg) pack() []byte {
 }
 
 pub fn cgetcursorimagemsg_unpack(buf []byte) ?CGetCursorImageMsg {
-	mut res := CGetCursorImageMsg{}
+	mut res := zzz_vproto_internal_new_cgetcursorimagemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4678,17 +6061,48 @@ pub fn cgetcursorimagemsg_unpack(buf []byte) ?CGetCursorImageMsg {
 	return res
 }
 
+[inline]
+pub fn (a CGetCursorImageMsg) eq(b CGetCursorImageMsg) bool {
+	return true && a.cursor_id == b.cursor_id
+}
+
+[inline]
+pub fn (a CGetCursorImageMsg) ne(b CGetCursorImageMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CGetCursorImageMsg) eq(b []CGetCursorImageMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CGetCursorImageMsg) ne(b []CGetCursorImageMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cgetcursorimagemsg() CGetCursorImageMsg {
 	return CGetCursorImageMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cgetcursorimagemsg(o CGetCursorImageMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cgetcursorimagemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CGetCursorImageMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cgetcursorimagemsg_unpack(v)?
@@ -4701,40 +6115,35 @@ mut:
 pub mut:
 	cursor_id      u64
 	width          int
-	has_width      bool
 	height         int
-	has_height     bool
 	hot_x          int
-	has_hot_x      bool
 	hot_y          int
-	has_hot_y      bool
 	image          []byte
-	has_image      bool
 }
 
 pub fn (o &CSetCursorImageMsg) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint64_field(o.cursor_id, 1)
-	if o.has_width {
+	if o.width != int(0) {
 		res << vproto.pack_int32_field(o.width, 2)
 	}
-	if o.has_height {
+	if o.height != int(0) {
 		res << vproto.pack_int32_field(o.height, 3)
 	}
-	if o.has_hot_x {
+	if o.hot_x != int(0) {
 		res << vproto.pack_int32_field(o.hot_x, 4)
 	}
-	if o.has_hot_y {
+	if o.hot_y != int(0) {
 		res << vproto.pack_int32_field(o.hot_y, 5)
 	}
-	if o.has_image {
+	if o.image != []byte{} {
 		res << vproto.pack_bytes_field(o.image, 6)
 	}
 	return res
 }
 
 pub fn csetcursorimagemsg_unpack(buf []byte) ?CSetCursorImageMsg {
-	mut res := CSetCursorImageMsg{}
+	mut res := zzz_vproto_internal_new_csetcursorimagemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4750,31 +6159,26 @@ pub fn csetcursorimagemsg_unpack(buf []byte) ?CSetCursorImageMsg {
 				i = ii
 			}
 			2 {
-				res.has_width = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.width = v
 				i = ii
 			}
 			3 {
-				res.has_height = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.height = v
 				i = ii
 			}
 			4 {
-				res.has_hot_x = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.hot_x = v
 				i = ii
 			}
 			5 {
-				res.has_hot_y = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.hot_y = v
 				i = ii
 			}
 			6 {
-				res.has_image = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.image = v
 				i = ii
@@ -4794,17 +6198,51 @@ pub fn csetcursorimagemsg_unpack(buf []byte) ?CSetCursorImageMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetCursorImageMsg) eq(b CSetCursorImageMsg) bool {
+	return true && a.cursor_id == b.cursor_id &&
+		a.width == b.width && a.height == b.height &&
+		a.hot_x == b.hot_x && a.hot_y == b.hot_y &&
+		a.image == b.image
+}
+
+[inline]
+pub fn (a CSetCursorImageMsg) ne(b CSetCursorImageMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetCursorImageMsg) eq(b []CSetCursorImageMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetCursorImageMsg) ne(b []CSetCursorImageMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetcursorimagemsg() CSetCursorImageMsg {
 	return CSetCursorImageMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetcursorimagemsg(o CSetCursorImageMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetcursorimagemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetCursorImageMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetcursorimagemsg_unpack(v)?
@@ -4816,24 +6254,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	info           string
-	has_info       bool
 	threads        int
-	has_threads    bool
 }
 
 pub fn (o &CVideoDecoderInfoMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_info {
+	if o.info != '' {
 		res << vproto.pack_string_field(o.info, 1)
 	}
-	if o.has_threads {
+	if o.threads != int(0) {
 		res << vproto.pack_int32_field(o.threads, 2)
 	}
 	return res
 }
 
 pub fn cvideodecoderinfomsg_unpack(buf []byte) ?CVideoDecoderInfoMsg {
-	mut res := CVideoDecoderInfoMsg{}
+	mut res := zzz_vproto_internal_new_cvideodecoderinfomsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4844,13 +6280,11 @@ pub fn cvideodecoderinfomsg_unpack(buf []byte) ?CVideoDecoderInfoMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_info = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.info = v
 				i = ii
 			}
 			2 {
-				res.has_threads = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.threads = v
 				i = ii
@@ -4870,17 +6304,48 @@ pub fn cvideodecoderinfomsg_unpack(buf []byte) ?CVideoDecoderInfoMsg {
 	return res
 }
 
+[inline]
+pub fn (a CVideoDecoderInfoMsg) eq(b CVideoDecoderInfoMsg) bool {
+	return true && a.info == b.info && a.threads == b.threads
+}
+
+[inline]
+pub fn (a CVideoDecoderInfoMsg) ne(b CVideoDecoderInfoMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideoDecoderInfoMsg) eq(b []CVideoDecoderInfoMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideoDecoderInfoMsg) ne(b []CVideoDecoderInfoMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideodecoderinfomsg() CVideoDecoderInfoMsg {
 	return CVideoDecoderInfoMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideodecoderinfomsg(o CVideoDecoderInfoMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideodecoderinfomsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideoDecoderInfoMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideodecoderinfomsg_unpack(v)?
@@ -4892,19 +6357,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	info           string
-	has_info       bool
 }
 
 pub fn (o &CVideoEncoderInfoMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_info {
+	if o.info != '' {
 		res << vproto.pack_string_field(o.info, 1)
 	}
 	return res
 }
 
 pub fn cvideoencoderinfomsg_unpack(buf []byte) ?CVideoEncoderInfoMsg {
-	mut res := CVideoEncoderInfoMsg{}
+	mut res := zzz_vproto_internal_new_cvideoencoderinfomsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4915,7 +6379,6 @@ pub fn cvideoencoderinfomsg_unpack(buf []byte) ?CVideoEncoderInfoMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_info = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.info = v
 				i = ii
@@ -4935,17 +6398,48 @@ pub fn cvideoencoderinfomsg_unpack(buf []byte) ?CVideoEncoderInfoMsg {
 	return res
 }
 
+[inline]
+pub fn (a CVideoEncoderInfoMsg) eq(b CVideoEncoderInfoMsg) bool {
+	return true && a.info == b.info
+}
+
+[inline]
+pub fn (a CVideoEncoderInfoMsg) ne(b CVideoEncoderInfoMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideoEncoderInfoMsg) eq(b []CVideoEncoderInfoMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideoEncoderInfoMsg) ne(b []CVideoEncoderInfoMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideoencoderinfomsg() CVideoEncoderInfoMsg {
 	return CVideoEncoderInfoMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideoencoderinfomsg(o CVideoEncoderInfoMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideoencoderinfomsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideoEncoderInfoMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideoencoderinfomsg_unpack(v)?
@@ -4963,21 +6457,52 @@ pub fn (o &CPauseMsg) pack() []byte {
 }
 
 pub fn cpausemsg_unpack(buf []byte) ?CPauseMsg {
-	res := CPauseMsg{}
+	res := zzz_vproto_internal_new_cpausemsg()
 	return res
 }
 
+[inline]
+pub fn (a CPauseMsg) eq(b CPauseMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPauseMsg) ne(b CPauseMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPauseMsg) eq(b []CPauseMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPauseMsg) ne(b []CPauseMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpausemsg() CPauseMsg {
 	return CPauseMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpausemsg(o CPauseMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpausemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CPauseMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpausemsg_unpack(v)?
@@ -4995,21 +6520,52 @@ pub fn (o &CResumeMsg) pack() []byte {
 }
 
 pub fn cresumemsg_unpack(buf []byte) ?CResumeMsg {
-	res := CResumeMsg{}
+	res := zzz_vproto_internal_new_cresumemsg()
 	return res
 }
 
+[inline]
+pub fn (a CResumeMsg) eq(b CResumeMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CResumeMsg) ne(b CResumeMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CResumeMsg) eq(b []CResumeMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CResumeMsg) ne(b []CResumeMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cresumemsg() CResumeMsg {
 	return CResumeMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cresumemsg(o CResumeMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cresumemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CResumeMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cresumemsg_unpack(v)?
@@ -5027,21 +6583,52 @@ pub fn (o &CEnableHighResCaptureMsg) pack() []byte {
 }
 
 pub fn cenablehighrescapturemsg_unpack(buf []byte) ?CEnableHighResCaptureMsg {
-	res := CEnableHighResCaptureMsg{}
+	res := zzz_vproto_internal_new_cenablehighrescapturemsg()
 	return res
 }
 
+[inline]
+pub fn (a CEnableHighResCaptureMsg) eq(b CEnableHighResCaptureMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CEnableHighResCaptureMsg) ne(b CEnableHighResCaptureMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CEnableHighResCaptureMsg) eq(b []CEnableHighResCaptureMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CEnableHighResCaptureMsg) ne(b []CEnableHighResCaptureMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cenablehighrescapturemsg() CEnableHighResCaptureMsg {
 	return CEnableHighResCaptureMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cenablehighrescapturemsg(o CEnableHighResCaptureMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cenablehighrescapturemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CEnableHighResCaptureMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cenablehighrescapturemsg_unpack(v)?
@@ -5059,21 +6646,52 @@ pub fn (o &CDisableHighResCaptureMsg) pack() []byte {
 }
 
 pub fn cdisablehighrescapturemsg_unpack(buf []byte) ?CDisableHighResCaptureMsg {
-	res := CDisableHighResCaptureMsg{}
+	res := zzz_vproto_internal_new_cdisablehighrescapturemsg()
 	return res
 }
 
+[inline]
+pub fn (a CDisableHighResCaptureMsg) eq(b CDisableHighResCaptureMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CDisableHighResCaptureMsg) ne(b CDisableHighResCaptureMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDisableHighResCaptureMsg) eq(b []CDisableHighResCaptureMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDisableHighResCaptureMsg) ne(b []CDisableHighResCaptureMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdisablehighrescapturemsg() CDisableHighResCaptureMsg {
 	return CDisableHighResCaptureMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdisablehighrescapturemsg(o CDisableHighResCaptureMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdisablehighrescapturemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CDisableHighResCaptureMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdisablehighrescapturemsg_unpack(v)?
@@ -5091,21 +6709,52 @@ pub fn (o &CToggleMagnificationMsg) pack() []byte {
 }
 
 pub fn ctogglemagnificationmsg_unpack(buf []byte) ?CToggleMagnificationMsg {
-	res := CToggleMagnificationMsg{}
+	res := zzz_vproto_internal_new_ctogglemagnificationmsg()
 	return res
 }
 
+[inline]
+pub fn (a CToggleMagnificationMsg) eq(b CToggleMagnificationMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CToggleMagnificationMsg) ne(b CToggleMagnificationMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CToggleMagnificationMsg) eq(b []CToggleMagnificationMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CToggleMagnificationMsg) ne(b []CToggleMagnificationMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctogglemagnificationmsg() CToggleMagnificationMsg {
 	return CToggleMagnificationMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctogglemagnificationmsg(o CToggleMagnificationMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctogglemagnificationmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CToggleMagnificationMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctogglemagnificationmsg_unpack(v)?
@@ -5117,19 +6766,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	pressed        bool
-	has_pressed    bool
 }
 
 pub fn (o &CSetCapslockMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_pressed {
+	if o.pressed != bool(0) {
 		res << vproto.pack_bool_field(o.pressed, 1)
 	}
 	return res
 }
 
 pub fn csetcapslockmsg_unpack(buf []byte) ?CSetCapslockMsg {
-	mut res := CSetCapslockMsg{}
+	mut res := zzz_vproto_internal_new_csetcapslockmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5140,7 +6788,6 @@ pub fn csetcapslockmsg_unpack(buf []byte) ?CSetCapslockMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_pressed = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.pressed = v
 				i = ii
@@ -5160,17 +6807,48 @@ pub fn csetcapslockmsg_unpack(buf []byte) ?CSetCapslockMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetCapslockMsg) eq(b CSetCapslockMsg) bool {
+	return true && a.pressed == b.pressed
+}
+
+[inline]
+pub fn (a CSetCapslockMsg) ne(b CSetCapslockMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetCapslockMsg) eq(b []CSetCapslockMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetCapslockMsg) ne(b []CSetCapslockMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetcapslockmsg() CSetCapslockMsg {
 	return CSetCapslockMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetcapslockmsg(o CSetCapslockMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetcapslockmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetCapslockMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetcapslockmsg_unpack(v)?
@@ -5179,62 +6857,53 @@ pub fn zzz_vproto_internal_unpack_csetcapslockmsg(buf []byte, tag_wiretype vprot
 
 pub struct CStreamingKeymapEntry {
 mut:
-	unknown_fields                   []vproto.UnknownField
+	unknown_fields               []vproto.UnknownField
 pub mut:
-	scancode                         int
-	has_scancode                     bool
-	normal_keycode                   int
-	has_normal_keycode               bool
-	shift_keycode                    int
-	has_shift_keycode                bool
-	capslock_keycode                 int
-	has_capslock_keycode             bool
-	shift_capslock_keycode           int
-	has_shift_capslock_keycode       bool
-	altgr_keycode                    int
-	has_altgr_keycode                bool
-	altgr_shift_keycode              int
-	has_altgr_shift_keycode          bool
-	altgr_capslock_keycode           int
-	has_altgr_capslock_keycode       bool
-	altgr_shift_capslock_keycode     int
-	has_altgr_shift_capslock_keycode bool
+	scancode                     int
+	normal_keycode               int
+	shift_keycode                int
+	capslock_keycode             int
+	shift_capslock_keycode       int
+	altgr_keycode                int
+	altgr_shift_keycode          int
+	altgr_capslock_keycode       int
+	altgr_shift_capslock_keycode int
 }
 
 pub fn (o &CStreamingKeymapEntry) pack() []byte {
 	mut res := []byte{}
-	if o.has_scancode {
+	if o.scancode != int(0) {
 		res << vproto.pack_int32_field(o.scancode, 1)
 	}
-	if o.has_normal_keycode {
+	if o.normal_keycode != int(0) {
 		res << vproto.pack_int32_field(o.normal_keycode, 2)
 	}
-	if o.has_shift_keycode {
+	if o.shift_keycode != int(0) {
 		res << vproto.pack_int32_field(o.shift_keycode, 3)
 	}
-	if o.has_capslock_keycode {
+	if o.capslock_keycode != int(0) {
 		res << vproto.pack_int32_field(o.capslock_keycode, 4)
 	}
-	if o.has_shift_capslock_keycode {
+	if o.shift_capslock_keycode != int(0) {
 		res << vproto.pack_int32_field(o.shift_capslock_keycode, 5)
 	}
-	if o.has_altgr_keycode {
+	if o.altgr_keycode != int(0) {
 		res << vproto.pack_int32_field(o.altgr_keycode, 6)
 	}
-	if o.has_altgr_shift_keycode {
+	if o.altgr_shift_keycode != int(0) {
 		res << vproto.pack_int32_field(o.altgr_shift_keycode, 7)
 	}
-	if o.has_altgr_capslock_keycode {
+	if o.altgr_capslock_keycode != int(0) {
 		res << vproto.pack_int32_field(o.altgr_capslock_keycode, 8)
 	}
-	if o.has_altgr_shift_capslock_keycode {
+	if o.altgr_shift_capslock_keycode != int(0) {
 		res << vproto.pack_int32_field(o.altgr_shift_capslock_keycode, 9)
 	}
 	return res
 }
 
 pub fn cstreamingkeymapentry_unpack(buf []byte) ?CStreamingKeymapEntry {
-	mut res := CStreamingKeymapEntry{}
+	mut res := zzz_vproto_internal_new_cstreamingkeymapentry()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5245,55 +6914,46 @@ pub fn cstreamingkeymapentry_unpack(buf []byte) ?CStreamingKeymapEntry {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_scancode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.scancode = v
 				i = ii
 			}
 			2 {
-				res.has_normal_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.normal_keycode = v
 				i = ii
 			}
 			3 {
-				res.has_shift_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.shift_keycode = v
 				i = ii
 			}
 			4 {
-				res.has_capslock_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.capslock_keycode = v
 				i = ii
 			}
 			5 {
-				res.has_shift_capslock_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.shift_capslock_keycode = v
 				i = ii
 			}
 			6 {
-				res.has_altgr_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.altgr_keycode = v
 				i = ii
 			}
 			7 {
-				res.has_altgr_shift_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.altgr_shift_keycode = v
 				i = ii
 			}
 			8 {
-				res.has_altgr_capslock_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.altgr_capslock_keycode = v
 				i = ii
 			}
 			9 {
-				res.has_altgr_shift_capslock_keycode = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.altgr_shift_capslock_keycode = v
 				i = ii
@@ -5313,17 +6973,56 @@ pub fn cstreamingkeymapentry_unpack(buf []byte) ?CStreamingKeymapEntry {
 	return res
 }
 
+[inline]
+pub fn (a CStreamingKeymapEntry) eq(b CStreamingKeymapEntry) bool {
+	return true && a.scancode == b.scancode &&
+		a.normal_keycode == b.normal_keycode &&
+		a.shift_keycode == b.shift_keycode &&
+		a.capslock_keycode == b.capslock_keycode &&
+		a.shift_capslock_keycode == b.shift_capslock_keycode &&
+		a.altgr_keycode == b.altgr_keycode &&
+		a.altgr_shift_keycode == b.altgr_shift_keycode &&
+		a.altgr_capslock_keycode == b.altgr_capslock_keycode &&
+		a.altgr_shift_capslock_keycode == b.altgr_shift_capslock_keycode
+}
+
+[inline]
+pub fn (a CStreamingKeymapEntry) ne(b CStreamingKeymapEntry) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingKeymapEntry) eq(b []CStreamingKeymapEntry) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingKeymapEntry) ne(b []CStreamingKeymapEntry) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingkeymapentry() CStreamingKeymapEntry {
 	return CStreamingKeymapEntry{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingkeymapentry(o CStreamingKeymapEntry, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingkeymapentry(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingKeymapEntry) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingkeymapentry_unpack(v)?
@@ -5347,7 +7046,7 @@ pub fn (o &CStreamingKeymap) pack() []byte {
 }
 
 pub fn cstreamingkeymap_unpack(buf []byte) ?CStreamingKeymap {
-	mut res := CStreamingKeymap{}
+	mut res := zzz_vproto_internal_new_cstreamingkeymap()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5378,17 +7077,48 @@ pub fn cstreamingkeymap_unpack(buf []byte) ?CStreamingKeymap {
 	return res
 }
 
+[inline]
+pub fn (a CStreamingKeymap) eq(b CStreamingKeymap) bool {
+	return true && a.entries.eq(b.entries)
+}
+
+[inline]
+pub fn (a CStreamingKeymap) ne(b CStreamingKeymap) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingKeymap) eq(b []CStreamingKeymap) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingKeymap) ne(b []CStreamingKeymap) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingkeymap() CStreamingKeymap {
 	return CStreamingKeymap{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingkeymap(o CStreamingKeymap, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingkeymap(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingKeymap) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingkeymap_unpack(v)?
@@ -5400,19 +7130,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	keymap         CStreamingKeymap
-	has_keymap     bool
 }
 
 pub fn (o &CSetKeymapMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_keymap {
+	if o.keymap.ne(zzz_vproto_internal_new_cstreamingkeymap()) {
 		res << zzz_vproto_internal_pack_cstreamingkeymap(o.keymap, 1)
 	}
 	return res
 }
 
 pub fn csetkeymapmsg_unpack(buf []byte) ?CSetKeymapMsg {
-	mut res := CSetKeymapMsg{}
+	mut res := zzz_vproto_internal_new_csetkeymapmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5423,7 +7152,6 @@ pub fn csetkeymapmsg_unpack(buf []byte) ?CSetKeymapMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_keymap = true
 				ii, v := zzz_vproto_internal_unpack_cstreamingkeymap(cur_buf, tag_wiretype.wire_type)?
 				res.keymap = v
 				i = ii
@@ -5443,17 +7171,48 @@ pub fn csetkeymapmsg_unpack(buf []byte) ?CSetKeymapMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetKeymapMsg) eq(b CSetKeymapMsg) bool {
+	return true && a.keymap.eq(b.keymap)
+}
+
+[inline]
+pub fn (a CSetKeymapMsg) ne(b CSetKeymapMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetKeymapMsg) eq(b []CSetKeymapMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetKeymapMsg) ne(b []CSetKeymapMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetkeymapmsg() CSetKeymapMsg {
 	return CSetKeymapMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetkeymapmsg(o CSetKeymapMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetkeymapmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetKeymapMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetkeymapmsg_unpack(v)?
@@ -5471,21 +7230,52 @@ pub fn (o &CStopRequest) pack() []byte {
 }
 
 pub fn cstoprequest_unpack(buf []byte) ?CStopRequest {
-	res := CStopRequest{}
+	res := zzz_vproto_internal_new_cstoprequest()
 	return res
 }
 
+[inline]
+pub fn (a CStopRequest) eq(b CStopRequest) bool {
+	return true
+}
+
+[inline]
+pub fn (a CStopRequest) ne(b CStopRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStopRequest) eq(b []CStopRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStopRequest) ne(b []CStopRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstoprequest() CStopRequest {
 	return CStopRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstoprequest(o CStopRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstoprequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CStopRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstoprequest_unpack(v)?
@@ -5503,21 +7293,52 @@ pub fn (o &CQuitRequest) pack() []byte {
 }
 
 pub fn cquitrequest_unpack(buf []byte) ?CQuitRequest {
-	res := CQuitRequest{}
+	res := zzz_vproto_internal_new_cquitrequest()
 	return res
 }
 
+[inline]
+pub fn (a CQuitRequest) eq(b CQuitRequest) bool {
+	return true
+}
+
+[inline]
+pub fn (a CQuitRequest) ne(b CQuitRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CQuitRequest) eq(b []CQuitRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CQuitRequest) ne(b []CQuitRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cquitrequest() CQuitRequest {
 	return CQuitRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cquitrequest(o CQuitRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cquitrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CQuitRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cquitrequest_unpack(v)?
@@ -5538,7 +7359,7 @@ pub fn (o &CDeleteCursorMsg) pack() []byte {
 }
 
 pub fn cdeletecursormsg_unpack(buf []byte) ?CDeleteCursorMsg {
-	mut res := CDeleteCursorMsg{}
+	mut res := zzz_vproto_internal_new_cdeletecursormsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5568,17 +7389,48 @@ pub fn cdeletecursormsg_unpack(buf []byte) ?CDeleteCursorMsg {
 	return res
 }
 
+[inline]
+pub fn (a CDeleteCursorMsg) eq(b CDeleteCursorMsg) bool {
+	return true && a.cursor_id == b.cursor_id
+}
+
+[inline]
+pub fn (a CDeleteCursorMsg) ne(b CDeleteCursorMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeleteCursorMsg) eq(b []CDeleteCursorMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeleteCursorMsg) ne(b []CDeleteCursorMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeletecursormsg() CDeleteCursorMsg {
 	return CDeleteCursorMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeletecursormsg(o CDeleteCursorMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeletecursormsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeleteCursorMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeletecursormsg_unpack(v)?
@@ -5599,7 +7451,7 @@ pub fn (o &CSetStreamingClientConfig) pack() []byte {
 }
 
 pub fn csetstreamingclientconfig_unpack(buf []byte) ?CSetStreamingClientConfig {
-	mut res := CSetStreamingClientConfig{}
+	mut res := zzz_vproto_internal_new_csetstreamingclientconfig()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5629,17 +7481,48 @@ pub fn csetstreamingclientconfig_unpack(buf []byte) ?CSetStreamingClientConfig {
 	return res
 }
 
+[inline]
+pub fn (a CSetStreamingClientConfig) eq(b CSetStreamingClientConfig) bool {
+	return true && a.config.eq(b.config)
+}
+
+[inline]
+pub fn (a CSetStreamingClientConfig) ne(b CSetStreamingClientConfig) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetStreamingClientConfig) eq(b []CSetStreamingClientConfig) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetStreamingClientConfig) ne(b []CSetStreamingClientConfig) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetstreamingclientconfig() CSetStreamingClientConfig {
 	return CSetStreamingClientConfig{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetstreamingclientconfig(o CSetStreamingClientConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetstreamingclientconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetStreamingClientConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetstreamingclientconfig_unpack(v)?
@@ -5660,7 +7543,7 @@ pub fn (o &CSetQoSMsg) pack() []byte {
 }
 
 pub fn csetqosmsg_unpack(buf []byte) ?CSetQoSMsg {
-	mut res := CSetQoSMsg{}
+	mut res := zzz_vproto_internal_new_csetqosmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5690,17 +7573,48 @@ pub fn csetqosmsg_unpack(buf []byte) ?CSetQoSMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetQoSMsg) eq(b CSetQoSMsg) bool {
+	return true && a.use_qos == b.use_qos
+}
+
+[inline]
+pub fn (a CSetQoSMsg) ne(b CSetQoSMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetQoSMsg) eq(b []CSetQoSMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetQoSMsg) ne(b []CSetQoSMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetqosmsg() CSetQoSMsg {
 	return CSetQoSMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetqosmsg(o CSetQoSMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetqosmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetQoSMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetqosmsg_unpack(v)?
@@ -5709,34 +7623,31 @@ pub fn zzz_vproto_internal_unpack_csetqosmsg(buf []byte, tag_wiretype vproto.Wir
 
 pub struct CSetTargetFramerateMsg {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	framerate                 u32
-	reasons                   u32
-	has_reasons               bool
-	framerate_numerator       u32
-	has_framerate_numerator   bool
-	framerate_denominator     u32
-	has_framerate_denominator bool
+	framerate             u32
+	reasons               u32
+	framerate_numerator   u32
+	framerate_denominator u32
 }
 
 pub fn (o &CSetTargetFramerateMsg) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.framerate, 1)
-	if o.has_reasons {
+	if o.reasons != u32(0) {
 		res << vproto.pack_uint32_field(o.reasons, 2)
 	}
-	if o.has_framerate_numerator {
+	if o.framerate_numerator != u32(0) {
 		res << vproto.pack_uint32_field(o.framerate_numerator, 3)
 	}
-	if o.has_framerate_denominator {
+	if o.framerate_denominator != u32(0) {
 		res << vproto.pack_uint32_field(o.framerate_denominator, 4)
 	}
 	return res
 }
 
 pub fn csettargetframeratemsg_unpack(buf []byte) ?CSetTargetFramerateMsg {
-	mut res := CSetTargetFramerateMsg{}
+	mut res := zzz_vproto_internal_new_csettargetframeratemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5752,19 +7663,16 @@ pub fn csettargetframeratemsg_unpack(buf []byte) ?CSetTargetFramerateMsg {
 				i = ii
 			}
 			2 {
-				res.has_reasons = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.reasons = v
 				i = ii
 			}
 			3 {
-				res.has_framerate_numerator = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.framerate_numerator = v
 				i = ii
 			}
 			4 {
-				res.has_framerate_denominator = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.framerate_denominator = v
 				i = ii
@@ -5784,17 +7692,50 @@ pub fn csettargetframeratemsg_unpack(buf []byte) ?CSetTargetFramerateMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetTargetFramerateMsg) eq(b CSetTargetFramerateMsg) bool {
+	return true && a.framerate == b.framerate &&
+		a.reasons == b.reasons && a.framerate_numerator == b.framerate_numerator &&
+		a.framerate_denominator == b.framerate_denominator
+}
+
+[inline]
+pub fn (a CSetTargetFramerateMsg) ne(b CSetTargetFramerateMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetTargetFramerateMsg) eq(b []CSetTargetFramerateMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetTargetFramerateMsg) ne(b []CSetTargetFramerateMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csettargetframeratemsg() CSetTargetFramerateMsg {
 	return CSetTargetFramerateMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csettargetframeratemsg(o CSetTargetFramerateMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csettargetframeratemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetTargetFramerateMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csettargetframeratemsg_unpack(v)?
@@ -5815,7 +7756,7 @@ pub fn (o &CSetTargetBitrateMsg) pack() []byte {
 }
 
 pub fn csettargetbitratemsg_unpack(buf []byte) ?CSetTargetBitrateMsg {
-	mut res := CSetTargetBitrateMsg{}
+	mut res := zzz_vproto_internal_new_csettargetbitratemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5845,17 +7786,48 @@ pub fn csettargetbitratemsg_unpack(buf []byte) ?CSetTargetBitrateMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetTargetBitrateMsg) eq(b CSetTargetBitrateMsg) bool {
+	return true && a.bitrate == b.bitrate
+}
+
+[inline]
+pub fn (a CSetTargetBitrateMsg) ne(b CSetTargetBitrateMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetTargetBitrateMsg) eq(b []CSetTargetBitrateMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetTargetBitrateMsg) ne(b []CSetTargetBitrateMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csettargetbitratemsg() CSetTargetBitrateMsg {
 	return CSetTargetBitrateMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csettargetbitratemsg(o CSetTargetBitrateMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csettargetbitratemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetTargetBitrateMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csettargetbitratemsg_unpack(v)?
@@ -5876,7 +7848,7 @@ pub fn (o &COverlayEnabledMsg) pack() []byte {
 }
 
 pub fn coverlayenabledmsg_unpack(buf []byte) ?COverlayEnabledMsg {
-	mut res := COverlayEnabledMsg{}
+	mut res := zzz_vproto_internal_new_coverlayenabledmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5906,17 +7878,48 @@ pub fn coverlayenabledmsg_unpack(buf []byte) ?COverlayEnabledMsg {
 	return res
 }
 
+[inline]
+pub fn (a COverlayEnabledMsg) eq(b COverlayEnabledMsg) bool {
+	return true && a.enabled == b.enabled
+}
+
+[inline]
+pub fn (a COverlayEnabledMsg) ne(b COverlayEnabledMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []COverlayEnabledMsg) eq(b []COverlayEnabledMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []COverlayEnabledMsg) ne(b []COverlayEnabledMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_coverlayenabledmsg() COverlayEnabledMsg {
 	return COverlayEnabledMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_coverlayenabledmsg(o COverlayEnabledMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_coverlayenabledmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, COverlayEnabledMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := coverlayenabledmsg_unpack(v)?
@@ -5928,19 +7931,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	gamma_ramp     []byte
-	has_gamma_ramp bool
 }
 
 pub fn (o &CSetGammaRampMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_gamma_ramp {
+	if o.gamma_ramp != []byte{} {
 		res << vproto.pack_bytes_field(o.gamma_ramp, 1)
 	}
 	return res
 }
 
 pub fn csetgammarampmsg_unpack(buf []byte) ?CSetGammaRampMsg {
-	mut res := CSetGammaRampMsg{}
+	mut res := zzz_vproto_internal_new_csetgammarampmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5951,7 +7953,6 @@ pub fn csetgammarampmsg_unpack(buf []byte) ?CSetGammaRampMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_gamma_ramp = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.gamma_ramp = v
 				i = ii
@@ -5971,17 +7972,48 @@ pub fn csetgammarampmsg_unpack(buf []byte) ?CSetGammaRampMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetGammaRampMsg) eq(b CSetGammaRampMsg) bool {
+	return true && a.gamma_ramp == b.gamma_ramp
+}
+
+[inline]
+pub fn (a CSetGammaRampMsg) ne(b CSetGammaRampMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetGammaRampMsg) eq(b []CSetGammaRampMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetGammaRampMsg) ne(b []CSetGammaRampMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetgammarampmsg() CSetGammaRampMsg {
 	return CSetGammaRampMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetgammarampmsg(o CSetGammaRampMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetgammarampmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetGammaRampMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetgammarampmsg_unpack(v)?
@@ -5992,30 +8024,27 @@ pub struct CSetActivityMsg {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	activity       EStreamActivity
-	has_activity   bool
+	activity       EStreamActivity = .k_estreamactivityidle
 	appid          u32
-	has_appid      bool
 	gameid         u64
-	has_gameid     bool
 }
 
 pub fn (o &CSetActivityMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_activity {
+	if o.activity != zzz_vproto_internal_new_estreamactivity() {
 		res << zzz_vproto_internal_pack_estreamactivity(o.activity, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_gameid {
+	if o.gameid != u64(0) {
 		res << vproto.pack_uint64_field(o.gameid, 3)
 	}
 	return res
 }
 
 pub fn csetactivitymsg_unpack(buf []byte) ?CSetActivityMsg {
-	mut res := CSetActivityMsg{}
+	mut res := zzz_vproto_internal_new_csetactivitymsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6026,19 +8055,16 @@ pub fn csetactivitymsg_unpack(buf []byte) ?CSetActivityMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_activity = true
 				ii, v := zzz_vproto_internal_unpack_estreamactivity(cur_buf, tag_wiretype.wire_type)?
 				res.activity = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				res.has_gameid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.gameid = v
 				i = ii
@@ -6058,17 +8084,48 @@ pub fn csetactivitymsg_unpack(buf []byte) ?CSetActivityMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetActivityMsg) eq(b CSetActivityMsg) bool {
+	return true && a.activity == b.activity && a.appid == b.appid && a.gameid == b.gameid
+}
+
+[inline]
+pub fn (a CSetActivityMsg) ne(b CSetActivityMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetActivityMsg) eq(b []CSetActivityMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetActivityMsg) ne(b []CSetActivityMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetactivitymsg() CSetActivityMsg {
 	return CSetActivityMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetactivitymsg(o CSetActivityMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetactivitymsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetActivityMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetactivitymsg_unpack(v)?
@@ -6086,21 +8143,52 @@ pub fn (o &CSystemSuspendMsg) pack() []byte {
 }
 
 pub fn csystemsuspendmsg_unpack(buf []byte) ?CSystemSuspendMsg {
-	res := CSystemSuspendMsg{}
+	res := zzz_vproto_internal_new_csystemsuspendmsg()
 	return res
 }
 
+[inline]
+pub fn (a CSystemSuspendMsg) eq(b CSystemSuspendMsg) bool {
+	return true
+}
+
+[inline]
+pub fn (a CSystemSuspendMsg) ne(b CSystemSuspendMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSystemSuspendMsg) eq(b []CSystemSuspendMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSystemSuspendMsg) ne(b []CSystemSuspendMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csystemsuspendmsg() CSystemSuspendMsg {
 	return CSystemSuspendMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csystemsuspendmsg(o CSystemSuspendMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csystemsuspendmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSystemSuspendMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csystemsuspendmsg_unpack(v)?
@@ -6112,19 +8200,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	hostname       string
-	has_hostname   bool
 }
 
 pub fn (o &CVirtualHereRequestMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_hostname {
+	if o.hostname != '' {
 		res << vproto.pack_string_field(o.hostname, 1)
 	}
 	return res
 }
 
 pub fn cvirtualhererequestmsg_unpack(buf []byte) ?CVirtualHereRequestMsg {
-	mut res := CVirtualHereRequestMsg{}
+	mut res := zzz_vproto_internal_new_cvirtualhererequestmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6135,7 +8222,6 @@ pub fn cvirtualhererequestmsg_unpack(buf []byte) ?CVirtualHereRequestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_hostname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.hostname = v
 				i = ii
@@ -6155,17 +8241,48 @@ pub fn cvirtualhererequestmsg_unpack(buf []byte) ?CVirtualHereRequestMsg {
 	return res
 }
 
+[inline]
+pub fn (a CVirtualHereRequestMsg) eq(b CVirtualHereRequestMsg) bool {
+	return true && a.hostname == b.hostname
+}
+
+[inline]
+pub fn (a CVirtualHereRequestMsg) ne(b CVirtualHereRequestMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVirtualHereRequestMsg) eq(b []CVirtualHereRequestMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVirtualHereRequestMsg) ne(b []CVirtualHereRequestMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvirtualhererequestmsg() CVirtualHereRequestMsg {
 	return CVirtualHereRequestMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvirtualhererequestmsg(o CVirtualHereRequestMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvirtualhererequestmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualHereRequestMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvirtualhererequestmsg_unpack(v)?
@@ -6174,22 +8291,21 @@ pub fn zzz_vproto_internal_unpack_cvirtualhererequestmsg(buf []byte, tag_wiretyp
 
 pub struct CVirtualHereReadyMsg {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	licensed_device_count     u32
-	has_licensed_device_count bool
+	licensed_device_count u32
 }
 
 pub fn (o &CVirtualHereReadyMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_licensed_device_count {
+	if o.licensed_device_count != u32(0) {
 		res << vproto.pack_uint32_field(o.licensed_device_count, 1)
 	}
 	return res
 }
 
 pub fn cvirtualherereadymsg_unpack(buf []byte) ?CVirtualHereReadyMsg {
-	mut res := CVirtualHereReadyMsg{}
+	mut res := zzz_vproto_internal_new_cvirtualherereadymsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6200,7 +8316,6 @@ pub fn cvirtualherereadymsg_unpack(buf []byte) ?CVirtualHereReadyMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_licensed_device_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.licensed_device_count = v
 				i = ii
@@ -6220,17 +8335,48 @@ pub fn cvirtualherereadymsg_unpack(buf []byte) ?CVirtualHereReadyMsg {
 	return res
 }
 
+[inline]
+pub fn (a CVirtualHereReadyMsg) eq(b CVirtualHereReadyMsg) bool {
+	return true && a.licensed_device_count == b.licensed_device_count
+}
+
+[inline]
+pub fn (a CVirtualHereReadyMsg) ne(b CVirtualHereReadyMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVirtualHereReadyMsg) eq(b []CVirtualHereReadyMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVirtualHereReadyMsg) ne(b []CVirtualHereReadyMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvirtualherereadymsg() CVirtualHereReadyMsg {
 	return CVirtualHereReadyMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvirtualherereadymsg(o CVirtualHereReadyMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvirtualherereadymsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualHereReadyMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvirtualherereadymsg_unpack(v)?
@@ -6239,22 +8385,21 @@ pub fn zzz_vproto_internal_unpack_cvirtualherereadymsg(buf []byte, tag_wiretype 
 
 pub struct CVirtualHereShareDeviceMsg {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	device_address     string
-	has_device_address bool
+	device_address string
 }
 
 pub fn (o &CVirtualHereShareDeviceMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_device_address {
+	if o.device_address != '' {
 		res << vproto.pack_string_field(o.device_address, 1)
 	}
 	return res
 }
 
 pub fn cvirtualheresharedevicemsg_unpack(buf []byte) ?CVirtualHereShareDeviceMsg {
-	mut res := CVirtualHereShareDeviceMsg{}
+	mut res := zzz_vproto_internal_new_cvirtualheresharedevicemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6265,7 +8410,6 @@ pub fn cvirtualheresharedevicemsg_unpack(buf []byte) ?CVirtualHereShareDeviceMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_device_address = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_address = v
 				i = ii
@@ -6285,17 +8429,48 @@ pub fn cvirtualheresharedevicemsg_unpack(buf []byte) ?CVirtualHereShareDeviceMsg
 	return res
 }
 
+[inline]
+pub fn (a CVirtualHereShareDeviceMsg) eq(b CVirtualHereShareDeviceMsg) bool {
+	return true && a.device_address == b.device_address
+}
+
+[inline]
+pub fn (a CVirtualHereShareDeviceMsg) ne(b CVirtualHereShareDeviceMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVirtualHereShareDeviceMsg) eq(b []CVirtualHereShareDeviceMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVirtualHereShareDeviceMsg) ne(b []CVirtualHereShareDeviceMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvirtualheresharedevicemsg() CVirtualHereShareDeviceMsg {
 	return CVirtualHereShareDeviceMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvirtualheresharedevicemsg(o CVirtualHereShareDeviceMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvirtualheresharedevicemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualHereShareDeviceMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvirtualheresharedevicemsg_unpack(v)?
@@ -6307,19 +8482,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	enabled        bool
-	has_enabled    bool
 }
 
 pub fn (o &CSetSpectatorModeMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_enabled {
+	if o.enabled != bool(0) {
 		res << vproto.pack_bool_field(o.enabled, 1)
 	}
 	return res
 }
 
 pub fn csetspectatormodemsg_unpack(buf []byte) ?CSetSpectatorModeMsg {
-	mut res := CSetSpectatorModeMsg{}
+	mut res := zzz_vproto_internal_new_csetspectatormodemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6330,7 +8504,6 @@ pub fn csetspectatormodemsg_unpack(buf []byte) ?CSetSpectatorModeMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_enabled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.enabled = v
 				i = ii
@@ -6350,17 +8523,48 @@ pub fn csetspectatormodemsg_unpack(buf []byte) ?CSetSpectatorModeMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetSpectatorModeMsg) eq(b CSetSpectatorModeMsg) bool {
+	return true && a.enabled == b.enabled
+}
+
+[inline]
+pub fn (a CSetSpectatorModeMsg) ne(b CSetSpectatorModeMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetSpectatorModeMsg) eq(b []CSetSpectatorModeMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetSpectatorModeMsg) ne(b []CSetSpectatorModeMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csetspectatormodemsg() CSetSpectatorModeMsg {
 	return CSetSpectatorModeMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csetspectatormodemsg(o CSetSpectatorModeMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csetspectatormodemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetSpectatorModeMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csetspectatormodemsg_unpack(v)?
@@ -6372,19 +8576,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	data           []byte
-	has_data       bool
 }
 
 pub fn (o &CRemoteHIDMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 1)
 	}
 	return res
 }
 
 pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIDMsg {
-	mut res := CRemoteHIDMsg{}
+	mut res := zzz_vproto_internal_new_cremotehidmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6395,7 +8598,6 @@ pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIDMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -6415,17 +8617,48 @@ pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIDMsg {
 	return res
 }
 
+[inline]
+pub fn (a CRemoteHIDMsg) eq(b CRemoteHIDMsg) bool {
+	return true && a.data == b.data
+}
+
+[inline]
+pub fn (a CRemoteHIDMsg) ne(b CRemoteHIDMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CRemoteHIDMsg) eq(b []CRemoteHIDMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CRemoteHIDMsg) ne(b []CRemoteHIDMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cremotehidmsg() CRemoteHIDMsg {
 	return CRemoteHIDMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cremotehidmsg(o CRemoteHIDMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cremotehidmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteHIDMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cremotehidmsg_unpack(v)?
@@ -6437,29 +8670,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	revision       u32
-	has_revision   bool
 	creator        u64
-	has_creator    bool
 }
 
 pub fn (o &CTouchConfigActiveMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_revision {
+	if o.revision != u32(0) {
 		res << vproto.pack_uint32_field(o.revision, 2)
 	}
-	if o.has_creator {
+	if o.creator != u64(0) {
 		res << vproto.pack_uint64_field(o.creator, 3)
 	}
 	return res
 }
 
 pub fn ctouchconfigactivemsg_unpack(buf []byte) ?CTouchConfigActiveMsg {
-	mut res := CTouchConfigActiveMsg{}
+	mut res := zzz_vproto_internal_new_ctouchconfigactivemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6470,19 +8700,16 @@ pub fn ctouchconfigactivemsg_unpack(buf []byte) ?CTouchConfigActiveMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_revision = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.revision = v
 				i = ii
 			}
 			3 {
-				res.has_creator = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.creator = v
 				i = ii
@@ -6502,17 +8729,48 @@ pub fn ctouchconfigactivemsg_unpack(buf []byte) ?CTouchConfigActiveMsg {
 	return res
 }
 
+[inline]
+pub fn (a CTouchConfigActiveMsg) eq(b CTouchConfigActiveMsg) bool {
+	return true && a.appid == b.appid && a.revision == b.revision && a.creator == b.creator
+}
+
+[inline]
+pub fn (a CTouchConfigActiveMsg) ne(b CTouchConfigActiveMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTouchConfigActiveMsg) eq(b []CTouchConfigActiveMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTouchConfigActiveMsg) ne(b []CTouchConfigActiveMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctouchconfigactivemsg() CTouchConfigActiveMsg {
 	return CTouchConfigActiveMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctouchconfigactivemsg(o CTouchConfigActiveMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctouchconfigactivemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CTouchConfigActiveMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctouchconfigactivemsg_unpack(v)?
@@ -6524,19 +8782,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CGetTouchConfigDataMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cgettouchconfigdatamsg_unpack(buf []byte) ?CGetTouchConfigDataMsg {
-	mut res := CGetTouchConfigDataMsg{}
+	mut res := zzz_vproto_internal_new_cgettouchconfigdatamsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6547,7 +8804,6 @@ pub fn cgettouchconfigdatamsg_unpack(buf []byte) ?CGetTouchConfigDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -6567,17 +8823,48 @@ pub fn cgettouchconfigdatamsg_unpack(buf []byte) ?CGetTouchConfigDataMsg {
 	return res
 }
 
+[inline]
+pub fn (a CGetTouchConfigDataMsg) eq(b CGetTouchConfigDataMsg) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CGetTouchConfigDataMsg) ne(b CGetTouchConfigDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CGetTouchConfigDataMsg) eq(b []CGetTouchConfigDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CGetTouchConfigDataMsg) ne(b []CGetTouchConfigDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cgettouchconfigdatamsg() CGetTouchConfigDataMsg {
 	return CGetTouchConfigDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cgettouchconfigdatamsg(o CGetTouchConfigDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cgettouchconfigdatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CGetTouchConfigDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cgettouchconfigdatamsg_unpack(v)?
@@ -6589,39 +8876,34 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	revision       u32
-	has_revision   bool
 	data           []byte
-	has_data       bool
 	layout         []byte
-	has_layout     bool
 	creator        u64
-	has_creator    bool
 }
 
 pub fn (o &CSetTouchConfigDataMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_revision {
+	if o.revision != u32(0) {
 		res << vproto.pack_uint32_field(o.revision, 2)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 3)
 	}
-	if o.has_layout {
+	if o.layout != []byte{} {
 		res << vproto.pack_bytes_field(o.layout, 4)
 	}
-	if o.has_creator {
+	if o.creator != u64(0) {
 		res << vproto.pack_uint64_field(o.creator, 5)
 	}
 	return res
 }
 
 pub fn csettouchconfigdatamsg_unpack(buf []byte) ?CSetTouchConfigDataMsg {
-	mut res := CSetTouchConfigDataMsg{}
+	mut res := zzz_vproto_internal_new_csettouchconfigdatamsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6632,31 +8914,26 @@ pub fn csettouchconfigdatamsg_unpack(buf []byte) ?CSetTouchConfigDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_revision = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.revision = v
 				i = ii
 			}
 			3 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
 			}
 			4 {
-				res.has_layout = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.layout = v
 				i = ii
 			}
 			5 {
-				res.has_creator = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.creator = v
 				i = ii
@@ -6676,17 +8953,50 @@ pub fn csettouchconfigdatamsg_unpack(buf []byte) ?CSetTouchConfigDataMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetTouchConfigDataMsg) eq(b CSetTouchConfigDataMsg) bool {
+	return true && a.appid == b.appid &&
+		a.revision == b.revision && a.data == b.data &&
+		a.layout == b.layout && a.creator == b.creator
+}
+
+[inline]
+pub fn (a CSetTouchConfigDataMsg) ne(b CSetTouchConfigDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetTouchConfigDataMsg) eq(b []CSetTouchConfigDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetTouchConfigDataMsg) ne(b []CSetTouchConfigDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csettouchconfigdatamsg() CSetTouchConfigDataMsg {
 	return CSetTouchConfigDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csettouchconfigdatamsg(o CSetTouchConfigDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csettouchconfigdatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetTouchConfigDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csettouchconfigdatamsg_unpack(v)?
@@ -6698,24 +9008,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	layout         []byte
-	has_layout     bool
 }
 
 pub fn (o &CSaveTouchConfigLayoutMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_layout {
+	if o.layout != []byte{} {
 		res << vproto.pack_bytes_field(o.layout, 4)
 	}
 	return res
 }
 
 pub fn csavetouchconfiglayoutmsg_unpack(buf []byte) ?CSaveTouchConfigLayoutMsg {
-	mut res := CSaveTouchConfigLayoutMsg{}
+	mut res := zzz_vproto_internal_new_csavetouchconfiglayoutmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6726,13 +9034,11 @@ pub fn csavetouchconfiglayoutmsg_unpack(buf []byte) ?CSaveTouchConfigLayoutMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			4 {
-				res.has_layout = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.layout = v
 				i = ii
@@ -6752,17 +9058,48 @@ pub fn csavetouchconfiglayoutmsg_unpack(buf []byte) ?CSaveTouchConfigLayoutMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSaveTouchConfigLayoutMsg) eq(b CSaveTouchConfigLayoutMsg) bool {
+	return true && a.appid == b.appid && a.layout == b.layout
+}
+
+[inline]
+pub fn (a CSaveTouchConfigLayoutMsg) ne(b CSaveTouchConfigLayoutMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSaveTouchConfigLayoutMsg) eq(b []CSaveTouchConfigLayoutMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSaveTouchConfigLayoutMsg) ne(b []CSaveTouchConfigLayoutMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csavetouchconfiglayoutmsg() CSaveTouchConfigLayoutMsg {
 	return CSaveTouchConfigLayoutMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csavetouchconfiglayoutmsg(o CSaveTouchConfigLayoutMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csavetouchconfiglayoutmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSaveTouchConfigLayoutMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csavetouchconfiglayoutmsg_unpack(v)?
@@ -6771,27 +9108,25 @@ pub fn zzz_vproto_internal_unpack_csavetouchconfiglayoutmsg(buf []byte, tag_wire
 
 pub struct CTouchActionSetActiveMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid            u32
-	has_appid        bool
-	actionset_id     int
-	has_actionset_id bool
+	appid          u32
+	actionset_id   int
 }
 
 pub fn (o &CTouchActionSetActiveMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_actionset_id {
+	if o.actionset_id != int(0) {
 		res << vproto.pack_int32_field(o.actionset_id, 2)
 	}
 	return res
 }
 
 pub fn ctouchactionsetactivemsg_unpack(buf []byte) ?CTouchActionSetActiveMsg {
-	mut res := CTouchActionSetActiveMsg{}
+	mut res := zzz_vproto_internal_new_ctouchactionsetactivemsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6802,13 +9137,11 @@ pub fn ctouchactionsetactivemsg_unpack(buf []byte) ?CTouchActionSetActiveMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_actionset_id = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.actionset_id = v
 				i = ii
@@ -6828,17 +9161,48 @@ pub fn ctouchactionsetactivemsg_unpack(buf []byte) ?CTouchActionSetActiveMsg {
 	return res
 }
 
+[inline]
+pub fn (a CTouchActionSetActiveMsg) eq(b CTouchActionSetActiveMsg) bool {
+	return true && a.appid == b.appid && a.actionset_id == b.actionset_id
+}
+
+[inline]
+pub fn (a CTouchActionSetActiveMsg) ne(b CTouchActionSetActiveMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTouchActionSetActiveMsg) eq(b []CTouchActionSetActiveMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTouchActionSetActiveMsg) ne(b []CTouchActionSetActiveMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctouchactionsetactivemsg() CTouchActionSetActiveMsg {
 	return CTouchActionSetActiveMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctouchactionsetactivemsg(o CTouchActionSetActiveMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctouchactionsetactivemsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CTouchActionSetActiveMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctouchactionsetactivemsg_unpack(v)?
@@ -6847,27 +9211,25 @@ pub fn zzz_vproto_internal_unpack_ctouchactionsetactivemsg(buf []byte, tag_wiret
 
 pub struct CTouchActionSetLayerAddedMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid            u32
-	has_appid        bool
-	actionset_id     int
-	has_actionset_id bool
+	appid          u32
+	actionset_id   int
 }
 
 pub fn (o &CTouchActionSetLayerAddedMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_actionset_id {
+	if o.actionset_id != int(0) {
 		res << vproto.pack_int32_field(o.actionset_id, 2)
 	}
 	return res
 }
 
 pub fn ctouchactionsetlayeraddedmsg_unpack(buf []byte) ?CTouchActionSetLayerAddedMsg {
-	mut res := CTouchActionSetLayerAddedMsg{}
+	mut res := zzz_vproto_internal_new_ctouchactionsetlayeraddedmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6878,13 +9240,11 @@ pub fn ctouchactionsetlayeraddedmsg_unpack(buf []byte) ?CTouchActionSetLayerAdde
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_actionset_id = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.actionset_id = v
 				i = ii
@@ -6904,17 +9264,48 @@ pub fn ctouchactionsetlayeraddedmsg_unpack(buf []byte) ?CTouchActionSetLayerAdde
 	return res
 }
 
+[inline]
+pub fn (a CTouchActionSetLayerAddedMsg) eq(b CTouchActionSetLayerAddedMsg) bool {
+	return true && a.appid == b.appid && a.actionset_id == b.actionset_id
+}
+
+[inline]
+pub fn (a CTouchActionSetLayerAddedMsg) ne(b CTouchActionSetLayerAddedMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTouchActionSetLayerAddedMsg) eq(b []CTouchActionSetLayerAddedMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTouchActionSetLayerAddedMsg) ne(b []CTouchActionSetLayerAddedMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctouchactionsetlayeraddedmsg() CTouchActionSetLayerAddedMsg {
 	return CTouchActionSetLayerAddedMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctouchactionsetlayeraddedmsg(o CTouchActionSetLayerAddedMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctouchactionsetlayeraddedmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CTouchActionSetLayerAddedMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctouchactionsetlayeraddedmsg_unpack(v)?
@@ -6923,27 +9314,25 @@ pub fn zzz_vproto_internal_unpack_ctouchactionsetlayeraddedmsg(buf []byte, tag_w
 
 pub struct CTouchActionSetLayerRemovedMsg {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid            u32
-	has_appid        bool
-	actionset_id     int
-	has_actionset_id bool
+	appid          u32
+	actionset_id   int
 }
 
 pub fn (o &CTouchActionSetLayerRemovedMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_actionset_id {
+	if o.actionset_id != int(0) {
 		res << vproto.pack_int32_field(o.actionset_id, 2)
 	}
 	return res
 }
 
 pub fn ctouchactionsetlayerremovedmsg_unpack(buf []byte) ?CTouchActionSetLayerRemovedMsg {
-	mut res := CTouchActionSetLayerRemovedMsg{}
+	mut res := zzz_vproto_internal_new_ctouchactionsetlayerremovedmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6954,13 +9343,11 @@ pub fn ctouchactionsetlayerremovedmsg_unpack(buf []byte) ?CTouchActionSetLayerRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_actionset_id = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.actionset_id = v
 				i = ii
@@ -6980,17 +9367,48 @@ pub fn ctouchactionsetlayerremovedmsg_unpack(buf []byte) ?CTouchActionSetLayerRe
 	return res
 }
 
+[inline]
+pub fn (a CTouchActionSetLayerRemovedMsg) eq(b CTouchActionSetLayerRemovedMsg) bool {
+	return true && a.appid == b.appid && a.actionset_id == b.actionset_id
+}
+
+[inline]
+pub fn (a CTouchActionSetLayerRemovedMsg) ne(b CTouchActionSetLayerRemovedMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTouchActionSetLayerRemovedMsg) eq(b []CTouchActionSetLayerRemovedMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTouchActionSetLayerRemovedMsg) ne(b []CTouchActionSetLayerRemovedMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctouchactionsetlayerremovedmsg() CTouchActionSetLayerRemovedMsg {
 	return CTouchActionSetLayerRemovedMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctouchactionsetlayerremovedmsg(o CTouchActionSetLayerRemovedMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctouchactionsetlayerremovedmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CTouchActionSetLayerRemovedMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctouchactionsetlayerremovedmsg_unpack(v)?
@@ -7002,24 +9420,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	icon           string
-	has_icon       bool
 }
 
 pub fn (o &CGetTouchIconDataMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_icon {
+	if o.icon != '' {
 		res << vproto.pack_string_field(o.icon, 2)
 	}
 	return res
 }
 
 pub fn cgettouchicondatamsg_unpack(buf []byte) ?CGetTouchIconDataMsg {
-	mut res := CGetTouchIconDataMsg{}
+	mut res := zzz_vproto_internal_new_cgettouchicondatamsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7030,13 +9446,11 @@ pub fn cgettouchicondatamsg_unpack(buf []byte) ?CGetTouchIconDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_icon = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.icon = v
 				i = ii
@@ -7056,17 +9470,48 @@ pub fn cgettouchicondatamsg_unpack(buf []byte) ?CGetTouchIconDataMsg {
 	return res
 }
 
+[inline]
+pub fn (a CGetTouchIconDataMsg) eq(b CGetTouchIconDataMsg) bool {
+	return true && a.appid == b.appid && a.icon == b.icon
+}
+
+[inline]
+pub fn (a CGetTouchIconDataMsg) ne(b CGetTouchIconDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CGetTouchIconDataMsg) eq(b []CGetTouchIconDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CGetTouchIconDataMsg) ne(b []CGetTouchIconDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cgettouchicondatamsg() CGetTouchIconDataMsg {
 	return CGetTouchIconDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cgettouchicondatamsg(o CGetTouchIconDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cgettouchicondatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CGetTouchIconDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cgettouchicondatamsg_unpack(v)?
@@ -7078,29 +9523,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	icon           string
-	has_icon       bool
 	data           []byte
-	has_data       bool
 }
 
 pub fn (o &CSetTouchIconDataMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_icon {
+	if o.icon != '' {
 		res << vproto.pack_string_field(o.icon, 2)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 3)
 	}
 	return res
 }
 
 pub fn csettouchicondatamsg_unpack(buf []byte) ?CSetTouchIconDataMsg {
-	mut res := CSetTouchIconDataMsg{}
+	mut res := zzz_vproto_internal_new_csettouchicondatamsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7111,19 +9553,16 @@ pub fn csettouchicondatamsg_unpack(buf []byte) ?CSetTouchIconDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_icon = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.icon = v
 				i = ii
 			}
 			3 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -7143,17 +9582,48 @@ pub fn csettouchicondatamsg_unpack(buf []byte) ?CSetTouchIconDataMsg {
 	return res
 }
 
+[inline]
+pub fn (a CSetTouchIconDataMsg) eq(b CSetTouchIconDataMsg) bool {
+	return true && a.appid == b.appid && a.icon == b.icon && a.data == b.data
+}
+
+[inline]
+pub fn (a CSetTouchIconDataMsg) ne(b CSetTouchIconDataMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CSetTouchIconDataMsg) eq(b []CSetTouchIconDataMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CSetTouchIconDataMsg) ne(b []CSetTouchIconDataMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_csettouchicondatamsg() CSetTouchIconDataMsg {
 	return CSetTouchIconDataMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_csettouchicondatamsg(o CSetTouchIconDataMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_csettouchicondatamsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CSetTouchIconDataMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := csettouchicondatamsg_unpack(v)?
@@ -7177,7 +9647,7 @@ pub fn (o &CStreamDataLostMsg) pack() []byte {
 }
 
 pub fn cstreamdatalostmsg_unpack(buf []byte) ?CStreamDataLostMsg {
-	mut res := CStreamDataLostMsg{}
+	mut res := zzz_vproto_internal_new_cstreamdatalostmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7208,17 +9678,48 @@ pub fn cstreamdatalostmsg_unpack(buf []byte) ?CStreamDataLostMsg {
 	return res
 }
 
+[inline]
+pub fn (a CStreamDataLostMsg) eq(b CStreamDataLostMsg) bool {
+	return true && a.packets == b.packets
+}
+
+[inline]
+pub fn (a CStreamDataLostMsg) ne(b CStreamDataLostMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamDataLostMsg) eq(b []CStreamDataLostMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamDataLostMsg) ne(b []CStreamDataLostMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamdatalostmsg() CStreamDataLostMsg {
 	return CStreamDataLostMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamdatalostmsg(o CStreamDataLostMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamdatalostmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamDataLostMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamdatalostmsg_unpack(v)?
@@ -7231,25 +9732,23 @@ mut:
 pub mut:
 	format         EAudioFormat
 	frequency      u32
-	has_frequency  bool
 	channels       u32
-	has_channels   bool
 }
 
 pub fn (o &CAudioFormat) pack() []byte {
 	mut res := []byte{}
 	res << zzz_vproto_internal_pack_eaudioformat(o.format, 1)
-	if o.has_frequency {
+	if o.frequency != u32(0) {
 		res << vproto.pack_uint32_field(o.frequency, 2)
 	}
-	if o.has_channels {
+	if o.channels != u32(0) {
 		res << vproto.pack_uint32_field(o.channels, 3)
 	}
 	return res
 }
 
 pub fn caudioformat_unpack(buf []byte) ?CAudioFormat {
-	mut res := CAudioFormat{}
+	mut res := zzz_vproto_internal_new_caudioformat()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7265,13 +9764,11 @@ pub fn caudioformat_unpack(buf []byte) ?CAudioFormat {
 				i = ii
 			}
 			2 {
-				res.has_frequency = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.frequency = v
 				i = ii
 			}
 			3 {
-				res.has_channels = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.channels = v
 				i = ii
@@ -7291,17 +9788,48 @@ pub fn caudioformat_unpack(buf []byte) ?CAudioFormat {
 	return res
 }
 
+[inline]
+pub fn (a CAudioFormat) eq(b CAudioFormat) bool {
+	return true && a.format == b.format && a.frequency == b.frequency && a.channels == b.channels
+}
+
+[inline]
+pub fn (a CAudioFormat) ne(b CAudioFormat) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAudioFormat) eq(b []CAudioFormat) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAudioFormat) ne(b []CAudioFormat) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caudioformat() CAudioFormat {
 	return CAudioFormat{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caudioformat(o CAudioFormat, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caudioformat(buf []byte, tag_wiretype vproto.WireType) ?(int, CAudioFormat) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caudioformat_unpack(v)?
@@ -7314,25 +9842,23 @@ mut:
 pub mut:
 	format         EVideoFormat
 	width          u32
-	has_width      bool
 	height         u32
-	has_height     bool
 }
 
 pub fn (o &CVideoFormat) pack() []byte {
 	mut res := []byte{}
 	res << zzz_vproto_internal_pack_evideoformat(o.format, 1)
-	if o.has_width {
+	if o.width != u32(0) {
 		res << vproto.pack_uint32_field(o.width, 2)
 	}
-	if o.has_height {
+	if o.height != u32(0) {
 		res << vproto.pack_uint32_field(o.height, 3)
 	}
 	return res
 }
 
 pub fn cvideoformat_unpack(buf []byte) ?CVideoFormat {
-	mut res := CVideoFormat{}
+	mut res := zzz_vproto_internal_new_cvideoformat()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7348,13 +9874,11 @@ pub fn cvideoformat_unpack(buf []byte) ?CVideoFormat {
 				i = ii
 			}
 			2 {
-				res.has_width = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.width = v
 				i = ii
 			}
 			3 {
-				res.has_height = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.height = v
 				i = ii
@@ -7374,17 +9898,48 @@ pub fn cvideoformat_unpack(buf []byte) ?CVideoFormat {
 	return res
 }
 
+[inline]
+pub fn (a CVideoFormat) eq(b CVideoFormat) bool {
+	return true && a.format == b.format && a.width == b.width && a.height == b.height
+}
+
+[inline]
+pub fn (a CVideoFormat) ne(b CVideoFormat) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideoFormat) eq(b []CVideoFormat) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideoFormat) ne(b []CVideoFormat) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideoformat() CVideoFormat {
 	return CVideoFormat{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideoformat(o CVideoFormat, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideoformat(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideoFormat) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideoformat_unpack(v)?
@@ -7407,7 +9962,7 @@ pub fn (o &CFrameEvent) pack() []byte {
 }
 
 pub fn cframeevent_unpack(buf []byte) ?CFrameEvent {
-	mut res := CFrameEvent{}
+	mut res := zzz_vproto_internal_new_cframeevent()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7442,17 +9997,48 @@ pub fn cframeevent_unpack(buf []byte) ?CFrameEvent {
 	return res
 }
 
+[inline]
+pub fn (a CFrameEvent) eq(b CFrameEvent) bool {
+	return true && a.event_id == b.event_id && a.timestamp == b.timestamp
+}
+
+[inline]
+pub fn (a CFrameEvent) ne(b CFrameEvent) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFrameEvent) eq(b []CFrameEvent) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFrameEvent) ne(b []CFrameEvent) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cframeevent() CFrameEvent {
 	return CFrameEvent{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cframeevent(o CFrameEvent, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cframeevent(buf []byte, tag_wiretype vproto.WireType) ?(int, CFrameEvent) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cframeevent_unpack(v)?
@@ -7461,35 +10047,26 @@ pub fn zzz_vproto_internal_unpack_cframeevent(buf []byte, tag_wiretype vproto.Wi
 
 pub struct CFrameStats {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	frame_id                u32
-	input_mark              u32
-	has_input_mark          bool
-	events                  []CFrameEvent
-	result                  EStreamFrameResult
-	frame_start_delta       f32
-	has_frame_start_delta   bool
-	frame_display_delta     f32
-	has_frame_display_delta bool
-	ping_time               f32
-	has_ping_time           bool
-	server_bitrate          f32
-	has_server_bitrate      bool
-	client_bitrate          f32
-	has_client_bitrate      bool
-	link_bandwidth          f32
-	has_link_bandwidth      bool
-	packet_loss             f32
-	has_packet_loss         bool
-	frame_size              u32
-	has_frame_size          bool
+	frame_id            u32
+	input_mark          u32
+	events              []CFrameEvent
+	result              EStreamFrameResult
+	frame_start_delta   f32
+	frame_display_delta f32
+	ping_time           f32
+	server_bitrate      f32
+	client_bitrate      f32
+	link_bandwidth      f32
+	packet_loss         f32
+	frame_size          u32
 }
 
 pub fn (o &CFrameStats) pack() []byte {
 	mut res := []byte{}
 	res << vproto.pack_uint32_field(o.frame_id, 1)
-	if o.has_input_mark {
+	if o.input_mark != u32(0) {
 		res << vproto.pack_uint32_field(o.input_mark, 2)
 	}
 	// [packed=false]
@@ -7497,35 +10074,35 @@ pub fn (o &CFrameStats) pack() []byte {
 		res << zzz_vproto_internal_pack_cframeevent(x, 3)
 	}
 	res << zzz_vproto_internal_pack_estreamframeresult(o.result, 4)
-	if o.has_frame_start_delta {
+	if o.frame_start_delta != f32(0) {
 		res << vproto.pack_float_field(o.frame_start_delta, 5)
 	}
-	if o.has_frame_display_delta {
+	if o.frame_display_delta != f32(0) {
 		res << vproto.pack_float_field(o.frame_display_delta, 6)
 	}
-	if o.has_ping_time {
+	if o.ping_time != f32(0) {
 		res << vproto.pack_float_field(o.ping_time, 7)
 	}
-	if o.has_server_bitrate {
+	if o.server_bitrate != f32(0) {
 		res << vproto.pack_float_field(o.server_bitrate, 8)
 	}
-	if o.has_client_bitrate {
+	if o.client_bitrate != f32(0) {
 		res << vproto.pack_float_field(o.client_bitrate, 9)
 	}
-	if o.has_link_bandwidth {
+	if o.link_bandwidth != f32(0) {
 		res << vproto.pack_float_field(o.link_bandwidth, 10)
 	}
-	if o.has_packet_loss {
+	if o.packet_loss != f32(0) {
 		res << vproto.pack_float_field(o.packet_loss, 11)
 	}
-	if o.has_frame_size {
+	if o.frame_size != u32(0) {
 		res << vproto.pack_uint32_field(o.frame_size, 12)
 	}
 	return res
 }
 
 pub fn cframestats_unpack(buf []byte) ?CFrameStats {
-	mut res := CFrameStats{}
+	mut res := zzz_vproto_internal_new_cframestats()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7541,7 +10118,6 @@ pub fn cframestats_unpack(buf []byte) ?CFrameStats {
 				i = ii
 			}
 			2 {
-				res.has_input_mark = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.input_mark = v
 				i = ii
@@ -7558,49 +10134,41 @@ pub fn cframestats_unpack(buf []byte) ?CFrameStats {
 				i = ii
 			}
 			5 {
-				res.has_frame_start_delta = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.frame_start_delta = v
 				i = ii
 			}
 			6 {
-				res.has_frame_display_delta = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.frame_display_delta = v
 				i = ii
 			}
 			7 {
-				res.has_ping_time = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.ping_time = v
 				i = ii
 			}
 			8 {
-				res.has_server_bitrate = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.server_bitrate = v
 				i = ii
 			}
 			9 {
-				res.has_client_bitrate = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_bitrate = v
 				i = ii
 			}
 			10 {
-				res.has_link_bandwidth = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.link_bandwidth = v
 				i = ii
 			}
 			11 {
-				res.has_packet_loss = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.packet_loss = v
 				i = ii
 			}
 			12 {
-				res.has_frame_size = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.frame_size = v
 				i = ii
@@ -7620,17 +10188,55 @@ pub fn cframestats_unpack(buf []byte) ?CFrameStats {
 	return res
 }
 
+[inline]
+pub fn (a CFrameStats) eq(b CFrameStats) bool {
+	return true && a.frame_id == b.frame_id &&
+		a.input_mark == b.input_mark && a.events.eq(b.events) &&
+		a.result == b.result && a.frame_start_delta == b.frame_start_delta &&
+		a.frame_display_delta == b.frame_display_delta &&
+		a.ping_time == b.ping_time && a.server_bitrate == b.server_bitrate &&
+		a.client_bitrate == b.client_bitrate &&
+		a.link_bandwidth == b.link_bandwidth &&
+		a.packet_loss == b.packet_loss && a.frame_size == b.frame_size
+}
+
+[inline]
+pub fn (a CFrameStats) ne(b CFrameStats) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFrameStats) eq(b []CFrameStats) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFrameStats) ne(b []CFrameStats) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cframestats() CFrameStats {
 	return CFrameStats{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cframestats(o CFrameStats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cframestats(buf []byte, tag_wiretype vproto.WireType) ?(int, CFrameStats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cframestats_unpack(v)?
@@ -7645,7 +10251,6 @@ pub mut:
 	count          int
 	average        f32
 	stddev         f32
-	has_stddev     bool
 }
 
 pub fn (o &CFrameStatAccumulatedValue) pack() []byte {
@@ -7653,14 +10258,14 @@ pub fn (o &CFrameStatAccumulatedValue) pack() []byte {
 	res << zzz_vproto_internal_pack_eframeaccumulatedstat(o.stat_type, 1)
 	res << vproto.pack_int32_field(o.count, 2)
 	res << vproto.pack_float_field(o.average, 3)
-	if o.has_stddev {
+	if o.stddev != f32(0) {
 		res << vproto.pack_float_field(o.stddev, 4)
 	}
 	return res
 }
 
 pub fn cframestataccumulatedvalue_unpack(buf []byte) ?CFrameStatAccumulatedValue {
-	mut res := CFrameStatAccumulatedValue{}
+	mut res := zzz_vproto_internal_new_cframestataccumulatedvalue()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7686,7 +10291,6 @@ pub fn cframestataccumulatedvalue_unpack(buf []byte) ?CFrameStatAccumulatedValue
 				i = ii
 			}
 			4 {
-				res.has_stddev = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.stddev = v
 				i = ii
@@ -7706,17 +10310,50 @@ pub fn cframestataccumulatedvalue_unpack(buf []byte) ?CFrameStatAccumulatedValue
 	return res
 }
 
+[inline]
+pub fn (a CFrameStatAccumulatedValue) eq(b CFrameStatAccumulatedValue) bool {
+	return true && a.stat_type == b.stat_type &&
+		a.count == b.count && a.average == b.average &&
+		a.stddev == b.stddev
+}
+
+[inline]
+pub fn (a CFrameStatAccumulatedValue) ne(b CFrameStatAccumulatedValue) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFrameStatAccumulatedValue) eq(b []CFrameStatAccumulatedValue) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFrameStatAccumulatedValue) ne(b []CFrameStatAccumulatedValue) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cframestataccumulatedvalue() CFrameStatAccumulatedValue {
 	return CFrameStatAccumulatedValue{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cframestataccumulatedvalue(o CFrameStatAccumulatedValue, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cframestataccumulatedvalue(buf []byte, tag_wiretype vproto.WireType) ?(int, CFrameStatAccumulatedValue) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cframestataccumulatedvalue_unpack(v)?
@@ -7749,7 +10386,7 @@ pub fn (o &CFrameStatsListMsg) pack() []byte {
 }
 
 pub fn cframestatslistmsg_unpack(buf []byte) ?CFrameStatsListMsg {
-	mut res := CFrameStatsListMsg{}
+	mut res := zzz_vproto_internal_new_cframestatslistmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7797,17 +10434,49 @@ pub fn cframestatslistmsg_unpack(buf []byte) ?CFrameStatsListMsg {
 	return res
 }
 
+[inline]
+pub fn (a CFrameStatsListMsg) eq(b CFrameStatsListMsg) bool {
+	return true && a.data_type == b.data_type && a.stats.eq(b.stats) && a.accumulated_stats.eq(b.accumulated_stats) &&
+		a.latest_frame_id == b.latest_frame_id
+}
+
+[inline]
+pub fn (a CFrameStatsListMsg) ne(b CFrameStatsListMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFrameStatsListMsg) eq(b []CFrameStatsListMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFrameStatsListMsg) ne(b []CFrameStatsListMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cframestatslistmsg() CFrameStatsListMsg {
 	return CFrameStatsListMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cframestatslistmsg(o CFrameStatsListMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cframestatslistmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CFrameStatsListMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cframestatslistmsg_unpack(v)?
@@ -7816,32 +10485,29 @@ pub fn zzz_vproto_internal_unpack_cframestatslistmsg(buf []byte, tag_wiretype vp
 
 pub struct CStreamingSessionStats {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	frame_loss_percentage       f32
-	has_frame_loss_percentage   bool
-	average_network_time_ms     f32
-	has_average_network_time_ms bool
-	stddev_network_time_ms      f32
-	has_stddev_network_time_ms  bool
+	frame_loss_percentage   f32
+	average_network_time_ms f32
+	stddev_network_time_ms  f32
 }
 
 pub fn (o &CStreamingSessionStats) pack() []byte {
 	mut res := []byte{}
-	if o.has_frame_loss_percentage {
+	if o.frame_loss_percentage != f32(0) {
 		res << vproto.pack_float_field(o.frame_loss_percentage, 1)
 	}
-	if o.has_average_network_time_ms {
+	if o.average_network_time_ms != f32(0) {
 		res << vproto.pack_float_field(o.average_network_time_ms, 2)
 	}
-	if o.has_stddev_network_time_ms {
+	if o.stddev_network_time_ms != f32(0) {
 		res << vproto.pack_float_field(o.stddev_network_time_ms, 3)
 	}
 	return res
 }
 
 pub fn cstreamingsessionstats_unpack(buf []byte) ?CStreamingSessionStats {
-	mut res := CStreamingSessionStats{}
+	mut res := zzz_vproto_internal_new_cstreamingsessionstats()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7852,19 +10518,16 @@ pub fn cstreamingsessionstats_unpack(buf []byte) ?CStreamingSessionStats {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_frame_loss_percentage = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.frame_loss_percentage = v
 				i = ii
 			}
 			2 {
-				res.has_average_network_time_ms = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.average_network_time_ms = v
 				i = ii
 			}
 			3 {
-				res.has_stddev_network_time_ms = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.stddev_network_time_ms = v
 				i = ii
@@ -7884,17 +10547,50 @@ pub fn cstreamingsessionstats_unpack(buf []byte) ?CStreamingSessionStats {
 	return res
 }
 
+[inline]
+pub fn (a CStreamingSessionStats) eq(b CStreamingSessionStats) bool {
+	return true && a.frame_loss_percentage == b.frame_loss_percentage &&
+		a.average_network_time_ms == b.average_network_time_ms &&
+		a.stddev_network_time_ms == b.stddev_network_time_ms
+}
+
+[inline]
+pub fn (a CStreamingSessionStats) ne(b CStreamingSessionStats) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CStreamingSessionStats) eq(b []CStreamingSessionStats) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CStreamingSessionStats) ne(b []CStreamingSessionStats) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cstreamingsessionstats() CStreamingSessionStats {
 	return CStreamingSessionStats{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cstreamingsessionstats(o CStreamingSessionStats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cstreamingsessionstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CStreamingSessionStats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cstreamingsessionstats_unpack(v)?
@@ -7906,19 +10602,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	screenshot     []byte
-	has_screenshot bool
 }
 
 pub fn (o &CDebugDumpMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_screenshot {
+	if o.screenshot != []byte{} {
 		res << vproto.pack_bytes_field(o.screenshot, 1)
 	}
 	return res
 }
 
 pub fn cdebugdumpmsg_unpack(buf []byte) ?CDebugDumpMsg {
-	mut res := CDebugDumpMsg{}
+	mut res := zzz_vproto_internal_new_cdebugdumpmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7929,7 +10624,6 @@ pub fn cdebugdumpmsg_unpack(buf []byte) ?CDebugDumpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_screenshot = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.screenshot = v
 				i = ii
@@ -7949,17 +10643,48 @@ pub fn cdebugdumpmsg_unpack(buf []byte) ?CDebugDumpMsg {
 	return res
 }
 
+[inline]
+pub fn (a CDebugDumpMsg) eq(b CDebugDumpMsg) bool {
+	return true && a.screenshot == b.screenshot
+}
+
+[inline]
+pub fn (a CDebugDumpMsg) ne(b CDebugDumpMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDebugDumpMsg) eq(b []CDebugDumpMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDebugDumpMsg) ne(b []CDebugDumpMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdebugdumpmsg() CDebugDumpMsg {
 	return CDebugDumpMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdebugdumpmsg(o CDebugDumpMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdebugdumpmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CDebugDumpMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdebugdumpmsg_unpack(v)?
@@ -7971,24 +10696,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	@type          int
-	has_type       bool
 	message        string
-	has_message    bool
 }
 
 pub fn (o &CLogMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_type {
+	if o.@type != int(0) {
 		res << vproto.pack_int32_field(o.@type, 1)
 	}
-	if o.has_message {
+	if o.message != '' {
 		res << vproto.pack_string_field(o.message, 2)
 	}
 	return res
 }
 
 pub fn clogmsg_unpack(buf []byte) ?CLogMsg {
-	mut res := CLogMsg{}
+	mut res := zzz_vproto_internal_new_clogmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7999,13 +10722,11 @@ pub fn clogmsg_unpack(buf []byte) ?CLogMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.@type = v
 				i = ii
 			}
 			2 {
-				res.has_message = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
@@ -8025,17 +10746,48 @@ pub fn clogmsg_unpack(buf []byte) ?CLogMsg {
 	return res
 }
 
+[inline]
+pub fn (a CLogMsg) eq(b CLogMsg) bool {
+	return true && a.@type == b.@type && a.message == b.message
+}
+
+[inline]
+pub fn (a CLogMsg) ne(b CLogMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CLogMsg) eq(b []CLogMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CLogMsg) ne(b []CLogMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_clogmsg() CLogMsg {
 	return CLogMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_clogmsg(o CLogMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_clogmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CLogMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := clogmsg_unpack(v)?
@@ -8046,25 +10798,23 @@ pub struct CLogUploadMsg {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	@type          ELogFileType
-	has_type       bool
+	@type          ELogFileType = .k_elogfilesystemboot
 	data           []byte
-	has_data       bool
 }
 
 pub fn (o &CLogUploadMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_type {
+	if o.@type != zzz_vproto_internal_new_elogfiletype() {
 		res << zzz_vproto_internal_pack_elogfiletype(o.@type, 1)
 	}
-	if o.has_data {
+	if o.data != []byte{} {
 		res << vproto.pack_bytes_field(o.data, 3)
 	}
 	return res
 }
 
 pub fn cloguploadmsg_unpack(buf []byte) ?CLogUploadMsg {
-	mut res := CLogUploadMsg{}
+	mut res := zzz_vproto_internal_new_cloguploadmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8075,13 +10825,11 @@ pub fn cloguploadmsg_unpack(buf []byte) ?CLogUploadMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_type = true
 				ii, v := zzz_vproto_internal_unpack_elogfiletype(cur_buf, tag_wiretype.wire_type)?
 				res.@type = v
 				i = ii
 			}
 			3 {
-				res.has_data = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.data = v
 				i = ii
@@ -8101,17 +10849,48 @@ pub fn cloguploadmsg_unpack(buf []byte) ?CLogUploadMsg {
 	return res
 }
 
+[inline]
+pub fn (a CLogUploadMsg) eq(b CLogUploadMsg) bool {
+	return true && a.@type == b.@type && a.data == b.data
+}
+
+[inline]
+pub fn (a CLogUploadMsg) ne(b CLogUploadMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CLogUploadMsg) eq(b []CLogUploadMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CLogUploadMsg) ne(b []CLogUploadMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cloguploadmsg() CLogUploadMsg {
 	return CLogUploadMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cloguploadmsg(o CLogUploadMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cloguploadmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CLogUploadMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cloguploadmsg_unpack(v)?
@@ -8120,32 +10899,29 @@ pub fn zzz_vproto_internal_unpack_cloguploadmsg(buf []byte, tag_wiretype vproto.
 
 pub struct CTransportSignalMsgWebRTCMessage_Candidate {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	sdp_mid             string
-	has_sdp_mid         bool
-	sdp_mline_index     int
-	has_sdp_mline_index bool
-	candidate           string
-	has_candidate       bool
+	sdp_mid         string
+	sdp_mline_index int
+	candidate       string
 }
 
 pub fn (o &CTransportSignalMsgWebRTCMessage_Candidate) pack() []byte {
 	mut res := []byte{}
-	if o.has_sdp_mid {
+	if o.sdp_mid != '' {
 		res << vproto.pack_string_field(o.sdp_mid, 1)
 	}
-	if o.has_sdp_mline_index {
+	if o.sdp_mline_index != int(0) {
 		res << vproto.pack_int32_field(o.sdp_mline_index, 2)
 	}
-	if o.has_candidate {
+	if o.candidate != '' {
 		res << vproto.pack_string_field(o.candidate, 3)
 	}
 	return res
 }
 
 pub fn ctransportsignalmsgwebrtcmessage_candidate_unpack(buf []byte) ?CTransportSignalMsgWebRTCMessage_Candidate {
-	mut res := CTransportSignalMsgWebRTCMessage_Candidate{}
+	mut res := zzz_vproto_internal_new_ctransportsignalmsgwebrtcmessage_candidate()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8156,19 +10932,16 @@ pub fn ctransportsignalmsgwebrtcmessage_candidate_unpack(buf []byte) ?CTransport
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_sdp_mid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sdp_mid = v
 				i = ii
 			}
 			2 {
-				res.has_sdp_mline_index = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.sdp_mline_index = v
 				i = ii
 			}
 			3 {
-				res.has_candidate = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.candidate = v
 				i = ii
@@ -8188,17 +10961,50 @@ pub fn ctransportsignalmsgwebrtcmessage_candidate_unpack(buf []byte) ?CTransport
 	return res
 }
 
+[inline]
+pub fn (a CTransportSignalMsgWebRTCMessage_Candidate) eq(b CTransportSignalMsgWebRTCMessage_Candidate) bool {
+	return true && a.sdp_mid == b.sdp_mid &&
+		a.sdp_mline_index == b.sdp_mline_index &&
+		a.candidate == b.candidate
+}
+
+[inline]
+pub fn (a CTransportSignalMsgWebRTCMessage_Candidate) ne(b CTransportSignalMsgWebRTCMessage_Candidate) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTransportSignalMsgWebRTCMessage_Candidate) eq(b []CTransportSignalMsgWebRTCMessage_Candidate) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTransportSignalMsgWebRTCMessage_Candidate) ne(b []CTransportSignalMsgWebRTCMessage_Candidate) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctransportsignalmsgwebrtcmessage_candidate() CTransportSignalMsgWebRTCMessage_Candidate {
 	return CTransportSignalMsgWebRTCMessage_Candidate{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctransportsignalmsgwebrtcmessage_candidate(o CTransportSignalMsgWebRTCMessage_Candidate, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctransportsignalmsgwebrtcmessage_candidate(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsgWebRTCMessage_Candidate) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctransportsignalmsgwebrtcmessage_candidate_unpack(v)?
@@ -8216,21 +11022,52 @@ pub fn (o &CTransportSignalMsg_WebRTCMessage) pack() []byte {
 }
 
 pub fn ctransportsignalmsg_webrtcmessage_unpack(buf []byte) ?CTransportSignalMsg_WebRTCMessage {
-	res := CTransportSignalMsg_WebRTCMessage{}
+	res := zzz_vproto_internal_new_ctransportsignalmsg_webrtcmessage()
 	return res
 }
 
+[inline]
+pub fn (a CTransportSignalMsg_WebRTCMessage) eq(b CTransportSignalMsg_WebRTCMessage) bool {
+	return true
+}
+
+[inline]
+pub fn (a CTransportSignalMsg_WebRTCMessage) ne(b CTransportSignalMsg_WebRTCMessage) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTransportSignalMsg_WebRTCMessage) eq(b []CTransportSignalMsg_WebRTCMessage) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTransportSignalMsg_WebRTCMessage) ne(b []CTransportSignalMsg_WebRTCMessage) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctransportsignalmsg_webrtcmessage() CTransportSignalMsg_WebRTCMessage {
 	return CTransportSignalMsg_WebRTCMessage{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctransportsignalmsg_webrtcmessage(o CTransportSignalMsg_WebRTCMessage, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctransportsignalmsg_webrtcmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsg_WebRTCMessage) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctransportsignalmsg_webrtcmessage_unpack(v)?
@@ -8242,13 +11079,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	webrtc         CTransportSignalMsg_WebRTCMessage
-	has_webrtc     bool
 	sdr            [][]byte
 }
 
 pub fn (o &CTransportSignalMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_webrtc {
+	if o.webrtc.ne(zzz_vproto_internal_new_ctransportsignalmsg_webrtcmessage()) {
 		res << zzz_vproto_internal_pack_ctransportsignalmsg_webrtcmessage(o.webrtc, 1)
 	}
 	// [packed=false]
@@ -8259,7 +11095,7 @@ pub fn (o &CTransportSignalMsg) pack() []byte {
 }
 
 pub fn ctransportsignalmsg_unpack(buf []byte) ?CTransportSignalMsg {
-	mut res := CTransportSignalMsg{}
+	mut res := zzz_vproto_internal_new_ctransportsignalmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -8270,7 +11106,6 @@ pub fn ctransportsignalmsg_unpack(buf []byte) ?CTransportSignalMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_webrtc = true
 				ii, v := zzz_vproto_internal_unpack_ctransportsignalmsg_webrtcmessage(cur_buf,
 					tag_wiretype.wire_type)?
 				res.webrtc = v
@@ -8297,17 +11132,48 @@ pub fn ctransportsignalmsg_unpack(buf []byte) ?CTransportSignalMsg {
 	return res
 }
 
+[inline]
+pub fn (a CTransportSignalMsg) eq(b CTransportSignalMsg) bool {
+	return true && a.webrtc.eq(b.webrtc) && a.sdr == b.sdr
+}
+
+[inline]
+pub fn (a CTransportSignalMsg) ne(b CTransportSignalMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTransportSignalMsg) eq(b []CTransportSignalMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTransportSignalMsg) ne(b []CTransportSignalMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctransportsignalmsg() CTransportSignalMsg {
 	return CTransportSignalMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctransportsignalmsg(o CTransportSignalMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctransportsignalmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CTransportSignalMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctransportsignalmsg_unpack(v)?

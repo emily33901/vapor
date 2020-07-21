@@ -8,19 +8,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	webcookie      string
-	has_webcookie  bool
 }
 
 pub fn (o &CEconMarket_IsMarketplaceAllowed_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_webcookie {
+	if o.webcookie != '' {
 		res << vproto.pack_string_field(o.webcookie, 1)
 	}
 	return res
 }
 
 pub fn ceconmarket_ismarketplaceallowed_request_unpack(buf []byte) ?CEconMarket_IsMarketplaceAllowed_Request {
-	mut res := CEconMarket_IsMarketplaceAllowed_Request{}
+	mut res := zzz_vproto_internal_new_ceconmarket_ismarketplaceallowed_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -31,7 +30,6 @@ pub fn ceconmarket_ismarketplaceallowed_request_unpack(buf []byte) ?CEconMarket_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_webcookie = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.webcookie = v
 				i = ii
@@ -51,17 +49,48 @@ pub fn ceconmarket_ismarketplaceallowed_request_unpack(buf []byte) ?CEconMarket_
 	return res
 }
 
+[inline]
+pub fn (a CEconMarket_IsMarketplaceAllowed_Request) eq(b CEconMarket_IsMarketplaceAllowed_Request) bool {
+	return true && a.webcookie == b.webcookie
+}
+
+[inline]
+pub fn (a CEconMarket_IsMarketplaceAllowed_Request) ne(b CEconMarket_IsMarketplaceAllowed_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CEconMarket_IsMarketplaceAllowed_Request) eq(b []CEconMarket_IsMarketplaceAllowed_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CEconMarket_IsMarketplaceAllowed_Request) ne(b []CEconMarket_IsMarketplaceAllowed_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ceconmarket_ismarketplaceallowed_request() CEconMarket_IsMarketplaceAllowed_Request {
 	return CEconMarket_IsMarketplaceAllowed_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ceconmarket_ismarketplaceallowed_request(o CEconMarket_IsMarketplaceAllowed_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarket_IsMarketplaceAllowed_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ceconmarket_ismarketplaceallowed_request_unpack(v)?
@@ -70,52 +99,45 @@ pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_request(buf [
 
 pub struct CEconMarket_IsMarketplaceAllowed_Response {
 mut:
-	unknown_fields                 []vproto.UnknownField
+	unknown_fields             []vproto.UnknownField
 pub mut:
-	allowed                        bool
-	has_allowed                    bool
-	reason                         u32
-	has_reason                     bool
-	allowed_at_time                u32
-	has_allowed_at_time            bool
-	steamguard_required_days       u32
-	has_steamguard_required_days   bool
-	forms_requested                bool
-	has_forms_requested            bool
-	forms_require_verification     bool
-	has_forms_require_verification bool
-	new_device_cooldown_days       u32
-	has_new_device_cooldown_days   bool
+	allowed                    bool
+	reason                     u32
+	allowed_at_time            u32
+	steamguard_required_days   u32
+	forms_requested            bool
+	forms_require_verification bool
+	new_device_cooldown_days   u32
 }
 
 pub fn (o &CEconMarket_IsMarketplaceAllowed_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_allowed {
+	if o.allowed != bool(0) {
 		res << vproto.pack_bool_field(o.allowed, 1)
 	}
-	if o.has_reason {
+	if o.reason != u32(0) {
 		res << vproto.pack_uint32_field(o.reason, 2)
 	}
-	if o.has_allowed_at_time {
+	if o.allowed_at_time != u32(0) {
 		res << vproto.pack_uint32_field(o.allowed_at_time, 3)
 	}
-	if o.has_steamguard_required_days {
+	if o.steamguard_required_days != u32(0) {
 		res << vproto.pack_uint32_field(o.steamguard_required_days, 4)
 	}
-	if o.has_forms_requested {
+	if o.forms_requested != bool(0) {
 		res << vproto.pack_bool_field(o.forms_requested, 7)
 	}
-	if o.has_forms_require_verification {
+	if o.forms_require_verification != bool(0) {
 		res << vproto.pack_bool_field(o.forms_require_verification, 8)
 	}
-	if o.has_new_device_cooldown_days {
+	if o.new_device_cooldown_days != u32(0) {
 		res << vproto.pack_uint32_field(o.new_device_cooldown_days, 9)
 	}
 	return res
 }
 
 pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket_IsMarketplaceAllowed_Response {
-	mut res := CEconMarket_IsMarketplaceAllowed_Response{}
+	mut res := zzz_vproto_internal_new_ceconmarket_ismarketplaceallowed_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -126,43 +148,36 @@ pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_allowed = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.allowed = v
 				i = ii
 			}
 			2 {
-				res.has_reason = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.reason = v
 				i = ii
 			}
 			3 {
-				res.has_allowed_at_time = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.allowed_at_time = v
 				i = ii
 			}
 			4 {
-				res.has_steamguard_required_days = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamguard_required_days = v
 				i = ii
 			}
 			7 {
-				res.has_forms_requested = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.forms_requested = v
 				i = ii
 			}
 			8 {
-				res.has_forms_require_verification = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.forms_require_verification = v
 				i = ii
 			}
 			9 {
-				res.has_new_device_cooldown_days = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.new_device_cooldown_days = v
 				i = ii
@@ -182,17 +197,53 @@ pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket
 	return res
 }
 
+[inline]
+pub fn (a CEconMarket_IsMarketplaceAllowed_Response) eq(b CEconMarket_IsMarketplaceAllowed_Response) bool {
+	return true && a.allowed == b.allowed &&
+		a.reason == b.reason && a.allowed_at_time == b.allowed_at_time &&
+		a.steamguard_required_days == b.steamguard_required_days &&
+		a.forms_requested == b.forms_requested &&
+		a.forms_require_verification == b.forms_require_verification &&
+		a.new_device_cooldown_days == b.new_device_cooldown_days
+}
+
+[inline]
+pub fn (a CEconMarket_IsMarketplaceAllowed_Response) ne(b CEconMarket_IsMarketplaceAllowed_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CEconMarket_IsMarketplaceAllowed_Response) eq(b []CEconMarket_IsMarketplaceAllowed_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CEconMarket_IsMarketplaceAllowed_Response) ne(b []CEconMarket_IsMarketplaceAllowed_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ceconmarket_ismarketplaceallowed_response() CEconMarket_IsMarketplaceAllowed_Response {
 	return CEconMarket_IsMarketplaceAllowed_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ceconmarket_ismarketplaceallowed_response(o CEconMarket_IsMarketplaceAllowed_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarket_IsMarketplaceAllowed_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ceconmarket_ismarketplaceallowed_response_unpack(v)?

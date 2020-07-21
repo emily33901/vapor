@@ -5,27 +5,25 @@ import emily33901.vproto
 
 pub struct CVideo_ClientGetVideoURL_Request {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	video_id          u64
-	has_video_id      bool
-	client_cellid     u32
-	has_client_cellid bool
+	video_id       u64
+	client_cellid  u32
 }
 
 pub fn (o &CVideo_ClientGetVideoURL_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_video_id {
+	if o.video_id != u64(0) {
 		res << vproto.pack_uint64_field(o.video_id, 1)
 	}
-	if o.has_client_cellid {
+	if o.client_cellid != u32(0) {
 		res << vproto.pack_uint32_field(o.client_cellid, 2)
 	}
 	return res
 }
 
 pub fn cvideo_clientgetvideourl_request_unpack(buf []byte) ?CVideo_ClientGetVideoURL_Request {
-	mut res := CVideo_ClientGetVideoURL_Request{}
+	mut res := zzz_vproto_internal_new_cvideo_clientgetvideourl_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -36,13 +34,11 @@ pub fn cvideo_clientgetvideourl_request_unpack(buf []byte) ?CVideo_ClientGetVide
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_video_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.video_id = v
 				i = ii
 			}
 			2 {
-				res.has_client_cellid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_cellid = v
 				i = ii
@@ -62,17 +58,48 @@ pub fn cvideo_clientgetvideourl_request_unpack(buf []byte) ?CVideo_ClientGetVide
 	return res
 }
 
+[inline]
+pub fn (a CVideo_ClientGetVideoURL_Request) eq(b CVideo_ClientGetVideoURL_Request) bool {
+	return true && a.video_id == b.video_id && a.client_cellid == b.client_cellid
+}
+
+[inline]
+pub fn (a CVideo_ClientGetVideoURL_Request) ne(b CVideo_ClientGetVideoURL_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideo_ClientGetVideoURL_Request) eq(b []CVideo_ClientGetVideoURL_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideo_ClientGetVideoURL_Request) ne(b []CVideo_ClientGetVideoURL_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideo_clientgetvideourl_request() CVideo_ClientGetVideoURL_Request {
 	return CVideo_ClientGetVideoURL_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideo_clientgetvideourl_request(o CVideo_ClientGetVideoURL_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideo_clientgetvideourl_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideo_ClientGetVideoURL_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideo_clientgetvideourl_request_unpack(v)?
@@ -84,24 +111,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	video_id       u64
-	has_video_id   bool
 	video_url      string
-	has_video_url  bool
 }
 
 pub fn (o &CVideo_ClientGetVideoURL_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_video_id {
+	if o.video_id != u64(0) {
 		res << vproto.pack_uint64_field(o.video_id, 1)
 	}
-	if o.has_video_url {
+	if o.video_url != '' {
 		res << vproto.pack_string_field(o.video_url, 2)
 	}
 	return res
 }
 
 pub fn cvideo_clientgetvideourl_response_unpack(buf []byte) ?CVideo_ClientGetVideoURL_Response {
-	mut res := CVideo_ClientGetVideoURL_Response{}
+	mut res := zzz_vproto_internal_new_cvideo_clientgetvideourl_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -112,13 +137,11 @@ pub fn cvideo_clientgetvideourl_response_unpack(buf []byte) ?CVideo_ClientGetVid
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_video_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.video_id = v
 				i = ii
 			}
 			2 {
-				res.has_video_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.video_url = v
 				i = ii
@@ -138,17 +161,48 @@ pub fn cvideo_clientgetvideourl_response_unpack(buf []byte) ?CVideo_ClientGetVid
 	return res
 }
 
+[inline]
+pub fn (a CVideo_ClientGetVideoURL_Response) eq(b CVideo_ClientGetVideoURL_Response) bool {
+	return true && a.video_id == b.video_id && a.video_url == b.video_url
+}
+
+[inline]
+pub fn (a CVideo_ClientGetVideoURL_Response) ne(b CVideo_ClientGetVideoURL_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideo_ClientGetVideoURL_Response) eq(b []CVideo_ClientGetVideoURL_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideo_ClientGetVideoURL_Response) ne(b []CVideo_ClientGetVideoURL_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideo_clientgetvideourl_response() CVideo_ClientGetVideoURL_Response {
 	return CVideo_ClientGetVideoURL_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideo_clientgetvideourl_response(o CVideo_ClientGetVideoURL_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideo_clientgetvideourl_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideo_ClientGetVideoURL_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideo_clientgetvideourl_response_unpack(v)?
@@ -157,57 +211,49 @@ pub fn zzz_vproto_internal_unpack_cvideo_clientgetvideourl_response(buf []byte, 
 
 pub struct VideoBookmark {
 mut:
-	unknown_fields                   []vproto.UnknownField
+	unknown_fields               []vproto.UnknownField
 pub mut:
-	app_id                           u32
-	has_app_id                       bool
-	playback_position_in_seconds     u32
-	has_playback_position_in_seconds bool
-	video_track_id                   u64
-	has_video_track_id               bool
-	audio_track_id                   u64
-	has_audio_track_id               bool
-	timedtext_track_id               u64
-	has_timedtext_track_id           bool
-	last_modified                    u32
-	has_last_modified                bool
-	hide_from_watch_history          bool
-	has_hide_from_watch_history      bool
-	hide_from_library                bool
-	has_hide_from_library            bool
+	app_id                       u32
+	playback_position_in_seconds u32
+	video_track_id               u64
+	audio_track_id               u64
+	timedtext_track_id           u64
+	last_modified                u32
+	hide_from_watch_history      bool = false
+	hide_from_library            bool = false
 }
 
 pub fn (o &VideoBookmark) pack() []byte {
 	mut res := []byte{}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 1)
 	}
-	if o.has_playback_position_in_seconds {
+	if o.playback_position_in_seconds != u32(0) {
 		res << vproto.pack_uint32_field(o.playback_position_in_seconds, 2)
 	}
-	if o.has_video_track_id {
+	if o.video_track_id != u64(0) {
 		res << vproto.pack_uint64_field(o.video_track_id, 3)
 	}
-	if o.has_audio_track_id {
+	if o.audio_track_id != u64(0) {
 		res << vproto.pack_uint64_field(o.audio_track_id, 4)
 	}
-	if o.has_timedtext_track_id {
+	if o.timedtext_track_id != u64(0) {
 		res << vproto.pack_uint64_field(o.timedtext_track_id, 5)
 	}
-	if o.has_last_modified {
+	if o.last_modified != u32(0) {
 		res << vproto.pack_uint32_field(o.last_modified, 6)
 	}
-	if o.has_hide_from_watch_history {
+	if o.hide_from_watch_history != bool(0) {
 		res << vproto.pack_bool_field(o.hide_from_watch_history, 7)
 	}
-	if o.has_hide_from_library {
+	if o.hide_from_library != bool(0) {
 		res << vproto.pack_bool_field(o.hide_from_library, 8)
 	}
 	return res
 }
 
 pub fn videobookmark_unpack(buf []byte) ?VideoBookmark {
-	mut res := VideoBookmark{}
+	mut res := zzz_vproto_internal_new_videobookmark()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -218,49 +264,41 @@ pub fn videobookmark_unpack(buf []byte) ?VideoBookmark {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				res.has_playback_position_in_seconds = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playback_position_in_seconds = v
 				i = ii
 			}
 			3 {
-				res.has_video_track_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.video_track_id = v
 				i = ii
 			}
 			4 {
-				res.has_audio_track_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.audio_track_id = v
 				i = ii
 			}
 			5 {
-				res.has_timedtext_track_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.timedtext_track_id = v
 				i = ii
 			}
 			6 {
-				res.has_last_modified = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_modified = v
 				i = ii
 			}
 			7 {
-				res.has_hide_from_watch_history = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.hide_from_watch_history = v
 				i = ii
 			}
 			8 {
-				res.has_hide_from_library = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.hide_from_library = v
 				i = ii
@@ -280,17 +318,55 @@ pub fn videobookmark_unpack(buf []byte) ?VideoBookmark {
 	return res
 }
 
+[inline]
+pub fn (a VideoBookmark) eq(b VideoBookmark) bool {
+	return true && a.app_id == b.app_id &&
+		a.playback_position_in_seconds == b.playback_position_in_seconds &&
+		a.video_track_id == b.video_track_id &&
+		a.audio_track_id == b.audio_track_id &&
+		a.timedtext_track_id == b.timedtext_track_id &&
+		a.last_modified == b.last_modified &&
+		a.hide_from_watch_history == b.hide_from_watch_history &&
+		a.hide_from_library == b.hide_from_library
+}
+
+[inline]
+pub fn (a VideoBookmark) ne(b VideoBookmark) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []VideoBookmark) eq(b []VideoBookmark) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []VideoBookmark) ne(b []VideoBookmark) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_videobookmark() VideoBookmark {
 	return VideoBookmark{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_videobookmark(o VideoBookmark, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_videobookmark(buf []byte, tag_wiretype vproto.WireType) ?(int, VideoBookmark) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := videobookmark_unpack(v)?
@@ -314,7 +390,7 @@ pub fn (o &CVideo_SetVideoBookmark_Notification) pack() []byte {
 }
 
 pub fn cvideo_setvideobookmark_notification_unpack(buf []byte) ?CVideo_SetVideoBookmark_Notification {
-	mut res := CVideo_SetVideoBookmark_Notification{}
+	mut res := zzz_vproto_internal_new_cvideo_setvideobookmark_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -345,17 +421,48 @@ pub fn cvideo_setvideobookmark_notification_unpack(buf []byte) ?CVideo_SetVideoB
 	return res
 }
 
+[inline]
+pub fn (a CVideo_SetVideoBookmark_Notification) eq(b CVideo_SetVideoBookmark_Notification) bool {
+	return true && a.bookmarks.eq(b.bookmarks)
+}
+
+[inline]
+pub fn (a CVideo_SetVideoBookmark_Notification) ne(b CVideo_SetVideoBookmark_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideo_SetVideoBookmark_Notification) eq(b []CVideo_SetVideoBookmark_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideo_SetVideoBookmark_Notification) ne(b []CVideo_SetVideoBookmark_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideo_setvideobookmark_notification() CVideo_SetVideoBookmark_Notification {
 	return CVideo_SetVideoBookmark_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideo_setvideobookmark_notification(o CVideo_SetVideoBookmark_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideo_setvideobookmark_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideo_SetVideoBookmark_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideo_setvideobookmark_notification_unpack(v)?
@@ -364,11 +471,10 @@ pub fn zzz_vproto_internal_unpack_cvideo_setvideobookmark_notification(buf []byt
 
 pub struct CVideo_GetVideoBookmarks_Request {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appids            []u32
-	updated_since     u32
-	has_updated_since bool
+	appids         []u32
+	updated_since  u32
 }
 
 pub fn (o &CVideo_GetVideoBookmarks_Request) pack() []byte {
@@ -377,14 +483,14 @@ pub fn (o &CVideo_GetVideoBookmarks_Request) pack() []byte {
 	for _, x in o.appids {
 		res << vproto.pack_uint32_field(x, 1)
 	}
-	if o.has_updated_since {
+	if o.updated_since != u32(0) {
 		res << vproto.pack_uint32_field(o.updated_since, 2)
 	}
 	return res
 }
 
 pub fn cvideo_getvideobookmarks_request_unpack(buf []byte) ?CVideo_GetVideoBookmarks_Request {
-	mut res := CVideo_GetVideoBookmarks_Request{}
+	mut res := zzz_vproto_internal_new_cvideo_getvideobookmarks_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -401,7 +507,6 @@ pub fn cvideo_getvideobookmarks_request_unpack(buf []byte) ?CVideo_GetVideoBookm
 				i = ii
 			}
 			2 {
-				res.has_updated_since = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.updated_since = v
 				i = ii
@@ -421,17 +526,48 @@ pub fn cvideo_getvideobookmarks_request_unpack(buf []byte) ?CVideo_GetVideoBookm
 	return res
 }
 
+[inline]
+pub fn (a CVideo_GetVideoBookmarks_Request) eq(b CVideo_GetVideoBookmarks_Request) bool {
+	return true && a.appids == b.appids && a.updated_since == b.updated_since
+}
+
+[inline]
+pub fn (a CVideo_GetVideoBookmarks_Request) ne(b CVideo_GetVideoBookmarks_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideo_GetVideoBookmarks_Request) eq(b []CVideo_GetVideoBookmarks_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideo_GetVideoBookmarks_Request) ne(b []CVideo_GetVideoBookmarks_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideo_getvideobookmarks_request() CVideo_GetVideoBookmarks_Request {
 	return CVideo_GetVideoBookmarks_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideo_getvideobookmarks_request(o CVideo_GetVideoBookmarks_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideo_getvideobookmarks_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideo_GetVideoBookmarks_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideo_getvideobookmarks_request_unpack(v)?
@@ -455,7 +591,7 @@ pub fn (o &CVideo_GetVideoBookmarks_Response) pack() []byte {
 }
 
 pub fn cvideo_getvideobookmarks_response_unpack(buf []byte) ?CVideo_GetVideoBookmarks_Response {
-	mut res := CVideo_GetVideoBookmarks_Response{}
+	mut res := zzz_vproto_internal_new_cvideo_getvideobookmarks_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -486,17 +622,48 @@ pub fn cvideo_getvideobookmarks_response_unpack(buf []byte) ?CVideo_GetVideoBook
 	return res
 }
 
+[inline]
+pub fn (a CVideo_GetVideoBookmarks_Response) eq(b CVideo_GetVideoBookmarks_Response) bool {
+	return true && a.bookmarks.eq(b.bookmarks)
+}
+
+[inline]
+pub fn (a CVideo_GetVideoBookmarks_Response) ne(b CVideo_GetVideoBookmarks_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideo_GetVideoBookmarks_Response) eq(b []CVideo_GetVideoBookmarks_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideo_GetVideoBookmarks_Response) ne(b []CVideo_GetVideoBookmarks_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideo_getvideobookmarks_response() CVideo_GetVideoBookmarks_Response {
 	return CVideo_GetVideoBookmarks_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideo_getvideobookmarks_response(o CVideo_GetVideoBookmarks_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideo_getvideobookmarks_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideo_GetVideoBookmarks_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideo_getvideobookmarks_response_unpack(v)?
@@ -505,22 +672,21 @@ pub fn zzz_vproto_internal_unpack_cvideo_getvideobookmarks_response(buf []byte, 
 
 pub struct CVideo_UnlockedH264_Notification {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	encryption_key     []byte
-	has_encryption_key bool
+	encryption_key []byte
 }
 
 pub fn (o &CVideo_UnlockedH264_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_encryption_key {
+	if o.encryption_key != []byte{} {
 		res << vproto.pack_bytes_field(o.encryption_key, 1)
 	}
 	return res
 }
 
 pub fn cvideo_unlockedh264_notification_unpack(buf []byte) ?CVideo_UnlockedH264_Notification {
-	mut res := CVideo_UnlockedH264_Notification{}
+	mut res := zzz_vproto_internal_new_cvideo_unlockedh264_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -531,7 +697,6 @@ pub fn cvideo_unlockedh264_notification_unpack(buf []byte) ?CVideo_UnlockedH264_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_encryption_key = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.encryption_key = v
 				i = ii
@@ -551,17 +716,48 @@ pub fn cvideo_unlockedh264_notification_unpack(buf []byte) ?CVideo_UnlockedH264_
 	return res
 }
 
+[inline]
+pub fn (a CVideo_UnlockedH264_Notification) eq(b CVideo_UnlockedH264_Notification) bool {
+	return true && a.encryption_key == b.encryption_key
+}
+
+[inline]
+pub fn (a CVideo_UnlockedH264_Notification) ne(b CVideo_UnlockedH264_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CVideo_UnlockedH264_Notification) eq(b []CVideo_UnlockedH264_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CVideo_UnlockedH264_Notification) ne(b []CVideo_UnlockedH264_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cvideo_unlockedh264_notification() CVideo_UnlockedH264_Notification {
 	return CVideo_UnlockedH264_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cvideo_unlockedh264_notification(o CVideo_UnlockedH264_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cvideo_unlockedh264_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CVideo_UnlockedH264_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cvideo_unlockedh264_notification_unpack(v)?
@@ -570,27 +766,25 @@ pub fn zzz_vproto_internal_unpack_cvideo_unlockedh264_notification(buf []byte, t
 
 pub struct CFovasVideo_ClientGetOPFSettings_Request {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	app_id            u32
-	has_app_id        bool
-	client_cellid     u32
-	has_client_cellid bool
+	app_id         u32
+	client_cellid  u32
 }
 
 pub fn (o &CFovasVideo_ClientGetOPFSettings_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 1)
 	}
-	if o.has_client_cellid {
+	if o.client_cellid != u32(0) {
 		res << vproto.pack_uint32_field(o.client_cellid, 2)
 	}
 	return res
 }
 
 pub fn cfovasvideo_clientgetopfsettings_request_unpack(buf []byte) ?CFovasVideo_ClientGetOPFSettings_Request {
-	mut res := CFovasVideo_ClientGetOPFSettings_Request{}
+	mut res := zzz_vproto_internal_new_cfovasvideo_clientgetopfsettings_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -601,13 +795,11 @@ pub fn cfovasvideo_clientgetopfsettings_request_unpack(buf []byte) ?CFovasVideo_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				res.has_client_cellid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_cellid = v
 				i = ii
@@ -627,17 +819,48 @@ pub fn cfovasvideo_clientgetopfsettings_request_unpack(buf []byte) ?CFovasVideo_
 	return res
 }
 
+[inline]
+pub fn (a CFovasVideo_ClientGetOPFSettings_Request) eq(b CFovasVideo_ClientGetOPFSettings_Request) bool {
+	return true && a.app_id == b.app_id && a.client_cellid == b.client_cellid
+}
+
+[inline]
+pub fn (a CFovasVideo_ClientGetOPFSettings_Request) ne(b CFovasVideo_ClientGetOPFSettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFovasVideo_ClientGetOPFSettings_Request) eq(b []CFovasVideo_ClientGetOPFSettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFovasVideo_ClientGetOPFSettings_Request) ne(b []CFovasVideo_ClientGetOPFSettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfovasvideo_clientgetopfsettings_request() CFovasVideo_ClientGetOPFSettings_Request {
 	return CFovasVideo_ClientGetOPFSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfovasvideo_clientgetopfsettings_request(o CFovasVideo_ClientGetOPFSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfovasvideo_clientgetopfsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFovasVideo_ClientGetOPFSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfovasvideo_clientgetopfsettings_request_unpack(v)?
@@ -646,27 +869,25 @@ pub fn zzz_vproto_internal_unpack_cfovasvideo_clientgetopfsettings_request(buf [
 
 pub struct CFovasVideo_ClientGetOPFSettings_Response {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	app_id           u32
-	has_app_id       bool
-	opf_settings     string
-	has_opf_settings bool
+	app_id         u32
+	opf_settings   string
 }
 
 pub fn (o &CFovasVideo_ClientGetOPFSettings_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 1)
 	}
-	if o.has_opf_settings {
+	if o.opf_settings != '' {
 		res << vproto.pack_string_field(o.opf_settings, 2)
 	}
 	return res
 }
 
 pub fn cfovasvideo_clientgetopfsettings_response_unpack(buf []byte) ?CFovasVideo_ClientGetOPFSettings_Response {
-	mut res := CFovasVideo_ClientGetOPFSettings_Response{}
+	mut res := zzz_vproto_internal_new_cfovasvideo_clientgetopfsettings_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -677,13 +898,11 @@ pub fn cfovasvideo_clientgetopfsettings_response_unpack(buf []byte) ?CFovasVideo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				res.has_opf_settings = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.opf_settings = v
 				i = ii
@@ -703,17 +922,48 @@ pub fn cfovasvideo_clientgetopfsettings_response_unpack(buf []byte) ?CFovasVideo
 	return res
 }
 
+[inline]
+pub fn (a CFovasVideo_ClientGetOPFSettings_Response) eq(b CFovasVideo_ClientGetOPFSettings_Response) bool {
+	return true && a.app_id == b.app_id && a.opf_settings == b.opf_settings
+}
+
+[inline]
+pub fn (a CFovasVideo_ClientGetOPFSettings_Response) ne(b CFovasVideo_ClientGetOPFSettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFovasVideo_ClientGetOPFSettings_Response) eq(b []CFovasVideo_ClientGetOPFSettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFovasVideo_ClientGetOPFSettings_Response) ne(b []CFovasVideo_ClientGetOPFSettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfovasvideo_clientgetopfsettings_response() CFovasVideo_ClientGetOPFSettings_Response {
 	return CFovasVideo_ClientGetOPFSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfovasvideo_clientgetopfsettings_response(o CFovasVideo_ClientGetOPFSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfovasvideo_clientgetopfsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFovasVideo_ClientGetOPFSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfovasvideo_clientgetopfsettings_response_unpack(v)?

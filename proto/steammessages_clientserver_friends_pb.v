@@ -5,42 +5,37 @@ import emily33901.vproto
 
 pub struct CMsgClientFriendMsg {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid                      u64
-	has_steamid                  bool
-	chat_entry_type              int
-	has_chat_entry_type          bool
-	message                      []byte
-	has_message                  bool
-	rtime32_server_timestamp     u32
-	has_rtime32_server_timestamp bool
-	echo_to_sender               bool
-	has_echo_to_sender           bool
+	steamid                  u64
+	chat_entry_type          int
+	message                  []byte
+	rtime32_server_timestamp u32
+	echo_to_sender           bool
 }
 
 pub fn (o &CMsgClientFriendMsg) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_chat_entry_type {
+	if o.chat_entry_type != int(0) {
 		res << vproto.pack_int32_field(o.chat_entry_type, 2)
 	}
-	if o.has_message {
+	if o.message != []byte{} {
 		res << vproto.pack_bytes_field(o.message, 3)
 	}
-	if o.has_rtime32_server_timestamp {
+	if o.rtime32_server_timestamp != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_server_timestamp, 4)
 	}
-	if o.has_echo_to_sender {
+	if o.echo_to_sender != bool(0) {
 		res << vproto.pack_bool_field(o.echo_to_sender, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendmsg_unpack(buf []byte) ?CMsgClientFriendMsg {
-	mut res := CMsgClientFriendMsg{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendmsg()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -51,31 +46,26 @@ pub fn cmsgclientfriendmsg_unpack(buf []byte) ?CMsgClientFriendMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_chat_entry_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.chat_entry_type = v
 				i = ii
 			}
 			3 {
-				res.has_message = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
 			}
 			4 {
-				res.has_rtime32_server_timestamp = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime32_server_timestamp = v
 				i = ii
 			}
 			5 {
-				res.has_echo_to_sender = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.echo_to_sender = v
 				i = ii
@@ -95,17 +85,51 @@ pub fn cmsgclientfriendmsg_unpack(buf []byte) ?CMsgClientFriendMsg {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendMsg) eq(b CMsgClientFriendMsg) bool {
+	return true && a.steamid == b.steamid &&
+		a.chat_entry_type == b.chat_entry_type &&
+		a.message == b.message && a.rtime32_server_timestamp == b.rtime32_server_timestamp &&
+		a.echo_to_sender == b.echo_to_sender
+}
+
+[inline]
+pub fn (a CMsgClientFriendMsg) ne(b CMsgClientFriendMsg) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendMsg) eq(b []CMsgClientFriendMsg) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendMsg) ne(b []CMsgClientFriendMsg) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendmsg() CMsgClientFriendMsg {
 	return CMsgClientFriendMsg{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendmsg(o CMsgClientFriendMsg, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendMsg) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendmsg_unpack(v)?
@@ -114,42 +138,37 @@ pub fn zzz_vproto_internal_unpack_cmsgclientfriendmsg(buf []byte, tag_wiretype v
 
 pub struct CMsgClientFriendMsgIncoming {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid_from                 u64
-	has_steamid_from             bool
-	chat_entry_type              int
-	has_chat_entry_type          bool
-	from_limited_account         bool
-	has_from_limited_account     bool
-	message                      []byte
-	has_message                  bool
-	rtime32_server_timestamp     u32
-	has_rtime32_server_timestamp bool
+	steamid_from             u64
+	chat_entry_type          int
+	from_limited_account     bool
+	message                  []byte
+	rtime32_server_timestamp u32
 }
 
 pub fn (o &CMsgClientFriendMsgIncoming) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid_from {
+	if o.steamid_from != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_from, 1)
 	}
-	if o.has_chat_entry_type {
+	if o.chat_entry_type != int(0) {
 		res << vproto.pack_int32_field(o.chat_entry_type, 2)
 	}
-	if o.has_from_limited_account {
+	if o.from_limited_account != bool(0) {
 		res << vproto.pack_bool_field(o.from_limited_account, 3)
 	}
-	if o.has_message {
+	if o.message != []byte{} {
 		res << vproto.pack_bytes_field(o.message, 4)
 	}
-	if o.has_rtime32_server_timestamp {
+	if o.rtime32_server_timestamp != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_server_timestamp, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendmsgincoming_unpack(buf []byte) ?CMsgClientFriendMsgIncoming {
-	mut res := CMsgClientFriendMsgIncoming{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendmsgincoming()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -160,31 +179,26 @@ pub fn cmsgclientfriendmsgincoming_unpack(buf []byte) ?CMsgClientFriendMsgIncomi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid_from = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_from = v
 				i = ii
 			}
 			2 {
-				res.has_chat_entry_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.chat_entry_type = v
 				i = ii
 			}
 			3 {
-				res.has_from_limited_account = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.from_limited_account = v
 				i = ii
 			}
 			4 {
-				res.has_message = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
 			}
 			5 {
-				res.has_rtime32_server_timestamp = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime32_server_timestamp = v
 				i = ii
@@ -204,17 +218,51 @@ pub fn cmsgclientfriendmsgincoming_unpack(buf []byte) ?CMsgClientFriendMsgIncomi
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendMsgIncoming) eq(b CMsgClientFriendMsgIncoming) bool {
+	return true && a.steamid_from == b.steamid_from &&
+		a.chat_entry_type == b.chat_entry_type &&
+		a.from_limited_account == b.from_limited_account &&
+		a.message == b.message && a.rtime32_server_timestamp == b.rtime32_server_timestamp
+}
+
+[inline]
+pub fn (a CMsgClientFriendMsgIncoming) ne(b CMsgClientFriendMsgIncoming) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendMsgIncoming) eq(b []CMsgClientFriendMsgIncoming) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendMsgIncoming) ne(b []CMsgClientFriendMsgIncoming) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendmsgincoming() CMsgClientFriendMsgIncoming {
 	return CMsgClientFriendMsgIncoming{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendmsgincoming(o CMsgClientFriendMsgIncoming, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendmsgincoming(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendMsgIncoming) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendmsgincoming_unpack(v)?
@@ -223,27 +271,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclientfriendmsgincoming(buf []byte, tag_wi
 
 pub struct CMsgClientAddFriend {
 mut:
-	unknown_fields                  []vproto.UnknownField
+	unknown_fields              []vproto.UnknownField
 pub mut:
-	steamid_to_add                  u64
-	has_steamid_to_add              bool
-	accountname_or_email_to_add     string
-	has_accountname_or_email_to_add bool
+	steamid_to_add              u64
+	accountname_or_email_to_add string
 }
 
 pub fn (o &CMsgClientAddFriend) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid_to_add {
+	if o.steamid_to_add != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_to_add, 1)
 	}
-	if o.has_accountname_or_email_to_add {
+	if o.accountname_or_email_to_add != '' {
 		res << vproto.pack_string_field(o.accountname_or_email_to_add, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientaddfriend_unpack(buf []byte) ?CMsgClientAddFriend {
-	mut res := CMsgClientAddFriend{}
+	mut res := zzz_vproto_internal_new_cmsgclientaddfriend()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -254,13 +300,11 @@ pub fn cmsgclientaddfriend_unpack(buf []byte) ?CMsgClientAddFriend {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid_to_add = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_to_add = v
 				i = ii
 			}
 			2 {
-				res.has_accountname_or_email_to_add = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountname_or_email_to_add = v
 				i = ii
@@ -280,17 +324,49 @@ pub fn cmsgclientaddfriend_unpack(buf []byte) ?CMsgClientAddFriend {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientAddFriend) eq(b CMsgClientAddFriend) bool {
+	return true && a.steamid_to_add == b.steamid_to_add &&
+		a.accountname_or_email_to_add == b.accountname_or_email_to_add
+}
+
+[inline]
+pub fn (a CMsgClientAddFriend) ne(b CMsgClientAddFriend) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriend) eq(b []CMsgClientAddFriend) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriend) ne(b []CMsgClientAddFriend) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientaddfriend() CMsgClientAddFriend {
 	return CMsgClientAddFriend{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientaddfriend(o CMsgClientAddFriend, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientaddfriend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAddFriend) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientaddfriend_unpack(v)?
@@ -299,32 +375,29 @@ pub fn zzz_vproto_internal_unpack_cmsgclientaddfriend(buf []byte, tag_wiretype v
 
 pub struct CMsgClientAddFriendResponse {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	eresult                int
-	has_eresult            bool
-	steam_id_added         u64
-	has_steam_id_added     bool
-	persona_name_added     string
-	has_persona_name_added bool
+	eresult            int = 2
+	steam_id_added     u64
+	persona_name_added string
 }
 
 pub fn (o &CMsgClientAddFriendResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
-	if o.has_steam_id_added {
+	if o.steam_id_added != u64(0) {
 		res << vproto.pack_64bit_field(o.steam_id_added, 2)
 	}
-	if o.has_persona_name_added {
+	if o.persona_name_added != '' {
 		res << vproto.pack_string_field(o.persona_name_added, 3)
 	}
 	return res
 }
 
 pub fn cmsgclientaddfriendresponse_unpack(buf []byte) ?CMsgClientAddFriendResponse {
-	mut res := CMsgClientAddFriendResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientaddfriendresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -335,19 +408,16 @@ pub fn cmsgclientaddfriendresponse_unpack(buf []byte) ?CMsgClientAddFriendRespon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				res.has_steam_id_added = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steam_id_added = v
 				i = ii
 			}
 			3 {
-				res.has_persona_name_added = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_name_added = v
 				i = ii
@@ -367,17 +437,50 @@ pub fn cmsgclientaddfriendresponse_unpack(buf []byte) ?CMsgClientAddFriendRespon
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientAddFriendResponse) eq(b CMsgClientAddFriendResponse) bool {
+	return true && a.eresult == b.eresult &&
+		a.steam_id_added == b.steam_id_added &&
+		a.persona_name_added == b.persona_name_added
+}
+
+[inline]
+pub fn (a CMsgClientAddFriendResponse) ne(b CMsgClientAddFriendResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriendResponse) eq(b []CMsgClientAddFriendResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriendResponse) ne(b []CMsgClientAddFriendResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientaddfriendresponse() CMsgClientAddFriendResponse {
 	return CMsgClientAddFriendResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientaddfriendresponse(o CMsgClientAddFriendResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientaddfriendresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAddFriendResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientaddfriendresponse_unpack(v)?
@@ -389,19 +492,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	friendid       u64
-	has_friendid   bool
 }
 
 pub fn (o &CMsgClientRemoveFriend) pack() []byte {
 	mut res := []byte{}
-	if o.has_friendid {
+	if o.friendid != u64(0) {
 		res << vproto.pack_64bit_field(o.friendid, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientremovefriend_unpack(buf []byte) ?CMsgClientRemoveFriend {
-	mut res := CMsgClientRemoveFriend{}
+	mut res := zzz_vproto_internal_new_cmsgclientremovefriend()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -412,7 +514,6 @@ pub fn cmsgclientremovefriend_unpack(buf []byte) ?CMsgClientRemoveFriend {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_friendid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.friendid = v
 				i = ii
@@ -432,17 +533,48 @@ pub fn cmsgclientremovefriend_unpack(buf []byte) ?CMsgClientRemoveFriend {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientRemoveFriend) eq(b CMsgClientRemoveFriend) bool {
+	return true && a.friendid == b.friendid
+}
+
+[inline]
+pub fn (a CMsgClientRemoveFriend) ne(b CMsgClientRemoveFriend) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientRemoveFriend) eq(b []CMsgClientRemoveFriend) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientRemoveFriend) ne(b []CMsgClientRemoveFriend) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientremovefriend() CMsgClientRemoveFriend {
 	return CMsgClientRemoveFriend{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientremovefriend(o CMsgClientRemoveFriend, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientremovefriend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRemoveFriend) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientremovefriend_unpack(v)?
@@ -454,24 +586,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	friendid       u64
-	has_friendid   bool
 	hide           bool
-	has_hide       bool
 }
 
 pub fn (o &CMsgClientHideFriend) pack() []byte {
 	mut res := []byte{}
-	if o.has_friendid {
+	if o.friendid != u64(0) {
 		res << vproto.pack_64bit_field(o.friendid, 1)
 	}
-	if o.has_hide {
+	if o.hide != bool(0) {
 		res << vproto.pack_bool_field(o.hide, 2)
 	}
 	return res
 }
 
 pub fn cmsgclienthidefriend_unpack(buf []byte) ?CMsgClientHideFriend {
-	mut res := CMsgClientHideFriend{}
+	mut res := zzz_vproto_internal_new_cmsgclienthidefriend()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -482,13 +612,11 @@ pub fn cmsgclienthidefriend_unpack(buf []byte) ?CMsgClientHideFriend {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_friendid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.friendid = v
 				i = ii
 			}
 			2 {
-				res.has_hide = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.hide = v
 				i = ii
@@ -508,17 +636,48 @@ pub fn cmsgclienthidefriend_unpack(buf []byte) ?CMsgClientHideFriend {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientHideFriend) eq(b CMsgClientHideFriend) bool {
+	return true && a.friendid == b.friendid && a.hide == b.hide
+}
+
+[inline]
+pub fn (a CMsgClientHideFriend) ne(b CMsgClientHideFriend) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientHideFriend) eq(b []CMsgClientHideFriend) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientHideFriend) ne(b []CMsgClientHideFriend) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclienthidefriend() CMsgClientHideFriend {
 	return CMsgClientHideFriend{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclienthidefriend(o CMsgClientHideFriend, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclienthidefriend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientHideFriend) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclienthidefriend_unpack(v)?
@@ -527,27 +686,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclienthidefriend(buf []byte, tag_wiretype 
 
 pub struct CMsgClientFriendsList_Friend {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	ulfriendid              u64
-	has_ulfriendid          bool
-	efriendrelationship     u32
-	has_efriendrelationship bool
+	ulfriendid          u64
+	efriendrelationship u32
 }
 
 pub fn (o &CMsgClientFriendsList_Friend) pack() []byte {
 	mut res := []byte{}
-	if o.has_ulfriendid {
+	if o.ulfriendid != u64(0) {
 		res << vproto.pack_64bit_field(o.ulfriendid, 1)
 	}
-	if o.has_efriendrelationship {
+	if o.efriendrelationship != u32(0) {
 		res << vproto.pack_uint32_field(o.efriendrelationship, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendslist_friend_unpack(buf []byte) ?CMsgClientFriendsList_Friend {
-	mut res := CMsgClientFriendsList_Friend{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendslist_friend()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -558,13 +715,11 @@ pub fn cmsgclientfriendslist_friend_unpack(buf []byte) ?CMsgClientFriendsList_Fr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_ulfriendid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.ulfriendid = v
 				i = ii
 			}
 			2 {
-				res.has_efriendrelationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.efriendrelationship = v
 				i = ii
@@ -584,17 +739,48 @@ pub fn cmsgclientfriendslist_friend_unpack(buf []byte) ?CMsgClientFriendsList_Fr
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendsList_Friend) eq(b CMsgClientFriendsList_Friend) bool {
+	return true && a.ulfriendid == b.ulfriendid && a.efriendrelationship == b.efriendrelationship
+}
+
+[inline]
+pub fn (a CMsgClientFriendsList_Friend) ne(b CMsgClientFriendsList_Friend) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsList_Friend) eq(b []CMsgClientFriendsList_Friend) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsList_Friend) ne(b []CMsgClientFriendsList_Friend) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendslist_friend() CMsgClientFriendsList_Friend {
 	return CMsgClientFriendsList_Friend{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendslist_friend(o CMsgClientFriendsList_Friend, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendslist_friend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendsList_Friend) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendslist_friend_unpack(v)?
@@ -603,42 +789,38 @@ pub fn zzz_vproto_internal_unpack_cmsgclientfriendslist_friend(buf []byte, tag_w
 
 pub struct CMsgClientFriendsList {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	bincremental            bool
-	has_bincremental        bool
-	friends                 []CMsgClientFriendsList_Friend
-	max_friend_count        u32
-	has_max_friend_count    bool
-	active_friend_count     u32
-	has_active_friend_count bool
-	friends_limit_hit       bool
-	has_friends_limit_hit   bool
+	bincremental        bool
+	friends             []CMsgClientFriendsList_Friend
+	max_friend_count    u32
+	active_friend_count u32
+	friends_limit_hit   bool
 }
 
 pub fn (o &CMsgClientFriendsList) pack() []byte {
 	mut res := []byte{}
-	if o.has_bincremental {
+	if o.bincremental != bool(0) {
 		res << vproto.pack_bool_field(o.bincremental, 1)
 	}
 	// [packed=false]
 	for _, x in o.friends {
 		res << zzz_vproto_internal_pack_cmsgclientfriendslist_friend(x, 2)
 	}
-	if o.has_max_friend_count {
+	if o.max_friend_count != u32(0) {
 		res << vproto.pack_uint32_field(o.max_friend_count, 3)
 	}
-	if o.has_active_friend_count {
+	if o.active_friend_count != u32(0) {
 		res << vproto.pack_uint32_field(o.active_friend_count, 4)
 	}
-	if o.has_friends_limit_hit {
+	if o.friends_limit_hit != bool(0) {
 		res << vproto.pack_bool_field(o.friends_limit_hit, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendslist_unpack(buf []byte) ?CMsgClientFriendsList {
-	mut res := CMsgClientFriendsList{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendslist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -649,7 +831,6 @@ pub fn cmsgclientfriendslist_unpack(buf []byte) ?CMsgClientFriendsList {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_bincremental = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.bincremental = v
 				i = ii
@@ -662,19 +843,16 @@ pub fn cmsgclientfriendslist_unpack(buf []byte) ?CMsgClientFriendsList {
 				i = ii
 			}
 			3 {
-				res.has_max_friend_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.max_friend_count = v
 				i = ii
 			}
 			4 {
-				res.has_active_friend_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.active_friend_count = v
 				i = ii
 			}
 			5 {
-				res.has_friends_limit_hit = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.friends_limit_hit = v
 				i = ii
@@ -694,17 +872,51 @@ pub fn cmsgclientfriendslist_unpack(buf []byte) ?CMsgClientFriendsList {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendsList) eq(b CMsgClientFriendsList) bool {
+	return true && a.bincremental == b.bincremental && a.friends.eq(b.friends) &&
+		a.max_friend_count == b.max_friend_count &&
+		a.active_friend_count == b.active_friend_count &&
+		a.friends_limit_hit == b.friends_limit_hit
+}
+
+[inline]
+pub fn (a CMsgClientFriendsList) ne(b CMsgClientFriendsList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsList) eq(b []CMsgClientFriendsList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsList) ne(b []CMsgClientFriendsList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendslist() CMsgClientFriendsList {
 	return CMsgClientFriendsList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendslist(o CMsgClientFriendsList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendslist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendsList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendslist_unpack(v)?
@@ -713,27 +925,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclientfriendslist(buf []byte, tag_wiretype
 
 pub struct CMsgClientFriendsGroupsList_FriendGroup {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	ngroupid         int
-	has_ngroupid     bool
-	strgroupname     string
-	has_strgroupname bool
+	ngroupid       int
+	strgroupname   string
 }
 
 pub fn (o &CMsgClientFriendsGroupsList_FriendGroup) pack() []byte {
 	mut res := []byte{}
-	if o.has_ngroupid {
+	if o.ngroupid != int(0) {
 		res << vproto.pack_int32_field(o.ngroupid, 1)
 	}
-	if o.has_strgroupname {
+	if o.strgroupname != '' {
 		res << vproto.pack_string_field(o.strgroupname, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendsgroupslist_friendgroup_unpack(buf []byte) ?CMsgClientFriendsGroupsList_FriendGroup {
-	mut res := CMsgClientFriendsGroupsList_FriendGroup{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendsgroupslist_friendgroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -744,13 +954,11 @@ pub fn cmsgclientfriendsgroupslist_friendgroup_unpack(buf []byte) ?CMsgClientFri
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_ngroupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ngroupid = v
 				i = ii
 			}
 			2 {
-				res.has_strgroupname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.strgroupname = v
 				i = ii
@@ -770,17 +978,48 @@ pub fn cmsgclientfriendsgroupslist_friendgroup_unpack(buf []byte) ?CMsgClientFri
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendsGroupsList_FriendGroup) eq(b CMsgClientFriendsGroupsList_FriendGroup) bool {
+	return true && a.ngroupid == b.ngroupid && a.strgroupname == b.strgroupname
+}
+
+[inline]
+pub fn (a CMsgClientFriendsGroupsList_FriendGroup) ne(b CMsgClientFriendsGroupsList_FriendGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsGroupsList_FriendGroup) eq(b []CMsgClientFriendsGroupsList_FriendGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsGroupsList_FriendGroup) ne(b []CMsgClientFriendsGroupsList_FriendGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendsgroupslist_friendgroup() CMsgClientFriendsGroupsList_FriendGroup {
 	return CMsgClientFriendsGroupsList_FriendGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendsgroupslist_friendgroup(o CMsgClientFriendsGroupsList_FriendGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendsgroupslist_friendgroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendsGroupsList_FriendGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendsgroupslist_friendgroup_unpack(v)?
@@ -792,24 +1031,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	ulsteamid      u64
-	has_ulsteamid  bool
 	ngroupid       int
-	has_ngroupid   bool
 }
 
 pub fn (o &CMsgClientFriendsGroupsList_FriendGroupsMembership) pack() []byte {
 	mut res := []byte{}
-	if o.has_ulsteamid {
+	if o.ulsteamid != u64(0) {
 		res << vproto.pack_64bit_field(o.ulsteamid, 1)
 	}
-	if o.has_ngroupid {
+	if o.ngroupid != int(0) {
 		res << vproto.pack_int32_field(o.ngroupid, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendsgroupslist_friendgroupsmembership_unpack(buf []byte) ?CMsgClientFriendsGroupsList_FriendGroupsMembership {
-	mut res := CMsgClientFriendsGroupsList_FriendGroupsMembership{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendsgroupslist_friendgroupsmembership()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -820,13 +1057,11 @@ pub fn cmsgclientfriendsgroupslist_friendgroupsmembership_unpack(buf []byte) ?CM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_ulsteamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.ulsteamid = v
 				i = ii
 			}
 			2 {
-				res.has_ngroupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ngroupid = v
 				i = ii
@@ -846,17 +1081,48 @@ pub fn cmsgclientfriendsgroupslist_friendgroupsmembership_unpack(buf []byte) ?CM
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendsGroupsList_FriendGroupsMembership) eq(b CMsgClientFriendsGroupsList_FriendGroupsMembership) bool {
+	return true && a.ulsteamid == b.ulsteamid && a.ngroupid == b.ngroupid
+}
+
+[inline]
+pub fn (a CMsgClientFriendsGroupsList_FriendGroupsMembership) ne(b CMsgClientFriendsGroupsList_FriendGroupsMembership) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsGroupsList_FriendGroupsMembership) eq(b []CMsgClientFriendsGroupsList_FriendGroupsMembership) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsGroupsList_FriendGroupsMembership) ne(b []CMsgClientFriendsGroupsList_FriendGroupsMembership) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendsgroupslist_friendgroupsmembership() CMsgClientFriendsGroupsList_FriendGroupsMembership {
 	return CMsgClientFriendsGroupsList_FriendGroupsMembership{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendsgroupslist_friendgroupsmembership(o CMsgClientFriendsGroupsList_FriendGroupsMembership, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendsgroupslist_friendgroupsmembership(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendsGroupsList_FriendGroupsMembership) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendsgroupslist_friendgroupsmembership_unpack(v)?
@@ -865,22 +1131,20 @@ pub fn zzz_vproto_internal_unpack_cmsgclientfriendsgroupslist_friendgroupsmember
 
 pub struct CMsgClientFriendsGroupsList {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	bremoval         bool
-	has_bremoval     bool
-	bincremental     bool
-	has_bincremental bool
-	friendgroups     []CMsgClientFriendsGroupsList_FriendGroup
-	memberships      []CMsgClientFriendsGroupsList_FriendGroupsMembership
+	bremoval       bool
+	bincremental   bool
+	friendgroups   []CMsgClientFriendsGroupsList_FriendGroup
+	memberships    []CMsgClientFriendsGroupsList_FriendGroupsMembership
 }
 
 pub fn (o &CMsgClientFriendsGroupsList) pack() []byte {
 	mut res := []byte{}
-	if o.has_bremoval {
+	if o.bremoval != bool(0) {
 		res << vproto.pack_bool_field(o.bremoval, 1)
 	}
-	if o.has_bincremental {
+	if o.bincremental != bool(0) {
 		res << vproto.pack_bool_field(o.bincremental, 2)
 	}
 	// [packed=false]
@@ -895,7 +1159,7 @@ pub fn (o &CMsgClientFriendsGroupsList) pack() []byte {
 }
 
 pub fn cmsgclientfriendsgroupslist_unpack(buf []byte) ?CMsgClientFriendsGroupsList {
-	mut res := CMsgClientFriendsGroupsList{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendsgroupslist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -906,13 +1170,11 @@ pub fn cmsgclientfriendsgroupslist_unpack(buf []byte) ?CMsgClientFriendsGroupsLi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_bremoval = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.bremoval = v
 				i = ii
 			}
 			2 {
-				res.has_bincremental = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.bincremental = v
 				i = ii
@@ -946,17 +1208,49 @@ pub fn cmsgclientfriendsgroupslist_unpack(buf []byte) ?CMsgClientFriendsGroupsLi
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendsGroupsList) eq(b CMsgClientFriendsGroupsList) bool {
+	return true && a.bremoval == b.bremoval &&
+		a.bincremental == b.bincremental && a.friendgroups.eq(b.friendgroups) && a.memberships.eq(b.memberships)
+}
+
+[inline]
+pub fn (a CMsgClientFriendsGroupsList) ne(b CMsgClientFriendsGroupsList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsGroupsList) eq(b []CMsgClientFriendsGroupsList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendsGroupsList) ne(b []CMsgClientFriendsGroupsList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendsgroupslist() CMsgClientFriendsGroupsList {
 	return CMsgClientFriendsGroupsList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendsgroupslist(o CMsgClientFriendsGroupsList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendsgroupslist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendsGroupsList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendsgroupslist_unpack(v)?
@@ -968,24 +1262,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	nickname       string
-	has_nickname   bool
 }
 
 pub fn (o &CMsgClientPlayerNicknameList_PlayerNickname) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_nickname {
+	if o.nickname != '' {
 		res << vproto.pack_string_field(o.nickname, 3)
 	}
 	return res
 }
 
 pub fn cmsgclientplayernicknamelist_playernickname_unpack(buf []byte) ?CMsgClientPlayerNicknameList_PlayerNickname {
-	mut res := CMsgClientPlayerNicknameList_PlayerNickname{}
+	mut res := zzz_vproto_internal_new_cmsgclientplayernicknamelist_playernickname()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -996,13 +1288,11 @@ pub fn cmsgclientplayernicknamelist_playernickname_unpack(buf []byte) ?CMsgClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			3 {
-				res.has_nickname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.nickname = v
 				i = ii
@@ -1022,17 +1312,48 @@ pub fn cmsgclientplayernicknamelist_playernickname_unpack(buf []byte) ?CMsgClien
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientPlayerNicknameList_PlayerNickname) eq(b CMsgClientPlayerNicknameList_PlayerNickname) bool {
+	return true && a.steamid == b.steamid && a.nickname == b.nickname
+}
+
+[inline]
+pub fn (a CMsgClientPlayerNicknameList_PlayerNickname) ne(b CMsgClientPlayerNicknameList_PlayerNickname) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientPlayerNicknameList_PlayerNickname) eq(b []CMsgClientPlayerNicknameList_PlayerNickname) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientPlayerNicknameList_PlayerNickname) ne(b []CMsgClientPlayerNicknameList_PlayerNickname) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientplayernicknamelist_playernickname() CMsgClientPlayerNicknameList_PlayerNickname {
 	return CMsgClientPlayerNicknameList_PlayerNickname{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientplayernicknamelist_playernickname(o CMsgClientPlayerNicknameList_PlayerNickname, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientplayernicknamelist_playernickname(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPlayerNicknameList_PlayerNickname) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientplayernicknamelist_playernickname_unpack(v)?
@@ -1041,21 +1362,19 @@ pub fn zzz_vproto_internal_unpack_cmsgclientplayernicknamelist_playernickname(bu
 
 pub struct CMsgClientPlayerNicknameList {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	removal         bool
-	has_removal     bool
-	incremental     bool
-	has_incremental bool
-	nicknames       []CMsgClientPlayerNicknameList_PlayerNickname
+	removal        bool
+	incremental    bool
+	nicknames      []CMsgClientPlayerNicknameList_PlayerNickname
 }
 
 pub fn (o &CMsgClientPlayerNicknameList) pack() []byte {
 	mut res := []byte{}
-	if o.has_removal {
+	if o.removal != bool(0) {
 		res << vproto.pack_bool_field(o.removal, 1)
 	}
-	if o.has_incremental {
+	if o.incremental != bool(0) {
 		res << vproto.pack_bool_field(o.incremental, 2)
 	}
 	// [packed=false]
@@ -1066,7 +1385,7 @@ pub fn (o &CMsgClientPlayerNicknameList) pack() []byte {
 }
 
 pub fn cmsgclientplayernicknamelist_unpack(buf []byte) ?CMsgClientPlayerNicknameList {
-	mut res := CMsgClientPlayerNicknameList{}
+	mut res := zzz_vproto_internal_new_cmsgclientplayernicknamelist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1077,13 +1396,11 @@ pub fn cmsgclientplayernicknamelist_unpack(buf []byte) ?CMsgClientPlayerNickname
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_removal = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.removal = v
 				i = ii
 			}
 			2 {
-				res.has_incremental = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.incremental = v
 				i = ii
@@ -1110,17 +1427,49 @@ pub fn cmsgclientplayernicknamelist_unpack(buf []byte) ?CMsgClientPlayerNickname
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientPlayerNicknameList) eq(b CMsgClientPlayerNicknameList) bool {
+	return true && a.removal == b.removal &&
+		a.incremental == b.incremental && a.nicknames.eq(b.nicknames)
+}
+
+[inline]
+pub fn (a CMsgClientPlayerNicknameList) ne(b CMsgClientPlayerNicknameList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientPlayerNicknameList) eq(b []CMsgClientPlayerNicknameList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientPlayerNicknameList) ne(b []CMsgClientPlayerNicknameList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientplayernicknamelist() CMsgClientPlayerNicknameList {
 	return CMsgClientPlayerNicknameList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientplayernicknamelist(o CMsgClientPlayerNicknameList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientplayernicknamelist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPlayerNicknameList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientplayernicknamelist_unpack(v)?
@@ -1132,24 +1481,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	nickname       string
-	has_nickname   bool
 }
 
 pub fn (o &CMsgClientSetPlayerNickname) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_nickname {
+	if o.nickname != '' {
 		res << vproto.pack_string_field(o.nickname, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientsetplayernickname_unpack(buf []byte) ?CMsgClientSetPlayerNickname {
-	mut res := CMsgClientSetPlayerNickname{}
+	mut res := zzz_vproto_internal_new_cmsgclientsetplayernickname()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1160,13 +1507,11 @@ pub fn cmsgclientsetplayernickname_unpack(buf []byte) ?CMsgClientSetPlayerNickna
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_nickname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.nickname = v
 				i = ii
@@ -1186,17 +1531,48 @@ pub fn cmsgclientsetplayernickname_unpack(buf []byte) ?CMsgClientSetPlayerNickna
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSetPlayerNickname) eq(b CMsgClientSetPlayerNickname) bool {
+	return true && a.steamid == b.steamid && a.nickname == b.nickname
+}
+
+[inline]
+pub fn (a CMsgClientSetPlayerNickname) ne(b CMsgClientSetPlayerNickname) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSetPlayerNickname) eq(b []CMsgClientSetPlayerNickname) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSetPlayerNickname) ne(b []CMsgClientSetPlayerNickname) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsetplayernickname() CMsgClientSetPlayerNickname {
 	return CMsgClientSetPlayerNickname{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsetplayernickname(o CMsgClientSetPlayerNickname, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsetplayernickname(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSetPlayerNickname) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsetplayernickname_unpack(v)?
@@ -1208,19 +1584,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	eresult        u32
-	has_eresult    bool
 }
 
 pub fn (o &CMsgClientSetPlayerNicknameResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientsetplayernicknameresponse_unpack(buf []byte) ?CMsgClientSetPlayerNicknameResponse {
-	mut res := CMsgClientSetPlayerNicknameResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientsetplayernicknameresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1231,7 +1606,6 @@ pub fn cmsgclientsetplayernicknameresponse_unpack(buf []byte) ?CMsgClientSetPlay
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -1251,17 +1625,48 @@ pub fn cmsgclientsetplayernicknameresponse_unpack(buf []byte) ?CMsgClientSetPlay
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSetPlayerNicknameResponse) eq(b CMsgClientSetPlayerNicknameResponse) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientSetPlayerNicknameResponse) ne(b CMsgClientSetPlayerNicknameResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSetPlayerNicknameResponse) eq(b []CMsgClientSetPlayerNicknameResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSetPlayerNicknameResponse) ne(b []CMsgClientSetPlayerNicknameResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsetplayernicknameresponse() CMsgClientSetPlayerNicknameResponse {
 	return CMsgClientSetPlayerNicknameResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsetplayernicknameresponse(o CMsgClientSetPlayerNicknameResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsetplayernicknameresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSetPlayerNicknameResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsetplayernicknameresponse_unpack(v)?
@@ -1270,16 +1675,15 @@ pub fn zzz_vproto_internal_unpack_cmsgclientsetplayernicknameresponse(buf []byte
 
 pub struct CMsgClientRequestFriendData {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	persona_state_requested     u32
-	has_persona_state_requested bool
-	friends                     []u64
+	persona_state_requested u32
+	friends                 []u64
 }
 
 pub fn (o &CMsgClientRequestFriendData) pack() []byte {
 	mut res := []byte{}
-	if o.has_persona_state_requested {
+	if o.persona_state_requested != u32(0) {
 		res << vproto.pack_uint32_field(o.persona_state_requested, 1)
 	}
 	// [packed=false]
@@ -1290,7 +1694,7 @@ pub fn (o &CMsgClientRequestFriendData) pack() []byte {
 }
 
 pub fn cmsgclientrequestfrienddata_unpack(buf []byte) ?CMsgClientRequestFriendData {
-	mut res := CMsgClientRequestFriendData{}
+	mut res := zzz_vproto_internal_new_cmsgclientrequestfrienddata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1301,7 +1705,6 @@ pub fn cmsgclientrequestfrienddata_unpack(buf []byte) ?CMsgClientRequestFriendDa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_persona_state_requested = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_state_requested = v
 				i = ii
@@ -1327,17 +1730,48 @@ pub fn cmsgclientrequestfrienddata_unpack(buf []byte) ?CMsgClientRequestFriendDa
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientRequestFriendData) eq(b CMsgClientRequestFriendData) bool {
+	return true && a.persona_state_requested == b.persona_state_requested && a.friends == b.friends
+}
+
+[inline]
+pub fn (a CMsgClientRequestFriendData) ne(b CMsgClientRequestFriendData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientRequestFriendData) eq(b []CMsgClientRequestFriendData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientRequestFriendData) ne(b []CMsgClientRequestFriendData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientrequestfrienddata() CMsgClientRequestFriendData {
 	return CMsgClientRequestFriendData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientrequestfrienddata(o CMsgClientRequestFriendData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestfrienddata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestFriendData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientrequestfrienddata_unpack(v)?
@@ -1346,57 +1780,49 @@ pub fn zzz_vproto_internal_unpack_cmsgclientrequestfrienddata(buf []byte, tag_wi
 
 pub struct CMsgClientChangeStatus {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	persona_state              u32
-	has_persona_state          bool
-	player_name                string
-	has_player_name            bool
-	is_auto_generated_name     bool
-	has_is_auto_generated_name bool
-	high_priority              bool
-	has_high_priority          bool
-	persona_set_by_user        bool
-	has_persona_set_by_user    bool
-	persona_state_flags        u32
-	has_persona_state_flags    bool
-	need_persona_response      bool
-	has_need_persona_response  bool
-	is_client_idle             bool
-	has_is_client_idle         bool
+	persona_state          u32
+	player_name            string
+	is_auto_generated_name bool
+	high_priority          bool
+	persona_set_by_user    bool
+	persona_state_flags    u32 = 0
+	need_persona_response  bool
+	is_client_idle         bool
 }
 
 pub fn (o &CMsgClientChangeStatus) pack() []byte {
 	mut res := []byte{}
-	if o.has_persona_state {
+	if o.persona_state != u32(0) {
 		res << vproto.pack_uint32_field(o.persona_state, 1)
 	}
-	if o.has_player_name {
+	if o.player_name != '' {
 		res << vproto.pack_string_field(o.player_name, 2)
 	}
-	if o.has_is_auto_generated_name {
+	if o.is_auto_generated_name != bool(0) {
 		res << vproto.pack_bool_field(o.is_auto_generated_name, 3)
 	}
-	if o.has_high_priority {
+	if o.high_priority != bool(0) {
 		res << vproto.pack_bool_field(o.high_priority, 4)
 	}
-	if o.has_persona_set_by_user {
+	if o.persona_set_by_user != bool(0) {
 		res << vproto.pack_bool_field(o.persona_set_by_user, 5)
 	}
-	if o.has_persona_state_flags {
+	if o.persona_state_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.persona_state_flags, 6)
 	}
-	if o.has_need_persona_response {
+	if o.need_persona_response != bool(0) {
 		res << vproto.pack_bool_field(o.need_persona_response, 7)
 	}
-	if o.has_is_client_idle {
+	if o.is_client_idle != bool(0) {
 		res << vproto.pack_bool_field(o.is_client_idle, 8)
 	}
 	return res
 }
 
 pub fn cmsgclientchangestatus_unpack(buf []byte) ?CMsgClientChangeStatus {
-	mut res := CMsgClientChangeStatus{}
+	mut res := zzz_vproto_internal_new_cmsgclientchangestatus()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1407,49 +1833,41 @@ pub fn cmsgclientchangestatus_unpack(buf []byte) ?CMsgClientChangeStatus {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_persona_state = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_state = v
 				i = ii
 			}
 			2 {
-				res.has_player_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_name = v
 				i = ii
 			}
 			3 {
-				res.has_is_auto_generated_name = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_auto_generated_name = v
 				i = ii
 			}
 			4 {
-				res.has_high_priority = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.high_priority = v
 				i = ii
 			}
 			5 {
-				res.has_persona_set_by_user = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_set_by_user = v
 				i = ii
 			}
 			6 {
-				res.has_persona_state_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_state_flags = v
 				i = ii
 			}
 			7 {
-				res.has_need_persona_response = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.need_persona_response = v
 				i = ii
 			}
 			8 {
-				res.has_is_client_idle = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_client_idle = v
 				i = ii
@@ -1469,17 +1887,54 @@ pub fn cmsgclientchangestatus_unpack(buf []byte) ?CMsgClientChangeStatus {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientChangeStatus) eq(b CMsgClientChangeStatus) bool {
+	return true && a.persona_state == b.persona_state &&
+		a.player_name == b.player_name && a.is_auto_generated_name == b.is_auto_generated_name &&
+		a.high_priority == b.high_priority &&
+		a.persona_set_by_user == b.persona_set_by_user &&
+		a.persona_state_flags == b.persona_state_flags &&
+		a.need_persona_response == b.need_persona_response &&
+		a.is_client_idle == b.is_client_idle
+}
+
+[inline]
+pub fn (a CMsgClientChangeStatus) ne(b CMsgClientChangeStatus) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientChangeStatus) eq(b []CMsgClientChangeStatus) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientChangeStatus) ne(b []CMsgClientChangeStatus) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientchangestatus() CMsgClientChangeStatus {
 	return CMsgClientChangeStatus{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientchangestatus(o CMsgClientChangeStatus, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientchangestatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientChangeStatus) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientchangestatus_unpack(v)?
@@ -1488,27 +1943,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclientchangestatus(buf []byte, tag_wiretyp
 
 pub struct CMsgPersonaChangeResponse {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	result          u32
-	has_result      bool
-	player_name     string
-	has_player_name bool
+	result         u32
+	player_name    string
 }
 
 pub fn (o &CMsgPersonaChangeResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_result {
+	if o.result != u32(0) {
 		res << vproto.pack_uint32_field(o.result, 1)
 	}
-	if o.has_player_name {
+	if o.player_name != '' {
 		res << vproto.pack_string_field(o.player_name, 2)
 	}
 	return res
 }
 
 pub fn cmsgpersonachangeresponse_unpack(buf []byte) ?CMsgPersonaChangeResponse {
-	mut res := CMsgPersonaChangeResponse{}
+	mut res := zzz_vproto_internal_new_cmsgpersonachangeresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1519,13 +1972,11 @@ pub fn cmsgpersonachangeresponse_unpack(buf []byte) ?CMsgPersonaChangeResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_result = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
 			}
 			2 {
-				res.has_player_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_name = v
 				i = ii
@@ -1545,17 +1996,48 @@ pub fn cmsgpersonachangeresponse_unpack(buf []byte) ?CMsgPersonaChangeResponse {
 	return res
 }
 
+[inline]
+pub fn (a CMsgPersonaChangeResponse) eq(b CMsgPersonaChangeResponse) bool {
+	return true && a.result == b.result && a.player_name == b.player_name
+}
+
+[inline]
+pub fn (a CMsgPersonaChangeResponse) ne(b CMsgPersonaChangeResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgPersonaChangeResponse) eq(b []CMsgPersonaChangeResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgPersonaChangeResponse) ne(b []CMsgPersonaChangeResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgpersonachangeresponse() CMsgPersonaChangeResponse {
 	return CMsgPersonaChangeResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgpersonachangeresponse(o CMsgPersonaChangeResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgpersonachangeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPersonaChangeResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgpersonachangeresponse_unpack(v)?
@@ -1564,27 +2046,25 @@ pub fn zzz_vproto_internal_unpack_cmsgpersonachangeresponse(buf []byte, tag_wire
 
 pub struct CMsgClientPersonaStateFriend_ClanData {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	ogg_app_id        u32
-	has_ogg_app_id    bool
-	chat_group_id     u64
-	has_chat_group_id bool
+	ogg_app_id     u32
+	chat_group_id  u64
 }
 
 pub fn (o &CMsgClientPersonaStateFriend_ClanData) pack() []byte {
 	mut res := []byte{}
-	if o.has_ogg_app_id {
+	if o.ogg_app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.ogg_app_id, 1)
 	}
-	if o.has_chat_group_id {
+	if o.chat_group_id != u64(0) {
 		res << vproto.pack_uint64_field(o.chat_group_id, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientpersonastatefriend_clandata_unpack(buf []byte) ?CMsgClientPersonaStateFriend_ClanData {
-	mut res := CMsgClientPersonaStateFriend_ClanData{}
+	mut res := zzz_vproto_internal_new_cmsgclientpersonastatefriend_clandata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1595,13 +2075,11 @@ pub fn cmsgclientpersonastatefriend_clandata_unpack(buf []byte) ?CMsgClientPerso
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_ogg_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ogg_app_id = v
 				i = ii
 			}
 			2 {
-				res.has_chat_group_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.chat_group_id = v
 				i = ii
@@ -1621,17 +2099,48 @@ pub fn cmsgclientpersonastatefriend_clandata_unpack(buf []byte) ?CMsgClientPerso
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientPersonaStateFriend_ClanData) eq(b CMsgClientPersonaStateFriend_ClanData) bool {
+	return true && a.ogg_app_id == b.ogg_app_id && a.chat_group_id == b.chat_group_id
+}
+
+[inline]
+pub fn (a CMsgClientPersonaStateFriend_ClanData) ne(b CMsgClientPersonaStateFriend_ClanData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaStateFriend_ClanData) eq(b []CMsgClientPersonaStateFriend_ClanData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaStateFriend_ClanData) ne(b []CMsgClientPersonaStateFriend_ClanData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientpersonastatefriend_clandata() CMsgClientPersonaStateFriend_ClanData {
 	return CMsgClientPersonaStateFriend_ClanData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientpersonastatefriend_clandata(o CMsgClientPersonaStateFriend_ClanData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpersonastatefriend_clandata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPersonaStateFriend_ClanData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpersonastatefriend_clandata_unpack(v)?
@@ -1643,24 +2152,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key            string
-	has_key        bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &CMsgClientPersonaStateFriend_KV) pack() []byte {
 	mut res := []byte{}
-	if o.has_key {
+	if o.key != '' {
 		res << vproto.pack_string_field(o.key, 1)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientpersonastatefriend_kv_unpack(buf []byte) ?CMsgClientPersonaStateFriend_KV {
-	mut res := CMsgClientPersonaStateFriend_KV{}
+	mut res := zzz_vproto_internal_new_cmsgclientpersonastatefriend_kv()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1671,13 +2178,11 @@ pub fn cmsgclientpersonastatefriend_kv_unpack(buf []byte) ?CMsgClientPersonaStat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -1697,17 +2202,48 @@ pub fn cmsgclientpersonastatefriend_kv_unpack(buf []byte) ?CMsgClientPersonaStat
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientPersonaStateFriend_KV) eq(b CMsgClientPersonaStateFriend_KV) bool {
+	return true && a.key == b.key && a.value == b.value
+}
+
+[inline]
+pub fn (a CMsgClientPersonaStateFriend_KV) ne(b CMsgClientPersonaStateFriend_KV) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaStateFriend_KV) eq(b []CMsgClientPersonaStateFriend_KV) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaStateFriend_KV) ne(b []CMsgClientPersonaStateFriend_KV) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientpersonastatefriend_kv() CMsgClientPersonaStateFriend_KV {
 	return CMsgClientPersonaStateFriend_KV{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientpersonastatefriend_kv(o CMsgClientPersonaStateFriend_KV, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpersonastatefriend_kv(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPersonaStateFriend_KV) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpersonastatefriend_kv_unpack(v)?
@@ -1716,157 +2252,130 @@ pub fn zzz_vproto_internal_unpack_cmsgclientpersonastatefriend_kv(buf []byte, ta
 
 pub struct CMsgClientPersonaState_Friend {
 mut:
-	unknown_fields                   []vproto.UnknownField
+	unknown_fields               []vproto.UnknownField
 pub mut:
-	friendid                         u64
-	has_friendid                     bool
-	persona_state                    u32
-	has_persona_state                bool
-	game_played_app_id               u32
-	has_game_played_app_id           bool
-	game_server_ip                   u32
-	has_game_server_ip               bool
-	game_server_port                 u32
-	has_game_server_port             bool
-	persona_state_flags              u32
-	has_persona_state_flags          bool
-	online_session_instances         u32
-	has_online_session_instances     bool
-	persona_set_by_user              bool
-	has_persona_set_by_user          bool
-	player_name                      string
-	has_player_name                  bool
-	query_port                       u32
-	has_query_port                   bool
-	steamid_source                   u64
-	has_steamid_source               bool
-	avatar_hash                      []byte
-	has_avatar_hash                  bool
-	last_logoff                      u32
-	has_last_logoff                  bool
-	last_logon                       u32
-	has_last_logon                   bool
-	last_seen_online                 u32
-	has_last_seen_online             bool
-	clan_rank                        u32
-	has_clan_rank                    bool
-	game_name                        string
-	has_game_name                    bool
-	gameid                           u64
-	has_gameid                       bool
-	game_data_blob                   []byte
-	has_game_data_blob               bool
-	clan_data                        CMsgClientPersonaStateFriend_ClanData
-	has_clan_data                    bool
-	clan_tag                         string
-	has_clan_tag                     bool
-	rich_presence                    []CMsgClientPersonaStateFriend_KV
-	broadcast_id                     u64
-	has_broadcast_id                 bool
-	game_lobby_id                    u64
-	has_game_lobby_id                bool
-	watching_broadcast_accountid     u32
-	has_watching_broadcast_accountid bool
-	watching_broadcast_appid         u32
-	has_watching_broadcast_appid     bool
-	watching_broadcast_viewers       u32
-	has_watching_broadcast_viewers   bool
-	watching_broadcast_title         string
-	has_watching_broadcast_title     bool
+	friendid                     u64
+	persona_state                u32
+	game_played_app_id           u32
+	game_server_ip               u32
+	game_server_port             u32
+	persona_state_flags          u32
+	online_session_instances     u32
+	persona_set_by_user          bool
+	player_name                  string
+	query_port                   u32
+	steamid_source               u64
+	avatar_hash                  []byte
+	last_logoff                  u32
+	last_logon                   u32
+	last_seen_online             u32
+	clan_rank                    u32
+	game_name                    string
+	gameid                       u64
+	game_data_blob               []byte
+	clan_data                    CMsgClientPersonaStateFriend_ClanData
+	clan_tag                     string
+	rich_presence                []CMsgClientPersonaStateFriend_KV
+	broadcast_id                 u64
+	game_lobby_id                u64
+	watching_broadcast_accountid u32
+	watching_broadcast_appid     u32
+	watching_broadcast_viewers   u32
+	watching_broadcast_title     string
 }
 
 pub fn (o &CMsgClientPersonaState_Friend) pack() []byte {
 	mut res := []byte{}
-	if o.has_friendid {
+	if o.friendid != u64(0) {
 		res << vproto.pack_64bit_field(o.friendid, 1)
 	}
-	if o.has_persona_state {
+	if o.persona_state != u32(0) {
 		res << vproto.pack_uint32_field(o.persona_state, 2)
 	}
-	if o.has_game_played_app_id {
+	if o.game_played_app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.game_played_app_id, 3)
 	}
-	if o.has_game_server_ip {
+	if o.game_server_ip != u32(0) {
 		res << vproto.pack_uint32_field(o.game_server_ip, 4)
 	}
-	if o.has_game_server_port {
+	if o.game_server_port != u32(0) {
 		res << vproto.pack_uint32_field(o.game_server_port, 5)
 	}
-	if o.has_persona_state_flags {
+	if o.persona_state_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.persona_state_flags, 6)
 	}
-	if o.has_online_session_instances {
+	if o.online_session_instances != u32(0) {
 		res << vproto.pack_uint32_field(o.online_session_instances, 7)
 	}
-	if o.has_persona_set_by_user {
+	if o.persona_set_by_user != bool(0) {
 		res << vproto.pack_bool_field(o.persona_set_by_user, 10)
 	}
-	if o.has_player_name {
+	if o.player_name != '' {
 		res << vproto.pack_string_field(o.player_name, 15)
 	}
-	if o.has_query_port {
+	if o.query_port != u32(0) {
 		res << vproto.pack_uint32_field(o.query_port, 20)
 	}
-	if o.has_steamid_source {
+	if o.steamid_source != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_source, 25)
 	}
-	if o.has_avatar_hash {
+	if o.avatar_hash != []byte{} {
 		res << vproto.pack_bytes_field(o.avatar_hash, 31)
 	}
-	if o.has_last_logoff {
+	if o.last_logoff != u32(0) {
 		res << vproto.pack_uint32_field(o.last_logoff, 45)
 	}
-	if o.has_last_logon {
+	if o.last_logon != u32(0) {
 		res << vproto.pack_uint32_field(o.last_logon, 46)
 	}
-	if o.has_last_seen_online {
+	if o.last_seen_online != u32(0) {
 		res << vproto.pack_uint32_field(o.last_seen_online, 47)
 	}
-	if o.has_clan_rank {
+	if o.clan_rank != u32(0) {
 		res << vproto.pack_uint32_field(o.clan_rank, 50)
 	}
-	if o.has_game_name {
+	if o.game_name != '' {
 		res << vproto.pack_string_field(o.game_name, 55)
 	}
-	if o.has_gameid {
+	if o.gameid != u64(0) {
 		res << vproto.pack_64bit_field(o.gameid, 56)
 	}
-	if o.has_game_data_blob {
+	if o.game_data_blob != []byte{} {
 		res << vproto.pack_bytes_field(o.game_data_blob, 60)
 	}
-	if o.has_clan_data {
+	if o.clan_data.ne(zzz_vproto_internal_new_cmsgclientpersonastatefriend_clandata()) {
 		res << zzz_vproto_internal_pack_cmsgclientpersonastatefriend_clandata(o.clan_data, 64)
 	}
-	if o.has_clan_tag {
+	if o.clan_tag != '' {
 		res << vproto.pack_string_field(o.clan_tag, 65)
 	}
 	// [packed=false]
 	for _, x in o.rich_presence {
 		res << zzz_vproto_internal_pack_cmsgclientpersonastatefriend_kv(x, 71)
 	}
-	if o.has_broadcast_id {
+	if o.broadcast_id != u64(0) {
 		res << vproto.pack_64bit_field(o.broadcast_id, 72)
 	}
-	if o.has_game_lobby_id {
+	if o.game_lobby_id != u64(0) {
 		res << vproto.pack_64bit_field(o.game_lobby_id, 73)
 	}
-	if o.has_watching_broadcast_accountid {
+	if o.watching_broadcast_accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.watching_broadcast_accountid, 74)
 	}
-	if o.has_watching_broadcast_appid {
+	if o.watching_broadcast_appid != u32(0) {
 		res << vproto.pack_uint32_field(o.watching_broadcast_appid, 75)
 	}
-	if o.has_watching_broadcast_viewers {
+	if o.watching_broadcast_viewers != u32(0) {
 		res << vproto.pack_uint32_field(o.watching_broadcast_viewers, 76)
 	}
-	if o.has_watching_broadcast_title {
+	if o.watching_broadcast_title != '' {
 		res << vproto.pack_string_field(o.watching_broadcast_title, 77)
 	}
 	return res
 }
 
 pub fn cmsgclientpersonastate_friend_unpack(buf []byte) ?CMsgClientPersonaState_Friend {
-	mut res := CMsgClientPersonaState_Friend{}
+	mut res := zzz_vproto_internal_new_cmsgclientpersonastate_friend()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1877,128 +2386,107 @@ pub fn cmsgclientpersonastate_friend_unpack(buf []byte) ?CMsgClientPersonaState_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_friendid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.friendid = v
 				i = ii
 			}
 			2 {
-				res.has_persona_state = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_state = v
 				i = ii
 			}
 			3 {
-				res.has_game_played_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_played_app_id = v
 				i = ii
 			}
 			4 {
-				res.has_game_server_ip = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_server_ip = v
 				i = ii
 			}
 			5 {
-				res.has_game_server_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_server_port = v
 				i = ii
 			}
 			6 {
-				res.has_persona_state_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_state_flags = v
 				i = ii
 			}
 			7 {
-				res.has_online_session_instances = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.online_session_instances = v
 				i = ii
 			}
 			10 {
-				res.has_persona_set_by_user = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_set_by_user = v
 				i = ii
 			}
 			15 {
-				res.has_player_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.player_name = v
 				i = ii
 			}
 			20 {
-				res.has_query_port = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.query_port = v
 				i = ii
 			}
 			25 {
-				res.has_steamid_source = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_source = v
 				i = ii
 			}
 			31 {
-				res.has_avatar_hash = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.avatar_hash = v
 				i = ii
 			}
 			45 {
-				res.has_last_logoff = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_logoff = v
 				i = ii
 			}
 			46 {
-				res.has_last_logon = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_logon = v
 				i = ii
 			}
 			47 {
-				res.has_last_seen_online = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_seen_online = v
 				i = ii
 			}
 			50 {
-				res.has_clan_rank = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.clan_rank = v
 				i = ii
 			}
 			55 {
-				res.has_game_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_name = v
 				i = ii
 			}
 			56 {
-				res.has_gameid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.gameid = v
 				i = ii
 			}
 			60 {
-				res.has_game_data_blob = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_data_blob = v
 				i = ii
 			}
 			64 {
-				res.has_clan_data = true
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpersonastatefriend_clandata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.clan_data = v
 				i = ii
 			}
 			65 {
-				res.has_clan_tag = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.clan_tag = v
 				i = ii
@@ -2011,37 +2499,31 @@ pub fn cmsgclientpersonastate_friend_unpack(buf []byte) ?CMsgClientPersonaState_
 				i = ii
 			}
 			72 {
-				res.has_broadcast_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.broadcast_id = v
 				i = ii
 			}
 			73 {
-				res.has_game_lobby_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_lobby_id = v
 				i = ii
 			}
 			74 {
-				res.has_watching_broadcast_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.watching_broadcast_accountid = v
 				i = ii
 			}
 			75 {
-				res.has_watching_broadcast_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.watching_broadcast_appid = v
 				i = ii
 			}
 			76 {
-				res.has_watching_broadcast_viewers = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.watching_broadcast_viewers = v
 				i = ii
 			}
 			77 {
-				res.has_watching_broadcast_title = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.watching_broadcast_title = v
 				i = ii
@@ -2061,17 +2543,68 @@ pub fn cmsgclientpersonastate_friend_unpack(buf []byte) ?CMsgClientPersonaState_
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientPersonaState_Friend) eq(b CMsgClientPersonaState_Friend) bool {
+	return true && a.friendid == b.friendid &&
+		a.persona_state == b.persona_state &&
+		a.game_played_app_id == b.game_played_app_id &&
+		a.game_server_ip == b.game_server_ip &&
+		a.game_server_port == b.game_server_port &&
+		a.persona_state_flags == b.persona_state_flags &&
+		a.online_session_instances == b.online_session_instances &&
+		a.persona_set_by_user == b.persona_set_by_user &&
+		a.player_name == b.player_name && a.query_port == b.query_port &&
+		a.steamid_source == b.steamid_source &&
+		a.avatar_hash == b.avatar_hash && a.last_logoff == b.last_logoff &&
+		a.last_logon == b.last_logon && a.last_seen_online == b.last_seen_online &&
+		a.clan_rank == b.clan_rank && a.game_name == b.game_name &&
+		a.gameid == b.gameid && a.game_data_blob == b.game_data_blob && a.clan_data.eq(b.clan_data) &&
+		a.clan_tag == b.clan_tag && a.rich_presence.eq(b.rich_presence) &&
+		a.broadcast_id == b.broadcast_id &&
+		a.game_lobby_id == b.game_lobby_id &&
+		a.watching_broadcast_accountid == b.watching_broadcast_accountid &&
+		a.watching_broadcast_appid == b.watching_broadcast_appid &&
+		a.watching_broadcast_viewers == b.watching_broadcast_viewers &&
+		a.watching_broadcast_title == b.watching_broadcast_title
+}
+
+[inline]
+pub fn (a CMsgClientPersonaState_Friend) ne(b CMsgClientPersonaState_Friend) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaState_Friend) eq(b []CMsgClientPersonaState_Friend) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaState_Friend) ne(b []CMsgClientPersonaState_Friend) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientpersonastate_friend() CMsgClientPersonaState_Friend {
 	return CMsgClientPersonaState_Friend{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientpersonastate_friend(o CMsgClientPersonaState_Friend, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpersonastate_friend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPersonaState_Friend) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpersonastate_friend_unpack(v)?
@@ -2080,16 +2613,15 @@ pub fn zzz_vproto_internal_unpack_cmsgclientpersonastate_friend(buf []byte, tag_
 
 pub struct CMsgClientPersonaState {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	status_flags     u32
-	has_status_flags bool
-	friends          []CMsgClientPersonaState_Friend
+	status_flags   u32
+	friends        []CMsgClientPersonaState_Friend
 }
 
 pub fn (o &CMsgClientPersonaState) pack() []byte {
 	mut res := []byte{}
-	if o.has_status_flags {
+	if o.status_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.status_flags, 1)
 	}
 	// [packed=false]
@@ -2100,7 +2632,7 @@ pub fn (o &CMsgClientPersonaState) pack() []byte {
 }
 
 pub fn cmsgclientpersonastate_unpack(buf []byte) ?CMsgClientPersonaState {
-	mut res := CMsgClientPersonaState{}
+	mut res := zzz_vproto_internal_new_cmsgclientpersonastate()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2111,7 +2643,6 @@ pub fn cmsgclientpersonastate_unpack(buf []byte) ?CMsgClientPersonaState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_status_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.status_flags = v
 				i = ii
@@ -2138,17 +2669,48 @@ pub fn cmsgclientpersonastate_unpack(buf []byte) ?CMsgClientPersonaState {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientPersonaState) eq(b CMsgClientPersonaState) bool {
+	return true && a.status_flags == b.status_flags && a.friends.eq(b.friends)
+}
+
+[inline]
+pub fn (a CMsgClientPersonaState) ne(b CMsgClientPersonaState) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaState) eq(b []CMsgClientPersonaState) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientPersonaState) ne(b []CMsgClientPersonaState) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientpersonastate() CMsgClientPersonaState {
 	return CMsgClientPersonaState{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientpersonastate(o CMsgClientPersonaState, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpersonastate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPersonaState) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientpersonastate_unpack(v)?
@@ -2157,22 +2719,21 @@ pub fn zzz_vproto_internal_unpack_cmsgclientpersonastate(buf []byte, tag_wiretyp
 
 pub struct CMsgClientFriendProfileInfo {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid_friend     u64
-	has_steamid_friend bool
+	steamid_friend u64
 }
 
 pub fn (o &CMsgClientFriendProfileInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid_friend {
+	if o.steamid_friend != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_friend, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendprofileinfo_unpack(buf []byte) ?CMsgClientFriendProfileInfo {
-	mut res := CMsgClientFriendProfileInfo{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendprofileinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2183,7 +2744,6 @@ pub fn cmsgclientfriendprofileinfo_unpack(buf []byte) ?CMsgClientFriendProfileIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid_friend = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_friend = v
 				i = ii
@@ -2203,17 +2763,48 @@ pub fn cmsgclientfriendprofileinfo_unpack(buf []byte) ?CMsgClientFriendProfileIn
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendProfileInfo) eq(b CMsgClientFriendProfileInfo) bool {
+	return true && a.steamid_friend == b.steamid_friend
+}
+
+[inline]
+pub fn (a CMsgClientFriendProfileInfo) ne(b CMsgClientFriendProfileInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendProfileInfo) eq(b []CMsgClientFriendProfileInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendProfileInfo) ne(b []CMsgClientFriendProfileInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendprofileinfo() CMsgClientFriendProfileInfo {
 	return CMsgClientFriendProfileInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendprofileinfo(o CMsgClientFriendProfileInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendprofileinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendProfileInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendprofileinfo_unpack(v)?
@@ -2222,62 +2813,53 @@ pub fn zzz_vproto_internal_unpack_cmsgclientfriendprofileinfo(buf []byte, tag_wi
 
 pub struct CMsgClientFriendProfileInfoResponse {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	eresult            int
-	has_eresult        bool
-	steamid_friend     u64
-	has_steamid_friend bool
-	time_created       u32
-	has_time_created   bool
-	real_name          string
-	has_real_name      bool
-	city_name          string
-	has_city_name      bool
-	state_name         string
-	has_state_name     bool
-	country_name       string
-	has_country_name   bool
-	headline           string
-	has_headline       bool
-	summary            string
-	has_summary        bool
+	eresult        int = 2
+	steamid_friend u64
+	time_created   u32
+	real_name      string
+	city_name      string
+	state_name     string
+	country_name   string
+	headline       string
+	summary        string
 }
 
 pub fn (o &CMsgClientFriendProfileInfoResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
-	if o.has_steamid_friend {
+	if o.steamid_friend != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_friend, 2)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_uint32_field(o.time_created, 3)
 	}
-	if o.has_real_name {
+	if o.real_name != '' {
 		res << vproto.pack_string_field(o.real_name, 4)
 	}
-	if o.has_city_name {
+	if o.city_name != '' {
 		res << vproto.pack_string_field(o.city_name, 5)
 	}
-	if o.has_state_name {
+	if o.state_name != '' {
 		res << vproto.pack_string_field(o.state_name, 6)
 	}
-	if o.has_country_name {
+	if o.country_name != '' {
 		res << vproto.pack_string_field(o.country_name, 7)
 	}
-	if o.has_headline {
+	if o.headline != '' {
 		res << vproto.pack_string_field(o.headline, 8)
 	}
-	if o.has_summary {
+	if o.summary != '' {
 		res << vproto.pack_string_field(o.summary, 9)
 	}
 	return res
 }
 
 pub fn cmsgclientfriendprofileinforesponse_unpack(buf []byte) ?CMsgClientFriendProfileInfoResponse {
-	mut res := CMsgClientFriendProfileInfoResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientfriendprofileinforesponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2288,55 +2870,46 @@ pub fn cmsgclientfriendprofileinforesponse_unpack(buf []byte) ?CMsgClientFriendP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				res.has_steamid_friend = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_friend = v
 				i = ii
 			}
 			3 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			4 {
-				res.has_real_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.real_name = v
 				i = ii
 			}
 			5 {
-				res.has_city_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.city_name = v
 				i = ii
 			}
 			6 {
-				res.has_state_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.state_name = v
 				i = ii
 			}
 			7 {
-				res.has_country_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.country_name = v
 				i = ii
 			}
 			8 {
-				res.has_headline = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.headline = v
 				i = ii
 			}
 			9 {
-				res.has_summary = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.summary = v
 				i = ii
@@ -2356,17 +2929,53 @@ pub fn cmsgclientfriendprofileinforesponse_unpack(buf []byte) ?CMsgClientFriendP
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientFriendProfileInfoResponse) eq(b CMsgClientFriendProfileInfoResponse) bool {
+	return true && a.eresult == b.eresult &&
+		a.steamid_friend == b.steamid_friend &&
+		a.time_created == b.time_created &&
+		a.real_name == b.real_name && a.city_name == b.city_name &&
+		a.state_name == b.state_name && a.country_name == b.country_name &&
+		a.headline == b.headline && a.summary == b.summary
+}
+
+[inline]
+pub fn (a CMsgClientFriendProfileInfoResponse) ne(b CMsgClientFriendProfileInfoResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientFriendProfileInfoResponse) eq(b []CMsgClientFriendProfileInfoResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientFriendProfileInfoResponse) ne(b []CMsgClientFriendProfileInfoResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientfriendprofileinforesponse() CMsgClientFriendProfileInfoResponse {
 	return CMsgClientFriendProfileInfoResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientfriendprofileinforesponse(o CMsgClientFriendProfileInfoResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientfriendprofileinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientFriendProfileInfoResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientfriendprofileinforesponse_unpack(v)?
@@ -2378,18 +2987,16 @@ mut:
 	unknown_fields  []vproto.UnknownField
 pub mut:
 	steamid         u64
-	has_steamid     bool
 	groupname       string
-	has_groupname   bool
 	steamid_friends []u64
 }
 
 pub fn (o &CMsgClientCreateFriendsGroup) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_groupname {
+	if o.groupname != '' {
 		res << vproto.pack_string_field(o.groupname, 2)
 	}
 	// [packed=false]
@@ -2400,7 +3007,7 @@ pub fn (o &CMsgClientCreateFriendsGroup) pack() []byte {
 }
 
 pub fn cmsgclientcreatefriendsgroup_unpack(buf []byte) ?CMsgClientCreateFriendsGroup {
-	mut res := CMsgClientCreateFriendsGroup{}
+	mut res := zzz_vproto_internal_new_cmsgclientcreatefriendsgroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2411,13 +3018,11 @@ pub fn cmsgclientcreatefriendsgroup_unpack(buf []byte) ?CMsgClientCreateFriendsG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_groupname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupname = v
 				i = ii
@@ -2443,17 +3048,49 @@ pub fn cmsgclientcreatefriendsgroup_unpack(buf []byte) ?CMsgClientCreateFriendsG
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientCreateFriendsGroup) eq(b CMsgClientCreateFriendsGroup) bool {
+	return true && a.steamid == b.steamid &&
+		a.groupname == b.groupname && a.steamid_friends == b.steamid_friends
+}
+
+[inline]
+pub fn (a CMsgClientCreateFriendsGroup) ne(b CMsgClientCreateFriendsGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientCreateFriendsGroup) eq(b []CMsgClientCreateFriendsGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientCreateFriendsGroup) ne(b []CMsgClientCreateFriendsGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientcreatefriendsgroup() CMsgClientCreateFriendsGroup {
 	return CMsgClientCreateFriendsGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientcreatefriendsgroup(o CMsgClientCreateFriendsGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientcreatefriendsgroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientCreateFriendsGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientcreatefriendsgroup_unpack(v)?
@@ -2465,24 +3102,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	eresult        u32
-	has_eresult    bool
 	groupid        int
-	has_groupid    bool
 }
 
 pub fn (o &CMsgClientCreateFriendsGroupResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 1)
 	}
-	if o.has_groupid {
+	if o.groupid != int(0) {
 		res << vproto.pack_int32_field(o.groupid, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientcreatefriendsgroupresponse_unpack(buf []byte) ?CMsgClientCreateFriendsGroupResponse {
-	mut res := CMsgClientCreateFriendsGroupResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientcreatefriendsgroupresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2493,13 +3128,11 @@ pub fn cmsgclientcreatefriendsgroupresponse_unpack(buf []byte) ?CMsgClientCreate
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				res.has_groupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupid = v
 				i = ii
@@ -2519,17 +3152,48 @@ pub fn cmsgclientcreatefriendsgroupresponse_unpack(buf []byte) ?CMsgClientCreate
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientCreateFriendsGroupResponse) eq(b CMsgClientCreateFriendsGroupResponse) bool {
+	return true && a.eresult == b.eresult && a.groupid == b.groupid
+}
+
+[inline]
+pub fn (a CMsgClientCreateFriendsGroupResponse) ne(b CMsgClientCreateFriendsGroupResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientCreateFriendsGroupResponse) eq(b []CMsgClientCreateFriendsGroupResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientCreateFriendsGroupResponse) ne(b []CMsgClientCreateFriendsGroupResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientcreatefriendsgroupresponse() CMsgClientCreateFriendsGroupResponse {
 	return CMsgClientCreateFriendsGroupResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientcreatefriendsgroupresponse(o CMsgClientCreateFriendsGroupResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientcreatefriendsgroupresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientCreateFriendsGroupResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientcreatefriendsgroupresponse_unpack(v)?
@@ -2541,24 +3205,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	groupid        int
-	has_groupid    bool
 }
 
 pub fn (o &CMsgClientDeleteFriendsGroup) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_groupid {
+	if o.groupid != int(0) {
 		res << vproto.pack_int32_field(o.groupid, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientdeletefriendsgroup_unpack(buf []byte) ?CMsgClientDeleteFriendsGroup {
-	mut res := CMsgClientDeleteFriendsGroup{}
+	mut res := zzz_vproto_internal_new_cmsgclientdeletefriendsgroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2569,13 +3231,11 @@ pub fn cmsgclientdeletefriendsgroup_unpack(buf []byte) ?CMsgClientDeleteFriendsG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_groupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupid = v
 				i = ii
@@ -2595,17 +3255,48 @@ pub fn cmsgclientdeletefriendsgroup_unpack(buf []byte) ?CMsgClientDeleteFriendsG
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientDeleteFriendsGroup) eq(b CMsgClientDeleteFriendsGroup) bool {
+	return true && a.steamid == b.steamid && a.groupid == b.groupid
+}
+
+[inline]
+pub fn (a CMsgClientDeleteFriendsGroup) ne(b CMsgClientDeleteFriendsGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientDeleteFriendsGroup) eq(b []CMsgClientDeleteFriendsGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientDeleteFriendsGroup) ne(b []CMsgClientDeleteFriendsGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientdeletefriendsgroup() CMsgClientDeleteFriendsGroup {
 	return CMsgClientDeleteFriendsGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientdeletefriendsgroup(o CMsgClientDeleteFriendsGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientdeletefriendsgroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientDeleteFriendsGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientdeletefriendsgroup_unpack(v)?
@@ -2617,19 +3308,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	eresult        u32
-	has_eresult    bool
 }
 
 pub fn (o &CMsgClientDeleteFriendsGroupResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientdeletefriendsgroupresponse_unpack(buf []byte) ?CMsgClientDeleteFriendsGroupResponse {
-	mut res := CMsgClientDeleteFriendsGroupResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientdeletefriendsgroupresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2640,7 +3330,6 @@ pub fn cmsgclientdeletefriendsgroupresponse_unpack(buf []byte) ?CMsgClientDelete
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -2660,17 +3349,48 @@ pub fn cmsgclientdeletefriendsgroupresponse_unpack(buf []byte) ?CMsgClientDelete
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientDeleteFriendsGroupResponse) eq(b CMsgClientDeleteFriendsGroupResponse) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientDeleteFriendsGroupResponse) ne(b CMsgClientDeleteFriendsGroupResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientDeleteFriendsGroupResponse) eq(b []CMsgClientDeleteFriendsGroupResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientDeleteFriendsGroupResponse) ne(b []CMsgClientDeleteFriendsGroupResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientdeletefriendsgroupresponse() CMsgClientDeleteFriendsGroupResponse {
 	return CMsgClientDeleteFriendsGroupResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientdeletefriendsgroupresponse(o CMsgClientDeleteFriendsGroupResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientdeletefriendsgroupresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientDeleteFriendsGroupResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientdeletefriendsgroupresponse_unpack(v)?
@@ -2682,19 +3402,17 @@ mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
 	groupid                 int
-	has_groupid             bool
 	groupname               string
-	has_groupname           bool
 	steamid_friends_added   []u64
 	steamid_friends_removed []u64
 }
 
 pub fn (o &CMsgClientManageFriendsGroup) pack() []byte {
 	mut res := []byte{}
-	if o.has_groupid {
+	if o.groupid != int(0) {
 		res << vproto.pack_int32_field(o.groupid, 1)
 	}
-	if o.has_groupname {
+	if o.groupname != '' {
 		res << vproto.pack_string_field(o.groupname, 2)
 	}
 	// [packed=false]
@@ -2709,7 +3427,7 @@ pub fn (o &CMsgClientManageFriendsGroup) pack() []byte {
 }
 
 pub fn cmsgclientmanagefriendsgroup_unpack(buf []byte) ?CMsgClientManageFriendsGroup {
-	mut res := CMsgClientManageFriendsGroup{}
+	mut res := zzz_vproto_internal_new_cmsgclientmanagefriendsgroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2720,13 +3438,11 @@ pub fn cmsgclientmanagefriendsgroup_unpack(buf []byte) ?CMsgClientManageFriendsG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_groupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupid = v
 				i = ii
 			}
 			2 {
-				res.has_groupname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupname = v
 				i = ii
@@ -2758,17 +3474,50 @@ pub fn cmsgclientmanagefriendsgroup_unpack(buf []byte) ?CMsgClientManageFriendsG
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientManageFriendsGroup) eq(b CMsgClientManageFriendsGroup) bool {
+	return true && a.groupid == b.groupid &&
+		a.groupname == b.groupname && a.steamid_friends_added == b.steamid_friends_added &&
+		a.steamid_friends_removed == b.steamid_friends_removed
+}
+
+[inline]
+pub fn (a CMsgClientManageFriendsGroup) ne(b CMsgClientManageFriendsGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientManageFriendsGroup) eq(b []CMsgClientManageFriendsGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientManageFriendsGroup) ne(b []CMsgClientManageFriendsGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientmanagefriendsgroup() CMsgClientManageFriendsGroup {
 	return CMsgClientManageFriendsGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientmanagefriendsgroup(o CMsgClientManageFriendsGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmanagefriendsgroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientManageFriendsGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmanagefriendsgroup_unpack(v)?
@@ -2780,19 +3529,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	eresult        u32
-	has_eresult    bool
 }
 
 pub fn (o &CMsgClientManageFriendsGroupResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientmanagefriendsgroupresponse_unpack(buf []byte) ?CMsgClientManageFriendsGroupResponse {
-	mut res := CMsgClientManageFriendsGroupResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientmanagefriendsgroupresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2803,7 +3551,6 @@ pub fn cmsgclientmanagefriendsgroupresponse_unpack(buf []byte) ?CMsgClientManage
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -2823,17 +3570,48 @@ pub fn cmsgclientmanagefriendsgroupresponse_unpack(buf []byte) ?CMsgClientManage
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientManageFriendsGroupResponse) eq(b CMsgClientManageFriendsGroupResponse) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientManageFriendsGroupResponse) ne(b CMsgClientManageFriendsGroupResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientManageFriendsGroupResponse) eq(b []CMsgClientManageFriendsGroupResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientManageFriendsGroupResponse) ne(b []CMsgClientManageFriendsGroupResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientmanagefriendsgroupresponse() CMsgClientManageFriendsGroupResponse {
 	return CMsgClientManageFriendsGroupResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientmanagefriendsgroupresponse(o CMsgClientManageFriendsGroupResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmanagefriendsgroupresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientManageFriendsGroupResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientmanagefriendsgroupresponse_unpack(v)?
@@ -2842,27 +3620,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclientmanagefriendsgroupresponse(buf []byt
 
 pub struct CMsgClientAddFriendToGroup {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	groupid         int
-	has_groupid     bool
-	steamiduser     u64
-	has_steamiduser bool
+	groupid        int
+	steamiduser    u64
 }
 
 pub fn (o &CMsgClientAddFriendToGroup) pack() []byte {
 	mut res := []byte{}
-	if o.has_groupid {
+	if o.groupid != int(0) {
 		res << vproto.pack_int32_field(o.groupid, 1)
 	}
-	if o.has_steamiduser {
+	if o.steamiduser != u64(0) {
 		res << vproto.pack_64bit_field(o.steamiduser, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientaddfriendtogroup_unpack(buf []byte) ?CMsgClientAddFriendToGroup {
-	mut res := CMsgClientAddFriendToGroup{}
+	mut res := zzz_vproto_internal_new_cmsgclientaddfriendtogroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2873,13 +3649,11 @@ pub fn cmsgclientaddfriendtogroup_unpack(buf []byte) ?CMsgClientAddFriendToGroup
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_groupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupid = v
 				i = ii
 			}
 			2 {
-				res.has_steamiduser = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamiduser = v
 				i = ii
@@ -2899,17 +3673,48 @@ pub fn cmsgclientaddfriendtogroup_unpack(buf []byte) ?CMsgClientAddFriendToGroup
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientAddFriendToGroup) eq(b CMsgClientAddFriendToGroup) bool {
+	return true && a.groupid == b.groupid && a.steamiduser == b.steamiduser
+}
+
+[inline]
+pub fn (a CMsgClientAddFriendToGroup) ne(b CMsgClientAddFriendToGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriendToGroup) eq(b []CMsgClientAddFriendToGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriendToGroup) ne(b []CMsgClientAddFriendToGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientaddfriendtogroup() CMsgClientAddFriendToGroup {
 	return CMsgClientAddFriendToGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientaddfriendtogroup(o CMsgClientAddFriendToGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientaddfriendtogroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAddFriendToGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientaddfriendtogroup_unpack(v)?
@@ -2921,19 +3726,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	eresult        u32
-	has_eresult    bool
 }
 
 pub fn (o &CMsgClientAddFriendToGroupResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientaddfriendtogroupresponse_unpack(buf []byte) ?CMsgClientAddFriendToGroupResponse {
-	mut res := CMsgClientAddFriendToGroupResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientaddfriendtogroupresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2944,7 +3748,6 @@ pub fn cmsgclientaddfriendtogroupresponse_unpack(buf []byte) ?CMsgClientAddFrien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -2964,17 +3767,48 @@ pub fn cmsgclientaddfriendtogroupresponse_unpack(buf []byte) ?CMsgClientAddFrien
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientAddFriendToGroupResponse) eq(b CMsgClientAddFriendToGroupResponse) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientAddFriendToGroupResponse) ne(b CMsgClientAddFriendToGroupResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriendToGroupResponse) eq(b []CMsgClientAddFriendToGroupResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientAddFriendToGroupResponse) ne(b []CMsgClientAddFriendToGroupResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientaddfriendtogroupresponse() CMsgClientAddFriendToGroupResponse {
 	return CMsgClientAddFriendToGroupResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientaddfriendtogroupresponse(o CMsgClientAddFriendToGroupResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientaddfriendtogroupresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAddFriendToGroupResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientaddfriendtogroupresponse_unpack(v)?
@@ -2983,27 +3817,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclientaddfriendtogroupresponse(buf []byte,
 
 pub struct CMsgClientRemoveFriendFromGroup {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	groupid         int
-	has_groupid     bool
-	steamiduser     u64
-	has_steamiduser bool
+	groupid        int
+	steamiduser    u64
 }
 
 pub fn (o &CMsgClientRemoveFriendFromGroup) pack() []byte {
 	mut res := []byte{}
-	if o.has_groupid {
+	if o.groupid != int(0) {
 		res << vproto.pack_int32_field(o.groupid, 1)
 	}
-	if o.has_steamiduser {
+	if o.steamiduser != u64(0) {
 		res << vproto.pack_64bit_field(o.steamiduser, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientremovefriendfromgroup_unpack(buf []byte) ?CMsgClientRemoveFriendFromGroup {
-	mut res := CMsgClientRemoveFriendFromGroup{}
+	mut res := zzz_vproto_internal_new_cmsgclientremovefriendfromgroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3014,13 +3846,11 @@ pub fn cmsgclientremovefriendfromgroup_unpack(buf []byte) ?CMsgClientRemoveFrien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_groupid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.groupid = v
 				i = ii
 			}
 			2 {
-				res.has_steamiduser = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamiduser = v
 				i = ii
@@ -3040,17 +3870,48 @@ pub fn cmsgclientremovefriendfromgroup_unpack(buf []byte) ?CMsgClientRemoveFrien
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientRemoveFriendFromGroup) eq(b CMsgClientRemoveFriendFromGroup) bool {
+	return true && a.groupid == b.groupid && a.steamiduser == b.steamiduser
+}
+
+[inline]
+pub fn (a CMsgClientRemoveFriendFromGroup) ne(b CMsgClientRemoveFriendFromGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientRemoveFriendFromGroup) eq(b []CMsgClientRemoveFriendFromGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientRemoveFriendFromGroup) ne(b []CMsgClientRemoveFriendFromGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientremovefriendfromgroup() CMsgClientRemoveFriendFromGroup {
 	return CMsgClientRemoveFriendFromGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientremovefriendfromgroup(o CMsgClientRemoveFriendFromGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientremovefriendfromgroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRemoveFriendFromGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientremovefriendfromgroup_unpack(v)?
@@ -3062,19 +3923,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	eresult        u32
-	has_eresult    bool
 }
 
 pub fn (o &CMsgClientRemoveFriendFromGroupResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != u32(0) {
 		res << vproto.pack_uint32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientremovefriendfromgroupresponse_unpack(buf []byte) ?CMsgClientRemoveFriendFromGroupResponse {
-	mut res := CMsgClientRemoveFriendFromGroupResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientremovefriendfromgroupresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3085,7 +3945,6 @@ pub fn cmsgclientremovefriendfromgroupresponse_unpack(buf []byte) ?CMsgClientRem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -3105,17 +3964,48 @@ pub fn cmsgclientremovefriendfromgroupresponse_unpack(buf []byte) ?CMsgClientRem
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientRemoveFriendFromGroupResponse) eq(b CMsgClientRemoveFriendFromGroupResponse) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientRemoveFriendFromGroupResponse) ne(b CMsgClientRemoveFriendFromGroupResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientRemoveFriendFromGroupResponse) eq(b []CMsgClientRemoveFriendFromGroupResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientRemoveFriendFromGroupResponse) ne(b []CMsgClientRemoveFriendFromGroupResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientremovefriendfromgroupresponse() CMsgClientRemoveFriendFromGroupResponse {
 	return CMsgClientRemoveFriendFromGroupResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientremovefriendfromgroupresponse(o CMsgClientRemoveFriendFromGroupResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientremovefriendfromgroupresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRemoveFriendFromGroupResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientremovefriendfromgroupresponse_unpack(v)?
@@ -3133,21 +4023,52 @@ pub fn (o &CMsgClientGetEmoticonList) pack() []byte {
 }
 
 pub fn cmsgclientgetemoticonlist_unpack(buf []byte) ?CMsgClientGetEmoticonList {
-	res := CMsgClientGetEmoticonList{}
+	res := zzz_vproto_internal_new_cmsgclientgetemoticonlist()
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientGetEmoticonList) eq(b CMsgClientGetEmoticonList) bool {
+	return true
+}
+
+[inline]
+pub fn (a CMsgClientGetEmoticonList) ne(b CMsgClientGetEmoticonList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientGetEmoticonList) eq(b []CMsgClientGetEmoticonList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientGetEmoticonList) ne(b []CMsgClientGetEmoticonList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientgetemoticonlist() CMsgClientGetEmoticonList {
 	return CMsgClientGetEmoticonList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientgetemoticonlist(o CMsgClientGetEmoticonList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetemoticonlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetEmoticonList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientgetemoticonlist_unpack(v)?
@@ -3156,42 +4077,37 @@ pub fn zzz_vproto_internal_unpack_cmsgclientgetemoticonlist(buf []byte, tag_wire
 
 pub struct CMsgClientEmoticonList_Emoticon {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	name               string
-	has_name           bool
-	count              int
-	has_count          bool
-	time_last_used     u32
-	has_time_last_used bool
-	use_count          u32
-	has_use_count      bool
-	time_received      u32
-	has_time_received  bool
+	name           string
+	count          int
+	time_last_used u32
+	use_count      u32
+	time_received  u32
 }
 
 pub fn (o &CMsgClientEmoticonList_Emoticon) pack() []byte {
 	mut res := []byte{}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 1)
 	}
-	if o.has_count {
+	if o.count != int(0) {
 		res << vproto.pack_int32_field(o.count, 2)
 	}
-	if o.has_time_last_used {
+	if o.time_last_used != u32(0) {
 		res << vproto.pack_uint32_field(o.time_last_used, 3)
 	}
-	if o.has_use_count {
+	if o.use_count != u32(0) {
 		res << vproto.pack_uint32_field(o.use_count, 4)
 	}
-	if o.has_time_received {
+	if o.time_received != u32(0) {
 		res << vproto.pack_uint32_field(o.time_received, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientemoticonlist_emoticon_unpack(buf []byte) ?CMsgClientEmoticonList_Emoticon {
-	mut res := CMsgClientEmoticonList_Emoticon{}
+	mut res := zzz_vproto_internal_new_cmsgclientemoticonlist_emoticon()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3202,31 +4118,26 @@ pub fn cmsgclientemoticonlist_emoticon_unpack(buf []byte) ?CMsgClientEmoticonLis
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_time_last_used = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_last_used = v
 				i = ii
 			}
 			4 {
-				res.has_use_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.use_count = v
 				i = ii
 			}
 			5 {
-				res.has_time_received = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_received = v
 				i = ii
@@ -3246,17 +4157,50 @@ pub fn cmsgclientemoticonlist_emoticon_unpack(buf []byte) ?CMsgClientEmoticonLis
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientEmoticonList_Emoticon) eq(b CMsgClientEmoticonList_Emoticon) bool {
+	return true && a.name == b.name &&
+		a.count == b.count && a.time_last_used == b.time_last_used &&
+		a.use_count == b.use_count && a.time_received == b.time_received
+}
+
+[inline]
+pub fn (a CMsgClientEmoticonList_Emoticon) ne(b CMsgClientEmoticonList_Emoticon) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList_Emoticon) eq(b []CMsgClientEmoticonList_Emoticon) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList_Emoticon) ne(b []CMsgClientEmoticonList_Emoticon) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientemoticonlist_emoticon() CMsgClientEmoticonList_Emoticon {
 	return CMsgClientEmoticonList_Emoticon{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientemoticonlist_emoticon(o CMsgClientEmoticonList_Emoticon, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientemoticonlist_emoticon(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientEmoticonList_Emoticon) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientemoticonlist_emoticon_unpack(v)?
@@ -3265,37 +4209,33 @@ pub fn zzz_vproto_internal_unpack_cmsgclientemoticonlist_emoticon(buf []byte, ta
 
 pub struct CMsgClientEmoticonList_Sticker {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	name              string
-	has_name          bool
-	count             int
-	has_count         bool
-	time_received     u32
-	has_time_received bool
-	appid             u32
-	has_appid         bool
+	name           string
+	count          int
+	time_received  u32
+	appid          u32
 }
 
 pub fn (o &CMsgClientEmoticonList_Sticker) pack() []byte {
 	mut res := []byte{}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 1)
 	}
-	if o.has_count {
+	if o.count != int(0) {
 		res << vproto.pack_int32_field(o.count, 2)
 	}
-	if o.has_time_received {
+	if o.time_received != u32(0) {
 		res << vproto.pack_uint32_field(o.time_received, 3)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 4)
 	}
 	return res
 }
 
 pub fn cmsgclientemoticonlist_sticker_unpack(buf []byte) ?CMsgClientEmoticonList_Sticker {
-	mut res := CMsgClientEmoticonList_Sticker{}
+	mut res := zzz_vproto_internal_new_cmsgclientemoticonlist_sticker()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3306,25 +4246,21 @@ pub fn cmsgclientemoticonlist_sticker_unpack(buf []byte) ?CMsgClientEmoticonList
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_time_received = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_received = v
 				i = ii
 			}
 			4 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -3344,17 +4280,50 @@ pub fn cmsgclientemoticonlist_sticker_unpack(buf []byte) ?CMsgClientEmoticonList
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientEmoticonList_Sticker) eq(b CMsgClientEmoticonList_Sticker) bool {
+	return true && a.name == b.name &&
+		a.count == b.count && a.time_received == b.time_received &&
+		a.appid == b.appid
+}
+
+[inline]
+pub fn (a CMsgClientEmoticonList_Sticker) ne(b CMsgClientEmoticonList_Sticker) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList_Sticker) eq(b []CMsgClientEmoticonList_Sticker) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList_Sticker) ne(b []CMsgClientEmoticonList_Sticker) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientemoticonlist_sticker() CMsgClientEmoticonList_Sticker {
 	return CMsgClientEmoticonList_Sticker{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientemoticonlist_sticker(o CMsgClientEmoticonList_Sticker, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientemoticonlist_sticker(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientEmoticonList_Sticker) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientemoticonlist_sticker_unpack(v)?
@@ -3363,42 +4332,37 @@ pub fn zzz_vproto_internal_unpack_cmsgclientemoticonlist_sticker(buf []byte, tag
 
 pub struct CMsgClientEmoticonList_Effect {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	name              string
-	has_name          bool
-	count             int
-	has_count         bool
-	time_received     u32
-	has_time_received bool
-	infinite_use      bool
-	has_infinite_use  bool
-	appid             u32
-	has_appid         bool
+	name           string
+	count          int
+	time_received  u32
+	infinite_use   bool
+	appid          u32
 }
 
 pub fn (o &CMsgClientEmoticonList_Effect) pack() []byte {
 	mut res := []byte{}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 1)
 	}
-	if o.has_count {
+	if o.count != int(0) {
 		res << vproto.pack_int32_field(o.count, 2)
 	}
-	if o.has_time_received {
+	if o.time_received != u32(0) {
 		res << vproto.pack_uint32_field(o.time_received, 3)
 	}
-	if o.has_infinite_use {
+	if o.infinite_use != bool(0) {
 		res << vproto.pack_bool_field(o.infinite_use, 4)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientemoticonlist_effect_unpack(buf []byte) ?CMsgClientEmoticonList_Effect {
-	mut res := CMsgClientEmoticonList_Effect{}
+	mut res := zzz_vproto_internal_new_cmsgclientemoticonlist_effect()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3409,31 +4373,26 @@ pub fn cmsgclientemoticonlist_effect_unpack(buf []byte) ?CMsgClientEmoticonList_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_time_received = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_received = v
 				i = ii
 			}
 			4 {
-				res.has_infinite_use = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.infinite_use = v
 				i = ii
 			}
 			5 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -3453,17 +4412,51 @@ pub fn cmsgclientemoticonlist_effect_unpack(buf []byte) ?CMsgClientEmoticonList_
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientEmoticonList_Effect) eq(b CMsgClientEmoticonList_Effect) bool {
+	return true && a.name == b.name &&
+		a.count == b.count && a.time_received == b.time_received &&
+		a.infinite_use == b.infinite_use &&
+		a.appid == b.appid
+}
+
+[inline]
+pub fn (a CMsgClientEmoticonList_Effect) ne(b CMsgClientEmoticonList_Effect) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList_Effect) eq(b []CMsgClientEmoticonList_Effect) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList_Effect) ne(b []CMsgClientEmoticonList_Effect) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientemoticonlist_effect() CMsgClientEmoticonList_Effect {
 	return CMsgClientEmoticonList_Effect{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientemoticonlist_effect(o CMsgClientEmoticonList_Effect, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientemoticonlist_effect(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientEmoticonList_Effect) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientemoticonlist_effect_unpack(v)?
@@ -3497,7 +4490,7 @@ pub fn (o &CMsgClientEmoticonList) pack() []byte {
 }
 
 pub fn cmsgclientemoticonlist_unpack(buf []byte) ?CMsgClientEmoticonList {
-	mut res := CMsgClientEmoticonList{}
+	mut res := zzz_vproto_internal_new_cmsgclientemoticonlist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3543,17 +4536,48 @@ pub fn cmsgclientemoticonlist_unpack(buf []byte) ?CMsgClientEmoticonList {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientEmoticonList) eq(b CMsgClientEmoticonList) bool {
+	return true && a.emoticons.eq(b.emoticons) && a.stickers.eq(b.stickers) && a.effects.eq(b.effects)
+}
+
+[inline]
+pub fn (a CMsgClientEmoticonList) ne(b CMsgClientEmoticonList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList) eq(b []CMsgClientEmoticonList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientEmoticonList) ne(b []CMsgClientEmoticonList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientemoticonlist() CMsgClientEmoticonList {
 	return CMsgClientEmoticonList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientemoticonlist(o CMsgClientEmoticonList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientemoticonlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientEmoticonList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientemoticonlist_unpack(v)?

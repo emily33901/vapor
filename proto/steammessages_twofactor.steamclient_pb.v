@@ -8,19 +8,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CTwoFactor_Status_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn ctwofactor_status_request_unpack(buf []byte) ?CTwoFactor_Status_Request {
-	mut res := CTwoFactor_Status_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_status_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -31,7 +30,6 @@ pub fn ctwofactor_status_request_unpack(buf []byte) ?CTwoFactor_Status_Request {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -51,17 +49,48 @@ pub fn ctwofactor_status_request_unpack(buf []byte) ?CTwoFactor_Status_Request {
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_Status_Request) eq(b CTwoFactor_Status_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CTwoFactor_Status_Request) ne(b CTwoFactor_Status_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_Status_Request) eq(b []CTwoFactor_Status_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_Status_Request) ne(b []CTwoFactor_Status_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_status_request() CTwoFactor_Status_Request {
 	return CTwoFactor_Status_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_status_request(o CTwoFactor_Status_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_status_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_Status_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_status_request_unpack(v)?
@@ -70,82 +99,69 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_status_request(buf []byte, tag_wire
 
 pub struct CTwoFactor_Status_Response {
 mut:
-	unknown_fields                    []vproto.UnknownField
+	unknown_fields                []vproto.UnknownField
 pub mut:
-	state                             u32
-	has_state                         bool
-	inactivation_reason               u32
-	has_inactivation_reason           bool
-	authenticator_type                u32
-	has_authenticator_type            bool
-	authenticator_allowed             bool
-	has_authenticator_allowed         bool
-	steamguard_scheme                 u32
-	has_steamguard_scheme             bool
-	token_gid                         string
-	has_token_gid                     bool
-	email_validated                   bool
-	has_email_validated               bool
-	device_identifier                 string
-	has_device_identifier             bool
-	time_created                      u32
-	has_time_created                  bool
-	revocation_attempts_remaining     u32
-	has_revocation_attempts_remaining bool
-	classified_agent                  string
-	has_classified_agent              bool
-	allow_external_authenticator      bool
-	has_allow_external_authenticator  bool
-	time_transferred                  u32
-	has_time_transferred              bool
+	state                         u32
+	inactivation_reason           u32
+	authenticator_type            u32
+	authenticator_allowed         bool
+	steamguard_scheme             u32
+	token_gid                     string
+	email_validated               bool
+	device_identifier             string
+	time_created                  u32
+	revocation_attempts_remaining u32
+	classified_agent              string
+	allow_external_authenticator  bool
+	time_transferred              u32
 }
 
 pub fn (o &CTwoFactor_Status_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_state {
+	if o.state != u32(0) {
 		res << vproto.pack_uint32_field(o.state, 1)
 	}
-	if o.has_inactivation_reason {
+	if o.inactivation_reason != u32(0) {
 		res << vproto.pack_uint32_field(o.inactivation_reason, 2)
 	}
-	if o.has_authenticator_type {
+	if o.authenticator_type != u32(0) {
 		res << vproto.pack_uint32_field(o.authenticator_type, 3)
 	}
-	if o.has_authenticator_allowed {
+	if o.authenticator_allowed != bool(0) {
 		res << vproto.pack_bool_field(o.authenticator_allowed, 4)
 	}
-	if o.has_steamguard_scheme {
+	if o.steamguard_scheme != u32(0) {
 		res << vproto.pack_uint32_field(o.steamguard_scheme, 5)
 	}
-	if o.has_token_gid {
+	if o.token_gid != '' {
 		res << vproto.pack_string_field(o.token_gid, 6)
 	}
-	if o.has_email_validated {
+	if o.email_validated != bool(0) {
 		res << vproto.pack_bool_field(o.email_validated, 7)
 	}
-	if o.has_device_identifier {
+	if o.device_identifier != '' {
 		res << vproto.pack_string_field(o.device_identifier, 8)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_uint32_field(o.time_created, 9)
 	}
-	if o.has_revocation_attempts_remaining {
+	if o.revocation_attempts_remaining != u32(0) {
 		res << vproto.pack_uint32_field(o.revocation_attempts_remaining, 10)
 	}
-	if o.has_classified_agent {
+	if o.classified_agent != '' {
 		res << vproto.pack_string_field(o.classified_agent, 11)
 	}
-	if o.has_allow_external_authenticator {
+	if o.allow_external_authenticator != bool(0) {
 		res << vproto.pack_bool_field(o.allow_external_authenticator, 12)
 	}
-	if o.has_time_transferred {
+	if o.time_transferred != u32(0) {
 		res << vproto.pack_uint32_field(o.time_transferred, 13)
 	}
 	return res
 }
 
 pub fn ctwofactor_status_response_unpack(buf []byte) ?CTwoFactor_Status_Response {
-	mut res := CTwoFactor_Status_Response{}
+	mut res := zzz_vproto_internal_new_ctwofactor_status_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -156,79 +172,66 @@ pub fn ctwofactor_status_response_unpack(buf []byte) ?CTwoFactor_Status_Response
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_state = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.state = v
 				i = ii
 			}
 			2 {
-				res.has_inactivation_reason = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.inactivation_reason = v
 				i = ii
 			}
 			3 {
-				res.has_authenticator_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.authenticator_type = v
 				i = ii
 			}
 			4 {
-				res.has_authenticator_allowed = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.authenticator_allowed = v
 				i = ii
 			}
 			5 {
-				res.has_steamguard_scheme = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamguard_scheme = v
 				i = ii
 			}
 			6 {
-				res.has_token_gid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.token_gid = v
 				i = ii
 			}
 			7 {
-				res.has_email_validated = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.email_validated = v
 				i = ii
 			}
 			8 {
-				res.has_device_identifier = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_identifier = v
 				i = ii
 			}
 			9 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			10 {
-				res.has_revocation_attempts_remaining = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.revocation_attempts_remaining = v
 				i = ii
 			}
 			11 {
-				res.has_classified_agent = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.classified_agent = v
 				i = ii
 			}
 			12 {
-				res.has_allow_external_authenticator = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.allow_external_authenticator = v
 				i = ii
 			}
 			13 {
-				res.has_time_transferred = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_transferred = v
 				i = ii
@@ -248,17 +251,59 @@ pub fn ctwofactor_status_response_unpack(buf []byte) ?CTwoFactor_Status_Response
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_Status_Response) eq(b CTwoFactor_Status_Response) bool {
+	return true && a.state == b.state &&
+		a.inactivation_reason == b.inactivation_reason &&
+		a.authenticator_type == b.authenticator_type &&
+		a.authenticator_allowed == b.authenticator_allowed &&
+		a.steamguard_scheme == b.steamguard_scheme &&
+		a.token_gid == b.token_gid && a.email_validated == b.email_validated &&
+		a.device_identifier == b.device_identifier &&
+		a.time_created == b.time_created &&
+		a.revocation_attempts_remaining == b.revocation_attempts_remaining &&
+		a.classified_agent == b.classified_agent &&
+		a.allow_external_authenticator == b.allow_external_authenticator &&
+		a.time_transferred == b.time_transferred
+}
+
+[inline]
+pub fn (a CTwoFactor_Status_Response) ne(b CTwoFactor_Status_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_Status_Response) eq(b []CTwoFactor_Status_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_Status_Response) ne(b []CTwoFactor_Status_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_status_response() CTwoFactor_Status_Response {
 	return CTwoFactor_Status_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_status_response(o CTwoFactor_Status_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_status_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_Status_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_status_response_unpack(v)?
@@ -267,41 +312,35 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_status_response(buf []byte, tag_wir
 
 pub struct CTwoFactor_AddAuthenticator_Request {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	steamid                u64
-	has_steamid            bool
-	authenticator_time     u64
-	has_authenticator_time bool
-	serial_number          u64
-	has_serial_number      bool
-	authenticator_type     u32
-	has_authenticator_type bool
-	device_identifier      string
-	has_device_identifier  bool
-	sms_phone_id           string
-	has_sms_phone_id       bool
-	http_headers           []string
+	steamid            u64
+	authenticator_time u64
+	serial_number      u64
+	authenticator_type u32
+	device_identifier  string
+	sms_phone_id       string
+	http_headers       []string
 }
 
 pub fn (o &CTwoFactor_AddAuthenticator_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_authenticator_time {
+	if o.authenticator_time != u64(0) {
 		res << vproto.pack_uint64_field(o.authenticator_time, 2)
 	}
-	if o.has_serial_number {
+	if o.serial_number != u64(0) {
 		res << vproto.pack_64bit_field(o.serial_number, 3)
 	}
-	if o.has_authenticator_type {
+	if o.authenticator_type != u32(0) {
 		res << vproto.pack_uint32_field(o.authenticator_type, 4)
 	}
-	if o.has_device_identifier {
+	if o.device_identifier != '' {
 		res << vproto.pack_string_field(o.device_identifier, 5)
 	}
-	if o.has_sms_phone_id {
+	if o.sms_phone_id != '' {
 		res << vproto.pack_string_field(o.sms_phone_id, 6)
 	}
 	// [packed=false]
@@ -312,7 +351,7 @@ pub fn (o &CTwoFactor_AddAuthenticator_Request) pack() []byte {
 }
 
 pub fn ctwofactor_addauthenticator_request_unpack(buf []byte) ?CTwoFactor_AddAuthenticator_Request {
-	mut res := CTwoFactor_AddAuthenticator_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_addauthenticator_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -323,37 +362,31 @@ pub fn ctwofactor_addauthenticator_request_unpack(buf []byte) ?CTwoFactor_AddAut
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_authenticator_time = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.authenticator_time = v
 				i = ii
 			}
 			3 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			4 {
-				res.has_authenticator_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.authenticator_type = v
 				i = ii
 			}
 			5 {
-				res.has_device_identifier = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_identifier = v
 				i = ii
 			}
 			6 {
-				res.has_sms_phone_id = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sms_phone_id = v
 				i = ii
@@ -379,17 +412,54 @@ pub fn ctwofactor_addauthenticator_request_unpack(buf []byte) ?CTwoFactor_AddAut
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_AddAuthenticator_Request) eq(b CTwoFactor_AddAuthenticator_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.authenticator_time == b.authenticator_time &&
+		a.serial_number == b.serial_number &&
+		a.authenticator_type == b.authenticator_type &&
+		a.device_identifier == b.device_identifier &&
+		a.sms_phone_id == b.sms_phone_id &&
+		a.http_headers == b.http_headers
+}
+
+[inline]
+pub fn (a CTwoFactor_AddAuthenticator_Request) ne(b CTwoFactor_AddAuthenticator_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_AddAuthenticator_Request) eq(b []CTwoFactor_AddAuthenticator_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_AddAuthenticator_Request) ne(b []CTwoFactor_AddAuthenticator_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_addauthenticator_request() CTwoFactor_AddAuthenticator_Request {
 	return CTwoFactor_AddAuthenticator_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_addauthenticator_request(o CTwoFactor_AddAuthenticator_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_addauthenticator_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_AddAuthenticator_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_addauthenticator_request_unpack(v)?
@@ -398,67 +468,57 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_addauthenticator_request(buf []byte
 
 pub struct CTwoFactor_AddAuthenticator_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	shared_secret       []byte
-	has_shared_secret   bool
-	serial_number       u64
-	has_serial_number   bool
-	revocation_code     string
-	has_revocation_code bool
-	uri                 string
-	has_uri             bool
-	server_time         u64
-	has_server_time     bool
-	account_name        string
-	has_account_name    bool
-	token_gid           string
-	has_token_gid       bool
-	identity_secret     []byte
-	has_identity_secret bool
-	secret_1            []byte
-	has_secret_1        bool
-	status              int
-	has_status          bool
+	shared_secret   []byte
+	serial_number   u64
+	revocation_code string
+	uri             string
+	server_time     u64
+	account_name    string
+	token_gid       string
+	identity_secret []byte
+	secret_1        []byte
+	status          int
 }
 
 pub fn (o &CTwoFactor_AddAuthenticator_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_shared_secret {
+	if o.shared_secret != []byte{} {
 		res << vproto.pack_bytes_field(o.shared_secret, 1)
 	}
-	if o.has_serial_number {
+	if o.serial_number != u64(0) {
 		res << vproto.pack_64bit_field(o.serial_number, 2)
 	}
-	if o.has_revocation_code {
+	if o.revocation_code != '' {
 		res << vproto.pack_string_field(o.revocation_code, 3)
 	}
-	if o.has_uri {
+	if o.uri != '' {
 		res << vproto.pack_string_field(o.uri, 4)
 	}
-	if o.has_server_time {
+	if o.server_time != u64(0) {
 		res << vproto.pack_uint64_field(o.server_time, 5)
 	}
-	if o.has_account_name {
+	if o.account_name != '' {
 		res << vproto.pack_string_field(o.account_name, 6)
 	}
-	if o.has_token_gid {
+	if o.token_gid != '' {
 		res << vproto.pack_string_field(o.token_gid, 7)
 	}
-	if o.has_identity_secret {
+	if o.identity_secret != []byte{} {
 		res << vproto.pack_bytes_field(o.identity_secret, 8)
 	}
-	if o.has_secret_1 {
+	if o.secret_1 != []byte{} {
 		res << vproto.pack_bytes_field(o.secret_1, 9)
 	}
-	if o.has_status {
+	if o.status != int(0) {
 		res << vproto.pack_int32_field(o.status, 10)
 	}
 	return res
 }
 
 pub fn ctwofactor_addauthenticator_response_unpack(buf []byte) ?CTwoFactor_AddAuthenticator_Response {
-	mut res := CTwoFactor_AddAuthenticator_Response{}
+	mut res := zzz_vproto_internal_new_ctwofactor_addauthenticator_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -469,61 +529,51 @@ pub fn ctwofactor_addauthenticator_response_unpack(buf []byte) ?CTwoFactor_AddAu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_shared_secret = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.shared_secret = v
 				i = ii
 			}
 			2 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			3 {
-				res.has_revocation_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.revocation_code = v
 				i = ii
 			}
 			4 {
-				res.has_uri = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.uri = v
 				i = ii
 			}
 			5 {
-				res.has_server_time = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.server_time = v
 				i = ii
 			}
 			6 {
-				res.has_account_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.account_name = v
 				i = ii
 			}
 			7 {
-				res.has_token_gid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.token_gid = v
 				i = ii
 			}
 			8 {
-				res.has_identity_secret = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.identity_secret = v
 				i = ii
 			}
 			9 {
-				res.has_secret_1 = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.secret_1 = v
 				i = ii
 			}
 			10 {
-				res.has_status = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.status = v
 				i = ii
@@ -543,17 +593,54 @@ pub fn ctwofactor_addauthenticator_response_unpack(buf []byte) ?CTwoFactor_AddAu
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_AddAuthenticator_Response) eq(b CTwoFactor_AddAuthenticator_Response) bool {
+	return true && a.shared_secret == b.shared_secret &&
+		a.serial_number == b.serial_number &&
+		a.revocation_code == b.revocation_code &&
+		a.uri == b.uri && a.server_time == b.server_time &&
+		a.account_name == b.account_name &&
+		a.token_gid == b.token_gid && a.identity_secret == b.identity_secret &&
+		a.secret_1 == b.secret_1 && a.status == b.status
+}
+
+[inline]
+pub fn (a CTwoFactor_AddAuthenticator_Response) ne(b CTwoFactor_AddAuthenticator_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_AddAuthenticator_Response) eq(b []CTwoFactor_AddAuthenticator_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_AddAuthenticator_Response) ne(b []CTwoFactor_AddAuthenticator_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_addauthenticator_response() CTwoFactor_AddAuthenticator_Response {
 	return CTwoFactor_AddAuthenticator_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_addauthenticator_response(o CTwoFactor_AddAuthenticator_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_addauthenticator_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_AddAuthenticator_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_addauthenticator_response_unpack(v)?
@@ -562,32 +649,29 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_addauthenticator_response(buf []byt
 
 pub struct CTwoFactor_SendEmail_Request {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	steamid                     u64
-	has_steamid                 bool
-	email_type                  u32
-	has_email_type              bool
-	include_activation_code     bool
-	has_include_activation_code bool
+	steamid                 u64
+	email_type              u32
+	include_activation_code bool
 }
 
 pub fn (o &CTwoFactor_SendEmail_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_email_type {
+	if o.email_type != u32(0) {
 		res << vproto.pack_uint32_field(o.email_type, 2)
 	}
-	if o.has_include_activation_code {
+	if o.include_activation_code != bool(0) {
 		res << vproto.pack_bool_field(o.include_activation_code, 3)
 	}
 	return res
 }
 
 pub fn ctwofactor_sendemail_request_unpack(buf []byte) ?CTwoFactor_SendEmail_Request {
-	mut res := CTwoFactor_SendEmail_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_sendemail_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -598,19 +682,16 @@ pub fn ctwofactor_sendemail_request_unpack(buf []byte) ?CTwoFactor_SendEmail_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_email_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.email_type = v
 				i = ii
 			}
 			3 {
-				res.has_include_activation_code = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_activation_code = v
 				i = ii
@@ -630,17 +711,49 @@ pub fn ctwofactor_sendemail_request_unpack(buf []byte) ?CTwoFactor_SendEmail_Req
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_SendEmail_Request) eq(b CTwoFactor_SendEmail_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.email_type == b.email_type && a.include_activation_code == b.include_activation_code
+}
+
+[inline]
+pub fn (a CTwoFactor_SendEmail_Request) ne(b CTwoFactor_SendEmail_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_SendEmail_Request) eq(b []CTwoFactor_SendEmail_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_SendEmail_Request) ne(b []CTwoFactor_SendEmail_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_sendemail_request() CTwoFactor_SendEmail_Request {
 	return CTwoFactor_SendEmail_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_sendemail_request(o CTwoFactor_SendEmail_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_sendemail_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_SendEmail_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_sendemail_request_unpack(v)?
@@ -658,21 +771,52 @@ pub fn (o &CTwoFactor_SendEmail_Response) pack() []byte {
 }
 
 pub fn ctwofactor_sendemail_response_unpack(buf []byte) ?CTwoFactor_SendEmail_Response {
-	res := CTwoFactor_SendEmail_Response{}
+	res := zzz_vproto_internal_new_ctwofactor_sendemail_response()
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_SendEmail_Response) eq(b CTwoFactor_SendEmail_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CTwoFactor_SendEmail_Response) ne(b CTwoFactor_SendEmail_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_SendEmail_Response) eq(b []CTwoFactor_SendEmail_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_SendEmail_Response) ne(b []CTwoFactor_SendEmail_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_sendemail_response() CTwoFactor_SendEmail_Response {
 	return CTwoFactor_SendEmail_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_sendemail_response(o CTwoFactor_SendEmail_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_sendemail_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_SendEmail_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_sendemail_response_unpack(v)?
@@ -681,31 +825,27 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_sendemail_response(buf []byte, tag_
 
 pub struct CTwoFactor_FinalizeAddAuthenticator_Request {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	steamid                u64
-	has_steamid            bool
-	authenticator_code     string
-	has_authenticator_code bool
-	authenticator_time     u64
-	has_authenticator_time bool
-	activation_code        string
-	has_activation_code    bool
-	http_headers           []string
+	steamid            u64
+	authenticator_code string
+	authenticator_time u64
+	activation_code    string
+	http_headers       []string
 }
 
 pub fn (o &CTwoFactor_FinalizeAddAuthenticator_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_authenticator_code {
+	if o.authenticator_code != '' {
 		res << vproto.pack_string_field(o.authenticator_code, 2)
 	}
-	if o.has_authenticator_time {
+	if o.authenticator_time != u64(0) {
 		res << vproto.pack_uint64_field(o.authenticator_time, 3)
 	}
-	if o.has_activation_code {
+	if o.activation_code != '' {
 		res << vproto.pack_string_field(o.activation_code, 4)
 	}
 	// [packed=false]
@@ -716,7 +856,7 @@ pub fn (o &CTwoFactor_FinalizeAddAuthenticator_Request) pack() []byte {
 }
 
 pub fn ctwofactor_finalizeaddauthenticator_request_unpack(buf []byte) ?CTwoFactor_FinalizeAddAuthenticator_Request {
-	mut res := CTwoFactor_FinalizeAddAuthenticator_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_finalizeaddauthenticator_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -727,25 +867,21 @@ pub fn ctwofactor_finalizeaddauthenticator_request_unpack(buf []byte) ?CTwoFacto
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_authenticator_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.authenticator_code = v
 				i = ii
 			}
 			3 {
-				res.has_authenticator_time = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.authenticator_time = v
 				i = ii
 			}
 			4 {
-				res.has_activation_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.activation_code = v
 				i = ii
@@ -771,17 +907,52 @@ pub fn ctwofactor_finalizeaddauthenticator_request_unpack(buf []byte) ?CTwoFacto
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_FinalizeAddAuthenticator_Request) eq(b CTwoFactor_FinalizeAddAuthenticator_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.authenticator_code == b.authenticator_code &&
+		a.authenticator_time == b.authenticator_time &&
+		a.activation_code == b.activation_code &&
+		a.http_headers == b.http_headers
+}
+
+[inline]
+pub fn (a CTwoFactor_FinalizeAddAuthenticator_Request) ne(b CTwoFactor_FinalizeAddAuthenticator_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_FinalizeAddAuthenticator_Request) eq(b []CTwoFactor_FinalizeAddAuthenticator_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_FinalizeAddAuthenticator_Request) ne(b []CTwoFactor_FinalizeAddAuthenticator_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_finalizeaddauthenticator_request() CTwoFactor_FinalizeAddAuthenticator_Request {
 	return CTwoFactor_FinalizeAddAuthenticator_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_finalizeaddauthenticator_request(o CTwoFactor_FinalizeAddAuthenticator_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_finalizeaddauthenticator_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_FinalizeAddAuthenticator_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_finalizeaddauthenticator_request_unpack(v)?
@@ -790,37 +961,33 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_finalizeaddauthenticator_request(bu
 
 pub struct CTwoFactor_FinalizeAddAuthenticator_Response {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	success         bool
-	has_success     bool
-	want_more       bool
-	has_want_more   bool
-	server_time     u64
-	has_server_time bool
-	status          int
-	has_status      bool
+	success        bool
+	want_more      bool
+	server_time    u64
+	status         int
 }
 
 pub fn (o &CTwoFactor_FinalizeAddAuthenticator_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_success {
+	if o.success != bool(0) {
 		res << vproto.pack_bool_field(o.success, 1)
 	}
-	if o.has_want_more {
+	if o.want_more != bool(0) {
 		res << vproto.pack_bool_field(o.want_more, 2)
 	}
-	if o.has_server_time {
+	if o.server_time != u64(0) {
 		res << vproto.pack_uint64_field(o.server_time, 3)
 	}
-	if o.has_status {
+	if o.status != int(0) {
 		res << vproto.pack_int32_field(o.status, 4)
 	}
 	return res
 }
 
 pub fn ctwofactor_finalizeaddauthenticator_response_unpack(buf []byte) ?CTwoFactor_FinalizeAddAuthenticator_Response {
-	mut res := CTwoFactor_FinalizeAddAuthenticator_Response{}
+	mut res := zzz_vproto_internal_new_ctwofactor_finalizeaddauthenticator_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -831,25 +998,21 @@ pub fn ctwofactor_finalizeaddauthenticator_response_unpack(buf []byte) ?CTwoFact
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_success = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.success = v
 				i = ii
 			}
 			2 {
-				res.has_want_more = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.want_more = v
 				i = ii
 			}
 			3 {
-				res.has_server_time = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.server_time = v
 				i = ii
 			}
 			4 {
-				res.has_status = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.status = v
 				i = ii
@@ -869,17 +1032,50 @@ pub fn ctwofactor_finalizeaddauthenticator_response_unpack(buf []byte) ?CTwoFact
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_FinalizeAddAuthenticator_Response) eq(b CTwoFactor_FinalizeAddAuthenticator_Response) bool {
+	return true && a.success == b.success &&
+		a.want_more == b.want_more && a.server_time == b.server_time &&
+		a.status == b.status
+}
+
+[inline]
+pub fn (a CTwoFactor_FinalizeAddAuthenticator_Response) ne(b CTwoFactor_FinalizeAddAuthenticator_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_FinalizeAddAuthenticator_Response) eq(b []CTwoFactor_FinalizeAddAuthenticator_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_FinalizeAddAuthenticator_Response) ne(b []CTwoFactor_FinalizeAddAuthenticator_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_finalizeaddauthenticator_response() CTwoFactor_FinalizeAddAuthenticator_Response {
 	return CTwoFactor_FinalizeAddAuthenticator_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_finalizeaddauthenticator_response(o CTwoFactor_FinalizeAddAuthenticator_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_finalizeaddauthenticator_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_FinalizeAddAuthenticator_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_finalizeaddauthenticator_response_unpack(v)?
@@ -888,37 +1084,33 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_finalizeaddauthenticator_response(b
 
 pub struct CTwoFactor_RemoveAuthenticator_Request {
 mut:
-	unknown_fields                    []vproto.UnknownField
+	unknown_fields                []vproto.UnknownField
 pub mut:
-	revocation_code                   string
-	has_revocation_code               bool
-	revocation_reason                 u32
-	has_revocation_reason             bool
-	steamguard_scheme                 u32
-	has_steamguard_scheme             bool
-	remove_all_steamguard_cookies     bool
-	has_remove_all_steamguard_cookies bool
+	revocation_code               string
+	revocation_reason             u32
+	steamguard_scheme             u32
+	remove_all_steamguard_cookies bool
 }
 
 pub fn (o &CTwoFactor_RemoveAuthenticator_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_revocation_code {
+	if o.revocation_code != '' {
 		res << vproto.pack_string_field(o.revocation_code, 2)
 	}
-	if o.has_revocation_reason {
+	if o.revocation_reason != u32(0) {
 		res << vproto.pack_uint32_field(o.revocation_reason, 5)
 	}
-	if o.has_steamguard_scheme {
+	if o.steamguard_scheme != u32(0) {
 		res << vproto.pack_uint32_field(o.steamguard_scheme, 6)
 	}
-	if o.has_remove_all_steamguard_cookies {
+	if o.remove_all_steamguard_cookies != bool(0) {
 		res << vproto.pack_bool_field(o.remove_all_steamguard_cookies, 7)
 	}
 	return res
 }
 
 pub fn ctwofactor_removeauthenticator_request_unpack(buf []byte) ?CTwoFactor_RemoveAuthenticator_Request {
-	mut res := CTwoFactor_RemoveAuthenticator_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_removeauthenticator_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -929,25 +1121,21 @@ pub fn ctwofactor_removeauthenticator_request_unpack(buf []byte) ?CTwoFactor_Rem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				res.has_revocation_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.revocation_code = v
 				i = ii
 			}
 			5 {
-				res.has_revocation_reason = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.revocation_reason = v
 				i = ii
 			}
 			6 {
-				res.has_steamguard_scheme = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamguard_scheme = v
 				i = ii
 			}
 			7 {
-				res.has_remove_all_steamguard_cookies = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.remove_all_steamguard_cookies = v
 				i = ii
@@ -967,17 +1155,51 @@ pub fn ctwofactor_removeauthenticator_request_unpack(buf []byte) ?CTwoFactor_Rem
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_RemoveAuthenticator_Request) eq(b CTwoFactor_RemoveAuthenticator_Request) bool {
+	return true && a.revocation_code == b.revocation_code &&
+		a.revocation_reason == b.revocation_reason &&
+		a.steamguard_scheme == b.steamguard_scheme &&
+		a.remove_all_steamguard_cookies == b.remove_all_steamguard_cookies
+}
+
+[inline]
+pub fn (a CTwoFactor_RemoveAuthenticator_Request) ne(b CTwoFactor_RemoveAuthenticator_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_RemoveAuthenticator_Request) eq(b []CTwoFactor_RemoveAuthenticator_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_RemoveAuthenticator_Request) ne(b []CTwoFactor_RemoveAuthenticator_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_removeauthenticator_request() CTwoFactor_RemoveAuthenticator_Request {
 	return CTwoFactor_RemoveAuthenticator_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_removeauthenticator_request(o CTwoFactor_RemoveAuthenticator_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_removeauthenticator_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_RemoveAuthenticator_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_removeauthenticator_request_unpack(v)?
@@ -986,32 +1208,29 @@ pub fn zzz_vproto_internal_unpack_ctwofactor_removeauthenticator_request(buf []b
 
 pub struct CTwoFactor_RemoveAuthenticator_Response {
 mut:
-	unknown_fields                    []vproto.UnknownField
+	unknown_fields                []vproto.UnknownField
 pub mut:
-	success                           bool
-	has_success                       bool
-	server_time                       u64
-	has_server_time                   bool
-	revocation_attempts_remaining     u32
-	has_revocation_attempts_remaining bool
+	success                       bool
+	server_time                   u64
+	revocation_attempts_remaining u32
 }
 
 pub fn (o &CTwoFactor_RemoveAuthenticator_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_success {
+	if o.success != bool(0) {
 		res << vproto.pack_bool_field(o.success, 1)
 	}
-	if o.has_server_time {
+	if o.server_time != u64(0) {
 		res << vproto.pack_uint64_field(o.server_time, 3)
 	}
-	if o.has_revocation_attempts_remaining {
+	if o.revocation_attempts_remaining != u32(0) {
 		res << vproto.pack_uint32_field(o.revocation_attempts_remaining, 5)
 	}
 	return res
 }
 
 pub fn ctwofactor_removeauthenticator_response_unpack(buf []byte) ?CTwoFactor_RemoveAuthenticator_Response {
-	mut res := CTwoFactor_RemoveAuthenticator_Response{}
+	mut res := zzz_vproto_internal_new_ctwofactor_removeauthenticator_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1022,19 +1241,16 @@ pub fn ctwofactor_removeauthenticator_response_unpack(buf []byte) ?CTwoFactor_Re
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_success = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.success = v
 				i = ii
 			}
 			3 {
-				res.has_server_time = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.server_time = v
 				i = ii
 			}
 			5 {
-				res.has_revocation_attempts_remaining = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.revocation_attempts_remaining = v
 				i = ii
@@ -1054,17 +1270,49 @@ pub fn ctwofactor_removeauthenticator_response_unpack(buf []byte) ?CTwoFactor_Re
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_RemoveAuthenticator_Response) eq(b CTwoFactor_RemoveAuthenticator_Response) bool {
+	return true && a.success == b.success &&
+		a.server_time == b.server_time && a.revocation_attempts_remaining == b.revocation_attempts_remaining
+}
+
+[inline]
+pub fn (a CTwoFactor_RemoveAuthenticator_Response) ne(b CTwoFactor_RemoveAuthenticator_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_RemoveAuthenticator_Response) eq(b []CTwoFactor_RemoveAuthenticator_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_RemoveAuthenticator_Response) ne(b []CTwoFactor_RemoveAuthenticator_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_removeauthenticator_response() CTwoFactor_RemoveAuthenticator_Response {
 	return CTwoFactor_RemoveAuthenticator_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_removeauthenticator_response(o CTwoFactor_RemoveAuthenticator_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_removeauthenticator_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_RemoveAuthenticator_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_removeauthenticator_response_unpack(v)?
@@ -1076,19 +1324,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	code           string
-	has_code       bool
 }
 
 pub fn (o &CTwoFactor_CreateEmergencyCodes_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_code {
+	if o.code != '' {
 		res << vproto.pack_string_field(o.code, 1)
 	}
 	return res
 }
 
 pub fn ctwofactor_createemergencycodes_request_unpack(buf []byte) ?CTwoFactor_CreateEmergencyCodes_Request {
-	mut res := CTwoFactor_CreateEmergencyCodes_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_createemergencycodes_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1099,7 +1346,6 @@ pub fn ctwofactor_createemergencycodes_request_unpack(buf []byte) ?CTwoFactor_Cr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.code = v
 				i = ii
@@ -1119,17 +1365,48 @@ pub fn ctwofactor_createemergencycodes_request_unpack(buf []byte) ?CTwoFactor_Cr
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_CreateEmergencyCodes_Request) eq(b CTwoFactor_CreateEmergencyCodes_Request) bool {
+	return true && a.code == b.code
+}
+
+[inline]
+pub fn (a CTwoFactor_CreateEmergencyCodes_Request) ne(b CTwoFactor_CreateEmergencyCodes_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_CreateEmergencyCodes_Request) eq(b []CTwoFactor_CreateEmergencyCodes_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_CreateEmergencyCodes_Request) ne(b []CTwoFactor_CreateEmergencyCodes_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_createemergencycodes_request() CTwoFactor_CreateEmergencyCodes_Request {
 	return CTwoFactor_CreateEmergencyCodes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_createemergencycodes_request(o CTwoFactor_CreateEmergencyCodes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_createemergencycodes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_CreateEmergencyCodes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_createemergencycodes_request_unpack(v)?
@@ -1153,7 +1430,7 @@ pub fn (o &CTwoFactor_CreateEmergencyCodes_Response) pack() []byte {
 }
 
 pub fn ctwofactor_createemergencycodes_response_unpack(buf []byte) ?CTwoFactor_CreateEmergencyCodes_Response {
-	mut res := CTwoFactor_CreateEmergencyCodes_Response{}
+	mut res := zzz_vproto_internal_new_ctwofactor_createemergencycodes_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1184,17 +1461,48 @@ pub fn ctwofactor_createemergencycodes_response_unpack(buf []byte) ?CTwoFactor_C
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_CreateEmergencyCodes_Response) eq(b CTwoFactor_CreateEmergencyCodes_Response) bool {
+	return true && a.codes == b.codes
+}
+
+[inline]
+pub fn (a CTwoFactor_CreateEmergencyCodes_Response) ne(b CTwoFactor_CreateEmergencyCodes_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_CreateEmergencyCodes_Response) eq(b []CTwoFactor_CreateEmergencyCodes_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_CreateEmergencyCodes_Response) ne(b []CTwoFactor_CreateEmergencyCodes_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_createemergencycodes_response() CTwoFactor_CreateEmergencyCodes_Response {
 	return CTwoFactor_CreateEmergencyCodes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_createemergencycodes_response(o CTwoFactor_CreateEmergencyCodes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_createemergencycodes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_CreateEmergencyCodes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_createemergencycodes_response_unpack(v)?
@@ -1206,19 +1514,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CTwoFactor_DestroyEmergencyCodes_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn ctwofactor_destroyemergencycodes_request_unpack(buf []byte) ?CTwoFactor_DestroyEmergencyCodes_Request {
-	mut res := CTwoFactor_DestroyEmergencyCodes_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_destroyemergencycodes_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1229,7 +1536,6 @@ pub fn ctwofactor_destroyemergencycodes_request_unpack(buf []byte) ?CTwoFactor_D
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1249,17 +1555,48 @@ pub fn ctwofactor_destroyemergencycodes_request_unpack(buf []byte) ?CTwoFactor_D
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_DestroyEmergencyCodes_Request) eq(b CTwoFactor_DestroyEmergencyCodes_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CTwoFactor_DestroyEmergencyCodes_Request) ne(b CTwoFactor_DestroyEmergencyCodes_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_DestroyEmergencyCodes_Request) eq(b []CTwoFactor_DestroyEmergencyCodes_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_DestroyEmergencyCodes_Request) ne(b []CTwoFactor_DestroyEmergencyCodes_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_destroyemergencycodes_request() CTwoFactor_DestroyEmergencyCodes_Request {
 	return CTwoFactor_DestroyEmergencyCodes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_destroyemergencycodes_request(o CTwoFactor_DestroyEmergencyCodes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_destroyemergencycodes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_DestroyEmergencyCodes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_destroyemergencycodes_request_unpack(v)?
@@ -1277,21 +1614,52 @@ pub fn (o &CTwoFactor_DestroyEmergencyCodes_Response) pack() []byte {
 }
 
 pub fn ctwofactor_destroyemergencycodes_response_unpack(buf []byte) ?CTwoFactor_DestroyEmergencyCodes_Response {
-	res := CTwoFactor_DestroyEmergencyCodes_Response{}
+	res := zzz_vproto_internal_new_ctwofactor_destroyemergencycodes_response()
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_DestroyEmergencyCodes_Response) eq(b CTwoFactor_DestroyEmergencyCodes_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CTwoFactor_DestroyEmergencyCodes_Response) ne(b CTwoFactor_DestroyEmergencyCodes_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_DestroyEmergencyCodes_Response) eq(b []CTwoFactor_DestroyEmergencyCodes_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_DestroyEmergencyCodes_Response) ne(b []CTwoFactor_DestroyEmergencyCodes_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_destroyemergencycodes_response() CTwoFactor_DestroyEmergencyCodes_Response {
 	return CTwoFactor_DestroyEmergencyCodes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_destroyemergencycodes_response(o CTwoFactor_DestroyEmergencyCodes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_destroyemergencycodes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_DestroyEmergencyCodes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_destroyemergencycodes_response_unpack(v)?
@@ -1303,19 +1671,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	code           string
-	has_code       bool
 }
 
 pub fn (o &CTwoFactor_ValidateToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_code {
+	if o.code != '' {
 		res << vproto.pack_string_field(o.code, 1)
 	}
 	return res
 }
 
 pub fn ctwofactor_validatetoken_request_unpack(buf []byte) ?CTwoFactor_ValidateToken_Request {
-	mut res := CTwoFactor_ValidateToken_Request{}
+	mut res := zzz_vproto_internal_new_ctwofactor_validatetoken_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1326,7 +1693,6 @@ pub fn ctwofactor_validatetoken_request_unpack(buf []byte) ?CTwoFactor_ValidateT
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.code = v
 				i = ii
@@ -1346,17 +1712,48 @@ pub fn ctwofactor_validatetoken_request_unpack(buf []byte) ?CTwoFactor_ValidateT
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_ValidateToken_Request) eq(b CTwoFactor_ValidateToken_Request) bool {
+	return true && a.code == b.code
+}
+
+[inline]
+pub fn (a CTwoFactor_ValidateToken_Request) ne(b CTwoFactor_ValidateToken_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_ValidateToken_Request) eq(b []CTwoFactor_ValidateToken_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_ValidateToken_Request) ne(b []CTwoFactor_ValidateToken_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_validatetoken_request() CTwoFactor_ValidateToken_Request {
 	return CTwoFactor_ValidateToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_validatetoken_request(o CTwoFactor_ValidateToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_validatetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_ValidateToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_validatetoken_request_unpack(v)?
@@ -1368,19 +1765,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	valid          bool
-	has_valid      bool
 }
 
 pub fn (o &CTwoFactor_ValidateToken_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_valid {
+	if o.valid != bool(0) {
 		res << vproto.pack_bool_field(o.valid, 1)
 	}
 	return res
 }
 
 pub fn ctwofactor_validatetoken_response_unpack(buf []byte) ?CTwoFactor_ValidateToken_Response {
-	mut res := CTwoFactor_ValidateToken_Response{}
+	mut res := zzz_vproto_internal_new_ctwofactor_validatetoken_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1391,7 +1787,6 @@ pub fn ctwofactor_validatetoken_response_unpack(buf []byte) ?CTwoFactor_Validate
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_valid = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.valid = v
 				i = ii
@@ -1411,17 +1806,48 @@ pub fn ctwofactor_validatetoken_response_unpack(buf []byte) ?CTwoFactor_Validate
 	return res
 }
 
+[inline]
+pub fn (a CTwoFactor_ValidateToken_Response) eq(b CTwoFactor_ValidateToken_Response) bool {
+	return true && a.valid == b.valid
+}
+
+[inline]
+pub fn (a CTwoFactor_ValidateToken_Response) ne(b CTwoFactor_ValidateToken_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTwoFactor_ValidateToken_Response) eq(b []CTwoFactor_ValidateToken_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTwoFactor_ValidateToken_Response) ne(b []CTwoFactor_ValidateToken_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctwofactor_validatetoken_response() CTwoFactor_ValidateToken_Response {
 	return CTwoFactor_ValidateToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctwofactor_validatetoken_response(o CTwoFactor_ValidateToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctwofactor_validatetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTwoFactor_ValidateToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctwofactor_validatetoken_response_unpack(v)?

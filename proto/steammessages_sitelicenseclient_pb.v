@@ -5,32 +5,29 @@ import emily33901.vproto
 
 pub struct CMsgClientSiteInfo {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	site_id                      u64
-	has_site_id                  bool
-	site_name                    string
-	has_site_name                bool
-	allow_cached_credentials     bool
-	has_allow_cached_credentials bool
+	site_id                  u64
+	site_name                string
+	allow_cached_credentials bool
 }
 
 pub fn (o &CMsgClientSiteInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_site_id {
+	if o.site_id != u64(0) {
 		res << vproto.pack_uint64_field(o.site_id, 1)
 	}
-	if o.has_site_name {
+	if o.site_name != '' {
 		res << vproto.pack_string_field(o.site_name, 2)
 	}
-	if o.has_allow_cached_credentials {
+	if o.allow_cached_credentials != bool(0) {
 		res << vproto.pack_bool_field(o.allow_cached_credentials, 3)
 	}
 	return res
 }
 
 pub fn cmsgclientsiteinfo_unpack(buf []byte) ?CMsgClientSiteInfo {
-	mut res := CMsgClientSiteInfo{}
+	mut res := zzz_vproto_internal_new_cmsgclientsiteinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -41,19 +38,16 @@ pub fn cmsgclientsiteinfo_unpack(buf []byte) ?CMsgClientSiteInfo {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_site_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_id = v
 				i = ii
 			}
 			2 {
-				res.has_site_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.site_name = v
 				i = ii
 			}
 			3 {
-				res.has_allow_cached_credentials = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.allow_cached_credentials = v
 				i = ii
@@ -73,17 +67,49 @@ pub fn cmsgclientsiteinfo_unpack(buf []byte) ?CMsgClientSiteInfo {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteInfo) eq(b CMsgClientSiteInfo) bool {
+	return true && a.site_id == b.site_id &&
+		a.site_name == b.site_name && a.allow_cached_credentials == b.allow_cached_credentials
+}
+
+[inline]
+pub fn (a CMsgClientSiteInfo) ne(b CMsgClientSiteInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteInfo) eq(b []CMsgClientSiteInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteInfo) ne(b []CMsgClientSiteInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsiteinfo() CMsgClientSiteInfo {
 	return CMsgClientSiteInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsiteinfo(o CMsgClientSiteInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsiteinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsiteinfo_unpack(v)?
@@ -95,19 +121,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CMsgClientSiteLicenseCheckout) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientsitelicensecheckout_unpack(buf []byte) ?CMsgClientSiteLicenseCheckout {
-	mut res := CMsgClientSiteLicenseCheckout{}
+	mut res := zzz_vproto_internal_new_cmsgclientsitelicensecheckout()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -118,7 +143,6 @@ pub fn cmsgclientsitelicensecheckout_unpack(buf []byte) ?CMsgClientSiteLicenseCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -138,17 +162,48 @@ pub fn cmsgclientsitelicensecheckout_unpack(buf []byte) ?CMsgClientSiteLicenseCh
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteLicenseCheckout) eq(b CMsgClientSiteLicenseCheckout) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CMsgClientSiteLicenseCheckout) ne(b CMsgClientSiteLicenseCheckout) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseCheckout) eq(b []CMsgClientSiteLicenseCheckout) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseCheckout) ne(b []CMsgClientSiteLicenseCheckout) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsitelicensecheckout() CMsgClientSiteLicenseCheckout {
 	return CMsgClientSiteLicenseCheckout{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsitelicensecheckout(o CMsgClientSiteLicenseCheckout, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensecheckout(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteLicenseCheckout) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsitelicensecheckout_unpack(v)?
@@ -159,20 +214,19 @@ pub struct CMsgClientSiteLicenseCheckoutResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	eresult        int
-	has_eresult    bool
+	eresult        int = 2
 }
 
 pub fn (o &CMsgClientSiteLicenseCheckoutResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientsitelicensecheckoutresponse_unpack(buf []byte) ?CMsgClientSiteLicenseCheckoutResponse {
-	mut res := CMsgClientSiteLicenseCheckoutResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientsitelicensecheckoutresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -183,7 +237,6 @@ pub fn cmsgclientsitelicensecheckoutresponse_unpack(buf []byte) ?CMsgClientSiteL
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -203,17 +256,48 @@ pub fn cmsgclientsitelicensecheckoutresponse_unpack(buf []byte) ?CMsgClientSiteL
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteLicenseCheckoutResponse) eq(b CMsgClientSiteLicenseCheckoutResponse) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientSiteLicenseCheckoutResponse) ne(b CMsgClientSiteLicenseCheckoutResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseCheckoutResponse) eq(b []CMsgClientSiteLicenseCheckoutResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseCheckoutResponse) ne(b []CMsgClientSiteLicenseCheckoutResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsitelicensecheckoutresponse() CMsgClientSiteLicenseCheckoutResponse {
 	return CMsgClientSiteLicenseCheckoutResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsitelicensecheckoutresponse(o CMsgClientSiteLicenseCheckoutResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensecheckoutresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteLicenseCheckoutResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsitelicensecheckoutresponse_unpack(v)?
@@ -225,19 +309,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CMsgClientSiteLicenseGetAvailableSeats) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientsitelicensegetavailableseats_unpack(buf []byte) ?CMsgClientSiteLicenseGetAvailableSeats {
-	mut res := CMsgClientSiteLicenseGetAvailableSeats{}
+	mut res := zzz_vproto_internal_new_cmsgclientsitelicensegetavailableseats()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -248,7 +331,6 @@ pub fn cmsgclientsitelicensegetavailableseats_unpack(buf []byte) ?CMsgClientSite
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -268,17 +350,48 @@ pub fn cmsgclientsitelicensegetavailableseats_unpack(buf []byte) ?CMsgClientSite
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteLicenseGetAvailableSeats) eq(b CMsgClientSiteLicenseGetAvailableSeats) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CMsgClientSiteLicenseGetAvailableSeats) ne(b CMsgClientSiteLicenseGetAvailableSeats) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetAvailableSeats) eq(b []CMsgClientSiteLicenseGetAvailableSeats) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetAvailableSeats) ne(b []CMsgClientSiteLicenseGetAvailableSeats) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsitelicensegetavailableseats() CMsgClientSiteLicenseGetAvailableSeats {
 	return CMsgClientSiteLicenseGetAvailableSeats{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsitelicensegetavailableseats(o CMsgClientSiteLicenseGetAvailableSeats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensegetavailableseats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteLicenseGetAvailableSeats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsitelicensegetavailableseats_unpack(v)?
@@ -289,25 +402,23 @@ pub struct CMsgClientSiteLicenseGetAvailableSeatsResponse {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	eresult        int
-	has_eresult    bool
+	eresult        int = 2
 	seats          u32
-	has_seats      bool
 }
 
 pub fn (o &CMsgClientSiteLicenseGetAvailableSeatsResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
-	if o.has_seats {
+	if o.seats != u32(0) {
 		res << vproto.pack_uint32_field(o.seats, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientsitelicensegetavailableseatsresponse_unpack(buf []byte) ?CMsgClientSiteLicenseGetAvailableSeatsResponse {
-	mut res := CMsgClientSiteLicenseGetAvailableSeatsResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientsitelicensegetavailableseatsresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -318,13 +429,11 @@ pub fn cmsgclientsitelicensegetavailableseatsresponse_unpack(buf []byte) ?CMsgCl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				res.has_seats = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seats = v
 				i = ii
@@ -344,17 +453,48 @@ pub fn cmsgclientsitelicensegetavailableseatsresponse_unpack(buf []byte) ?CMsgCl
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteLicenseGetAvailableSeatsResponse) eq(b CMsgClientSiteLicenseGetAvailableSeatsResponse) bool {
+	return true && a.eresult == b.eresult && a.seats == b.seats
+}
+
+[inline]
+pub fn (a CMsgClientSiteLicenseGetAvailableSeatsResponse) ne(b CMsgClientSiteLicenseGetAvailableSeatsResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetAvailableSeatsResponse) eq(b []CMsgClientSiteLicenseGetAvailableSeatsResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetAvailableSeatsResponse) ne(b []CMsgClientSiteLicenseGetAvailableSeatsResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsitelicensegetavailableseatsresponse() CMsgClientSiteLicenseGetAvailableSeatsResponse {
 	return CMsgClientSiteLicenseGetAvailableSeatsResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsitelicensegetavailableseatsresponse(o CMsgClientSiteLicenseGetAvailableSeatsResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensegetavailableseatsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteLicenseGetAvailableSeatsResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsitelicensegetavailableseatsresponse_unpack(v)?
@@ -372,21 +512,52 @@ pub fn (o &CMsgClientSiteLicenseGetContentCacheInfo) pack() []byte {
 }
 
 pub fn cmsgclientsitelicensegetcontentcacheinfo_unpack(buf []byte) ?CMsgClientSiteLicenseGetContentCacheInfo {
-	res := CMsgClientSiteLicenseGetContentCacheInfo{}
+	res := zzz_vproto_internal_new_cmsgclientsitelicensegetcontentcacheinfo()
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteLicenseGetContentCacheInfo) eq(b CMsgClientSiteLicenseGetContentCacheInfo) bool {
+	return true
+}
+
+[inline]
+pub fn (a CMsgClientSiteLicenseGetContentCacheInfo) ne(b CMsgClientSiteLicenseGetContentCacheInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetContentCacheInfo) eq(b []CMsgClientSiteLicenseGetContentCacheInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetContentCacheInfo) ne(b []CMsgClientSiteLicenseGetContentCacheInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsitelicensegetcontentcacheinfo() CMsgClientSiteLicenseGetContentCacheInfo {
 	return CMsgClientSiteLicenseGetContentCacheInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsitelicensegetcontentcacheinfo(o CMsgClientSiteLicenseGetContentCacheInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensegetcontentcacheinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteLicenseGetContentCacheInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsitelicensegetcontentcacheinfo_unpack(v)?
@@ -395,42 +566,37 @@ pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensegetcontentcacheinfo(buf [
 
 pub struct CMsgClientSiteLicenseGetContentCacheInfoResponse {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	use_cache        bool
-	has_use_cache    bool
-	ipv4_address     u32
-	has_ipv4_address bool
-	port_number      u32
-	has_port_number  bool
-	p2p_group        u32
-	has_p2p_group    bool
-	ip_address       string
-	has_ip_address   bool
+	use_cache      bool
+	ipv4_address   u32
+	port_number    u32
+	p2p_group      u32
+	ip_address     string
 }
 
 pub fn (o &CMsgClientSiteLicenseGetContentCacheInfoResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_use_cache {
+	if o.use_cache != bool(0) {
 		res << vproto.pack_bool_field(o.use_cache, 1)
 	}
-	if o.has_ipv4_address {
+	if o.ipv4_address != u32(0) {
 		res << vproto.pack_uint32_field(o.ipv4_address, 2)
 	}
-	if o.has_port_number {
+	if o.port_number != u32(0) {
 		res << vproto.pack_uint32_field(o.port_number, 3)
 	}
-	if o.has_p2p_group {
+	if o.p2p_group != u32(0) {
 		res << vproto.pack_uint32_field(o.p2p_group, 4)
 	}
-	if o.has_ip_address {
+	if o.ip_address != '' {
 		res << vproto.pack_string_field(o.ip_address, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientsitelicensegetcontentcacheinforesponse_unpack(buf []byte) ?CMsgClientSiteLicenseGetContentCacheInfoResponse {
-	mut res := CMsgClientSiteLicenseGetContentCacheInfoResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientsitelicensegetcontentcacheinforesponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -441,31 +607,26 @@ pub fn cmsgclientsitelicensegetcontentcacheinforesponse_unpack(buf []byte) ?CMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_use_cache = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.use_cache = v
 				i = ii
 			}
 			2 {
-				res.has_ipv4_address = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ipv4_address = v
 				i = ii
 			}
 			3 {
-				res.has_port_number = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.port_number = v
 				i = ii
 			}
 			4 {
-				res.has_p2p_group = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.p2p_group = v
 				i = ii
 			}
 			5 {
-				res.has_ip_address = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.ip_address = v
 				i = ii
@@ -485,17 +646,51 @@ pub fn cmsgclientsitelicensegetcontentcacheinforesponse_unpack(buf []byte) ?CMsg
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSiteLicenseGetContentCacheInfoResponse) eq(b CMsgClientSiteLicenseGetContentCacheInfoResponse) bool {
+	return true && a.use_cache == b.use_cache &&
+		a.ipv4_address == b.ipv4_address &&
+		a.port_number == b.port_number && a.p2p_group == b.p2p_group &&
+		a.ip_address == b.ip_address
+}
+
+[inline]
+pub fn (a CMsgClientSiteLicenseGetContentCacheInfoResponse) ne(b CMsgClientSiteLicenseGetContentCacheInfoResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetContentCacheInfoResponse) eq(b []CMsgClientSiteLicenseGetContentCacheInfoResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSiteLicenseGetContentCacheInfoResponse) ne(b []CMsgClientSiteLicenseGetContentCacheInfoResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsitelicensegetcontentcacheinforesponse() CMsgClientSiteLicenseGetContentCacheInfoResponse {
 	return CMsgClientSiteLicenseGetContentCacheInfoResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsitelicensegetcontentcacheinforesponse(o CMsgClientSiteLicenseGetContentCacheInfoResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsitelicensegetcontentcacheinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSiteLicenseGetContentCacheInfoResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsitelicensegetcontentcacheinforesponse_unpack(v)?

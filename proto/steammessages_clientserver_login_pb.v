@@ -14,21 +14,52 @@ pub fn (o &CMsgClientHeartBeat) pack() []byte {
 }
 
 pub fn cmsgclientheartbeat_unpack(buf []byte) ?CMsgClientHeartBeat {
-	res := CMsgClientHeartBeat{}
+	res := zzz_vproto_internal_new_cmsgclientheartbeat()
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientHeartBeat) eq(b CMsgClientHeartBeat) bool {
+	return true
+}
+
+[inline]
+pub fn (a CMsgClientHeartBeat) ne(b CMsgClientHeartBeat) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientHeartBeat) eq(b []CMsgClientHeartBeat) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientHeartBeat) ne(b []CMsgClientHeartBeat) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientheartbeat() CMsgClientHeartBeat {
 	return CMsgClientHeartBeat{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientheartbeat(o CMsgClientHeartBeat, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientheartbeat(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientHeartBeat) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientheartbeat_unpack(v)?
@@ -37,22 +68,21 @@ pub fn zzz_vproto_internal_unpack_cmsgclientheartbeat(buf []byte, tag_wiretype v
 
 pub struct CMsgClientServerTimestampRequest {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	client_request_timestamp     u64
-	has_client_request_timestamp bool
+	client_request_timestamp u64
 }
 
 pub fn (o &CMsgClientServerTimestampRequest) pack() []byte {
 	mut res := []byte{}
-	if o.has_client_request_timestamp {
+	if o.client_request_timestamp != u64(0) {
 		res << vproto.pack_uint64_field(o.client_request_timestamp, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientservertimestamprequest_unpack(buf []byte) ?CMsgClientServerTimestampRequest {
-	mut res := CMsgClientServerTimestampRequest{}
+	mut res := zzz_vproto_internal_new_cmsgclientservertimestamprequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -63,7 +93,6 @@ pub fn cmsgclientservertimestamprequest_unpack(buf []byte) ?CMsgClientServerTime
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_client_request_timestamp = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_request_timestamp = v
 				i = ii
@@ -83,17 +112,48 @@ pub fn cmsgclientservertimestamprequest_unpack(buf []byte) ?CMsgClientServerTime
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientServerTimestampRequest) eq(b CMsgClientServerTimestampRequest) bool {
+	return true && a.client_request_timestamp == b.client_request_timestamp
+}
+
+[inline]
+pub fn (a CMsgClientServerTimestampRequest) ne(b CMsgClientServerTimestampRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientServerTimestampRequest) eq(b []CMsgClientServerTimestampRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientServerTimestampRequest) ne(b []CMsgClientServerTimestampRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientservertimestamprequest() CMsgClientServerTimestampRequest {
 	return CMsgClientServerTimestampRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientservertimestamprequest(o CMsgClientServerTimestampRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientservertimestamprequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientServerTimestampRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientservertimestamprequest_unpack(v)?
@@ -102,27 +162,25 @@ pub fn zzz_vproto_internal_unpack_cmsgclientservertimestamprequest(buf []byte, t
 
 pub struct CMsgClientServerTimestampResponse {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	client_request_timestamp     u64
-	has_client_request_timestamp bool
-	server_timestamp_ms          u64
-	has_server_timestamp_ms      bool
+	client_request_timestamp u64
+	server_timestamp_ms      u64
 }
 
 pub fn (o &CMsgClientServerTimestampResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_client_request_timestamp {
+	if o.client_request_timestamp != u64(0) {
 		res << vproto.pack_uint64_field(o.client_request_timestamp, 1)
 	}
-	if o.has_server_timestamp_ms {
+	if o.server_timestamp_ms != u64(0) {
 		res << vproto.pack_uint64_field(o.server_timestamp_ms, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientservertimestampresponse_unpack(buf []byte) ?CMsgClientServerTimestampResponse {
-	mut res := CMsgClientServerTimestampResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientservertimestampresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -133,13 +191,11 @@ pub fn cmsgclientservertimestampresponse_unpack(buf []byte) ?CMsgClientServerTim
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_client_request_timestamp = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_request_timestamp = v
 				i = ii
 			}
 			2 {
-				res.has_server_timestamp_ms = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.server_timestamp_ms = v
 				i = ii
@@ -159,17 +215,49 @@ pub fn cmsgclientservertimestampresponse_unpack(buf []byte) ?CMsgClientServerTim
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientServerTimestampResponse) eq(b CMsgClientServerTimestampResponse) bool {
+	return true && a.client_request_timestamp == b.client_request_timestamp &&
+		a.server_timestamp_ms == b.server_timestamp_ms
+}
+
+[inline]
+pub fn (a CMsgClientServerTimestampResponse) ne(b CMsgClientServerTimestampResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientServerTimestampResponse) eq(b []CMsgClientServerTimestampResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientServerTimestampResponse) ne(b []CMsgClientServerTimestampResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientservertimestampresponse() CMsgClientServerTimestampResponse {
 	return CMsgClientServerTimestampResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientservertimestampresponse(o CMsgClientServerTimestampResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientservertimestampresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientServerTimestampResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientservertimestampresponse_unpack(v)?
@@ -181,39 +269,34 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	version        u32
-	has_version    bool
 	appid          u32
-	has_appid      bool
 	deviceid       u32
-	has_deviceid   bool
 	nonce          u64
-	has_nonce      bool
 	hmac           []byte
-	has_hmac       bool
 }
 
 pub fn (o &CMsgClientSecret) pack() []byte {
 	mut res := []byte{}
-	if o.has_version {
+	if o.version != u32(0) {
 		res << vproto.pack_uint32_field(o.version, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_deviceid {
+	if o.deviceid != u32(0) {
 		res << vproto.pack_uint32_field(o.deviceid, 3)
 	}
-	if o.has_nonce {
+	if o.nonce != u64(0) {
 		res << vproto.pack_64bit_field(o.nonce, 4)
 	}
-	if o.has_hmac {
+	if o.hmac != []byte{} {
 		res << vproto.pack_bytes_field(o.hmac, 5)
 	}
 	return res
 }
 
 pub fn cmsgclientsecret_unpack(buf []byte) ?CMsgClientSecret {
-	mut res := CMsgClientSecret{}
+	mut res := zzz_vproto_internal_new_cmsgclientsecret()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -224,31 +307,26 @@ pub fn cmsgclientsecret_unpack(buf []byte) ?CMsgClientSecret {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_version = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.version = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				res.has_deviceid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deviceid = v
 				i = ii
 			}
 			4 {
-				res.has_nonce = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.nonce = v
 				i = ii
 			}
 			5 {
-				res.has_hmac = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.hmac = v
 				i = ii
@@ -268,17 +346,50 @@ pub fn cmsgclientsecret_unpack(buf []byte) ?CMsgClientSecret {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientSecret) eq(b CMsgClientSecret) bool {
+	return true && a.version == b.version &&
+		a.appid == b.appid && a.deviceid == b.deviceid &&
+		a.nonce == b.nonce && a.hmac == b.hmac
+}
+
+[inline]
+pub fn (a CMsgClientSecret) ne(b CMsgClientSecret) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientSecret) eq(b []CMsgClientSecret) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientSecret) ne(b []CMsgClientSecret) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientsecret() CMsgClientSecret {
 	return CMsgClientSecret{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientsecret(o CMsgClientSecret, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsecret(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSecret) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientsecret_unpack(v)?
@@ -287,282 +398,229 @@ pub fn zzz_vproto_internal_unpack_cmsgclientsecret(buf []byte, tag_wiretype vpro
 
 pub struct CMsgClientLogon {
 mut:
-	unknown_fields                              []vproto.UnknownField
+	unknown_fields                          []vproto.UnknownField
 pub mut:
-	protocol_version                            u32
-	has_protocol_version                        bool
-	deprecated_obfustucated_private_ip          u32
-	has_deprecated_obfustucated_private_ip      bool
-	cell_id                                     u32
-	has_cell_id                                 bool
-	last_session_id                             u32
-	has_last_session_id                         bool
-	client_package_version                      u32
-	has_client_package_version                  bool
-	client_language                             string
-	has_client_language                         bool
-	client_os_type                              u32
-	has_client_os_type                          bool
-	should_remember_password                    bool
-	has_should_remember_password                bool
-	wine_version                                string
-	has_wine_version                            bool
-	deprecated_10                               u32
-	has_deprecated_10                           bool
-	obfuscated_private_ip                       CMsgIPAddress
-	has_obfuscated_private_ip                   bool
-	deprecated_public_ip                        u32
-	has_deprecated_public_ip                    bool
-	qos_level                                   u32
-	has_qos_level                               bool
-	client_supplied_steam_id                    u64
-	has_client_supplied_steam_id                bool
-	public_ip                                   CMsgIPAddress
-	has_public_ip                               bool
-	machine_id                                  []byte
-	has_machine_id                              bool
-	launcher_type                               u32
-	has_launcher_type                           bool
-	ui_mode                                     u32
-	has_ui_mode                                 bool
-	chat_mode                                   u32
-	has_chat_mode                               bool
-	steam2_auth_ticket                          []byte
-	has_steam2_auth_ticket                      bool
-	email_address                               string
-	has_email_address                           bool
-	rtime32_account_creation                    u32
-	has_rtime32_account_creation                bool
-	account_name                                string
-	has_account_name                            bool
-	password                                    string
-	has_password                                bool
-	game_server_token                           string
-	has_game_server_token                       bool
-	login_key                                   string
-	has_login_key                               bool
-	was_converted_deprecated_msg                bool
-	has_was_converted_deprecated_msg            bool
-	anon_user_target_account_name               string
-	has_anon_user_target_account_name           bool
-	resolved_user_steam_id                      u64
-	has_resolved_user_steam_id                  bool
-	eresult_sentryfile                          int
-	has_eresult_sentryfile                      bool
-	sha_sentryfile                              []byte
-	has_sha_sentryfile                          bool
-	auth_code                                   string
-	has_auth_code                               bool
-	otp_type                                    int
-	has_otp_type                                bool
-	otp_value                                   u32
-	has_otp_value                               bool
-	otp_identifier                              string
-	has_otp_identifier                          bool
-	steam2_ticket_request                       bool
-	has_steam2_ticket_request                   bool
-	sony_psn_ticket                             []byte
-	has_sony_psn_ticket                         bool
-	sony_psn_service_id                         string
-	has_sony_psn_service_id                     bool
-	create_new_psn_linked_account_if_needed     bool
-	has_create_new_psn_linked_account_if_needed bool
-	sony_psn_name                               string
-	has_sony_psn_name                           bool
-	game_server_app_id                          int
-	has_game_server_app_id                      bool
-	steamguard_dont_remember_computer           bool
-	has_steamguard_dont_remember_computer       bool
-	machine_name                                string
-	has_machine_name                            bool
-	machine_name_userchosen                     string
-	has_machine_name_userchosen                 bool
-	country_override                            string
-	has_country_override                        bool
-	is_steam_box                                bool
-	has_is_steam_box                            bool
-	client_instance_id                          u64
-	has_client_instance_id                      bool
-	two_factor_code                             string
-	has_two_factor_code                         bool
-	supports_rate_limit_response                bool
-	has_supports_rate_limit_response            bool
-	web_logon_nonce                             string
-	has_web_logon_nonce                         bool
-	priority_reason                             int
-	has_priority_reason                         bool
-	embedded_client_secret                      CMsgClientSecret
-	has_embedded_client_secret                  bool
-	disable_partner_autogrants                  bool
-	has_disable_partner_autogrants              bool
+	protocol_version                        u32
+	deprecated_obfustucated_private_ip      u32
+	cell_id                                 u32
+	last_session_id                         u32
+	client_package_version                  u32
+	client_language                         string
+	client_os_type                          u32
+	should_remember_password                bool = false
+	wine_version                            string
+	deprecated_10                           u32
+	obfuscated_private_ip                   CMsgIPAddress
+	deprecated_public_ip                    u32
+	qos_level                               u32
+	client_supplied_steam_id                u64
+	public_ip                               CMsgIPAddress
+	machine_id                              []byte
+	launcher_type                           u32 = 0
+	ui_mode                                 u32 = 0
+	chat_mode                               u32 = 0
+	steam2_auth_ticket                      []byte
+	email_address                           string
+	rtime32_account_creation                u32
+	account_name                            string
+	password                                string
+	game_server_token                       string
+	login_key                               string
+	was_converted_deprecated_msg            bool = false
+	anon_user_target_account_name           string
+	resolved_user_steam_id                  u64
+	eresult_sentryfile                      int
+	sha_sentryfile                          []byte
+	auth_code                               string
+	otp_type                                int
+	otp_value                               u32
+	otp_identifier                          string
+	steam2_ticket_request                   bool
+	sony_psn_ticket                         []byte
+	sony_psn_service_id                     string
+	create_new_psn_linked_account_if_needed bool = false
+	sony_psn_name                           string
+	game_server_app_id                      int
+	steamguard_dont_remember_computer       bool
+	machine_name                            string
+	machine_name_userchosen                 string
+	country_override                        string
+	is_steam_box                            bool
+	client_instance_id                      u64
+	two_factor_code                         string
+	supports_rate_limit_response            bool
+	web_logon_nonce                         string
+	priority_reason                         int
+	embedded_client_secret                  CMsgClientSecret
+	disable_partner_autogrants              bool
 }
 
 pub fn (o &CMsgClientLogon) pack() []byte {
 	mut res := []byte{}
-	if o.has_protocol_version {
+	if o.protocol_version != u32(0) {
 		res << vproto.pack_uint32_field(o.protocol_version, 1)
 	}
-	if o.has_deprecated_obfustucated_private_ip {
+	if o.deprecated_obfustucated_private_ip != u32(0) {
 		res << vproto.pack_uint32_field(o.deprecated_obfustucated_private_ip, 2)
 	}
-	if o.has_cell_id {
+	if o.cell_id != u32(0) {
 		res << vproto.pack_uint32_field(o.cell_id, 3)
 	}
-	if o.has_last_session_id {
+	if o.last_session_id != u32(0) {
 		res << vproto.pack_uint32_field(o.last_session_id, 4)
 	}
-	if o.has_client_package_version {
+	if o.client_package_version != u32(0) {
 		res << vproto.pack_uint32_field(o.client_package_version, 5)
 	}
-	if o.has_client_language {
+	if o.client_language != '' {
 		res << vproto.pack_string_field(o.client_language, 6)
 	}
-	if o.has_client_os_type {
+	if o.client_os_type != u32(0) {
 		res << vproto.pack_uint32_field(o.client_os_type, 7)
 	}
-	if o.has_should_remember_password {
+	if o.should_remember_password != bool(0) {
 		res << vproto.pack_bool_field(o.should_remember_password, 8)
 	}
-	if o.has_wine_version {
+	if o.wine_version != '' {
 		res << vproto.pack_string_field(o.wine_version, 9)
 	}
-	if o.has_deprecated_10 {
+	if o.deprecated_10 != u32(0) {
 		res << vproto.pack_uint32_field(o.deprecated_10, 10)
 	}
-	if o.has_obfuscated_private_ip {
+	if o.obfuscated_private_ip.ne(zzz_vproto_internal_new_cmsgipaddress()) {
 		res << zzz_vproto_internal_pack_cmsgipaddress(o.obfuscated_private_ip, 11)
 	}
-	if o.has_deprecated_public_ip {
+	if o.deprecated_public_ip != u32(0) {
 		res << vproto.pack_uint32_field(o.deprecated_public_ip, 20)
 	}
-	if o.has_qos_level {
+	if o.qos_level != u32(0) {
 		res << vproto.pack_uint32_field(o.qos_level, 21)
 	}
-	if o.has_client_supplied_steam_id {
+	if o.client_supplied_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.client_supplied_steam_id, 22)
 	}
-	if o.has_public_ip {
+	if o.public_ip.ne(zzz_vproto_internal_new_cmsgipaddress()) {
 		res << zzz_vproto_internal_pack_cmsgipaddress(o.public_ip, 23)
 	}
-	if o.has_machine_id {
+	if o.machine_id != []byte{} {
 		res << vproto.pack_bytes_field(o.machine_id, 30)
 	}
-	if o.has_launcher_type {
+	if o.launcher_type != u32(0) {
 		res << vproto.pack_uint32_field(o.launcher_type, 31)
 	}
-	if o.has_ui_mode {
+	if o.ui_mode != u32(0) {
 		res << vproto.pack_uint32_field(o.ui_mode, 32)
 	}
-	if o.has_chat_mode {
+	if o.chat_mode != u32(0) {
 		res << vproto.pack_uint32_field(o.chat_mode, 33)
 	}
-	if o.has_steam2_auth_ticket {
+	if o.steam2_auth_ticket != []byte{} {
 		res << vproto.pack_bytes_field(o.steam2_auth_ticket, 41)
 	}
-	if o.has_email_address {
+	if o.email_address != '' {
 		res << vproto.pack_string_field(o.email_address, 42)
 	}
-	if o.has_rtime32_account_creation {
+	if o.rtime32_account_creation != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_account_creation, 43)
 	}
-	if o.has_account_name {
+	if o.account_name != '' {
 		res << vproto.pack_string_field(o.account_name, 50)
 	}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 51)
 	}
-	if o.has_game_server_token {
+	if o.game_server_token != '' {
 		res << vproto.pack_string_field(o.game_server_token, 52)
 	}
-	if o.has_login_key {
+	if o.login_key != '' {
 		res << vproto.pack_string_field(o.login_key, 60)
 	}
-	if o.has_was_converted_deprecated_msg {
+	if o.was_converted_deprecated_msg != bool(0) {
 		res << vproto.pack_bool_field(o.was_converted_deprecated_msg, 70)
 	}
-	if o.has_anon_user_target_account_name {
+	if o.anon_user_target_account_name != '' {
 		res << vproto.pack_string_field(o.anon_user_target_account_name, 80)
 	}
-	if o.has_resolved_user_steam_id {
+	if o.resolved_user_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.resolved_user_steam_id, 81)
 	}
-	if o.has_eresult_sentryfile {
+	if o.eresult_sentryfile != int(0) {
 		res << vproto.pack_int32_field(o.eresult_sentryfile, 82)
 	}
-	if o.has_sha_sentryfile {
+	if o.sha_sentryfile != []byte{} {
 		res << vproto.pack_bytes_field(o.sha_sentryfile, 83)
 	}
-	if o.has_auth_code {
+	if o.auth_code != '' {
 		res << vproto.pack_string_field(o.auth_code, 84)
 	}
-	if o.has_otp_type {
+	if o.otp_type != int(0) {
 		res << vproto.pack_int32_field(o.otp_type, 85)
 	}
-	if o.has_otp_value {
+	if o.otp_value != u32(0) {
 		res << vproto.pack_uint32_field(o.otp_value, 86)
 	}
-	if o.has_otp_identifier {
+	if o.otp_identifier != '' {
 		res << vproto.pack_string_field(o.otp_identifier, 87)
 	}
-	if o.has_steam2_ticket_request {
+	if o.steam2_ticket_request != bool(0) {
 		res << vproto.pack_bool_field(o.steam2_ticket_request, 88)
 	}
-	if o.has_sony_psn_ticket {
+	if o.sony_psn_ticket != []byte{} {
 		res << vproto.pack_bytes_field(o.sony_psn_ticket, 90)
 	}
-	if o.has_sony_psn_service_id {
+	if o.sony_psn_service_id != '' {
 		res << vproto.pack_string_field(o.sony_psn_service_id, 91)
 	}
-	if o.has_create_new_psn_linked_account_if_needed {
+	if o.create_new_psn_linked_account_if_needed != bool(0) {
 		res << vproto.pack_bool_field(o.create_new_psn_linked_account_if_needed, 92)
 	}
-	if o.has_sony_psn_name {
+	if o.sony_psn_name != '' {
 		res << vproto.pack_string_field(o.sony_psn_name, 93)
 	}
-	if o.has_game_server_app_id {
+	if o.game_server_app_id != int(0) {
 		res << vproto.pack_int32_field(o.game_server_app_id, 94)
 	}
-	if o.has_steamguard_dont_remember_computer {
+	if o.steamguard_dont_remember_computer != bool(0) {
 		res << vproto.pack_bool_field(o.steamguard_dont_remember_computer, 95)
 	}
-	if o.has_machine_name {
+	if o.machine_name != '' {
 		res << vproto.pack_string_field(o.machine_name, 96)
 	}
-	if o.has_machine_name_userchosen {
+	if o.machine_name_userchosen != '' {
 		res << vproto.pack_string_field(o.machine_name_userchosen, 97)
 	}
-	if o.has_country_override {
+	if o.country_override != '' {
 		res << vproto.pack_string_field(o.country_override, 98)
 	}
-	if o.has_is_steam_box {
+	if o.is_steam_box != bool(0) {
 		res << vproto.pack_bool_field(o.is_steam_box, 99)
 	}
-	if o.has_client_instance_id {
+	if o.client_instance_id != u64(0) {
 		res << vproto.pack_uint64_field(o.client_instance_id, 100)
 	}
-	if o.has_two_factor_code {
+	if o.two_factor_code != '' {
 		res << vproto.pack_string_field(o.two_factor_code, 101)
 	}
-	if o.has_supports_rate_limit_response {
+	if o.supports_rate_limit_response != bool(0) {
 		res << vproto.pack_bool_field(o.supports_rate_limit_response, 102)
 	}
-	if o.has_web_logon_nonce {
+	if o.web_logon_nonce != '' {
 		res << vproto.pack_string_field(o.web_logon_nonce, 103)
 	}
-	if o.has_priority_reason {
+	if o.priority_reason != int(0) {
 		res << vproto.pack_int32_field(o.priority_reason, 104)
 	}
-	if o.has_embedded_client_secret {
+	if o.embedded_client_secret.ne(zzz_vproto_internal_new_cmsgclientsecret()) {
 		res << zzz_vproto_internal_pack_cmsgclientsecret(o.embedded_client_secret, 105)
 	}
-	if o.has_disable_partner_autogrants {
+	if o.disable_partner_autogrants != bool(0) {
 		res << vproto.pack_bool_field(o.disable_partner_autogrants, 106)
 	}
 	return res
 }
 
 pub fn cmsgclientlogon_unpack(buf []byte) ?CMsgClientLogon {
-	mut res := CMsgClientLogon{}
+	mut res := zzz_vproto_internal_new_cmsgclientlogon()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -573,319 +631,266 @@ pub fn cmsgclientlogon_unpack(buf []byte) ?CMsgClientLogon {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_protocol_version = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.protocol_version = v
 				i = ii
 			}
 			2 {
-				res.has_deprecated_obfustucated_private_ip = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deprecated_obfustucated_private_ip = v
 				i = ii
 			}
 			3 {
-				res.has_cell_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cell_id = v
 				i = ii
 			}
 			4 {
-				res.has_last_session_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_session_id = v
 				i = ii
 			}
 			5 {
-				res.has_client_package_version = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_package_version = v
 				i = ii
 			}
 			6 {
-				res.has_client_language = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_language = v
 				i = ii
 			}
 			7 {
-				res.has_client_os_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_os_type = v
 				i = ii
 			}
 			8 {
-				res.has_should_remember_password = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.should_remember_password = v
 				i = ii
 			}
 			9 {
-				res.has_wine_version = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.wine_version = v
 				i = ii
 			}
 			10 {
-				res.has_deprecated_10 = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deprecated_10 = v
 				i = ii
 			}
 			11 {
-				res.has_obfuscated_private_ip = true
 				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
 				res.obfuscated_private_ip = v
 				i = ii
 			}
 			20 {
-				res.has_deprecated_public_ip = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deprecated_public_ip = v
 				i = ii
 			}
 			21 {
-				res.has_qos_level = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.qos_level = v
 				i = ii
 			}
 			22 {
-				res.has_client_supplied_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_supplied_steam_id = v
 				i = ii
 			}
 			23 {
-				res.has_public_ip = true
 				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
 				res.public_ip = v
 				i = ii
 			}
 			30 {
-				res.has_machine_id = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.machine_id = v
 				i = ii
 			}
 			31 {
-				res.has_launcher_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.launcher_type = v
 				i = ii
 			}
 			32 {
-				res.has_ui_mode = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ui_mode = v
 				i = ii
 			}
 			33 {
-				res.has_chat_mode = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.chat_mode = v
 				i = ii
 			}
 			41 {
-				res.has_steam2_auth_ticket = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.steam2_auth_ticket = v
 				i = ii
 			}
 			42 {
-				res.has_email_address = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.email_address = v
 				i = ii
 			}
 			43 {
-				res.has_rtime32_account_creation = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime32_account_creation = v
 				i = ii
 			}
 			50 {
-				res.has_account_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.account_name = v
 				i = ii
 			}
 			51 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			52 {
-				res.has_game_server_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_server_token = v
 				i = ii
 			}
 			60 {
-				res.has_login_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.login_key = v
 				i = ii
 			}
 			70 {
-				res.has_was_converted_deprecated_msg = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.was_converted_deprecated_msg = v
 				i = ii
 			}
 			80 {
-				res.has_anon_user_target_account_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.anon_user_target_account_name = v
 				i = ii
 			}
 			81 {
-				res.has_resolved_user_steam_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.resolved_user_steam_id = v
 				i = ii
 			}
 			82 {
-				res.has_eresult_sentryfile = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult_sentryfile = v
 				i = ii
 			}
 			83 {
-				res.has_sha_sentryfile = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.sha_sentryfile = v
 				i = ii
 			}
 			84 {
-				res.has_auth_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_code = v
 				i = ii
 			}
 			85 {
-				res.has_otp_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.otp_type = v
 				i = ii
 			}
 			86 {
-				res.has_otp_value = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.otp_value = v
 				i = ii
 			}
 			87 {
-				res.has_otp_identifier = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.otp_identifier = v
 				i = ii
 			}
 			88 {
-				res.has_steam2_ticket_request = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.steam2_ticket_request = v
 				i = ii
 			}
 			90 {
-				res.has_sony_psn_ticket = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.sony_psn_ticket = v
 				i = ii
 			}
 			91 {
-				res.has_sony_psn_service_id = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sony_psn_service_id = v
 				i = ii
 			}
 			92 {
-				res.has_create_new_psn_linked_account_if_needed = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.create_new_psn_linked_account_if_needed = v
 				i = ii
 			}
 			93 {
-				res.has_sony_psn_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sony_psn_name = v
 				i = ii
 			}
 			94 {
-				res.has_game_server_app_id = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_server_app_id = v
 				i = ii
 			}
 			95 {
-				res.has_steamguard_dont_remember_computer = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamguard_dont_remember_computer = v
 				i = ii
 			}
 			96 {
-				res.has_machine_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.machine_name = v
 				i = ii
 			}
 			97 {
-				res.has_machine_name_userchosen = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.machine_name_userchosen = v
 				i = ii
 			}
 			98 {
-				res.has_country_override = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.country_override = v
 				i = ii
 			}
 			99 {
-				res.has_is_steam_box = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_steam_box = v
 				i = ii
 			}
 			100 {
-				res.has_client_instance_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_instance_id = v
 				i = ii
 			}
 			101 {
-				res.has_two_factor_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.two_factor_code = v
 				i = ii
 			}
 			102 {
-				res.has_supports_rate_limit_response = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.supports_rate_limit_response = v
 				i = ii
 			}
 			103 {
-				res.has_web_logon_nonce = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.web_logon_nonce = v
 				i = ii
 			}
 			104 {
-				res.has_priority_reason = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.priority_reason = v
 				i = ii
 			}
 			105 {
-				res.has_embedded_client_secret = true
 				ii, v := zzz_vproto_internal_unpack_cmsgclientsecret(cur_buf, tag_wiretype.wire_type)?
 				res.embedded_client_secret = v
 				i = ii
 			}
 			106 {
-				res.has_disable_partner_autogrants = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.disable_partner_autogrants = v
 				i = ii
@@ -905,17 +910,90 @@ pub fn cmsgclientlogon_unpack(buf []byte) ?CMsgClientLogon {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientLogon) eq(b CMsgClientLogon) bool {
+	return true && a.protocol_version == b.protocol_version &&
+		a.deprecated_obfustucated_private_ip == b.deprecated_obfustucated_private_ip &&
+		a.cell_id == b.cell_id && a.last_session_id == b.last_session_id &&
+		a.client_package_version == b.client_package_version &&
+		a.client_language == b.client_language &&
+		a.client_os_type == b.client_os_type &&
+		a.should_remember_password == b.should_remember_password &&
+		a.wine_version == b.wine_version &&
+		a.deprecated_10 == b.deprecated_10 && a.obfuscated_private_ip.eq(b.obfuscated_private_ip) &&
+		a.deprecated_public_ip == b.deprecated_public_ip &&
+		a.qos_level == b.qos_level &&
+		a.client_supplied_steam_id == b.client_supplied_steam_id && a.public_ip.eq(b.public_ip) &&
+		a.machine_id == b.machine_id && a.launcher_type == b.launcher_type &&
+		a.ui_mode == b.ui_mode && a.chat_mode == b.chat_mode &&
+		a.steam2_auth_ticket == b.steam2_auth_ticket &&
+		a.email_address == b.email_address &&
+		a.rtime32_account_creation == b.rtime32_account_creation &&
+		a.account_name == b.account_name &&
+		a.password == b.password && a.game_server_token == b.game_server_token &&
+		a.login_key == b.login_key && a.was_converted_deprecated_msg == b.was_converted_deprecated_msg &&
+		a.anon_user_target_account_name == b.anon_user_target_account_name &&
+		a.resolved_user_steam_id == b.resolved_user_steam_id &&
+		a.eresult_sentryfile == b.eresult_sentryfile &&
+		a.sha_sentryfile == b.sha_sentryfile &&
+		a.auth_code == b.auth_code && a.otp_type == b.otp_type &&
+		a.otp_value == b.otp_value && a.otp_identifier == b.otp_identifier &&
+		a.steam2_ticket_request == b.steam2_ticket_request &&
+		a.sony_psn_ticket == b.sony_psn_ticket &&
+		a.sony_psn_service_id == b.sony_psn_service_id &&
+		a.create_new_psn_linked_account_if_needed == b.create_new_psn_linked_account_if_needed &&
+		a.sony_psn_name == b.sony_psn_name &&
+		a.game_server_app_id == b.game_server_app_id &&
+		a.steamguard_dont_remember_computer == b.steamguard_dont_remember_computer &&
+		a.machine_name == b.machine_name &&
+		a.machine_name_userchosen == b.machine_name_userchosen &&
+		a.country_override == b.country_override &&
+		a.is_steam_box == b.is_steam_box &&
+		a.client_instance_id == b.client_instance_id &&
+		a.two_factor_code == b.two_factor_code &&
+		a.supports_rate_limit_response == b.supports_rate_limit_response &&
+		a.web_logon_nonce == b.web_logon_nonce &&
+		a.priority_reason == b.priority_reason && a.embedded_client_secret.eq(b.embedded_client_secret) &&
+		a.disable_partner_autogrants == b.disable_partner_autogrants
+}
+
+[inline]
+pub fn (a CMsgClientLogon) ne(b CMsgClientLogon) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientLogon) eq(b []CMsgClientLogon) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientLogon) ne(b []CMsgClientLogon) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientlogon() CMsgClientLogon {
 	return CMsgClientLogon{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientlogon(o CMsgClientLogon, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlogon(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLogon) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlogon_unpack(v)?
@@ -924,137 +1002,113 @@ pub fn zzz_vproto_internal_unpack_cmsgclientlogon(buf []byte, tag_wiretype vprot
 
 pub struct CMsgClientLogonResponse {
 mut:
-	unknown_fields                     []vproto.UnknownField
+	unknown_fields                 []vproto.UnknownField
 pub mut:
-	eresult                            int
-	has_eresult                        bool
-	out_of_game_heartbeat_seconds      int
-	has_out_of_game_heartbeat_seconds  bool
-	in_game_heartbeat_seconds          int
-	has_in_game_heartbeat_seconds      bool
-	deprecated_public_ip               u32
-	has_deprecated_public_ip           bool
-	rtime32_server_time                u32
-	has_rtime32_server_time            bool
-	account_flags                      u32
-	has_account_flags                  bool
-	cell_id                            u32
-	has_cell_id                        bool
-	email_domain                       string
-	has_email_domain                   bool
-	steam2_ticket                      []byte
-	has_steam2_ticket                  bool
-	eresult_extended                   int
-	has_eresult_extended               bool
-	webapi_authenticate_user_nonce     string
-	has_webapi_authenticate_user_nonce bool
-	cell_id_ping_threshold             u32
-	has_cell_id_ping_threshold         bool
-	deprecated_use_pics                bool
-	has_deprecated_use_pics            bool
-	vanity_url                         string
-	has_vanity_url                     bool
-	public_ip                          CMsgIPAddress
-	has_public_ip                      bool
-	client_supplied_steamid            u64
-	has_client_supplied_steamid        bool
-	ip_country_code                    string
-	has_ip_country_code                bool
-	parental_settings                  []byte
-	has_parental_settings              bool
-	parental_setting_signature         []byte
-	has_parental_setting_signature     bool
-	count_loginfailures_to_migrate     int
-	has_count_loginfailures_to_migrate bool
-	count_disconnects_to_migrate       int
-	has_count_disconnects_to_migrate   bool
-	ogs_data_report_time_window        int
-	has_ogs_data_report_time_window    bool
-	client_instance_id                 u64
-	has_client_instance_id             bool
-	force_client_update_check          bool
-	has_force_client_update_check      bool
+	eresult                        int = 2
+	out_of_game_heartbeat_seconds  int
+	in_game_heartbeat_seconds      int
+	deprecated_public_ip           u32
+	rtime32_server_time            u32
+	account_flags                  u32
+	cell_id                        u32
+	email_domain                   string
+	steam2_ticket                  []byte
+	eresult_extended               int
+	webapi_authenticate_user_nonce string
+	cell_id_ping_threshold         u32
+	deprecated_use_pics            bool
+	vanity_url                     string
+	public_ip                      CMsgIPAddress
+	client_supplied_steamid        u64
+	ip_country_code                string
+	parental_settings              []byte
+	parental_setting_signature     []byte
+	count_loginfailures_to_migrate int
+	count_disconnects_to_migrate   int
+	ogs_data_report_time_window    int
+	client_instance_id             u64
+	force_client_update_check      bool
 }
 
 pub fn (o &CMsgClientLogonResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
-	if o.has_out_of_game_heartbeat_seconds {
+	if o.out_of_game_heartbeat_seconds != int(0) {
 		res << vproto.pack_int32_field(o.out_of_game_heartbeat_seconds, 2)
 	}
-	if o.has_in_game_heartbeat_seconds {
+	if o.in_game_heartbeat_seconds != int(0) {
 		res << vproto.pack_int32_field(o.in_game_heartbeat_seconds, 3)
 	}
-	if o.has_deprecated_public_ip {
+	if o.deprecated_public_ip != u32(0) {
 		res << vproto.pack_uint32_field(o.deprecated_public_ip, 4)
 	}
-	if o.has_rtime32_server_time {
+	if o.rtime32_server_time != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_server_time, 5)
 	}
-	if o.has_account_flags {
+	if o.account_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.account_flags, 6)
 	}
-	if o.has_cell_id {
+	if o.cell_id != u32(0) {
 		res << vproto.pack_uint32_field(o.cell_id, 7)
 	}
-	if o.has_email_domain {
+	if o.email_domain != '' {
 		res << vproto.pack_string_field(o.email_domain, 8)
 	}
-	if o.has_steam2_ticket {
+	if o.steam2_ticket != []byte{} {
 		res << vproto.pack_bytes_field(o.steam2_ticket, 9)
 	}
-	if o.has_eresult_extended {
+	if o.eresult_extended != int(0) {
 		res << vproto.pack_int32_field(o.eresult_extended, 10)
 	}
-	if o.has_webapi_authenticate_user_nonce {
+	if o.webapi_authenticate_user_nonce != '' {
 		res << vproto.pack_string_field(o.webapi_authenticate_user_nonce, 11)
 	}
-	if o.has_cell_id_ping_threshold {
+	if o.cell_id_ping_threshold != u32(0) {
 		res << vproto.pack_uint32_field(o.cell_id_ping_threshold, 12)
 	}
-	if o.has_deprecated_use_pics {
+	if o.deprecated_use_pics != bool(0) {
 		res << vproto.pack_bool_field(o.deprecated_use_pics, 13)
 	}
-	if o.has_vanity_url {
+	if o.vanity_url != '' {
 		res << vproto.pack_string_field(o.vanity_url, 14)
 	}
-	if o.has_public_ip {
+	if o.public_ip.ne(zzz_vproto_internal_new_cmsgipaddress()) {
 		res << zzz_vproto_internal_pack_cmsgipaddress(o.public_ip, 15)
 	}
-	if o.has_client_supplied_steamid {
+	if o.client_supplied_steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.client_supplied_steamid, 20)
 	}
-	if o.has_ip_country_code {
+	if o.ip_country_code != '' {
 		res << vproto.pack_string_field(o.ip_country_code, 21)
 	}
-	if o.has_parental_settings {
+	if o.parental_settings != []byte{} {
 		res << vproto.pack_bytes_field(o.parental_settings, 22)
 	}
-	if o.has_parental_setting_signature {
+	if o.parental_setting_signature != []byte{} {
 		res << vproto.pack_bytes_field(o.parental_setting_signature, 23)
 	}
-	if o.has_count_loginfailures_to_migrate {
+	if o.count_loginfailures_to_migrate != int(0) {
 		res << vproto.pack_int32_field(o.count_loginfailures_to_migrate, 24)
 	}
-	if o.has_count_disconnects_to_migrate {
+	if o.count_disconnects_to_migrate != int(0) {
 		res << vproto.pack_int32_field(o.count_disconnects_to_migrate, 25)
 	}
-	if o.has_ogs_data_report_time_window {
+	if o.ogs_data_report_time_window != int(0) {
 		res << vproto.pack_int32_field(o.ogs_data_report_time_window, 26)
 	}
-	if o.has_client_instance_id {
+	if o.client_instance_id != u64(0) {
 		res << vproto.pack_uint64_field(o.client_instance_id, 27)
 	}
-	if o.has_force_client_update_check {
+	if o.force_client_update_check != bool(0) {
 		res << vproto.pack_bool_field(o.force_client_update_check, 28)
 	}
 	return res
 }
 
 pub fn cmsgclientlogonresponse_unpack(buf []byte) ?CMsgClientLogonResponse {
-	mut res := CMsgClientLogonResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientlogonresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1065,145 +1119,121 @@ pub fn cmsgclientlogonresponse_unpack(buf []byte) ?CMsgClientLogonResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				res.has_out_of_game_heartbeat_seconds = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.out_of_game_heartbeat_seconds = v
 				i = ii
 			}
 			3 {
-				res.has_in_game_heartbeat_seconds = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.in_game_heartbeat_seconds = v
 				i = ii
 			}
 			4 {
-				res.has_deprecated_public_ip = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.deprecated_public_ip = v
 				i = ii
 			}
 			5 {
-				res.has_rtime32_server_time = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime32_server_time = v
 				i = ii
 			}
 			6 {
-				res.has_account_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.account_flags = v
 				i = ii
 			}
 			7 {
-				res.has_cell_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cell_id = v
 				i = ii
 			}
 			8 {
-				res.has_email_domain = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.email_domain = v
 				i = ii
 			}
 			9 {
-				res.has_steam2_ticket = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.steam2_ticket = v
 				i = ii
 			}
 			10 {
-				res.has_eresult_extended = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult_extended = v
 				i = ii
 			}
 			11 {
-				res.has_webapi_authenticate_user_nonce = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.webapi_authenticate_user_nonce = v
 				i = ii
 			}
 			12 {
-				res.has_cell_id_ping_threshold = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cell_id_ping_threshold = v
 				i = ii
 			}
 			13 {
-				res.has_deprecated_use_pics = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.deprecated_use_pics = v
 				i = ii
 			}
 			14 {
-				res.has_vanity_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.vanity_url = v
 				i = ii
 			}
 			15 {
-				res.has_public_ip = true
 				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
 				res.public_ip = v
 				i = ii
 			}
 			20 {
-				res.has_client_supplied_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_supplied_steamid = v
 				i = ii
 			}
 			21 {
-				res.has_ip_country_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.ip_country_code = v
 				i = ii
 			}
 			22 {
-				res.has_parental_settings = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.parental_settings = v
 				i = ii
 			}
 			23 {
-				res.has_parental_setting_signature = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.parental_setting_signature = v
 				i = ii
 			}
 			24 {
-				res.has_count_loginfailures_to_migrate = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count_loginfailures_to_migrate = v
 				i = ii
 			}
 			25 {
-				res.has_count_disconnects_to_migrate = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count_disconnects_to_migrate = v
 				i = ii
 			}
 			26 {
-				res.has_ogs_data_report_time_window = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ogs_data_report_time_window = v
 				i = ii
 			}
 			27 {
-				res.has_client_instance_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_instance_id = v
 				i = ii
 			}
 			28 {
-				res.has_force_client_update_check = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.force_client_update_check = v
 				i = ii
@@ -1223,17 +1253,69 @@ pub fn cmsgclientlogonresponse_unpack(buf []byte) ?CMsgClientLogonResponse {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientLogonResponse) eq(b CMsgClientLogonResponse) bool {
+	return true && a.eresult == b.eresult &&
+		a.out_of_game_heartbeat_seconds == b.out_of_game_heartbeat_seconds &&
+		a.in_game_heartbeat_seconds == b.in_game_heartbeat_seconds &&
+		a.deprecated_public_ip == b.deprecated_public_ip &&
+		a.rtime32_server_time == b.rtime32_server_time &&
+		a.account_flags == b.account_flags &&
+		a.cell_id == b.cell_id && a.email_domain == b.email_domain &&
+		a.steam2_ticket == b.steam2_ticket &&
+		a.eresult_extended == b.eresult_extended &&
+		a.webapi_authenticate_user_nonce == b.webapi_authenticate_user_nonce &&
+		a.cell_id_ping_threshold == b.cell_id_ping_threshold &&
+		a.deprecated_use_pics == b.deprecated_use_pics &&
+		a.vanity_url == b.vanity_url && a.public_ip.eq(b.public_ip) &&
+		a.client_supplied_steamid == b.client_supplied_steamid &&
+		a.ip_country_code == b.ip_country_code &&
+		a.parental_settings == b.parental_settings &&
+		a.parental_setting_signature == b.parental_setting_signature &&
+		a.count_loginfailures_to_migrate == b.count_loginfailures_to_migrate &&
+		a.count_disconnects_to_migrate == b.count_disconnects_to_migrate &&
+		a.ogs_data_report_time_window == b.ogs_data_report_time_window &&
+		a.client_instance_id == b.client_instance_id &&
+		a.force_client_update_check == b.force_client_update_check
+}
+
+[inline]
+pub fn (a CMsgClientLogonResponse) ne(b CMsgClientLogonResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientLogonResponse) eq(b []CMsgClientLogonResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientLogonResponse) ne(b []CMsgClientLogonResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientlogonresponse() CMsgClientLogonResponse {
 	return CMsgClientLogonResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientlogonresponse(o CMsgClientLogonResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlogonresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLogonResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlogonresponse_unpack(v)?
@@ -1244,20 +1326,19 @@ pub struct CMsgClientRequestWebAPIAuthenticateUserNonce {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	token_type     int
-	has_token_type bool
+	token_type     int = -1
 }
 
 pub fn (o &CMsgClientRequestWebAPIAuthenticateUserNonce) pack() []byte {
 	mut res := []byte{}
-	if o.has_token_type {
+	if o.token_type != int(0) {
 		res << vproto.pack_int32_field(o.token_type, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientrequestwebapiauthenticateusernonce_unpack(buf []byte) ?CMsgClientRequestWebAPIAuthenticateUserNonce {
-	mut res := CMsgClientRequestWebAPIAuthenticateUserNonce{}
+	mut res := zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonce()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1268,7 +1349,6 @@ pub fn cmsgclientrequestwebapiauthenticateusernonce_unpack(buf []byte) ?CMsgClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_token_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.token_type = v
 				i = ii
@@ -1288,17 +1368,48 @@ pub fn cmsgclientrequestwebapiauthenticateusernonce_unpack(buf []byte) ?CMsgClie
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientRequestWebAPIAuthenticateUserNonce) eq(b CMsgClientRequestWebAPIAuthenticateUserNonce) bool {
+	return true && a.token_type == b.token_type
+}
+
+[inline]
+pub fn (a CMsgClientRequestWebAPIAuthenticateUserNonce) ne(b CMsgClientRequestWebAPIAuthenticateUserNonce) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientRequestWebAPIAuthenticateUserNonce) eq(b []CMsgClientRequestWebAPIAuthenticateUserNonce) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientRequestWebAPIAuthenticateUserNonce) ne(b []CMsgClientRequestWebAPIAuthenticateUserNonce) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonce() CMsgClientRequestWebAPIAuthenticateUserNonce {
 	return CMsgClientRequestWebAPIAuthenticateUserNonce{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientrequestwebapiauthenticateusernonce(o CMsgClientRequestWebAPIAuthenticateUserNonce, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonce(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestWebAPIAuthenticateUserNonce) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientrequestwebapiauthenticateusernonce_unpack(v)?
@@ -1307,32 +1418,29 @@ pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonce(b
 
 pub struct CMsgClientRequestWebAPIAuthenticateUserNonceResponse {
 mut:
-	unknown_fields                     []vproto.UnknownField
+	unknown_fields                 []vproto.UnknownField
 pub mut:
-	eresult                            int
-	has_eresult                        bool
-	webapi_authenticate_user_nonce     string
-	has_webapi_authenticate_user_nonce bool
-	token_type                         int
-	has_token_type                     bool
+	eresult                        int = 2
+	webapi_authenticate_user_nonce string
+	token_type                     int = -1
 }
 
 pub fn (o &CMsgClientRequestWebAPIAuthenticateUserNonceResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
-	if o.has_webapi_authenticate_user_nonce {
+	if o.webapi_authenticate_user_nonce != '' {
 		res << vproto.pack_string_field(o.webapi_authenticate_user_nonce, 11)
 	}
-	if o.has_token_type {
+	if o.token_type != int(0) {
 		res << vproto.pack_int32_field(o.token_type, 3)
 	}
 	return res
 }
 
 pub fn cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(buf []byte) ?CMsgClientRequestWebAPIAuthenticateUserNonceResponse {
-	mut res := CMsgClientRequestWebAPIAuthenticateUserNonceResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonceresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1343,19 +1451,16 @@ pub fn cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
 			}
 			11 {
-				res.has_webapi_authenticate_user_nonce = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.webapi_authenticate_user_nonce = v
 				i = ii
 			}
 			3 {
-				res.has_token_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.token_type = v
 				i = ii
@@ -1375,17 +1480,50 @@ pub fn cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(buf []byte) ?
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientRequestWebAPIAuthenticateUserNonceResponse) eq(b CMsgClientRequestWebAPIAuthenticateUserNonceResponse) bool {
+	return true && a.eresult == b.eresult &&
+		a.webapi_authenticate_user_nonce == b.webapi_authenticate_user_nonce &&
+		a.token_type == b.token_type
+}
+
+[inline]
+pub fn (a CMsgClientRequestWebAPIAuthenticateUserNonceResponse) ne(b CMsgClientRequestWebAPIAuthenticateUserNonceResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientRequestWebAPIAuthenticateUserNonceResponse) eq(b []CMsgClientRequestWebAPIAuthenticateUserNonceResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientRequestWebAPIAuthenticateUserNonceResponse) ne(b []CMsgClientRequestWebAPIAuthenticateUserNonceResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientrequestwebapiauthenticateusernonceresponse() CMsgClientRequestWebAPIAuthenticateUserNonceResponse {
 	return CMsgClientRequestWebAPIAuthenticateUserNonceResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientrequestwebapiauthenticateusernonceresponse(o CMsgClientRequestWebAPIAuthenticateUserNonceResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestwebapiauthenticateusernonceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestWebAPIAuthenticateUserNonceResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientrequestwebapiauthenticateusernonceresponse_unpack(v)?
@@ -1403,21 +1541,52 @@ pub fn (o &CMsgClientLogOff) pack() []byte {
 }
 
 pub fn cmsgclientlogoff_unpack(buf []byte) ?CMsgClientLogOff {
-	res := CMsgClientLogOff{}
+	res := zzz_vproto_internal_new_cmsgclientlogoff()
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientLogOff) eq(b CMsgClientLogOff) bool {
+	return true
+}
+
+[inline]
+pub fn (a CMsgClientLogOff) ne(b CMsgClientLogOff) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientLogOff) eq(b []CMsgClientLogOff) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientLogOff) ne(b []CMsgClientLogOff) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientlogoff() CMsgClientLogOff {
 	return CMsgClientLogOff{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientlogoff(o CMsgClientLogOff, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlogoff(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLogOff) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientlogoff_unpack(v)?
@@ -1428,20 +1597,19 @@ pub struct CMsgClientLoggedOff {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	eresult        int
-	has_eresult    bool
+	eresult        int = 2
 }
 
 pub fn (o &CMsgClientLoggedOff) pack() []byte {
 	mut res := []byte{}
-	if o.has_eresult {
+	if o.eresult != int(0) {
 		res << vproto.pack_int32_field(o.eresult, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientloggedoff_unpack(buf []byte) ?CMsgClientLoggedOff {
-	mut res := CMsgClientLoggedOff{}
+	mut res := zzz_vproto_internal_new_cmsgclientloggedoff()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1452,7 +1620,6 @@ pub fn cmsgclientloggedoff_unpack(buf []byte) ?CMsgClientLoggedOff {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_eresult = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.eresult = v
 				i = ii
@@ -1472,17 +1639,48 @@ pub fn cmsgclientloggedoff_unpack(buf []byte) ?CMsgClientLoggedOff {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientLoggedOff) eq(b CMsgClientLoggedOff) bool {
+	return true && a.eresult == b.eresult
+}
+
+[inline]
+pub fn (a CMsgClientLoggedOff) ne(b CMsgClientLoggedOff) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientLoggedOff) eq(b []CMsgClientLoggedOff) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientLoggedOff) ne(b []CMsgClientLoggedOff) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientloggedoff() CMsgClientLoggedOff {
 	return CMsgClientLoggedOff{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientloggedoff(o CMsgClientLoggedOff, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientloggedoff(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLoggedOff) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientloggedoff_unpack(v)?
@@ -1494,24 +1692,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	unique_id      u32
-	has_unique_id  bool
 	login_key      string
-	has_login_key  bool
 }
 
 pub fn (o &CMsgClientNewLoginKey) pack() []byte {
 	mut res := []byte{}
-	if o.has_unique_id {
+	if o.unique_id != u32(0) {
 		res << vproto.pack_uint32_field(o.unique_id, 1)
 	}
-	if o.has_login_key {
+	if o.login_key != '' {
 		res << vproto.pack_string_field(o.login_key, 2)
 	}
 	return res
 }
 
 pub fn cmsgclientnewloginkey_unpack(buf []byte) ?CMsgClientNewLoginKey {
-	mut res := CMsgClientNewLoginKey{}
+	mut res := zzz_vproto_internal_new_cmsgclientnewloginkey()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1522,13 +1718,11 @@ pub fn cmsgclientnewloginkey_unpack(buf []byte) ?CMsgClientNewLoginKey {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_unique_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.unique_id = v
 				i = ii
 			}
 			2 {
-				res.has_login_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.login_key = v
 				i = ii
@@ -1548,17 +1742,48 @@ pub fn cmsgclientnewloginkey_unpack(buf []byte) ?CMsgClientNewLoginKey {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientNewLoginKey) eq(b CMsgClientNewLoginKey) bool {
+	return true && a.unique_id == b.unique_id && a.login_key == b.login_key
+}
+
+[inline]
+pub fn (a CMsgClientNewLoginKey) ne(b CMsgClientNewLoginKey) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientNewLoginKey) eq(b []CMsgClientNewLoginKey) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientNewLoginKey) ne(b []CMsgClientNewLoginKey) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientnewloginkey() CMsgClientNewLoginKey {
 	return CMsgClientNewLoginKey{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientnewloginkey(o CMsgClientNewLoginKey, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientnewloginkey(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientNewLoginKey) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientnewloginkey_unpack(v)?
@@ -1570,19 +1795,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	unique_id      u32
-	has_unique_id  bool
 }
 
 pub fn (o &CMsgClientNewLoginKeyAccepted) pack() []byte {
 	mut res := []byte{}
-	if o.has_unique_id {
+	if o.unique_id != u32(0) {
 		res << vproto.pack_uint32_field(o.unique_id, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientnewloginkeyaccepted_unpack(buf []byte) ?CMsgClientNewLoginKeyAccepted {
-	mut res := CMsgClientNewLoginKeyAccepted{}
+	mut res := zzz_vproto_internal_new_cmsgclientnewloginkeyaccepted()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1593,7 +1817,6 @@ pub fn cmsgclientnewloginkeyaccepted_unpack(buf []byte) ?CMsgClientNewLoginKeyAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_unique_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.unique_id = v
 				i = ii
@@ -1613,17 +1836,48 @@ pub fn cmsgclientnewloginkeyaccepted_unpack(buf []byte) ?CMsgClientNewLoginKeyAc
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientNewLoginKeyAccepted) eq(b CMsgClientNewLoginKeyAccepted) bool {
+	return true && a.unique_id == b.unique_id
+}
+
+[inline]
+pub fn (a CMsgClientNewLoginKeyAccepted) ne(b CMsgClientNewLoginKeyAccepted) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientNewLoginKeyAccepted) eq(b []CMsgClientNewLoginKeyAccepted) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientNewLoginKeyAccepted) ne(b []CMsgClientNewLoginKeyAccepted) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientnewloginkeyaccepted() CMsgClientNewLoginKeyAccepted {
 	return CMsgClientNewLoginKeyAccepted{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientnewloginkeyaccepted(o CMsgClientNewLoginKeyAccepted, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientnewloginkeyaccepted(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientNewLoginKeyAccepted) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientnewloginkeyaccepted_unpack(v)?
@@ -1632,77 +1886,65 @@ pub fn zzz_vproto_internal_unpack_cmsgclientnewloginkeyaccepted(buf []byte, tag_
 
 pub struct CMsgClientAccountInfo {
 mut:
-	unknown_fields                          []vproto.UnknownField
+	unknown_fields                      []vproto.UnknownField
 pub mut:
-	persona_name                            string
-	has_persona_name                        bool
-	ip_country                              string
-	has_ip_country                          bool
-	count_authed_computers                  int
-	has_count_authed_computers              bool
-	account_flags                           u32
-	has_account_flags                       bool
-	facebook_id                             u64
-	has_facebook_id                         bool
-	facebook_name                           string
-	has_facebook_name                       bool
-	steamguard_notify_newmachines           bool
-	has_steamguard_notify_newmachines       bool
-	steamguard_machine_name_user_chosen     string
-	has_steamguard_machine_name_user_chosen bool
-	is_phone_verified                       bool
-	has_is_phone_verified                   bool
-	two_factor_state                        u32
-	has_two_factor_state                    bool
-	is_phone_identifying                    bool
-	has_is_phone_identifying                bool
-	is_phone_needing_reverify               bool
-	has_is_phone_needing_reverify           bool
+	persona_name                        string
+	ip_country                          string
+	count_authed_computers              int
+	account_flags                       u32
+	facebook_id                         u64
+	facebook_name                       string
+	steamguard_notify_newmachines       bool
+	steamguard_machine_name_user_chosen string
+	is_phone_verified                   bool
+	two_factor_state                    u32
+	is_phone_identifying                bool
+	is_phone_needing_reverify           bool
 }
 
 pub fn (o &CMsgClientAccountInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_persona_name {
+	if o.persona_name != '' {
 		res << vproto.pack_string_field(o.persona_name, 1)
 	}
-	if o.has_ip_country {
+	if o.ip_country != '' {
 		res << vproto.pack_string_field(o.ip_country, 2)
 	}
-	if o.has_count_authed_computers {
+	if o.count_authed_computers != int(0) {
 		res << vproto.pack_int32_field(o.count_authed_computers, 5)
 	}
-	if o.has_account_flags {
+	if o.account_flags != u32(0) {
 		res << vproto.pack_uint32_field(o.account_flags, 7)
 	}
-	if o.has_facebook_id {
+	if o.facebook_id != u64(0) {
 		res << vproto.pack_uint64_field(o.facebook_id, 8)
 	}
-	if o.has_facebook_name {
+	if o.facebook_name != '' {
 		res << vproto.pack_string_field(o.facebook_name, 9)
 	}
-	if o.has_steamguard_notify_newmachines {
+	if o.steamguard_notify_newmachines != bool(0) {
 		res << vproto.pack_bool_field(o.steamguard_notify_newmachines, 14)
 	}
-	if o.has_steamguard_machine_name_user_chosen {
+	if o.steamguard_machine_name_user_chosen != '' {
 		res << vproto.pack_string_field(o.steamguard_machine_name_user_chosen, 15)
 	}
-	if o.has_is_phone_verified {
+	if o.is_phone_verified != bool(0) {
 		res << vproto.pack_bool_field(o.is_phone_verified, 16)
 	}
-	if o.has_two_factor_state {
+	if o.two_factor_state != u32(0) {
 		res << vproto.pack_uint32_field(o.two_factor_state, 17)
 	}
-	if o.has_is_phone_identifying {
+	if o.is_phone_identifying != bool(0) {
 		res << vproto.pack_bool_field(o.is_phone_identifying, 18)
 	}
-	if o.has_is_phone_needing_reverify {
+	if o.is_phone_needing_reverify != bool(0) {
 		res << vproto.pack_bool_field(o.is_phone_needing_reverify, 19)
 	}
 	return res
 }
 
 pub fn cmsgclientaccountinfo_unpack(buf []byte) ?CMsgClientAccountInfo {
-	mut res := CMsgClientAccountInfo{}
+	mut res := zzz_vproto_internal_new_cmsgclientaccountinfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1713,73 +1955,61 @@ pub fn cmsgclientaccountinfo_unpack(buf []byte) ?CMsgClientAccountInfo {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_persona_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.persona_name = v
 				i = ii
 			}
 			2 {
-				res.has_ip_country = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.ip_country = v
 				i = ii
 			}
 			5 {
-				res.has_count_authed_computers = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count_authed_computers = v
 				i = ii
 			}
 			7 {
-				res.has_account_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.account_flags = v
 				i = ii
 			}
 			8 {
-				res.has_facebook_id = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.facebook_id = v
 				i = ii
 			}
 			9 {
-				res.has_facebook_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.facebook_name = v
 				i = ii
 			}
 			14 {
-				res.has_steamguard_notify_newmachines = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamguard_notify_newmachines = v
 				i = ii
 			}
 			15 {
-				res.has_steamguard_machine_name_user_chosen = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamguard_machine_name_user_chosen = v
 				i = ii
 			}
 			16 {
-				res.has_is_phone_verified = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_phone_verified = v
 				i = ii
 			}
 			17 {
-				res.has_two_factor_state = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.two_factor_state = v
 				i = ii
 			}
 			18 {
-				res.has_is_phone_identifying = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_phone_identifying = v
 				i = ii
 			}
 			19 {
-				res.has_is_phone_needing_reverify = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_phone_needing_reverify = v
 				i = ii
@@ -1799,17 +2029,57 @@ pub fn cmsgclientaccountinfo_unpack(buf []byte) ?CMsgClientAccountInfo {
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientAccountInfo) eq(b CMsgClientAccountInfo) bool {
+	return true && a.persona_name == b.persona_name &&
+		a.ip_country == b.ip_country && a.count_authed_computers == b.count_authed_computers &&
+		a.account_flags == b.account_flags &&
+		a.facebook_id == b.facebook_id && a.facebook_name == b.facebook_name &&
+		a.steamguard_notify_newmachines == b.steamguard_notify_newmachines &&
+		a.steamguard_machine_name_user_chosen == b.steamguard_machine_name_user_chosen &&
+		a.is_phone_verified == b.is_phone_verified &&
+		a.two_factor_state == b.two_factor_state &&
+		a.is_phone_identifying == b.is_phone_identifying &&
+		a.is_phone_needing_reverify == b.is_phone_needing_reverify
+}
+
+[inline]
+pub fn (a CMsgClientAccountInfo) ne(b CMsgClientAccountInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientAccountInfo) eq(b []CMsgClientAccountInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientAccountInfo) ne(b []CMsgClientAccountInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientaccountinfo() CMsgClientAccountInfo {
 	return CMsgClientAccountInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientaccountinfo(o CMsgClientAccountInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientaccountinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAccountInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientaccountinfo_unpack(v)?
@@ -1821,19 +2091,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CMsgClientChallengeRequest) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientchallengerequest_unpack(buf []byte) ?CMsgClientChallengeRequest {
-	mut res := CMsgClientChallengeRequest{}
+	mut res := zzz_vproto_internal_new_cmsgclientchallengerequest()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1844,7 +2113,6 @@ pub fn cmsgclientchallengerequest_unpack(buf []byte) ?CMsgClientChallengeRequest
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1864,17 +2132,48 @@ pub fn cmsgclientchallengerequest_unpack(buf []byte) ?CMsgClientChallengeRequest
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientChallengeRequest) eq(b CMsgClientChallengeRequest) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CMsgClientChallengeRequest) ne(b CMsgClientChallengeRequest) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientChallengeRequest) eq(b []CMsgClientChallengeRequest) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientChallengeRequest) ne(b []CMsgClientChallengeRequest) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientchallengerequest() CMsgClientChallengeRequest {
 	return CMsgClientChallengeRequest{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientchallengerequest(o CMsgClientChallengeRequest, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientchallengerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientChallengeRequest) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientchallengerequest_unpack(v)?
@@ -1886,19 +2185,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	challenge      u64
-	has_challenge  bool
 }
 
 pub fn (o &CMsgClientChallengeResponse) pack() []byte {
 	mut res := []byte{}
-	if o.has_challenge {
+	if o.challenge != u64(0) {
 		res << vproto.pack_64bit_field(o.challenge, 1)
 	}
 	return res
 }
 
 pub fn cmsgclientchallengeresponse_unpack(buf []byte) ?CMsgClientChallengeResponse {
-	mut res := CMsgClientChallengeResponse{}
+	mut res := zzz_vproto_internal_new_cmsgclientchallengeresponse()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1909,7 +2207,6 @@ pub fn cmsgclientchallengeresponse_unpack(buf []byte) ?CMsgClientChallengeRespon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_challenge = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.challenge = v
 				i = ii
@@ -1929,17 +2226,48 @@ pub fn cmsgclientchallengeresponse_unpack(buf []byte) ?CMsgClientChallengeRespon
 	return res
 }
 
+[inline]
+pub fn (a CMsgClientChallengeResponse) eq(b CMsgClientChallengeResponse) bool {
+	return true && a.challenge == b.challenge
+}
+
+[inline]
+pub fn (a CMsgClientChallengeResponse) ne(b CMsgClientChallengeResponse) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CMsgClientChallengeResponse) eq(b []CMsgClientChallengeResponse) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CMsgClientChallengeResponse) ne(b []CMsgClientChallengeResponse) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cmsgclientchallengeresponse() CMsgClientChallengeResponse {
 	return CMsgClientChallengeResponse{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cmsgclientchallengeresponse(o CMsgClientChallengeResponse, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientchallengeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientChallengeResponse) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cmsgclientchallengeresponse_unpack(v)?

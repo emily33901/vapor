@@ -8,29 +8,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	hit_type       u32
-	has_hit_type   bool
 	count          u32
-	has_count      bool
 	start          u64
-	has_start      bool
 }
 
 pub fn (o &CCommunity_GetLinkFilterHashPrefixes_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_hit_type {
+	if o.hit_type != u32(0) {
 		res << vproto.pack_uint32_field(o.hit_type, 1)
 	}
-	if o.has_count {
+	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 2)
 	}
-	if o.has_start {
+	if o.start != u64(0) {
 		res << vproto.pack_uint64_field(o.start, 3)
 	}
 	return res
 }
 
 pub fn ccommunity_getlinkfilterhashprefixes_request_unpack(buf []byte) ?CCommunity_GetLinkFilterHashPrefixes_Request {
-	mut res := CCommunity_GetLinkFilterHashPrefixes_Request{}
+	mut res := zzz_vproto_internal_new_ccommunity_getlinkfilterhashprefixes_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -41,19 +38,16 @@ pub fn ccommunity_getlinkfilterhashprefixes_request_unpack(buf []byte) ?CCommuni
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_hit_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.hit_type = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_start = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.start = v
 				i = ii
@@ -73,17 +67,48 @@ pub fn ccommunity_getlinkfilterhashprefixes_request_unpack(buf []byte) ?CCommuni
 	return res
 }
 
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashPrefixes_Request) eq(b CCommunity_GetLinkFilterHashPrefixes_Request) bool {
+	return true && a.hit_type == b.hit_type && a.count == b.count && a.start == b.start
+}
+
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashPrefixes_Request) ne(b CCommunity_GetLinkFilterHashPrefixes_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashPrefixes_Request) eq(b []CCommunity_GetLinkFilterHashPrefixes_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashPrefixes_Request) ne(b []CCommunity_GetLinkFilterHashPrefixes_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashprefixes_request() CCommunity_GetLinkFilterHashPrefixes_Request {
 	return CCommunity_GetLinkFilterHashPrefixes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashprefixes_request(o CCommunity_GetLinkFilterHashPrefixes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashprefixes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashPrefixes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccommunity_getlinkfilterhashprefixes_request_unpack(v)?
@@ -107,7 +132,7 @@ pub fn (o &CCommunity_GetLinkFilterHashPrefixes_Response) pack() []byte {
 }
 
 pub fn ccommunity_getlinkfilterhashprefixes_response_unpack(buf []byte) ?CCommunity_GetLinkFilterHashPrefixes_Response {
-	mut res := CCommunity_GetLinkFilterHashPrefixes_Response{}
+	mut res := zzz_vproto_internal_new_ccommunity_getlinkfilterhashprefixes_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -138,17 +163,48 @@ pub fn ccommunity_getlinkfilterhashprefixes_response_unpack(buf []byte) ?CCommun
 	return res
 }
 
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashPrefixes_Response) eq(b CCommunity_GetLinkFilterHashPrefixes_Response) bool {
+	return true && a.hash_prefixes == b.hash_prefixes
+}
+
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashPrefixes_Response) ne(b CCommunity_GetLinkFilterHashPrefixes_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashPrefixes_Response) eq(b []CCommunity_GetLinkFilterHashPrefixes_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashPrefixes_Response) ne(b []CCommunity_GetLinkFilterHashPrefixes_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashprefixes_response() CCommunity_GetLinkFilterHashPrefixes_Response {
 	return CCommunity_GetLinkFilterHashPrefixes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashprefixes_response(o CCommunity_GetLinkFilterHashPrefixes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashprefixes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashPrefixes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccommunity_getlinkfilterhashprefixes_response_unpack(v)?
@@ -160,29 +216,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	hit_type       u32
-	has_hit_type   bool
 	count          u32
-	has_count      bool
 	start          u64
-	has_start      bool
 }
 
 pub fn (o &CCommunity_GetLinkFilterHashes_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_hit_type {
+	if o.hit_type != u32(0) {
 		res << vproto.pack_uint32_field(o.hit_type, 1)
 	}
-	if o.has_count {
+	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 2)
 	}
-	if o.has_start {
+	if o.start != u64(0) {
 		res << vproto.pack_uint64_field(o.start, 3)
 	}
 	return res
 }
 
 pub fn ccommunity_getlinkfilterhashes_request_unpack(buf []byte) ?CCommunity_GetLinkFilterHashes_Request {
-	mut res := CCommunity_GetLinkFilterHashes_Request{}
+	mut res := zzz_vproto_internal_new_ccommunity_getlinkfilterhashes_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -193,19 +246,16 @@ pub fn ccommunity_getlinkfilterhashes_request_unpack(buf []byte) ?CCommunity_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_hit_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.hit_type = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			3 {
-				res.has_start = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.start = v
 				i = ii
@@ -225,17 +275,48 @@ pub fn ccommunity_getlinkfilterhashes_request_unpack(buf []byte) ?CCommunity_Get
 	return res
 }
 
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashes_Request) eq(b CCommunity_GetLinkFilterHashes_Request) bool {
+	return true && a.hit_type == b.hit_type && a.count == b.count && a.start == b.start
+}
+
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashes_Request) ne(b CCommunity_GetLinkFilterHashes_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashes_Request) eq(b []CCommunity_GetLinkFilterHashes_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashes_Request) ne(b []CCommunity_GetLinkFilterHashes_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashes_request() CCommunity_GetLinkFilterHashes_Request {
 	return CCommunity_GetLinkFilterHashes_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashes_request(o CCommunity_GetLinkFilterHashes_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashes_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccommunity_getlinkfilterhashes_request_unpack(v)?
@@ -259,7 +340,7 @@ pub fn (o &CCommunity_GetLinkFilterHashes_Response) pack() []byte {
 }
 
 pub fn ccommunity_getlinkfilterhashes_response_unpack(buf []byte) ?CCommunity_GetLinkFilterHashes_Response {
-	mut res := CCommunity_GetLinkFilterHashes_Response{}
+	mut res := zzz_vproto_internal_new_ccommunity_getlinkfilterhashes_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -290,17 +371,48 @@ pub fn ccommunity_getlinkfilterhashes_response_unpack(buf []byte) ?CCommunity_Ge
 	return res
 }
 
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashes_Response) eq(b CCommunity_GetLinkFilterHashes_Response) bool {
+	return true && a.hashes == b.hashes
+}
+
+[inline]
+pub fn (a CCommunity_GetLinkFilterHashes_Response) ne(b CCommunity_GetLinkFilterHashes_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashes_Response) eq(b []CCommunity_GetLinkFilterHashes_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterHashes_Response) ne(b []CCommunity_GetLinkFilterHashes_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterhashes_response() CCommunity_GetLinkFilterHashes_Response {
 	return CCommunity_GetLinkFilterHashes_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashes_response(o CCommunity_GetLinkFilterHashes_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashes_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccommunity_getlinkfilterhashes_response_unpack(v)?
@@ -312,19 +424,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	hit_type       u32
-	has_hit_type   bool
 }
 
 pub fn (o &CCommunity_GetLinkFilterListVersion_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_hit_type {
+	if o.hit_type != u32(0) {
 		res << vproto.pack_uint32_field(o.hit_type, 1)
 	}
 	return res
 }
 
 pub fn ccommunity_getlinkfilterlistversion_request_unpack(buf []byte) ?CCommunity_GetLinkFilterListVersion_Request {
-	mut res := CCommunity_GetLinkFilterListVersion_Request{}
+	mut res := zzz_vproto_internal_new_ccommunity_getlinkfilterlistversion_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -335,7 +446,6 @@ pub fn ccommunity_getlinkfilterlistversion_request_unpack(buf []byte) ?CCommunit
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_hit_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.hit_type = v
 				i = ii
@@ -355,17 +465,48 @@ pub fn ccommunity_getlinkfilterlistversion_request_unpack(buf []byte) ?CCommunit
 	return res
 }
 
+[inline]
+pub fn (a CCommunity_GetLinkFilterListVersion_Request) eq(b CCommunity_GetLinkFilterListVersion_Request) bool {
+	return true && a.hit_type == b.hit_type
+}
+
+[inline]
+pub fn (a CCommunity_GetLinkFilterListVersion_Request) ne(b CCommunity_GetLinkFilterListVersion_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterListVersion_Request) eq(b []CCommunity_GetLinkFilterListVersion_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterListVersion_Request) ne(b []CCommunity_GetLinkFilterListVersion_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterlistversion_request() CCommunity_GetLinkFilterListVersion_Request {
 	return CCommunity_GetLinkFilterListVersion_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterlistversion_request(o CCommunity_GetLinkFilterListVersion_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterlistversion_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterListVersion_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccommunity_getlinkfilterlistversion_request_unpack(v)?
@@ -377,24 +518,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	version        string
-	has_version    bool
 	count          u64
-	has_count      bool
 }
 
 pub fn (o &CCommunity_GetLinkFilterListVersion_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_version {
+	if o.version != '' {
 		res << vproto.pack_string_field(o.version, 1)
 	}
-	if o.has_count {
+	if o.count != u64(0) {
 		res << vproto.pack_uint64_field(o.count, 2)
 	}
 	return res
 }
 
 pub fn ccommunity_getlinkfilterlistversion_response_unpack(buf []byte) ?CCommunity_GetLinkFilterListVersion_Response {
-	mut res := CCommunity_GetLinkFilterListVersion_Response{}
+	mut res := zzz_vproto_internal_new_ccommunity_getlinkfilterlistversion_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -405,13 +544,11 @@ pub fn ccommunity_getlinkfilterlistversion_response_unpack(buf []byte) ?CCommuni
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_version = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.version = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
@@ -431,17 +568,48 @@ pub fn ccommunity_getlinkfilterlistversion_response_unpack(buf []byte) ?CCommuni
 	return res
 }
 
+[inline]
+pub fn (a CCommunity_GetLinkFilterListVersion_Response) eq(b CCommunity_GetLinkFilterListVersion_Response) bool {
+	return true && a.version == b.version && a.count == b.count
+}
+
+[inline]
+pub fn (a CCommunity_GetLinkFilterListVersion_Response) ne(b CCommunity_GetLinkFilterListVersion_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterListVersion_Response) eq(b []CCommunity_GetLinkFilterListVersion_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CCommunity_GetLinkFilterListVersion_Response) ne(b []CCommunity_GetLinkFilterListVersion_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ccommunity_getlinkfilterlistversion_response() CCommunity_GetLinkFilterListVersion_Response {
 	return CCommunity_GetLinkFilterListVersion_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterlistversion_response(o CCommunity_GetLinkFilterListVersion_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterlistversion_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterListVersion_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ccommunity_getlinkfilterlistversion_response_unpack(v)?

@@ -12,11 +12,19 @@ enum EValveIndexComponent {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_evalveindexcomponent() EValveIndexComponent {
+	return .k_evalveindexcomponentunknown
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_evalveindexcomponent(e EValveIndexComponent, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_evalveindexcomponent_packed(e []EValveIndexComponent, num u32) []byte {
 	x := array{
 		data: e.data
@@ -28,12 +36,14 @@ fn zzz_vproto_internal_pack_evalveindexcomponent_packed(e []EValveIndexComponent
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_evalveindexcomponent(buf []byte, tag_wiretype vproto.WireType) ?(int, EValveIndexComponent) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EValveIndexComponent(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_evalveindexcomponent_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EValveIndexComponent) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -46,27 +56,25 @@ fn zzz_vproto_internal_unpack_evalveindexcomponent_packed(buf []byte, tag_wirety
 
 pub struct CAccountHardware_RegisterSteamController_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	serial_number       string
-	has_serial_number   bool
-	controller_code     string
-	has_controller_code bool
+	serial_number   string
+	controller_code string
 }
 
 pub fn (o &CAccountHardware_RegisterSteamController_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_controller_code {
+	if o.controller_code != '' {
 		res << vproto.pack_string_field(o.controller_code, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_registersteamcontroller_request_unpack(buf []byte) ?CAccountHardware_RegisterSteamController_Request {
-	mut res := CAccountHardware_RegisterSteamController_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_registersteamcontroller_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -77,13 +85,11 @@ pub fn caccounthardware_registersteamcontroller_request_unpack(buf []byte) ?CAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_controller_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_code = v
 				i = ii
@@ -103,17 +109,48 @@ pub fn caccounthardware_registersteamcontroller_request_unpack(buf []byte) ?CAcc
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_RegisterSteamController_Request) eq(b CAccountHardware_RegisterSteamController_Request) bool {
+	return true && a.serial_number == b.serial_number && a.controller_code == b.controller_code
+}
+
+[inline]
+pub fn (a CAccountHardware_RegisterSteamController_Request) ne(b CAccountHardware_RegisterSteamController_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterSteamController_Request) eq(b []CAccountHardware_RegisterSteamController_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterSteamController_Request) ne(b []CAccountHardware_RegisterSteamController_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_registersteamcontroller_request() CAccountHardware_RegisterSteamController_Request {
 	return CAccountHardware_RegisterSteamController_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_registersteamcontroller_request(o CAccountHardware_RegisterSteamController_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_registersteamcontroller_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterSteamController_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_registersteamcontroller_request_unpack(v)?
@@ -131,21 +168,52 @@ pub fn (o &CAccountHardware_RegisterSteamController_Response) pack() []byte {
 }
 
 pub fn caccounthardware_registersteamcontroller_response_unpack(buf []byte) ?CAccountHardware_RegisterSteamController_Response {
-	res := CAccountHardware_RegisterSteamController_Response{}
+	res := zzz_vproto_internal_new_caccounthardware_registersteamcontroller_response()
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_RegisterSteamController_Response) eq(b CAccountHardware_RegisterSteamController_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CAccountHardware_RegisterSteamController_Response) ne(b CAccountHardware_RegisterSteamController_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterSteamController_Response) eq(b []CAccountHardware_RegisterSteamController_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterSteamController_Response) ne(b []CAccountHardware_RegisterSteamController_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_registersteamcontroller_response() CAccountHardware_RegisterSteamController_Response {
 	return CAccountHardware_RegisterSteamController_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_registersteamcontroller_response(o CAccountHardware_RegisterSteamController_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_registersteamcontroller_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterSteamController_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_registersteamcontroller_response_unpack(v)?
@@ -154,27 +222,25 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_registersteamcontroller_respo
 
 pub struct CAccountHardware_CompleteSteamControllerRegistration_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	serial_number       string
-	has_serial_number   bool
-	controller_code     string
-	has_controller_code bool
+	serial_number   string
+	controller_code string
 }
 
 pub fn (o &CAccountHardware_CompleteSteamControllerRegistration_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_controller_code {
+	if o.controller_code != '' {
 		res << vproto.pack_string_field(o.controller_code, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_completesteamcontrollerregistration_request_unpack(buf []byte) ?CAccountHardware_CompleteSteamControllerRegistration_Request {
-	mut res := CAccountHardware_CompleteSteamControllerRegistration_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_completesteamcontrollerregistration_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -185,13 +251,11 @@ pub fn caccounthardware_completesteamcontrollerregistration_request_unpack(buf [
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_controller_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_code = v
 				i = ii
@@ -211,17 +275,48 @@ pub fn caccounthardware_completesteamcontrollerregistration_request_unpack(buf [
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_CompleteSteamControllerRegistration_Request) eq(b CAccountHardware_CompleteSteamControllerRegistration_Request) bool {
+	return true && a.serial_number == b.serial_number && a.controller_code == b.controller_code
+}
+
+[inline]
+pub fn (a CAccountHardware_CompleteSteamControllerRegistration_Request) ne(b CAccountHardware_CompleteSteamControllerRegistration_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_CompleteSteamControllerRegistration_Request) eq(b []CAccountHardware_CompleteSteamControllerRegistration_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_CompleteSteamControllerRegistration_Request) ne(b []CAccountHardware_CompleteSteamControllerRegistration_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_completesteamcontrollerregistration_request() CAccountHardware_CompleteSteamControllerRegistration_Request {
 	return CAccountHardware_CompleteSteamControllerRegistration_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_completesteamcontrollerregistration_request(o CAccountHardware_CompleteSteamControllerRegistration_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_completesteamcontrollerregistration_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_CompleteSteamControllerRegistration_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_completesteamcontrollerregistration_request_unpack(v)?
@@ -239,21 +334,52 @@ pub fn (o &CAccountHardware_CompleteSteamControllerRegistration_Response) pack()
 }
 
 pub fn caccounthardware_completesteamcontrollerregistration_response_unpack(buf []byte) ?CAccountHardware_CompleteSteamControllerRegistration_Response {
-	res := CAccountHardware_CompleteSteamControllerRegistration_Response{}
+	res := zzz_vproto_internal_new_caccounthardware_completesteamcontrollerregistration_response()
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_CompleteSteamControllerRegistration_Response) eq(b CAccountHardware_CompleteSteamControllerRegistration_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CAccountHardware_CompleteSteamControllerRegistration_Response) ne(b CAccountHardware_CompleteSteamControllerRegistration_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_CompleteSteamControllerRegistration_Response) eq(b []CAccountHardware_CompleteSteamControllerRegistration_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_CompleteSteamControllerRegistration_Response) ne(b []CAccountHardware_CompleteSteamControllerRegistration_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_completesteamcontrollerregistration_response() CAccountHardware_CompleteSteamControllerRegistration_Response {
 	return CAccountHardware_CompleteSteamControllerRegistration_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_completesteamcontrollerregistration_response(o CAccountHardware_CompleteSteamControllerRegistration_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_completesteamcontrollerregistration_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_CompleteSteamControllerRegistration_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_completesteamcontrollerregistration_response_unpack(v)?
@@ -262,27 +388,25 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_completesteamcontrollerregist
 
 pub struct CAccountHardware_QueryAccountsRegisteredToSerial_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	serial_number       string
-	has_serial_number   bool
-	controller_code     string
-	has_controller_code bool
+	serial_number   string
+	controller_code string
 }
 
 pub fn (o &CAccountHardware_QueryAccountsRegisteredToSerial_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_controller_code {
+	if o.controller_code != '' {
 		res << vproto.pack_string_field(o.controller_code, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_queryaccountsregisteredtoserial_request_unpack(buf []byte) ?CAccountHardware_QueryAccountsRegisteredToSerial_Request {
-	mut res := CAccountHardware_QueryAccountsRegisteredToSerial_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -293,13 +417,11 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_request_unpack(buf []byt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_controller_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_code = v
 				i = ii
@@ -319,17 +441,48 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_request_unpack(buf []byt
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_QueryAccountsRegisteredToSerial_Request) eq(b CAccountHardware_QueryAccountsRegisteredToSerial_Request) bool {
+	return true && a.serial_number == b.serial_number && a.controller_code == b.controller_code
+}
+
+[inline]
+pub fn (a CAccountHardware_QueryAccountsRegisteredToSerial_Request) ne(b CAccountHardware_QueryAccountsRegisteredToSerial_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_QueryAccountsRegisteredToSerial_Request) eq(b []CAccountHardware_QueryAccountsRegisteredToSerial_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_QueryAccountsRegisteredToSerial_Request) ne(b []CAccountHardware_QueryAccountsRegisteredToSerial_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_request() CAccountHardware_QueryAccountsRegisteredToSerial_Request {
 	return CAccountHardware_QueryAccountsRegisteredToSerial_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_request(o CAccountHardware_QueryAccountsRegisteredToSerial_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_QueryAccountsRegisteredToSerial_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_queryaccountsregisteredtoserial_request_unpack(v)?
@@ -338,27 +491,25 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoseri
 
 pub struct CAccountHardware_QueryAccountsRegisteredToSerial_Accounts {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	accountid                 u32
-	has_accountid             bool
-	registration_complete     bool
-	has_registration_complete bool
+	accountid             u32
+	registration_complete bool
 }
 
 pub fn (o &CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 1)
 	}
-	if o.has_registration_complete {
+	if o.registration_complete != bool(0) {
 		res << vproto.pack_bool_field(o.registration_complete, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(buf []byte) ?CAccountHardware_QueryAccountsRegisteredToSerial_Accounts {
-	mut res := CAccountHardware_QueryAccountsRegisteredToSerial_Accounts{}
+	mut res := zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_accounts()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -369,13 +520,11 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_registration_complete = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.registration_complete = v
 				i = ii
@@ -395,17 +544,48 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) eq(b CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) bool {
+	return true && a.accountid == b.accountid && a.registration_complete == b.registration_complete
+}
+
+[inline]
+pub fn (a CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) ne(b CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) eq(b []CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) ne(b []CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_accounts() CAccountHardware_QueryAccountsRegisteredToSerial_Accounts {
 	return CAccountHardware_QueryAccountsRegisteredToSerial_Accounts{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_accounts(o CAccountHardware_QueryAccountsRegisteredToSerial_Accounts, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_accounts(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_QueryAccountsRegisteredToSerial_Accounts) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(v)?
@@ -430,7 +610,7 @@ pub fn (o &CAccountHardware_QueryAccountsRegisteredToSerial_Response) pack() []b
 }
 
 pub fn caccounthardware_queryaccountsregisteredtoserial_response_unpack(buf []byte) ?CAccountHardware_QueryAccountsRegisteredToSerial_Response {
-	mut res := CAccountHardware_QueryAccountsRegisteredToSerial_Response{}
+	mut res := zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -462,17 +642,48 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_response_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_QueryAccountsRegisteredToSerial_Response) eq(b CAccountHardware_QueryAccountsRegisteredToSerial_Response) bool {
+	return true && a.accounts.eq(b.accounts)
+}
+
+[inline]
+pub fn (a CAccountHardware_QueryAccountsRegisteredToSerial_Response) ne(b CAccountHardware_QueryAccountsRegisteredToSerial_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_QueryAccountsRegisteredToSerial_Response) eq(b []CAccountHardware_QueryAccountsRegisteredToSerial_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_QueryAccountsRegisteredToSerial_Response) ne(b []CAccountHardware_QueryAccountsRegisteredToSerial_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_queryaccountsregisteredtoserial_response() CAccountHardware_QueryAccountsRegisteredToSerial_Response {
 	return CAccountHardware_QueryAccountsRegisteredToSerial_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_queryaccountsregisteredtoserial_response(o CAccountHardware_QueryAccountsRegisteredToSerial_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoserial_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_QueryAccountsRegisteredToSerial_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_queryaccountsregisteredtoserial_response_unpack(v)?
@@ -481,32 +692,29 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_queryaccountsregisteredtoseri
 
 pub struct CAccountHardware_SteamControllerSetConfig_ControllerConfig {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	appidorname         string
-	has_appidorname     bool
-	publishedfileid     u64
-	has_publishedfileid bool
-	templatename        string
-	has_templatename    bool
+	appidorname     string
+	publishedfileid u64
+	templatename    string
 }
 
 pub fn (o &CAccountHardware_SteamControllerSetConfig_ControllerConfig) pack() []byte {
 	mut res := []byte{}
-	if o.has_appidorname {
+	if o.appidorname != '' {
 		res << vproto.pack_string_field(o.appidorname, 1)
 	}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 2)
 	}
-	if o.has_templatename {
+	if o.templatename != '' {
 		res << vproto.pack_string_field(o.templatename, 3)
 	}
 	return res
 }
 
 pub fn caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(buf []byte) ?CAccountHardware_SteamControllerSetConfig_ControllerConfig {
-	mut res := CAccountHardware_SteamControllerSetConfig_ControllerConfig{}
+	mut res := zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_controllerconfig()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -517,19 +725,16 @@ pub fn caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appidorname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.appidorname = v
 				i = ii
 			}
 			2 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			3 {
-				res.has_templatename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.templatename = v
 				i = ii
@@ -549,17 +754,50 @@ pub fn caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(buf []b
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SteamControllerSetConfig_ControllerConfig) eq(b CAccountHardware_SteamControllerSetConfig_ControllerConfig) bool {
+	return true && a.appidorname == b.appidorname &&
+		a.publishedfileid == b.publishedfileid &&
+		a.templatename == b.templatename
+}
+
+[inline]
+pub fn (a CAccountHardware_SteamControllerSetConfig_ControllerConfig) ne(b CAccountHardware_SteamControllerSetConfig_ControllerConfig) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerSetConfig_ControllerConfig) eq(b []CAccountHardware_SteamControllerSetConfig_ControllerConfig) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerSetConfig_ControllerConfig) ne(b []CAccountHardware_SteamControllerSetConfig_ControllerConfig) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_controllerconfig() CAccountHardware_SteamControllerSetConfig_ControllerConfig {
 	return CAccountHardware_SteamControllerSetConfig_ControllerConfig{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_controllerconfig(o CAccountHardware_SteamControllerSetConfig_ControllerConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_controllerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerSetConfig_ControllerConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(v)?
@@ -568,30 +806,25 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_cont
 
 pub struct CAccountHardware_SteamControllerSetConfig_Request {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields       []vproto.UnknownField
 pub mut:
-	serial_number            string
-	has_serial_number        bool
-	controller_code          string
-	has_controller_code      bool
-	accountid                u32
-	has_accountid            bool
-	configurations           []CAccountHardware_SteamControllerSetConfig_ControllerConfig
-	controller_type          int
-	has_controller_type      bool
-	only_for_this_serial     bool
-	has_only_for_this_serial bool
+	serial_number        string
+	controller_code      string
+	accountid            u32
+	configurations       []CAccountHardware_SteamControllerSetConfig_ControllerConfig
+	controller_type      int = 2
+	only_for_this_serial bool = false
 }
 
 pub fn (o &CAccountHardware_SteamControllerSetConfig_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_controller_code {
+	if o.controller_code != '' {
 		res << vproto.pack_string_field(o.controller_code, 2)
 	}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 3)
 	}
 	// [packed=false]
@@ -599,17 +832,17 @@ pub fn (o &CAccountHardware_SteamControllerSetConfig_Request) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_controllerconfig(x, 4)
 	}
-	if o.has_controller_type {
+	if o.controller_type != int(0) {
 		res << vproto.pack_int32_field(o.controller_type, 5)
 	}
-	if o.has_only_for_this_serial {
+	if o.only_for_this_serial != bool(0) {
 		res << vproto.pack_bool_field(o.only_for_this_serial, 6)
 	}
 	return res
 }
 
 pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAccountHardware_SteamControllerSetConfig_Request {
-	mut res := CAccountHardware_SteamControllerSetConfig_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -620,19 +853,16 @@ pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_controller_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_code = v
 				i = ii
 			}
 			3 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
@@ -645,13 +875,11 @@ pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAc
 				i = ii
 			}
 			5 {
-				res.has_controller_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_type = v
 				i = ii
 			}
 			6 {
-				res.has_only_for_this_serial = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.only_for_this_serial = v
 				i = ii
@@ -671,17 +899,52 @@ pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAc
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SteamControllerSetConfig_Request) eq(b CAccountHardware_SteamControllerSetConfig_Request) bool {
+	return true && a.serial_number == b.serial_number &&
+		a.controller_code == b.controller_code &&
+		a.accountid == b.accountid && a.configurations.eq(b.configurations) &&
+		a.controller_type == b.controller_type &&
+		a.only_for_this_serial == b.only_for_this_serial
+}
+
+[inline]
+pub fn (a CAccountHardware_SteamControllerSetConfig_Request) ne(b CAccountHardware_SteamControllerSetConfig_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerSetConfig_Request) eq(b []CAccountHardware_SteamControllerSetConfig_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerSetConfig_Request) ne(b []CAccountHardware_SteamControllerSetConfig_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_request() CAccountHardware_SteamControllerSetConfig_Request {
 	return CAccountHardware_SteamControllerSetConfig_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_request(o CAccountHardware_SteamControllerSetConfig_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerSetConfig_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_steamcontrollersetconfig_request_unpack(v)?
@@ -699,21 +962,52 @@ pub fn (o &CAccountHardware_SteamControllerSetConfig_Response) pack() []byte {
 }
 
 pub fn caccounthardware_steamcontrollersetconfig_response_unpack(buf []byte) ?CAccountHardware_SteamControllerSetConfig_Response {
-	res := CAccountHardware_SteamControllerSetConfig_Response{}
+	res := zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_response()
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SteamControllerSetConfig_Response) eq(b CAccountHardware_SteamControllerSetConfig_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CAccountHardware_SteamControllerSetConfig_Response) ne(b CAccountHardware_SteamControllerSetConfig_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerSetConfig_Response) eq(b []CAccountHardware_SteamControllerSetConfig_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerSetConfig_Response) ne(b []CAccountHardware_SteamControllerSetConfig_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollersetconfig_response() CAccountHardware_SteamControllerSetConfig_Response {
 	return CAccountHardware_SteamControllerSetConfig_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollersetconfig_response(o CAccountHardware_SteamControllerSetConfig_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerSetConfig_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_steamcontrollersetconfig_response_unpack(v)?
@@ -722,47 +1016,41 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollersetconfig_resp
 
 pub struct CAccountHardware_SteamControllerGetConfig_Request {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields       []vproto.UnknownField
 pub mut:
-	serial_number            string
-	has_serial_number        bool
-	controller_code          string
-	has_controller_code      bool
-	accountid                u32
-	has_accountid            bool
-	appidorname              string
-	has_appidorname          bool
-	controller_type          int
-	has_controller_type      bool
-	only_for_this_serial     bool
-	has_only_for_this_serial bool
+	serial_number        string
+	controller_code      string
+	accountid            u32
+	appidorname          string
+	controller_type      int = 2
+	only_for_this_serial bool = false
 }
 
 pub fn (o &CAccountHardware_SteamControllerGetConfig_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_controller_code {
+	if o.controller_code != '' {
 		res << vproto.pack_string_field(o.controller_code, 2)
 	}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 3)
 	}
-	if o.has_appidorname {
+	if o.appidorname != '' {
 		res << vproto.pack_string_field(o.appidorname, 4)
 	}
-	if o.has_controller_type {
+	if o.controller_type != int(0) {
 		res << vproto.pack_int32_field(o.controller_type, 5)
 	}
-	if o.has_only_for_this_serial {
+	if o.only_for_this_serial != bool(0) {
 		res << vproto.pack_bool_field(o.only_for_this_serial, 6)
 	}
 	return res
 }
 
 pub fn caccounthardware_steamcontrollergetconfig_request_unpack(buf []byte) ?CAccountHardware_SteamControllerGetConfig_Request {
-	mut res := CAccountHardware_SteamControllerGetConfig_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -773,37 +1061,31 @@ pub fn caccounthardware_steamcontrollergetconfig_request_unpack(buf []byte) ?CAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_controller_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_code = v
 				i = ii
 			}
 			3 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			4 {
-				res.has_appidorname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.appidorname = v
 				i = ii
 			}
 			5 {
-				res.has_controller_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_type = v
 				i = ii
 			}
 			6 {
-				res.has_only_for_this_serial = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.only_for_this_serial = v
 				i = ii
@@ -823,17 +1105,52 @@ pub fn caccounthardware_steamcontrollergetconfig_request_unpack(buf []byte) ?CAc
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SteamControllerGetConfig_Request) eq(b CAccountHardware_SteamControllerGetConfig_Request) bool {
+	return true && a.serial_number == b.serial_number &&
+		a.controller_code == b.controller_code &&
+		a.accountid == b.accountid && a.appidorname == b.appidorname &&
+		a.controller_type == b.controller_type &&
+		a.only_for_this_serial == b.only_for_this_serial
+}
+
+[inline]
+pub fn (a CAccountHardware_SteamControllerGetConfig_Request) ne(b CAccountHardware_SteamControllerGetConfig_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerGetConfig_Request) eq(b []CAccountHardware_SteamControllerGetConfig_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerGetConfig_Request) ne(b []CAccountHardware_SteamControllerGetConfig_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_request() CAccountHardware_SteamControllerGetConfig_Request {
 	return CAccountHardware_SteamControllerGetConfig_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_request(o CAccountHardware_SteamControllerGetConfig_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerGetConfig_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_steamcontrollergetconfig_request_unpack(v)?
@@ -842,37 +1159,33 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_requ
 
 pub struct CAccountHardware_SteamControllerGetConfig_ControllerConfig {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	appidorname         string
-	has_appidorname     bool
-	publishedfileid     u64
-	has_publishedfileid bool
-	templatename        string
-	has_templatename    bool
-	serial_number       string
-	has_serial_number   bool
+	appidorname     string
+	publishedfileid u64
+	templatename    string
+	serial_number   string
 }
 
 pub fn (o &CAccountHardware_SteamControllerGetConfig_ControllerConfig) pack() []byte {
 	mut res := []byte{}
-	if o.has_appidorname {
+	if o.appidorname != '' {
 		res << vproto.pack_string_field(o.appidorname, 1)
 	}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 2)
 	}
-	if o.has_templatename {
+	if o.templatename != '' {
 		res << vproto.pack_string_field(o.templatename, 3)
 	}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 4)
 	}
 	return res
 }
 
 pub fn caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(buf []byte) ?CAccountHardware_SteamControllerGetConfig_ControllerConfig {
-	mut res := CAccountHardware_SteamControllerGetConfig_ControllerConfig{}
+	mut res := zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_controllerconfig()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -883,25 +1196,21 @@ pub fn caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appidorname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.appidorname = v
 				i = ii
 			}
 			2 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			3 {
-				res.has_templatename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.templatename = v
 				i = ii
 			}
 			4 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
@@ -921,17 +1230,51 @@ pub fn caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(buf []b
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SteamControllerGetConfig_ControllerConfig) eq(b CAccountHardware_SteamControllerGetConfig_ControllerConfig) bool {
+	return true && a.appidorname == b.appidorname &&
+		a.publishedfileid == b.publishedfileid &&
+		a.templatename == b.templatename &&
+		a.serial_number == b.serial_number
+}
+
+[inline]
+pub fn (a CAccountHardware_SteamControllerGetConfig_ControllerConfig) ne(b CAccountHardware_SteamControllerGetConfig_ControllerConfig) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerGetConfig_ControllerConfig) eq(b []CAccountHardware_SteamControllerGetConfig_ControllerConfig) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerGetConfig_ControllerConfig) ne(b []CAccountHardware_SteamControllerGetConfig_ControllerConfig) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_controllerconfig() CAccountHardware_SteamControllerGetConfig_ControllerConfig {
 	return CAccountHardware_SteamControllerGetConfig_ControllerConfig{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_controllerconfig(o CAccountHardware_SteamControllerGetConfig_ControllerConfig, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_controllerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerGetConfig_ControllerConfig) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(v)?
@@ -956,7 +1299,7 @@ pub fn (o &CAccountHardware_SteamControllerGetConfig_Response) pack() []byte {
 }
 
 pub fn caccounthardware_steamcontrollergetconfig_response_unpack(buf []byte) ?CAccountHardware_SteamControllerGetConfig_Response {
-	mut res := CAccountHardware_SteamControllerGetConfig_Response{}
+	mut res := zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -988,17 +1331,48 @@ pub fn caccounthardware_steamcontrollergetconfig_response_unpack(buf []byte) ?CA
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SteamControllerGetConfig_Response) eq(b CAccountHardware_SteamControllerGetConfig_Response) bool {
+	return true && a.configurations.eq(b.configurations)
+}
+
+[inline]
+pub fn (a CAccountHardware_SteamControllerGetConfig_Response) ne(b CAccountHardware_SteamControllerGetConfig_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerGetConfig_Response) eq(b []CAccountHardware_SteamControllerGetConfig_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SteamControllerGetConfig_Response) ne(b []CAccountHardware_SteamControllerGetConfig_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_steamcontrollergetconfig_response() CAccountHardware_SteamControllerGetConfig_Response {
 	return CAccountHardware_SteamControllerGetConfig_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_steamcontrollergetconfig_response(o CAccountHardware_SteamControllerGetConfig_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SteamControllerGetConfig_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_steamcontrollergetconfig_response_unpack(v)?
@@ -1007,32 +1381,29 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_steamcontrollergetconfig_resp
 
 pub struct CAccountHardware_DeRegisterSteamController_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	serial_number       string
-	has_serial_number   bool
-	controller_code     string
-	has_controller_code bool
-	accountid           u32
-	has_accountid       bool
+	serial_number   string
+	controller_code string
+	accountid       u32
 }
 
 pub fn (o &CAccountHardware_DeRegisterSteamController_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_controller_code {
+	if o.controller_code != '' {
 		res << vproto.pack_string_field(o.controller_code, 2)
 	}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 3)
 	}
 	return res
 }
 
 pub fn caccounthardware_deregistersteamcontroller_request_unpack(buf []byte) ?CAccountHardware_DeRegisterSteamController_Request {
-	mut res := CAccountHardware_DeRegisterSteamController_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_deregistersteamcontroller_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1043,19 +1414,16 @@ pub fn caccounthardware_deregistersteamcontroller_request_unpack(buf []byte) ?CA
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_controller_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.controller_code = v
 				i = ii
 			}
 			3 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
@@ -1075,17 +1443,50 @@ pub fn caccounthardware_deregistersteamcontroller_request_unpack(buf []byte) ?CA
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_DeRegisterSteamController_Request) eq(b CAccountHardware_DeRegisterSteamController_Request) bool {
+	return true && a.serial_number == b.serial_number &&
+		a.controller_code == b.controller_code &&
+		a.accountid == b.accountid
+}
+
+[inline]
+pub fn (a CAccountHardware_DeRegisterSteamController_Request) ne(b CAccountHardware_DeRegisterSteamController_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_DeRegisterSteamController_Request) eq(b []CAccountHardware_DeRegisterSteamController_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_DeRegisterSteamController_Request) ne(b []CAccountHardware_DeRegisterSteamController_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_deregistersteamcontroller_request() CAccountHardware_DeRegisterSteamController_Request {
 	return CAccountHardware_DeRegisterSteamController_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_deregistersteamcontroller_request(o CAccountHardware_DeRegisterSteamController_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_deregistersteamcontroller_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_DeRegisterSteamController_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_deregistersteamcontroller_request_unpack(v)?
@@ -1103,21 +1504,52 @@ pub fn (o &CAccountHardware_DeRegisterSteamController_Response) pack() []byte {
 }
 
 pub fn caccounthardware_deregistersteamcontroller_response_unpack(buf []byte) ?CAccountHardware_DeRegisterSteamController_Response {
-	res := CAccountHardware_DeRegisterSteamController_Response{}
+	res := zzz_vproto_internal_new_caccounthardware_deregistersteamcontroller_response()
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_DeRegisterSteamController_Response) eq(b CAccountHardware_DeRegisterSteamController_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CAccountHardware_DeRegisterSteamController_Response) ne(b CAccountHardware_DeRegisterSteamController_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_DeRegisterSteamController_Response) eq(b []CAccountHardware_DeRegisterSteamController_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_DeRegisterSteamController_Response) ne(b []CAccountHardware_DeRegisterSteamController_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_deregistersteamcontroller_response() CAccountHardware_DeRegisterSteamController_Response {
 	return CAccountHardware_DeRegisterSteamController_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_deregistersteamcontroller_response(o CAccountHardware_DeRegisterSteamController_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_deregistersteamcontroller_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_DeRegisterSteamController_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_deregistersteamcontroller_response_unpack(v)?
@@ -1126,32 +1558,29 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_deregistersteamcontroller_res
 
 pub struct CAccountHardware_SetPersonalizationFile_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	serial_number       string
-	has_serial_number   bool
-	publishedfileid     u64
-	has_publishedfileid bool
-	accountid           u32
-	has_accountid       bool
+	serial_number   string
+	publishedfileid u64
+	accountid       u32
 }
 
 pub fn (o &CAccountHardware_SetPersonalizationFile_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 2)
 	}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 3)
 	}
 	return res
 }
 
 pub fn caccounthardware_setpersonalizationfile_request_unpack(buf []byte) ?CAccountHardware_SetPersonalizationFile_Request {
-	mut res := CAccountHardware_SetPersonalizationFile_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_setpersonalizationfile_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1162,19 +1591,16 @@ pub fn caccounthardware_setpersonalizationfile_request_unpack(buf []byte) ?CAcco
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			3 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
@@ -1194,17 +1620,50 @@ pub fn caccounthardware_setpersonalizationfile_request_unpack(buf []byte) ?CAcco
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SetPersonalizationFile_Request) eq(b CAccountHardware_SetPersonalizationFile_Request) bool {
+	return true && a.serial_number == b.serial_number &&
+		a.publishedfileid == b.publishedfileid &&
+		a.accountid == b.accountid
+}
+
+[inline]
+pub fn (a CAccountHardware_SetPersonalizationFile_Request) ne(b CAccountHardware_SetPersonalizationFile_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SetPersonalizationFile_Request) eq(b []CAccountHardware_SetPersonalizationFile_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SetPersonalizationFile_Request) ne(b []CAccountHardware_SetPersonalizationFile_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_setpersonalizationfile_request() CAccountHardware_SetPersonalizationFile_Request {
 	return CAccountHardware_SetPersonalizationFile_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_setpersonalizationfile_request(o CAccountHardware_SetPersonalizationFile_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_setpersonalizationfile_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SetPersonalizationFile_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_setpersonalizationfile_request_unpack(v)?
@@ -1222,21 +1681,52 @@ pub fn (o &CAccountHardware_SetPersonalizationFile_Response) pack() []byte {
 }
 
 pub fn caccounthardware_setpersonalizationfile_response_unpack(buf []byte) ?CAccountHardware_SetPersonalizationFile_Response {
-	res := CAccountHardware_SetPersonalizationFile_Response{}
+	res := zzz_vproto_internal_new_caccounthardware_setpersonalizationfile_response()
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_SetPersonalizationFile_Response) eq(b CAccountHardware_SetPersonalizationFile_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CAccountHardware_SetPersonalizationFile_Response) ne(b CAccountHardware_SetPersonalizationFile_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_SetPersonalizationFile_Response) eq(b []CAccountHardware_SetPersonalizationFile_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_SetPersonalizationFile_Response) ne(b []CAccountHardware_SetPersonalizationFile_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_setpersonalizationfile_response() CAccountHardware_SetPersonalizationFile_Response {
 	return CAccountHardware_SetPersonalizationFile_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_setpersonalizationfile_response(o CAccountHardware_SetPersonalizationFile_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_setpersonalizationfile_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_SetPersonalizationFile_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_setpersonalizationfile_response_unpack(v)?
@@ -1245,27 +1735,25 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_setpersonalizationfile_respon
 
 pub struct CAccountHardware_GetPersonalizationFile_Request {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	serial_number     string
-	has_serial_number bool
-	accountid         u32
-	has_accountid     bool
+	serial_number  string
+	accountid      u32
 }
 
 pub fn (o &CAccountHardware_GetPersonalizationFile_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_getpersonalizationfile_request_unpack(buf []byte) ?CAccountHardware_GetPersonalizationFile_Request {
-	mut res := CAccountHardware_GetPersonalizationFile_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_getpersonalizationfile_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1276,13 +1764,11 @@ pub fn caccounthardware_getpersonalizationfile_request_unpack(buf []byte) ?CAcco
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
@@ -1302,17 +1788,48 @@ pub fn caccounthardware_getpersonalizationfile_request_unpack(buf []byte) ?CAcco
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_GetPersonalizationFile_Request) eq(b CAccountHardware_GetPersonalizationFile_Request) bool {
+	return true && a.serial_number == b.serial_number && a.accountid == b.accountid
+}
+
+[inline]
+pub fn (a CAccountHardware_GetPersonalizationFile_Request) ne(b CAccountHardware_GetPersonalizationFile_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_GetPersonalizationFile_Request) eq(b []CAccountHardware_GetPersonalizationFile_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_GetPersonalizationFile_Request) ne(b []CAccountHardware_GetPersonalizationFile_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_getpersonalizationfile_request() CAccountHardware_GetPersonalizationFile_Request {
 	return CAccountHardware_GetPersonalizationFile_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_getpersonalizationfile_request(o CAccountHardware_GetPersonalizationFile_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_getpersonalizationfile_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_GetPersonalizationFile_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_getpersonalizationfile_request_unpack(v)?
@@ -1321,22 +1838,21 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_getpersonalizationfile_reques
 
 pub struct CAccountHardware_GetPersonalizationFile_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
+	publishedfileid u64
 }
 
 pub fn (o &CAccountHardware_GetPersonalizationFile_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
 	return res
 }
 
 pub fn caccounthardware_getpersonalizationfile_response_unpack(buf []byte) ?CAccountHardware_GetPersonalizationFile_Response {
-	mut res := CAccountHardware_GetPersonalizationFile_Response{}
+	mut res := zzz_vproto_internal_new_caccounthardware_getpersonalizationfile_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1347,7 +1863,6 @@ pub fn caccounthardware_getpersonalizationfile_response_unpack(buf []byte) ?CAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
@@ -1367,17 +1882,48 @@ pub fn caccounthardware_getpersonalizationfile_response_unpack(buf []byte) ?CAcc
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_GetPersonalizationFile_Response) eq(b CAccountHardware_GetPersonalizationFile_Response) bool {
+	return true && a.publishedfileid == b.publishedfileid
+}
+
+[inline]
+pub fn (a CAccountHardware_GetPersonalizationFile_Response) ne(b CAccountHardware_GetPersonalizationFile_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_GetPersonalizationFile_Response) eq(b []CAccountHardware_GetPersonalizationFile_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_GetPersonalizationFile_Response) ne(b []CAccountHardware_GetPersonalizationFile_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_getpersonalizationfile_response() CAccountHardware_GetPersonalizationFile_Response {
 	return CAccountHardware_GetPersonalizationFile_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_getpersonalizationfile_response(o CAccountHardware_GetPersonalizationFile_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_getpersonalizationfile_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_GetPersonalizationFile_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_getpersonalizationfile_response_unpack(v)?
@@ -1389,24 +1935,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key            string
-	has_key        bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &CAccountHardware_VRCompatibilityCheck_Request_Pair) pack() []byte {
 	mut res := []byte{}
-	if o.has_key {
+	if o.key != '' {
 		res << vproto.pack_string_field(o.key, 1)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_vrcompatibilitycheck_request_pair_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Request_Pair {
-	mut res := CAccountHardware_VRCompatibilityCheck_Request_Pair{}
+	mut res := zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_request_pair()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1417,13 +1961,11 @@ pub fn caccounthardware_vrcompatibilitycheck_request_pair_unpack(buf []byte) ?CA
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -1443,17 +1985,48 @@ pub fn caccounthardware_vrcompatibilitycheck_request_pair_unpack(buf []byte) ?CA
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Request_Pair) eq(b CAccountHardware_VRCompatibilityCheck_Request_Pair) bool {
+	return true && a.key == b.key && a.value == b.value
+}
+
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Request_Pair) ne(b CAccountHardware_VRCompatibilityCheck_Request_Pair) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Request_Pair) eq(b []CAccountHardware_VRCompatibilityCheck_Request_Pair) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Request_Pair) ne(b []CAccountHardware_VRCompatibilityCheck_Request_Pair) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_request_pair() CAccountHardware_VRCompatibilityCheck_Request_Pair {
 	return CAccountHardware_VRCompatibilityCheck_Request_Pair{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_request_pair(o CAccountHardware_VRCompatibilityCheck_Request_Pair, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_request_pair(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Request_Pair) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_vrcompatibilitycheck_request_pair_unpack(v)?
@@ -1462,16 +2035,15 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_request_
 
 pub struct CAccountHardware_VRCompatibilityCheck_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	product_name     string
-	has_product_name bool
-	values           []CAccountHardware_VRCompatibilityCheck_Request_Pair
+	product_name   string
+	values         []CAccountHardware_VRCompatibilityCheck_Request_Pair
 }
 
 pub fn (o &CAccountHardware_VRCompatibilityCheck_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_product_name {
+	if o.product_name != '' {
 		res << vproto.pack_string_field(o.product_name, 1)
 	}
 	// [packed=false]
@@ -1482,7 +2054,7 @@ pub fn (o &CAccountHardware_VRCompatibilityCheck_Request) pack() []byte {
 }
 
 pub fn caccounthardware_vrcompatibilitycheck_request_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Request {
-	mut res := CAccountHardware_VRCompatibilityCheck_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1493,7 +2065,6 @@ pub fn caccounthardware_vrcompatibilitycheck_request_unpack(buf []byte) ?CAccoun
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_product_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.product_name = v
 				i = ii
@@ -1520,17 +2091,48 @@ pub fn caccounthardware_vrcompatibilitycheck_request_unpack(buf []byte) ?CAccoun
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Request) eq(b CAccountHardware_VRCompatibilityCheck_Request) bool {
+	return true && a.product_name == b.product_name && a.values.eq(b.values)
+}
+
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Request) ne(b CAccountHardware_VRCompatibilityCheck_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Request) eq(b []CAccountHardware_VRCompatibilityCheck_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Request) ne(b []CAccountHardware_VRCompatibilityCheck_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_request() CAccountHardware_VRCompatibilityCheck_Request {
 	return CAccountHardware_VRCompatibilityCheck_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_request(o CAccountHardware_VRCompatibilityCheck_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_vrcompatibilitycheck_request_unpack(v)?
@@ -1542,24 +2144,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key            string
-	has_key        bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &CAccountHardware_VRCompatibilityCheck_Response_Pair) pack() []byte {
 	mut res := []byte{}
-	if o.has_key {
+	if o.key != '' {
 		res << vproto.pack_string_field(o.key, 1)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn caccounthardware_vrcompatibilitycheck_response_pair_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Response_Pair {
-	mut res := CAccountHardware_VRCompatibilityCheck_Response_Pair{}
+	mut res := zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response_pair()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1570,13 +2170,11 @@ pub fn caccounthardware_vrcompatibilitycheck_response_pair_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -1596,17 +2194,48 @@ pub fn caccounthardware_vrcompatibilitycheck_response_pair_unpack(buf []byte) ?C
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Response_Pair) eq(b CAccountHardware_VRCompatibilityCheck_Response_Pair) bool {
+	return true && a.key == b.key && a.value == b.value
+}
+
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Response_Pair) ne(b CAccountHardware_VRCompatibilityCheck_Response_Pair) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Response_Pair) eq(b []CAccountHardware_VRCompatibilityCheck_Response_Pair) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Response_Pair) ne(b []CAccountHardware_VRCompatibilityCheck_Response_Pair) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response_pair() CAccountHardware_VRCompatibilityCheck_Response_Pair {
 	return CAccountHardware_VRCompatibilityCheck_Response_Pair{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response_pair(o CAccountHardware_VRCompatibilityCheck_Response_Pair, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response_pair(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Response_Pair) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_vrcompatibilitycheck_response_pair_unpack(v)?
@@ -1618,29 +2247,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	name           string
-	has_name       bool
 	image          string
-	has_image      bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) pack() []byte {
 	mut res := []byte{}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 1)
 	}
-	if o.has_image {
+	if o.image != '' {
 		res << vproto.pack_string_field(o.image, 2)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 3)
 	}
 	return res
 }
 
 pub fn caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay {
-	mut res := CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay{}
+	mut res := zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response_componentdisplay()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1651,19 +2277,16 @@ pub fn caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(bu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			2 {
-				res.has_image = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.image = v
 				i = ii
 			}
 			3 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -1683,17 +2306,48 @@ pub fn caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(bu
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) eq(b CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) bool {
+	return true && a.name == b.name && a.image == b.image && a.value == b.value
+}
+
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) ne(b CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) eq(b []CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) ne(b []CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response_componentdisplay() CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay {
 	return CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response_componentdisplay(o CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response_componentdisplay(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Response_ComponentDisplay) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(v)?
@@ -1723,7 +2377,7 @@ pub fn (o &CAccountHardware_VRCompatibilityCheck_Response) pack() []byte {
 }
 
 pub fn caccounthardware_vrcompatibilitycheck_response_unpack(buf []byte) ?CAccountHardware_VRCompatibilityCheck_Response {
-	mut res := CAccountHardware_VRCompatibilityCheck_Response{}
+	mut res := zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1762,17 +2416,48 @@ pub fn caccounthardware_vrcompatibilitycheck_response_unpack(buf []byte) ?CAccou
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Response) eq(b CAccountHardware_VRCompatibilityCheck_Response) bool {
+	return true && a.values.eq(b.values) && a.components.eq(b.components)
+}
+
+[inline]
+pub fn (a CAccountHardware_VRCompatibilityCheck_Response) ne(b CAccountHardware_VRCompatibilityCheck_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Response) eq(b []CAccountHardware_VRCompatibilityCheck_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_VRCompatibilityCheck_Response) ne(b []CAccountHardware_VRCompatibilityCheck_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_vrcompatibilitycheck_response() CAccountHardware_VRCompatibilityCheck_Response {
 	return CAccountHardware_VRCompatibilityCheck_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_vrcompatibilitycheck_response(o CAccountHardware_VRCompatibilityCheck_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_VRCompatibilityCheck_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_vrcompatibilitycheck_response_unpack(v)?
@@ -1781,42 +2466,37 @@ pub fn zzz_vproto_internal_unpack_caccounthardware_vrcompatibilitycheck_response
 
 pub struct CAccountHardware_RegisterValveIndexComponent_Request {
 mut:
-	unknown_fields                 []vproto.UnknownField
+	unknown_fields             []vproto.UnknownField
 pub mut:
-	serial_number                  string
-	has_serial_number              bool
-	manufacturer_serial_number     string
-	has_manufacturer_serial_number bool
-	component_code                 string
-	has_component_code             bool
-	component_type                 EValveIndexComponent
-	has_component_type             bool
-	estimated_time_registered      int
-	has_estimated_time_registered  bool
+	serial_number              string
+	manufacturer_serial_number string
+	component_code             string
+	component_type             EValveIndexComponent = .k_evalveindexcomponentunknown
+	estimated_time_registered  int
 }
 
 pub fn (o &CAccountHardware_RegisterValveIndexComponent_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_serial_number {
+	if o.serial_number != '' {
 		res << vproto.pack_string_field(o.serial_number, 1)
 	}
-	if o.has_manufacturer_serial_number {
+	if o.manufacturer_serial_number != '' {
 		res << vproto.pack_string_field(o.manufacturer_serial_number, 2)
 	}
-	if o.has_component_code {
+	if o.component_code != '' {
 		res << vproto.pack_string_field(o.component_code, 3)
 	}
-	if o.has_component_type {
+	if o.component_type != zzz_vproto_internal_new_evalveindexcomponent() {
 		res << zzz_vproto_internal_pack_evalveindexcomponent(o.component_type, 4)
 	}
-	if o.has_estimated_time_registered {
+	if o.estimated_time_registered != int(0) {
 		res << vproto.pack_int32_field(o.estimated_time_registered, 5)
 	}
 	return res
 }
 
 pub fn caccounthardware_registervalveindexcomponent_request_unpack(buf []byte) ?CAccountHardware_RegisterValveIndexComponent_Request {
-	mut res := CAccountHardware_RegisterValveIndexComponent_Request{}
+	mut res := zzz_vproto_internal_new_caccounthardware_registervalveindexcomponent_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1827,31 +2507,26 @@ pub fn caccounthardware_registervalveindexcomponent_request_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.serial_number = v
 				i = ii
 			}
 			2 {
-				res.has_manufacturer_serial_number = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.manufacturer_serial_number = v
 				i = ii
 			}
 			3 {
-				res.has_component_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.component_code = v
 				i = ii
 			}
 			4 {
-				res.has_component_type = true
 				ii, v := zzz_vproto_internal_unpack_evalveindexcomponent(cur_buf, tag_wiretype.wire_type)?
 				res.component_type = v
 				i = ii
 			}
 			5 {
-				res.has_estimated_time_registered = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.estimated_time_registered = v
 				i = ii
@@ -1871,17 +2546,52 @@ pub fn caccounthardware_registervalveindexcomponent_request_unpack(buf []byte) ?
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_RegisterValveIndexComponent_Request) eq(b CAccountHardware_RegisterValveIndexComponent_Request) bool {
+	return true && a.serial_number == b.serial_number &&
+		a.manufacturer_serial_number == b.manufacturer_serial_number &&
+		a.component_code == b.component_code &&
+		a.component_type == b.component_type &&
+		a.estimated_time_registered == b.estimated_time_registered
+}
+
+[inline]
+pub fn (a CAccountHardware_RegisterValveIndexComponent_Request) ne(b CAccountHardware_RegisterValveIndexComponent_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterValveIndexComponent_Request) eq(b []CAccountHardware_RegisterValveIndexComponent_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterValveIndexComponent_Request) ne(b []CAccountHardware_RegisterValveIndexComponent_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_registervalveindexcomponent_request() CAccountHardware_RegisterValveIndexComponent_Request {
 	return CAccountHardware_RegisterValveIndexComponent_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_registervalveindexcomponent_request(o CAccountHardware_RegisterValveIndexComponent_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_registervalveindexcomponent_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterValveIndexComponent_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_registervalveindexcomponent_request_unpack(v)?
@@ -1899,21 +2609,52 @@ pub fn (o &CAccountHardware_RegisterValveIndexComponent_Response) pack() []byte 
 }
 
 pub fn caccounthardware_registervalveindexcomponent_response_unpack(buf []byte) ?CAccountHardware_RegisterValveIndexComponent_Response {
-	res := CAccountHardware_RegisterValveIndexComponent_Response{}
+	res := zzz_vproto_internal_new_caccounthardware_registervalveindexcomponent_response()
 	return res
 }
 
+[inline]
+pub fn (a CAccountHardware_RegisterValveIndexComponent_Response) eq(b CAccountHardware_RegisterValveIndexComponent_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CAccountHardware_RegisterValveIndexComponent_Response) ne(b CAccountHardware_RegisterValveIndexComponent_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterValveIndexComponent_Response) eq(b []CAccountHardware_RegisterValveIndexComponent_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAccountHardware_RegisterValveIndexComponent_Response) ne(b []CAccountHardware_RegisterValveIndexComponent_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_caccounthardware_registervalveindexcomponent_response() CAccountHardware_RegisterValveIndexComponent_Response {
 	return CAccountHardware_RegisterValveIndexComponent_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_caccounthardware_registervalveindexcomponent_response(o CAccountHardware_RegisterValveIndexComponent_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_caccounthardware_registervalveindexcomponent_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CAccountHardware_RegisterValveIndexComponent_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := caccounthardware_registervalveindexcomponent_response_unpack(v)?

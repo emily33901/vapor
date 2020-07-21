@@ -39,11 +39,19 @@ enum EDisplayStatus {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_edisplaystatus() EDisplayStatus {
+	return .k_edisplaystatusinvalid
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_edisplaystatus(e EDisplayStatus, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_edisplaystatus_packed(e []EDisplayStatus, num u32) []byte {
 	x := array{
 		data: e.data
@@ -55,12 +63,14 @@ fn zzz_vproto_internal_pack_edisplaystatus_packed(e []EDisplayStatus, num u32) [
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_edisplaystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, EDisplayStatus) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EDisplayStatus(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_edisplaystatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EDisplayStatus) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -96,11 +106,19 @@ enum EProtoAppType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eprotoapptype() EProtoAppType {
+	return .k_eapptypeinvalid
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eprotoapptype(e EProtoAppType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eprotoapptype_packed(e []EProtoAppType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -112,12 +130,14 @@ fn zzz_vproto_internal_pack_eprotoapptype_packed(e []EProtoAppType, num u32) []b
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eprotoapptype(buf []byte, tag_wiretype vproto.WireType) ?(int, EProtoAppType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EProtoAppType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eprotoapptype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EProtoAppType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -137,11 +157,19 @@ enum EAppAssociationType {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eappassociationtype() EAppAssociationType {
+	return .k_eappassociationtypeinvalid
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eappassociationtype(e EAppAssociationType, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eappassociationtype_packed(e []EAppAssociationType, num u32) []byte {
 	x := array{
 		data: e.data
@@ -153,12 +181,14 @@ fn zzz_vproto_internal_pack_eappassociationtype_packed(e []EAppAssociationType, 
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eappassociationtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EAppAssociationType) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EAppAssociationType(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eappassociationtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EAppAssociationType) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -177,11 +207,19 @@ enum EAppControllerSupportLevel {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_eappcontrollersupportlevel() EAppControllerSupportLevel {
+	return .k_eappcontrollersupportlevelnone
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eappcontrollersupportlevel(e EAppControllerSupportLevel, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_eappcontrollersupportlevel_packed(e []EAppControllerSupportLevel, num u32) []byte {
 	x := array{
 		data: e.data
@@ -193,12 +231,14 @@ fn zzz_vproto_internal_pack_eappcontrollersupportlevel_packed(e []EAppController
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eappcontrollersupportlevel(buf []byte, tag_wiretype vproto.WireType) ?(int, EAppControllerSupportLevel) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EAppControllerSupportLevel(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_eappcontrollersupportlevel_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EAppControllerSupportLevel) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -213,25 +253,23 @@ pub struct CAppOverview_AppAssociation {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	@type          EAppAssociationType
-	has_type       bool
+	@type          EAppAssociationType = .k_eappassociationtypeinvalid
 	name           string
-	has_name       bool
 }
 
 pub fn (o &CAppOverview_AppAssociation) pack() []byte {
 	mut res := []byte{}
-	if o.has_type {
+	if o.@type != zzz_vproto_internal_new_eappassociationtype() {
 		res << zzz_vproto_internal_pack_eappassociationtype(o.@type, 1)
 	}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 2)
 	}
 	return res
 }
 
 pub fn cappoverview_appassociation_unpack(buf []byte) ?CAppOverview_AppAssociation {
-	mut res := CAppOverview_AppAssociation{}
+	mut res := zzz_vproto_internal_new_cappoverview_appassociation()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -242,13 +280,11 @@ pub fn cappoverview_appassociation_unpack(buf []byte) ?CAppOverview_AppAssociati
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_type = true
 				ii, v := zzz_vproto_internal_unpack_eappassociationtype(cur_buf, tag_wiretype.wire_type)?
 				res.@type = v
 				i = ii
 			}
 			2 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
@@ -268,17 +304,48 @@ pub fn cappoverview_appassociation_unpack(buf []byte) ?CAppOverview_AppAssociati
 	return res
 }
 
+[inline]
+pub fn (a CAppOverview_AppAssociation) eq(b CAppOverview_AppAssociation) bool {
+	return true && a.@type == b.@type && a.name == b.name
+}
+
+[inline]
+pub fn (a CAppOverview_AppAssociation) ne(b CAppOverview_AppAssociation) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAppOverview_AppAssociation) eq(b []CAppOverview_AppAssociation) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAppOverview_AppAssociation) ne(b []CAppOverview_AppAssociation) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cappoverview_appassociation() CAppOverview_AppAssociation {
 	return CAppOverview_AppAssociation{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cappoverview_appassociation(o CAppOverview_AppAssociation, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cappoverview_appassociation(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview_AppAssociation) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cappoverview_appassociation_unpack(v)?
@@ -287,77 +354,65 @@ pub fn zzz_vproto_internal_unpack_cappoverview_appassociation(buf []byte, tag_wi
 
 pub struct CAppOverview_PerClientData {
 mut:
-	unknown_fields                       []vproto.UnknownField
+	unknown_fields                   []vproto.UnknownField
 pub mut:
-	clientid                             u64
-	has_clientid                         bool
-	client_name                          string
-	has_client_name                      bool
-	display_status                       EDisplayStatus
-	has_display_status                   bool
-	status_percentage                    u32
-	has_status_percentage                bool
-	active_beta                          string
-	has_active_beta                      bool
-	installed                            bool
-	has_installed                        bool
-	bytes_downloaded                     u64
-	has_bytes_downloaded                 bool
-	bytes_total                          u64
-	has_bytes_total                      bool
-	streaming_to_local_client            bool
-	has_streaming_to_local_client        bool
-	is_available_on_current_platform     bool
-	has_is_available_on_current_platform bool
-	is_invalid_os_type                   bool
-	has_is_invalid_os_type               bool
-	playtime_left                        u32
-	has_playtime_left                    bool
+	clientid                         u64
+	client_name                      string
+	display_status                   EDisplayStatus = .k_edisplaystatusinvalid
+	status_percentage                u32 = 0
+	active_beta                      string
+	installed                        bool
+	bytes_downloaded                 u64 = 0
+	bytes_total                      u64 = 0
+	streaming_to_local_client        bool
+	is_available_on_current_platform bool
+	is_invalid_os_type               bool
+	playtime_left                    u32
 }
 
 pub fn (o &CAppOverview_PerClientData) pack() []byte {
 	mut res := []byte{}
-	if o.has_clientid {
+	if o.clientid != u64(0) {
 		res << vproto.pack_uint64_field(o.clientid, 1)
 	}
-	if o.has_client_name {
+	if o.client_name != '' {
 		res << vproto.pack_string_field(o.client_name, 2)
 	}
-	if o.has_display_status {
+	if o.display_status != zzz_vproto_internal_new_edisplaystatus() {
 		res << zzz_vproto_internal_pack_edisplaystatus(o.display_status, 3)
 	}
-	if o.has_status_percentage {
+	if o.status_percentage != u32(0) {
 		res << vproto.pack_uint32_field(o.status_percentage, 4)
 	}
-	if o.has_active_beta {
+	if o.active_beta != '' {
 		res << vproto.pack_string_field(o.active_beta, 5)
 	}
-	if o.has_installed {
+	if o.installed != bool(0) {
 		res << vproto.pack_bool_field(o.installed, 6)
 	}
-	if o.has_bytes_downloaded {
+	if o.bytes_downloaded != u64(0) {
 		res << vproto.pack_uint64_field(o.bytes_downloaded, 7)
 	}
-	if o.has_bytes_total {
+	if o.bytes_total != u64(0) {
 		res << vproto.pack_uint64_field(o.bytes_total, 8)
 	}
-	if o.has_streaming_to_local_client {
+	if o.streaming_to_local_client != bool(0) {
 		res << vproto.pack_bool_field(o.streaming_to_local_client, 9)
 	}
-	if o.has_is_available_on_current_platform {
+	if o.is_available_on_current_platform != bool(0) {
 		res << vproto.pack_bool_field(o.is_available_on_current_platform, 10)
 	}
-	if o.has_is_invalid_os_type {
+	if o.is_invalid_os_type != bool(0) {
 		res << vproto.pack_bool_field(o.is_invalid_os_type, 11)
 	}
-	if o.has_playtime_left {
+	if o.playtime_left != u32(0) {
 		res << vproto.pack_uint32_field(o.playtime_left, 12)
 	}
 	return res
 }
 
 pub fn cappoverview_perclientdata_unpack(buf []byte) ?CAppOverview_PerClientData {
-	mut res := CAppOverview_PerClientData{}
+	mut res := zzz_vproto_internal_new_cappoverview_perclientdata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -368,73 +423,61 @@ pub fn cappoverview_perclientdata_unpack(buf []byte) ?CAppOverview_PerClientData
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_clientid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.clientid = v
 				i = ii
 			}
 			2 {
-				res.has_client_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_name = v
 				i = ii
 			}
 			3 {
-				res.has_display_status = true
 				ii, v := zzz_vproto_internal_unpack_edisplaystatus(cur_buf, tag_wiretype.wire_type)?
 				res.display_status = v
 				i = ii
 			}
 			4 {
-				res.has_status_percentage = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.status_percentage = v
 				i = ii
 			}
 			5 {
-				res.has_active_beta = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.active_beta = v
 				i = ii
 			}
 			6 {
-				res.has_installed = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.installed = v
 				i = ii
 			}
 			7 {
-				res.has_bytes_downloaded = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.bytes_downloaded = v
 				i = ii
 			}
 			8 {
-				res.has_bytes_total = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.bytes_total = v
 				i = ii
 			}
 			9 {
-				res.has_streaming_to_local_client = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.streaming_to_local_client = v
 				i = ii
 			}
 			10 {
-				res.has_is_available_on_current_platform = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_available_on_current_platform = v
 				i = ii
 			}
 			11 {
-				res.has_is_invalid_os_type = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_invalid_os_type = v
 				i = ii
 			}
 			12 {
-				res.has_playtime_left = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_left = v
 				i = ii
@@ -454,17 +497,56 @@ pub fn cappoverview_perclientdata_unpack(buf []byte) ?CAppOverview_PerClientData
 	return res
 }
 
+[inline]
+pub fn (a CAppOverview_PerClientData) eq(b CAppOverview_PerClientData) bool {
+	return true && a.clientid == b.clientid &&
+		a.client_name == b.client_name && a.display_status == b.display_status &&
+		a.status_percentage == b.status_percentage &&
+		a.active_beta == b.active_beta && a.installed == b.installed &&
+		a.bytes_downloaded == b.bytes_downloaded &&
+		a.bytes_total == b.bytes_total && a.streaming_to_local_client == b.streaming_to_local_client &&
+		a.is_available_on_current_platform == b.is_available_on_current_platform &&
+		a.is_invalid_os_type == b.is_invalid_os_type &&
+		a.playtime_left == b.playtime_left
+}
+
+[inline]
+pub fn (a CAppOverview_PerClientData) ne(b CAppOverview_PerClientData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAppOverview_PerClientData) eq(b []CAppOverview_PerClientData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAppOverview_PerClientData) ne(b []CAppOverview_PerClientData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cappoverview_perclientdata() CAppOverview_PerClientData {
 	return CAppOverview_PerClientData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cappoverview_perclientdata(o CAppOverview_PerClientData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cappoverview_perclientdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview_PerClientData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cappoverview_perclientdata_unpack(v)?
@@ -473,118 +555,81 @@ pub fn zzz_vproto_internal_unpack_cappoverview_perclientdata(buf []byte, tag_wir
 
 pub struct CAppOverview {
 mut:
-	unknown_fields                      []vproto.UnknownField
+	unknown_fields                  []vproto.UnknownField
 pub mut:
-	appid                               u32
-	has_appid                           bool
-	display_name                        string
-	has_display_name                    bool
-	visible_in_game_list                bool
-	has_visible_in_game_list            bool
-	sort_as                             string
-	has_sort_as                         bool
-	app_type                            EProtoAppType
-	has_app_type                        bool
-	mru_index                           u32
-	has_mru_index                       bool
-	rt_recent_activity_time             u32
-	has_rt_recent_activity_time         bool
-	minutes_playtime_forever            u32
-	has_minutes_playtime_forever        bool
-	minutes_playtime_last_two_weeks     u32
-	has_minutes_playtime_last_two_weeks bool
-	rt_last_time_played                 u32
-	has_rt_last_time_played             bool
-	store_tag                           []u32
-	association                         []CAppOverview_AppAssociation
-	store_category                      []u32
-	rt_original_release_date            u32
-	has_rt_original_release_date        bool
-	rt_steam_release_date               u32
-	has_rt_steam_release_date           bool
-	icon_hash                           string
-	has_icon_hash                       bool
-	logo_hash                           string
-	has_logo_hash                       bool
-	controller_support                  EAppControllerSupportLevel
-	has_controller_support              bool
-	vr_supported                        bool
-	has_vr_supported                    bool
-	metacritic_score                    u32
-	has_metacritic_score                bool
-	size_on_disk                        u64
-	has_size_on_disk                    bool
-	third_party_mod                     bool
-	has_third_party_mod                 bool
-	icon_data                           string
-	has_icon_data                       bool
-	icon_data_format                    string
-	has_icon_data_format                bool
-	gameid                              string
-	has_gameid                          bool
-	library_capsule_filename            string
-	has_library_capsule_filename        bool
-	per_client_data                     []CAppOverview_PerClientData
-	most_available_clientid             u64
-	has_most_available_clientid         bool
-	selected_clientid                   u64
-	has_selected_clientid               bool
-	rt_store_asset_mtime                u32
-	has_rt_store_asset_mtime            bool
-	rt_custom_image_mtime               u32
-	has_rt_custom_image_mtime           bool
-	optional_parent_app_id              u32
-	has_optional_parent_app_id          bool
-	owner_account_id                    u32
-	has_owner_account_id                bool
-	compat_mapping_enabled              bool
-	has_compat_mapping_enabled          bool
-	compat_mapping_priority             u32
-	has_compat_mapping_priority         bool
-	compat_mapping_tool_name            string
-	has_compat_mapping_tool_name        bool
-	review_score_with_bombs             u32
-	has_review_score_with_bombs         bool
-	review_percentage_with_bombs        u32
-	has_review_percentage_with_bombs    bool
-	review_score_without_bombs          u32
-	has_review_score_without_bombs      bool
-	review_percentage_without_bombs     u32
-	has_review_percentage_without_bombs bool
-	library_id                          string
-	has_library_id                      bool
+	appid                           u32
+	display_name                    string
+	visible_in_game_list            bool
+	sort_as                         string
+	app_type                        EProtoAppType = .k_eapptypeinvalid
+	mru_index                       u32
+	rt_recent_activity_time         u32 = 0
+	minutes_playtime_forever        u32 = 0
+	minutes_playtime_last_two_weeks u32 = 0
+	rt_last_time_played             u32 = 0
+	store_tag                       []u32
+	association                     []CAppOverview_AppAssociation
+	store_category                  []u32
+	rt_original_release_date        u32 = 0
+	rt_steam_release_date           u32 = 0
+	icon_hash                       string
+	logo_hash                       string
+	controller_support              EAppControllerSupportLevel = .k_eappcontrollersupportlevelnone
+	vr_supported                    bool
+	metacritic_score                u32
+	size_on_disk                    u64
+	third_party_mod                 bool
+	icon_data                       string
+	icon_data_format                string
+	gameid                          string
+	library_capsule_filename        string
+	per_client_data                 []CAppOverview_PerClientData
+	most_available_clientid         u64
+	selected_clientid               u64
+	rt_store_asset_mtime            u32
+	rt_custom_image_mtime           u32
+	optional_parent_app_id          u32
+	owner_account_id                u32
+	compat_mapping_enabled          bool
+	compat_mapping_priority         u32
+	compat_mapping_tool_name        string
+	review_score_with_bombs         u32
+	review_percentage_with_bombs    u32
+	review_score_without_bombs      u32
+	review_percentage_without_bombs u32
+	library_id                      string
 }
 
 pub fn (o &CAppOverview) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_display_name {
+	if o.display_name != '' {
 		res << vproto.pack_string_field(o.display_name, 2)
 	}
-	if o.has_visible_in_game_list {
+	if o.visible_in_game_list != bool(0) {
 		res << vproto.pack_bool_field(o.visible_in_game_list, 4)
 	}
-	if o.has_sort_as {
+	if o.sort_as != '' {
 		res << vproto.pack_string_field(o.sort_as, 6)
 	}
-	if o.has_app_type {
+	if o.app_type != zzz_vproto_internal_new_eprotoapptype() {
 		res << zzz_vproto_internal_pack_eprotoapptype(o.app_type, 7)
 	}
-	if o.has_mru_index {
+	if o.mru_index != u32(0) {
 		res << vproto.pack_uint32_field(o.mru_index, 13)
 	}
-	if o.has_rt_recent_activity_time {
+	if o.rt_recent_activity_time != u32(0) {
 		res << vproto.pack_uint32_field(o.rt_recent_activity_time, 14)
 	}
-	if o.has_minutes_playtime_forever {
+	if o.minutes_playtime_forever != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_playtime_forever, 16)
 	}
-	if o.has_minutes_playtime_last_two_weeks {
+	if o.minutes_playtime_last_two_weeks != u32(0) {
 		res << vproto.pack_uint32_field(o.minutes_playtime_last_two_weeks, 17)
 	}
-	if o.has_rt_last_time_played {
+	if o.rt_last_time_played != u32(0) {
 		res << vproto.pack_uint32_field(o.rt_last_time_played, 18)
 	}
 	// [packed=false]
@@ -599,96 +644,96 @@ pub fn (o &CAppOverview) pack() []byte {
 	for _, x in o.store_category {
 		res << vproto.pack_uint32_field(x, 23)
 	}
-	if o.has_rt_original_release_date {
+	if o.rt_original_release_date != u32(0) {
 		res << vproto.pack_uint32_field(o.rt_original_release_date, 25)
 	}
-	if o.has_rt_steam_release_date {
+	if o.rt_steam_release_date != u32(0) {
 		res << vproto.pack_uint32_field(o.rt_steam_release_date, 26)
 	}
-	if o.has_icon_hash {
+	if o.icon_hash != '' {
 		res << vproto.pack_string_field(o.icon_hash, 27)
 	}
-	if o.has_logo_hash {
+	if o.logo_hash != '' {
 		res << vproto.pack_string_field(o.logo_hash, 30)
 	}
-	if o.has_controller_support {
+	if o.controller_support != zzz_vproto_internal_new_eappcontrollersupportlevel() {
 		res << zzz_vproto_internal_pack_eappcontrollersupportlevel(o.controller_support, 31)
 	}
-	if o.has_vr_supported {
+	if o.vr_supported != bool(0) {
 		res << vproto.pack_bool_field(o.vr_supported, 32)
 	}
-	if o.has_metacritic_score {
+	if o.metacritic_score != u32(0) {
 		res << vproto.pack_uint32_field(o.metacritic_score, 36)
 	}
-	if o.has_size_on_disk {
+	if o.size_on_disk != u64(0) {
 		res << vproto.pack_uint64_field(o.size_on_disk, 37)
 	}
-	if o.has_third_party_mod {
+	if o.third_party_mod != bool(0) {
 		res << vproto.pack_bool_field(o.third_party_mod, 38)
 	}
-	if o.has_icon_data {
+	if o.icon_data != '' {
 		res << vproto.pack_string_field(o.icon_data, 39)
 	}
-	if o.has_icon_data_format {
+	if o.icon_data_format != '' {
 		res << vproto.pack_string_field(o.icon_data_format, 40)
 	}
-	if o.has_gameid {
+	if o.gameid != '' {
 		res << vproto.pack_string_field(o.gameid, 41)
 	}
-	if o.has_library_capsule_filename {
+	if o.library_capsule_filename != '' {
 		res << vproto.pack_string_field(o.library_capsule_filename, 42)
 	}
 	// [packed=false]
 	for _, x in o.per_client_data {
 		res << zzz_vproto_internal_pack_cappoverview_perclientdata(x, 43)
 	}
-	if o.has_most_available_clientid {
+	if o.most_available_clientid != u64(0) {
 		res << vproto.pack_uint64_field(o.most_available_clientid, 44)
 	}
-	if o.has_selected_clientid {
+	if o.selected_clientid != u64(0) {
 		res << vproto.pack_uint64_field(o.selected_clientid, 45)
 	}
-	if o.has_rt_store_asset_mtime {
+	if o.rt_store_asset_mtime != u32(0) {
 		res << vproto.pack_uint32_field(o.rt_store_asset_mtime, 46)
 	}
-	if o.has_rt_custom_image_mtime {
+	if o.rt_custom_image_mtime != u32(0) {
 		res << vproto.pack_uint32_field(o.rt_custom_image_mtime, 47)
 	}
-	if o.has_optional_parent_app_id {
+	if o.optional_parent_app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.optional_parent_app_id, 48)
 	}
-	if o.has_owner_account_id {
+	if o.owner_account_id != u32(0) {
 		res << vproto.pack_uint32_field(o.owner_account_id, 49)
 	}
-	if o.has_compat_mapping_enabled {
+	if o.compat_mapping_enabled != bool(0) {
 		res << vproto.pack_bool_field(o.compat_mapping_enabled, 50)
 	}
-	if o.has_compat_mapping_priority {
+	if o.compat_mapping_priority != u32(0) {
 		res << vproto.pack_uint32_field(o.compat_mapping_priority, 51)
 	}
-	if o.has_compat_mapping_tool_name {
+	if o.compat_mapping_tool_name != '' {
 		res << vproto.pack_string_field(o.compat_mapping_tool_name, 52)
 	}
-	if o.has_review_score_with_bombs {
+	if o.review_score_with_bombs != u32(0) {
 		res << vproto.pack_uint32_field(o.review_score_with_bombs, 53)
 	}
-	if o.has_review_percentage_with_bombs {
+	if o.review_percentage_with_bombs != u32(0) {
 		res << vproto.pack_uint32_field(o.review_percentage_with_bombs, 54)
 	}
-	if o.has_review_score_without_bombs {
+	if o.review_score_without_bombs != u32(0) {
 		res << vproto.pack_uint32_field(o.review_score_without_bombs, 55)
 	}
-	if o.has_review_percentage_without_bombs {
+	if o.review_percentage_without_bombs != u32(0) {
 		res << vproto.pack_uint32_field(o.review_percentage_without_bombs, 56)
 	}
-	if o.has_library_id {
+	if o.library_id != '' {
 		res << vproto.pack_string_field(o.library_id, 57)
 	}
 	return res
 }
 
 pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
-	mut res := CAppOverview{}
+	mut res := zzz_vproto_internal_new_cappoverview()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -699,61 +744,51 @@ pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_display_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.display_name = v
 				i = ii
 			}
 			4 {
-				res.has_visible_in_game_list = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.visible_in_game_list = v
 				i = ii
 			}
 			6 {
-				res.has_sort_as = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sort_as = v
 				i = ii
 			}
 			7 {
-				res.has_app_type = true
 				ii, v := zzz_vproto_internal_unpack_eprotoapptype(cur_buf, tag_wiretype.wire_type)?
 				res.app_type = v
 				i = ii
 			}
 			13 {
-				res.has_mru_index = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.mru_index = v
 				i = ii
 			}
 			14 {
-				res.has_rt_recent_activity_time = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rt_recent_activity_time = v
 				i = ii
 			}
 			16 {
-				res.has_minutes_playtime_forever = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_playtime_forever = v
 				i = ii
 			}
 			17 {
-				res.has_minutes_playtime_last_two_weeks = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.minutes_playtime_last_two_weeks = v
 				i = ii
 			}
 			18 {
-				res.has_rt_last_time_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rt_last_time_played = v
 				i = ii
@@ -778,80 +813,67 @@ pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
 				i = ii
 			}
 			25 {
-				res.has_rt_original_release_date = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rt_original_release_date = v
 				i = ii
 			}
 			26 {
-				res.has_rt_steam_release_date = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rt_steam_release_date = v
 				i = ii
 			}
 			27 {
-				res.has_icon_hash = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.icon_hash = v
 				i = ii
 			}
 			30 {
-				res.has_logo_hash = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.logo_hash = v
 				i = ii
 			}
 			31 {
-				res.has_controller_support = true
 				ii, v := zzz_vproto_internal_unpack_eappcontrollersupportlevel(cur_buf,
 					tag_wiretype.wire_type)?
 				res.controller_support = v
 				i = ii
 			}
 			32 {
-				res.has_vr_supported = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.vr_supported = v
 				i = ii
 			}
 			36 {
-				res.has_metacritic_score = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.metacritic_score = v
 				i = ii
 			}
 			37 {
-				res.has_size_on_disk = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.size_on_disk = v
 				i = ii
 			}
 			38 {
-				res.has_third_party_mod = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.third_party_mod = v
 				i = ii
 			}
 			39 {
-				res.has_icon_data = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.icon_data = v
 				i = ii
 			}
 			40 {
-				res.has_icon_data_format = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.icon_data_format = v
 				i = ii
 			}
 			41 {
-				res.has_gameid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.gameid = v
 				i = ii
 			}
 			42 {
-				res.has_library_capsule_filename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.library_capsule_filename = v
 				i = ii
@@ -864,85 +886,71 @@ pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
 				i = ii
 			}
 			44 {
-				res.has_most_available_clientid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.most_available_clientid = v
 				i = ii
 			}
 			45 {
-				res.has_selected_clientid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.selected_clientid = v
 				i = ii
 			}
 			46 {
-				res.has_rt_store_asset_mtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rt_store_asset_mtime = v
 				i = ii
 			}
 			47 {
-				res.has_rt_custom_image_mtime = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rt_custom_image_mtime = v
 				i = ii
 			}
 			48 {
-				res.has_optional_parent_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.optional_parent_app_id = v
 				i = ii
 			}
 			49 {
-				res.has_owner_account_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.owner_account_id = v
 				i = ii
 			}
 			50 {
-				res.has_compat_mapping_enabled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.compat_mapping_enabled = v
 				i = ii
 			}
 			51 {
-				res.has_compat_mapping_priority = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.compat_mapping_priority = v
 				i = ii
 			}
 			52 {
-				res.has_compat_mapping_tool_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.compat_mapping_tool_name = v
 				i = ii
 			}
 			53 {
-				res.has_review_score_with_bombs = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.review_score_with_bombs = v
 				i = ii
 			}
 			54 {
-				res.has_review_percentage_with_bombs = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.review_percentage_with_bombs = v
 				i = ii
 			}
 			55 {
-				res.has_review_score_without_bombs = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.review_score_without_bombs = v
 				i = ii
 			}
 			56 {
-				res.has_review_percentage_without_bombs = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.review_percentage_without_bombs = v
 				i = ii
 			}
 			57 {
-				res.has_library_id = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.library_id = v
 				i = ii
@@ -962,17 +970,81 @@ pub fn cappoverview_unpack(buf []byte) ?CAppOverview {
 	return res
 }
 
+[inline]
+pub fn (a CAppOverview) eq(b CAppOverview) bool {
+	return true && a.appid == b.appid &&
+		a.display_name == b.display_name &&
+		a.visible_in_game_list == b.visible_in_game_list &&
+		a.sort_as == b.sort_as && a.app_type == b.app_type &&
+		a.mru_index == b.mru_index && a.rt_recent_activity_time == b.rt_recent_activity_time &&
+		a.minutes_playtime_forever == b.minutes_playtime_forever &&
+		a.minutes_playtime_last_two_weeks == b.minutes_playtime_last_two_weeks &&
+		a.rt_last_time_played == b.rt_last_time_played &&
+		a.store_tag == b.store_tag && a.association.eq(b.association) &&
+		a.store_category == b.store_category &&
+		a.rt_original_release_date == b.rt_original_release_date &&
+		a.rt_steam_release_date == b.rt_steam_release_date &&
+		a.icon_hash == b.icon_hash && a.logo_hash == b.logo_hash &&
+		a.controller_support == b.controller_support &&
+		a.vr_supported == b.vr_supported &&
+		a.metacritic_score == b.metacritic_score &&
+		a.size_on_disk == b.size_on_disk &&
+		a.third_party_mod == b.third_party_mod &&
+		a.icon_data == b.icon_data && a.icon_data_format == b.icon_data_format &&
+		a.gameid == b.gameid && a.library_capsule_filename == b.library_capsule_filename && a.per_client_data.eq(b.per_client_data) &&
+		a.most_available_clientid == b.most_available_clientid &&
+		a.selected_clientid == b.selected_clientid &&
+		a.rt_store_asset_mtime == b.rt_store_asset_mtime &&
+		a.rt_custom_image_mtime == b.rt_custom_image_mtime &&
+		a.optional_parent_app_id == b.optional_parent_app_id &&
+		a.owner_account_id == b.owner_account_id &&
+		a.compat_mapping_enabled == b.compat_mapping_enabled &&
+		a.compat_mapping_priority == b.compat_mapping_priority &&
+		a.compat_mapping_tool_name == b.compat_mapping_tool_name &&
+		a.review_score_with_bombs == b.review_score_with_bombs &&
+		a.review_percentage_with_bombs == b.review_percentage_with_bombs &&
+		a.review_score_without_bombs == b.review_score_without_bombs &&
+		a.review_percentage_without_bombs == b.review_percentage_without_bombs &&
+		a.library_id == b.library_id
+}
+
+[inline]
+pub fn (a CAppOverview) ne(b CAppOverview) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAppOverview) eq(b []CAppOverview) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAppOverview) ne(b []CAppOverview) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cappoverview() CAppOverview {
 	return CAppOverview{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cappoverview(o CAppOverview, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cappoverview(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cappoverview_unpack(v)?
@@ -1001,7 +1073,7 @@ pub fn (o &CAppOverview_Change) pack() []byte {
 }
 
 pub fn cappoverview_change_unpack(buf []byte) ?CAppOverview_Change {
-	mut res := CAppOverview_Change{}
+	mut res := zzz_vproto_internal_new_cappoverview_change()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1038,17 +1110,48 @@ pub fn cappoverview_change_unpack(buf []byte) ?CAppOverview_Change {
 	return res
 }
 
+[inline]
+pub fn (a CAppOverview_Change) eq(b CAppOverview_Change) bool {
+	return true && a.app_overview.eq(b.app_overview) && a.removed_appid == b.removed_appid
+}
+
+[inline]
+pub fn (a CAppOverview_Change) ne(b CAppOverview_Change) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAppOverview_Change) eq(b []CAppOverview_Change) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAppOverview_Change) ne(b []CAppOverview_Change) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cappoverview_change() CAppOverview_Change {
 	return CAppOverview_Change{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cappoverview_change(o CAppOverview_Change, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cappoverview_change(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppOverview_Change) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cappoverview_change_unpack(v)?
@@ -1060,18 +1163,16 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	hidden         bool
-	has_hidden     bool
 	user_tag       []string
 }
 
 pub fn (o &CAppBootstrapData) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_hidden {
+	if o.hidden != bool(0) {
 		res << vproto.pack_bool_field(o.hidden, 2)
 	}
 	// [packed=false]
@@ -1082,7 +1183,7 @@ pub fn (o &CAppBootstrapData) pack() []byte {
 }
 
 pub fn cappbootstrapdata_unpack(buf []byte) ?CAppBootstrapData {
-	mut res := CAppBootstrapData{}
+	mut res := zzz_vproto_internal_new_cappbootstrapdata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1093,13 +1194,11 @@ pub fn cappbootstrapdata_unpack(buf []byte) ?CAppBootstrapData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_hidden = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.hidden = v
 				i = ii
@@ -1125,17 +1224,48 @@ pub fn cappbootstrapdata_unpack(buf []byte) ?CAppBootstrapData {
 	return res
 }
 
+[inline]
+pub fn (a CAppBootstrapData) eq(b CAppBootstrapData) bool {
+	return true && a.appid == b.appid && a.hidden == b.hidden && a.user_tag == b.user_tag
+}
+
+[inline]
+pub fn (a CAppBootstrapData) ne(b CAppBootstrapData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CAppBootstrapData) eq(b []CAppBootstrapData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CAppBootstrapData) ne(b []CAppBootstrapData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cappbootstrapdata() CAppBootstrapData {
 	return CAppBootstrapData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cappbootstrapdata(o CAppBootstrapData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cappbootstrapdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CAppBootstrapData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cappbootstrapdata_unpack(v)?
@@ -1159,7 +1289,7 @@ pub fn (o &CLibraryBootstrapData) pack() []byte {
 }
 
 pub fn clibrarybootstrapdata_unpack(buf []byte) ?CLibraryBootstrapData {
-	mut res := CLibraryBootstrapData{}
+	mut res := zzz_vproto_internal_new_clibrarybootstrapdata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1190,17 +1320,48 @@ pub fn clibrarybootstrapdata_unpack(buf []byte) ?CLibraryBootstrapData {
 	return res
 }
 
+[inline]
+pub fn (a CLibraryBootstrapData) eq(b CLibraryBootstrapData) bool {
+	return true && a.app_data.eq(b.app_data)
+}
+
+[inline]
+pub fn (a CLibraryBootstrapData) ne(b CLibraryBootstrapData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CLibraryBootstrapData) eq(b []CLibraryBootstrapData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CLibraryBootstrapData) ne(b []CLibraryBootstrapData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_clibrarybootstrapdata() CLibraryBootstrapData {
 	return CLibraryBootstrapData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_clibrarybootstrapdata(o CLibraryBootstrapData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_clibrarybootstrapdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CLibraryBootstrapData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := clibrarybootstrapdata_unpack(v)?

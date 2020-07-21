@@ -8,19 +8,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CTimedTrial_GetTimeRemaining_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn ctimedtrial_gettimeremaining_request_unpack(buf []byte) ?CTimedTrial_GetTimeRemaining_Request {
-	mut res := CTimedTrial_GetTimeRemaining_Request{}
+	mut res := zzz_vproto_internal_new_ctimedtrial_gettimeremaining_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -31,7 +30,6 @@ pub fn ctimedtrial_gettimeremaining_request_unpack(buf []byte) ?CTimedTrial_GetT
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -51,17 +49,48 @@ pub fn ctimedtrial_gettimeremaining_request_unpack(buf []byte) ?CTimedTrial_GetT
 	return res
 }
 
+[inline]
+pub fn (a CTimedTrial_GetTimeRemaining_Request) eq(b CTimedTrial_GetTimeRemaining_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CTimedTrial_GetTimeRemaining_Request) ne(b CTimedTrial_GetTimeRemaining_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTimedTrial_GetTimeRemaining_Request) eq(b []CTimedTrial_GetTimeRemaining_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTimedTrial_GetTimeRemaining_Request) ne(b []CTimedTrial_GetTimeRemaining_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctimedtrial_gettimeremaining_request() CTimedTrial_GetTimeRemaining_Request {
 	return CTimedTrial_GetTimeRemaining_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctimedtrial_gettimeremaining_request(o CTimedTrial_GetTimeRemaining_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctimedtrial_gettimeremaining_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTimedTrial_GetTimeRemaining_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctimedtrial_gettimeremaining_request_unpack(v)?
@@ -70,27 +99,25 @@ pub fn zzz_vproto_internal_unpack_ctimedtrial_gettimeremaining_request(buf []byt
 
 pub struct CTimedTrial_GetTimeRemaining_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	seconds_played      u32
-	has_seconds_played  bool
-	seconds_allowed     u32
-	has_seconds_allowed bool
+	seconds_played  u32
+	seconds_allowed u32
 }
 
 pub fn (o &CTimedTrial_GetTimeRemaining_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_seconds_played {
+	if o.seconds_played != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_played, 1)
 	}
-	if o.has_seconds_allowed {
+	if o.seconds_allowed != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_allowed, 2)
 	}
 	return res
 }
 
 pub fn ctimedtrial_gettimeremaining_response_unpack(buf []byte) ?CTimedTrial_GetTimeRemaining_Response {
-	mut res := CTimedTrial_GetTimeRemaining_Response{}
+	mut res := zzz_vproto_internal_new_ctimedtrial_gettimeremaining_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -101,13 +128,11 @@ pub fn ctimedtrial_gettimeremaining_response_unpack(buf []byte) ?CTimedTrial_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_seconds_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_played = v
 				i = ii
 			}
 			2 {
-				res.has_seconds_allowed = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_allowed = v
 				i = ii
@@ -127,17 +152,48 @@ pub fn ctimedtrial_gettimeremaining_response_unpack(buf []byte) ?CTimedTrial_Get
 	return res
 }
 
+[inline]
+pub fn (a CTimedTrial_GetTimeRemaining_Response) eq(b CTimedTrial_GetTimeRemaining_Response) bool {
+	return true && a.seconds_played == b.seconds_played && a.seconds_allowed == b.seconds_allowed
+}
+
+[inline]
+pub fn (a CTimedTrial_GetTimeRemaining_Response) ne(b CTimedTrial_GetTimeRemaining_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTimedTrial_GetTimeRemaining_Response) eq(b []CTimedTrial_GetTimeRemaining_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTimedTrial_GetTimeRemaining_Response) ne(b []CTimedTrial_GetTimeRemaining_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctimedtrial_gettimeremaining_response() CTimedTrial_GetTimeRemaining_Response {
 	return CTimedTrial_GetTimeRemaining_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctimedtrial_gettimeremaining_response(o CTimedTrial_GetTimeRemaining_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctimedtrial_gettimeremaining_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTimedTrial_GetTimeRemaining_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctimedtrial_gettimeremaining_response_unpack(v)?
@@ -146,27 +202,25 @@ pub fn zzz_vproto_internal_unpack_ctimedtrial_gettimeremaining_response(buf []by
 
 pub struct CTimedTrial_RecordPlaytime_Request {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid              u32
-	has_appid          bool
-	seconds_played     u32
-	has_seconds_played bool
+	appid          u32
+	seconds_played u32
 }
 
 pub fn (o &CTimedTrial_RecordPlaytime_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_seconds_played {
+	if o.seconds_played != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_played, 2)
 	}
 	return res
 }
 
 pub fn ctimedtrial_recordplaytime_request_unpack(buf []byte) ?CTimedTrial_RecordPlaytime_Request {
-	mut res := CTimedTrial_RecordPlaytime_Request{}
+	mut res := zzz_vproto_internal_new_ctimedtrial_recordplaytime_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -177,13 +231,11 @@ pub fn ctimedtrial_recordplaytime_request_unpack(buf []byte) ?CTimedTrial_Record
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_seconds_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_played = v
 				i = ii
@@ -203,17 +255,48 @@ pub fn ctimedtrial_recordplaytime_request_unpack(buf []byte) ?CTimedTrial_Record
 	return res
 }
 
+[inline]
+pub fn (a CTimedTrial_RecordPlaytime_Request) eq(b CTimedTrial_RecordPlaytime_Request) bool {
+	return true && a.appid == b.appid && a.seconds_played == b.seconds_played
+}
+
+[inline]
+pub fn (a CTimedTrial_RecordPlaytime_Request) ne(b CTimedTrial_RecordPlaytime_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTimedTrial_RecordPlaytime_Request) eq(b []CTimedTrial_RecordPlaytime_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTimedTrial_RecordPlaytime_Request) ne(b []CTimedTrial_RecordPlaytime_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctimedtrial_recordplaytime_request() CTimedTrial_RecordPlaytime_Request {
 	return CTimedTrial_RecordPlaytime_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctimedtrial_recordplaytime_request(o CTimedTrial_RecordPlaytime_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctimedtrial_recordplaytime_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTimedTrial_RecordPlaytime_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctimedtrial_recordplaytime_request_unpack(v)?
@@ -222,27 +305,25 @@ pub fn zzz_vproto_internal_unpack_ctimedtrial_recordplaytime_request(buf []byte,
 
 pub struct CTimedTrial_RecordPlaytime_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	seconds_played      u32
-	has_seconds_played  bool
-	seconds_allowed     u32
-	has_seconds_allowed bool
+	seconds_played  u32
+	seconds_allowed u32
 }
 
 pub fn (o &CTimedTrial_RecordPlaytime_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_seconds_played {
+	if o.seconds_played != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_played, 1)
 	}
-	if o.has_seconds_allowed {
+	if o.seconds_allowed != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_allowed, 2)
 	}
 	return res
 }
 
 pub fn ctimedtrial_recordplaytime_response_unpack(buf []byte) ?CTimedTrial_RecordPlaytime_Response {
-	mut res := CTimedTrial_RecordPlaytime_Response{}
+	mut res := zzz_vproto_internal_new_ctimedtrial_recordplaytime_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -253,13 +334,11 @@ pub fn ctimedtrial_recordplaytime_response_unpack(buf []byte) ?CTimedTrial_Recor
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_seconds_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_played = v
 				i = ii
 			}
 			2 {
-				res.has_seconds_allowed = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_allowed = v
 				i = ii
@@ -279,17 +358,48 @@ pub fn ctimedtrial_recordplaytime_response_unpack(buf []byte) ?CTimedTrial_Recor
 	return res
 }
 
+[inline]
+pub fn (a CTimedTrial_RecordPlaytime_Response) eq(b CTimedTrial_RecordPlaytime_Response) bool {
+	return true && a.seconds_played == b.seconds_played && a.seconds_allowed == b.seconds_allowed
+}
+
+[inline]
+pub fn (a CTimedTrial_RecordPlaytime_Response) ne(b CTimedTrial_RecordPlaytime_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTimedTrial_RecordPlaytime_Response) eq(b []CTimedTrial_RecordPlaytime_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTimedTrial_RecordPlaytime_Response) ne(b []CTimedTrial_RecordPlaytime_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctimedtrial_recordplaytime_response() CTimedTrial_RecordPlaytime_Response {
 	return CTimedTrial_RecordPlaytime_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctimedtrial_recordplaytime_response(o CTimedTrial_RecordPlaytime_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctimedtrial_recordplaytime_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTimedTrial_RecordPlaytime_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctimedtrial_recordplaytime_response_unpack(v)?
@@ -301,19 +411,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CTimedTrial_ResetPlaytime_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn ctimedtrial_resetplaytime_request_unpack(buf []byte) ?CTimedTrial_ResetPlaytime_Request {
-	mut res := CTimedTrial_ResetPlaytime_Request{}
+	mut res := zzz_vproto_internal_new_ctimedtrial_resetplaytime_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -324,7 +433,6 @@ pub fn ctimedtrial_resetplaytime_request_unpack(buf []byte) ?CTimedTrial_ResetPl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -344,17 +452,48 @@ pub fn ctimedtrial_resetplaytime_request_unpack(buf []byte) ?CTimedTrial_ResetPl
 	return res
 }
 
+[inline]
+pub fn (a CTimedTrial_ResetPlaytime_Request) eq(b CTimedTrial_ResetPlaytime_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CTimedTrial_ResetPlaytime_Request) ne(b CTimedTrial_ResetPlaytime_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTimedTrial_ResetPlaytime_Request) eq(b []CTimedTrial_ResetPlaytime_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTimedTrial_ResetPlaytime_Request) ne(b []CTimedTrial_ResetPlaytime_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctimedtrial_resetplaytime_request() CTimedTrial_ResetPlaytime_Request {
 	return CTimedTrial_ResetPlaytime_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctimedtrial_resetplaytime_request(o CTimedTrial_ResetPlaytime_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctimedtrial_resetplaytime_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CTimedTrial_ResetPlaytime_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctimedtrial_resetplaytime_request_unpack(v)?
@@ -363,27 +502,25 @@ pub fn zzz_vproto_internal_unpack_ctimedtrial_resetplaytime_request(buf []byte, 
 
 pub struct CTimedTrial_ResetPlaytime_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	seconds_played      u32
-	has_seconds_played  bool
-	seconds_allowed     u32
-	has_seconds_allowed bool
+	seconds_played  u32
+	seconds_allowed u32
 }
 
 pub fn (o &CTimedTrial_ResetPlaytime_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_seconds_played {
+	if o.seconds_played != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_played, 1)
 	}
-	if o.has_seconds_allowed {
+	if o.seconds_allowed != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_allowed, 2)
 	}
 	return res
 }
 
 pub fn ctimedtrial_resetplaytime_response_unpack(buf []byte) ?CTimedTrial_ResetPlaytime_Response {
-	mut res := CTimedTrial_ResetPlaytime_Response{}
+	mut res := zzz_vproto_internal_new_ctimedtrial_resetplaytime_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -394,13 +531,11 @@ pub fn ctimedtrial_resetplaytime_response_unpack(buf []byte) ?CTimedTrial_ResetP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_seconds_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_played = v
 				i = ii
 			}
 			2 {
-				res.has_seconds_allowed = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_allowed = v
 				i = ii
@@ -420,17 +555,48 @@ pub fn ctimedtrial_resetplaytime_response_unpack(buf []byte) ?CTimedTrial_ResetP
 	return res
 }
 
+[inline]
+pub fn (a CTimedTrial_ResetPlaytime_Response) eq(b CTimedTrial_ResetPlaytime_Response) bool {
+	return true && a.seconds_played == b.seconds_played && a.seconds_allowed == b.seconds_allowed
+}
+
+[inline]
+pub fn (a CTimedTrial_ResetPlaytime_Response) ne(b CTimedTrial_ResetPlaytime_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CTimedTrial_ResetPlaytime_Response) eq(b []CTimedTrial_ResetPlaytime_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CTimedTrial_ResetPlaytime_Response) ne(b []CTimedTrial_ResetPlaytime_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_ctimedtrial_resetplaytime_response() CTimedTrial_ResetPlaytime_Response {
 	return CTimedTrial_ResetPlaytime_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_ctimedtrial_resetplaytime_response(o CTimedTrial_ResetPlaytime_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_ctimedtrial_resetplaytime_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CTimedTrial_ResetPlaytime_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := ctimedtrial_resetplaytime_response_unpack(v)?

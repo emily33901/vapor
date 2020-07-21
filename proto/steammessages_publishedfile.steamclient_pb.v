@@ -14,11 +14,19 @@ enum EPublishedFileRevision {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_epublishedfilerevision() EPublishedFileRevision {
+	return .k_epublishedfilerevision_default
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_epublishedfilerevision(e EPublishedFileRevision, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_epublishedfilerevision_packed(e []EPublishedFileRevision, num u32) []byte {
 	x := array{
 		data: e.data
@@ -30,12 +38,14 @@ fn zzz_vproto_internal_pack_epublishedfilerevision_packed(e []EPublishedFileRevi
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_epublishedfilerevision(buf []byte, tag_wiretype vproto.WireType) ?(int, EPublishedFileRevision) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EPublishedFileRevision(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_epublishedfilerevision_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EPublishedFileRevision) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -57,11 +67,19 @@ enum EPublishedFileForSaleStatus {
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
+fn zzz_vproto_internal_new_epublishedfileforsalestatus() EPublishedFileForSaleStatus {
+	return .k_pffss_notforsale
+}
+
+// FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_epublishedfileforsalestatus(e EPublishedFileForSaleStatus, num u32) []byte {
 	return vproto.pack_int32_field(int(e), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_pack_epublishedfileforsalestatus_packed(e []EPublishedFileForSaleStatus, num u32) []byte {
 	x := array{
 		data: e.data
@@ -73,12 +91,14 @@ fn zzz_vproto_internal_pack_epublishedfileforsalestatus_packed(e []EPublishedFil
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_epublishedfileforsalestatus(buf []byte, tag_wiretype vproto.WireType) ?(int, EPublishedFileForSaleStatus) {
 	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
 	return i, EPublishedFileForSaleStatus(v)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 fn zzz_vproto_internal_unpack_epublishedfileforsalestatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EPublishedFileForSaleStatus) {
 	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
 	return i, array{
@@ -91,37 +111,33 @@ fn zzz_vproto_internal_unpack_epublishedfileforsalestatus_packed(buf []byte, tag
 
 pub struct CPublishedFile_Subscribe_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	list_type           u32
-	has_list_type       bool
-	appid               int
-	has_appid           bool
-	notify_client       bool
-	has_notify_client   bool
+	publishedfileid u64
+	list_type       u32
+	appid           int
+	notify_client   bool
 }
 
 pub fn (o &CPublishedFile_Subscribe_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_list_type {
+	if o.list_type != u32(0) {
 		res << vproto.pack_uint32_field(o.list_type, 2)
 	}
-	if o.has_appid {
+	if o.appid != int(0) {
 		res << vproto.pack_int32_field(o.appid, 3)
 	}
-	if o.has_notify_client {
+	if o.notify_client != bool(0) {
 		res << vproto.pack_bool_field(o.notify_client, 4)
 	}
 	return res
 }
 
 pub fn cpublishedfile_subscribe_request_unpack(buf []byte) ?CPublishedFile_Subscribe_Request {
-	mut res := CPublishedFile_Subscribe_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_subscribe_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -132,25 +148,21 @@ pub fn cpublishedfile_subscribe_request_unpack(buf []byte) ?CPublishedFile_Subsc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_list_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.list_type = v
 				i = ii
 			}
 			3 {
-				res.has_appid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			4 {
-				res.has_notify_client = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.notify_client = v
 				i = ii
@@ -170,17 +182,50 @@ pub fn cpublishedfile_subscribe_request_unpack(buf []byte) ?CPublishedFile_Subsc
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Subscribe_Request) eq(b CPublishedFile_Subscribe_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.list_type == b.list_type && a.appid == b.appid &&
+		a.notify_client == b.notify_client
+}
+
+[inline]
+pub fn (a CPublishedFile_Subscribe_Request) ne(b CPublishedFile_Subscribe_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Subscribe_Request) eq(b []CPublishedFile_Subscribe_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Subscribe_Request) ne(b []CPublishedFile_Subscribe_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_subscribe_request() CPublishedFile_Subscribe_Request {
 	return CPublishedFile_Subscribe_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_subscribe_request(o CPublishedFile_Subscribe_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_subscribe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Subscribe_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_subscribe_request_unpack(v)?
@@ -198,21 +243,52 @@ pub fn (o &CPublishedFile_Subscribe_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_subscribe_response_unpack(buf []byte) ?CPublishedFile_Subscribe_Response {
-	res := CPublishedFile_Subscribe_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_subscribe_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Subscribe_Response) eq(b CPublishedFile_Subscribe_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_Subscribe_Response) ne(b CPublishedFile_Subscribe_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Subscribe_Response) eq(b []CPublishedFile_Subscribe_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Subscribe_Response) ne(b []CPublishedFile_Subscribe_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_subscribe_response() CPublishedFile_Subscribe_Response {
 	return CPublishedFile_Subscribe_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_subscribe_response(o CPublishedFile_Subscribe_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_subscribe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Subscribe_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_subscribe_response_unpack(v)?
@@ -221,37 +297,33 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_subscribe_response(buf []byte, 
 
 pub struct CPublishedFile_Unsubscribe_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	list_type           u32
-	has_list_type       bool
-	appid               int
-	has_appid           bool
-	notify_client       bool
-	has_notify_client   bool
+	publishedfileid u64
+	list_type       u32
+	appid           int
+	notify_client   bool
 }
 
 pub fn (o &CPublishedFile_Unsubscribe_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_list_type {
+	if o.list_type != u32(0) {
 		res << vproto.pack_uint32_field(o.list_type, 2)
 	}
-	if o.has_appid {
+	if o.appid != int(0) {
 		res << vproto.pack_int32_field(o.appid, 3)
 	}
-	if o.has_notify_client {
+	if o.notify_client != bool(0) {
 		res << vproto.pack_bool_field(o.notify_client, 4)
 	}
 	return res
 }
 
 pub fn cpublishedfile_unsubscribe_request_unpack(buf []byte) ?CPublishedFile_Unsubscribe_Request {
-	mut res := CPublishedFile_Unsubscribe_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_unsubscribe_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -262,25 +334,21 @@ pub fn cpublishedfile_unsubscribe_request_unpack(buf []byte) ?CPublishedFile_Uns
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_list_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.list_type = v
 				i = ii
 			}
 			3 {
-				res.has_appid = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			4 {
-				res.has_notify_client = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.notify_client = v
 				i = ii
@@ -300,17 +368,50 @@ pub fn cpublishedfile_unsubscribe_request_unpack(buf []byte) ?CPublishedFile_Uns
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Unsubscribe_Request) eq(b CPublishedFile_Unsubscribe_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.list_type == b.list_type && a.appid == b.appid &&
+		a.notify_client == b.notify_client
+}
+
+[inline]
+pub fn (a CPublishedFile_Unsubscribe_Request) ne(b CPublishedFile_Unsubscribe_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Unsubscribe_Request) eq(b []CPublishedFile_Unsubscribe_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Unsubscribe_Request) ne(b []CPublishedFile_Unsubscribe_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_unsubscribe_request() CPublishedFile_Unsubscribe_Request {
 	return CPublishedFile_Unsubscribe_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_unsubscribe_request(o CPublishedFile_Unsubscribe_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_unsubscribe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Unsubscribe_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_unsubscribe_request_unpack(v)?
@@ -328,21 +429,52 @@ pub fn (o &CPublishedFile_Unsubscribe_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_unsubscribe_response_unpack(buf []byte) ?CPublishedFile_Unsubscribe_Response {
-	res := CPublishedFile_Unsubscribe_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_unsubscribe_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Unsubscribe_Response) eq(b CPublishedFile_Unsubscribe_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_Unsubscribe_Response) ne(b CPublishedFile_Unsubscribe_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Unsubscribe_Response) eq(b []CPublishedFile_Unsubscribe_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Unsubscribe_Response) ne(b []CPublishedFile_Unsubscribe_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_unsubscribe_response() CPublishedFile_Unsubscribe_Response {
 	return CPublishedFile_Unsubscribe_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_unsubscribe_response(o CPublishedFile_Unsubscribe_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_unsubscribe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Unsubscribe_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_unsubscribe_response_unpack(v)?
@@ -351,22 +483,21 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_unsubscribe_response(buf []byte
 
 pub struct CPublishedFile_CanSubscribe_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
+	publishedfileid u64
 }
 
 pub fn (o &CPublishedFile_CanSubscribe_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
 	return res
 }
 
 pub fn cpublishedfile_cansubscribe_request_unpack(buf []byte) ?CPublishedFile_CanSubscribe_Request {
-	mut res := CPublishedFile_CanSubscribe_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_cansubscribe_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -377,7 +508,6 @@ pub fn cpublishedfile_cansubscribe_request_unpack(buf []byte) ?CPublishedFile_Ca
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
@@ -397,17 +527,48 @@ pub fn cpublishedfile_cansubscribe_request_unpack(buf []byte) ?CPublishedFile_Ca
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_CanSubscribe_Request) eq(b CPublishedFile_CanSubscribe_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid
+}
+
+[inline]
+pub fn (a CPublishedFile_CanSubscribe_Request) ne(b CPublishedFile_CanSubscribe_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_CanSubscribe_Request) eq(b []CPublishedFile_CanSubscribe_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_CanSubscribe_Request) ne(b []CPublishedFile_CanSubscribe_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_cansubscribe_request() CPublishedFile_CanSubscribe_Request {
 	return CPublishedFile_CanSubscribe_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_cansubscribe_request(o CPublishedFile_CanSubscribe_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_cansubscribe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_CanSubscribe_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_cansubscribe_request_unpack(v)?
@@ -416,22 +577,21 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_cansubscribe_request(buf []byte
 
 pub struct CPublishedFile_CanSubscribe_Response {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	can_subscribe     bool
-	has_can_subscribe bool
+	can_subscribe  bool
 }
 
 pub fn (o &CPublishedFile_CanSubscribe_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_can_subscribe {
+	if o.can_subscribe != bool(0) {
 		res << vproto.pack_bool_field(o.can_subscribe, 1)
 	}
 	return res
 }
 
 pub fn cpublishedfile_cansubscribe_response_unpack(buf []byte) ?CPublishedFile_CanSubscribe_Response {
-	mut res := CPublishedFile_CanSubscribe_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_cansubscribe_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -442,7 +602,6 @@ pub fn cpublishedfile_cansubscribe_response_unpack(buf []byte) ?CPublishedFile_C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_can_subscribe = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.can_subscribe = v
 				i = ii
@@ -462,17 +621,48 @@ pub fn cpublishedfile_cansubscribe_response_unpack(buf []byte) ?CPublishedFile_C
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_CanSubscribe_Response) eq(b CPublishedFile_CanSubscribe_Response) bool {
+	return true && a.can_subscribe == b.can_subscribe
+}
+
+[inline]
+pub fn (a CPublishedFile_CanSubscribe_Response) ne(b CPublishedFile_CanSubscribe_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_CanSubscribe_Response) eq(b []CPublishedFile_CanSubscribe_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_CanSubscribe_Response) ne(b []CPublishedFile_CanSubscribe_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_cansubscribe_response() CPublishedFile_CanSubscribe_Response {
 	return CPublishedFile_CanSubscribe_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_cansubscribe_response(o CPublishedFile_CanSubscribe_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_cansubscribe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_CanSubscribe_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_cansubscribe_response_unpack(v)?
@@ -481,97 +671,82 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_cansubscribe_response(buf []byt
 
 pub struct CPublishedFile_Publish_Request {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	appid                      u32
-	has_appid                  bool
-	consumer_appid             u32
-	has_consumer_appid         bool
-	cloudfilename              string
-	has_cloudfilename          bool
-	preview_cloudfilename      string
-	has_preview_cloudfilename  bool
-	title                      string
-	has_title                  bool
-	file_description           string
-	has_file_description       bool
-	file_type                  u32
-	has_file_type              bool
-	consumer_shortcut_name     string
-	has_consumer_shortcut_name bool
-	youtube_username           string
-	has_youtube_username       bool
-	youtube_videoid            string
-	has_youtube_videoid        bool
-	visibility                 u32
-	has_visibility             bool
-	redirect_uri               string
-	has_redirect_uri           bool
-	tags                       []string
-	collection_type            string
-	has_collection_type        bool
-	game_type                  string
-	has_game_type              bool
-	url                        string
-	has_url                    bool
+	appid                  u32
+	consumer_appid         u32
+	cloudfilename          string
+	preview_cloudfilename  string
+	title                  string
+	file_description       string
+	file_type              u32
+	consumer_shortcut_name string
+	youtube_username       string
+	youtube_videoid        string
+	visibility             u32
+	redirect_uri           string
+	tags                   []string
+	collection_type        string
+	game_type              string
+	url                    string
 }
 
 pub fn (o &CPublishedFile_Publish_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_consumer_appid {
+	if o.consumer_appid != u32(0) {
 		res << vproto.pack_uint32_field(o.consumer_appid, 2)
 	}
-	if o.has_cloudfilename {
+	if o.cloudfilename != '' {
 		res << vproto.pack_string_field(o.cloudfilename, 3)
 	}
-	if o.has_preview_cloudfilename {
+	if o.preview_cloudfilename != '' {
 		res << vproto.pack_string_field(o.preview_cloudfilename, 4)
 	}
-	if o.has_title {
+	if o.title != '' {
 		res << vproto.pack_string_field(o.title, 5)
 	}
-	if o.has_file_description {
+	if o.file_description != '' {
 		res << vproto.pack_string_field(o.file_description, 6)
 	}
-	if o.has_file_type {
+	if o.file_type != u32(0) {
 		res << vproto.pack_uint32_field(o.file_type, 7)
 	}
-	if o.has_consumer_shortcut_name {
+	if o.consumer_shortcut_name != '' {
 		res << vproto.pack_string_field(o.consumer_shortcut_name, 8)
 	}
-	if o.has_youtube_username {
+	if o.youtube_username != '' {
 		res << vproto.pack_string_field(o.youtube_username, 9)
 	}
-	if o.has_youtube_videoid {
+	if o.youtube_videoid != '' {
 		res << vproto.pack_string_field(o.youtube_videoid, 10)
 	}
-	if o.has_visibility {
+	if o.visibility != u32(0) {
 		res << vproto.pack_uint32_field(o.visibility, 11)
 	}
-	if o.has_redirect_uri {
+	if o.redirect_uri != '' {
 		res << vproto.pack_string_field(o.redirect_uri, 12)
 	}
 	// [packed=false]
 	for _, x in o.tags {
 		res << vproto.pack_string_field(x, 13)
 	}
-	if o.has_collection_type {
+	if o.collection_type != '' {
 		res << vproto.pack_string_field(o.collection_type, 14)
 	}
-	if o.has_game_type {
+	if o.game_type != '' {
 		res << vproto.pack_string_field(o.game_type, 15)
 	}
-	if o.has_url {
+	if o.url != '' {
 		res << vproto.pack_string_field(o.url, 16)
 	}
 	return res
 }
 
 pub fn cpublishedfile_publish_request_unpack(buf []byte) ?CPublishedFile_Publish_Request {
-	mut res := CPublishedFile_Publish_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_publish_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -582,73 +757,61 @@ pub fn cpublishedfile_publish_request_unpack(buf []byte) ?CPublishedFile_Publish
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_consumer_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.consumer_appid = v
 				i = ii
 			}
 			3 {
-				res.has_cloudfilename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.cloudfilename = v
 				i = ii
 			}
 			4 {
-				res.has_preview_cloudfilename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.preview_cloudfilename = v
 				i = ii
 			}
 			5 {
-				res.has_title = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
 			}
 			6 {
-				res.has_file_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_description = v
 				i = ii
 			}
 			7 {
-				res.has_file_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_type = v
 				i = ii
 			}
 			8 {
-				res.has_consumer_shortcut_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.consumer_shortcut_name = v
 				i = ii
 			}
 			9 {
-				res.has_youtube_username = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.youtube_username = v
 				i = ii
 			}
 			10 {
-				res.has_youtube_videoid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.youtube_videoid = v
 				i = ii
 			}
 			11 {
-				res.has_visibility = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.visibility = v
 				i = ii
 			}
 			12 {
-				res.has_redirect_uri = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.redirect_uri = v
 				i = ii
@@ -660,19 +823,16 @@ pub fn cpublishedfile_publish_request_unpack(buf []byte) ?CPublishedFile_Publish
 				i = ii
 			}
 			14 {
-				res.has_collection_type = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.collection_type = v
 				i = ii
 			}
 			15 {
-				res.has_game_type = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_type = v
 				i = ii
 			}
 			16 {
-				res.has_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.url = v
 				i = ii
@@ -692,17 +852,58 @@ pub fn cpublishedfile_publish_request_unpack(buf []byte) ?CPublishedFile_Publish
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Publish_Request) eq(b CPublishedFile_Publish_Request) bool {
+	return true && a.appid == b.appid &&
+		a.consumer_appid == b.consumer_appid &&
+		a.cloudfilename == b.cloudfilename &&
+		a.preview_cloudfilename == b.preview_cloudfilename &&
+		a.title == b.title && a.file_description == b.file_description &&
+		a.file_type == b.file_type && a.consumer_shortcut_name == b.consumer_shortcut_name &&
+		a.youtube_username == b.youtube_username &&
+		a.youtube_videoid == b.youtube_videoid &&
+		a.visibility == b.visibility && a.redirect_uri == b.redirect_uri &&
+		a.tags == b.tags && a.collection_type == b.collection_type &&
+		a.game_type == b.game_type && a.url == b.url
+}
+
+[inline]
+pub fn (a CPublishedFile_Publish_Request) ne(b CPublishedFile_Publish_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Publish_Request) eq(b []CPublishedFile_Publish_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Publish_Request) ne(b []CPublishedFile_Publish_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_publish_request() CPublishedFile_Publish_Request {
 	return CPublishedFile_Publish_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_publish_request(o CPublishedFile_Publish_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_publish_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Publish_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_publish_request_unpack(v)?
@@ -711,27 +912,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_publish_request(buf []byte, tag
 
 pub struct CPublishedFile_Publish_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	redirect_uri        string
-	has_redirect_uri    bool
+	publishedfileid u64
+	redirect_uri    string
 }
 
 pub fn (o &CPublishedFile_Publish_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_redirect_uri {
+	if o.redirect_uri != '' {
 		res << vproto.pack_string_field(o.redirect_uri, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_publish_response_unpack(buf []byte) ?CPublishedFile_Publish_Response {
-	mut res := CPublishedFile_Publish_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_publish_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -742,13 +941,11 @@ pub fn cpublishedfile_publish_response_unpack(buf []byte) ?CPublishedFile_Publis
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_redirect_uri = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.redirect_uri = v
 				i = ii
@@ -768,17 +965,48 @@ pub fn cpublishedfile_publish_response_unpack(buf []byte) ?CPublishedFile_Publis
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Publish_Response) eq(b CPublishedFile_Publish_Response) bool {
+	return true && a.publishedfileid == b.publishedfileid && a.redirect_uri == b.redirect_uri
+}
+
+[inline]
+pub fn (a CPublishedFile_Publish_Response) ne(b CPublishedFile_Publish_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Publish_Response) eq(b []CPublishedFile_Publish_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Publish_Response) ne(b []CPublishedFile_Publish_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_publish_response() CPublishedFile_Publish_Response {
 	return CPublishedFile_Publish_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_publish_response(o CPublishedFile_Publish_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_publish_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Publish_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_publish_response_unpack(v)?
@@ -787,37 +1015,23 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_publish_response(buf []byte, ta
 
 pub struct CPublishedFile_GetDetails_Request {
 mut:
-	unknown_fields                []vproto.UnknownField
+	unknown_fields            []vproto.UnknownField
 pub mut:
-	publishedfileids              []u64
-	includetags                   bool
-	has_includetags               bool
-	includeadditionalpreviews     bool
-	has_includeadditionalpreviews bool
-	includechildren               bool
-	has_includechildren           bool
-	includekvtags                 bool
-	has_includekvtags             bool
-	includevotes                  bool
-	has_includevotes              bool
-	short_description             bool
-	has_short_description         bool
-	includeforsaledata            bool
-	has_includeforsaledata        bool
-	includemetadata               bool
-	has_includemetadata           bool
-	language                      int
-	has_language                  bool
-	return_playtime_stats         u32
-	has_return_playtime_stats     bool
-	appid                         u32
-	has_appid                     bool
-	strip_description_bbcode      bool
-	has_strip_description_bbcode  bool
-	desired_revision              EPublishedFileRevision
-	has_desired_revision          bool
-	includereactions              bool
-	has_includereactions          bool
+	publishedfileids          []u64
+	includetags               bool
+	includeadditionalpreviews bool
+	includechildren           bool
+	includekvtags             bool
+	includevotes              bool
+	short_description         bool
+	includeforsaledata        bool
+	includemetadata           bool
+	language                  int = 0
+	return_playtime_stats     u32
+	appid                     u32
+	strip_description_bbcode  bool
+	desired_revision          EPublishedFileRevision = .k_epublishedfilerevision_default
+	includereactions          bool = false
 }
 
 pub fn (o &CPublishedFile_GetDetails_Request) pack() []byte {
@@ -826,53 +1040,53 @@ pub fn (o &CPublishedFile_GetDetails_Request) pack() []byte {
 	for _, x in o.publishedfileids {
 		res << vproto.pack_64bit_field(x, 1)
 	}
-	if o.has_includetags {
+	if o.includetags != bool(0) {
 		res << vproto.pack_bool_field(o.includetags, 2)
 	}
-	if o.has_includeadditionalpreviews {
+	if o.includeadditionalpreviews != bool(0) {
 		res << vproto.pack_bool_field(o.includeadditionalpreviews, 3)
 	}
-	if o.has_includechildren {
+	if o.includechildren != bool(0) {
 		res << vproto.pack_bool_field(o.includechildren, 4)
 	}
-	if o.has_includekvtags {
+	if o.includekvtags != bool(0) {
 		res << vproto.pack_bool_field(o.includekvtags, 5)
 	}
-	if o.has_includevotes {
+	if o.includevotes != bool(0) {
 		res << vproto.pack_bool_field(o.includevotes, 6)
 	}
-	if o.has_short_description {
+	if o.short_description != bool(0) {
 		res << vproto.pack_bool_field(o.short_description, 8)
 	}
-	if o.has_includeforsaledata {
+	if o.includeforsaledata != bool(0) {
 		res << vproto.pack_bool_field(o.includeforsaledata, 10)
 	}
-	if o.has_includemetadata {
+	if o.includemetadata != bool(0) {
 		res << vproto.pack_bool_field(o.includemetadata, 11)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 12)
 	}
-	if o.has_return_playtime_stats {
+	if o.return_playtime_stats != u32(0) {
 		res << vproto.pack_uint32_field(o.return_playtime_stats, 13)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 14)
 	}
-	if o.has_strip_description_bbcode {
+	if o.strip_description_bbcode != bool(0) {
 		res << vproto.pack_bool_field(o.strip_description_bbcode, 15)
 	}
-	if o.has_desired_revision {
+	if o.desired_revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.desired_revision, 16)
 	}
-	if o.has_includereactions {
+	if o.includereactions != bool(0) {
 		res << vproto.pack_bool_field(o.includereactions, 17)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getdetails_request_unpack(buf []byte) ?CPublishedFile_GetDetails_Request {
-	mut res := CPublishedFile_GetDetails_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getdetails_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -889,85 +1103,71 @@ pub fn cpublishedfile_getdetails_request_unpack(buf []byte) ?CPublishedFile_GetD
 				i = ii
 			}
 			2 {
-				res.has_includetags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includetags = v
 				i = ii
 			}
 			3 {
-				res.has_includeadditionalpreviews = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includeadditionalpreviews = v
 				i = ii
 			}
 			4 {
-				res.has_includechildren = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includechildren = v
 				i = ii
 			}
 			5 {
-				res.has_includekvtags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includekvtags = v
 				i = ii
 			}
 			6 {
-				res.has_includevotes = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includevotes = v
 				i = ii
 			}
 			8 {
-				res.has_short_description = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.short_description = v
 				i = ii
 			}
 			10 {
-				res.has_includeforsaledata = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includeforsaledata = v
 				i = ii
 			}
 			11 {
-				res.has_includemetadata = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includemetadata = v
 				i = ii
 			}
 			12 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
 			}
 			13 {
-				res.has_return_playtime_stats = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_playtime_stats = v
 				i = ii
 			}
 			14 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			15 {
-				res.has_strip_description_bbcode = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.strip_description_bbcode = v
 				i = ii
 			}
 			16 {
-				res.has_desired_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.desired_revision = v
 				i = ii
 			}
 			17 {
-				res.has_includereactions = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.includereactions = v
 				i = ii
@@ -987,17 +1187,59 @@ pub fn cpublishedfile_getdetails_request_unpack(buf []byte) ?CPublishedFile_GetD
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetDetails_Request) eq(b CPublishedFile_GetDetails_Request) bool {
+	return true && a.publishedfileids == b.publishedfileids &&
+		a.includetags == b.includetags && a.includeadditionalpreviews == b.includeadditionalpreviews &&
+		a.includechildren == b.includechildren &&
+		a.includekvtags == b.includekvtags &&
+		a.includevotes == b.includevotes &&
+		a.short_description == b.short_description &&
+		a.includeforsaledata == b.includeforsaledata &&
+		a.includemetadata == b.includemetadata &&
+		a.language == b.language && a.return_playtime_stats == b.return_playtime_stats &&
+		a.appid == b.appid && a.strip_description_bbcode == b.strip_description_bbcode &&
+		a.desired_revision == b.desired_revision &&
+		a.includereactions == b.includereactions
+}
+
+[inline]
+pub fn (a CPublishedFile_GetDetails_Request) ne(b CPublishedFile_GetDetails_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetDetails_Request) eq(b []CPublishedFile_GetDetails_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetDetails_Request) ne(b []CPublishedFile_GetDetails_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getdetails_request() CPublishedFile_GetDetails_Request {
 	return CPublishedFile_GetDetails_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getdetails_request(o CPublishedFile_GetDetails_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getdetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetDetails_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getdetails_request_unpack(v)?
@@ -1009,24 +1251,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	tag            string
-	has_tag        bool
 	adminonly      bool
-	has_adminonly  bool
 }
 
 pub fn (o &PublishedFileDetails_Tag) pack() []byte {
 	mut res := []byte{}
-	if o.has_tag {
+	if o.tag != '' {
 		res << vproto.pack_string_field(o.tag, 1)
 	}
-	if o.has_adminonly {
+	if o.adminonly != bool(0) {
 		res << vproto.pack_bool_field(o.adminonly, 2)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_tag_unpack(buf []byte) ?PublishedFileDetails_Tag {
-	mut res := PublishedFileDetails_Tag{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_tag()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1037,13 +1277,11 @@ pub fn publishedfiledetails_tag_unpack(buf []byte) ?PublishedFileDetails_Tag {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_tag = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.tag = v
 				i = ii
 			}
 			2 {
-				res.has_adminonly = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.adminonly = v
 				i = ii
@@ -1063,17 +1301,48 @@ pub fn publishedfiledetails_tag_unpack(buf []byte) ?PublishedFileDetails_Tag {
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_Tag) eq(b PublishedFileDetails_Tag) bool {
+	return true && a.tag == b.tag && a.adminonly == b.adminonly
+}
+
+[inline]
+pub fn (a PublishedFileDetails_Tag) ne(b PublishedFileDetails_Tag) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Tag) eq(b []PublishedFileDetails_Tag) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Tag) ne(b []PublishedFileDetails_Tag) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_tag() PublishedFileDetails_Tag {
 	return PublishedFileDetails_Tag{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_tag(o PublishedFileDetails_Tag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_tag(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_Tag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_tag_unpack(v)?
@@ -1082,57 +1351,49 @@ pub fn zzz_vproto_internal_unpack_publishedfiledetails_tag(buf []byte, tag_wiret
 
 pub struct PublishedFileDetails_Preview {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	previewid              u64
-	has_previewid          bool
-	sortorder              u32
-	has_sortorder          bool
-	url                    string
-	has_url                bool
-	size                   u32
-	has_size               bool
-	filename               string
-	has_filename           bool
-	youtubevideoid         string
-	has_youtubevideoid     bool
-	preview_type           u32
-	has_preview_type       bool
-	external_reference     string
-	has_external_reference bool
+	previewid          u64
+	sortorder          u32
+	url                string
+	size               u32
+	filename           string
+	youtubevideoid     string
+	preview_type       u32
+	external_reference string
 }
 
 pub fn (o &PublishedFileDetails_Preview) pack() []byte {
 	mut res := []byte{}
-	if o.has_previewid {
+	if o.previewid != u64(0) {
 		res << vproto.pack_uint64_field(o.previewid, 1)
 	}
-	if o.has_sortorder {
+	if o.sortorder != u32(0) {
 		res << vproto.pack_uint32_field(o.sortorder, 2)
 	}
-	if o.has_url {
+	if o.url != '' {
 		res << vproto.pack_string_field(o.url, 3)
 	}
-	if o.has_size {
+	if o.size != u32(0) {
 		res << vproto.pack_uint32_field(o.size, 4)
 	}
-	if o.has_filename {
+	if o.filename != '' {
 		res << vproto.pack_string_field(o.filename, 5)
 	}
-	if o.has_youtubevideoid {
+	if o.youtubevideoid != '' {
 		res << vproto.pack_string_field(o.youtubevideoid, 6)
 	}
-	if o.has_preview_type {
+	if o.preview_type != u32(0) {
 		res << vproto.pack_uint32_field(o.preview_type, 7)
 	}
-	if o.has_external_reference {
+	if o.external_reference != '' {
 		res << vproto.pack_string_field(o.external_reference, 8)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_preview_unpack(buf []byte) ?PublishedFileDetails_Preview {
-	mut res := PublishedFileDetails_Preview{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_preview()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1143,49 +1404,41 @@ pub fn publishedfiledetails_preview_unpack(buf []byte) ?PublishedFileDetails_Pre
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_previewid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.previewid = v
 				i = ii
 			}
 			2 {
-				res.has_sortorder = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.sortorder = v
 				i = ii
 			}
 			3 {
-				res.has_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.url = v
 				i = ii
 			}
 			4 {
-				res.has_size = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.size = v
 				i = ii
 			}
 			5 {
-				res.has_filename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.filename = v
 				i = ii
 			}
 			6 {
-				res.has_youtubevideoid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.youtubevideoid = v
 				i = ii
 			}
 			7 {
-				res.has_preview_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.preview_type = v
 				i = ii
 			}
 			8 {
-				res.has_external_reference = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.external_reference = v
 				i = ii
@@ -1205,17 +1458,53 @@ pub fn publishedfiledetails_preview_unpack(buf []byte) ?PublishedFileDetails_Pre
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_Preview) eq(b PublishedFileDetails_Preview) bool {
+	return true && a.previewid == b.previewid &&
+		a.sortorder == b.sortorder && a.url == b.url &&
+		a.size == b.size && a.filename == b.filename &&
+		a.youtubevideoid == b.youtubevideoid &&
+		a.preview_type == b.preview_type &&
+		a.external_reference == b.external_reference
+}
+
+[inline]
+pub fn (a PublishedFileDetails_Preview) ne(b PublishedFileDetails_Preview) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Preview) eq(b []PublishedFileDetails_Preview) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Preview) ne(b []PublishedFileDetails_Preview) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_preview() PublishedFileDetails_Preview {
 	return PublishedFileDetails_Preview{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_preview(o PublishedFileDetails_Preview, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_preview(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_Preview) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_preview_unpack(v)?
@@ -1224,32 +1513,29 @@ pub fn zzz_vproto_internal_unpack_publishedfiledetails_preview(buf []byte, tag_w
 
 pub struct PublishedFileDetails_Child {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	sortorder           u32
-	has_sortorder       bool
-	file_type           u32
-	has_file_type       bool
+	publishedfileid u64
+	sortorder       u32
+	file_type       u32
 }
 
 pub fn (o &PublishedFileDetails_Child) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_sortorder {
+	if o.sortorder != u32(0) {
 		res << vproto.pack_uint32_field(o.sortorder, 2)
 	}
-	if o.has_file_type {
+	if o.file_type != u32(0) {
 		res << vproto.pack_uint32_field(o.file_type, 3)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_child_unpack(buf []byte) ?PublishedFileDetails_Child {
-	mut res := PublishedFileDetails_Child{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_child()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1260,19 +1546,16 @@ pub fn publishedfiledetails_child_unpack(buf []byte) ?PublishedFileDetails_Child
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_sortorder = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.sortorder = v
 				i = ii
 			}
 			3 {
-				res.has_file_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_type = v
 				i = ii
@@ -1292,17 +1575,49 @@ pub fn publishedfiledetails_child_unpack(buf []byte) ?PublishedFileDetails_Child
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_Child) eq(b PublishedFileDetails_Child) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.sortorder == b.sortorder && a.file_type == b.file_type
+}
+
+[inline]
+pub fn (a PublishedFileDetails_Child) ne(b PublishedFileDetails_Child) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Child) eq(b []PublishedFileDetails_Child) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Child) ne(b []PublishedFileDetails_Child) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_child() PublishedFileDetails_Child {
 	return PublishedFileDetails_Child{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_child(o PublishedFileDetails_Child, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_child(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_Child) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_child_unpack(v)?
@@ -1314,24 +1629,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key            string
-	has_key        bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &PublishedFileDetails_KVTag) pack() []byte {
 	mut res := []byte{}
-	if o.has_key {
+	if o.key != '' {
 		res << vproto.pack_string_field(o.key, 1)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_kvtag_unpack(buf []byte) ?PublishedFileDetails_KVTag {
-	mut res := PublishedFileDetails_KVTag{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_kvtag()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1342,13 +1655,11 @@ pub fn publishedfiledetails_kvtag_unpack(buf []byte) ?PublishedFileDetails_KVTag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -1368,17 +1679,48 @@ pub fn publishedfiledetails_kvtag_unpack(buf []byte) ?PublishedFileDetails_KVTag
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_KVTag) eq(b PublishedFileDetails_KVTag) bool {
+	return true && a.key == b.key && a.value == b.value
+}
+
+[inline]
+pub fn (a PublishedFileDetails_KVTag) ne(b PublishedFileDetails_KVTag) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_KVTag) eq(b []PublishedFileDetails_KVTag) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_KVTag) ne(b []PublishedFileDetails_KVTag) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_kvtag() PublishedFileDetails_KVTag {
 	return PublishedFileDetails_KVTag{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_kvtag(o PublishedFileDetails_KVTag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_kvtag(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_KVTag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_kvtag_unpack(v)?
@@ -1390,29 +1732,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	score          f32
-	has_score      bool
 	votes_up       u32
-	has_votes_up   bool
 	votes_down     u32
-	has_votes_down bool
 }
 
 pub fn (o &PublishedFileDetails_VoteData) pack() []byte {
 	mut res := []byte{}
-	if o.has_score {
+	if o.score != f32(0) {
 		res << vproto.pack_float_field(o.score, 1)
 	}
-	if o.has_votes_up {
+	if o.votes_up != u32(0) {
 		res << vproto.pack_uint32_field(o.votes_up, 2)
 	}
-	if o.has_votes_down {
+	if o.votes_down != u32(0) {
 		res << vproto.pack_uint32_field(o.votes_down, 3)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_votedata_unpack(buf []byte) ?PublishedFileDetails_VoteData {
-	mut res := PublishedFileDetails_VoteData{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_votedata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1423,19 +1762,16 @@ pub fn publishedfiledetails_votedata_unpack(buf []byte) ?PublishedFileDetails_Vo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_score = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.score = v
 				i = ii
 			}
 			2 {
-				res.has_votes_up = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.votes_up = v
 				i = ii
 			}
 			3 {
-				res.has_votes_down = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.votes_down = v
 				i = ii
@@ -1455,17 +1791,48 @@ pub fn publishedfiledetails_votedata_unpack(buf []byte) ?PublishedFileDetails_Vo
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_VoteData) eq(b PublishedFileDetails_VoteData) bool {
+	return true && a.score == b.score && a.votes_up == b.votes_up && a.votes_down == b.votes_down
+}
+
+[inline]
+pub fn (a PublishedFileDetails_VoteData) ne(b PublishedFileDetails_VoteData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_VoteData) eq(b []PublishedFileDetails_VoteData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_VoteData) ne(b []PublishedFileDetails_VoteData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_votedata() PublishedFileDetails_VoteData {
 	return PublishedFileDetails_VoteData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_votedata(o PublishedFileDetails_VoteData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_votedata(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_VoteData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_votedata_unpack(v)?
@@ -1474,47 +1841,41 @@ pub fn zzz_vproto_internal_unpack_publishedfiledetails_votedata(buf []byte, tag_
 
 pub struct PublishedFileDetails_ForSaleData {
 mut:
-	unknown_fields                 []vproto.UnknownField
+	unknown_fields             []vproto.UnknownField
 pub mut:
-	is_for_sale                    bool
-	has_is_for_sale                bool
-	price_category                 u32
-	has_price_category             bool
-	estatus                        EPublishedFileForSaleStatus
-	has_estatus                    bool
-	price_category_floor           u32
-	has_price_category_floor       bool
-	price_is_pay_what_you_want     bool
-	has_price_is_pay_what_you_want bool
-	discount_percentage            u32
-	has_discount_percentage        bool
+	is_for_sale                bool
+	price_category             u32
+	estatus                    EPublishedFileForSaleStatus = .k_pffss_notforsale
+	price_category_floor       u32
+	price_is_pay_what_you_want bool
+	discount_percentage        u32
 }
 
 pub fn (o &PublishedFileDetails_ForSaleData) pack() []byte {
 	mut res := []byte{}
-	if o.has_is_for_sale {
+	if o.is_for_sale != bool(0) {
 		res << vproto.pack_bool_field(o.is_for_sale, 1)
 	}
-	if o.has_price_category {
+	if o.price_category != u32(0) {
 		res << vproto.pack_uint32_field(o.price_category, 2)
 	}
-	if o.has_estatus {
+	if o.estatus != zzz_vproto_internal_new_epublishedfileforsalestatus() {
 		res << zzz_vproto_internal_pack_epublishedfileforsalestatus(o.estatus, 3)
 	}
-	if o.has_price_category_floor {
+	if o.price_category_floor != u32(0) {
 		res << vproto.pack_uint32_field(o.price_category_floor, 4)
 	}
-	if o.has_price_is_pay_what_you_want {
+	if o.price_is_pay_what_you_want != bool(0) {
 		res << vproto.pack_bool_field(o.price_is_pay_what_you_want, 5)
 	}
-	if o.has_discount_percentage {
+	if o.discount_percentage != u32(0) {
 		res << vproto.pack_uint32_field(o.discount_percentage, 6)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_forsaledata_unpack(buf []byte) ?PublishedFileDetails_ForSaleData {
-	mut res := PublishedFileDetails_ForSaleData{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_forsaledata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1525,38 +1886,32 @@ pub fn publishedfiledetails_forsaledata_unpack(buf []byte) ?PublishedFileDetails
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_is_for_sale = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_for_sale = v
 				i = ii
 			}
 			2 {
-				res.has_price_category = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.price_category = v
 				i = ii
 			}
 			3 {
-				res.has_estatus = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfileforsalestatus(cur_buf,
 					tag_wiretype.wire_type)?
 				res.estatus = v
 				i = ii
 			}
 			4 {
-				res.has_price_category_floor = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.price_category_floor = v
 				i = ii
 			}
 			5 {
-				res.has_price_is_pay_what_you_want = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.price_is_pay_what_you_want = v
 				i = ii
 			}
 			6 {
-				res.has_discount_percentage = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.discount_percentage = v
 				i = ii
@@ -1576,17 +1931,52 @@ pub fn publishedfiledetails_forsaledata_unpack(buf []byte) ?PublishedFileDetails
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_ForSaleData) eq(b PublishedFileDetails_ForSaleData) bool {
+	return true && a.is_for_sale == b.is_for_sale &&
+		a.price_category == b.price_category &&
+		a.estatus == b.estatus && a.price_category_floor == b.price_category_floor &&
+		a.price_is_pay_what_you_want == b.price_is_pay_what_you_want &&
+		a.discount_percentage == b.discount_percentage
+}
+
+[inline]
+pub fn (a PublishedFileDetails_ForSaleData) ne(b PublishedFileDetails_ForSaleData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_ForSaleData) eq(b []PublishedFileDetails_ForSaleData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_ForSaleData) ne(b []PublishedFileDetails_ForSaleData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_forsaledata() PublishedFileDetails_ForSaleData {
 	return PublishedFileDetails_ForSaleData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_forsaledata(o PublishedFileDetails_ForSaleData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_forsaledata(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_ForSaleData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_forsaledata_unpack(v)?
@@ -1595,27 +1985,25 @@ pub fn zzz_vproto_internal_unpack_publishedfiledetails_forsaledata(buf []byte, t
 
 pub struct PublishedFileDetails_PlaytimeStats {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	playtime_seconds     u64
-	has_playtime_seconds bool
-	num_sessions         u64
-	has_num_sessions     bool
+	playtime_seconds u64
+	num_sessions     u64
 }
 
 pub fn (o &PublishedFileDetails_PlaytimeStats) pack() []byte {
 	mut res := []byte{}
-	if o.has_playtime_seconds {
+	if o.playtime_seconds != u64(0) {
 		res << vproto.pack_uint64_field(o.playtime_seconds, 1)
 	}
-	if o.has_num_sessions {
+	if o.num_sessions != u64(0) {
 		res << vproto.pack_uint64_field(o.num_sessions, 2)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_playtimestats_unpack(buf []byte) ?PublishedFileDetails_PlaytimeStats {
-	mut res := PublishedFileDetails_PlaytimeStats{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_playtimestats()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1626,13 +2014,11 @@ pub fn publishedfiledetails_playtimestats_unpack(buf []byte) ?PublishedFileDetai
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_playtime_seconds = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.playtime_seconds = v
 				i = ii
 			}
 			2 {
-				res.has_num_sessions = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.num_sessions = v
 				i = ii
@@ -1652,17 +2038,48 @@ pub fn publishedfiledetails_playtimestats_unpack(buf []byte) ?PublishedFileDetai
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_PlaytimeStats) eq(b PublishedFileDetails_PlaytimeStats) bool {
+	return true && a.playtime_seconds == b.playtime_seconds && a.num_sessions == b.num_sessions
+}
+
+[inline]
+pub fn (a PublishedFileDetails_PlaytimeStats) ne(b PublishedFileDetails_PlaytimeStats) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_PlaytimeStats) eq(b []PublishedFileDetails_PlaytimeStats) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_PlaytimeStats) ne(b []PublishedFileDetails_PlaytimeStats) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_playtimestats() PublishedFileDetails_PlaytimeStats {
 	return PublishedFileDetails_PlaytimeStats{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_playtimestats(o PublishedFileDetails_PlaytimeStats, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_playtimestats(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_PlaytimeStats) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_playtimestats_unpack(v)?
@@ -1674,24 +2091,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	reactionid     u32
-	has_reactionid bool
 	count          u32
-	has_count      bool
 }
 
 pub fn (o &PublishedFileDetails_Reaction) pack() []byte {
 	mut res := []byte{}
-	if o.has_reactionid {
+	if o.reactionid != u32(0) {
 		res << vproto.pack_uint32_field(o.reactionid, 1)
 	}
-	if o.has_count {
+	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 2)
 	}
 	return res
 }
 
 pub fn publishedfiledetails_reaction_unpack(buf []byte) ?PublishedFileDetails_Reaction {
-	mut res := PublishedFileDetails_Reaction{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails_reaction()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1702,13 +2117,11 @@ pub fn publishedfiledetails_reaction_unpack(buf []byte) ?PublishedFileDetails_Re
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_reactionid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.reactionid = v
 				i = ii
 			}
 			2 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
@@ -1728,17 +2141,48 @@ pub fn publishedfiledetails_reaction_unpack(buf []byte) ?PublishedFileDetails_Re
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails_Reaction) eq(b PublishedFileDetails_Reaction) bool {
+	return true && a.reactionid == b.reactionid && a.count == b.count
+}
+
+[inline]
+pub fn (a PublishedFileDetails_Reaction) ne(b PublishedFileDetails_Reaction) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Reaction) eq(b []PublishedFileDetails_Reaction) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails_Reaction) ne(b []PublishedFileDetails_Reaction) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails_reaction() PublishedFileDetails_Reaction {
 	return PublishedFileDetails_Reaction{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails_reaction(o PublishedFileDetails_Reaction, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails_reaction(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails_Reaction) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_reaction_unpack(v)?
@@ -1747,296 +2191,234 @@ pub fn zzz_vproto_internal_unpack_publishedfiledetails_reaction(buf []byte, tag_
 
 pub struct PublishedFileDetails {
 mut:
-	unknown_fields                   []vproto.UnknownField
+	unknown_fields               []vproto.UnknownField
 pub mut:
-	result                           u32
-	has_result                       bool
-	publishedfileid                  u64
-	has_publishedfileid              bool
-	creator                          u64
-	has_creator                      bool
-	creator_appid                    u32
-	has_creator_appid                bool
-	consumer_appid                   u32
-	has_consumer_appid               bool
-	consumer_shortcutid              u32
-	has_consumer_shortcutid          bool
-	filename                         string
-	has_filename                     bool
-	file_size                        u64
-	has_file_size                    bool
-	preview_file_size                u64
-	has_preview_file_size            bool
-	file_url                         string
-	has_file_url                     bool
-	preview_url                      string
-	has_preview_url                  bool
-	youtubevideoid                   string
-	has_youtubevideoid               bool
-	url                              string
-	has_url                          bool
-	hcontent_file                    u64
-	has_hcontent_file                bool
-	hcontent_preview                 u64
-	has_hcontent_preview             bool
-	title                            string
-	has_title                        bool
-	file_description                 string
-	has_file_description             bool
-	short_description                string
-	has_short_description            bool
-	time_created                     u32
-	has_time_created                 bool
-	time_updated                     u32
-	has_time_updated                 bool
-	visibility                       u32
-	has_visibility                   bool
-	flags                            u32
-	has_flags                        bool
-	workshop_file                    bool
-	has_workshop_file                bool
-	workshop_accepted                bool
-	has_workshop_accepted            bool
-	show_subscribe_all               bool
-	has_show_subscribe_all           bool
-	num_comments_developer           int
-	has_num_comments_developer       bool
-	num_comments_public              int
-	has_num_comments_public          bool
-	banned                           bool
-	has_banned                       bool
-	ban_reason                       string
-	has_ban_reason                   bool
-	banner                           u64
-	has_banner                       bool
-	can_be_deleted                   bool
-	has_can_be_deleted               bool
-	incompatible                     bool
-	has_incompatible                 bool
-	app_name                         string
-	has_app_name                     bool
-	file_type                        u32
-	has_file_type                    bool
-	can_subscribe                    bool
-	has_can_subscribe                bool
-	subscriptions                    u32
-	has_subscriptions                bool
-	favorited                        u32
-	has_favorited                    bool
-	followers                        u32
-	has_followers                    bool
-	lifetime_subscriptions           u32
-	has_lifetime_subscriptions       bool
-	lifetime_favorited               u32
-	has_lifetime_favorited           bool
-	lifetime_followers               u32
-	has_lifetime_followers           bool
-	lifetime_playtime                u64
-	has_lifetime_playtime            bool
-	lifetime_playtime_sessions       u64
-	has_lifetime_playtime_sessions   bool
-	views                            u32
-	has_views                        bool
-	image_width                      u32
-	has_image_width                  bool
-	image_height                     u32
-	has_image_height                 bool
-	image_url                        string
-	has_image_url                    bool
-	spoiler_tag                      bool
-	has_spoiler_tag                  bool
-	shortcutid                       u32
-	has_shortcutid                   bool
-	shortcutname                     string
-	has_shortcutname                 bool
-	num_children                     u32
-	has_num_children                 bool
-	num_reports                      u32
-	has_num_reports                  bool
-	previews                         []PublishedFileDetails_Preview
-	tags                             []PublishedFileDetails_Tag
-	children                         []PublishedFileDetails_Child
-	kvtags                           []PublishedFileDetails_KVTag
-	vote_data                        PublishedFileDetails_VoteData
-	has_vote_data                    bool
-	playtime_stats                   PublishedFileDetails_PlaytimeStats
-	has_playtime_stats               bool
-	time_subscribed                  u32
-	has_time_subscribed              bool
-	for_sale_data                    PublishedFileDetails_ForSaleData
-	has_for_sale_data                bool
-	metadata                         string
-	has_metadata                     bool
-	language                         int
-	has_language                     bool
-	maybe_inappropriate_sex          bool
-	has_maybe_inappropriate_sex      bool
-	maybe_inappropriate_violence     bool
-	has_maybe_inappropriate_violence bool
-	revision_change_number           u64
-	has_revision_change_number       bool
-	revision                         EPublishedFileRevision
-	has_revision                     bool
-	available_revisions              []EPublishedFileRevision
-	reactions                        []PublishedFileDetails_Reaction
+	result                       u32
+	publishedfileid              u64
+	creator                      u64
+	creator_appid                u32
+	consumer_appid               u32
+	consumer_shortcutid          u32
+	filename                     string
+	file_size                    u64
+	preview_file_size            u64
+	file_url                     string
+	preview_url                  string
+	youtubevideoid               string
+	url                          string
+	hcontent_file                u64
+	hcontent_preview             u64
+	title                        string
+	file_description             string
+	short_description            string
+	time_created                 u32
+	time_updated                 u32
+	visibility                   u32
+	flags                        u32
+	workshop_file                bool
+	workshop_accepted            bool
+	show_subscribe_all           bool
+	num_comments_developer       int
+	num_comments_public          int
+	banned                       bool
+	ban_reason                   string
+	banner                       u64
+	can_be_deleted               bool
+	incompatible                 bool
+	app_name                     string
+	file_type                    u32
+	can_subscribe                bool
+	subscriptions                u32
+	favorited                    u32
+	followers                    u32
+	lifetime_subscriptions       u32
+	lifetime_favorited           u32
+	lifetime_followers           u32
+	lifetime_playtime            u64
+	lifetime_playtime_sessions   u64
+	views                        u32
+	image_width                  u32
+	image_height                 u32
+	image_url                    string
+	spoiler_tag                  bool
+	shortcutid                   u32
+	shortcutname                 string
+	num_children                 u32
+	num_reports                  u32
+	previews                     []PublishedFileDetails_Preview
+	tags                         []PublishedFileDetails_Tag
+	children                     []PublishedFileDetails_Child
+	kvtags                       []PublishedFileDetails_KVTag
+	vote_data                    PublishedFileDetails_VoteData
+	playtime_stats               PublishedFileDetails_PlaytimeStats
+	time_subscribed              u32
+	for_sale_data                PublishedFileDetails_ForSaleData
+	metadata                     string
+	language                     int = 0
+	maybe_inappropriate_sex      bool
+	maybe_inappropriate_violence bool
+	revision_change_number       u64
+	revision                     EPublishedFileRevision = .k_epublishedfilerevision_default
+	available_revisions          []EPublishedFileRevision
+	reactions                    []PublishedFileDetails_Reaction
 }
 
 pub fn (o &PublishedFileDetails) pack() []byte {
 	mut res := []byte{}
-	if o.has_result {
+	if o.result != u32(0) {
 		res << vproto.pack_uint32_field(o.result, 1)
 	}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 2)
 	}
-	if o.has_creator {
+	if o.creator != u64(0) {
 		res << vproto.pack_64bit_field(o.creator, 3)
 	}
-	if o.has_creator_appid {
+	if o.creator_appid != u32(0) {
 		res << vproto.pack_uint32_field(o.creator_appid, 4)
 	}
-	if o.has_consumer_appid {
+	if o.consumer_appid != u32(0) {
 		res << vproto.pack_uint32_field(o.consumer_appid, 5)
 	}
-	if o.has_consumer_shortcutid {
+	if o.consumer_shortcutid != u32(0) {
 		res << vproto.pack_uint32_field(o.consumer_shortcutid, 6)
 	}
-	if o.has_filename {
+	if o.filename != '' {
 		res << vproto.pack_string_field(o.filename, 7)
 	}
-	if o.has_file_size {
+	if o.file_size != u64(0) {
 		res << vproto.pack_uint64_field(o.file_size, 8)
 	}
-	if o.has_preview_file_size {
+	if o.preview_file_size != u64(0) {
 		res << vproto.pack_uint64_field(o.preview_file_size, 9)
 	}
-	if o.has_file_url {
+	if o.file_url != '' {
 		res << vproto.pack_string_field(o.file_url, 10)
 	}
-	if o.has_preview_url {
+	if o.preview_url != '' {
 		res << vproto.pack_string_field(o.preview_url, 11)
 	}
-	if o.has_youtubevideoid {
+	if o.youtubevideoid != '' {
 		res << vproto.pack_string_field(o.youtubevideoid, 12)
 	}
-	if o.has_url {
+	if o.url != '' {
 		res << vproto.pack_string_field(o.url, 13)
 	}
-	if o.has_hcontent_file {
+	if o.hcontent_file != u64(0) {
 		res << vproto.pack_64bit_field(o.hcontent_file, 14)
 	}
-	if o.has_hcontent_preview {
+	if o.hcontent_preview != u64(0) {
 		res << vproto.pack_64bit_field(o.hcontent_preview, 15)
 	}
-	if o.has_title {
+	if o.title != '' {
 		res << vproto.pack_string_field(o.title, 16)
 	}
-	if o.has_file_description {
+	if o.file_description != '' {
 		res << vproto.pack_string_field(o.file_description, 17)
 	}
-	if o.has_short_description {
+	if o.short_description != '' {
 		res << vproto.pack_string_field(o.short_description, 18)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_uint32_field(o.time_created, 19)
 	}
-	if o.has_time_updated {
+	if o.time_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.time_updated, 20)
 	}
-	if o.has_visibility {
+	if o.visibility != u32(0) {
 		res << vproto.pack_uint32_field(o.visibility, 21)
 	}
-	if o.has_flags {
+	if o.flags != u32(0) {
 		res << vproto.pack_uint32_field(o.flags, 22)
 	}
-	if o.has_workshop_file {
+	if o.workshop_file != bool(0) {
 		res << vproto.pack_bool_field(o.workshop_file, 23)
 	}
-	if o.has_workshop_accepted {
+	if o.workshop_accepted != bool(0) {
 		res << vproto.pack_bool_field(o.workshop_accepted, 24)
 	}
-	if o.has_show_subscribe_all {
+	if o.show_subscribe_all != bool(0) {
 		res << vproto.pack_bool_field(o.show_subscribe_all, 25)
 	}
-	if o.has_num_comments_developer {
+	if o.num_comments_developer != int(0) {
 		res << vproto.pack_int32_field(o.num_comments_developer, 26)
 	}
-	if o.has_num_comments_public {
+	if o.num_comments_public != int(0) {
 		res << vproto.pack_int32_field(o.num_comments_public, 27)
 	}
-	if o.has_banned {
+	if o.banned != bool(0) {
 		res << vproto.pack_bool_field(o.banned, 28)
 	}
-	if o.has_ban_reason {
+	if o.ban_reason != '' {
 		res << vproto.pack_string_field(o.ban_reason, 29)
 	}
-	if o.has_banner {
+	if o.banner != u64(0) {
 		res << vproto.pack_64bit_field(o.banner, 30)
 	}
-	if o.has_can_be_deleted {
+	if o.can_be_deleted != bool(0) {
 		res << vproto.pack_bool_field(o.can_be_deleted, 31)
 	}
-	if o.has_incompatible {
+	if o.incompatible != bool(0) {
 		res << vproto.pack_bool_field(o.incompatible, 32)
 	}
-	if o.has_app_name {
+	if o.app_name != '' {
 		res << vproto.pack_string_field(o.app_name, 33)
 	}
-	if o.has_file_type {
+	if o.file_type != u32(0) {
 		res << vproto.pack_uint32_field(o.file_type, 34)
 	}
-	if o.has_can_subscribe {
+	if o.can_subscribe != bool(0) {
 		res << vproto.pack_bool_field(o.can_subscribe, 35)
 	}
-	if o.has_subscriptions {
+	if o.subscriptions != u32(0) {
 		res << vproto.pack_uint32_field(o.subscriptions, 36)
 	}
-	if o.has_favorited {
+	if o.favorited != u32(0) {
 		res << vproto.pack_uint32_field(o.favorited, 37)
 	}
-	if o.has_followers {
+	if o.followers != u32(0) {
 		res << vproto.pack_uint32_field(o.followers, 38)
 	}
-	if o.has_lifetime_subscriptions {
+	if o.lifetime_subscriptions != u32(0) {
 		res << vproto.pack_uint32_field(o.lifetime_subscriptions, 39)
 	}
-	if o.has_lifetime_favorited {
+	if o.lifetime_favorited != u32(0) {
 		res << vproto.pack_uint32_field(o.lifetime_favorited, 40)
 	}
-	if o.has_lifetime_followers {
+	if o.lifetime_followers != u32(0) {
 		res << vproto.pack_uint32_field(o.lifetime_followers, 41)
 	}
-	if o.has_lifetime_playtime {
+	if o.lifetime_playtime != u64(0) {
 		res << vproto.pack_uint64_field(o.lifetime_playtime, 62)
 	}
-	if o.has_lifetime_playtime_sessions {
+	if o.lifetime_playtime_sessions != u64(0) {
 		res << vproto.pack_uint64_field(o.lifetime_playtime_sessions, 63)
 	}
-	if o.has_views {
+	if o.views != u32(0) {
 		res << vproto.pack_uint32_field(o.views, 42)
 	}
-	if o.has_image_width {
+	if o.image_width != u32(0) {
 		res << vproto.pack_uint32_field(o.image_width, 43)
 	}
-	if o.has_image_height {
+	if o.image_height != u32(0) {
 		res << vproto.pack_uint32_field(o.image_height, 44)
 	}
-	if o.has_image_url {
+	if o.image_url != '' {
 		res << vproto.pack_string_field(o.image_url, 45)
 	}
-	if o.has_spoiler_tag {
+	if o.spoiler_tag != bool(0) {
 		res << vproto.pack_bool_field(o.spoiler_tag, 46)
 	}
-	if o.has_shortcutid {
+	if o.shortcutid != u32(0) {
 		res << vproto.pack_uint32_field(o.shortcutid, 47)
 	}
-	if o.has_shortcutname {
+	if o.shortcutname != '' {
 		res << vproto.pack_string_field(o.shortcutname, 48)
 	}
-	if o.has_num_children {
+	if o.num_children != u32(0) {
 		res << vproto.pack_uint32_field(o.num_children, 49)
 	}
-	if o.has_num_reports {
+	if o.num_reports != u32(0) {
 		res << vproto.pack_uint32_field(o.num_reports, 50)
 	}
 	// [packed=false]
@@ -2055,34 +2437,34 @@ pub fn (o &PublishedFileDetails) pack() []byte {
 	for _, x in o.kvtags {
 		res << zzz_vproto_internal_pack_publishedfiledetails_kvtag(x, 54)
 	}
-	if o.has_vote_data {
+	if o.vote_data.ne(zzz_vproto_internal_new_publishedfiledetails_votedata()) {
 		res << zzz_vproto_internal_pack_publishedfiledetails_votedata(o.vote_data, 55)
 	}
-	if o.has_playtime_stats {
+	if o.playtime_stats.ne(zzz_vproto_internal_new_publishedfiledetails_playtimestats()) {
 		res << zzz_vproto_internal_pack_publishedfiledetails_playtimestats(o.playtime_stats, 64)
 	}
-	if o.has_time_subscribed {
+	if o.time_subscribed != u32(0) {
 		res << vproto.pack_uint32_field(o.time_subscribed, 56)
 	}
-	if o.has_for_sale_data {
+	if o.for_sale_data.ne(zzz_vproto_internal_new_publishedfiledetails_forsaledata()) {
 		res << zzz_vproto_internal_pack_publishedfiledetails_forsaledata(o.for_sale_data, 57)
 	}
-	if o.has_metadata {
+	if o.metadata != '' {
 		res << vproto.pack_string_field(o.metadata, 58)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 61)
 	}
-	if o.has_maybe_inappropriate_sex {
+	if o.maybe_inappropriate_sex != bool(0) {
 		res << vproto.pack_bool_field(o.maybe_inappropriate_sex, 65)
 	}
-	if o.has_maybe_inappropriate_violence {
+	if o.maybe_inappropriate_violence != bool(0) {
 		res << vproto.pack_bool_field(o.maybe_inappropriate_violence, 66)
 	}
-	if o.has_revision_change_number {
+	if o.revision_change_number != u64(0) {
 		res << vproto.pack_uint64_field(o.revision_change_number, 67)
 	}
-	if o.has_revision {
+	if o.revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.revision, 68)
 	}
 	// [packed=false]
@@ -2097,7 +2479,7 @@ pub fn (o &PublishedFileDetails) pack() []byte {
 }
 
 pub fn publishedfiledetails_unpack(buf []byte) ?PublishedFileDetails {
-	mut res := PublishedFileDetails{}
+	mut res := zzz_vproto_internal_new_publishedfiledetails()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2108,313 +2490,261 @@ pub fn publishedfiledetails_unpack(buf []byte) ?PublishedFileDetails {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_result = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.result = v
 				i = ii
 			}
 			2 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			3 {
-				res.has_creator = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.creator = v
 				i = ii
 			}
 			4 {
-				res.has_creator_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.creator_appid = v
 				i = ii
 			}
 			5 {
-				res.has_consumer_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.consumer_appid = v
 				i = ii
 			}
 			6 {
-				res.has_consumer_shortcutid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.consumer_shortcutid = v
 				i = ii
 			}
 			7 {
-				res.has_filename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.filename = v
 				i = ii
 			}
 			8 {
-				res.has_file_size = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_size = v
 				i = ii
 			}
 			9 {
-				res.has_preview_file_size = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.preview_file_size = v
 				i = ii
 			}
 			10 {
-				res.has_file_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_url = v
 				i = ii
 			}
 			11 {
-				res.has_preview_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.preview_url = v
 				i = ii
 			}
 			12 {
-				res.has_youtubevideoid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.youtubevideoid = v
 				i = ii
 			}
 			13 {
-				res.has_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.url = v
 				i = ii
 			}
 			14 {
-				res.has_hcontent_file = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.hcontent_file = v
 				i = ii
 			}
 			15 {
-				res.has_hcontent_preview = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.hcontent_preview = v
 				i = ii
 			}
 			16 {
-				res.has_title = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
 			}
 			17 {
-				res.has_file_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_description = v
 				i = ii
 			}
 			18 {
-				res.has_short_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.short_description = v
 				i = ii
 			}
 			19 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			20 {
-				res.has_time_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_updated = v
 				i = ii
 			}
 			21 {
-				res.has_visibility = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.visibility = v
 				i = ii
 			}
 			22 {
-				res.has_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.flags = v
 				i = ii
 			}
 			23 {
-				res.has_workshop_file = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.workshop_file = v
 				i = ii
 			}
 			24 {
-				res.has_workshop_accepted = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.workshop_accepted = v
 				i = ii
 			}
 			25 {
-				res.has_show_subscribe_all = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.show_subscribe_all = v
 				i = ii
 			}
 			26 {
-				res.has_num_comments_developer = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.num_comments_developer = v
 				i = ii
 			}
 			27 {
-				res.has_num_comments_public = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.num_comments_public = v
 				i = ii
 			}
 			28 {
-				res.has_banned = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.banned = v
 				i = ii
 			}
 			29 {
-				res.has_ban_reason = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.ban_reason = v
 				i = ii
 			}
 			30 {
-				res.has_banner = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.banner = v
 				i = ii
 			}
 			31 {
-				res.has_can_be_deleted = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.can_be_deleted = v
 				i = ii
 			}
 			32 {
-				res.has_incompatible = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.incompatible = v
 				i = ii
 			}
 			33 {
-				res.has_app_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_name = v
 				i = ii
 			}
 			34 {
-				res.has_file_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_type = v
 				i = ii
 			}
 			35 {
-				res.has_can_subscribe = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.can_subscribe = v
 				i = ii
 			}
 			36 {
-				res.has_subscriptions = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.subscriptions = v
 				i = ii
 			}
 			37 {
-				res.has_favorited = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.favorited = v
 				i = ii
 			}
 			38 {
-				res.has_followers = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.followers = v
 				i = ii
 			}
 			39 {
-				res.has_lifetime_subscriptions = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.lifetime_subscriptions = v
 				i = ii
 			}
 			40 {
-				res.has_lifetime_favorited = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.lifetime_favorited = v
 				i = ii
 			}
 			41 {
-				res.has_lifetime_followers = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.lifetime_followers = v
 				i = ii
 			}
 			62 {
-				res.has_lifetime_playtime = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.lifetime_playtime = v
 				i = ii
 			}
 			63 {
-				res.has_lifetime_playtime_sessions = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.lifetime_playtime_sessions = v
 				i = ii
 			}
 			42 {
-				res.has_views = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.views = v
 				i = ii
 			}
 			43 {
-				res.has_image_width = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_width = v
 				i = ii
 			}
 			44 {
-				res.has_image_height = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_height = v
 				i = ii
 			}
 			45 {
-				res.has_image_url = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_url = v
 				i = ii
 			}
 			46 {
-				res.has_spoiler_tag = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.spoiler_tag = v
 				i = ii
 			}
 			47 {
-				res.has_shortcutid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.shortcutid = v
 				i = ii
 			}
 			48 {
-				res.has_shortcutname = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.shortcutname = v
 				i = ii
 			}
 			49 {
-				res.has_num_children = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.num_children = v
 				i = ii
 			}
 			50 {
-				res.has_num_reports = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.num_reports = v
 				i = ii
@@ -2448,64 +2778,54 @@ pub fn publishedfiledetails_unpack(buf []byte) ?PublishedFileDetails {
 				i = ii
 			}
 			55 {
-				res.has_vote_data = true
 				ii, v := zzz_vproto_internal_unpack_publishedfiledetails_votedata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.vote_data = v
 				i = ii
 			}
 			64 {
-				res.has_playtime_stats = true
 				ii, v := zzz_vproto_internal_unpack_publishedfiledetails_playtimestats(cur_buf,
 					tag_wiretype.wire_type)?
 				res.playtime_stats = v
 				i = ii
 			}
 			56 {
-				res.has_time_subscribed = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_subscribed = v
 				i = ii
 			}
 			57 {
-				res.has_for_sale_data = true
 				ii, v := zzz_vproto_internal_unpack_publishedfiledetails_forsaledata(cur_buf,
 					tag_wiretype.wire_type)?
 				res.for_sale_data = v
 				i = ii
 			}
 			58 {
-				res.has_metadata = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.metadata = v
 				i = ii
 			}
 			61 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
 			}
 			65 {
-				res.has_maybe_inappropriate_sex = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.maybe_inappropriate_sex = v
 				i = ii
 			}
 			66 {
-				res.has_maybe_inappropriate_violence = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.maybe_inappropriate_violence = v
 				i = ii
 			}
 			67 {
-				res.has_revision_change_number = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.revision_change_number = v
 				i = ii
 			}
 			68 {
-				res.has_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.revision = v
 				i = ii
@@ -2538,17 +2858,94 @@ pub fn publishedfiledetails_unpack(buf []byte) ?PublishedFileDetails {
 	return res
 }
 
+[inline]
+pub fn (a PublishedFileDetails) eq(b PublishedFileDetails) bool {
+	return true && a.result == b.result &&
+		a.publishedfileid == b.publishedfileid &&
+		a.creator == b.creator && a.creator_appid == b.creator_appid &&
+		a.consumer_appid == b.consumer_appid &&
+		a.consumer_shortcutid == b.consumer_shortcutid &&
+		a.filename == b.filename && a.file_size == b.file_size &&
+		a.preview_file_size == b.preview_file_size &&
+		a.file_url == b.file_url && a.preview_url == b.preview_url &&
+		a.youtubevideoid == b.youtubevideoid &&
+		a.url == b.url && a.hcontent_file == b.hcontent_file &&
+		a.hcontent_preview == b.hcontent_preview &&
+		a.title == b.title && a.file_description == b.file_description &&
+		a.short_description == b.short_description &&
+		a.time_created == b.time_created &&
+		a.time_updated == b.time_updated &&
+		a.visibility == b.visibility && a.flags == b.flags &&
+		a.workshop_file == b.workshop_file &&
+		a.workshop_accepted == b.workshop_accepted &&
+		a.show_subscribe_all == b.show_subscribe_all &&
+		a.num_comments_developer == b.num_comments_developer &&
+		a.num_comments_public == b.num_comments_public &&
+		a.banned == b.banned && a.ban_reason == b.ban_reason &&
+		a.banner == b.banner && a.can_be_deleted == b.can_be_deleted &&
+		a.incompatible == b.incompatible &&
+		a.app_name == b.app_name && a.file_type == b.file_type &&
+		a.can_subscribe == b.can_subscribe &&
+		a.subscriptions == b.subscriptions &&
+		a.favorited == b.favorited && a.followers == b.followers &&
+		a.lifetime_subscriptions == b.lifetime_subscriptions &&
+		a.lifetime_favorited == b.lifetime_favorited &&
+		a.lifetime_followers == b.lifetime_followers &&
+		a.lifetime_playtime == b.lifetime_playtime &&
+		a.lifetime_playtime_sessions == b.lifetime_playtime_sessions &&
+		a.views == b.views && a.image_width == b.image_width &&
+		a.image_height == b.image_height &&
+		a.image_url == b.image_url && a.spoiler_tag == b.spoiler_tag &&
+		a.shortcutid == b.shortcutid && a.shortcutname == b.shortcutname &&
+		a.num_children == b.num_children &&
+		a.num_reports == b.num_reports && a.previews.eq(b.previews) && a.tags.eq(b.tags) && a.children.eq(b.children) &&
+		a.kvtags.eq(b.kvtags) && a.vote_data.eq(b.vote_data) && a.playtime_stats.eq(b.playtime_stats) &&
+		a.time_subscribed == b.time_subscribed && a.for_sale_data.eq(b.for_sale_data) &&
+		a.metadata == b.metadata && a.language == b.language &&
+		a.maybe_inappropriate_sex == b.maybe_inappropriate_sex &&
+		a.maybe_inappropriate_violence == b.maybe_inappropriate_violence &&
+		a.revision_change_number == b.revision_change_number &&
+		a.revision == b.revision &&
+		a.available_revisions == b.available_revisions && a.reactions.eq(b.reactions)
+}
+
+[inline]
+pub fn (a PublishedFileDetails) ne(b PublishedFileDetails) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []PublishedFileDetails) eq(b []PublishedFileDetails) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []PublishedFileDetails) ne(b []PublishedFileDetails) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_publishedfiledetails() PublishedFileDetails {
 	return PublishedFileDetails{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_publishedfiledetails(o PublishedFileDetails, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_publishedfiledetails(buf []byte, tag_wiretype vproto.WireType) ?(int, PublishedFileDetails) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := publishedfiledetails_unpack(v)?
@@ -2572,7 +2969,7 @@ pub fn (o &CPublishedFile_GetDetails_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_getdetails_response_unpack(buf []byte) ?CPublishedFile_GetDetails_Response {
-	mut res := CPublishedFile_GetDetails_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getdetails_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2603,17 +3000,48 @@ pub fn cpublishedfile_getdetails_response_unpack(buf []byte) ?CPublishedFile_Get
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetDetails_Response) eq(b CPublishedFile_GetDetails_Response) bool {
+	return true && a.publishedfiledetails.eq(b.publishedfiledetails)
+}
+
+[inline]
+pub fn (a CPublishedFile_GetDetails_Response) ne(b CPublishedFile_GetDetails_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetDetails_Response) eq(b []CPublishedFile_GetDetails_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetDetails_Response) ne(b []CPublishedFile_GetDetails_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getdetails_response() CPublishedFile_GetDetails_Response {
 	return CPublishedFile_GetDetails_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getdetails_response(o CPublishedFile_GetDetails_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getdetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetDetails_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getdetails_response_unpack(v)?
@@ -2622,32 +3050,29 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getdetails_response(buf []byte,
 
 pub struct CPublishedFile_GetItemInfo_Request_WorkshopItem {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	published_file_id     u64
-	has_published_file_id bool
-	time_updated          u32
-	has_time_updated      bool
-	desired_revision      EPublishedFileRevision
-	has_desired_revision  bool
+	published_file_id u64
+	time_updated      u32
+	desired_revision  EPublishedFileRevision = .k_epublishedfilerevision_default
 }
 
 pub fn (o &CPublishedFile_GetItemInfo_Request_WorkshopItem) pack() []byte {
 	mut res := []byte{}
-	if o.has_published_file_id {
+	if o.published_file_id != u64(0) {
 		res << vproto.pack_64bit_field(o.published_file_id, 1)
 	}
-	if o.has_time_updated {
+	if o.time_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.time_updated, 2)
 	}
-	if o.has_desired_revision {
+	if o.desired_revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.desired_revision, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getiteminfo_request_workshopitem_unpack(buf []byte) ?CPublishedFile_GetItemInfo_Request_WorkshopItem {
-	mut res := CPublishedFile_GetItemInfo_Request_WorkshopItem{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getiteminfo_request_workshopitem()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2658,19 +3083,16 @@ pub fn cpublishedfile_getiteminfo_request_workshopitem_unpack(buf []byte) ?CPubl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_published_file_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.published_file_id = v
 				i = ii
 			}
 			2 {
-				res.has_time_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_updated = v
 				i = ii
 			}
 			3 {
-				res.has_desired_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.desired_revision = v
 				i = ii
@@ -2690,17 +3112,50 @@ pub fn cpublishedfile_getiteminfo_request_workshopitem_unpack(buf []byte) ?CPubl
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Request_WorkshopItem) eq(b CPublishedFile_GetItemInfo_Request_WorkshopItem) bool {
+	return true && a.published_file_id == b.published_file_id &&
+		a.time_updated == b.time_updated &&
+		a.desired_revision == b.desired_revision
+}
+
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Request_WorkshopItem) ne(b CPublishedFile_GetItemInfo_Request_WorkshopItem) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Request_WorkshopItem) eq(b []CPublishedFile_GetItemInfo_Request_WorkshopItem) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Request_WorkshopItem) ne(b []CPublishedFile_GetItemInfo_Request_WorkshopItem) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getiteminfo_request_workshopitem() CPublishedFile_GetItemInfo_Request_WorkshopItem {
 	return CPublishedFile_GetItemInfo_Request_WorkshopItem{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getiteminfo_request_workshopitem(o CPublishedFile_GetItemInfo_Request_WorkshopItem, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_request_workshopitem(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetItemInfo_Request_WorkshopItem) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getiteminfo_request_workshopitem_unpack(v)?
@@ -2709,21 +3164,19 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_request_workshopite
 
 pub struct CPublishedFile_GetItemInfo_Request {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	app_id                u32
-	has_app_id            bool
-	last_time_updated     u32
-	has_last_time_updated bool
-	workshop_items        []CPublishedFile_GetItemInfo_Request_WorkshopItem
+	app_id            u32
+	last_time_updated u32
+	workshop_items    []CPublishedFile_GetItemInfo_Request_WorkshopItem
 }
 
 pub fn (o &CPublishedFile_GetItemInfo_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 1)
 	}
-	if o.has_last_time_updated {
+	if o.last_time_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.last_time_updated, 2)
 	}
 	// [packed=false]
@@ -2734,7 +3187,7 @@ pub fn (o &CPublishedFile_GetItemInfo_Request) pack() []byte {
 }
 
 pub fn cpublishedfile_getiteminfo_request_unpack(buf []byte) ?CPublishedFile_GetItemInfo_Request {
-	mut res := CPublishedFile_GetItemInfo_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getiteminfo_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2745,13 +3198,11 @@ pub fn cpublishedfile_getiteminfo_request_unpack(buf []byte) ?CPublishedFile_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				res.has_last_time_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_time_updated = v
 				i = ii
@@ -2778,17 +3229,49 @@ pub fn cpublishedfile_getiteminfo_request_unpack(buf []byte) ?CPublishedFile_Get
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Request) eq(b CPublishedFile_GetItemInfo_Request) bool {
+	return true && a.app_id == b.app_id &&
+		a.last_time_updated == b.last_time_updated && a.workshop_items.eq(b.workshop_items)
+}
+
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Request) ne(b CPublishedFile_GetItemInfo_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Request) eq(b []CPublishedFile_GetItemInfo_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Request) ne(b []CPublishedFile_GetItemInfo_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getiteminfo_request() CPublishedFile_GetItemInfo_Request {
 	return CPublishedFile_GetItemInfo_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getiteminfo_request(o CPublishedFile_GetItemInfo_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetItemInfo_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getiteminfo_request_unpack(v)?
@@ -2797,37 +3280,33 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_request(buf []byte,
 
 pub struct CPublishedFile_GetItemInfo_Response_WorkshopItemInfo {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	published_file_id     u64
-	has_published_file_id bool
-	time_updated          u32
-	has_time_updated      bool
-	manifest_id           u64
-	has_manifest_id       bool
-	flags                 u32
-	has_flags             bool
+	published_file_id u64
+	time_updated      u32
+	manifest_id       u64
+	flags             u32
 }
 
 pub fn (o &CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) pack() []byte {
 	mut res := []byte{}
-	if o.has_published_file_id {
+	if o.published_file_id != u64(0) {
 		res << vproto.pack_64bit_field(o.published_file_id, 1)
 	}
-	if o.has_time_updated {
+	if o.time_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.time_updated, 2)
 	}
-	if o.has_manifest_id {
+	if o.manifest_id != u64(0) {
 		res << vproto.pack_64bit_field(o.manifest_id, 3)
 	}
-	if o.has_flags {
+	if o.flags != u32(0) {
 		res << vproto.pack_uint32_field(o.flags, 4)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getiteminfo_response_workshopiteminfo_unpack(buf []byte) ?CPublishedFile_GetItemInfo_Response_WorkshopItemInfo {
-	mut res := CPublishedFile_GetItemInfo_Response_WorkshopItemInfo{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getiteminfo_response_workshopiteminfo()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2838,25 +3317,21 @@ pub fn cpublishedfile_getiteminfo_response_workshopiteminfo_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_published_file_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.published_file_id = v
 				i = ii
 			}
 			2 {
-				res.has_time_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_updated = v
 				i = ii
 			}
 			3 {
-				res.has_manifest_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.manifest_id = v
 				i = ii
 			}
 			4 {
-				res.has_flags = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.flags = v
 				i = ii
@@ -2876,17 +3351,50 @@ pub fn cpublishedfile_getiteminfo_response_workshopiteminfo_unpack(buf []byte) ?
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) eq(b CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) bool {
+	return true && a.published_file_id == b.published_file_id &&
+		a.time_updated == b.time_updated &&
+		a.manifest_id == b.manifest_id && a.flags == b.flags
+}
+
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) ne(b CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) eq(b []CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) ne(b []CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getiteminfo_response_workshopiteminfo() CPublishedFile_GetItemInfo_Response_WorkshopItemInfo {
 	return CPublishedFile_GetItemInfo_Response_WorkshopItemInfo{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getiteminfo_response_workshopiteminfo(o CPublishedFile_GetItemInfo_Response_WorkshopItemInfo, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_response_workshopiteminfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetItemInfo_Response_WorkshopItemInfo) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getiteminfo_response_workshopiteminfo_unpack(v)?
@@ -2895,17 +3403,16 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_response_workshopit
 
 pub struct CPublishedFile_GetItemInfo_Response {
 mut:
-	unknown_fields  []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	update_time     u32
-	has_update_time bool
-	workshop_items  []CPublishedFile_GetItemInfo_Response_WorkshopItemInfo
-	private_items   []u64
+	update_time    u32
+	workshop_items []CPublishedFile_GetItemInfo_Response_WorkshopItemInfo
+	private_items  []u64
 }
 
 pub fn (o &CPublishedFile_GetItemInfo_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_update_time {
+	if o.update_time != u32(0) {
 		res << vproto.pack_uint32_field(o.update_time, 1)
 	}
 	// [packed=false]
@@ -2920,7 +3427,7 @@ pub fn (o &CPublishedFile_GetItemInfo_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_getiteminfo_response_unpack(buf []byte) ?CPublishedFile_GetItemInfo_Response {
-	mut res := CPublishedFile_GetItemInfo_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getiteminfo_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2931,7 +3438,6 @@ pub fn cpublishedfile_getiteminfo_response_unpack(buf []byte) ?CPublishedFile_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_update_time = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.update_time = v
 				i = ii
@@ -2964,17 +3470,49 @@ pub fn cpublishedfile_getiteminfo_response_unpack(buf []byte) ?CPublishedFile_Ge
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Response) eq(b CPublishedFile_GetItemInfo_Response) bool {
+	return true && a.update_time == b.update_time && a.workshop_items.eq(b.workshop_items) &&
+		a.private_items == b.private_items
+}
+
+[inline]
+pub fn (a CPublishedFile_GetItemInfo_Response) ne(b CPublishedFile_GetItemInfo_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Response) eq(b []CPublishedFile_GetItemInfo_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetItemInfo_Response) ne(b []CPublishedFile_GetItemInfo_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getiteminfo_response() CPublishedFile_GetItemInfo_Response {
 	return CPublishedFile_GetItemInfo_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getiteminfo_response(o CPublishedFile_GetItemInfo_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getiteminfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetItemInfo_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getiteminfo_response_unpack(v)?
@@ -2986,24 +3524,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key            string
-	has_key        bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &CPublishedFile_GetUserFiles_Request_KVTag) pack() []byte {
 	mut res := []byte{}
-	if o.has_key {
+	if o.key != '' {
 		res << vproto.pack_string_field(o.key, 1)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getuserfiles_request_kvtag_unpack(buf []byte) ?CPublishedFile_GetUserFiles_Request_KVTag {
-	mut res := CPublishedFile_GetUserFiles_Request_KVTag{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuserfiles_request_kvtag()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3014,13 +3550,11 @@ pub fn cpublishedfile_getuserfiles_request_kvtag_unpack(buf []byte) ?CPublishedF
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -3040,17 +3574,48 @@ pub fn cpublishedfile_getuserfiles_request_kvtag_unpack(buf []byte) ?CPublishedF
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Request_KVTag) eq(b CPublishedFile_GetUserFiles_Request_KVTag) bool {
+	return true && a.key == b.key && a.value == b.value
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Request_KVTag) ne(b CPublishedFile_GetUserFiles_Request_KVTag) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Request_KVTag) eq(b []CPublishedFile_GetUserFiles_Request_KVTag) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Request_KVTag) ne(b []CPublishedFile_GetUserFiles_Request_KVTag) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuserfiles_request_kvtag() CPublishedFile_GetUserFiles_Request_KVTag {
 	return CPublishedFile_GetUserFiles_Request_KVTag{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuserfiles_request_kvtag(o CPublishedFile_GetUserFiles_Request_KVTag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_request_kvtag(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserFiles_Request_KVTag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuserfiles_request_kvtag_unpack(v)?
@@ -3074,7 +3639,7 @@ pub fn (o &CPublishedFile_GetUserFiles_Request_TagGroup) pack() []byte {
 }
 
 pub fn cpublishedfile_getuserfiles_request_taggroup_unpack(buf []byte) ?CPublishedFile_GetUserFiles_Request_TagGroup {
-	mut res := CPublishedFile_GetUserFiles_Request_TagGroup{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuserfiles_request_taggroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3105,17 +3670,48 @@ pub fn cpublishedfile_getuserfiles_request_taggroup_unpack(buf []byte) ?CPublish
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Request_TagGroup) eq(b CPublishedFile_GetUserFiles_Request_TagGroup) bool {
+	return true && a.tags == b.tags
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Request_TagGroup) ne(b CPublishedFile_GetUserFiles_Request_TagGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Request_TagGroup) eq(b []CPublishedFile_GetUserFiles_Request_TagGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Request_TagGroup) ne(b []CPublishedFile_GetUserFiles_Request_TagGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuserfiles_request_taggroup() CPublishedFile_GetUserFiles_Request_TagGroup {
 	return CPublishedFile_GetUserFiles_Request_TagGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuserfiles_request_taggroup(o CPublishedFile_GetUserFiles_Request_TagGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_request_taggroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserFiles_Request_TagGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuserfiles_request_taggroup_unpack(v)?
@@ -3124,87 +3720,61 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_request_taggroup(b
 
 pub struct CPublishedFile_GetUserFiles_Request {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid                      u64
-	has_steamid                  bool
-	appid                        u32
-	has_appid                    bool
-	page                         u32
-	has_page                     bool
-	numperpage                   u32
-	has_numperpage               bool
-	@type                        string
-	has_type                     bool
-	sortmethod                   string
-	has_sortmethod               bool
-	privacy                      u32
-	has_privacy                  bool
-	requiredtags                 []string
-	excludedtags                 []string
-	required_kv_tags             []CPublishedFile_GetUserFiles_Request_KVTag
-	filetype                     u32
-	has_filetype                 bool
-	creator_appid                u32
-	has_creator_appid            bool
-	match_cloud_filename         string
-	has_match_cloud_filename     bool
-	cache_max_age_seconds        u32
-	has_cache_max_age_seconds    bool
-	language                     int
-	has_language                 bool
-	taggroups                    []CPublishedFile_GetUserFiles_Request_TagGroup
-	totalonly                    bool
-	has_totalonly                bool
-	ids_only                     bool
-	has_ids_only                 bool
-	return_vote_data             bool
-	has_return_vote_data         bool
-	return_tags                  bool
-	has_return_tags              bool
-	return_kv_tags               bool
-	has_return_kv_tags           bool
-	return_previews              bool
-	has_return_previews          bool
-	return_children              bool
-	has_return_children          bool
-	return_short_description     bool
-	has_return_short_description bool
-	return_for_sale_data         bool
-	has_return_for_sale_data     bool
-	return_metadata              bool
-	has_return_metadata          bool
-	return_playtime_stats        u32
-	has_return_playtime_stats    bool
-	strip_description_bbcode     bool
-	has_strip_description_bbcode bool
-	return_reactions             bool
-	has_return_reactions         bool
-	desired_revision             EPublishedFileRevision
-	has_desired_revision         bool
+	steamid                  u64
+	appid                    u32
+	page                     u32 = 1
+	numperpage               u32 = 1
+	@type                    string = myfiles
+	sortmethod               string = lastupdated
+	privacy                  u32
+	requiredtags             []string
+	excludedtags             []string
+	required_kv_tags         []CPublishedFile_GetUserFiles_Request_KVTag
+	filetype                 u32
+	creator_appid            u32
+	match_cloud_filename     string
+	cache_max_age_seconds    u32 = 0
+	language                 int = 0
+	taggroups                []CPublishedFile_GetUserFiles_Request_TagGroup
+	totalonly                bool
+	ids_only                 bool
+	return_vote_data         bool = true
+	return_tags              bool
+	return_kv_tags           bool = true
+	return_previews          bool
+	return_children          bool
+	return_short_description bool = true
+	return_for_sale_data     bool
+	return_metadata          bool = false
+	return_playtime_stats    u32
+	strip_description_bbcode bool
+	return_reactions         bool = false
+	desired_revision         EPublishedFileRevision = .k_epublishedfilerevision_default
 }
 
 pub fn (o &CPublishedFile_GetUserFiles_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_page {
+	if o.page != u32(0) {
 		res << vproto.pack_uint32_field(o.page, 4)
 	}
-	if o.has_numperpage {
+	if o.numperpage != u32(0) {
 		res << vproto.pack_uint32_field(o.numperpage, 5)
 	}
-	if o.has_type {
+	if o.@type != '' {
 		res << vproto.pack_string_field(o.@type, 6)
 	}
-	if o.has_sortmethod {
+	if o.sortmethod != '' {
 		res << vproto.pack_string_field(o.sortmethod, 7)
 	}
-	if o.has_privacy {
+	if o.privacy != u32(0) {
 		res << vproto.pack_uint32_field(o.privacy, 9)
 	}
 	// [packed=false]
@@ -3219,72 +3789,72 @@ pub fn (o &CPublishedFile_GetUserFiles_Request) pack() []byte {
 	for _, x in o.required_kv_tags {
 		res << zzz_vproto_internal_pack_cpublishedfile_getuserfiles_request_kvtag(x, 30)
 	}
-	if o.has_filetype {
+	if o.filetype != u32(0) {
 		res << vproto.pack_uint32_field(o.filetype, 14)
 	}
-	if o.has_creator_appid {
+	if o.creator_appid != u32(0) {
 		res << vproto.pack_uint32_field(o.creator_appid, 15)
 	}
-	if o.has_match_cloud_filename {
+	if o.match_cloud_filename != '' {
 		res << vproto.pack_string_field(o.match_cloud_filename, 16)
 	}
-	if o.has_cache_max_age_seconds {
+	if o.cache_max_age_seconds != u32(0) {
 		res << vproto.pack_uint32_field(o.cache_max_age_seconds, 27)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 29)
 	}
 	// [packed=false]
 	for _, x in o.taggroups {
 		res << zzz_vproto_internal_pack_cpublishedfile_getuserfiles_request_taggroup(x, 34)
 	}
-	if o.has_totalonly {
+	if o.totalonly != bool(0) {
 		res << vproto.pack_bool_field(o.totalonly, 17)
 	}
-	if o.has_ids_only {
+	if o.ids_only != bool(0) {
 		res << vproto.pack_bool_field(o.ids_only, 18)
 	}
-	if o.has_return_vote_data {
+	if o.return_vote_data != bool(0) {
 		res << vproto.pack_bool_field(o.return_vote_data, 19)
 	}
-	if o.has_return_tags {
+	if o.return_tags != bool(0) {
 		res << vproto.pack_bool_field(o.return_tags, 20)
 	}
-	if o.has_return_kv_tags {
+	if o.return_kv_tags != bool(0) {
 		res << vproto.pack_bool_field(o.return_kv_tags, 21)
 	}
-	if o.has_return_previews {
+	if o.return_previews != bool(0) {
 		res << vproto.pack_bool_field(o.return_previews, 22)
 	}
-	if o.has_return_children {
+	if o.return_children != bool(0) {
 		res << vproto.pack_bool_field(o.return_children, 23)
 	}
-	if o.has_return_short_description {
+	if o.return_short_description != bool(0) {
 		res << vproto.pack_bool_field(o.return_short_description, 24)
 	}
-	if o.has_return_for_sale_data {
+	if o.return_for_sale_data != bool(0) {
 		res << vproto.pack_bool_field(o.return_for_sale_data, 26)
 	}
-	if o.has_return_metadata {
+	if o.return_metadata != bool(0) {
 		res << vproto.pack_bool_field(o.return_metadata, 28)
 	}
-	if o.has_return_playtime_stats {
+	if o.return_playtime_stats != u32(0) {
 		res << vproto.pack_uint32_field(o.return_playtime_stats, 31)
 	}
-	if o.has_strip_description_bbcode {
+	if o.strip_description_bbcode != bool(0) {
 		res << vproto.pack_bool_field(o.strip_description_bbcode, 32)
 	}
-	if o.has_return_reactions {
+	if o.return_reactions != bool(0) {
 		res << vproto.pack_bool_field(o.return_reactions, 35)
 	}
-	if o.has_desired_revision {
+	if o.desired_revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.desired_revision, 33)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getuserfiles_request_unpack(buf []byte) ?CPublishedFile_GetUserFiles_Request {
-	mut res := CPublishedFile_GetUserFiles_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuserfiles_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3295,43 +3865,36 @@ pub fn cpublishedfile_getuserfiles_request_unpack(buf []byte) ?CPublishedFile_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			4 {
-				res.has_page = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.page = v
 				i = ii
 			}
 			5 {
-				res.has_numperpage = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.numperpage = v
 				i = ii
 			}
 			6 {
-				res.has_type = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.@type = v
 				i = ii
 			}
 			7 {
-				res.has_sortmethod = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sortmethod = v
 				i = ii
 			}
 			9 {
-				res.has_privacy = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.privacy = v
 				i = ii
@@ -3356,31 +3919,26 @@ pub fn cpublishedfile_getuserfiles_request_unpack(buf []byte) ?CPublishedFile_Ge
 				i = ii
 			}
 			14 {
-				res.has_filetype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.filetype = v
 				i = ii
 			}
 			15 {
-				res.has_creator_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.creator_appid = v
 				i = ii
 			}
 			16 {
-				res.has_match_cloud_filename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.match_cloud_filename = v
 				i = ii
 			}
 			27 {
-				res.has_cache_max_age_seconds = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cache_max_age_seconds = v
 				i = ii
 			}
 			29 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -3393,85 +3951,71 @@ pub fn cpublishedfile_getuserfiles_request_unpack(buf []byte) ?CPublishedFile_Ge
 				i = ii
 			}
 			17 {
-				res.has_totalonly = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.totalonly = v
 				i = ii
 			}
 			18 {
-				res.has_ids_only = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.ids_only = v
 				i = ii
 			}
 			19 {
-				res.has_return_vote_data = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_vote_data = v
 				i = ii
 			}
 			20 {
-				res.has_return_tags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_tags = v
 				i = ii
 			}
 			21 {
-				res.has_return_kv_tags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_kv_tags = v
 				i = ii
 			}
 			22 {
-				res.has_return_previews = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_previews = v
 				i = ii
 			}
 			23 {
-				res.has_return_children = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_children = v
 				i = ii
 			}
 			24 {
-				res.has_return_short_description = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_short_description = v
 				i = ii
 			}
 			26 {
-				res.has_return_for_sale_data = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_for_sale_data = v
 				i = ii
 			}
 			28 {
-				res.has_return_metadata = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_metadata = v
 				i = ii
 			}
 			31 {
-				res.has_return_playtime_stats = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_playtime_stats = v
 				i = ii
 			}
 			32 {
-				res.has_strip_description_bbcode = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.strip_description_bbcode = v
 				i = ii
 			}
 			35 {
-				res.has_return_reactions = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_reactions = v
 				i = ii
 			}
 			33 {
-				res.has_desired_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.desired_revision = v
 				i = ii
@@ -3491,17 +4035,69 @@ pub fn cpublishedfile_getuserfiles_request_unpack(buf []byte) ?CPublishedFile_Ge
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Request) eq(b CPublishedFile_GetUserFiles_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.appid == b.appid && a.page == b.page &&
+		a.numperpage == b.numperpage && a.@type == b.@type &&
+		a.sortmethod == b.sortmethod && a.privacy == b.privacy &&
+		a.requiredtags == b.requiredtags &&
+		a.excludedtags == b.excludedtags && a.required_kv_tags.eq(b.required_kv_tags) &&
+		a.filetype == b.filetype && a.creator_appid == b.creator_appid &&
+		a.match_cloud_filename == b.match_cloud_filename &&
+		a.cache_max_age_seconds == b.cache_max_age_seconds &&
+		a.language == b.language && a.taggroups.eq(b.taggroups) &&
+		a.totalonly == b.totalonly && a.ids_only == b.ids_only &&
+		a.return_vote_data == b.return_vote_data &&
+		a.return_tags == b.return_tags && a.return_kv_tags == b.return_kv_tags &&
+		a.return_previews == b.return_previews &&
+		a.return_children == b.return_children &&
+		a.return_short_description == b.return_short_description &&
+		a.return_for_sale_data == b.return_for_sale_data &&
+		a.return_metadata == b.return_metadata &&
+		a.return_playtime_stats == b.return_playtime_stats &&
+		a.strip_description_bbcode == b.strip_description_bbcode &&
+		a.return_reactions == b.return_reactions &&
+		a.desired_revision == b.desired_revision
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Request) ne(b CPublishedFile_GetUserFiles_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Request) eq(b []CPublishedFile_GetUserFiles_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Request) ne(b []CPublishedFile_GetUserFiles_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuserfiles_request() CPublishedFile_GetUserFiles_Request {
 	return CPublishedFile_GetUserFiles_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuserfiles_request(o CPublishedFile_GetUserFiles_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserFiles_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuserfiles_request_unpack(v)?
@@ -3513,34 +4109,30 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	name           string
-	has_name       bool
 	shortcutid     u32
-	has_shortcutid bool
 	private        bool
-	has_private    bool
 }
 
 pub fn (o &CPublishedFile_GetUserFiles_Response_App) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_name {
+	if o.name != '' {
 		res << vproto.pack_string_field(o.name, 2)
 	}
-	if o.has_shortcutid {
+	if o.shortcutid != u32(0) {
 		res << vproto.pack_uint32_field(o.shortcutid, 3)
 	}
-	if o.has_private {
+	if o.private != bool(0) {
 		res << vproto.pack_bool_field(o.private, 4)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getuserfiles_response_app_unpack(buf []byte) ?CPublishedFile_GetUserFiles_Response_App {
-	mut res := CPublishedFile_GetUserFiles_Response_App{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuserfiles_response_app()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3551,25 +4143,21 @@ pub fn cpublishedfile_getuserfiles_response_app_unpack(buf []byte) ?CPublishedFi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.name = v
 				i = ii
 			}
 			3 {
-				res.has_shortcutid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.shortcutid = v
 				i = ii
 			}
 			4 {
-				res.has_private = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.private = v
 				i = ii
@@ -3589,17 +4177,50 @@ pub fn cpublishedfile_getuserfiles_response_app_unpack(buf []byte) ?CPublishedFi
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Response_App) eq(b CPublishedFile_GetUserFiles_Response_App) bool {
+	return true && a.appid == b.appid &&
+		a.name == b.name && a.shortcutid == b.shortcutid &&
+		a.private == b.private
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Response_App) ne(b CPublishedFile_GetUserFiles_Response_App) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Response_App) eq(b []CPublishedFile_GetUserFiles_Response_App) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Response_App) ne(b []CPublishedFile_GetUserFiles_Response_App) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuserfiles_response_app() CPublishedFile_GetUserFiles_Response_App {
 	return CPublishedFile_GetUserFiles_Response_App{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuserfiles_response_app(o CPublishedFile_GetUserFiles_Response_App, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_response_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserFiles_Response_App) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuserfiles_response_app_unpack(v)?
@@ -3611,19 +4232,17 @@ mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
 	total                u32
-	has_total            bool
 	startindex           u32
-	has_startindex       bool
 	publishedfiledetails []PublishedFileDetails
 	apps                 []CPublishedFile_GetUserFiles_Response_App
 }
 
 pub fn (o &CPublishedFile_GetUserFiles_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_total {
+	if o.total != u32(0) {
 		res << vproto.pack_uint32_field(o.total, 1)
 	}
-	if o.has_startindex {
+	if o.startindex != u32(0) {
 		res << vproto.pack_uint32_field(o.startindex, 2)
 	}
 	// [packed=false]
@@ -3638,7 +4257,7 @@ pub fn (o &CPublishedFile_GetUserFiles_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_getuserfiles_response_unpack(buf []byte) ?CPublishedFile_GetUserFiles_Response {
-	mut res := CPublishedFile_GetUserFiles_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuserfiles_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3649,13 +4268,11 @@ pub fn cpublishedfile_getuserfiles_response_unpack(buf []byte) ?CPublishedFile_G
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_total = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.total = v
 				i = ii
 			}
 			2 {
-				res.has_startindex = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.startindex = v
 				i = ii
@@ -3688,17 +4305,49 @@ pub fn cpublishedfile_getuserfiles_response_unpack(buf []byte) ?CPublishedFile_G
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Response) eq(b CPublishedFile_GetUserFiles_Response) bool {
+	return true && a.total == b.total &&
+		a.startindex == b.startindex && a.publishedfiledetails.eq(b.publishedfiledetails) && a.apps.eq(b.apps)
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserFiles_Response) ne(b CPublishedFile_GetUserFiles_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Response) eq(b []CPublishedFile_GetUserFiles_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserFiles_Response) ne(b []CPublishedFile_GetUserFiles_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuserfiles_response() CPublishedFile_GetUserFiles_Response {
 	return CPublishedFile_GetUserFiles_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuserfiles_response(o CPublishedFile_GetUserFiles_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserFiles_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuserfiles_response_unpack(v)?
@@ -3707,42 +4356,38 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getuserfiles_response(buf []byt
 
 pub struct CPublishedFile_AreFilesInSubscriptionList_Request {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	appid                u32
-	has_appid            bool
-	publishedfileids     []u64
-	listtype             u32
-	has_listtype         bool
-	filetype             u32
-	has_filetype         bool
-	workshopfiletype     u32
-	has_workshopfiletype bool
+	appid            u32
+	publishedfileids []u64
+	listtype         u32
+	filetype         u32
+	workshopfiletype u32
 }
 
 pub fn (o &CPublishedFile_AreFilesInSubscriptionList_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
 	for _, x in o.publishedfileids {
 		res << vproto.pack_64bit_field(x, 2)
 	}
-	if o.has_listtype {
+	if o.listtype != u32(0) {
 		res << vproto.pack_uint32_field(o.listtype, 3)
 	}
-	if o.has_filetype {
+	if o.filetype != u32(0) {
 		res << vproto.pack_uint32_field(o.filetype, 4)
 	}
-	if o.has_workshopfiletype {
+	if o.workshopfiletype != u32(0) {
 		res << vproto.pack_uint32_field(o.workshopfiletype, 5)
 	}
 	return res
 }
 
 pub fn cpublishedfile_arefilesinsubscriptionlist_request_unpack(buf []byte) ?CPublishedFile_AreFilesInSubscriptionList_Request {
-	mut res := CPublishedFile_AreFilesInSubscriptionList_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_arefilesinsubscriptionlist_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3753,7 +4398,6 @@ pub fn cpublishedfile_arefilesinsubscriptionlist_request_unpack(buf []byte) ?CPu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -3765,19 +4409,16 @@ pub fn cpublishedfile_arefilesinsubscriptionlist_request_unpack(buf []byte) ?CPu
 				i = ii
 			}
 			3 {
-				res.has_listtype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.listtype = v
 				i = ii
 			}
 			4 {
-				res.has_filetype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.filetype = v
 				i = ii
 			}
 			5 {
-				res.has_workshopfiletype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.workshopfiletype = v
 				i = ii
@@ -3797,17 +4438,51 @@ pub fn cpublishedfile_arefilesinsubscriptionlist_request_unpack(buf []byte) ?CPu
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AreFilesInSubscriptionList_Request) eq(b CPublishedFile_AreFilesInSubscriptionList_Request) bool {
+	return true && a.appid == b.appid &&
+		a.publishedfileids == b.publishedfileids &&
+		a.listtype == b.listtype && a.filetype == b.filetype &&
+		a.workshopfiletype == b.workshopfiletype
+}
+
+[inline]
+pub fn (a CPublishedFile_AreFilesInSubscriptionList_Request) ne(b CPublishedFile_AreFilesInSubscriptionList_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AreFilesInSubscriptionList_Request) eq(b []CPublishedFile_AreFilesInSubscriptionList_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AreFilesInSubscriptionList_Request) ne(b []CPublishedFile_AreFilesInSubscriptionList_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_arefilesinsubscriptionlist_request() CPublishedFile_AreFilesInSubscriptionList_Request {
 	return CPublishedFile_AreFilesInSubscriptionList_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_arefilesinsubscriptionlist_request(o CPublishedFile_AreFilesInSubscriptionList_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_arefilesinsubscriptionlist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AreFilesInSubscriptionList_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_arefilesinsubscriptionlist_request_unpack(v)?
@@ -3816,27 +4491,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_arefilesinsubscriptionlist_requ
 
 pub struct CPublishedFile_AreFilesInSubscriptionList_Response_InList {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	inlist              bool
-	has_inlist          bool
+	publishedfileid u64
+	inlist          bool
 }
 
 pub fn (o &CPublishedFile_AreFilesInSubscriptionList_Response_InList) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_64bit_field(o.publishedfileid, 1)
 	}
-	if o.has_inlist {
+	if o.inlist != bool(0) {
 		res << vproto.pack_bool_field(o.inlist, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_arefilesinsubscriptionlist_response_inlist_unpack(buf []byte) ?CPublishedFile_AreFilesInSubscriptionList_Response_InList {
-	mut res := CPublishedFile_AreFilesInSubscriptionList_Response_InList{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_arefilesinsubscriptionlist_response_inlist()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3847,13 +4520,11 @@ pub fn cpublishedfile_arefilesinsubscriptionlist_response_inlist_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_inlist = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.inlist = v
 				i = ii
@@ -3873,17 +4544,48 @@ pub fn cpublishedfile_arefilesinsubscriptionlist_response_inlist_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AreFilesInSubscriptionList_Response_InList) eq(b CPublishedFile_AreFilesInSubscriptionList_Response_InList) bool {
+	return true && a.publishedfileid == b.publishedfileid && a.inlist == b.inlist
+}
+
+[inline]
+pub fn (a CPublishedFile_AreFilesInSubscriptionList_Response_InList) ne(b CPublishedFile_AreFilesInSubscriptionList_Response_InList) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AreFilesInSubscriptionList_Response_InList) eq(b []CPublishedFile_AreFilesInSubscriptionList_Response_InList) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AreFilesInSubscriptionList_Response_InList) ne(b []CPublishedFile_AreFilesInSubscriptionList_Response_InList) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_arefilesinsubscriptionlist_response_inlist() CPublishedFile_AreFilesInSubscriptionList_Response_InList {
 	return CPublishedFile_AreFilesInSubscriptionList_Response_InList{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_arefilesinsubscriptionlist_response_inlist(o CPublishedFile_AreFilesInSubscriptionList_Response_InList, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_arefilesinsubscriptionlist_response_inlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AreFilesInSubscriptionList_Response_InList) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_arefilesinsubscriptionlist_response_inlist_unpack(v)?
@@ -3908,7 +4610,7 @@ pub fn (o &CPublishedFile_AreFilesInSubscriptionList_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_arefilesinsubscriptionlist_response_unpack(buf []byte) ?CPublishedFile_AreFilesInSubscriptionList_Response {
-	mut res := CPublishedFile_AreFilesInSubscriptionList_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_arefilesinsubscriptionlist_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -3940,17 +4642,48 @@ pub fn cpublishedfile_arefilesinsubscriptionlist_response_unpack(buf []byte) ?CP
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AreFilesInSubscriptionList_Response) eq(b CPublishedFile_AreFilesInSubscriptionList_Response) bool {
+	return true && a.files.eq(b.files)
+}
+
+[inline]
+pub fn (a CPublishedFile_AreFilesInSubscriptionList_Response) ne(b CPublishedFile_AreFilesInSubscriptionList_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AreFilesInSubscriptionList_Response) eq(b []CPublishedFile_AreFilesInSubscriptionList_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AreFilesInSubscriptionList_Response) ne(b []CPublishedFile_AreFilesInSubscriptionList_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_arefilesinsubscriptionlist_response() CPublishedFile_AreFilesInSubscriptionList_Response {
 	return CPublishedFile_AreFilesInSubscriptionList_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_arefilesinsubscriptionlist_response(o CPublishedFile_AreFilesInSubscriptionList_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_arefilesinsubscriptionlist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AreFilesInSubscriptionList_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_arefilesinsubscriptionlist_response_unpack(v)?
@@ -3959,67 +4692,58 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_arefilesinsubscriptionlist_resp
 
 pub struct CPublishedFile_Update_Request {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	appid                u32
-	has_appid            bool
-	publishedfileid      u64
-	has_publishedfileid  bool
-	title                string
-	has_title            bool
-	file_description     string
-	has_file_description bool
-	visibility           u32
-	has_visibility       bool
-	tags                 []string
-	filename             string
-	has_filename         bool
-	preview_filename     string
-	has_preview_filename bool
-	image_width          u32
-	has_image_width      bool
-	image_height         u32
-	has_image_height     bool
+	appid            u32
+	publishedfileid  u64
+	title            string
+	file_description string
+	visibility       u32
+	tags             []string
+	filename         string
+	preview_filename string
+	image_width      u32
+	image_height     u32
 }
 
 pub fn (o &CPublishedFile_Update_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_64bit_field(o.publishedfileid, 2)
 	}
-	if o.has_title {
+	if o.title != '' {
 		res << vproto.pack_string_field(o.title, 3)
 	}
-	if o.has_file_description {
+	if o.file_description != '' {
 		res << vproto.pack_string_field(o.file_description, 4)
 	}
-	if o.has_visibility {
+	if o.visibility != u32(0) {
 		res << vproto.pack_uint32_field(o.visibility, 5)
 	}
 	// [packed=false]
 	for _, x in o.tags {
 		res << vproto.pack_string_field(x, 6)
 	}
-	if o.has_filename {
+	if o.filename != '' {
 		res << vproto.pack_string_field(o.filename, 7)
 	}
-	if o.has_preview_filename {
+	if o.preview_filename != '' {
 		res << vproto.pack_string_field(o.preview_filename, 8)
 	}
-	if o.has_image_width {
+	if o.image_width != u32(0) {
 		res << vproto.pack_uint32_field(o.image_width, 15)
 	}
-	if o.has_image_height {
+	if o.image_height != u32(0) {
 		res << vproto.pack_uint32_field(o.image_height, 16)
 	}
 	return res
 }
 
 pub fn cpublishedfile_update_request_unpack(buf []byte) ?CPublishedFile_Update_Request {
-	mut res := CPublishedFile_Update_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_update_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4030,31 +4754,26 @@ pub fn cpublishedfile_update_request_unpack(buf []byte) ?CPublishedFile_Update_R
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			3 {
-				res.has_title = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.title = v
 				i = ii
 			}
 			4 {
-				res.has_file_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_description = v
 				i = ii
 			}
 			5 {
-				res.has_visibility = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.visibility = v
 				i = ii
@@ -4066,25 +4785,21 @@ pub fn cpublishedfile_update_request_unpack(buf []byte) ?CPublishedFile_Update_R
 				i = ii
 			}
 			7 {
-				res.has_filename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.filename = v
 				i = ii
 			}
 			8 {
-				res.has_preview_filename = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.preview_filename = v
 				i = ii
 			}
 			15 {
-				res.has_image_width = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_width = v
 				i = ii
 			}
 			16 {
-				res.has_image_height = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.image_height = v
 				i = ii
@@ -4104,17 +4819,53 @@ pub fn cpublishedfile_update_request_unpack(buf []byte) ?CPublishedFile_Update_R
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Update_Request) eq(b CPublishedFile_Update_Request) bool {
+	return true && a.appid == b.appid &&
+		a.publishedfileid == b.publishedfileid &&
+		a.title == b.title && a.file_description == b.file_description &&
+		a.visibility == b.visibility && a.tags == b.tags &&
+		a.filename == b.filename && a.preview_filename == b.preview_filename &&
+		a.image_width == b.image_width && a.image_height == b.image_height
+}
+
+[inline]
+pub fn (a CPublishedFile_Update_Request) ne(b CPublishedFile_Update_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Update_Request) eq(b []CPublishedFile_Update_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Update_Request) ne(b []CPublishedFile_Update_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_update_request() CPublishedFile_Update_Request {
 	return CPublishedFile_Update_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_update_request(o CPublishedFile_Update_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_update_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Update_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_update_request_unpack(v)?
@@ -4132,21 +4883,52 @@ pub fn (o &CPublishedFile_Update_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_update_response_unpack(buf []byte) ?CPublishedFile_Update_Response {
-	res := CPublishedFile_Update_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_update_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_Update_Response) eq(b CPublishedFile_Update_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_Update_Response) ne(b CPublishedFile_Update_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_Update_Response) eq(b []CPublishedFile_Update_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_Update_Response) ne(b []CPublishedFile_Update_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_update_response() CPublishedFile_Update_Response {
 	return CPublishedFile_Update_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_update_response(o CPublishedFile_Update_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_update_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_Update_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_update_response_unpack(v)?
@@ -4155,32 +4937,29 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_update_response(buf []byte, tag
 
 pub struct CPublishedFile_GetChangeHistoryEntry_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	timestamp           u32
-	has_timestamp       bool
-	language            int
-	has_language        bool
+	publishedfileid u64
+	timestamp       u32
+	language        int
 }
 
 pub fn (o &CPublishedFile_GetChangeHistoryEntry_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_64bit_field(o.publishedfileid, 1)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 2)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getchangehistoryentry_request_unpack(buf []byte) ?CPublishedFile_GetChangeHistoryEntry_Request {
-	mut res := CPublishedFile_GetChangeHistoryEntry_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getchangehistoryentry_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4191,19 +4970,16 @@ pub fn cpublishedfile_getchangehistoryentry_request_unpack(buf []byte) ?CPublish
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
 			}
 			3 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -4223,17 +4999,49 @@ pub fn cpublishedfile_getchangehistoryentry_request_unpack(buf []byte) ?CPublish
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetChangeHistoryEntry_Request) eq(b CPublishedFile_GetChangeHistoryEntry_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.timestamp == b.timestamp && a.language == b.language
+}
+
+[inline]
+pub fn (a CPublishedFile_GetChangeHistoryEntry_Request) ne(b CPublishedFile_GetChangeHistoryEntry_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistoryEntry_Request) eq(b []CPublishedFile_GetChangeHistoryEntry_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistoryEntry_Request) ne(b []CPublishedFile_GetChangeHistoryEntry_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getchangehistoryentry_request() CPublishedFile_GetChangeHistoryEntry_Request {
 	return CPublishedFile_GetChangeHistoryEntry_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getchangehistoryentry_request(o CPublishedFile_GetChangeHistoryEntry_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistoryentry_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetChangeHistoryEntry_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getchangehistoryentry_request_unpack(v)?
@@ -4242,27 +5050,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistoryentry_request(b
 
 pub struct CPublishedFile_GetChangeHistoryEntry_Response {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	change_description     string
-	has_change_description bool
-	language               int
-	has_language           bool
+	change_description string
+	language           int
 }
 
 pub fn (o &CPublishedFile_GetChangeHistoryEntry_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_change_description {
+	if o.change_description != '' {
 		res << vproto.pack_string_field(o.change_description, 1)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getchangehistoryentry_response_unpack(buf []byte) ?CPublishedFile_GetChangeHistoryEntry_Response {
-	mut res := CPublishedFile_GetChangeHistoryEntry_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getchangehistoryentry_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4273,13 +5079,11 @@ pub fn cpublishedfile_getchangehistoryentry_response_unpack(buf []byte) ?CPublis
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_change_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.change_description = v
 				i = ii
 			}
 			2 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -4299,17 +5103,48 @@ pub fn cpublishedfile_getchangehistoryentry_response_unpack(buf []byte) ?CPublis
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetChangeHistoryEntry_Response) eq(b CPublishedFile_GetChangeHistoryEntry_Response) bool {
+	return true && a.change_description == b.change_description && a.language == b.language
+}
+
+[inline]
+pub fn (a CPublishedFile_GetChangeHistoryEntry_Response) ne(b CPublishedFile_GetChangeHistoryEntry_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistoryEntry_Response) eq(b []CPublishedFile_GetChangeHistoryEntry_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistoryEntry_Response) ne(b []CPublishedFile_GetChangeHistoryEntry_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getchangehistoryentry_response() CPublishedFile_GetChangeHistoryEntry_Response {
 	return CPublishedFile_GetChangeHistoryEntry_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getchangehistoryentry_response(o CPublishedFile_GetChangeHistoryEntry_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistoryentry_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetChangeHistoryEntry_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getchangehistoryentry_response_unpack(v)?
@@ -4318,42 +5153,37 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistoryentry_response(
 
 pub struct CPublishedFile_GetChangeHistory_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	total_only          bool
-	has_total_only      bool
-	startindex          u32
-	has_startindex      bool
-	count               u32
-	has_count           bool
-	language            int
-	has_language        bool
+	publishedfileid u64
+	total_only      bool
+	startindex      u32
+	count           u32
+	language        int = 0
 }
 
 pub fn (o &CPublishedFile_GetChangeHistory_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_64bit_field(o.publishedfileid, 1)
 	}
-	if o.has_total_only {
+	if o.total_only != bool(0) {
 		res << vproto.pack_bool_field(o.total_only, 2)
 	}
-	if o.has_startindex {
+	if o.startindex != u32(0) {
 		res << vproto.pack_uint32_field(o.startindex, 3)
 	}
-	if o.has_count {
+	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 4)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 5)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getchangehistory_request_unpack(buf []byte) ?CPublishedFile_GetChangeHistory_Request {
-	mut res := CPublishedFile_GetChangeHistory_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getchangehistory_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4364,31 +5194,26 @@ pub fn cpublishedfile_getchangehistory_request_unpack(buf []byte) ?CPublishedFil
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_total_only = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.total_only = v
 				i = ii
 			}
 			3 {
-				res.has_startindex = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.startindex = v
 				i = ii
 			}
 			4 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			5 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -4408,17 +5233,50 @@ pub fn cpublishedfile_getchangehistory_request_unpack(buf []byte) ?CPublishedFil
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetChangeHistory_Request) eq(b CPublishedFile_GetChangeHistory_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.total_only == b.total_only && a.startindex == b.startindex &&
+		a.count == b.count && a.language == b.language
+}
+
+[inline]
+pub fn (a CPublishedFile_GetChangeHistory_Request) ne(b CPublishedFile_GetChangeHistory_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistory_Request) eq(b []CPublishedFile_GetChangeHistory_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistory_Request) ne(b []CPublishedFile_GetChangeHistory_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getchangehistory_request() CPublishedFile_GetChangeHistory_Request {
 	return CPublishedFile_GetChangeHistory_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getchangehistory_request(o CPublishedFile_GetChangeHistory_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistory_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetChangeHistory_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getchangehistory_request_unpack(v)?
@@ -4427,32 +5285,29 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistory_request(buf []
 
 pub struct CPublishedFile_GetChangeHistory_Response_ChangeLog {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	timestamp              u32
-	has_timestamp          bool
-	change_description     string
-	has_change_description bool
-	language               int
-	has_language           bool
+	timestamp          u32
+	change_description string
+	language           int
 }
 
 pub fn (o &CPublishedFile_GetChangeHistory_Response_ChangeLog) pack() []byte {
 	mut res := []byte{}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 1)
 	}
-	if o.has_change_description {
+	if o.change_description != '' {
 		res << vproto.pack_string_field(o.change_description, 2)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getchangehistory_response_changelog_unpack(buf []byte) ?CPublishedFile_GetChangeHistory_Response_ChangeLog {
-	mut res := CPublishedFile_GetChangeHistory_Response_ChangeLog{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getchangehistory_response_changelog()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4463,19 +5318,16 @@ pub fn cpublishedfile_getchangehistory_response_changelog_unpack(buf []byte) ?CP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
 			}
 			2 {
-				res.has_change_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.change_description = v
 				i = ii
 			}
 			3 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -4495,17 +5347,50 @@ pub fn cpublishedfile_getchangehistory_response_changelog_unpack(buf []byte) ?CP
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetChangeHistory_Response_ChangeLog) eq(b CPublishedFile_GetChangeHistory_Response_ChangeLog) bool {
+	return true && a.timestamp == b.timestamp &&
+		a.change_description == b.change_description &&
+		a.language == b.language
+}
+
+[inline]
+pub fn (a CPublishedFile_GetChangeHistory_Response_ChangeLog) ne(b CPublishedFile_GetChangeHistory_Response_ChangeLog) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistory_Response_ChangeLog) eq(b []CPublishedFile_GetChangeHistory_Response_ChangeLog) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistory_Response_ChangeLog) ne(b []CPublishedFile_GetChangeHistory_Response_ChangeLog) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getchangehistory_response_changelog() CPublishedFile_GetChangeHistory_Response_ChangeLog {
 	return CPublishedFile_GetChangeHistory_Response_ChangeLog{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getchangehistory_response_changelog(o CPublishedFile_GetChangeHistory_Response_ChangeLog, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistory_response_changelog(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetChangeHistory_Response_ChangeLog) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getchangehistory_response_changelog_unpack(v)?
@@ -4518,7 +5403,6 @@ mut:
 pub mut:
 	changes        []CPublishedFile_GetChangeHistory_Response_ChangeLog
 	total          u32
-	has_total      bool
 }
 
 pub fn (o &CPublishedFile_GetChangeHistory_Response) pack() []byte {
@@ -4527,14 +5411,14 @@ pub fn (o &CPublishedFile_GetChangeHistory_Response) pack() []byte {
 	for _, x in o.changes {
 		res << zzz_vproto_internal_pack_cpublishedfile_getchangehistory_response_changelog(x, 1)
 	}
-	if o.has_total {
+	if o.total != u32(0) {
 		res << vproto.pack_uint32_field(o.total, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getchangehistory_response_unpack(buf []byte) ?CPublishedFile_GetChangeHistory_Response {
-	mut res := CPublishedFile_GetChangeHistory_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getchangehistory_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4552,7 +5436,6 @@ pub fn cpublishedfile_getchangehistory_response_unpack(buf []byte) ?CPublishedFi
 				i = ii
 			}
 			2 {
-				res.has_total = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.total = v
 				i = ii
@@ -4572,17 +5455,48 @@ pub fn cpublishedfile_getchangehistory_response_unpack(buf []byte) ?CPublishedFi
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetChangeHistory_Response) eq(b CPublishedFile_GetChangeHistory_Response) bool {
+	return true && a.changes.eq(b.changes) && a.total == b.total
+}
+
+[inline]
+pub fn (a CPublishedFile_GetChangeHistory_Response) ne(b CPublishedFile_GetChangeHistory_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistory_Response) eq(b []CPublishedFile_GetChangeHistory_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetChangeHistory_Response) ne(b []CPublishedFile_GetChangeHistory_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getchangehistory_response() CPublishedFile_GetChangeHistory_Response {
 	return CPublishedFile_GetChangeHistory_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getchangehistory_response(o CPublishedFile_GetChangeHistory_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistory_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetChangeHistory_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getchangehistory_response_unpack(v)?
@@ -4591,52 +5505,47 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getchangehistory_response(buf [
 
 pub struct CPublishedFile_RefreshVotingQueue_Request {
 mut:
-	unknown_fields         []vproto.UnknownField
+	unknown_fields     []vproto.UnknownField
 pub mut:
-	appid                  u32
-	has_appid              bool
-	matching_file_type     u32
-	has_matching_file_type bool
-	tags                   []string
-	match_all_tags         bool
-	has_match_all_tags     bool
-	excluded_tags          []string
-	desired_queue_size     u32
-	has_desired_queue_size bool
-	desired_revision       EPublishedFileRevision
-	has_desired_revision   bool
+	appid              u32
+	matching_file_type u32
+	tags               []string
+	match_all_tags     bool = true
+	excluded_tags      []string
+	desired_queue_size u32
+	desired_revision   EPublishedFileRevision = .k_epublishedfilerevision_default
 }
 
 pub fn (o &CPublishedFile_RefreshVotingQueue_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_matching_file_type {
+	if o.matching_file_type != u32(0) {
 		res << vproto.pack_uint32_field(o.matching_file_type, 2)
 	}
 	// [packed=false]
 	for _, x in o.tags {
 		res << vproto.pack_string_field(x, 3)
 	}
-	if o.has_match_all_tags {
+	if o.match_all_tags != bool(0) {
 		res << vproto.pack_bool_field(o.match_all_tags, 4)
 	}
 	// [packed=false]
 	for _, x in o.excluded_tags {
 		res << vproto.pack_string_field(x, 5)
 	}
-	if o.has_desired_queue_size {
+	if o.desired_queue_size != u32(0) {
 		res << vproto.pack_uint32_field(o.desired_queue_size, 6)
 	}
-	if o.has_desired_revision {
+	if o.desired_revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.desired_revision, 8)
 	}
 	return res
 }
 
 pub fn cpublishedfile_refreshvotingqueue_request_unpack(buf []byte) ?CPublishedFile_RefreshVotingQueue_Request {
-	mut res := CPublishedFile_RefreshVotingQueue_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_refreshvotingqueue_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4647,13 +5556,11 @@ pub fn cpublishedfile_refreshvotingqueue_request_unpack(buf []byte) ?CPublishedF
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_matching_file_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.matching_file_type = v
 				i = ii
@@ -4665,7 +5572,6 @@ pub fn cpublishedfile_refreshvotingqueue_request_unpack(buf []byte) ?CPublishedF
 				i = ii
 			}
 			4 {
-				res.has_match_all_tags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.match_all_tags = v
 				i = ii
@@ -4677,13 +5583,11 @@ pub fn cpublishedfile_refreshvotingqueue_request_unpack(buf []byte) ?CPublishedF
 				i = ii
 			}
 			6 {
-				res.has_desired_queue_size = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.desired_queue_size = v
 				i = ii
 			}
 			8 {
-				res.has_desired_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.desired_revision = v
 				i = ii
@@ -4703,17 +5607,53 @@ pub fn cpublishedfile_refreshvotingqueue_request_unpack(buf []byte) ?CPublishedF
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_RefreshVotingQueue_Request) eq(b CPublishedFile_RefreshVotingQueue_Request) bool {
+	return true && a.appid == b.appid &&
+		a.matching_file_type == b.matching_file_type &&
+		a.tags == b.tags && a.match_all_tags == b.match_all_tags &&
+		a.excluded_tags == b.excluded_tags &&
+		a.desired_queue_size == b.desired_queue_size &&
+		a.desired_revision == b.desired_revision
+}
+
+[inline]
+pub fn (a CPublishedFile_RefreshVotingQueue_Request) ne(b CPublishedFile_RefreshVotingQueue_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_RefreshVotingQueue_Request) eq(b []CPublishedFile_RefreshVotingQueue_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_RefreshVotingQueue_Request) ne(b []CPublishedFile_RefreshVotingQueue_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_refreshvotingqueue_request() CPublishedFile_RefreshVotingQueue_Request {
 	return CPublishedFile_RefreshVotingQueue_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_refreshvotingqueue_request(o CPublishedFile_RefreshVotingQueue_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_refreshvotingqueue_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_RefreshVotingQueue_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_refreshvotingqueue_request_unpack(v)?
@@ -4731,21 +5671,52 @@ pub fn (o &CPublishedFile_RefreshVotingQueue_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_refreshvotingqueue_response_unpack(buf []byte) ?CPublishedFile_RefreshVotingQueue_Response {
-	res := CPublishedFile_RefreshVotingQueue_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_refreshvotingqueue_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_RefreshVotingQueue_Response) eq(b CPublishedFile_RefreshVotingQueue_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_RefreshVotingQueue_Response) ne(b CPublishedFile_RefreshVotingQueue_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_RefreshVotingQueue_Response) eq(b []CPublishedFile_RefreshVotingQueue_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_RefreshVotingQueue_Response) ne(b []CPublishedFile_RefreshVotingQueue_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_refreshvotingqueue_response() CPublishedFile_RefreshVotingQueue_Response {
 	return CPublishedFile_RefreshVotingQueue_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_refreshvotingqueue_response(o CPublishedFile_RefreshVotingQueue_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_refreshvotingqueue_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_RefreshVotingQueue_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_refreshvotingqueue_response_unpack(v)?
@@ -4757,24 +5728,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	key            string
-	has_key        bool
 	value          string
-	has_value      bool
 }
 
 pub fn (o &CPublishedFile_QueryFiles_Request_KVTag) pack() []byte {
 	mut res := []byte{}
-	if o.has_key {
+	if o.key != '' {
 		res << vproto.pack_string_field(o.key, 1)
 	}
-	if o.has_value {
+	if o.value != '' {
 		res << vproto.pack_string_field(o.value, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_queryfiles_request_kvtag_unpack(buf []byte) ?CPublishedFile_QueryFiles_Request_KVTag {
-	mut res := CPublishedFile_QueryFiles_Request_KVTag{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_queryfiles_request_kvtag()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4785,13 +5754,11 @@ pub fn cpublishedfile_queryfiles_request_kvtag_unpack(buf []byte) ?CPublishedFil
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_key = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.key = v
 				i = ii
 			}
 			2 {
-				res.has_value = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.value = v
 				i = ii
@@ -4811,17 +5778,48 @@ pub fn cpublishedfile_queryfiles_request_kvtag_unpack(buf []byte) ?CPublishedFil
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Request_KVTag) eq(b CPublishedFile_QueryFiles_Request_KVTag) bool {
+	return true && a.key == b.key && a.value == b.value
+}
+
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Request_KVTag) ne(b CPublishedFile_QueryFiles_Request_KVTag) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Request_KVTag) eq(b []CPublishedFile_QueryFiles_Request_KVTag) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Request_KVTag) ne(b []CPublishedFile_QueryFiles_Request_KVTag) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_queryfiles_request_kvtag() CPublishedFile_QueryFiles_Request_KVTag {
 	return CPublishedFile_QueryFiles_Request_KVTag{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_queryfiles_request_kvtag(o CPublishedFile_QueryFiles_Request_KVTag, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_queryfiles_request_kvtag(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_QueryFiles_Request_KVTag) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_queryfiles_request_kvtag_unpack(v)?
@@ -4845,7 +5843,7 @@ pub fn (o &CPublishedFile_QueryFiles_Request_TagGroup) pack() []byte {
 }
 
 pub fn cpublishedfile_queryfiles_request_taggroup_unpack(buf []byte) ?CPublishedFile_QueryFiles_Request_TagGroup {
-	mut res := CPublishedFile_QueryFiles_Request_TagGroup{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_queryfiles_request_taggroup()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -4876,17 +5874,48 @@ pub fn cpublishedfile_queryfiles_request_taggroup_unpack(buf []byte) ?CPublished
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Request_TagGroup) eq(b CPublishedFile_QueryFiles_Request_TagGroup) bool {
+	return true && a.tags == b.tags
+}
+
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Request_TagGroup) ne(b CPublishedFile_QueryFiles_Request_TagGroup) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Request_TagGroup) eq(b []CPublishedFile_QueryFiles_Request_TagGroup) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Request_TagGroup) ne(b []CPublishedFile_QueryFiles_Request_TagGroup) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_queryfiles_request_taggroup() CPublishedFile_QueryFiles_Request_TagGroup {
 	return CPublishedFile_QueryFiles_Request_TagGroup{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_queryfiles_request_taggroup(o CPublishedFile_QueryFiles_Request_TagGroup, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_queryfiles_request_taggroup(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_QueryFiles_Request_TagGroup) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_queryfiles_request_taggroup_unpack(v)?
@@ -4895,92 +5924,63 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_queryfiles_request_taggroup(buf
 
 pub struct CPublishedFile_QueryFiles_Request {
 mut:
-	unknown_fields                []vproto.UnknownField
+	unknown_fields            []vproto.UnknownField
 pub mut:
-	query_type                    u32
-	has_query_type                bool
-	page                          u32
-	has_page                      bool
-	cursor                        string
-	has_cursor                    bool
-	numperpage                    u32
-	has_numperpage                bool
-	creator_appid                 u32
-	has_creator_appid             bool
-	appid                         u32
-	has_appid                     bool
-	requiredtags                  []string
-	excludedtags                  []string
-	match_all_tags                bool
-	has_match_all_tags            bool
-	required_flags                []string
-	omitted_flags                 []string
-	search_text                   string
-	has_search_text               bool
-	filetype                      u32
-	has_filetype                  bool
-	child_publishedfileid         u64
-	has_child_publishedfileid     bool
-	days                          u32
-	has_days                      bool
-	include_recent_votes_only     bool
-	has_include_recent_votes_only bool
-	cache_max_age_seconds         u32
-	has_cache_max_age_seconds     bool
-	language                      int
-	has_language                  bool
-	required_kv_tags              []CPublishedFile_QueryFiles_Request_KVTag
-	taggroups                     []CPublishedFile_QueryFiles_Request_TagGroup
-	totalonly                     bool
-	has_totalonly                 bool
-	ids_only                      bool
-	has_ids_only                  bool
-	return_vote_data              bool
-	has_return_vote_data          bool
-	return_tags                   bool
-	has_return_tags               bool
-	return_kv_tags                bool
-	has_return_kv_tags            bool
-	return_previews               bool
-	has_return_previews           bool
-	return_children               bool
-	has_return_children           bool
-	return_short_description      bool
-	has_return_short_description  bool
-	return_for_sale_data          bool
-	has_return_for_sale_data      bool
-	return_metadata               bool
-	has_return_metadata           bool
-	return_playtime_stats         u32
-	has_return_playtime_stats     bool
-	return_details                bool
-	has_return_details            bool
-	strip_description_bbcode      bool
-	has_strip_description_bbcode  bool
-	desired_revision              EPublishedFileRevision
-	has_desired_revision          bool
-	return_reactions              bool
-	has_return_reactions          bool
+	query_type                u32
+	page                      u32
+	cursor                    string
+	numperpage                u32 = 1
+	creator_appid             u32
+	appid                     u32
+	requiredtags              []string
+	excludedtags              []string
+	match_all_tags            bool = true
+	required_flags            []string
+	omitted_flags             []string
+	search_text               string
+	filetype                  u32
+	child_publishedfileid     u64
+	days                      u32
+	include_recent_votes_only bool
+	cache_max_age_seconds     u32 = 0
+	language                  int = 0
+	required_kv_tags          []CPublishedFile_QueryFiles_Request_KVTag
+	taggroups                 []CPublishedFile_QueryFiles_Request_TagGroup
+	totalonly                 bool
+	ids_only                  bool
+	return_vote_data          bool
+	return_tags               bool
+	return_kv_tags            bool
+	return_previews           bool
+	return_children           bool
+	return_short_description  bool
+	return_for_sale_data      bool
+	return_metadata           bool = false
+	return_playtime_stats     u32
+	return_details            bool
+	strip_description_bbcode  bool
+	desired_revision          EPublishedFileRevision = .k_epublishedfilerevision_default
+	return_reactions          bool = false
 }
 
 pub fn (o &CPublishedFile_QueryFiles_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_query_type {
+	if o.query_type != u32(0) {
 		res << vproto.pack_uint32_field(o.query_type, 1)
 	}
-	if o.has_page {
+	if o.page != u32(0) {
 		res << vproto.pack_uint32_field(o.page, 2)
 	}
-	if o.has_cursor {
+	if o.cursor != '' {
 		res << vproto.pack_string_field(o.cursor, 39)
 	}
-	if o.has_numperpage {
+	if o.numperpage != u32(0) {
 		res << vproto.pack_uint32_field(o.numperpage, 3)
 	}
-	if o.has_creator_appid {
+	if o.creator_appid != u32(0) {
 		res << vproto.pack_uint32_field(o.creator_appid, 4)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 5)
 	}
 	// [packed=false]
@@ -4991,7 +5991,7 @@ pub fn (o &CPublishedFile_QueryFiles_Request) pack() []byte {
 	for _, x in o.excludedtags {
 		res << vproto.pack_string_field(x, 7)
 	}
-	if o.has_match_all_tags {
+	if o.match_all_tags != bool(0) {
 		res << vproto.pack_bool_field(o.match_all_tags, 8)
 	}
 	// [packed=false]
@@ -5002,25 +6002,25 @@ pub fn (o &CPublishedFile_QueryFiles_Request) pack() []byte {
 	for _, x in o.omitted_flags {
 		res << vproto.pack_string_field(x, 10)
 	}
-	if o.has_search_text {
+	if o.search_text != '' {
 		res << vproto.pack_string_field(o.search_text, 11)
 	}
-	if o.has_filetype {
+	if o.filetype != u32(0) {
 		res << vproto.pack_uint32_field(o.filetype, 12)
 	}
-	if o.has_child_publishedfileid {
+	if o.child_publishedfileid != u64(0) {
 		res << vproto.pack_64bit_field(o.child_publishedfileid, 13)
 	}
-	if o.has_days {
+	if o.days != u32(0) {
 		res << vproto.pack_uint32_field(o.days, 14)
 	}
-	if o.has_include_recent_votes_only {
+	if o.include_recent_votes_only != bool(0) {
 		res << vproto.pack_bool_field(o.include_recent_votes_only, 15)
 	}
-	if o.has_cache_max_age_seconds {
+	if o.cache_max_age_seconds != u32(0) {
 		res << vproto.pack_uint32_field(o.cache_max_age_seconds, 31)
 	}
-	if o.has_language {
+	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 33)
 	}
 	// [packed=false]
@@ -5031,56 +6031,56 @@ pub fn (o &CPublishedFile_QueryFiles_Request) pack() []byte {
 	for _, x in o.taggroups {
 		res << zzz_vproto_internal_pack_cpublishedfile_queryfiles_request_taggroup(x, 42)
 	}
-	if o.has_totalonly {
+	if o.totalonly != bool(0) {
 		res << vproto.pack_bool_field(o.totalonly, 16)
 	}
-	if o.has_ids_only {
+	if o.ids_only != bool(0) {
 		res << vproto.pack_bool_field(o.ids_only, 35)
 	}
-	if o.has_return_vote_data {
+	if o.return_vote_data != bool(0) {
 		res << vproto.pack_bool_field(o.return_vote_data, 17)
 	}
-	if o.has_return_tags {
+	if o.return_tags != bool(0) {
 		res << vproto.pack_bool_field(o.return_tags, 18)
 	}
-	if o.has_return_kv_tags {
+	if o.return_kv_tags != bool(0) {
 		res << vproto.pack_bool_field(o.return_kv_tags, 19)
 	}
-	if o.has_return_previews {
+	if o.return_previews != bool(0) {
 		res << vproto.pack_bool_field(o.return_previews, 20)
 	}
-	if o.has_return_children {
+	if o.return_children != bool(0) {
 		res << vproto.pack_bool_field(o.return_children, 21)
 	}
-	if o.has_return_short_description {
+	if o.return_short_description != bool(0) {
 		res << vproto.pack_bool_field(o.return_short_description, 22)
 	}
-	if o.has_return_for_sale_data {
+	if o.return_for_sale_data != bool(0) {
 		res << vproto.pack_bool_field(o.return_for_sale_data, 30)
 	}
-	if o.has_return_metadata {
+	if o.return_metadata != bool(0) {
 		res << vproto.pack_bool_field(o.return_metadata, 32)
 	}
-	if o.has_return_playtime_stats {
+	if o.return_playtime_stats != u32(0) {
 		res << vproto.pack_uint32_field(o.return_playtime_stats, 36)
 	}
-	if o.has_return_details {
+	if o.return_details != bool(0) {
 		res << vproto.pack_bool_field(o.return_details, 37)
 	}
-	if o.has_strip_description_bbcode {
+	if o.strip_description_bbcode != bool(0) {
 		res << vproto.pack_bool_field(o.strip_description_bbcode, 38)
 	}
-	if o.has_desired_revision {
+	if o.desired_revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.desired_revision, 40)
 	}
-	if o.has_return_reactions {
+	if o.return_reactions != bool(0) {
 		res << vproto.pack_bool_field(o.return_reactions, 43)
 	}
 	return res
 }
 
 pub fn cpublishedfile_queryfiles_request_unpack(buf []byte) ?CPublishedFile_QueryFiles_Request {
-	mut res := CPublishedFile_QueryFiles_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_queryfiles_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5091,37 +6091,31 @@ pub fn cpublishedfile_queryfiles_request_unpack(buf []byte) ?CPublishedFile_Quer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_query_type = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.query_type = v
 				i = ii
 			}
 			2 {
-				res.has_page = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.page = v
 				i = ii
 			}
 			39 {
-				res.has_cursor = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.cursor = v
 				i = ii
 			}
 			3 {
-				res.has_numperpage = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.numperpage = v
 				i = ii
 			}
 			4 {
-				res.has_creator_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.creator_appid = v
 				i = ii
 			}
 			5 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -5139,7 +6133,6 @@ pub fn cpublishedfile_queryfiles_request_unpack(buf []byte) ?CPublishedFile_Quer
 				i = ii
 			}
 			8 {
-				res.has_match_all_tags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.match_all_tags = v
 				i = ii
@@ -5157,43 +6150,36 @@ pub fn cpublishedfile_queryfiles_request_unpack(buf []byte) ?CPublishedFile_Quer
 				i = ii
 			}
 			11 {
-				res.has_search_text = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.search_text = v
 				i = ii
 			}
 			12 {
-				res.has_filetype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.filetype = v
 				i = ii
 			}
 			13 {
-				res.has_child_publishedfileid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.child_publishedfileid = v
 				i = ii
 			}
 			14 {
-				res.has_days = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.days = v
 				i = ii
 			}
 			15 {
-				res.has_include_recent_votes_only = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_recent_votes_only = v
 				i = ii
 			}
 			31 {
-				res.has_cache_max_age_seconds = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.cache_max_age_seconds = v
 				i = ii
 			}
 			33 {
-				res.has_language = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.language = v
 				i = ii
@@ -5213,91 +6199,76 @@ pub fn cpublishedfile_queryfiles_request_unpack(buf []byte) ?CPublishedFile_Quer
 				i = ii
 			}
 			16 {
-				res.has_totalonly = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.totalonly = v
 				i = ii
 			}
 			35 {
-				res.has_ids_only = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.ids_only = v
 				i = ii
 			}
 			17 {
-				res.has_return_vote_data = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_vote_data = v
 				i = ii
 			}
 			18 {
-				res.has_return_tags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_tags = v
 				i = ii
 			}
 			19 {
-				res.has_return_kv_tags = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_kv_tags = v
 				i = ii
 			}
 			20 {
-				res.has_return_previews = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_previews = v
 				i = ii
 			}
 			21 {
-				res.has_return_children = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_children = v
 				i = ii
 			}
 			22 {
-				res.has_return_short_description = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_short_description = v
 				i = ii
 			}
 			30 {
-				res.has_return_for_sale_data = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_for_sale_data = v
 				i = ii
 			}
 			32 {
-				res.has_return_metadata = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_metadata = v
 				i = ii
 			}
 			36 {
-				res.has_return_playtime_stats = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_playtime_stats = v
 				i = ii
 			}
 			37 {
-				res.has_return_details = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_details = v
 				i = ii
 			}
 			38 {
-				res.has_strip_description_bbcode = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.strip_description_bbcode = v
 				i = ii
 			}
 			40 {
-				res.has_desired_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.desired_revision = v
 				i = ii
 			}
 			43 {
-				res.has_return_reactions = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.return_reactions = v
 				i = ii
@@ -5317,17 +6288,73 @@ pub fn cpublishedfile_queryfiles_request_unpack(buf []byte) ?CPublishedFile_Quer
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Request) eq(b CPublishedFile_QueryFiles_Request) bool {
+	return true && a.query_type == b.query_type &&
+		a.page == b.page && a.cursor == b.cursor &&
+		a.numperpage == b.numperpage && a.creator_appid == b.creator_appid &&
+		a.appid == b.appid && a.requiredtags == b.requiredtags &&
+		a.excludedtags == b.excludedtags &&
+		a.match_all_tags == b.match_all_tags &&
+		a.required_flags == b.required_flags &&
+		a.omitted_flags == b.omitted_flags &&
+		a.search_text == b.search_text && a.filetype == b.filetype &&
+		a.child_publishedfileid == b.child_publishedfileid &&
+		a.days == b.days && a.include_recent_votes_only == b.include_recent_votes_only &&
+		a.cache_max_age_seconds == b.cache_max_age_seconds &&
+		a.language == b.language && a.required_kv_tags.eq(b.required_kv_tags) && a.taggroups.eq(b.taggroups) &&
+		a.totalonly == b.totalonly && a.ids_only == b.ids_only &&
+		a.return_vote_data == b.return_vote_data &&
+		a.return_tags == b.return_tags && a.return_kv_tags == b.return_kv_tags &&
+		a.return_previews == b.return_previews &&
+		a.return_children == b.return_children &&
+		a.return_short_description == b.return_short_description &&
+		a.return_for_sale_data == b.return_for_sale_data &&
+		a.return_metadata == b.return_metadata &&
+		a.return_playtime_stats == b.return_playtime_stats &&
+		a.return_details == b.return_details &&
+		a.strip_description_bbcode == b.strip_description_bbcode &&
+		a.desired_revision == b.desired_revision &&
+		a.return_reactions == b.return_reactions
+}
+
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Request) ne(b CPublishedFile_QueryFiles_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Request) eq(b []CPublishedFile_QueryFiles_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Request) ne(b []CPublishedFile_QueryFiles_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_queryfiles_request() CPublishedFile_QueryFiles_Request {
 	return CPublishedFile_QueryFiles_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_queryfiles_request(o CPublishedFile_QueryFiles_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_queryfiles_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_QueryFiles_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_queryfiles_request_unpack(v)?
@@ -5339,29 +6366,27 @@ mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
 	total                u32
-	has_total            bool
 	publishedfiledetails []PublishedFileDetails
 	next_cursor          string
-	has_next_cursor      bool
 }
 
 pub fn (o &CPublishedFile_QueryFiles_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_total {
+	if o.total != u32(0) {
 		res << vproto.pack_uint32_field(o.total, 1)
 	}
 	// [packed=false]
 	for _, x in o.publishedfiledetails {
 		res << zzz_vproto_internal_pack_publishedfiledetails(x, 2)
 	}
-	if o.has_next_cursor {
+	if o.next_cursor != '' {
 		res << vproto.pack_string_field(o.next_cursor, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_queryfiles_response_unpack(buf []byte) ?CPublishedFile_QueryFiles_Response {
-	mut res := CPublishedFile_QueryFiles_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_queryfiles_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5372,7 +6397,6 @@ pub fn cpublishedfile_queryfiles_response_unpack(buf []byte) ?CPublishedFile_Que
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_total = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.total = v
 				i = ii
@@ -5384,7 +6408,6 @@ pub fn cpublishedfile_queryfiles_response_unpack(buf []byte) ?CPublishedFile_Que
 				i = ii
 			}
 			3 {
-				res.has_next_cursor = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.next_cursor = v
 				i = ii
@@ -5404,17 +6427,49 @@ pub fn cpublishedfile_queryfiles_response_unpack(buf []byte) ?CPublishedFile_Que
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Response) eq(b CPublishedFile_QueryFiles_Response) bool {
+	return true && a.total == b.total && a.publishedfiledetails.eq(b.publishedfiledetails) &&
+		a.next_cursor == b.next_cursor
+}
+
+[inline]
+pub fn (a CPublishedFile_QueryFiles_Response) ne(b CPublishedFile_QueryFiles_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Response) eq(b []CPublishedFile_QueryFiles_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_QueryFiles_Response) ne(b []CPublishedFile_QueryFiles_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_queryfiles_response() CPublishedFile_QueryFiles_Response {
 	return CPublishedFile_QueryFiles_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_queryfiles_response(o CPublishedFile_QueryFiles_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_queryfiles_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_QueryFiles_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_queryfiles_response_unpack(v)?
@@ -5423,32 +6478,29 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_queryfiles_response(buf []byte,
 
 pub struct CPublishedFile_AddAppRelationship_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	appid               u32
-	has_appid           bool
-	relationship        u32
-	has_relationship    bool
+	publishedfileid u64
+	appid           u32
+	relationship    u32
 }
 
 pub fn (o &CPublishedFile_AddAppRelationship_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_relationship {
+	if o.relationship != u32(0) {
 		res << vproto.pack_uint32_field(o.relationship, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_addapprelationship_request_unpack(buf []byte) ?CPublishedFile_AddAppRelationship_Request {
-	mut res := CPublishedFile_AddAppRelationship_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_addapprelationship_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5459,19 +6511,16 @@ pub fn cpublishedfile_addapprelationship_request_unpack(buf []byte) ?CPublishedF
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				res.has_relationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.relationship = v
 				i = ii
@@ -5491,17 +6540,49 @@ pub fn cpublishedfile_addapprelationship_request_unpack(buf []byte) ?CPublishedF
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AddAppRelationship_Request) eq(b CPublishedFile_AddAppRelationship_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.appid == b.appid && a.relationship == b.relationship
+}
+
+[inline]
+pub fn (a CPublishedFile_AddAppRelationship_Request) ne(b CPublishedFile_AddAppRelationship_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddAppRelationship_Request) eq(b []CPublishedFile_AddAppRelationship_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddAppRelationship_Request) ne(b []CPublishedFile_AddAppRelationship_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_addapprelationship_request() CPublishedFile_AddAppRelationship_Request {
 	return CPublishedFile_AddAppRelationship_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_addapprelationship_request(o CPublishedFile_AddAppRelationship_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_addapprelationship_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AddAppRelationship_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_addapprelationship_request_unpack(v)?
@@ -5519,21 +6600,52 @@ pub fn (o &CPublishedFile_AddAppRelationship_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_addapprelationship_response_unpack(buf []byte) ?CPublishedFile_AddAppRelationship_Response {
-	res := CPublishedFile_AddAppRelationship_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_addapprelationship_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AddAppRelationship_Response) eq(b CPublishedFile_AddAppRelationship_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_AddAppRelationship_Response) ne(b CPublishedFile_AddAppRelationship_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddAppRelationship_Response) eq(b []CPublishedFile_AddAppRelationship_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddAppRelationship_Response) ne(b []CPublishedFile_AddAppRelationship_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_addapprelationship_response() CPublishedFile_AddAppRelationship_Response {
 	return CPublishedFile_AddAppRelationship_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_addapprelationship_response(o CPublishedFile_AddAppRelationship_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_addapprelationship_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AddAppRelationship_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_addapprelationship_response_unpack(v)?
@@ -5542,32 +6654,29 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_addapprelationship_response(buf
 
 pub struct CPublishedFile_RemoveAppRelationship_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	appid               u32
-	has_appid           bool
-	relationship        u32
-	has_relationship    bool
+	publishedfileid u64
+	appid           u32
+	relationship    u32
 }
 
 pub fn (o &CPublishedFile_RemoveAppRelationship_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 2)
 	}
-	if o.has_relationship {
+	if o.relationship != u32(0) {
 		res << vproto.pack_uint32_field(o.relationship, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_removeapprelationship_request_unpack(buf []byte) ?CPublishedFile_RemoveAppRelationship_Request {
-	mut res := CPublishedFile_RemoveAppRelationship_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_removeapprelationship_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5578,19 +6687,16 @@ pub fn cpublishedfile_removeapprelationship_request_unpack(buf []byte) ?CPublish
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				res.has_relationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.relationship = v
 				i = ii
@@ -5610,17 +6716,49 @@ pub fn cpublishedfile_removeapprelationship_request_unpack(buf []byte) ?CPublish
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_RemoveAppRelationship_Request) eq(b CPublishedFile_RemoveAppRelationship_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.appid == b.appid && a.relationship == b.relationship
+}
+
+[inline]
+pub fn (a CPublishedFile_RemoveAppRelationship_Request) ne(b CPublishedFile_RemoveAppRelationship_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveAppRelationship_Request) eq(b []CPublishedFile_RemoveAppRelationship_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveAppRelationship_Request) ne(b []CPublishedFile_RemoveAppRelationship_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_removeapprelationship_request() CPublishedFile_RemoveAppRelationship_Request {
 	return CPublishedFile_RemoveAppRelationship_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_removeapprelationship_request(o CPublishedFile_RemoveAppRelationship_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_removeapprelationship_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_RemoveAppRelationship_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_removeapprelationship_request_unpack(v)?
@@ -5638,21 +6776,52 @@ pub fn (o &CPublishedFile_RemoveAppRelationship_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_removeapprelationship_response_unpack(buf []byte) ?CPublishedFile_RemoveAppRelationship_Response {
-	res := CPublishedFile_RemoveAppRelationship_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_removeapprelationship_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_RemoveAppRelationship_Response) eq(b CPublishedFile_RemoveAppRelationship_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_RemoveAppRelationship_Response) ne(b CPublishedFile_RemoveAppRelationship_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveAppRelationship_Response) eq(b []CPublishedFile_RemoveAppRelationship_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveAppRelationship_Response) ne(b []CPublishedFile_RemoveAppRelationship_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_removeapprelationship_response() CPublishedFile_RemoveAppRelationship_Response {
 	return CPublishedFile_RemoveAppRelationship_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_removeapprelationship_response(o CPublishedFile_RemoveAppRelationship_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_removeapprelationship_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_RemoveAppRelationship_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_removeapprelationship_response_unpack(v)?
@@ -5661,22 +6830,21 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_removeapprelationship_response(
 
 pub struct CPublishedFile_GetAppRelationships_Request {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
+	publishedfileid u64
 }
 
 pub fn (o &CPublishedFile_GetAppRelationships_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getapprelationships_request_unpack(buf []byte) ?CPublishedFile_GetAppRelationships_Request {
-	mut res := CPublishedFile_GetAppRelationships_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getapprelationships_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5687,7 +6855,6 @@ pub fn cpublishedfile_getapprelationships_request_unpack(buf []byte) ?CPublished
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
@@ -5707,17 +6874,48 @@ pub fn cpublishedfile_getapprelationships_request_unpack(buf []byte) ?CPublished
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetAppRelationships_Request) eq(b CPublishedFile_GetAppRelationships_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid
+}
+
+[inline]
+pub fn (a CPublishedFile_GetAppRelationships_Request) ne(b CPublishedFile_GetAppRelationships_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetAppRelationships_Request) eq(b []CPublishedFile_GetAppRelationships_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetAppRelationships_Request) ne(b []CPublishedFile_GetAppRelationships_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getapprelationships_request() CPublishedFile_GetAppRelationships_Request {
 	return CPublishedFile_GetAppRelationships_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getapprelationships_request(o CPublishedFile_GetAppRelationships_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getapprelationships_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetAppRelationships_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getapprelationships_request_unpack(v)?
@@ -5726,27 +6924,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getapprelationships_request(buf
 
 pub struct CPublishedFile_GetAppRelationships_Response_AppRelationship {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	appid            u32
-	has_appid        bool
-	relationship     u32
-	has_relationship bool
+	appid          u32
+	relationship   u32
 }
 
 pub fn (o &CPublishedFile_GetAppRelationships_Response_AppRelationship) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_relationship {
+	if o.relationship != u32(0) {
 		res << vproto.pack_uint32_field(o.relationship, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getapprelationships_response_apprelationship_unpack(buf []byte) ?CPublishedFile_GetAppRelationships_Response_AppRelationship {
-	mut res := CPublishedFile_GetAppRelationships_Response_AppRelationship{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getapprelationships_response_apprelationship()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5757,13 +6953,11 @@ pub fn cpublishedfile_getapprelationships_response_apprelationship_unpack(buf []
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_relationship = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.relationship = v
 				i = ii
@@ -5783,17 +6977,48 @@ pub fn cpublishedfile_getapprelationships_response_apprelationship_unpack(buf []
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetAppRelationships_Response_AppRelationship) eq(b CPublishedFile_GetAppRelationships_Response_AppRelationship) bool {
+	return true && a.appid == b.appid && a.relationship == b.relationship
+}
+
+[inline]
+pub fn (a CPublishedFile_GetAppRelationships_Response_AppRelationship) ne(b CPublishedFile_GetAppRelationships_Response_AppRelationship) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetAppRelationships_Response_AppRelationship) eq(b []CPublishedFile_GetAppRelationships_Response_AppRelationship) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetAppRelationships_Response_AppRelationship) ne(b []CPublishedFile_GetAppRelationships_Response_AppRelationship) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getapprelationships_response_apprelationship() CPublishedFile_GetAppRelationships_Response_AppRelationship {
 	return CPublishedFile_GetAppRelationships_Response_AppRelationship{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getapprelationships_response_apprelationship(o CPublishedFile_GetAppRelationships_Response_AppRelationship, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getapprelationships_response_apprelationship(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetAppRelationships_Response_AppRelationship) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getapprelationships_response_apprelationship_unpack(v)?
@@ -5818,7 +7043,7 @@ pub fn (o &CPublishedFile_GetAppRelationships_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_getapprelationships_response_unpack(buf []byte) ?CPublishedFile_GetAppRelationships_Response {
-	mut res := CPublishedFile_GetAppRelationships_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getapprelationships_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5850,17 +7075,48 @@ pub fn cpublishedfile_getapprelationships_response_unpack(buf []byte) ?CPublishe
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetAppRelationships_Response) eq(b CPublishedFile_GetAppRelationships_Response) bool {
+	return true && a.app_relationships.eq(b.app_relationships)
+}
+
+[inline]
+pub fn (a CPublishedFile_GetAppRelationships_Response) ne(b CPublishedFile_GetAppRelationships_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetAppRelationships_Response) eq(b []CPublishedFile_GetAppRelationships_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetAppRelationships_Response) ne(b []CPublishedFile_GetAppRelationships_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getapprelationships_response() CPublishedFile_GetAppRelationships_Response {
 	return CPublishedFile_GetAppRelationships_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getapprelationships_response(o CPublishedFile_GetAppRelationships_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getapprelationships_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetAppRelationships_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getapprelationships_response_unpack(v)?
@@ -5872,13 +7128,12 @@ mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	appid            u32
-	has_appid        bool
 	publishedfileids []u64
 }
 
 pub fn (o &CPublishedFile_StartPlaytimeTracking_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
@@ -5889,7 +7144,7 @@ pub fn (o &CPublishedFile_StartPlaytimeTracking_Request) pack() []byte {
 }
 
 pub fn cpublishedfile_startplaytimetracking_request_unpack(buf []byte) ?CPublishedFile_StartPlaytimeTracking_Request {
-	mut res := CPublishedFile_StartPlaytimeTracking_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_startplaytimetracking_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -5900,7 +7155,6 @@ pub fn cpublishedfile_startplaytimetracking_request_unpack(buf []byte) ?CPublish
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -5926,17 +7180,48 @@ pub fn cpublishedfile_startplaytimetracking_request_unpack(buf []byte) ?CPublish
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_StartPlaytimeTracking_Request) eq(b CPublishedFile_StartPlaytimeTracking_Request) bool {
+	return true && a.appid == b.appid && a.publishedfileids == b.publishedfileids
+}
+
+[inline]
+pub fn (a CPublishedFile_StartPlaytimeTracking_Request) ne(b CPublishedFile_StartPlaytimeTracking_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_StartPlaytimeTracking_Request) eq(b []CPublishedFile_StartPlaytimeTracking_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_StartPlaytimeTracking_Request) ne(b []CPublishedFile_StartPlaytimeTracking_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_startplaytimetracking_request() CPublishedFile_StartPlaytimeTracking_Request {
 	return CPublishedFile_StartPlaytimeTracking_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_startplaytimetracking_request(o CPublishedFile_StartPlaytimeTracking_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_startplaytimetracking_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_StartPlaytimeTracking_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_startplaytimetracking_request_unpack(v)?
@@ -5954,21 +7239,52 @@ pub fn (o &CPublishedFile_StartPlaytimeTracking_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_startplaytimetracking_response_unpack(buf []byte) ?CPublishedFile_StartPlaytimeTracking_Response {
-	res := CPublishedFile_StartPlaytimeTracking_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_startplaytimetracking_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_StartPlaytimeTracking_Response) eq(b CPublishedFile_StartPlaytimeTracking_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_StartPlaytimeTracking_Response) ne(b CPublishedFile_StartPlaytimeTracking_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_StartPlaytimeTracking_Response) eq(b []CPublishedFile_StartPlaytimeTracking_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_StartPlaytimeTracking_Response) ne(b []CPublishedFile_StartPlaytimeTracking_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_startplaytimetracking_response() CPublishedFile_StartPlaytimeTracking_Response {
 	return CPublishedFile_StartPlaytimeTracking_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_startplaytimetracking_response(o CPublishedFile_StartPlaytimeTracking_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_startplaytimetracking_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_StartPlaytimeTracking_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_startplaytimetracking_response_unpack(v)?
@@ -5980,13 +7296,12 @@ mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	appid            u32
-	has_appid        bool
 	publishedfileids []u64
 }
 
 pub fn (o &CPublishedFile_StopPlaytimeTracking_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
@@ -5997,7 +7312,7 @@ pub fn (o &CPublishedFile_StopPlaytimeTracking_Request) pack() []byte {
 }
 
 pub fn cpublishedfile_stopplaytimetracking_request_unpack(buf []byte) ?CPublishedFile_StopPlaytimeTracking_Request {
-	mut res := CPublishedFile_StopPlaytimeTracking_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_stopplaytimetracking_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6008,7 +7323,6 @@ pub fn cpublishedfile_stopplaytimetracking_request_unpack(buf []byte) ?CPublishe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -6034,17 +7348,48 @@ pub fn cpublishedfile_stopplaytimetracking_request_unpack(buf []byte) ?CPublishe
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTracking_Request) eq(b CPublishedFile_StopPlaytimeTracking_Request) bool {
+	return true && a.appid == b.appid && a.publishedfileids == b.publishedfileids
+}
+
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTracking_Request) ne(b CPublishedFile_StopPlaytimeTracking_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTracking_Request) eq(b []CPublishedFile_StopPlaytimeTracking_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTracking_Request) ne(b []CPublishedFile_StopPlaytimeTracking_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_stopplaytimetracking_request() CPublishedFile_StopPlaytimeTracking_Request {
 	return CPublishedFile_StopPlaytimeTracking_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_stopplaytimetracking_request(o CPublishedFile_StopPlaytimeTracking_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_stopplaytimetracking_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_StopPlaytimeTracking_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_stopplaytimetracking_request_unpack(v)?
@@ -6062,21 +7407,52 @@ pub fn (o &CPublishedFile_StopPlaytimeTracking_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_stopplaytimetracking_response_unpack(buf []byte) ?CPublishedFile_StopPlaytimeTracking_Response {
-	res := CPublishedFile_StopPlaytimeTracking_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_stopplaytimetracking_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTracking_Response) eq(b CPublishedFile_StopPlaytimeTracking_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTracking_Response) ne(b CPublishedFile_StopPlaytimeTracking_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTracking_Response) eq(b []CPublishedFile_StopPlaytimeTracking_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTracking_Response) ne(b []CPublishedFile_StopPlaytimeTracking_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_stopplaytimetracking_response() CPublishedFile_StopPlaytimeTracking_Response {
 	return CPublishedFile_StopPlaytimeTracking_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_stopplaytimetracking_response(o CPublishedFile_StopPlaytimeTracking_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_stopplaytimetracking_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_StopPlaytimeTracking_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_stopplaytimetracking_response_unpack(v)?
@@ -6088,19 +7464,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 }
 
 pub fn (o &CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	return res
 }
 
 pub fn cpublishedfile_stopplaytimetrackingforallappitems_request_unpack(buf []byte) ?CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request {
-	mut res := CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_stopplaytimetrackingforallappitems_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6111,7 +7486,6 @@ pub fn cpublishedfile_stopplaytimetrackingforallappitems_request_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -6131,17 +7505,48 @@ pub fn cpublishedfile_stopplaytimetrackingforallappitems_request_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) eq(b CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) bool {
+	return true && a.appid == b.appid
+}
+
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) ne(b CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) eq(b []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) ne(b []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_stopplaytimetrackingforallappitems_request() CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request {
 	return CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_stopplaytimetrackingforallappitems_request(o CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_stopplaytimetrackingforallappitems_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_stopplaytimetrackingforallappitems_request_unpack(v)?
@@ -6159,21 +7564,52 @@ pub fn (o &CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) pack() []
 }
 
 pub fn cpublishedfile_stopplaytimetrackingforallappitems_response_unpack(buf []byte) ?CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response {
-	res := CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_stopplaytimetrackingforallappitems_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) eq(b CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) ne(b CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) eq(b []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) ne(b []CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_stopplaytimetrackingforallappitems_response() CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response {
 	return CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_stopplaytimetrackingforallappitems_response(o CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_stopplaytimetrackingforallappitems_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_stopplaytimetrackingforallappitems_response_unpack(v)?
@@ -6182,27 +7618,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_stopplaytimetrackingforallappit
 
 pub struct CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	seconds_active      f32
-	has_seconds_active  bool
+	publishedfileid u64
+	seconds_active  f32
 }
 
 pub fn (o &CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_seconds_active {
+	if o.seconds_active != f32(0) {
 		res << vproto.pack_float_field(o.seconds_active, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigusage_unpack(buf []byte) ?CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage {
-	mut res := CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigusage()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6213,13 +7647,11 @@ pub fn cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigus
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_seconds_active = true
 				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_active = v
 				i = ii
@@ -6239,17 +7671,48 @@ pub fn cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigus
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) eq(b CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) bool {
+	return true && a.publishedfileid == b.publishedfileid && a.seconds_active == b.seconds_active
+}
+
+[inline]
+pub fn (a CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) ne(b CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) eq(b []CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) ne(b []CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigusage() CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage {
 	return CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigusage(o CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigusage(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_setplaytimeforcontrollerconfigs_request_controllerconfigusage_unpack(v)?
@@ -6261,13 +7724,12 @@ mut:
 	unknown_fields          []vproto.UnknownField
 pub mut:
 	appid                   u32
-	has_appid               bool
 	controller_config_usage []CPublishedFile_SetPlaytimeForControllerConfigs_Request_ControllerConfigUsage
 }
 
 pub fn (o &CPublishedFile_SetPlaytimeForControllerConfigs_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
 	// [packed=false]
@@ -6279,7 +7741,7 @@ pub fn (o &CPublishedFile_SetPlaytimeForControllerConfigs_Request) pack() []byte
 }
 
 pub fn cpublishedfile_setplaytimeforcontrollerconfigs_request_unpack(buf []byte) ?CPublishedFile_SetPlaytimeForControllerConfigs_Request {
-	mut res := CPublishedFile_SetPlaytimeForControllerConfigs_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_setplaytimeforcontrollerconfigs_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6290,7 +7752,6 @@ pub fn cpublishedfile_setplaytimeforcontrollerconfigs_request_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
@@ -6317,17 +7778,48 @@ pub fn cpublishedfile_setplaytimeforcontrollerconfigs_request_unpack(buf []byte)
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_SetPlaytimeForControllerConfigs_Request) eq(b CPublishedFile_SetPlaytimeForControllerConfigs_Request) bool {
+	return true && a.appid == b.appid && a.controller_config_usage.eq(b.controller_config_usage)
+}
+
+[inline]
+pub fn (a CPublishedFile_SetPlaytimeForControllerConfigs_Request) ne(b CPublishedFile_SetPlaytimeForControllerConfigs_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_SetPlaytimeForControllerConfigs_Request) eq(b []CPublishedFile_SetPlaytimeForControllerConfigs_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_SetPlaytimeForControllerConfigs_Request) ne(b []CPublishedFile_SetPlaytimeForControllerConfigs_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_setplaytimeforcontrollerconfigs_request() CPublishedFile_SetPlaytimeForControllerConfigs_Request {
 	return CPublishedFile_SetPlaytimeForControllerConfigs_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_setplaytimeforcontrollerconfigs_request(o CPublishedFile_SetPlaytimeForControllerConfigs_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_setplaytimeforcontrollerconfigs_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_SetPlaytimeForControllerConfigs_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_setplaytimeforcontrollerconfigs_request_unpack(v)?
@@ -6345,21 +7837,52 @@ pub fn (o &CPublishedFile_SetPlaytimeForControllerConfigs_Response) pack() []byt
 }
 
 pub fn cpublishedfile_setplaytimeforcontrollerconfigs_response_unpack(buf []byte) ?CPublishedFile_SetPlaytimeForControllerConfigs_Response {
-	res := CPublishedFile_SetPlaytimeForControllerConfigs_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_setplaytimeforcontrollerconfigs_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_SetPlaytimeForControllerConfigs_Response) eq(b CPublishedFile_SetPlaytimeForControllerConfigs_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_SetPlaytimeForControllerConfigs_Response) ne(b CPublishedFile_SetPlaytimeForControllerConfigs_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_SetPlaytimeForControllerConfigs_Response) eq(b []CPublishedFile_SetPlaytimeForControllerConfigs_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_SetPlaytimeForControllerConfigs_Response) ne(b []CPublishedFile_SetPlaytimeForControllerConfigs_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_setplaytimeforcontrollerconfigs_response() CPublishedFile_SetPlaytimeForControllerConfigs_Response {
 	return CPublishedFile_SetPlaytimeForControllerConfigs_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_setplaytimeforcontrollerconfigs_response(o CPublishedFile_SetPlaytimeForControllerConfigs_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_setplaytimeforcontrollerconfigs_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_SetPlaytimeForControllerConfigs_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_setplaytimeforcontrollerconfigs_response_unpack(v)?
@@ -6368,27 +7891,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_setplaytimeforcontrollerconfigs
 
 pub struct CPublishedFile_AddChild_Request {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	publishedfileid           u64
-	has_publishedfileid       bool
-	child_publishedfileid     u64
-	has_child_publishedfileid bool
+	publishedfileid       u64
+	child_publishedfileid u64
 }
 
 pub fn (o &CPublishedFile_AddChild_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_child_publishedfileid {
+	if o.child_publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.child_publishedfileid, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_addchild_request_unpack(buf []byte) ?CPublishedFile_AddChild_Request {
-	mut res := CPublishedFile_AddChild_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_addchild_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6399,13 +7920,11 @@ pub fn cpublishedfile_addchild_request_unpack(buf []byte) ?CPublishedFile_AddChi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_child_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.child_publishedfileid = v
 				i = ii
@@ -6425,17 +7944,49 @@ pub fn cpublishedfile_addchild_request_unpack(buf []byte) ?CPublishedFile_AddChi
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AddChild_Request) eq(b CPublishedFile_AddChild_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.child_publishedfileid == b.child_publishedfileid
+}
+
+[inline]
+pub fn (a CPublishedFile_AddChild_Request) ne(b CPublishedFile_AddChild_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddChild_Request) eq(b []CPublishedFile_AddChild_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddChild_Request) ne(b []CPublishedFile_AddChild_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_addchild_request() CPublishedFile_AddChild_Request {
 	return CPublishedFile_AddChild_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_addchild_request(o CPublishedFile_AddChild_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_addchild_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AddChild_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_addchild_request_unpack(v)?
@@ -6453,21 +8004,52 @@ pub fn (o &CPublishedFile_AddChild_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_addchild_response_unpack(buf []byte) ?CPublishedFile_AddChild_Response {
-	res := CPublishedFile_AddChild_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_addchild_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_AddChild_Response) eq(b CPublishedFile_AddChild_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_AddChild_Response) ne(b CPublishedFile_AddChild_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddChild_Response) eq(b []CPublishedFile_AddChild_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_AddChild_Response) ne(b []CPublishedFile_AddChild_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_addchild_response() CPublishedFile_AddChild_Response {
 	return CPublishedFile_AddChild_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_addchild_response(o CPublishedFile_AddChild_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_addchild_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_AddChild_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_addchild_response_unpack(v)?
@@ -6476,27 +8058,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_addchild_response(buf []byte, t
 
 pub struct CPublishedFile_RemoveChild_Request {
 mut:
-	unknown_fields            []vproto.UnknownField
+	unknown_fields        []vproto.UnknownField
 pub mut:
-	publishedfileid           u64
-	has_publishedfileid       bool
-	child_publishedfileid     u64
-	has_child_publishedfileid bool
+	publishedfileid       u64
+	child_publishedfileid u64
 }
 
 pub fn (o &CPublishedFile_RemoveChild_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.publishedfileid, 1)
 	}
-	if o.has_child_publishedfileid {
+	if o.child_publishedfileid != u64(0) {
 		res << vproto.pack_uint64_field(o.child_publishedfileid, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_removechild_request_unpack(buf []byte) ?CPublishedFile_RemoveChild_Request {
-	mut res := CPublishedFile_RemoveChild_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_removechild_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6507,13 +8087,11 @@ pub fn cpublishedfile_removechild_request_unpack(buf []byte) ?CPublishedFile_Rem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_child_publishedfileid = true
 				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
 				res.child_publishedfileid = v
 				i = ii
@@ -6533,17 +8111,49 @@ pub fn cpublishedfile_removechild_request_unpack(buf []byte) ?CPublishedFile_Rem
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_RemoveChild_Request) eq(b CPublishedFile_RemoveChild_Request) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.child_publishedfileid == b.child_publishedfileid
+}
+
+[inline]
+pub fn (a CPublishedFile_RemoveChild_Request) ne(b CPublishedFile_RemoveChild_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveChild_Request) eq(b []CPublishedFile_RemoveChild_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveChild_Request) ne(b []CPublishedFile_RemoveChild_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_removechild_request() CPublishedFile_RemoveChild_Request {
 	return CPublishedFile_RemoveChild_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_removechild_request(o CPublishedFile_RemoveChild_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_removechild_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_RemoveChild_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_removechild_request_unpack(v)?
@@ -6561,21 +8171,52 @@ pub fn (o &CPublishedFile_RemoveChild_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_removechild_response_unpack(buf []byte) ?CPublishedFile_RemoveChild_Response {
-	res := CPublishedFile_RemoveChild_Response{}
+	res := zzz_vproto_internal_new_cpublishedfile_removechild_response()
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_RemoveChild_Response) eq(b CPublishedFile_RemoveChild_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CPublishedFile_RemoveChild_Response) ne(b CPublishedFile_RemoveChild_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveChild_Response) eq(b []CPublishedFile_RemoveChild_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_RemoveChild_Response) ne(b []CPublishedFile_RemoveChild_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_removechild_response() CPublishedFile_RemoveChild_Response {
 	return CPublishedFile_RemoveChild_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_removechild_response(o CPublishedFile_RemoveChild_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_removechild_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_RemoveChild_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_removechild_response_unpack(v)?
@@ -6599,7 +8240,7 @@ pub fn (o &CPublishedFile_GetUserVoteSummary_Request) pack() []byte {
 }
 
 pub fn cpublishedfile_getuservotesummary_request_unpack(buf []byte) ?CPublishedFile_GetUserVoteSummary_Request {
-	mut res := CPublishedFile_GetUserVoteSummary_Request{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuservotesummary_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6630,17 +8271,48 @@ pub fn cpublishedfile_getuservotesummary_request_unpack(buf []byte) ?CPublishedF
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserVoteSummary_Request) eq(b CPublishedFile_GetUserVoteSummary_Request) bool {
+	return true && a.publishedfileids == b.publishedfileids
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserVoteSummary_Request) ne(b CPublishedFile_GetUserVoteSummary_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserVoteSummary_Request) eq(b []CPublishedFile_GetUserVoteSummary_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserVoteSummary_Request) ne(b []CPublishedFile_GetUserVoteSummary_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuservotesummary_request() CPublishedFile_GetUserVoteSummary_Request {
 	return CPublishedFile_GetUserVoteSummary_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuservotesummary_request(o CPublishedFile_GetUserVoteSummary_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuservotesummary_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserVoteSummary_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuservotesummary_request_unpack(v)?
@@ -6649,37 +8321,33 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getuservotesummary_request(buf 
 
 pub struct CPublishedFile_GetUserVoteSummary_Response_VoteSummary {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	publishedfileid     u64
-	has_publishedfileid bool
-	vote_for            bool
-	has_vote_for        bool
-	vote_against        bool
-	has_vote_against    bool
-	reported            bool
-	has_reported        bool
+	publishedfileid u64
+	vote_for        bool
+	vote_against    bool
+	reported        bool
 }
 
 pub fn (o &CPublishedFile_GetUserVoteSummary_Response_VoteSummary) pack() []byte {
 	mut res := []byte{}
-	if o.has_publishedfileid {
+	if o.publishedfileid != u64(0) {
 		res << vproto.pack_64bit_field(o.publishedfileid, 1)
 	}
-	if o.has_vote_for {
+	if o.vote_for != bool(0) {
 		res << vproto.pack_bool_field(o.vote_for, 2)
 	}
-	if o.has_vote_against {
+	if o.vote_against != bool(0) {
 		res << vproto.pack_bool_field(o.vote_against, 3)
 	}
-	if o.has_reported {
+	if o.reported != bool(0) {
 		res << vproto.pack_bool_field(o.reported, 4)
 	}
 	return res
 }
 
 pub fn cpublishedfile_getuservotesummary_response_votesummary_unpack(buf []byte) ?CPublishedFile_GetUserVoteSummary_Response_VoteSummary {
-	mut res := CPublishedFile_GetUserVoteSummary_Response_VoteSummary{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuservotesummary_response_votesummary()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6690,25 +8358,21 @@ pub fn cpublishedfile_getuservotesummary_response_votesummary_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_publishedfileid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.publishedfileid = v
 				i = ii
 			}
 			2 {
-				res.has_vote_for = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.vote_for = v
 				i = ii
 			}
 			3 {
-				res.has_vote_against = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.vote_against = v
 				i = ii
 			}
 			4 {
-				res.has_reported = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.reported = v
 				i = ii
@@ -6728,17 +8392,50 @@ pub fn cpublishedfile_getuservotesummary_response_votesummary_unpack(buf []byte)
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserVoteSummary_Response_VoteSummary) eq(b CPublishedFile_GetUserVoteSummary_Response_VoteSummary) bool {
+	return true && a.publishedfileid == b.publishedfileid &&
+		a.vote_for == b.vote_for && a.vote_against == b.vote_against &&
+		a.reported == b.reported
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserVoteSummary_Response_VoteSummary) ne(b CPublishedFile_GetUserVoteSummary_Response_VoteSummary) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserVoteSummary_Response_VoteSummary) eq(b []CPublishedFile_GetUserVoteSummary_Response_VoteSummary) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserVoteSummary_Response_VoteSummary) ne(b []CPublishedFile_GetUserVoteSummary_Response_VoteSummary) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuservotesummary_response_votesummary() CPublishedFile_GetUserVoteSummary_Response_VoteSummary {
 	return CPublishedFile_GetUserVoteSummary_Response_VoteSummary{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuservotesummary_response_votesummary(o CPublishedFile_GetUserVoteSummary_Response_VoteSummary, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuservotesummary_response_votesummary(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserVoteSummary_Response_VoteSummary) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuservotesummary_response_votesummary_unpack(v)?
@@ -6763,7 +8460,7 @@ pub fn (o &CPublishedFile_GetUserVoteSummary_Response) pack() []byte {
 }
 
 pub fn cpublishedfile_getuservotesummary_response_unpack(buf []byte) ?CPublishedFile_GetUserVoteSummary_Response {
-	mut res := CPublishedFile_GetUserVoteSummary_Response{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_getuservotesummary_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6795,17 +8492,48 @@ pub fn cpublishedfile_getuservotesummary_response_unpack(buf []byte) ?CPublished
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_GetUserVoteSummary_Response) eq(b CPublishedFile_GetUserVoteSummary_Response) bool {
+	return true && a.summaries.eq(b.summaries)
+}
+
+[inline]
+pub fn (a CPublishedFile_GetUserVoteSummary_Response) ne(b CPublishedFile_GetUserVoteSummary_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserVoteSummary_Response) eq(b []CPublishedFile_GetUserVoteSummary_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_GetUserVoteSummary_Response) ne(b []CPublishedFile_GetUserVoteSummary_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_getuservotesummary_response() CPublishedFile_GetUserVoteSummary_Response {
 	return CPublishedFile_GetUserVoteSummary_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_getuservotesummary_response(o CPublishedFile_GetUserVoteSummary_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_getuservotesummary_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_GetUserVoteSummary_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_getuservotesummary_response_unpack(v)?
@@ -6814,32 +8542,29 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_getuservotesummary_response(buf
 
 pub struct CPublishedFile_FileSubscribed_Notification_RevisionData {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	revision          EPublishedFileRevision
-	has_revision      bool
-	file_hcontent     u64
-	has_file_hcontent bool
-	rtime_updated     u32
-	has_rtime_updated bool
+	revision       EPublishedFileRevision = .k_epublishedfilerevision_default
+	file_hcontent  u64
+	rtime_updated  u32
 }
 
 pub fn (o &CPublishedFile_FileSubscribed_Notification_RevisionData) pack() []byte {
 	mut res := []byte{}
-	if o.has_revision {
+	if o.revision != zzz_vproto_internal_new_epublishedfilerevision() {
 		res << zzz_vproto_internal_pack_epublishedfilerevision(o.revision, 1)
 	}
-	if o.has_file_hcontent {
+	if o.file_hcontent != u64(0) {
 		res << vproto.pack_64bit_field(o.file_hcontent, 2)
 	}
-	if o.has_rtime_updated {
+	if o.rtime_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_updated, 3)
 	}
 	return res
 }
 
 pub fn cpublishedfile_filesubscribed_notification_revisiondata_unpack(buf []byte) ?CPublishedFile_FileSubscribed_Notification_RevisionData {
-	mut res := CPublishedFile_FileSubscribed_Notification_RevisionData{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_filesubscribed_notification_revisiondata()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6850,19 +8575,16 @@ pub fn cpublishedfile_filesubscribed_notification_revisiondata_unpack(buf []byte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_revision = true
 				ii, v := zzz_vproto_internal_unpack_epublishedfilerevision(cur_buf, tag_wiretype.wire_type)?
 				res.revision = v
 				i = ii
 			}
 			2 {
-				res.has_file_hcontent = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_hcontent = v
 				i = ii
 			}
 			3 {
-				res.has_rtime_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_updated = v
 				i = ii
@@ -6882,17 +8604,50 @@ pub fn cpublishedfile_filesubscribed_notification_revisiondata_unpack(buf []byte
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_FileSubscribed_Notification_RevisionData) eq(b CPublishedFile_FileSubscribed_Notification_RevisionData) bool {
+	return true && a.revision == b.revision &&
+		a.file_hcontent == b.file_hcontent &&
+		a.rtime_updated == b.rtime_updated
+}
+
+[inline]
+pub fn (a CPublishedFile_FileSubscribed_Notification_RevisionData) ne(b CPublishedFile_FileSubscribed_Notification_RevisionData) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileSubscribed_Notification_RevisionData) eq(b []CPublishedFile_FileSubscribed_Notification_RevisionData) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileSubscribed_Notification_RevisionData) ne(b []CPublishedFile_FileSubscribed_Notification_RevisionData) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_filesubscribed_notification_revisiondata() CPublishedFile_FileSubscribed_Notification_RevisionData {
 	return CPublishedFile_FileSubscribed_Notification_RevisionData{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_filesubscribed_notification_revisiondata(o CPublishedFile_FileSubscribed_Notification_RevisionData, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_filesubscribed_notification_revisiondata(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_FileSubscribed_Notification_RevisionData) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_filesubscribed_notification_revisiondata_unpack(v)?
@@ -6901,46 +8656,39 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_filesubscribed_notification_rev
 
 pub struct CPublishedFile_FileSubscribed_Notification {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	published_file_id     u64
-	has_published_file_id bool
-	app_id                u32
-	has_app_id            bool
-	file_hcontent         u64
-	has_file_hcontent     bool
-	file_size             u32
-	has_file_size         bool
-	rtime_subscribed      u32
-	has_rtime_subscribed  bool
-	is_depot_content      bool
-	has_is_depot_content  bool
-	rtime_updated         u32
-	has_rtime_updated     bool
-	revisions             []CPublishedFile_FileSubscribed_Notification_RevisionData
+	published_file_id u64
+	app_id            u32
+	file_hcontent     u64
+	file_size         u32
+	rtime_subscribed  u32
+	is_depot_content  bool
+	rtime_updated     u32
+	revisions         []CPublishedFile_FileSubscribed_Notification_RevisionData
 }
 
 pub fn (o &CPublishedFile_FileSubscribed_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_published_file_id {
+	if o.published_file_id != u64(0) {
 		res << vproto.pack_64bit_field(o.published_file_id, 1)
 	}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 2)
 	}
-	if o.has_file_hcontent {
+	if o.file_hcontent != u64(0) {
 		res << vproto.pack_64bit_field(o.file_hcontent, 3)
 	}
-	if o.has_file_size {
+	if o.file_size != u32(0) {
 		res << vproto.pack_uint32_field(o.file_size, 4)
 	}
-	if o.has_rtime_subscribed {
+	if o.rtime_subscribed != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_subscribed, 5)
 	}
-	if o.has_is_depot_content {
+	if o.is_depot_content != bool(0) {
 		res << vproto.pack_bool_field(o.is_depot_content, 6)
 	}
-	if o.has_rtime_updated {
+	if o.rtime_updated != u32(0) {
 		res << vproto.pack_uint32_field(o.rtime_updated, 7)
 	}
 	// [packed=false]
@@ -6952,7 +8700,7 @@ pub fn (o &CPublishedFile_FileSubscribed_Notification) pack() []byte {
 }
 
 pub fn cpublishedfile_filesubscribed_notification_unpack(buf []byte) ?CPublishedFile_FileSubscribed_Notification {
-	mut res := CPublishedFile_FileSubscribed_Notification{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_filesubscribed_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -6963,43 +8711,36 @@ pub fn cpublishedfile_filesubscribed_notification_unpack(buf []byte) ?CPublished
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_published_file_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.published_file_id = v
 				i = ii
 			}
 			2 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				res.has_file_hcontent = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_hcontent = v
 				i = ii
 			}
 			4 {
-				res.has_file_size = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.file_size = v
 				i = ii
 			}
 			5 {
-				res.has_rtime_subscribed = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_subscribed = v
 				i = ii
 			}
 			6 {
-				res.has_is_depot_content = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_depot_content = v
 				i = ii
 			}
 			7 {
-				res.has_rtime_updated = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime_updated = v
 				i = ii
@@ -7026,17 +8767,52 @@ pub fn cpublishedfile_filesubscribed_notification_unpack(buf []byte) ?CPublished
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_FileSubscribed_Notification) eq(b CPublishedFile_FileSubscribed_Notification) bool {
+	return true && a.published_file_id == b.published_file_id &&
+		a.app_id == b.app_id && a.file_hcontent == b.file_hcontent &&
+		a.file_size == b.file_size && a.rtime_subscribed == b.rtime_subscribed &&
+		a.is_depot_content == b.is_depot_content &&
+		a.rtime_updated == b.rtime_updated && a.revisions.eq(b.revisions)
+}
+
+[inline]
+pub fn (a CPublishedFile_FileSubscribed_Notification) ne(b CPublishedFile_FileSubscribed_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileSubscribed_Notification) eq(b []CPublishedFile_FileSubscribed_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileSubscribed_Notification) ne(b []CPublishedFile_FileSubscribed_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_filesubscribed_notification() CPublishedFile_FileSubscribed_Notification {
 	return CPublishedFile_FileSubscribed_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_filesubscribed_notification(o CPublishedFile_FileSubscribed_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_filesubscribed_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_FileSubscribed_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_filesubscribed_notification_unpack(v)?
@@ -7045,27 +8821,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_filesubscribed_notification(buf
 
 pub struct CPublishedFile_FileUnsubscribed_Notification {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	published_file_id     u64
-	has_published_file_id bool
-	app_id                u32
-	has_app_id            bool
+	published_file_id u64
+	app_id            u32
 }
 
 pub fn (o &CPublishedFile_FileUnsubscribed_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_published_file_id {
+	if o.published_file_id != u64(0) {
 		res << vproto.pack_64bit_field(o.published_file_id, 1)
 	}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_fileunsubscribed_notification_unpack(buf []byte) ?CPublishedFile_FileUnsubscribed_Notification {
-	mut res := CPublishedFile_FileUnsubscribed_Notification{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_fileunsubscribed_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7076,13 +8850,11 @@ pub fn cpublishedfile_fileunsubscribed_notification_unpack(buf []byte) ?CPublish
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_published_file_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.published_file_id = v
 				i = ii
 			}
 			2 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
@@ -7102,17 +8874,48 @@ pub fn cpublishedfile_fileunsubscribed_notification_unpack(buf []byte) ?CPublish
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_FileUnsubscribed_Notification) eq(b CPublishedFile_FileUnsubscribed_Notification) bool {
+	return true && a.published_file_id == b.published_file_id && a.app_id == b.app_id
+}
+
+[inline]
+pub fn (a CPublishedFile_FileUnsubscribed_Notification) ne(b CPublishedFile_FileUnsubscribed_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileUnsubscribed_Notification) eq(b []CPublishedFile_FileUnsubscribed_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileUnsubscribed_Notification) ne(b []CPublishedFile_FileUnsubscribed_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_fileunsubscribed_notification() CPublishedFile_FileUnsubscribed_Notification {
 	return CPublishedFile_FileUnsubscribed_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_fileunsubscribed_notification(o CPublishedFile_FileUnsubscribed_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_fileunsubscribed_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_FileUnsubscribed_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_fileunsubscribed_notification_unpack(v)?
@@ -7121,27 +8924,25 @@ pub fn zzz_vproto_internal_unpack_cpublishedfile_fileunsubscribed_notification(b
 
 pub struct CPublishedFile_FileDeleted_Client_Notification {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	published_file_id     u64
-	has_published_file_id bool
-	app_id                u32
-	has_app_id            bool
+	published_file_id u64
+	app_id            u32
 }
 
 pub fn (o &CPublishedFile_FileDeleted_Client_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_published_file_id {
+	if o.published_file_id != u64(0) {
 		res << vproto.pack_64bit_field(o.published_file_id, 1)
 	}
-	if o.has_app_id {
+	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 2)
 	}
 	return res
 }
 
 pub fn cpublishedfile_filedeleted_client_notification_unpack(buf []byte) ?CPublishedFile_FileDeleted_Client_Notification {
-	mut res := CPublishedFile_FileDeleted_Client_Notification{}
+	mut res := zzz_vproto_internal_new_cpublishedfile_filedeleted_client_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -7152,13 +8953,11 @@ pub fn cpublishedfile_filedeleted_client_notification_unpack(buf []byte) ?CPubli
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_published_file_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.published_file_id = v
 				i = ii
 			}
 			2 {
-				res.has_app_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.app_id = v
 				i = ii
@@ -7178,17 +8977,48 @@ pub fn cpublishedfile_filedeleted_client_notification_unpack(buf []byte) ?CPubli
 	return res
 }
 
+[inline]
+pub fn (a CPublishedFile_FileDeleted_Client_Notification) eq(b CPublishedFile_FileDeleted_Client_Notification) bool {
+	return true && a.published_file_id == b.published_file_id && a.app_id == b.app_id
+}
+
+[inline]
+pub fn (a CPublishedFile_FileDeleted_Client_Notification) ne(b CPublishedFile_FileDeleted_Client_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileDeleted_Client_Notification) eq(b []CPublishedFile_FileDeleted_Client_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CPublishedFile_FileDeleted_Client_Notification) ne(b []CPublishedFile_FileDeleted_Client_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cpublishedfile_filedeleted_client_notification() CPublishedFile_FileDeleted_Client_Notification {
 	return CPublishedFile_FileDeleted_Client_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cpublishedfile_filedeleted_client_notification(o CPublishedFile_FileDeleted_Client_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cpublishedfile_filedeleted_client_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CPublishedFile_FileDeleted_Client_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cpublishedfile_filedeleted_client_notification_unpack(v)?

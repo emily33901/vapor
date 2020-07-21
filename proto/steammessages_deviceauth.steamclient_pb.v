@@ -5,27 +5,25 @@ import emily33901.vproto
 
 pub struct CDeviceAuth_GetOwnAuthorizedDevices_Request {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	steamid              u64
-	has_steamid          bool
-	include_canceled     bool
-	has_include_canceled bool
+	steamid          u64
+	include_canceled bool
 }
 
 pub fn (o &CDeviceAuth_GetOwnAuthorizedDevices_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_include_canceled {
+	if o.include_canceled != bool(0) {
 		res << vproto.pack_bool_field(o.include_canceled, 2)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getownauthorizeddevices_request_unpack(buf []byte) ?CDeviceAuth_GetOwnAuthorizedDevices_Request {
-	mut res := CDeviceAuth_GetOwnAuthorizedDevices_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getownauthorizeddevices_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -36,13 +34,11 @@ pub fn cdeviceauth_getownauthorizeddevices_request_unpack(buf []byte) ?CDeviceAu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_include_canceled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_canceled = v
 				i = ii
@@ -62,17 +58,48 @@ pub fn cdeviceauth_getownauthorizeddevices_request_unpack(buf []byte) ?CDeviceAu
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetOwnAuthorizedDevices_Request) eq(b CDeviceAuth_GetOwnAuthorizedDevices_Request) bool {
+	return true && a.steamid == b.steamid && a.include_canceled == b.include_canceled
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetOwnAuthorizedDevices_Request) ne(b CDeviceAuth_GetOwnAuthorizedDevices_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetOwnAuthorizedDevices_Request) eq(b []CDeviceAuth_GetOwnAuthorizedDevices_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetOwnAuthorizedDevices_Request) ne(b []CDeviceAuth_GetOwnAuthorizedDevices_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getownauthorizeddevices_request() CDeviceAuth_GetOwnAuthorizedDevices_Request {
 	return CDeviceAuth_GetOwnAuthorizedDevices_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getownauthorizeddevices_request(o CDeviceAuth_GetOwnAuthorizedDevices_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getownauthorizeddevices_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetOwnAuthorizedDevices_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getownauthorizeddevices_request_unpack(v)?
@@ -81,57 +108,49 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getownauthorizeddevices_request(bu
 
 pub struct CDeviceAuth_GetOwnAuthorizedDevices_Response_Device {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	auth_device_token     u64
-	has_auth_device_token bool
-	device_name           string
-	has_device_name       bool
-	is_pending            bool
-	has_is_pending        bool
-	is_canceled           bool
-	has_is_canceled       bool
-	last_time_used        u32
-	has_last_time_used    bool
-	last_borrower_id      u64
-	has_last_borrower_id  bool
-	last_app_played       u32
-	has_last_app_played   bool
-	is_limited            bool
-	has_is_limited        bool
+	auth_device_token u64
+	device_name       string
+	is_pending        bool
+	is_canceled       bool
+	last_time_used    u32
+	last_borrower_id  u64
+	last_app_played   u32
+	is_limited        bool
 }
 
 pub fn (o &CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) pack() []byte {
 	mut res := []byte{}
-	if o.has_auth_device_token {
+	if o.auth_device_token != u64(0) {
 		res << vproto.pack_64bit_field(o.auth_device_token, 1)
 	}
-	if o.has_device_name {
+	if o.device_name != '' {
 		res << vproto.pack_string_field(o.device_name, 2)
 	}
-	if o.has_is_pending {
+	if o.is_pending != bool(0) {
 		res << vproto.pack_bool_field(o.is_pending, 3)
 	}
-	if o.has_is_canceled {
+	if o.is_canceled != bool(0) {
 		res << vproto.pack_bool_field(o.is_canceled, 4)
 	}
-	if o.has_last_time_used {
+	if o.last_time_used != u32(0) {
 		res << vproto.pack_uint32_field(o.last_time_used, 5)
 	}
-	if o.has_last_borrower_id {
+	if o.last_borrower_id != u64(0) {
 		res << vproto.pack_64bit_field(o.last_borrower_id, 6)
 	}
-	if o.has_last_app_played {
+	if o.last_app_played != u32(0) {
 		res << vproto.pack_uint32_field(o.last_app_played, 7)
 	}
-	if o.has_is_limited {
+	if o.is_limited != bool(0) {
 		res << vproto.pack_bool_field(o.is_limited, 8)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getownauthorizeddevices_response_device_unpack(buf []byte) ?CDeviceAuth_GetOwnAuthorizedDevices_Response_Device {
-	mut res := CDeviceAuth_GetOwnAuthorizedDevices_Response_Device{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getownauthorizeddevices_response_device()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -142,49 +161,41 @@ pub fn cdeviceauth_getownauthorizeddevices_response_device_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_auth_device_token = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_device_token = v
 				i = ii
 			}
 			2 {
-				res.has_device_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_name = v
 				i = ii
 			}
 			3 {
-				res.has_is_pending = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_pending = v
 				i = ii
 			}
 			4 {
-				res.has_is_canceled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_canceled = v
 				i = ii
 			}
 			5 {
-				res.has_last_time_used = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_time_used = v
 				i = ii
 			}
 			6 {
-				res.has_last_borrower_id = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_borrower_id = v
 				i = ii
 			}
 			7 {
-				res.has_last_app_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_app_played = v
 				i = ii
 			}
 			8 {
-				res.has_is_limited = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_limited = v
 				i = ii
@@ -204,17 +215,53 @@ pub fn cdeviceauth_getownauthorizeddevices_response_device_unpack(buf []byte) ?C
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) eq(b CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) bool {
+	return true && a.auth_device_token == b.auth_device_token &&
+		a.device_name == b.device_name && a.is_pending == b.is_pending &&
+		a.is_canceled == b.is_canceled && a.last_time_used == b.last_time_used &&
+		a.last_borrower_id == b.last_borrower_id &&
+		a.last_app_played == b.last_app_played &&
+		a.is_limited == b.is_limited
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) ne(b CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) eq(b []CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) ne(b []CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getownauthorizeddevices_response_device() CDeviceAuth_GetOwnAuthorizedDevices_Response_Device {
 	return CDeviceAuth_GetOwnAuthorizedDevices_Response_Device{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getownauthorizeddevices_response_device(o CDeviceAuth_GetOwnAuthorizedDevices_Response_Device, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getownauthorizeddevices_response_device(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetOwnAuthorizedDevices_Response_Device) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getownauthorizeddevices_response_device_unpack(v)?
@@ -238,7 +285,7 @@ pub fn (o &CDeviceAuth_GetOwnAuthorizedDevices_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_getownauthorizeddevices_response_unpack(buf []byte) ?CDeviceAuth_GetOwnAuthorizedDevices_Response {
-	mut res := CDeviceAuth_GetOwnAuthorizedDevices_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getownauthorizeddevices_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -270,17 +317,48 @@ pub fn cdeviceauth_getownauthorizeddevices_response_unpack(buf []byte) ?CDeviceA
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetOwnAuthorizedDevices_Response) eq(b CDeviceAuth_GetOwnAuthorizedDevices_Response) bool {
+	return true && a.devices.eq(b.devices)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetOwnAuthorizedDevices_Response) ne(b CDeviceAuth_GetOwnAuthorizedDevices_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetOwnAuthorizedDevices_Response) eq(b []CDeviceAuth_GetOwnAuthorizedDevices_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetOwnAuthorizedDevices_Response) ne(b []CDeviceAuth_GetOwnAuthorizedDevices_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getownauthorizeddevices_response() CDeviceAuth_GetOwnAuthorizedDevices_Response {
 	return CDeviceAuth_GetOwnAuthorizedDevices_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getownauthorizeddevices_response(o CDeviceAuth_GetOwnAuthorizedDevices_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getownauthorizeddevices_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetOwnAuthorizedDevices_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getownauthorizeddevices_response_unpack(v)?
@@ -289,37 +367,33 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getownauthorizeddevices_response(b
 
 pub struct CDeviceAuth_AcceptAuthorizationRequest_Request {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	steamid               u64
-	has_steamid           bool
-	auth_device_token     u64
-	has_auth_device_token bool
-	auth_code             u64
-	has_auth_code         bool
-	from_steamid          u64
-	has_from_steamid      bool
+	steamid           u64
+	auth_device_token u64
+	auth_code         u64
+	from_steamid      u64
 }
 
 pub fn (o &CDeviceAuth_AcceptAuthorizationRequest_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_auth_device_token {
+	if o.auth_device_token != u64(0) {
 		res << vproto.pack_64bit_field(o.auth_device_token, 2)
 	}
-	if o.has_auth_code {
+	if o.auth_code != u64(0) {
 		res << vproto.pack_64bit_field(o.auth_code, 3)
 	}
-	if o.has_from_steamid {
+	if o.from_steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.from_steamid, 4)
 	}
 	return res
 }
 
 pub fn cdeviceauth_acceptauthorizationrequest_request_unpack(buf []byte) ?CDeviceAuth_AcceptAuthorizationRequest_Request {
-	mut res := CDeviceAuth_AcceptAuthorizationRequest_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_acceptauthorizationrequest_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -330,25 +404,21 @@ pub fn cdeviceauth_acceptauthorizationrequest_request_unpack(buf []byte) ?CDevic
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_auth_device_token = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_device_token = v
 				i = ii
 			}
 			3 {
-				res.has_auth_code = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_code = v
 				i = ii
 			}
 			4 {
-				res.has_from_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.from_steamid = v
 				i = ii
@@ -368,17 +438,50 @@ pub fn cdeviceauth_acceptauthorizationrequest_request_unpack(buf []byte) ?CDevic
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_AcceptAuthorizationRequest_Request) eq(b CDeviceAuth_AcceptAuthorizationRequest_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.auth_device_token == b.auth_device_token &&
+		a.auth_code == b.auth_code && a.from_steamid == b.from_steamid
+}
+
+[inline]
+pub fn (a CDeviceAuth_AcceptAuthorizationRequest_Request) ne(b CDeviceAuth_AcceptAuthorizationRequest_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AcceptAuthorizationRequest_Request) eq(b []CDeviceAuth_AcceptAuthorizationRequest_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AcceptAuthorizationRequest_Request) ne(b []CDeviceAuth_AcceptAuthorizationRequest_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_acceptauthorizationrequest_request() CDeviceAuth_AcceptAuthorizationRequest_Request {
 	return CDeviceAuth_AcceptAuthorizationRequest_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_acceptauthorizationrequest_request(o CDeviceAuth_AcceptAuthorizationRequest_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_acceptauthorizationrequest_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_AcceptAuthorizationRequest_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_acceptauthorizationrequest_request_unpack(v)?
@@ -396,21 +499,52 @@ pub fn (o &CDeviceAuth_AcceptAuthorizationRequest_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_acceptauthorizationrequest_response_unpack(buf []byte) ?CDeviceAuth_AcceptAuthorizationRequest_Response {
-	res := CDeviceAuth_AcceptAuthorizationRequest_Response{}
+	res := zzz_vproto_internal_new_cdeviceauth_acceptauthorizationrequest_response()
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_AcceptAuthorizationRequest_Response) eq(b CDeviceAuth_AcceptAuthorizationRequest_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CDeviceAuth_AcceptAuthorizationRequest_Response) ne(b CDeviceAuth_AcceptAuthorizationRequest_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AcceptAuthorizationRequest_Response) eq(b []CDeviceAuth_AcceptAuthorizationRequest_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AcceptAuthorizationRequest_Response) ne(b []CDeviceAuth_AcceptAuthorizationRequest_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_acceptauthorizationrequest_response() CDeviceAuth_AcceptAuthorizationRequest_Response {
 	return CDeviceAuth_AcceptAuthorizationRequest_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_acceptauthorizationrequest_response(o CDeviceAuth_AcceptAuthorizationRequest_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_acceptauthorizationrequest_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_AcceptAuthorizationRequest_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_acceptauthorizationrequest_response_unpack(v)?
@@ -419,27 +553,25 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_acceptauthorizationrequest_respons
 
 pub struct CDeviceAuth_AuthorizeRemoteDevice_Request {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	steamid               u64
-	has_steamid           bool
-	auth_device_token     u64
-	has_auth_device_token bool
+	steamid           u64
+	auth_device_token u64
 }
 
 pub fn (o &CDeviceAuth_AuthorizeRemoteDevice_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_auth_device_token {
+	if o.auth_device_token != u64(0) {
 		res << vproto.pack_64bit_field(o.auth_device_token, 2)
 	}
 	return res
 }
 
 pub fn cdeviceauth_authorizeremotedevice_request_unpack(buf []byte) ?CDeviceAuth_AuthorizeRemoteDevice_Request {
-	mut res := CDeviceAuth_AuthorizeRemoteDevice_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_authorizeremotedevice_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -450,13 +582,11 @@ pub fn cdeviceauth_authorizeremotedevice_request_unpack(buf []byte) ?CDeviceAuth
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_auth_device_token = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_device_token = v
 				i = ii
@@ -476,17 +606,48 @@ pub fn cdeviceauth_authorizeremotedevice_request_unpack(buf []byte) ?CDeviceAuth
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_AuthorizeRemoteDevice_Request) eq(b CDeviceAuth_AuthorizeRemoteDevice_Request) bool {
+	return true && a.steamid == b.steamid && a.auth_device_token == b.auth_device_token
+}
+
+[inline]
+pub fn (a CDeviceAuth_AuthorizeRemoteDevice_Request) ne(b CDeviceAuth_AuthorizeRemoteDevice_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AuthorizeRemoteDevice_Request) eq(b []CDeviceAuth_AuthorizeRemoteDevice_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AuthorizeRemoteDevice_Request) ne(b []CDeviceAuth_AuthorizeRemoteDevice_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_authorizeremotedevice_request() CDeviceAuth_AuthorizeRemoteDevice_Request {
 	return CDeviceAuth_AuthorizeRemoteDevice_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_authorizeremotedevice_request(o CDeviceAuth_AuthorizeRemoteDevice_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_authorizeremotedevice_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_AuthorizeRemoteDevice_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_authorizeremotedevice_request_unpack(v)?
@@ -504,21 +665,52 @@ pub fn (o &CDeviceAuth_AuthorizeRemoteDevice_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_authorizeremotedevice_response_unpack(buf []byte) ?CDeviceAuth_AuthorizeRemoteDevice_Response {
-	res := CDeviceAuth_AuthorizeRemoteDevice_Response{}
+	res := zzz_vproto_internal_new_cdeviceauth_authorizeremotedevice_response()
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_AuthorizeRemoteDevice_Response) eq(b CDeviceAuth_AuthorizeRemoteDevice_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CDeviceAuth_AuthorizeRemoteDevice_Response) ne(b CDeviceAuth_AuthorizeRemoteDevice_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AuthorizeRemoteDevice_Response) eq(b []CDeviceAuth_AuthorizeRemoteDevice_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AuthorizeRemoteDevice_Response) ne(b []CDeviceAuth_AuthorizeRemoteDevice_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_authorizeremotedevice_response() CDeviceAuth_AuthorizeRemoteDevice_Response {
 	return CDeviceAuth_AuthorizeRemoteDevice_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_authorizeremotedevice_response(o CDeviceAuth_AuthorizeRemoteDevice_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_authorizeremotedevice_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_AuthorizeRemoteDevice_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_authorizeremotedevice_response_unpack(v)?
@@ -527,27 +719,25 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_authorizeremotedevice_response(buf
 
 pub struct CDeviceAuth_DeauthorizeRemoteDevice_Request {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	steamid               u64
-	has_steamid           bool
-	auth_device_token     u64
-	has_auth_device_token bool
+	steamid           u64
+	auth_device_token u64
 }
 
 pub fn (o &CDeviceAuth_DeauthorizeRemoteDevice_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_auth_device_token {
+	if o.auth_device_token != u64(0) {
 		res << vproto.pack_64bit_field(o.auth_device_token, 2)
 	}
 	return res
 }
 
 pub fn cdeviceauth_deauthorizeremotedevice_request_unpack(buf []byte) ?CDeviceAuth_DeauthorizeRemoteDevice_Request {
-	mut res := CDeviceAuth_DeauthorizeRemoteDevice_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_deauthorizeremotedevice_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -558,13 +748,11 @@ pub fn cdeviceauth_deauthorizeremotedevice_request_unpack(buf []byte) ?CDeviceAu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_auth_device_token = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_device_token = v
 				i = ii
@@ -584,17 +772,48 @@ pub fn cdeviceauth_deauthorizeremotedevice_request_unpack(buf []byte) ?CDeviceAu
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_DeauthorizeRemoteDevice_Request) eq(b CDeviceAuth_DeauthorizeRemoteDevice_Request) bool {
+	return true && a.steamid == b.steamid && a.auth_device_token == b.auth_device_token
+}
+
+[inline]
+pub fn (a CDeviceAuth_DeauthorizeRemoteDevice_Request) ne(b CDeviceAuth_DeauthorizeRemoteDevice_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_DeauthorizeRemoteDevice_Request) eq(b []CDeviceAuth_DeauthorizeRemoteDevice_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_DeauthorizeRemoteDevice_Request) ne(b []CDeviceAuth_DeauthorizeRemoteDevice_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_deauthorizeremotedevice_request() CDeviceAuth_DeauthorizeRemoteDevice_Request {
 	return CDeviceAuth_DeauthorizeRemoteDevice_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_deauthorizeremotedevice_request(o CDeviceAuth_DeauthorizeRemoteDevice_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_deauthorizeremotedevice_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_DeauthorizeRemoteDevice_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_deauthorizeremotedevice_request_unpack(v)?
@@ -612,21 +831,52 @@ pub fn (o &CDeviceAuth_DeauthorizeRemoteDevice_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_deauthorizeremotedevice_response_unpack(buf []byte) ?CDeviceAuth_DeauthorizeRemoteDevice_Response {
-	res := CDeviceAuth_DeauthorizeRemoteDevice_Response{}
+	res := zzz_vproto_internal_new_cdeviceauth_deauthorizeremotedevice_response()
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_DeauthorizeRemoteDevice_Response) eq(b CDeviceAuth_DeauthorizeRemoteDevice_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CDeviceAuth_DeauthorizeRemoteDevice_Response) ne(b CDeviceAuth_DeauthorizeRemoteDevice_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_DeauthorizeRemoteDevice_Response) eq(b []CDeviceAuth_DeauthorizeRemoteDevice_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_DeauthorizeRemoteDevice_Response) ne(b []CDeviceAuth_DeauthorizeRemoteDevice_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_deauthorizeremotedevice_response() CDeviceAuth_DeauthorizeRemoteDevice_Response {
 	return CDeviceAuth_DeauthorizeRemoteDevice_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_deauthorizeremotedevice_response(o CDeviceAuth_DeauthorizeRemoteDevice_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_deauthorizeremotedevice_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_DeauthorizeRemoteDevice_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_deauthorizeremotedevice_response_unpack(v)?
@@ -638,19 +888,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CDeviceAuth_GetUsedAuthorizedDevices_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getusedauthorizeddevices_request_unpack(buf []byte) ?CDeviceAuth_GetUsedAuthorizedDevices_Request {
-	mut res := CDeviceAuth_GetUsedAuthorizedDevices_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getusedauthorizeddevices_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -661,7 +910,6 @@ pub fn cdeviceauth_getusedauthorizeddevices_request_unpack(buf []byte) ?CDeviceA
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -681,17 +929,48 @@ pub fn cdeviceauth_getusedauthorizeddevices_request_unpack(buf []byte) ?CDeviceA
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetUsedAuthorizedDevices_Request) eq(b CDeviceAuth_GetUsedAuthorizedDevices_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetUsedAuthorizedDevices_Request) ne(b CDeviceAuth_GetUsedAuthorizedDevices_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetUsedAuthorizedDevices_Request) eq(b []CDeviceAuth_GetUsedAuthorizedDevices_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetUsedAuthorizedDevices_Request) ne(b []CDeviceAuth_GetUsedAuthorizedDevices_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getusedauthorizeddevices_request() CDeviceAuth_GetUsedAuthorizedDevices_Request {
 	return CDeviceAuth_GetUsedAuthorizedDevices_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getusedauthorizeddevices_request(o CDeviceAuth_GetUsedAuthorizedDevices_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getusedauthorizeddevices_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetUsedAuthorizedDevices_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getusedauthorizeddevices_request_unpack(v)?
@@ -700,42 +979,37 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getusedauthorizeddevices_request(b
 
 pub struct CDeviceAuth_GetUsedAuthorizedDevices_Response_Device {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	auth_device_token     u64
-	has_auth_device_token bool
-	device_name           string
-	has_device_name       bool
-	owner_steamid         u64
-	has_owner_steamid     bool
-	last_time_used        u32
-	has_last_time_used    bool
-	last_app_played       u32
-	has_last_app_played   bool
+	auth_device_token u64
+	device_name       string
+	owner_steamid     u64
+	last_time_used    u32
+	last_app_played   u32
 }
 
 pub fn (o &CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) pack() []byte {
 	mut res := []byte{}
-	if o.has_auth_device_token {
+	if o.auth_device_token != u64(0) {
 		res << vproto.pack_64bit_field(o.auth_device_token, 1)
 	}
-	if o.has_device_name {
+	if o.device_name != '' {
 		res << vproto.pack_string_field(o.device_name, 2)
 	}
-	if o.has_owner_steamid {
+	if o.owner_steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.owner_steamid, 3)
 	}
-	if o.has_last_time_used {
+	if o.last_time_used != u32(0) {
 		res << vproto.pack_uint32_field(o.last_time_used, 4)
 	}
-	if o.has_last_app_played {
+	if o.last_app_played != u32(0) {
 		res << vproto.pack_uint32_field(o.last_app_played, 5)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getusedauthorizeddevices_response_device_unpack(buf []byte) ?CDeviceAuth_GetUsedAuthorizedDevices_Response_Device {
-	mut res := CDeviceAuth_GetUsedAuthorizedDevices_Response_Device{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getusedauthorizeddevices_response_device()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -746,31 +1020,26 @@ pub fn cdeviceauth_getusedauthorizeddevices_response_device_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_auth_device_token = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.auth_device_token = v
 				i = ii
 			}
 			2 {
-				res.has_device_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.device_name = v
 				i = ii
 			}
 			3 {
-				res.has_owner_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.owner_steamid = v
 				i = ii
 			}
 			4 {
-				res.has_last_time_used = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_time_used = v
 				i = ii
 			}
 			5 {
-				res.has_last_app_played = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_app_played = v
 				i = ii
@@ -790,17 +1059,51 @@ pub fn cdeviceauth_getusedauthorizeddevices_response_device_unpack(buf []byte) ?
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) eq(b CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) bool {
+	return true && a.auth_device_token == b.auth_device_token &&
+		a.device_name == b.device_name && a.owner_steamid == b.owner_steamid &&
+		a.last_time_used == b.last_time_used &&
+		a.last_app_played == b.last_app_played
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) ne(b CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) eq(b []CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) ne(b []CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getusedauthorizeddevices_response_device() CDeviceAuth_GetUsedAuthorizedDevices_Response_Device {
 	return CDeviceAuth_GetUsedAuthorizedDevices_Response_Device{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getusedauthorizeddevices_response_device(o CDeviceAuth_GetUsedAuthorizedDevices_Response_Device, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getusedauthorizeddevices_response_device(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetUsedAuthorizedDevices_Response_Device) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getusedauthorizeddevices_response_device_unpack(v)?
@@ -824,7 +1127,7 @@ pub fn (o &CDeviceAuth_GetUsedAuthorizedDevices_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_getusedauthorizeddevices_response_unpack(buf []byte) ?CDeviceAuth_GetUsedAuthorizedDevices_Response {
-	mut res := CDeviceAuth_GetUsedAuthorizedDevices_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getusedauthorizeddevices_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -856,17 +1159,48 @@ pub fn cdeviceauth_getusedauthorizeddevices_response_unpack(buf []byte) ?CDevice
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetUsedAuthorizedDevices_Response) eq(b CDeviceAuth_GetUsedAuthorizedDevices_Response) bool {
+	return true && a.devices.eq(b.devices)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetUsedAuthorizedDevices_Response) ne(b CDeviceAuth_GetUsedAuthorizedDevices_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetUsedAuthorizedDevices_Response) eq(b []CDeviceAuth_GetUsedAuthorizedDevices_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetUsedAuthorizedDevices_Response) ne(b []CDeviceAuth_GetUsedAuthorizedDevices_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getusedauthorizeddevices_response() CDeviceAuth_GetUsedAuthorizedDevices_Response {
 	return CDeviceAuth_GetUsedAuthorizedDevices_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getusedauthorizeddevices_response(o CDeviceAuth_GetUsedAuthorizedDevices_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getusedauthorizeddevices_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetUsedAuthorizedDevices_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getusedauthorizeddevices_response_unpack(v)?
@@ -875,32 +1209,29 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getusedauthorizeddevices_response(
 
 pub struct CDeviceAuth_GetAuthorizedBorrowers_Request {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	steamid              u64
-	has_steamid          bool
-	include_canceled     bool
-	has_include_canceled bool
-	include_pending      bool
-	has_include_pending  bool
+	steamid          u64
+	include_canceled bool
+	include_pending  bool
 }
 
 pub fn (o &CDeviceAuth_GetAuthorizedBorrowers_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_include_canceled {
+	if o.include_canceled != bool(0) {
 		res << vproto.pack_bool_field(o.include_canceled, 2)
 	}
-	if o.has_include_pending {
+	if o.include_pending != bool(0) {
 		res << vproto.pack_bool_field(o.include_pending, 3)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAuth_GetAuthorizedBorrowers_Request {
-	mut res := CDeviceAuth_GetAuthorizedBorrowers_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getauthorizedborrowers_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -911,19 +1242,16 @@ pub fn cdeviceauth_getauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAut
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_include_canceled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_canceled = v
 				i = ii
 			}
 			3 {
-				res.has_include_pending = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_pending = v
 				i = ii
@@ -943,17 +1271,50 @@ pub fn cdeviceauth_getauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAut
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedBorrowers_Request) eq(b CDeviceAuth_GetAuthorizedBorrowers_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.include_canceled == b.include_canceled &&
+		a.include_pending == b.include_pending
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedBorrowers_Request) ne(b CDeviceAuth_GetAuthorizedBorrowers_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedBorrowers_Request) eq(b []CDeviceAuth_GetAuthorizedBorrowers_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedBorrowers_Request) ne(b []CDeviceAuth_GetAuthorizedBorrowers_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getauthorizedborrowers_request() CDeviceAuth_GetAuthorizedBorrowers_Request {
 	return CDeviceAuth_GetAuthorizedBorrowers_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getauthorizedborrowers_request(o CDeviceAuth_GetAuthorizedBorrowers_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedborrowers_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetAuthorizedBorrowers_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getauthorizedborrowers_request_unpack(v)?
@@ -962,37 +1323,33 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedborrowers_request(buf
 
 pub struct CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid          u64
-	has_steamid      bool
-	is_pending       bool
-	has_is_pending   bool
-	is_canceled      bool
-	has_is_canceled  bool
-	time_created     u32
-	has_time_created bool
+	steamid        u64
+	is_pending     bool
+	is_canceled    bool
+	time_created   u32
 }
 
 pub fn (o &CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_is_pending {
+	if o.is_pending != bool(0) {
 		res << vproto.pack_bool_field(o.is_pending, 2)
 	}
-	if o.has_is_canceled {
+	if o.is_canceled != bool(0) {
 		res << vproto.pack_bool_field(o.is_canceled, 3)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_uint32_field(o.time_created, 4)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getauthorizedborrowers_response_borrower_unpack(buf []byte) ?CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower {
-	mut res := CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getauthorizedborrowers_response_borrower()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1003,25 +1360,21 @@ pub fn cdeviceauth_getauthorizedborrowers_response_borrower_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_is_pending = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_pending = v
 				i = ii
 			}
 			3 {
-				res.has_is_canceled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_canceled = v
 				i = ii
 			}
 			4 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
@@ -1041,17 +1394,50 @@ pub fn cdeviceauth_getauthorizedborrowers_response_borrower_unpack(buf []byte) ?
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) eq(b CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) bool {
+	return true && a.steamid == b.steamid &&
+		a.is_pending == b.is_pending && a.is_canceled == b.is_canceled &&
+		a.time_created == b.time_created
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) ne(b CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) eq(b []CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) ne(b []CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getauthorizedborrowers_response_borrower() CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower {
 	return CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getauthorizedborrowers_response_borrower(o CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedborrowers_response_borrower(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetAuthorizedBorrowers_Response_Borrower) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getauthorizedborrowers_response_borrower_unpack(v)?
@@ -1075,7 +1461,7 @@ pub fn (o &CDeviceAuth_GetAuthorizedBorrowers_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_getauthorizedborrowers_response_unpack(buf []byte) ?CDeviceAuth_GetAuthorizedBorrowers_Response {
-	mut res := CDeviceAuth_GetAuthorizedBorrowers_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getauthorizedborrowers_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1107,17 +1493,48 @@ pub fn cdeviceauth_getauthorizedborrowers_response_unpack(buf []byte) ?CDeviceAu
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedBorrowers_Response) eq(b CDeviceAuth_GetAuthorizedBorrowers_Response) bool {
+	return true && a.borrowers.eq(b.borrowers)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedBorrowers_Response) ne(b CDeviceAuth_GetAuthorizedBorrowers_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedBorrowers_Response) eq(b []CDeviceAuth_GetAuthorizedBorrowers_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedBorrowers_Response) ne(b []CDeviceAuth_GetAuthorizedBorrowers_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getauthorizedborrowers_response() CDeviceAuth_GetAuthorizedBorrowers_Response {
 	return CDeviceAuth_GetAuthorizedBorrowers_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getauthorizedborrowers_response(o CDeviceAuth_GetAuthorizedBorrowers_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedborrowers_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetAuthorizedBorrowers_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getauthorizedborrowers_response_unpack(v)?
@@ -1129,13 +1546,12 @@ mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	steamid          u64
-	has_steamid      bool
 	steamid_borrower []u64
 }
 
 pub fn (o &CDeviceAuth_AddAuthorizedBorrowers_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	// [packed=false]
@@ -1146,7 +1562,7 @@ pub fn (o &CDeviceAuth_AddAuthorizedBorrowers_Request) pack() []byte {
 }
 
 pub fn cdeviceauth_addauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAuth_AddAuthorizedBorrowers_Request {
-	mut res := CDeviceAuth_AddAuthorizedBorrowers_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_addauthorizedborrowers_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1157,7 +1573,6 @@ pub fn cdeviceauth_addauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAut
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1183,17 +1598,48 @@ pub fn cdeviceauth_addauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAut
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_AddAuthorizedBorrowers_Request) eq(b CDeviceAuth_AddAuthorizedBorrowers_Request) bool {
+	return true && a.steamid == b.steamid && a.steamid_borrower == b.steamid_borrower
+}
+
+[inline]
+pub fn (a CDeviceAuth_AddAuthorizedBorrowers_Request) ne(b CDeviceAuth_AddAuthorizedBorrowers_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AddAuthorizedBorrowers_Request) eq(b []CDeviceAuth_AddAuthorizedBorrowers_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AddAuthorizedBorrowers_Request) ne(b []CDeviceAuth_AddAuthorizedBorrowers_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_addauthorizedborrowers_request() CDeviceAuth_AddAuthorizedBorrowers_Request {
 	return CDeviceAuth_AddAuthorizedBorrowers_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_addauthorizedborrowers_request(o CDeviceAuth_AddAuthorizedBorrowers_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_addauthorizedborrowers_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_AddAuthorizedBorrowers_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_addauthorizedborrowers_request_unpack(v)?
@@ -1202,22 +1648,21 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_addauthorizedborrowers_request(buf
 
 pub struct CDeviceAuth_AddAuthorizedBorrowers_Response {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	seconds_to_wait     int
-	has_seconds_to_wait bool
+	seconds_to_wait int
 }
 
 pub fn (o &CDeviceAuth_AddAuthorizedBorrowers_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_seconds_to_wait {
+	if o.seconds_to_wait != int(0) {
 		res << vproto.pack_int32_field(o.seconds_to_wait, 1)
 	}
 	return res
 }
 
 pub fn cdeviceauth_addauthorizedborrowers_response_unpack(buf []byte) ?CDeviceAuth_AddAuthorizedBorrowers_Response {
-	mut res := CDeviceAuth_AddAuthorizedBorrowers_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_addauthorizedborrowers_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1228,7 +1673,6 @@ pub fn cdeviceauth_addauthorizedborrowers_response_unpack(buf []byte) ?CDeviceAu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_seconds_to_wait = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.seconds_to_wait = v
 				i = ii
@@ -1248,17 +1692,48 @@ pub fn cdeviceauth_addauthorizedborrowers_response_unpack(buf []byte) ?CDeviceAu
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_AddAuthorizedBorrowers_Response) eq(b CDeviceAuth_AddAuthorizedBorrowers_Response) bool {
+	return true && a.seconds_to_wait == b.seconds_to_wait
+}
+
+[inline]
+pub fn (a CDeviceAuth_AddAuthorizedBorrowers_Response) ne(b CDeviceAuth_AddAuthorizedBorrowers_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AddAuthorizedBorrowers_Response) eq(b []CDeviceAuth_AddAuthorizedBorrowers_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_AddAuthorizedBorrowers_Response) ne(b []CDeviceAuth_AddAuthorizedBorrowers_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_addauthorizedborrowers_response() CDeviceAuth_AddAuthorizedBorrowers_Response {
 	return CDeviceAuth_AddAuthorizedBorrowers_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_addauthorizedborrowers_response(o CDeviceAuth_AddAuthorizedBorrowers_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_addauthorizedborrowers_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_AddAuthorizedBorrowers_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_addauthorizedborrowers_response_unpack(v)?
@@ -1270,13 +1745,12 @@ mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	steamid          u64
-	has_steamid      bool
 	steamid_borrower []u64
 }
 
 pub fn (o &CDeviceAuth_RemoveAuthorizedBorrowers_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	// [packed=false]
@@ -1287,7 +1761,7 @@ pub fn (o &CDeviceAuth_RemoveAuthorizedBorrowers_Request) pack() []byte {
 }
 
 pub fn cdeviceauth_removeauthorizedborrowers_request_unpack(buf []byte) ?CDeviceAuth_RemoveAuthorizedBorrowers_Request {
-	mut res := CDeviceAuth_RemoveAuthorizedBorrowers_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_removeauthorizedborrowers_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1298,7 +1772,6 @@ pub fn cdeviceauth_removeauthorizedborrowers_request_unpack(buf []byte) ?CDevice
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1324,17 +1797,48 @@ pub fn cdeviceauth_removeauthorizedborrowers_request_unpack(buf []byte) ?CDevice
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_RemoveAuthorizedBorrowers_Request) eq(b CDeviceAuth_RemoveAuthorizedBorrowers_Request) bool {
+	return true && a.steamid == b.steamid && a.steamid_borrower == b.steamid_borrower
+}
+
+[inline]
+pub fn (a CDeviceAuth_RemoveAuthorizedBorrowers_Request) ne(b CDeviceAuth_RemoveAuthorizedBorrowers_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_RemoveAuthorizedBorrowers_Request) eq(b []CDeviceAuth_RemoveAuthorizedBorrowers_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_RemoveAuthorizedBorrowers_Request) ne(b []CDeviceAuth_RemoveAuthorizedBorrowers_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_removeauthorizedborrowers_request() CDeviceAuth_RemoveAuthorizedBorrowers_Request {
 	return CDeviceAuth_RemoveAuthorizedBorrowers_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_removeauthorizedborrowers_request(o CDeviceAuth_RemoveAuthorizedBorrowers_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_removeauthorizedborrowers_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_RemoveAuthorizedBorrowers_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_removeauthorizedborrowers_request_unpack(v)?
@@ -1352,21 +1856,52 @@ pub fn (o &CDeviceAuth_RemoveAuthorizedBorrowers_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_removeauthorizedborrowers_response_unpack(buf []byte) ?CDeviceAuth_RemoveAuthorizedBorrowers_Response {
-	res := CDeviceAuth_RemoveAuthorizedBorrowers_Response{}
+	res := zzz_vproto_internal_new_cdeviceauth_removeauthorizedborrowers_response()
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_RemoveAuthorizedBorrowers_Response) eq(b CDeviceAuth_RemoveAuthorizedBorrowers_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CDeviceAuth_RemoveAuthorizedBorrowers_Response) ne(b CDeviceAuth_RemoveAuthorizedBorrowers_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_RemoveAuthorizedBorrowers_Response) eq(b []CDeviceAuth_RemoveAuthorizedBorrowers_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_RemoveAuthorizedBorrowers_Response) ne(b []CDeviceAuth_RemoveAuthorizedBorrowers_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_removeauthorizedborrowers_response() CDeviceAuth_RemoveAuthorizedBorrowers_Response {
 	return CDeviceAuth_RemoveAuthorizedBorrowers_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_removeauthorizedborrowers_response(o CDeviceAuth_RemoveAuthorizedBorrowers_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_removeauthorizedborrowers_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_RemoveAuthorizedBorrowers_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_removeauthorizedborrowers_response_unpack(v)?
@@ -1375,32 +1910,29 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_removeauthorizedborrowers_response
 
 pub struct CDeviceAuth_GetAuthorizedAsBorrower_Request {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	steamid              u64
-	has_steamid          bool
-	include_canceled     bool
-	has_include_canceled bool
-	include_pending      bool
-	has_include_pending  bool
+	steamid          u64
+	include_canceled bool
+	include_pending  bool
 }
 
 pub fn (o &CDeviceAuth_GetAuthorizedAsBorrower_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_include_canceled {
+	if o.include_canceled != bool(0) {
 		res << vproto.pack_bool_field(o.include_canceled, 2)
 	}
-	if o.has_include_pending {
+	if o.include_pending != bool(0) {
 		res << vproto.pack_bool_field(o.include_pending, 3)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getauthorizedasborrower_request_unpack(buf []byte) ?CDeviceAuth_GetAuthorizedAsBorrower_Request {
-	mut res := CDeviceAuth_GetAuthorizedAsBorrower_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getauthorizedasborrower_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1411,19 +1943,16 @@ pub fn cdeviceauth_getauthorizedasborrower_request_unpack(buf []byte) ?CDeviceAu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_include_canceled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_canceled = v
 				i = ii
 			}
 			3 {
-				res.has_include_pending = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.include_pending = v
 				i = ii
@@ -1443,17 +1972,50 @@ pub fn cdeviceauth_getauthorizedasborrower_request_unpack(buf []byte) ?CDeviceAu
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedAsBorrower_Request) eq(b CDeviceAuth_GetAuthorizedAsBorrower_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.include_canceled == b.include_canceled &&
+		a.include_pending == b.include_pending
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedAsBorrower_Request) ne(b CDeviceAuth_GetAuthorizedAsBorrower_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedAsBorrower_Request) eq(b []CDeviceAuth_GetAuthorizedAsBorrower_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedAsBorrower_Request) ne(b []CDeviceAuth_GetAuthorizedAsBorrower_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getauthorizedasborrower_request() CDeviceAuth_GetAuthorizedAsBorrower_Request {
 	return CDeviceAuth_GetAuthorizedAsBorrower_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getauthorizedasborrower_request(o CDeviceAuth_GetAuthorizedAsBorrower_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedasborrower_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetAuthorizedAsBorrower_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getauthorizedasborrower_request_unpack(v)?
@@ -1462,42 +2024,37 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedasborrower_request(bu
 
 pub struct CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	steamid          u64
-	has_steamid      bool
-	time_created     u32
-	has_time_created bool
-	is_pending       bool
-	has_is_pending   bool
-	is_canceled      bool
-	has_is_canceled  bool
-	is_used          bool
-	has_is_used      bool
+	steamid        u64
+	time_created   u32
+	is_pending     bool
+	is_canceled    bool
+	is_used        bool
 }
 
 pub fn (o &CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_time_created {
+	if o.time_created != u32(0) {
 		res << vproto.pack_uint32_field(o.time_created, 2)
 	}
-	if o.has_is_pending {
+	if o.is_pending != bool(0) {
 		res << vproto.pack_bool_field(o.is_pending, 3)
 	}
-	if o.has_is_canceled {
+	if o.is_canceled != bool(0) {
 		res << vproto.pack_bool_field(o.is_canceled, 4)
 	}
-	if o.has_is_used {
+	if o.is_used != bool(0) {
 		res << vproto.pack_bool_field(o.is_used, 5)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getauthorizedasborrower_response_lender_unpack(buf []byte) ?CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender {
-	mut res := CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getauthorizedasborrower_response_lender()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1508,31 +2065,26 @@ pub fn cdeviceauth_getauthorizedasborrower_response_lender_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_time_created = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_created = v
 				i = ii
 			}
 			3 {
-				res.has_is_pending = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_pending = v
 				i = ii
 			}
 			4 {
-				res.has_is_canceled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_canceled = v
 				i = ii
 			}
 			5 {
-				res.has_is_used = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_used = v
 				i = ii
@@ -1552,17 +2104,51 @@ pub fn cdeviceauth_getauthorizedasborrower_response_lender_unpack(buf []byte) ?C
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) eq(b CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) bool {
+	return true && a.steamid == b.steamid &&
+		a.time_created == b.time_created &&
+		a.is_pending == b.is_pending && a.is_canceled == b.is_canceled &&
+		a.is_used == b.is_used
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) ne(b CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) eq(b []CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) ne(b []CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getauthorizedasborrower_response_lender() CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender {
 	return CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getauthorizedasborrower_response_lender(o CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedasborrower_response_lender(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetAuthorizedAsBorrower_Response_Lender) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getauthorizedasborrower_response_lender_unpack(v)?
@@ -1586,7 +2172,7 @@ pub fn (o &CDeviceAuth_GetAuthorizedAsBorrower_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_getauthorizedasborrower_response_unpack(buf []byte) ?CDeviceAuth_GetAuthorizedAsBorrower_Response {
-	mut res := CDeviceAuth_GetAuthorizedAsBorrower_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getauthorizedasborrower_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1618,17 +2204,48 @@ pub fn cdeviceauth_getauthorizedasborrower_response_unpack(buf []byte) ?CDeviceA
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedAsBorrower_Response) eq(b CDeviceAuth_GetAuthorizedAsBorrower_Response) bool {
+	return true && a.lenders.eq(b.lenders)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetAuthorizedAsBorrower_Response) ne(b CDeviceAuth_GetAuthorizedAsBorrower_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedAsBorrower_Response) eq(b []CDeviceAuth_GetAuthorizedAsBorrower_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetAuthorizedAsBorrower_Response) ne(b []CDeviceAuth_GetAuthorizedAsBorrower_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getauthorizedasborrower_response() CDeviceAuth_GetAuthorizedAsBorrower_Response {
 	return CDeviceAuth_GetAuthorizedAsBorrower_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getauthorizedasborrower_response(o CDeviceAuth_GetAuthorizedAsBorrower_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getauthorizedasborrower_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetAuthorizedAsBorrower_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getauthorizedasborrower_response_unpack(v)?
@@ -1640,19 +2257,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CDeviceAuth_GetExcludedGamesInLibrary_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getexcludedgamesinlibrary_request_unpack(buf []byte) ?CDeviceAuth_GetExcludedGamesInLibrary_Request {
-	mut res := CDeviceAuth_GetExcludedGamesInLibrary_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getexcludedgamesinlibrary_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1663,7 +2279,6 @@ pub fn cdeviceauth_getexcludedgamesinlibrary_request_unpack(buf []byte) ?CDevice
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1683,17 +2298,48 @@ pub fn cdeviceauth_getexcludedgamesinlibrary_request_unpack(buf []byte) ?CDevice
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetExcludedGamesInLibrary_Request) eq(b CDeviceAuth_GetExcludedGamesInLibrary_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetExcludedGamesInLibrary_Request) ne(b CDeviceAuth_GetExcludedGamesInLibrary_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetExcludedGamesInLibrary_Request) eq(b []CDeviceAuth_GetExcludedGamesInLibrary_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetExcludedGamesInLibrary_Request) ne(b []CDeviceAuth_GetExcludedGamesInLibrary_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getexcludedgamesinlibrary_request() CDeviceAuth_GetExcludedGamesInLibrary_Request {
 	return CDeviceAuth_GetExcludedGamesInLibrary_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getexcludedgamesinlibrary_request(o CDeviceAuth_GetExcludedGamesInLibrary_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getexcludedgamesinlibrary_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetExcludedGamesInLibrary_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getexcludedgamesinlibrary_request_unpack(v)?
@@ -1702,37 +2348,33 @@ pub fn zzz_vproto_internal_unpack_cdeviceauth_getexcludedgamesinlibrary_request(
 
 pub struct CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame {
 mut:
-	unknown_fields       []vproto.UnknownField
+	unknown_fields   []vproto.UnknownField
 pub mut:
-	appid                u32
-	has_appid            bool
-	game_name            string
-	has_game_name        bool
-	vac_banned           bool
-	has_vac_banned       bool
-	package_excluded     bool
-	has_package_excluded bool
+	appid            u32
+	game_name        string
+	vac_banned       bool
+	package_excluded bool
 }
 
 pub fn (o &CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_game_name {
+	if o.game_name != '' {
 		res << vproto.pack_string_field(o.game_name, 2)
 	}
-	if o.has_vac_banned {
+	if o.vac_banned != bool(0) {
 		res << vproto.pack_bool_field(o.vac_banned, 3)
 	}
-	if o.has_package_excluded {
+	if o.package_excluded != bool(0) {
 		res << vproto.pack_bool_field(o.package_excluded, 4)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getexcludedgamesinlibrary_response_excludedgame_unpack(buf []byte) ?CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame {
-	mut res := CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getexcludedgamesinlibrary_response_excludedgame()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1743,25 +2385,21 @@ pub fn cdeviceauth_getexcludedgamesinlibrary_response_excludedgame_unpack(buf []
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_game_name = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.game_name = v
 				i = ii
 			}
 			3 {
-				res.has_vac_banned = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.vac_banned = v
 				i = ii
 			}
 			4 {
-				res.has_package_excluded = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.package_excluded = v
 				i = ii
@@ -1781,17 +2419,50 @@ pub fn cdeviceauth_getexcludedgamesinlibrary_response_excludedgame_unpack(buf []
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) eq(b CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) bool {
+	return true && a.appid == b.appid &&
+		a.game_name == b.game_name && a.vac_banned == b.vac_banned &&
+		a.package_excluded == b.package_excluded
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) ne(b CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) eq(b []CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) ne(b []CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getexcludedgamesinlibrary_response_excludedgame() CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame {
 	return CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getexcludedgamesinlibrary_response_excludedgame(o CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getexcludedgamesinlibrary_response_excludedgame(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetExcludedGamesInLibrary_Response_ExcludedGame) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getexcludedgamesinlibrary_response_excludedgame_unpack(v)?
@@ -1816,7 +2487,7 @@ pub fn (o &CDeviceAuth_GetExcludedGamesInLibrary_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_getexcludedgamesinlibrary_response_unpack(buf []byte) ?CDeviceAuth_GetExcludedGamesInLibrary_Response {
-	mut res := CDeviceAuth_GetExcludedGamesInLibrary_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getexcludedgamesinlibrary_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1848,17 +2519,48 @@ pub fn cdeviceauth_getexcludedgamesinlibrary_response_unpack(buf []byte) ?CDevic
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetExcludedGamesInLibrary_Response) eq(b CDeviceAuth_GetExcludedGamesInLibrary_Response) bool {
+	return true && a.excluded_games.eq(b.excluded_games)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetExcludedGamesInLibrary_Response) ne(b CDeviceAuth_GetExcludedGamesInLibrary_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetExcludedGamesInLibrary_Response) eq(b []CDeviceAuth_GetExcludedGamesInLibrary_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetExcludedGamesInLibrary_Response) ne(b []CDeviceAuth_GetExcludedGamesInLibrary_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getexcludedgamesinlibrary_response() CDeviceAuth_GetExcludedGamesInLibrary_Response {
 	return CDeviceAuth_GetExcludedGamesInLibrary_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getexcludedgamesinlibrary_response(o CDeviceAuth_GetExcludedGamesInLibrary_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getexcludedgamesinlibrary_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetExcludedGamesInLibrary_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getexcludedgamesinlibrary_response_unpack(v)?
@@ -1870,19 +2572,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CDeviceAuth_GetBorrowerPlayHistory_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getborrowerplayhistory_request_unpack(buf []byte) ?CDeviceAuth_GetBorrowerPlayHistory_Request {
-	mut res := CDeviceAuth_GetBorrowerPlayHistory_Request{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1893,7 +2594,6 @@ pub fn cdeviceauth_getborrowerplayhistory_request_unpack(buf []byte) ?CDeviceAut
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1913,17 +2613,48 @@ pub fn cdeviceauth_getborrowerplayhistory_request_unpack(buf []byte) ?CDeviceAut
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Request) eq(b CDeviceAuth_GetBorrowerPlayHistory_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Request) ne(b CDeviceAuth_GetBorrowerPlayHistory_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Request) eq(b []CDeviceAuth_GetBorrowerPlayHistory_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Request) ne(b []CDeviceAuth_GetBorrowerPlayHistory_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_request() CDeviceAuth_GetBorrowerPlayHistory_Request {
 	return CDeviceAuth_GetBorrowerPlayHistory_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getborrowerplayhistory_request(o CDeviceAuth_GetBorrowerPlayHistory_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getborrowerplayhistory_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetBorrowerPlayHistory_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getborrowerplayhistory_request_unpack(v)?
@@ -1935,29 +2666,26 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	time_last      u32
-	has_time_last  bool
 	time_total     u32
-	has_time_total bool
 }
 
 pub fn (o &CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_time_last {
+	if o.time_last != u32(0) {
 		res << vproto.pack_uint32_field(o.time_last, 2)
 	}
-	if o.has_time_total {
+	if o.time_total != u32(0) {
 		res << vproto.pack_uint32_field(o.time_total, 3)
 	}
 	return res
 }
 
 pub fn cdeviceauth_getborrowerplayhistory_response_gamehistory_unpack(buf []byte) ?CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory {
-	mut res := CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_response_gamehistory()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1968,19 +2696,16 @@ pub fn cdeviceauth_getborrowerplayhistory_response_gamehistory_unpack(buf []byte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_time_last = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_last = v
 				i = ii
 			}
 			3 {
-				res.has_time_total = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_total = v
 				i = ii
@@ -2000,17 +2725,48 @@ pub fn cdeviceauth_getborrowerplayhistory_response_gamehistory_unpack(buf []byte
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) eq(b CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) bool {
+	return true && a.appid == b.appid && a.time_last == b.time_last && a.time_total == b.time_total
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) ne(b CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) eq(b []CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) ne(b []CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_response_gamehistory() CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory {
 	return CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getborrowerplayhistory_response_gamehistory(o CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getborrowerplayhistory_response_gamehistory(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getborrowerplayhistory_response_gamehistory_unpack(v)?
@@ -2022,13 +2778,12 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 	game_history   []CDeviceAuth_GetBorrowerPlayHistory_Response_GameHistory
 }
 
 pub fn (o &CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	// [packed=false]
@@ -2040,7 +2795,7 @@ pub fn (o &CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) pack() []b
 }
 
 pub fn cdeviceauth_getborrowerplayhistory_response_lenderhistory_unpack(buf []byte) ?CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory {
-	mut res := CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_response_lenderhistory()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2051,7 +2806,6 @@ pub fn cdeviceauth_getborrowerplayhistory_response_lenderhistory_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -2078,17 +2832,48 @@ pub fn cdeviceauth_getborrowerplayhistory_response_lenderhistory_unpack(buf []by
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) eq(b CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) bool {
+	return true && a.steamid == b.steamid && a.game_history.eq(b.game_history)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) ne(b CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) eq(b []CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) ne(b []CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_response_lenderhistory() CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory {
 	return CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getborrowerplayhistory_response_lenderhistory(o CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getborrowerplayhistory_response_lenderhistory(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetBorrowerPlayHistory_Response_LenderHistory) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getborrowerplayhistory_response_lenderhistory_unpack(v)?
@@ -2113,7 +2898,7 @@ pub fn (o &CDeviceAuth_GetBorrowerPlayHistory_Response) pack() []byte {
 }
 
 pub fn cdeviceauth_getborrowerplayhistory_response_unpack(buf []byte) ?CDeviceAuth_GetBorrowerPlayHistory_Response {
-	mut res := CDeviceAuth_GetBorrowerPlayHistory_Response{}
+	mut res := zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -2145,17 +2930,48 @@ pub fn cdeviceauth_getborrowerplayhistory_response_unpack(buf []byte) ?CDeviceAu
 	return res
 }
 
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Response) eq(b CDeviceAuth_GetBorrowerPlayHistory_Response) bool {
+	return true && a.lender_history.eq(b.lender_history)
+}
+
+[inline]
+pub fn (a CDeviceAuth_GetBorrowerPlayHistory_Response) ne(b CDeviceAuth_GetBorrowerPlayHistory_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Response) eq(b []CDeviceAuth_GetBorrowerPlayHistory_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CDeviceAuth_GetBorrowerPlayHistory_Response) ne(b []CDeviceAuth_GetBorrowerPlayHistory_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cdeviceauth_getborrowerplayhistory_response() CDeviceAuth_GetBorrowerPlayHistory_Response {
 	return CDeviceAuth_GetBorrowerPlayHistory_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cdeviceauth_getborrowerplayhistory_response(o CDeviceAuth_GetBorrowerPlayHistory_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cdeviceauth_getborrowerplayhistory_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CDeviceAuth_GetBorrowerPlayHistory_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cdeviceauth_getborrowerplayhistory_response_unpack(v)?

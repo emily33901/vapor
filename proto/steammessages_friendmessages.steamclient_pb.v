@@ -5,62 +5,53 @@ import emily33901.vproto
 
 pub struct CFriendMessages_GetRecentMessages_Request {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid1                     u64
-	has_steamid1                 bool
-	steamid2                     u64
-	has_steamid2                 bool
-	count                        u32
-	has_count                    bool
-	most_recent_conversation     bool
-	has_most_recent_conversation bool
-	rtime32_start_time           u32
-	has_rtime32_start_time       bool
-	bbcode_format                bool
-	has_bbcode_format            bool
-	start_ordinal                u32
-	has_start_ordinal            bool
-	time_last                    u32
-	has_time_last                bool
-	ordinal_last                 u32
-	has_ordinal_last             bool
+	steamid1                 u64
+	steamid2                 u64
+	count                    u32
+	most_recent_conversation bool
+	rtime32_start_time       u32
+	bbcode_format            bool
+	start_ordinal            u32
+	time_last                u32
+	ordinal_last             u32
 }
 
 pub fn (o &CFriendMessages_GetRecentMessages_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid1 {
+	if o.steamid1 != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid1, 1)
 	}
-	if o.has_steamid2 {
+	if o.steamid2 != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid2, 2)
 	}
-	if o.has_count {
+	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 3)
 	}
-	if o.has_most_recent_conversation {
+	if o.most_recent_conversation != bool(0) {
 		res << vproto.pack_bool_field(o.most_recent_conversation, 4)
 	}
-	if o.has_rtime32_start_time {
+	if o.rtime32_start_time != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_start_time, 5)
 	}
-	if o.has_bbcode_format {
+	if o.bbcode_format != bool(0) {
 		res << vproto.pack_bool_field(o.bbcode_format, 6)
 	}
-	if o.has_start_ordinal {
+	if o.start_ordinal != u32(0) {
 		res << vproto.pack_uint32_field(o.start_ordinal, 7)
 	}
-	if o.has_time_last {
+	if o.time_last != u32(0) {
 		res << vproto.pack_uint32_field(o.time_last, 8)
 	}
-	if o.has_ordinal_last {
+	if o.ordinal_last != u32(0) {
 		res << vproto.pack_uint32_field(o.ordinal_last, 9)
 	}
 	return res
 }
 
 pub fn cfriendmessages_getrecentmessages_request_unpack(buf []byte) ?CFriendMessages_GetRecentMessages_Request {
-	mut res := CFriendMessages_GetRecentMessages_Request{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_getrecentmessages_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -71,55 +62,46 @@ pub fn cfriendmessages_getrecentmessages_request_unpack(buf []byte) ?CFriendMess
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid1 = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid1 = v
 				i = ii
 			}
 			2 {
-				res.has_steamid2 = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid2 = v
 				i = ii
 			}
 			3 {
-				res.has_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.count = v
 				i = ii
 			}
 			4 {
-				res.has_most_recent_conversation = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.most_recent_conversation = v
 				i = ii
 			}
 			5 {
-				res.has_rtime32_start_time = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime32_start_time = v
 				i = ii
 			}
 			6 {
-				res.has_bbcode_format = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.bbcode_format = v
 				i = ii
 			}
 			7 {
-				res.has_start_ordinal = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.start_ordinal = v
 				i = ii
 			}
 			8 {
-				res.has_time_last = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.time_last = v
 				i = ii
 			}
 			9 {
-				res.has_ordinal_last = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ordinal_last = v
 				i = ii
@@ -139,17 +121,54 @@ pub fn cfriendmessages_getrecentmessages_request_unpack(buf []byte) ?CFriendMess
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_GetRecentMessages_Request) eq(b CFriendMessages_GetRecentMessages_Request) bool {
+	return true && a.steamid1 == b.steamid1 &&
+		a.steamid2 == b.steamid2 && a.count == b.count &&
+		a.most_recent_conversation == b.most_recent_conversation &&
+		a.rtime32_start_time == b.rtime32_start_time &&
+		a.bbcode_format == b.bbcode_format &&
+		a.start_ordinal == b.start_ordinal &&
+		a.time_last == b.time_last && a.ordinal_last == b.ordinal_last
+}
+
+[inline]
+pub fn (a CFriendMessages_GetRecentMessages_Request) ne(b CFriendMessages_GetRecentMessages_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_GetRecentMessages_Request) eq(b []CFriendMessages_GetRecentMessages_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_GetRecentMessages_Request) ne(b []CFriendMessages_GetRecentMessages_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_getrecentmessages_request() CFriendMessages_GetRecentMessages_Request {
 	return CFriendMessages_GetRecentMessages_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_request(o CFriendMessages_GetRecentMessages_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_GetRecentMessages_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_getrecentmessages_request_unpack(v)?
@@ -161,34 +180,30 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	accountid      u32
-	has_accountid  bool
 	timestamp      u32
-	has_timestamp  bool
 	message        string
-	has_message    bool
 	ordinal        u32
-	has_ordinal    bool
 }
 
 pub fn (o &CFriendMessages_GetRecentMessages_Response_FriendMessage) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid {
+	if o.accountid != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid, 1)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 2)
 	}
-	if o.has_message {
+	if o.message != '' {
 		res << vproto.pack_string_field(o.message, 3)
 	}
-	if o.has_ordinal {
+	if o.ordinal != u32(0) {
 		res << vproto.pack_uint32_field(o.ordinal, 4)
 	}
 	return res
 }
 
 pub fn cfriendmessages_getrecentmessages_response_friendmessage_unpack(buf []byte) ?CFriendMessages_GetRecentMessages_Response_FriendMessage {
-	mut res := CFriendMessages_GetRecentMessages_Response_FriendMessage{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_getrecentmessages_response_friendmessage()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -199,25 +214,21 @@ pub fn cfriendmessages_getrecentmessages_response_friendmessage_unpack(buf []byt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
 			}
 			3 {
-				res.has_message = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
 			}
 			4 {
-				res.has_ordinal = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ordinal = v
 				i = ii
@@ -237,17 +248,50 @@ pub fn cfriendmessages_getrecentmessages_response_friendmessage_unpack(buf []byt
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_GetRecentMessages_Response_FriendMessage) eq(b CFriendMessages_GetRecentMessages_Response_FriendMessage) bool {
+	return true && a.accountid == b.accountid &&
+		a.timestamp == b.timestamp && a.message == b.message &&
+		a.ordinal == b.ordinal
+}
+
+[inline]
+pub fn (a CFriendMessages_GetRecentMessages_Response_FriendMessage) ne(b CFriendMessages_GetRecentMessages_Response_FriendMessage) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_GetRecentMessages_Response_FriendMessage) eq(b []CFriendMessages_GetRecentMessages_Response_FriendMessage) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_GetRecentMessages_Response_FriendMessage) ne(b []CFriendMessages_GetRecentMessages_Response_FriendMessage) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_getrecentmessages_response_friendmessage() CFriendMessages_GetRecentMessages_Response_FriendMessage {
 	return CFriendMessages_GetRecentMessages_Response_FriendMessage{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_response_friendmessage(o CFriendMessages_GetRecentMessages_Response_FriendMessage, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response_friendmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_GetRecentMessages_Response_FriendMessage) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_getrecentmessages_response_friendmessage_unpack(v)?
@@ -256,11 +300,10 @@ pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response_fri
 
 pub struct CFriendMessages_GetRecentMessages_Response {
 mut:
-	unknown_fields     []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	messages           []CFriendMessages_GetRecentMessages_Response_FriendMessage
-	more_available     bool
-	has_more_available bool
+	messages       []CFriendMessages_GetRecentMessages_Response_FriendMessage
+	more_available bool
 }
 
 pub fn (o &CFriendMessages_GetRecentMessages_Response) pack() []byte {
@@ -270,14 +313,14 @@ pub fn (o &CFriendMessages_GetRecentMessages_Response) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_response_friendmessage(x, 1)
 	}
-	if o.has_more_available {
+	if o.more_available != bool(0) {
 		res << vproto.pack_bool_field(o.more_available, 4)
 	}
 	return res
 }
 
 pub fn cfriendmessages_getrecentmessages_response_unpack(buf []byte) ?CFriendMessages_GetRecentMessages_Response {
-	mut res := CFriendMessages_GetRecentMessages_Response{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_getrecentmessages_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -295,7 +338,6 @@ pub fn cfriendmessages_getrecentmessages_response_unpack(buf []byte) ?CFriendMes
 				i = ii
 			}
 			4 {
-				res.has_more_available = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.more_available = v
 				i = ii
@@ -315,17 +357,48 @@ pub fn cfriendmessages_getrecentmessages_response_unpack(buf []byte) ?CFriendMes
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_GetRecentMessages_Response) eq(b CFriendMessages_GetRecentMessages_Response) bool {
+	return true && a.messages.eq(b.messages) && a.more_available == b.more_available
+}
+
+[inline]
+pub fn (a CFriendMessages_GetRecentMessages_Response) ne(b CFriendMessages_GetRecentMessages_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_GetRecentMessages_Response) eq(b []CFriendMessages_GetRecentMessages_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_GetRecentMessages_Response) ne(b []CFriendMessages_GetRecentMessages_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_getrecentmessages_response() CFriendMessages_GetRecentMessages_Response {
 	return CFriendMessages_GetRecentMessages_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_response(o CFriendMessages_GetRecentMessages_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_GetRecentMessages_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_getrecentmessages_response_unpack(v)?
@@ -334,27 +407,25 @@ pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response(buf
 
 pub struct CFriendsMessages_GetActiveMessageSessions_Request {
 mut:
-	unknown_fields                  []vproto.UnknownField
+	unknown_fields              []vproto.UnknownField
 pub mut:
-	lastmessage_since               u32
-	has_lastmessage_since           bool
-	only_sessions_with_messages     bool
-	has_only_sessions_with_messages bool
+	lastmessage_since           u32
+	only_sessions_with_messages bool
 }
 
 pub fn (o &CFriendsMessages_GetActiveMessageSessions_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_lastmessage_since {
+	if o.lastmessage_since != u32(0) {
 		res << vproto.pack_uint32_field(o.lastmessage_since, 1)
 	}
-	if o.has_only_sessions_with_messages {
+	if o.only_sessions_with_messages != bool(0) {
 		res << vproto.pack_bool_field(o.only_sessions_with_messages, 2)
 	}
 	return res
 }
 
 pub fn cfriendsmessages_getactivemessagesessions_request_unpack(buf []byte) ?CFriendsMessages_GetActiveMessageSessions_Request {
-	mut res := CFriendsMessages_GetActiveMessageSessions_Request{}
+	mut res := zzz_vproto_internal_new_cfriendsmessages_getactivemessagesessions_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -365,13 +436,11 @@ pub fn cfriendsmessages_getactivemessagesessions_request_unpack(buf []byte) ?CFr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_lastmessage_since = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.lastmessage_since = v
 				i = ii
 			}
 			2 {
-				res.has_only_sessions_with_messages = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.only_sessions_with_messages = v
 				i = ii
@@ -391,17 +460,49 @@ pub fn cfriendsmessages_getactivemessagesessions_request_unpack(buf []byte) ?CFr
 	return res
 }
 
+[inline]
+pub fn (a CFriendsMessages_GetActiveMessageSessions_Request) eq(b CFriendsMessages_GetActiveMessageSessions_Request) bool {
+	return true && a.lastmessage_since == b.lastmessage_since &&
+		a.only_sessions_with_messages == b.only_sessions_with_messages
+}
+
+[inline]
+pub fn (a CFriendsMessages_GetActiveMessageSessions_Request) ne(b CFriendsMessages_GetActiveMessageSessions_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendsMessages_GetActiveMessageSessions_Request) eq(b []CFriendsMessages_GetActiveMessageSessions_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendsMessages_GetActiveMessageSessions_Request) ne(b []CFriendsMessages_GetActiveMessageSessions_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendsmessages_getactivemessagesessions_request() CFriendsMessages_GetActiveMessageSessions_Request {
 	return CFriendsMessages_GetActiveMessageSessions_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_request(o CFriendsMessages_GetActiveMessageSessions_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendsMessages_GetActiveMessageSessions_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendsmessages_getactivemessagesessions_request_unpack(v)?
@@ -410,37 +511,33 @@ pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_requ
 
 pub struct CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession {
 mut:
-	unknown_fields           []vproto.UnknownField
+	unknown_fields       []vproto.UnknownField
 pub mut:
-	accountid_friend         u32
-	has_accountid_friend     bool
-	last_message             u32
-	has_last_message         bool
-	last_view                u32
-	has_last_view            bool
-	unread_message_count     u32
-	has_unread_message_count bool
+	accountid_friend     u32
+	last_message         u32
+	last_view            u32
+	unread_message_count u32
 }
 
 pub fn (o &CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) pack() []byte {
 	mut res := []byte{}
-	if o.has_accountid_friend {
+	if o.accountid_friend != u32(0) {
 		res << vproto.pack_uint32_field(o.accountid_friend, 1)
 	}
-	if o.has_last_message {
+	if o.last_message != u32(0) {
 		res << vproto.pack_uint32_field(o.last_message, 2)
 	}
-	if o.has_last_view {
+	if o.last_view != u32(0) {
 		res << vproto.pack_uint32_field(o.last_view, 3)
 	}
-	if o.has_unread_message_count {
+	if o.unread_message_count != u32(0) {
 		res << vproto.pack_uint32_field(o.unread_message_count, 4)
 	}
 	return res
 }
 
 pub fn cfriendsmessages_getactivemessagesessions_response_friendmessagesession_unpack(buf []byte) ?CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession {
-	mut res := CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession{}
+	mut res := zzz_vproto_internal_new_cfriendsmessages_getactivemessagesessions_response_friendmessagesession()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -451,25 +548,21 @@ pub fn cfriendsmessages_getactivemessagesessions_response_friendmessagesession_u
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_accountid_friend = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.accountid_friend = v
 				i = ii
 			}
 			2 {
-				res.has_last_message = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_message = v
 				i = ii
 			}
 			3 {
-				res.has_last_view = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.last_view = v
 				i = ii
 			}
 			4 {
-				res.has_unread_message_count = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.unread_message_count = v
 				i = ii
@@ -489,17 +582,50 @@ pub fn cfriendsmessages_getactivemessagesessions_response_friendmessagesession_u
 	return res
 }
 
+[inline]
+pub fn (a CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) eq(b CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) bool {
+	return true && a.accountid_friend == b.accountid_friend &&
+		a.last_message == b.last_message &&
+		a.last_view == b.last_view && a.unread_message_count == b.unread_message_count
+}
+
+[inline]
+pub fn (a CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) ne(b CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) eq(b []CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) ne(b []CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendsmessages_getactivemessagesessions_response_friendmessagesession() CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession {
 	return CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_response_friendmessagesession(o CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_response_friendmessagesession(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendsmessages_getactivemessagesessions_response_friendmessagesession_unpack(v)?
@@ -512,7 +638,6 @@ mut:
 pub mut:
 	message_sessions []CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession
 	timestamp        u32
-	has_timestamp    bool
 }
 
 pub fn (o &CFriendsMessages_GetActiveMessageSessions_Response) pack() []byte {
@@ -522,14 +647,14 @@ pub fn (o &CFriendsMessages_GetActiveMessageSessions_Response) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_response_friendmessagesession(x, 1)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 2)
 	}
 	return res
 }
 
 pub fn cfriendsmessages_getactivemessagesessions_response_unpack(buf []byte) ?CFriendsMessages_GetActiveMessageSessions_Response {
-	mut res := CFriendsMessages_GetActiveMessageSessions_Response{}
+	mut res := zzz_vproto_internal_new_cfriendsmessages_getactivemessagesessions_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -547,7 +672,6 @@ pub fn cfriendsmessages_getactivemessagesessions_response_unpack(buf []byte) ?CF
 				i = ii
 			}
 			2 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
@@ -567,17 +691,48 @@ pub fn cfriendsmessages_getactivemessagesessions_response_unpack(buf []byte) ?CF
 	return res
 }
 
+[inline]
+pub fn (a CFriendsMessages_GetActiveMessageSessions_Response) eq(b CFriendsMessages_GetActiveMessageSessions_Response) bool {
+	return true && a.message_sessions.eq(b.message_sessions) && a.timestamp == b.timestamp
+}
+
+[inline]
+pub fn (a CFriendsMessages_GetActiveMessageSessions_Response) ne(b CFriendsMessages_GetActiveMessageSessions_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendsMessages_GetActiveMessageSessions_Response) eq(b []CFriendsMessages_GetActiveMessageSessions_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendsMessages_GetActiveMessageSessions_Response) ne(b []CFriendsMessages_GetActiveMessageSessions_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendsmessages_getactivemessagesessions_response() CFriendsMessages_GetActiveMessageSessions_Response {
 	return CFriendsMessages_GetActiveMessageSessions_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_response(o CFriendsMessages_GetActiveMessageSessions_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendsMessages_GetActiveMessageSessions_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendsmessages_getactivemessagesessions_response_unpack(v)?
@@ -586,52 +741,45 @@ pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_resp
 
 pub struct CFriendMessages_SendMessage_Request {
 mut:
-	unknown_fields        []vproto.UnknownField
+	unknown_fields    []vproto.UnknownField
 pub mut:
-	steamid               u64
-	has_steamid           bool
-	chat_entry_type       int
-	has_chat_entry_type   bool
-	message               string
-	has_message           bool
-	contains_bbcode       bool
-	has_contains_bbcode   bool
-	echo_to_sender        bool
-	has_echo_to_sender    bool
-	low_priority          bool
-	has_low_priority      bool
-	client_message_id     string
-	has_client_message_id bool
+	steamid           u64
+	chat_entry_type   int
+	message           string
+	contains_bbcode   bool
+	echo_to_sender    bool
+	low_priority      bool
+	client_message_id string
 }
 
 pub fn (o &CFriendMessages_SendMessage_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_chat_entry_type {
+	if o.chat_entry_type != int(0) {
 		res << vproto.pack_int32_field(o.chat_entry_type, 2)
 	}
-	if o.has_message {
+	if o.message != '' {
 		res << vproto.pack_string_field(o.message, 3)
 	}
-	if o.has_contains_bbcode {
+	if o.contains_bbcode != bool(0) {
 		res << vproto.pack_bool_field(o.contains_bbcode, 4)
 	}
-	if o.has_echo_to_sender {
+	if o.echo_to_sender != bool(0) {
 		res << vproto.pack_bool_field(o.echo_to_sender, 5)
 	}
-	if o.has_low_priority {
+	if o.low_priority != bool(0) {
 		res << vproto.pack_bool_field(o.low_priority, 6)
 	}
-	if o.has_client_message_id {
+	if o.client_message_id != '' {
 		res << vproto.pack_string_field(o.client_message_id, 8)
 	}
 	return res
 }
 
 pub fn cfriendmessages_sendmessage_request_unpack(buf []byte) ?CFriendMessages_SendMessage_Request {
-	mut res := CFriendMessages_SendMessage_Request{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_sendmessage_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -642,43 +790,36 @@ pub fn cfriendmessages_sendmessage_request_unpack(buf []byte) ?CFriendMessages_S
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_chat_entry_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.chat_entry_type = v
 				i = ii
 			}
 			3 {
-				res.has_message = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
 			}
 			4 {
-				res.has_contains_bbcode = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.contains_bbcode = v
 				i = ii
 			}
 			5 {
-				res.has_echo_to_sender = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.echo_to_sender = v
 				i = ii
 			}
 			6 {
-				res.has_low_priority = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.low_priority = v
 				i = ii
 			}
 			8 {
-				res.has_client_message_id = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.client_message_id = v
 				i = ii
@@ -698,17 +839,53 @@ pub fn cfriendmessages_sendmessage_request_unpack(buf []byte) ?CFriendMessages_S
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_SendMessage_Request) eq(b CFriendMessages_SendMessage_Request) bool {
+	return true && a.steamid == b.steamid &&
+		a.chat_entry_type == b.chat_entry_type &&
+		a.message == b.message && a.contains_bbcode == b.contains_bbcode &&
+		a.echo_to_sender == b.echo_to_sender &&
+		a.low_priority == b.low_priority &&
+		a.client_message_id == b.client_message_id
+}
+
+[inline]
+pub fn (a CFriendMessages_SendMessage_Request) ne(b CFriendMessages_SendMessage_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_SendMessage_Request) eq(b []CFriendMessages_SendMessage_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_SendMessage_Request) ne(b []CFriendMessages_SendMessage_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_sendmessage_request() CFriendMessages_SendMessage_Request {
 	return CFriendMessages_SendMessage_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_sendmessage_request(o CFriendMessages_SendMessage_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_sendmessage_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_SendMessage_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_sendmessage_request_unpack(v)?
@@ -717,37 +894,33 @@ pub fn zzz_vproto_internal_unpack_cfriendmessages_sendmessage_request(buf []byte
 
 pub struct CFriendMessages_SendMessage_Response {
 mut:
-	unknown_fields              []vproto.UnknownField
+	unknown_fields          []vproto.UnknownField
 pub mut:
-	modified_message            string
-	has_modified_message        bool
-	server_timestamp            u32
-	has_server_timestamp        bool
-	ordinal                     u32
-	has_ordinal                 bool
-	message_without_bb_code     string
-	has_message_without_bb_code bool
+	modified_message        string
+	server_timestamp        u32
+	ordinal                 u32
+	message_without_bb_code string
 }
 
 pub fn (o &CFriendMessages_SendMessage_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_modified_message {
+	if o.modified_message != '' {
 		res << vproto.pack_string_field(o.modified_message, 1)
 	}
-	if o.has_server_timestamp {
+	if o.server_timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.server_timestamp, 2)
 	}
-	if o.has_ordinal {
+	if o.ordinal != u32(0) {
 		res << vproto.pack_uint32_field(o.ordinal, 3)
 	}
-	if o.has_message_without_bb_code {
+	if o.message_without_bb_code != '' {
 		res << vproto.pack_string_field(o.message_without_bb_code, 4)
 	}
 	return res
 }
 
 pub fn cfriendmessages_sendmessage_response_unpack(buf []byte) ?CFriendMessages_SendMessage_Response {
-	mut res := CFriendMessages_SendMessage_Response{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_sendmessage_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -758,25 +931,21 @@ pub fn cfriendmessages_sendmessage_response_unpack(buf []byte) ?CFriendMessages_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_modified_message = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.modified_message = v
 				i = ii
 			}
 			2 {
-				res.has_server_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.server_timestamp = v
 				i = ii
 			}
 			3 {
-				res.has_ordinal = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ordinal = v
 				i = ii
 			}
 			4 {
-				res.has_message_without_bb_code = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.message_without_bb_code = v
 				i = ii
@@ -796,17 +965,50 @@ pub fn cfriendmessages_sendmessage_response_unpack(buf []byte) ?CFriendMessages_
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_SendMessage_Response) eq(b CFriendMessages_SendMessage_Response) bool {
+	return true && a.modified_message == b.modified_message &&
+		a.server_timestamp == b.server_timestamp &&
+		a.ordinal == b.ordinal && a.message_without_bb_code == b.message_without_bb_code
+}
+
+[inline]
+pub fn (a CFriendMessages_SendMessage_Response) ne(b CFriendMessages_SendMessage_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_SendMessage_Response) eq(b []CFriendMessages_SendMessage_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_SendMessage_Response) ne(b []CFriendMessages_SendMessage_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_sendmessage_response() CFriendMessages_SendMessage_Response {
 	return CFriendMessages_SendMessage_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_sendmessage_response(o CFriendMessages_SendMessage_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_sendmessage_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_SendMessage_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_sendmessage_response_unpack(v)?
@@ -815,27 +1017,25 @@ pub fn zzz_vproto_internal_unpack_cfriendmessages_sendmessage_response(buf []byt
 
 pub struct CFriendMessages_AckMessage_Notification {
 mut:
-	unknown_fields      []vproto.UnknownField
+	unknown_fields  []vproto.UnknownField
 pub mut:
-	steamid_partner     u64
-	has_steamid_partner bool
-	timestamp           u32
-	has_timestamp       bool
+	steamid_partner u64
+	timestamp       u32
 }
 
 pub fn (o &CFriendMessages_AckMessage_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid_partner {
+	if o.steamid_partner != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_partner, 1)
 	}
-	if o.has_timestamp {
+	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 2)
 	}
 	return res
 }
 
 pub fn cfriendmessages_ackmessage_notification_unpack(buf []byte) ?CFriendMessages_AckMessage_Notification {
-	mut res := CFriendMessages_AckMessage_Notification{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_ackmessage_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -846,13 +1046,11 @@ pub fn cfriendmessages_ackmessage_notification_unpack(buf []byte) ?CFriendMessag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid_partner = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_partner = v
 				i = ii
 			}
 			2 {
-				res.has_timestamp = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.timestamp = v
 				i = ii
@@ -872,17 +1070,48 @@ pub fn cfriendmessages_ackmessage_notification_unpack(buf []byte) ?CFriendMessag
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_AckMessage_Notification) eq(b CFriendMessages_AckMessage_Notification) bool {
+	return true && a.steamid_partner == b.steamid_partner && a.timestamp == b.timestamp
+}
+
+[inline]
+pub fn (a CFriendMessages_AckMessage_Notification) ne(b CFriendMessages_AckMessage_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_AckMessage_Notification) eq(b []CFriendMessages_AckMessage_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_AckMessage_Notification) ne(b []CFriendMessages_AckMessage_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_ackmessage_notification() CFriendMessages_AckMessage_Notification {
 	return CFriendMessages_AckMessage_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_ackmessage_notification(o CFriendMessages_AckMessage_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_ackmessage_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_AckMessage_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_ackmessage_notification_unpack(v)?
@@ -894,19 +1123,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CFriendMessages_IsInFriendsUIBeta_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
 	return res
 }
 
 pub fn cfriendmessages_isinfriendsuibeta_request_unpack(buf []byte) ?CFriendMessages_IsInFriendsUIBeta_Request {
-	mut res := CFriendMessages_IsInFriendsUIBeta_Request{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_isinfriendsuibeta_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -917,7 +1145,6 @@ pub fn cfriendmessages_isinfriendsuibeta_request_unpack(buf []byte) ?CFriendMess
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -937,17 +1164,48 @@ pub fn cfriendmessages_isinfriendsuibeta_request_unpack(buf []byte) ?CFriendMess
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_IsInFriendsUIBeta_Request) eq(b CFriendMessages_IsInFriendsUIBeta_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CFriendMessages_IsInFriendsUIBeta_Request) ne(b CFriendMessages_IsInFriendsUIBeta_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_IsInFriendsUIBeta_Request) eq(b []CFriendMessages_IsInFriendsUIBeta_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_IsInFriendsUIBeta_Request) ne(b []CFriendMessages_IsInFriendsUIBeta_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_isinfriendsuibeta_request() CFriendMessages_IsInFriendsUIBeta_Request {
 	return CFriendMessages_IsInFriendsUIBeta_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_isinfriendsuibeta_request(o CFriendMessages_IsInFriendsUIBeta_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_isinfriendsuibeta_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_IsInFriendsUIBeta_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_isinfriendsuibeta_request_unpack(v)?
@@ -956,27 +1214,25 @@ pub fn zzz_vproto_internal_unpack_cfriendmessages_isinfriendsuibeta_request(buf 
 
 pub struct CFriendMessages_IsInFriendsUIBeta_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	online_in_friendsui     bool
-	has_online_in_friendsui bool
-	has_used_friendsui      bool
-	has_has_used_friendsui  bool
+	online_in_friendsui bool
+	has_used_friendsui  bool
 }
 
 pub fn (o &CFriendMessages_IsInFriendsUIBeta_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_online_in_friendsui {
+	if o.online_in_friendsui != bool(0) {
 		res << vproto.pack_bool_field(o.online_in_friendsui, 1)
 	}
-	if o.has_has_used_friendsui {
+	if o.has_used_friendsui != bool(0) {
 		res << vproto.pack_bool_field(o.has_used_friendsui, 2)
 	}
 	return res
 }
 
 pub fn cfriendmessages_isinfriendsuibeta_response_unpack(buf []byte) ?CFriendMessages_IsInFriendsUIBeta_Response {
-	mut res := CFriendMessages_IsInFriendsUIBeta_Response{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_isinfriendsuibeta_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -987,13 +1243,11 @@ pub fn cfriendmessages_isinfriendsuibeta_response_unpack(buf []byte) ?CFriendMes
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_online_in_friendsui = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.online_in_friendsui = v
 				i = ii
 			}
 			2 {
-				res.has_has_used_friendsui = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.has_used_friendsui = v
 				i = ii
@@ -1013,17 +1267,49 @@ pub fn cfriendmessages_isinfriendsuibeta_response_unpack(buf []byte) ?CFriendMes
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_IsInFriendsUIBeta_Response) eq(b CFriendMessages_IsInFriendsUIBeta_Response) bool {
+	return true && a.online_in_friendsui == b.online_in_friendsui &&
+		a.has_used_friendsui == b.has_used_friendsui
+}
+
+[inline]
+pub fn (a CFriendMessages_IsInFriendsUIBeta_Response) ne(b CFriendMessages_IsInFriendsUIBeta_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_IsInFriendsUIBeta_Response) eq(b []CFriendMessages_IsInFriendsUIBeta_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_IsInFriendsUIBeta_Response) ne(b []CFriendMessages_IsInFriendsUIBeta_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_isinfriendsuibeta_response() CFriendMessages_IsInFriendsUIBeta_Response {
 	return CFriendMessages_IsInFriendsUIBeta_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_isinfriendsuibeta_response(o CFriendMessages_IsInFriendsUIBeta_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_isinfriendsuibeta_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_IsInFriendsUIBeta_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_isinfriendsuibeta_response_unpack(v)?
@@ -1032,62 +1318,53 @@ pub fn zzz_vproto_internal_unpack_cfriendmessages_isinfriendsuibeta_response(buf
 
 pub struct CFriendMessages_IncomingMessage_Notification {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid_friend               u64
-	has_steamid_friend           bool
-	chat_entry_type              int
-	has_chat_entry_type          bool
-	from_limited_account         bool
-	has_from_limited_account     bool
-	message                      string
-	has_message                  bool
-	rtime32_server_timestamp     u32
-	has_rtime32_server_timestamp bool
-	ordinal                      u32
-	has_ordinal                  bool
-	local_echo                   bool
-	has_local_echo               bool
-	message_no_bbcode            string
-	has_message_no_bbcode        bool
-	low_priority                 bool
-	has_low_priority             bool
+	steamid_friend           u64
+	chat_entry_type          int
+	from_limited_account     bool
+	message                  string
+	rtime32_server_timestamp u32
+	ordinal                  u32
+	local_echo               bool
+	message_no_bbcode        string
+	low_priority             bool
 }
 
 pub fn (o &CFriendMessages_IncomingMessage_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid_friend {
+	if o.steamid_friend != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_friend, 1)
 	}
-	if o.has_chat_entry_type {
+	if o.chat_entry_type != int(0) {
 		res << vproto.pack_int32_field(o.chat_entry_type, 2)
 	}
-	if o.has_from_limited_account {
+	if o.from_limited_account != bool(0) {
 		res << vproto.pack_bool_field(o.from_limited_account, 3)
 	}
-	if o.has_message {
+	if o.message != '' {
 		res << vproto.pack_string_field(o.message, 4)
 	}
-	if o.has_rtime32_server_timestamp {
+	if o.rtime32_server_timestamp != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_server_timestamp, 5)
 	}
-	if o.has_ordinal {
+	if o.ordinal != u32(0) {
 		res << vproto.pack_uint32_field(o.ordinal, 6)
 	}
-	if o.has_local_echo {
+	if o.local_echo != bool(0) {
 		res << vproto.pack_bool_field(o.local_echo, 7)
 	}
-	if o.has_message_no_bbcode {
+	if o.message_no_bbcode != '' {
 		res << vproto.pack_string_field(o.message_no_bbcode, 8)
 	}
-	if o.has_low_priority {
+	if o.low_priority != bool(0) {
 		res << vproto.pack_bool_field(o.low_priority, 9)
 	}
 	return res
 }
 
 pub fn cfriendmessages_incomingmessage_notification_unpack(buf []byte) ?CFriendMessages_IncomingMessage_Notification {
-	mut res := CFriendMessages_IncomingMessage_Notification{}
+	mut res := zzz_vproto_internal_new_cfriendmessages_incomingmessage_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1098,55 +1375,46 @@ pub fn cfriendmessages_incomingmessage_notification_unpack(buf []byte) ?CFriendM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid_friend = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid_friend = v
 				i = ii
 			}
 			2 {
-				res.has_chat_entry_type = true
 				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
 				res.chat_entry_type = v
 				i = ii
 			}
 			3 {
-				res.has_from_limited_account = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.from_limited_account = v
 				i = ii
 			}
 			4 {
-				res.has_message = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.message = v
 				i = ii
 			}
 			5 {
-				res.has_rtime32_server_timestamp = true
 				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.rtime32_server_timestamp = v
 				i = ii
 			}
 			6 {
-				res.has_ordinal = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.ordinal = v
 				i = ii
 			}
 			7 {
-				res.has_local_echo = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.local_echo = v
 				i = ii
 			}
 			8 {
-				res.has_message_no_bbcode = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.message_no_bbcode = v
 				i = ii
 			}
 			9 {
-				res.has_low_priority = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.low_priority = v
 				i = ii
@@ -1166,17 +1434,54 @@ pub fn cfriendmessages_incomingmessage_notification_unpack(buf []byte) ?CFriendM
 	return res
 }
 
+[inline]
+pub fn (a CFriendMessages_IncomingMessage_Notification) eq(b CFriendMessages_IncomingMessage_Notification) bool {
+	return true && a.steamid_friend == b.steamid_friend &&
+		a.chat_entry_type == b.chat_entry_type &&
+		a.from_limited_account == b.from_limited_account &&
+		a.message == b.message && a.rtime32_server_timestamp == b.rtime32_server_timestamp &&
+		a.ordinal == b.ordinal && a.local_echo == b.local_echo &&
+		a.message_no_bbcode == b.message_no_bbcode &&
+		a.low_priority == b.low_priority
+}
+
+[inline]
+pub fn (a CFriendMessages_IncomingMessage_Notification) ne(b CFriendMessages_IncomingMessage_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CFriendMessages_IncomingMessage_Notification) eq(b []CFriendMessages_IncomingMessage_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CFriendMessages_IncomingMessage_Notification) ne(b []CFriendMessages_IncomingMessage_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cfriendmessages_incomingmessage_notification() CFriendMessages_IncomingMessage_Notification {
 	return CFriendMessages_IncomingMessage_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cfriendmessages_incomingmessage_notification(o CFriendMessages_IncomingMessage_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_incomingmessage_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_IncomingMessage_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cfriendmessages_incomingmessage_notification_unpack(v)?

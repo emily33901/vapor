@@ -8,24 +8,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	appid          u32
-	has_appid      bool
 	is_allowed     bool
-	has_is_allowed bool
 }
 
 pub fn (o &ParentalApp) pack() []byte {
 	mut res := []byte{}
-	if o.has_appid {
+	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.has_is_allowed {
+	if o.is_allowed != bool(0) {
 		res << vproto.pack_bool_field(o.is_allowed, 2)
 	}
 	return res
 }
 
 pub fn parentalapp_unpack(buf []byte) ?ParentalApp {
-	mut res := ParentalApp{}
+	mut res := zzz_vproto_internal_new_parentalapp()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -36,13 +34,11 @@ pub fn parentalapp_unpack(buf []byte) ?ParentalApp {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_appid = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				res.has_is_allowed = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_allowed = v
 				i = ii
@@ -62,17 +58,48 @@ pub fn parentalapp_unpack(buf []byte) ?ParentalApp {
 	return res
 }
 
+[inline]
+pub fn (a ParentalApp) eq(b ParentalApp) bool {
+	return true && a.appid == b.appid && a.is_allowed == b.is_allowed
+}
+
+[inline]
+pub fn (a ParentalApp) ne(b ParentalApp) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []ParentalApp) eq(b []ParentalApp) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []ParentalApp) ne(b []ParentalApp) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_parentalapp() ParentalApp {
 	return ParentalApp{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_parentalapp(o ParentalApp, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_parentalapp(buf []byte, tag_wiretype vproto.WireType) ?(int, ParentalApp) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := parentalapp_unpack(v)?
@@ -81,41 +108,31 @@ pub fn zzz_vproto_internal_unpack_parentalapp(buf []byte, tag_wiretype vproto.Wi
 
 pub struct ParentalSettings {
 mut:
-	unknown_fields               []vproto.UnknownField
+	unknown_fields           []vproto.UnknownField
 pub mut:
-	steamid                      u64
-	has_steamid                  bool
-	applist_base_id              u32
-	has_applist_base_id          bool
-	applist_base_description     string
-	has_applist_base_description bool
-	applist_base                 []ParentalApp
-	applist_custom               []ParentalApp
-	passwordhashtype             u32
-	has_passwordhashtype         bool
-	salt                         []byte
-	has_salt                     bool
-	passwordhash                 []byte
-	has_passwordhash             bool
-	is_enabled                   bool
-	has_is_enabled               bool
-	enabled_features             u32
-	has_enabled_features         bool
-	recovery_email               string
-	has_recovery_email           bool
-	is_site_license_lock         bool
-	has_is_site_license_lock     bool
+	steamid                  u64
+	applist_base_id          u32
+	applist_base_description string
+	applist_base             []ParentalApp
+	applist_custom           []ParentalApp
+	passwordhashtype         u32
+	salt                     []byte
+	passwordhash             []byte
+	is_enabled               bool
+	enabled_features         u32
+	recovery_email           string
+	is_site_license_lock     bool
 }
 
 pub fn (o &ParentalSettings) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 1)
 	}
-	if o.has_applist_base_id {
+	if o.applist_base_id != u32(0) {
 		res << vproto.pack_uint32_field(o.applist_base_id, 2)
 	}
-	if o.has_applist_base_description {
+	if o.applist_base_description != '' {
 		res << vproto.pack_string_field(o.applist_base_description, 3)
 	}
 	// [packed=false]
@@ -126,32 +143,32 @@ pub fn (o &ParentalSettings) pack() []byte {
 	for _, x in o.applist_custom {
 		res << zzz_vproto_internal_pack_parentalapp(x, 5)
 	}
-	if o.has_passwordhashtype {
+	if o.passwordhashtype != u32(0) {
 		res << vproto.pack_uint32_field(o.passwordhashtype, 6)
 	}
-	if o.has_salt {
+	if o.salt != []byte{} {
 		res << vproto.pack_bytes_field(o.salt, 7)
 	}
-	if o.has_passwordhash {
+	if o.passwordhash != []byte{} {
 		res << vproto.pack_bytes_field(o.passwordhash, 8)
 	}
-	if o.has_is_enabled {
+	if o.is_enabled != bool(0) {
 		res << vproto.pack_bool_field(o.is_enabled, 9)
 	}
-	if o.has_enabled_features {
+	if o.enabled_features != u32(0) {
 		res << vproto.pack_uint32_field(o.enabled_features, 10)
 	}
-	if o.has_recovery_email {
+	if o.recovery_email != '' {
 		res << vproto.pack_string_field(o.recovery_email, 11)
 	}
-	if o.has_is_site_license_lock {
+	if o.is_site_license_lock != bool(0) {
 		res << vproto.pack_bool_field(o.is_site_license_lock, 12)
 	}
 	return res
 }
 
 pub fn parentalsettings_unpack(buf []byte) ?ParentalSettings {
-	mut res := ParentalSettings{}
+	mut res := zzz_vproto_internal_new_parentalsettings()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -162,19 +179,16 @@ pub fn parentalsettings_unpack(buf []byte) ?ParentalSettings {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				res.has_applist_base_id = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.applist_base_id = v
 				i = ii
 			}
 			3 {
-				res.has_applist_base_description = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.applist_base_description = v
 				i = ii
@@ -192,43 +206,36 @@ pub fn parentalsettings_unpack(buf []byte) ?ParentalSettings {
 				i = ii
 			}
 			6 {
-				res.has_passwordhashtype = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.passwordhashtype = v
 				i = ii
 			}
 			7 {
-				res.has_salt = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.salt = v
 				i = ii
 			}
 			8 {
-				res.has_passwordhash = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.passwordhash = v
 				i = ii
 			}
 			9 {
-				res.has_is_enabled = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_enabled = v
 				i = ii
 			}
 			10 {
-				res.has_enabled_features = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.enabled_features = v
 				i = ii
 			}
 			11 {
-				res.has_recovery_email = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.recovery_email = v
 				i = ii
 			}
 			12 {
-				res.has_is_site_license_lock = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.is_site_license_lock = v
 				i = ii
@@ -248,17 +255,56 @@ pub fn parentalsettings_unpack(buf []byte) ?ParentalSettings {
 	return res
 }
 
+[inline]
+pub fn (a ParentalSettings) eq(b ParentalSettings) bool {
+	return true && a.steamid == b.steamid &&
+		a.applist_base_id == b.applist_base_id &&
+		a.applist_base_description == b.applist_base_description && a.applist_base.eq(b.applist_base) &&
+		a.applist_custom.eq(b.applist_custom) &&
+		a.passwordhashtype == b.passwordhashtype &&
+		a.salt == b.salt && a.passwordhash == b.passwordhash &&
+		a.is_enabled == b.is_enabled && a.enabled_features == b.enabled_features &&
+		a.recovery_email == b.recovery_email &&
+		a.is_site_license_lock == b.is_site_license_lock
+}
+
+[inline]
+pub fn (a ParentalSettings) ne(b ParentalSettings) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []ParentalSettings) eq(b []ParentalSettings) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []ParentalSettings) ne(b []ParentalSettings) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_parentalsettings() ParentalSettings {
 	return ParentalSettings{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_parentalsettings(o ParentalSettings, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_parentalsettings(buf []byte, tag_wiretype vproto.WireType) ?(int, ParentalSettings) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := parentalsettings_unpack(v)?
@@ -270,39 +316,34 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	password       string
-	has_password   bool
 	settings       ParentalSettings
-	has_settings   bool
 	sessionid      string
-	has_sessionid  bool
 	enablecode     u32
-	has_enablecode bool
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CParental_EnableParentalSettings_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 1)
 	}
-	if o.has_settings {
+	if o.settings.ne(zzz_vproto_internal_new_parentalsettings()) {
 		res << zzz_vproto_internal_pack_parentalsettings(o.settings, 2)
 	}
-	if o.has_sessionid {
+	if o.sessionid != '' {
 		res << vproto.pack_string_field(o.sessionid, 3)
 	}
-	if o.has_enablecode {
+	if o.enablecode != u32(0) {
 		res << vproto.pack_uint32_field(o.enablecode, 4)
 	}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 10)
 	}
 	return res
 }
 
 pub fn cparental_enableparentalsettings_request_unpack(buf []byte) ?CParental_EnableParentalSettings_Request {
-	mut res := CParental_EnableParentalSettings_Request{}
+	mut res := zzz_vproto_internal_new_cparental_enableparentalsettings_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -313,31 +354,26 @@ pub fn cparental_enableparentalsettings_request_unpack(buf []byte) ?CParental_En
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			2 {
-				res.has_settings = true
 				ii, v := zzz_vproto_internal_unpack_parentalsettings(cur_buf, tag_wiretype.wire_type)?
 				res.settings = v
 				i = ii
 			}
 			3 {
-				res.has_sessionid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sessionid = v
 				i = ii
 			}
 			4 {
-				res.has_enablecode = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.enablecode = v
 				i = ii
 			}
 			10 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -357,17 +393,50 @@ pub fn cparental_enableparentalsettings_request_unpack(buf []byte) ?CParental_En
 	return res
 }
 
+[inline]
+pub fn (a CParental_EnableParentalSettings_Request) eq(b CParental_EnableParentalSettings_Request) bool {
+	return true && a.password == b.password && a.settings.eq(b.settings) &&
+		a.sessionid == b.sessionid && a.enablecode == b.enablecode &&
+		a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CParental_EnableParentalSettings_Request) ne(b CParental_EnableParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_EnableParentalSettings_Request) eq(b []CParental_EnableParentalSettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_EnableParentalSettings_Request) ne(b []CParental_EnableParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_enableparentalsettings_request() CParental_EnableParentalSettings_Request {
 	return CParental_EnableParentalSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_enableparentalsettings_request(o CParental_EnableParentalSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_enableparentalsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_EnableParentalSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_enableparentalsettings_request_unpack(v)?
@@ -385,21 +454,52 @@ pub fn (o &CParental_EnableParentalSettings_Response) pack() []byte {
 }
 
 pub fn cparental_enableparentalsettings_response_unpack(buf []byte) ?CParental_EnableParentalSettings_Response {
-	res := CParental_EnableParentalSettings_Response{}
+	res := zzz_vproto_internal_new_cparental_enableparentalsettings_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_EnableParentalSettings_Response) eq(b CParental_EnableParentalSettings_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_EnableParentalSettings_Response) ne(b CParental_EnableParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_EnableParentalSettings_Response) eq(b []CParental_EnableParentalSettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_EnableParentalSettings_Response) ne(b []CParental_EnableParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_enableparentalsettings_response() CParental_EnableParentalSettings_Response {
 	return CParental_EnableParentalSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_enableparentalsettings_response(o CParental_EnableParentalSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_enableparentalsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_EnableParentalSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_enableparentalsettings_response_unpack(v)?
@@ -411,24 +511,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	password       string
-	has_password   bool
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CParental_DisableParentalSettings_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 1)
 	}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 10)
 	}
 	return res
 }
 
 pub fn cparental_disableparentalsettings_request_unpack(buf []byte) ?CParental_DisableParentalSettings_Request {
-	mut res := CParental_DisableParentalSettings_Request{}
+	mut res := zzz_vproto_internal_new_cparental_disableparentalsettings_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -439,13 +537,11 @@ pub fn cparental_disableparentalsettings_request_unpack(buf []byte) ?CParental_D
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			10 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -465,17 +561,48 @@ pub fn cparental_disableparentalsettings_request_unpack(buf []byte) ?CParental_D
 	return res
 }
 
+[inline]
+pub fn (a CParental_DisableParentalSettings_Request) eq(b CParental_DisableParentalSettings_Request) bool {
+	return true && a.password == b.password && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CParental_DisableParentalSettings_Request) ne(b CParental_DisableParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_DisableParentalSettings_Request) eq(b []CParental_DisableParentalSettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_DisableParentalSettings_Request) ne(b []CParental_DisableParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_disableparentalsettings_request() CParental_DisableParentalSettings_Request {
 	return CParental_DisableParentalSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_disableparentalsettings_request(o CParental_DisableParentalSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_disableparentalsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_DisableParentalSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_disableparentalsettings_request_unpack(v)?
@@ -493,21 +620,52 @@ pub fn (o &CParental_DisableParentalSettings_Response) pack() []byte {
 }
 
 pub fn cparental_disableparentalsettings_response_unpack(buf []byte) ?CParental_DisableParentalSettings_Response {
-	res := CParental_DisableParentalSettings_Response{}
+	res := zzz_vproto_internal_new_cparental_disableparentalsettings_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_DisableParentalSettings_Response) eq(b CParental_DisableParentalSettings_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_DisableParentalSettings_Response) ne(b CParental_DisableParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_DisableParentalSettings_Response) eq(b []CParental_DisableParentalSettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_DisableParentalSettings_Response) ne(b []CParental_DisableParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_disableparentalsettings_response() CParental_DisableParentalSettings_Response {
 	return CParental_DisableParentalSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_disableparentalsettings_response(o CParental_DisableParentalSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_disableparentalsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_DisableParentalSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_disableparentalsettings_response_unpack(v)?
@@ -519,19 +677,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	steamid        u64
-	has_steamid    bool
 }
 
 pub fn (o &CParental_GetParentalSettings_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 10)
 	}
 	return res
 }
 
 pub fn cparental_getparentalsettings_request_unpack(buf []byte) ?CParental_GetParentalSettings_Request {
-	mut res := CParental_GetParentalSettings_Request{}
+	mut res := zzz_vproto_internal_new_cparental_getparentalsettings_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -542,7 +699,6 @@ pub fn cparental_getparentalsettings_request_unpack(buf []byte) ?CParental_GetPa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			10 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -562,17 +718,48 @@ pub fn cparental_getparentalsettings_request_unpack(buf []byte) ?CParental_GetPa
 	return res
 }
 
+[inline]
+pub fn (a CParental_GetParentalSettings_Request) eq(b CParental_GetParentalSettings_Request) bool {
+	return true && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CParental_GetParentalSettings_Request) ne(b CParental_GetParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_GetParentalSettings_Request) eq(b []CParental_GetParentalSettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_GetParentalSettings_Request) ne(b []CParental_GetParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_getparentalsettings_request() CParental_GetParentalSettings_Request {
 	return CParental_GetParentalSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_getparentalsettings_request(o CParental_GetParentalSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_getparentalsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_GetParentalSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_getparentalsettings_request_unpack(v)?
@@ -584,19 +771,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	settings       ParentalSettings
-	has_settings   bool
 }
 
 pub fn (o &CParental_GetParentalSettings_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_settings {
+	if o.settings.ne(zzz_vproto_internal_new_parentalsettings()) {
 		res << zzz_vproto_internal_pack_parentalsettings(o.settings, 1)
 	}
 	return res
 }
 
 pub fn cparental_getparentalsettings_response_unpack(buf []byte) ?CParental_GetParentalSettings_Response {
-	mut res := CParental_GetParentalSettings_Response{}
+	mut res := zzz_vproto_internal_new_cparental_getparentalsettings_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -607,7 +793,6 @@ pub fn cparental_getparentalsettings_response_unpack(buf []byte) ?CParental_GetP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_settings = true
 				ii, v := zzz_vproto_internal_unpack_parentalsettings(cur_buf, tag_wiretype.wire_type)?
 				res.settings = v
 				i = ii
@@ -627,17 +812,48 @@ pub fn cparental_getparentalsettings_response_unpack(buf []byte) ?CParental_GetP
 	return res
 }
 
+[inline]
+pub fn (a CParental_GetParentalSettings_Response) eq(b CParental_GetParentalSettings_Response) bool {
+	return true && a.settings.eq(b.settings)
+}
+
+[inline]
+pub fn (a CParental_GetParentalSettings_Response) ne(b CParental_GetParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_GetParentalSettings_Response) eq(b []CParental_GetParentalSettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_GetParentalSettings_Response) ne(b []CParental_GetParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_getparentalsettings_response() CParental_GetParentalSettings_Response {
 	return CParental_GetParentalSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_getparentalsettings_response(o CParental_GetParentalSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_getparentalsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_GetParentalSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_getparentalsettings_response_unpack(v)?
@@ -649,19 +865,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	priority       u32
-	has_priority   bool
 }
 
 pub fn (o &CParental_GetSignedParentalSettings_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_priority {
+	if o.priority != u32(0) {
 		res << vproto.pack_uint32_field(o.priority, 1)
 	}
 	return res
 }
 
 pub fn cparental_getsignedparentalsettings_request_unpack(buf []byte) ?CParental_GetSignedParentalSettings_Request {
-	mut res := CParental_GetSignedParentalSettings_Request{}
+	mut res := zzz_vproto_internal_new_cparental_getsignedparentalsettings_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -672,7 +887,6 @@ pub fn cparental_getsignedparentalsettings_request_unpack(buf []byte) ?CParental
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_priority = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.priority = v
 				i = ii
@@ -692,17 +906,48 @@ pub fn cparental_getsignedparentalsettings_request_unpack(buf []byte) ?CParental
 	return res
 }
 
+[inline]
+pub fn (a CParental_GetSignedParentalSettings_Request) eq(b CParental_GetSignedParentalSettings_Request) bool {
+	return true && a.priority == b.priority
+}
+
+[inline]
+pub fn (a CParental_GetSignedParentalSettings_Request) ne(b CParental_GetSignedParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_GetSignedParentalSettings_Request) eq(b []CParental_GetSignedParentalSettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_GetSignedParentalSettings_Request) ne(b []CParental_GetSignedParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_getsignedparentalsettings_request() CParental_GetSignedParentalSettings_Request {
 	return CParental_GetSignedParentalSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_getsignedparentalsettings_request(o CParental_GetSignedParentalSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_getsignedparentalsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_GetSignedParentalSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_getsignedparentalsettings_request_unpack(v)?
@@ -711,27 +956,25 @@ pub fn zzz_vproto_internal_unpack_cparental_getsignedparentalsettings_request(bu
 
 pub struct CParental_GetSignedParentalSettings_Response {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	serialized_settings     []byte
-	has_serialized_settings bool
-	signature               []byte
-	has_signature           bool
+	serialized_settings []byte
+	signature           []byte
 }
 
 pub fn (o &CParental_GetSignedParentalSettings_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_serialized_settings {
+	if o.serialized_settings != []byte{} {
 		res << vproto.pack_bytes_field(o.serialized_settings, 1)
 	}
-	if o.has_signature {
+	if o.signature != []byte{} {
 		res << vproto.pack_bytes_field(o.signature, 2)
 	}
 	return res
 }
 
 pub fn cparental_getsignedparentalsettings_response_unpack(buf []byte) ?CParental_GetSignedParentalSettings_Response {
-	mut res := CParental_GetSignedParentalSettings_Response{}
+	mut res := zzz_vproto_internal_new_cparental_getsignedparentalsettings_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -742,13 +985,11 @@ pub fn cparental_getsignedparentalsettings_response_unpack(buf []byte) ?CParenta
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serialized_settings = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.serialized_settings = v
 				i = ii
 			}
 			2 {
-				res.has_signature = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.signature = v
 				i = ii
@@ -768,17 +1009,48 @@ pub fn cparental_getsignedparentalsettings_response_unpack(buf []byte) ?CParenta
 	return res
 }
 
+[inline]
+pub fn (a CParental_GetSignedParentalSettings_Response) eq(b CParental_GetSignedParentalSettings_Response) bool {
+	return true && a.serialized_settings == b.serialized_settings && a.signature == b.signature
+}
+
+[inline]
+pub fn (a CParental_GetSignedParentalSettings_Response) ne(b CParental_GetSignedParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_GetSignedParentalSettings_Response) eq(b []CParental_GetSignedParentalSettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_GetSignedParentalSettings_Response) ne(b []CParental_GetSignedParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_getsignedparentalsettings_response() CParental_GetSignedParentalSettings_Response {
 	return CParental_GetSignedParentalSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_getsignedparentalsettings_response(o CParental_GetSignedParentalSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_getsignedparentalsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_GetSignedParentalSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_getsignedparentalsettings_response_unpack(v)?
@@ -787,42 +1059,37 @@ pub fn zzz_vproto_internal_unpack_cparental_getsignedparentalsettings_response(b
 
 pub struct CParental_SetParentalSettings_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	password         string
-	has_password     bool
-	settings         ParentalSettings
-	has_settings     bool
-	new_password     string
-	has_new_password bool
-	sessionid        string
-	has_sessionid    bool
-	steamid          u64
-	has_steamid      bool
+	password       string
+	settings       ParentalSettings
+	new_password   string
+	sessionid      string
+	steamid        u64
 }
 
 pub fn (o &CParental_SetParentalSettings_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 1)
 	}
-	if o.has_settings {
+	if o.settings.ne(zzz_vproto_internal_new_parentalsettings()) {
 		res << zzz_vproto_internal_pack_parentalsettings(o.settings, 2)
 	}
-	if o.has_new_password {
+	if o.new_password != '' {
 		res << vproto.pack_string_field(o.new_password, 3)
 	}
-	if o.has_sessionid {
+	if o.sessionid != '' {
 		res << vproto.pack_string_field(o.sessionid, 4)
 	}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 10)
 	}
 	return res
 }
 
 pub fn cparental_setparentalsettings_request_unpack(buf []byte) ?CParental_SetParentalSettings_Request {
-	mut res := CParental_SetParentalSettings_Request{}
+	mut res := zzz_vproto_internal_new_cparental_setparentalsettings_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -833,31 +1100,26 @@ pub fn cparental_setparentalsettings_request_unpack(buf []byte) ?CParental_SetPa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			2 {
-				res.has_settings = true
 				ii, v := zzz_vproto_internal_unpack_parentalsettings(cur_buf, tag_wiretype.wire_type)?
 				res.settings = v
 				i = ii
 			}
 			3 {
-				res.has_new_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.new_password = v
 				i = ii
 			}
 			4 {
-				res.has_sessionid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sessionid = v
 				i = ii
 			}
 			10 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -877,17 +1139,50 @@ pub fn cparental_setparentalsettings_request_unpack(buf []byte) ?CParental_SetPa
 	return res
 }
 
+[inline]
+pub fn (a CParental_SetParentalSettings_Request) eq(b CParental_SetParentalSettings_Request) bool {
+	return true && a.password == b.password && a.settings.eq(b.settings) &&
+		a.new_password == b.new_password &&
+		a.sessionid == b.sessionid && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CParental_SetParentalSettings_Request) ne(b CParental_SetParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_SetParentalSettings_Request) eq(b []CParental_SetParentalSettings_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_SetParentalSettings_Request) ne(b []CParental_SetParentalSettings_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_setparentalsettings_request() CParental_SetParentalSettings_Request {
 	return CParental_SetParentalSettings_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_setparentalsettings_request(o CParental_SetParentalSettings_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_setparentalsettings_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_SetParentalSettings_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_setparentalsettings_request_unpack(v)?
@@ -905,21 +1200,52 @@ pub fn (o &CParental_SetParentalSettings_Response) pack() []byte {
 }
 
 pub fn cparental_setparentalsettings_response_unpack(buf []byte) ?CParental_SetParentalSettings_Response {
-	res := CParental_SetParentalSettings_Response{}
+	res := zzz_vproto_internal_new_cparental_setparentalsettings_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_SetParentalSettings_Response) eq(b CParental_SetParentalSettings_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_SetParentalSettings_Response) ne(b CParental_SetParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_SetParentalSettings_Response) eq(b []CParental_SetParentalSettings_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_SetParentalSettings_Response) ne(b []CParental_SetParentalSettings_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_setparentalsettings_response() CParental_SetParentalSettings_Response {
 	return CParental_SetParentalSettings_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_setparentalsettings_response(o CParental_SetParentalSettings_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_setparentalsettings_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_SetParentalSettings_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_setparentalsettings_response_unpack(v)?
@@ -928,22 +1254,21 @@ pub fn zzz_vproto_internal_unpack_cparental_setparentalsettings_response(buf []b
 
 pub struct CParental_ValidateToken_Request {
 mut:
-	unknown_fields   []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	unlock_token     string
-	has_unlock_token bool
+	unlock_token   string
 }
 
 pub fn (o &CParental_ValidateToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_unlock_token {
+	if o.unlock_token != '' {
 		res << vproto.pack_string_field(o.unlock_token, 1)
 	}
 	return res
 }
 
 pub fn cparental_validatetoken_request_unpack(buf []byte) ?CParental_ValidateToken_Request {
-	mut res := CParental_ValidateToken_Request{}
+	mut res := zzz_vproto_internal_new_cparental_validatetoken_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -954,7 +1279,6 @@ pub fn cparental_validatetoken_request_unpack(buf []byte) ?CParental_ValidateTok
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_unlock_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.unlock_token = v
 				i = ii
@@ -974,17 +1298,48 @@ pub fn cparental_validatetoken_request_unpack(buf []byte) ?CParental_ValidateTok
 	return res
 }
 
+[inline]
+pub fn (a CParental_ValidateToken_Request) eq(b CParental_ValidateToken_Request) bool {
+	return true && a.unlock_token == b.unlock_token
+}
+
+[inline]
+pub fn (a CParental_ValidateToken_Request) ne(b CParental_ValidateToken_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ValidateToken_Request) eq(b []CParental_ValidateToken_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ValidateToken_Request) ne(b []CParental_ValidateToken_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_validatetoken_request() CParental_ValidateToken_Request {
 	return CParental_ValidateToken_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_validatetoken_request(o CParental_ValidateToken_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_validatetoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ValidateToken_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_validatetoken_request_unpack(v)?
@@ -1002,21 +1357,52 @@ pub fn (o &CParental_ValidateToken_Response) pack() []byte {
 }
 
 pub fn cparental_validatetoken_response_unpack(buf []byte) ?CParental_ValidateToken_Response {
-	res := CParental_ValidateToken_Response{}
+	res := zzz_vproto_internal_new_cparental_validatetoken_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_ValidateToken_Response) eq(b CParental_ValidateToken_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_ValidateToken_Response) ne(b CParental_ValidateToken_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ValidateToken_Response) eq(b []CParental_ValidateToken_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ValidateToken_Response) ne(b []CParental_ValidateToken_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_validatetoken_response() CParental_ValidateToken_Response {
 	return CParental_ValidateToken_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_validatetoken_response(o CParental_ValidateToken_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_validatetoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ValidateToken_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_validatetoken_response_unpack(v)?
@@ -1025,32 +1411,29 @@ pub fn zzz_vproto_internal_unpack_cparental_validatetoken_response(buf []byte, t
 
 pub struct CParental_ValidatePassword_Request {
 mut:
-	unknown_fields             []vproto.UnknownField
+	unknown_fields         []vproto.UnknownField
 pub mut:
-	password                   string
-	has_password               bool
-	session                    string
-	has_session                bool
-	send_unlock_on_success     bool
-	has_send_unlock_on_success bool
+	password               string
+	session                string
+	send_unlock_on_success bool
 }
 
 pub fn (o &CParental_ValidatePassword_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 1)
 	}
-	if o.has_session {
+	if o.session != '' {
 		res << vproto.pack_string_field(o.session, 2)
 	}
-	if o.has_send_unlock_on_success {
+	if o.send_unlock_on_success != bool(0) {
 		res << vproto.pack_bool_field(o.send_unlock_on_success, 3)
 	}
 	return res
 }
 
 pub fn cparental_validatepassword_request_unpack(buf []byte) ?CParental_ValidatePassword_Request {
-	mut res := CParental_ValidatePassword_Request{}
+	mut res := zzz_vproto_internal_new_cparental_validatepassword_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1061,19 +1444,16 @@ pub fn cparental_validatepassword_request_unpack(buf []byte) ?CParental_Validate
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			2 {
-				res.has_session = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.session = v
 				i = ii
 			}
 			3 {
-				res.has_send_unlock_on_success = true
 				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
 				res.send_unlock_on_success = v
 				i = ii
@@ -1093,17 +1473,49 @@ pub fn cparental_validatepassword_request_unpack(buf []byte) ?CParental_Validate
 	return res
 }
 
+[inline]
+pub fn (a CParental_ValidatePassword_Request) eq(b CParental_ValidatePassword_Request) bool {
+	return true && a.password == b.password &&
+		a.session == b.session && a.send_unlock_on_success == b.send_unlock_on_success
+}
+
+[inline]
+pub fn (a CParental_ValidatePassword_Request) ne(b CParental_ValidatePassword_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ValidatePassword_Request) eq(b []CParental_ValidatePassword_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ValidatePassword_Request) ne(b []CParental_ValidatePassword_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_validatepassword_request() CParental_ValidatePassword_Request {
 	return CParental_ValidatePassword_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_validatepassword_request(o CParental_ValidatePassword_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_validatepassword_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ValidatePassword_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_validatepassword_request_unpack(v)?
@@ -1115,19 +1527,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	token          string
-	has_token      bool
 }
 
 pub fn (o &CParental_ValidatePassword_Response) pack() []byte {
 	mut res := []byte{}
-	if o.has_token {
+	if o.token != '' {
 		res << vproto.pack_string_field(o.token, 1)
 	}
 	return res
 }
 
 pub fn cparental_validatepassword_response_unpack(buf []byte) ?CParental_ValidatePassword_Response {
-	mut res := CParental_ValidatePassword_Response{}
+	mut res := zzz_vproto_internal_new_cparental_validatepassword_response()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1138,7 +1549,6 @@ pub fn cparental_validatepassword_response_unpack(buf []byte) ?CParental_Validat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_token = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.token = v
 				i = ii
@@ -1158,17 +1568,48 @@ pub fn cparental_validatepassword_response_unpack(buf []byte) ?CParental_Validat
 	return res
 }
 
+[inline]
+pub fn (a CParental_ValidatePassword_Response) eq(b CParental_ValidatePassword_Response) bool {
+	return true && a.token == b.token
+}
+
+[inline]
+pub fn (a CParental_ValidatePassword_Response) ne(b CParental_ValidatePassword_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ValidatePassword_Response) eq(b []CParental_ValidatePassword_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ValidatePassword_Response) ne(b []CParental_ValidatePassword_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_validatepassword_response() CParental_ValidatePassword_Response {
 	return CParental_ValidatePassword_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_validatepassword_response(o CParental_ValidatePassword_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_validatepassword_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ValidatePassword_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_validatepassword_response_unpack(v)?
@@ -1180,19 +1621,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	session        string
-	has_session    bool
 }
 
 pub fn (o &CParental_LockClient_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_session {
+	if o.session != '' {
 		res << vproto.pack_string_field(o.session, 1)
 	}
 	return res
 }
 
 pub fn cparental_lockclient_request_unpack(buf []byte) ?CParental_LockClient_Request {
-	mut res := CParental_LockClient_Request{}
+	mut res := zzz_vproto_internal_new_cparental_lockclient_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1203,7 +1643,6 @@ pub fn cparental_lockclient_request_unpack(buf []byte) ?CParental_LockClient_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_session = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.session = v
 				i = ii
@@ -1223,17 +1662,48 @@ pub fn cparental_lockclient_request_unpack(buf []byte) ?CParental_LockClient_Req
 	return res
 }
 
+[inline]
+pub fn (a CParental_LockClient_Request) eq(b CParental_LockClient_Request) bool {
+	return true && a.session == b.session
+}
+
+[inline]
+pub fn (a CParental_LockClient_Request) ne(b CParental_LockClient_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_LockClient_Request) eq(b []CParental_LockClient_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_LockClient_Request) ne(b []CParental_LockClient_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_lockclient_request() CParental_LockClient_Request {
 	return CParental_LockClient_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_lockclient_request(o CParental_LockClient_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_lockclient_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_LockClient_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_lockclient_request_unpack(v)?
@@ -1251,21 +1721,52 @@ pub fn (o &CParental_LockClient_Response) pack() []byte {
 }
 
 pub fn cparental_lockclient_response_unpack(buf []byte) ?CParental_LockClient_Response {
-	res := CParental_LockClient_Response{}
+	res := zzz_vproto_internal_new_cparental_lockclient_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_LockClient_Response) eq(b CParental_LockClient_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_LockClient_Response) ne(b CParental_LockClient_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_LockClient_Response) eq(b []CParental_LockClient_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_LockClient_Response) ne(b []CParental_LockClient_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_lockclient_response() CParental_LockClient_Response {
 	return CParental_LockClient_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_lockclient_response(o CParental_LockClient_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_lockclient_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_LockClient_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_lockclient_response_unpack(v)?
@@ -1283,21 +1784,52 @@ pub fn (o &CParental_RequestRecoveryCode_Request) pack() []byte {
 }
 
 pub fn cparental_requestrecoverycode_request_unpack(buf []byte) ?CParental_RequestRecoveryCode_Request {
-	res := CParental_RequestRecoveryCode_Request{}
+	res := zzz_vproto_internal_new_cparental_requestrecoverycode_request()
 	return res
 }
 
+[inline]
+pub fn (a CParental_RequestRecoveryCode_Request) eq(b CParental_RequestRecoveryCode_Request) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_RequestRecoveryCode_Request) ne(b CParental_RequestRecoveryCode_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_RequestRecoveryCode_Request) eq(b []CParental_RequestRecoveryCode_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_RequestRecoveryCode_Request) ne(b []CParental_RequestRecoveryCode_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_requestrecoverycode_request() CParental_RequestRecoveryCode_Request {
 	return CParental_RequestRecoveryCode_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_requestrecoverycode_request(o CParental_RequestRecoveryCode_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_requestrecoverycode_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_RequestRecoveryCode_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_requestrecoverycode_request_unpack(v)?
@@ -1315,21 +1847,52 @@ pub fn (o &CParental_RequestRecoveryCode_Response) pack() []byte {
 }
 
 pub fn cparental_requestrecoverycode_response_unpack(buf []byte) ?CParental_RequestRecoveryCode_Response {
-	res := CParental_RequestRecoveryCode_Response{}
+	res := zzz_vproto_internal_new_cparental_requestrecoverycode_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_RequestRecoveryCode_Response) eq(b CParental_RequestRecoveryCode_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_RequestRecoveryCode_Response) ne(b CParental_RequestRecoveryCode_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_RequestRecoveryCode_Response) eq(b []CParental_RequestRecoveryCode_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_RequestRecoveryCode_Response) ne(b []CParental_RequestRecoveryCode_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_requestrecoverycode_response() CParental_RequestRecoveryCode_Response {
 	return CParental_RequestRecoveryCode_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_requestrecoverycode_response(o CParental_RequestRecoveryCode_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_requestrecoverycode_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_RequestRecoveryCode_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_requestrecoverycode_response_unpack(v)?
@@ -1338,27 +1901,25 @@ pub fn zzz_vproto_internal_unpack_cparental_requestrecoverycode_response(buf []b
 
 pub struct CParental_DisableWithRecoveryCode_Request {
 mut:
-	unknown_fields    []vproto.UnknownField
+	unknown_fields []vproto.UnknownField
 pub mut:
-	recovery_code     u32
-	has_recovery_code bool
-	steamid           u64
-	has_steamid       bool
+	recovery_code  u32
+	steamid        u64
 }
 
 pub fn (o &CParental_DisableWithRecoveryCode_Request) pack() []byte {
 	mut res := []byte{}
-	if o.has_recovery_code {
+	if o.recovery_code != u32(0) {
 		res << vproto.pack_uint32_field(o.recovery_code, 1)
 	}
-	if o.has_steamid {
+	if o.steamid != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid, 10)
 	}
 	return res
 }
 
 pub fn cparental_disablewithrecoverycode_request_unpack(buf []byte) ?CParental_DisableWithRecoveryCode_Request {
-	mut res := CParental_DisableWithRecoveryCode_Request{}
+	mut res := zzz_vproto_internal_new_cparental_disablewithrecoverycode_request()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1369,13 +1930,11 @@ pub fn cparental_disablewithrecoverycode_request_unpack(buf []byte) ?CParental_D
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_recovery_code = true
 				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
 				res.recovery_code = v
 				i = ii
 			}
 			10 {
-				res.has_steamid = true
 				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
 				res.steamid = v
 				i = ii
@@ -1395,17 +1954,48 @@ pub fn cparental_disablewithrecoverycode_request_unpack(buf []byte) ?CParental_D
 	return res
 }
 
+[inline]
+pub fn (a CParental_DisableWithRecoveryCode_Request) eq(b CParental_DisableWithRecoveryCode_Request) bool {
+	return true && a.recovery_code == b.recovery_code && a.steamid == b.steamid
+}
+
+[inline]
+pub fn (a CParental_DisableWithRecoveryCode_Request) ne(b CParental_DisableWithRecoveryCode_Request) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_DisableWithRecoveryCode_Request) eq(b []CParental_DisableWithRecoveryCode_Request) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_DisableWithRecoveryCode_Request) ne(b []CParental_DisableWithRecoveryCode_Request) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_disablewithrecoverycode_request() CParental_DisableWithRecoveryCode_Request {
 	return CParental_DisableWithRecoveryCode_Request{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_disablewithrecoverycode_request(o CParental_DisableWithRecoveryCode_Request, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_disablewithrecoverycode_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_DisableWithRecoveryCode_Request) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_disablewithrecoverycode_request_unpack(v)?
@@ -1423,21 +2013,52 @@ pub fn (o &CParental_DisableWithRecoveryCode_Response) pack() []byte {
 }
 
 pub fn cparental_disablewithrecoverycode_response_unpack(buf []byte) ?CParental_DisableWithRecoveryCode_Response {
-	res := CParental_DisableWithRecoveryCode_Response{}
+	res := zzz_vproto_internal_new_cparental_disablewithrecoverycode_response()
 	return res
 }
 
+[inline]
+pub fn (a CParental_DisableWithRecoveryCode_Response) eq(b CParental_DisableWithRecoveryCode_Response) bool {
+	return true
+}
+
+[inline]
+pub fn (a CParental_DisableWithRecoveryCode_Response) ne(b CParental_DisableWithRecoveryCode_Response) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_DisableWithRecoveryCode_Response) eq(b []CParental_DisableWithRecoveryCode_Response) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_DisableWithRecoveryCode_Response) ne(b []CParental_DisableWithRecoveryCode_Response) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_disablewithrecoverycode_response() CParental_DisableWithRecoveryCode_Response {
 	return CParental_DisableWithRecoveryCode_Response{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_disablewithrecoverycode_response(o CParental_DisableWithRecoveryCode_Response, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_disablewithrecoverycode_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_DisableWithRecoveryCode_Response) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_disablewithrecoverycode_response_unpack(v)?
@@ -1446,37 +2067,33 @@ pub fn zzz_vproto_internal_unpack_cparental_disablewithrecoverycode_response(buf
 
 pub struct CParental_ParentalSettingsChange_Notification {
 mut:
-	unknown_fields          []vproto.UnknownField
+	unknown_fields      []vproto.UnknownField
 pub mut:
-	serialized_settings     []byte
-	has_serialized_settings bool
-	signature               []byte
-	has_signature           bool
-	password                string
-	has_password            bool
-	sessionid               string
-	has_sessionid           bool
+	serialized_settings []byte
+	signature           []byte
+	password            string
+	sessionid           string
 }
 
 pub fn (o &CParental_ParentalSettingsChange_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_serialized_settings {
+	if o.serialized_settings != []byte{} {
 		res << vproto.pack_bytes_field(o.serialized_settings, 1)
 	}
-	if o.has_signature {
+	if o.signature != []byte{} {
 		res << vproto.pack_bytes_field(o.signature, 2)
 	}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 3)
 	}
-	if o.has_sessionid {
+	if o.sessionid != '' {
 		res << vproto.pack_string_field(o.sessionid, 4)
 	}
 	return res
 }
 
 pub fn cparental_parentalsettingschange_notification_unpack(buf []byte) ?CParental_ParentalSettingsChange_Notification {
-	mut res := CParental_ParentalSettingsChange_Notification{}
+	mut res := zzz_vproto_internal_new_cparental_parentalsettingschange_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1487,25 +2104,21 @@ pub fn cparental_parentalsettingschange_notification_unpack(buf []byte) ?CParent
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_serialized_settings = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.serialized_settings = v
 				i = ii
 			}
 			2 {
-				res.has_signature = true
 				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
 				res.signature = v
 				i = ii
 			}
 			3 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			4 {
-				res.has_sessionid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sessionid = v
 				i = ii
@@ -1525,17 +2138,50 @@ pub fn cparental_parentalsettingschange_notification_unpack(buf []byte) ?CParent
 	return res
 }
 
+[inline]
+pub fn (a CParental_ParentalSettingsChange_Notification) eq(b CParental_ParentalSettingsChange_Notification) bool {
+	return true && a.serialized_settings == b.serialized_settings &&
+		a.signature == b.signature && a.password == b.password &&
+		a.sessionid == b.sessionid
+}
+
+[inline]
+pub fn (a CParental_ParentalSettingsChange_Notification) ne(b CParental_ParentalSettingsChange_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ParentalSettingsChange_Notification) eq(b []CParental_ParentalSettingsChange_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ParentalSettingsChange_Notification) ne(b []CParental_ParentalSettingsChange_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_parentalsettingschange_notification() CParental_ParentalSettingsChange_Notification {
 	return CParental_ParentalSettingsChange_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_parentalsettingschange_notification(o CParental_ParentalSettingsChange_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_parentalsettingschange_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ParentalSettingsChange_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_parentalsettingschange_notification_unpack(v)?
@@ -1547,24 +2193,22 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	password       string
-	has_password   bool
 	sessionid      string
-	has_sessionid  bool
 }
 
 pub fn (o &CParental_ParentalUnlock_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_password {
+	if o.password != '' {
 		res << vproto.pack_string_field(o.password, 1)
 	}
-	if o.has_sessionid {
+	if o.sessionid != '' {
 		res << vproto.pack_string_field(o.sessionid, 2)
 	}
 	return res
 }
 
 pub fn cparental_parentalunlock_notification_unpack(buf []byte) ?CParental_ParentalUnlock_Notification {
-	mut res := CParental_ParentalUnlock_Notification{}
+	mut res := zzz_vproto_internal_new_cparental_parentalunlock_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1575,13 +2219,11 @@ pub fn cparental_parentalunlock_notification_unpack(buf []byte) ?CParental_Paren
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_password = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.password = v
 				i = ii
 			}
 			2 {
-				res.has_sessionid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sessionid = v
 				i = ii
@@ -1601,17 +2243,48 @@ pub fn cparental_parentalunlock_notification_unpack(buf []byte) ?CParental_Paren
 	return res
 }
 
+[inline]
+pub fn (a CParental_ParentalUnlock_Notification) eq(b CParental_ParentalUnlock_Notification) bool {
+	return true && a.password == b.password && a.sessionid == b.sessionid
+}
+
+[inline]
+pub fn (a CParental_ParentalUnlock_Notification) ne(b CParental_ParentalUnlock_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ParentalUnlock_Notification) eq(b []CParental_ParentalUnlock_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ParentalUnlock_Notification) ne(b []CParental_ParentalUnlock_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_parentalunlock_notification() CParental_ParentalUnlock_Notification {
 	return CParental_ParentalUnlock_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_parentalunlock_notification(o CParental_ParentalUnlock_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_parentalunlock_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ParentalUnlock_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_parentalunlock_notification_unpack(v)?
@@ -1623,19 +2296,18 @@ mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
 	sessionid      string
-	has_sessionid  bool
 }
 
 pub fn (o &CParental_ParentalLock_Notification) pack() []byte {
 	mut res := []byte{}
-	if o.has_sessionid {
+	if o.sessionid != '' {
 		res << vproto.pack_string_field(o.sessionid, 1)
 	}
 	return res
 }
 
 pub fn cparental_parentallock_notification_unpack(buf []byte) ?CParental_ParentalLock_Notification {
-	mut res := CParental_ParentalLock_Notification{}
+	mut res := zzz_vproto_internal_new_cparental_parentallock_notification()
 	mut total := 0
 	for total < buf.len {
 		mut i := 0
@@ -1646,7 +2318,6 @@ pub fn cparental_parentallock_notification_unpack(buf []byte) ?CParental_Parenta
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				res.has_sessionid = true
 				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
 				res.sessionid = v
 				i = ii
@@ -1666,17 +2337,48 @@ pub fn cparental_parentallock_notification_unpack(buf []byte) ?CParental_Parenta
 	return res
 }
 
+[inline]
+pub fn (a CParental_ParentalLock_Notification) eq(b CParental_ParentalLock_Notification) bool {
+	return true && a.sessionid == b.sessionid
+}
+
+[inline]
+pub fn (a CParental_ParentalLock_Notification) ne(b CParental_ParentalLock_Notification) bool {
+	return !a.eq(b)
+}
+
+[inline]
+pub fn (a []CParental_ParentalLock_Notification) eq(b []CParental_ParentalLock_Notification) bool {
+	if a.len != b.len {
+		return false
+	}
+	for i, _ in a {
+		if a[i].ne(b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+[inline]
+pub fn (a []CParental_ParentalLock_Notification) ne(b []CParental_ParentalLock_Notification) bool {
+	return !a.eq(b)
+}
+
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_new_cparental_parentallock_notification() CParental_ParentalLock_Notification {
 	return CParental_ParentalLock_Notification{}
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_pack_cparental_parentallock_notification(o CParental_ParentalLock_Notification, num u32) []byte {
 	return vproto.pack_message_field(o.pack(), num)
 }
 
 // FOR INTERNAL USE ONLY
+[inline]
 pub fn zzz_vproto_internal_unpack_cparental_parentallock_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CParental_ParentalLock_Notification) {
 	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
 	mut unpacked := cparental_parentallock_notification_unpack(v)?
