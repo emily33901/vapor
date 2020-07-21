@@ -36,6 +36,9 @@
 <li class="open"><a href="#steamid">steamid</a>        <ul>
 </ul>
 </li>
+<li class="open"><a href="#Packable">Packable</a>        <ul>
+</ul>
+</li>
 <li class="open"><a href="#CallbackHandler">CallbackHandler</a>        <ul>
 </ul>
 </li>
@@ -1539,6 +1542,12 @@ Vapor intends to be the <a href="https://github.com/SteamRE/SteamKit">SteamKit</
 <div class="title"><h2>steamid <a href="#steamid">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">steamid</span><span class="token punctuation">(</span>x <span class="token builtin">u64</span><span class="token punctuation">)</span> SteamId</code></pre>
 <p>steamid creates a SteamId from the u64 given it is a workaround for alias type casting being a little buggy...</p>
 </section>
+<section id="Packable" class="doc-node">
+<div class="title"><h2>Packable <a href="#Packable">#</a></h2></div><pre class="signature"><code><span class="token keyword">interface</span> <span class="token symbol">Packable</span> <span class="token punctuation">{</span>
+	<span class="token function">pack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Packable represents a type that can be packed to a buffer</p>
+</section>
 <section id="CallbackHandler" class="doc-node">
 <div class="title"><h2>CallbackHandler <a href="#CallbackHandler">#</a></h2></div><pre class="signature"><code><span class="token keyword">interface</span> <span class="token symbol">CallbackHandler</span> <span class="token punctuation">{</span>
 	<span class="token function">handle_callback</span><span class="token punctuation">(</span>cb Callback<span class="token punctuation">)</span> ?
@@ -1549,10 +1558,6 @@ Vapor intends to be the <a href="https://github.com/SteamRE/SteamKit">SteamKit</
 <div class="title"><h2>SteamClient.connected <a href="#SteamClient.connected">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connected</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
 <p>connected returns whether the client is connected to a CM</p>
 </section>
-<section id="SteamClient.connect" class="doc-node">
-<div class="title"><h2>SteamClient.connect <a href="#SteamClient.connect">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
-<p>connect connects to a CM</p>
-</section>
 <section id="SteamClient.frame" class="doc-node">
 <div class="title"><h2>SteamClient.frame <a href="#SteamClient.frame">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">frame</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
 <p>frame lets the steamclient process any data that might be waiting for it</p>
@@ -1561,13 +1566,13 @@ Vapor intends to be the <a href="https://github.com/SteamRE/SteamKit">SteamKit</
 <div class="title"><h2>SteamClient.friends <a href="#SteamClient.friends">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">friends</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamFriends</code></pre>
 <p>friends gets the friends module</p>
 </section>
-<section id="SteamClient.user" class="doc-node">
-<div class="title"><h2>SteamClient.user <a href="#SteamClient.user">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamUser</code></pre>
-<p>user gets the user module</p>
+<section id="SteamFriends.handle_msg" class="doc-node">
+<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+
 </section>
-<section id="SteamId.id" class="doc-node">
-<div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
-<p>id returns the account id</p>
+<section id="SteamClient.connect" class="doc-node">
+<div class="title"><h2>SteamClient.connect <a href="#SteamClient.connect">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>connect connects to a CM</p>
 </section>
 <section id="SteamFriends.initialise" class="doc-node">
 <div class="title"><h2>SteamFriends.initialise <a href="#SteamFriends.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
@@ -1593,13 +1598,17 @@ Vapor intends to be the <a href="https://github.com/SteamRE/SteamKit">SteamKit</
 <div class="title"><h2>SteamUser.logon <a href="#SteamUser.logon">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logon</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password <span class="token builtin">string</span><span class="token punctuation">)</span> ?</code></pre>
 <p>logon logs on with a username and password</p>
 </section>
+<section id="SteamClient.user" class="doc-node">
+<div class="title"><h2>SteamClient.user <a href="#SteamClient.user">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamUser</code></pre>
+<p>user gets the user module</p>
+</section>
 <section id="SteamClient.add_msg_handler" class="doc-node">
 <div class="title"><h2>SteamClient.add_msg_handler <a href="#SteamClient.add_msg_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_msg_handler</span><span class="token punctuation">(</span>m MsgHandler<span class="token punctuation">)</span></code></pre>
 <p>add_msg_handler allows someone to add their own msg handler and get direct access to messages sent from steam</p>
 </section>
-<section id="SteamFriends.handle_msg" class="doc-node">
-<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
-
+<section id="SteamId.id" class="doc-node">
+<div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>id returns the account id</p>
 </section>
 <section id="SteamId.set_type" class="doc-node">
 <div class="title"><h2>SteamId.set_type <a href="#SteamId.set_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_type</span><span class="token punctuation">(</span>a AccountType<span class="token punctuation">)</span></code></pre>
@@ -1729,7 +1738,7 @@ Vapor intends to be the <a href="https://github.com/SteamRE/SteamKit">SteamKit</
 </section>
 
 					<div class="footer">
-						Powered by vdoc. Generated on: 21 Jul 2020 11:02:18
+						Powered by vdoc. Generated on: 21 Jul 2020 11:38:50
 					</div>
 				</div>
 				
