@@ -1,9 +1,9 @@
 module vapor
 
 // SteamId represents a steamid
-pub type SteamId = u64
+pub type SteamId u64
 
-// default_steamid is the default 
+// default_steamid is the default
 // universe 1, type .individual, instance 1, id 0
 // steamid
 pub const (
@@ -16,11 +16,12 @@ const (
 	steamid_instance_mask = 0x000FFFFF00000000
 	steamid_id_mask       = 0x00000000FFFFFFFF
 )
+
 const (
 	steamid_universe_shift = 56
-	steamid_type_shift = 52
+	steamid_type_shift     = 52
 	steamid_instance_shift = 32
-	steamid_id_shift = 0
+	steamid_id_shift       = 0
 )
 
 // steamid creates a SteamId from the u64 given

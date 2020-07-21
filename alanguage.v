@@ -772,6 +772,6 @@ fn (h MsgBaseHeader) decompose() (bool, Msg) {
 
 struct MsgHdrProtobuf {
 mut:
-	msg u32
+	msg           u32
 	header_length int
 }

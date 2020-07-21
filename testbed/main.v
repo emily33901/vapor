@@ -1,9 +1,7 @@
 module main
 
 import time
-
 import emily33901.vapor
-
 import json
 import os
 
@@ -15,22 +13,18 @@ struct Secrets {
 struct Testbed {
 mut:
 	secrets Secrets
-	s &vapor.SteamClient
+	s       &vapor.SteamClient
 }
 
 fn new_testbed(secrets Secrets, s &vapor.SteamClient) &Testbed {
-	return &Testbed {
-		secrets, s
-	}
+	return &Testbed{secrets, s}
 }
 
 fn (mut t Testbed) main() ? {
 	// no need for ref here because t is already
 	// pointer
 	t.s.add_callback_handler(t)
-
 	t.s.connect()?
-
 	for {
 		t.s.frame() or {
 			panic('$errcode $err')
@@ -39,18 +33,15 @@ fn (mut t Testbed) main() ? {
 	}
 }
 
-fn (mut t Testbed) handle_callback(cb vapor.Callback)? {
+fn (mut t Testbed) handle_callback(cb vapor.Callback) ? {
 	mut user := t.s.user()
-
 	match cb {
 		vapor.ConnectedCallback {
 			println('Connected!')
-			
 			user.logon(t.secrets.username, t.secrets.password)?
 		}
 		vapor.DisconnectedCallback {
 			println('Disconnected!')
-
 			// reconnect 🙃
 			t.s.connect()?
 		}
@@ -61,14 +52,13 @@ fn (mut t Testbed) handle_callback(cb vapor.Callback)? {
 			println('Logged off!')
 		}
 		// else {
-		// 	println('Unknown callback')
+		// println('Unknown callback')
 		// }
 	}
 }
 
 fn (mut t Testbed) handle_logon(cb &vapor.LoggedOnCallback) {
 	mut user := t.s.user()
-
 	if cb.result == .ok {
 		println('Logged on successfully!')
 		time.sleep_ms(5000)
@@ -81,9 +71,7 @@ fn (mut t Testbed) handle_logon(cb &vapor.LoggedOnCallback) {
 fn main() {
 	ssecrets := os.read_file('secrets.json')?
 	secrets := json.decode(Secrets, ssecrets)?
-	
 	mut s := vapor.new_steamclient()
 	mut t := new_testbed(secrets, s)
-
 	t.main()?
 }

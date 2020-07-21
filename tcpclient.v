@@ -1,7 +1,6 @@
 module vapor
 
 import emily33901.net
-
 import time
 
 struct TcpClient {
@@ -10,10 +9,8 @@ struct TcpClient {
 
 fn new_tcp_client(addr string) ?TcpClient {
 	mut c := net.dial_tcp(addr)?
-
 	// set a timeout so we dont choke the CPU when there is nothing to read
 	c.set_read_timeout(1 * time.second)
-
 	return TcpClient{c}
 }
 
@@ -27,11 +24,9 @@ fn (mut c TcpClient) read_into(b []byte) ? {
 			}
 			continue
 		}
-
 		if r == 0 {
 			return error('Connection terminated')
 		}
-
 		read += r
 	}
 }

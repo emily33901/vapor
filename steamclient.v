@@ -4,63 +4,57 @@ import proto
 
 struct TcpHeader {
 mut:
-	size int
+	size  int
 	magic u32
 }
 
 struct Packet {
 	header TcpHeader
 mut:
-	body []byte
+	body   []byte
 }
 
 struct Message {
-	msg Msg
+	msg    Msg
 	source u64
 	target u64
-	body []byte
+	body   []byte
 }
 
 struct SteamClient {
 mut:
-	cm_addr string
-	connected bool
-	client TcpClient
-	handlers []MsgHandler
-
+	cm_addr           string
+	connected         bool
+	client            TcpClient
+	handlers          []MsgHandler
 	// Items needed for the header
-	session_id int
-	steam_id SteamId
-
+	session_id        int
+	steam_id          SteamId
 	// Msg handlers
-	encryption &EncryptionHandler
-	multi_handler &MultiHandler
-	friends &SteamFriends
-	user &SteamUser
-
+	encryption        &EncryptionHandler
+	multi_handler     &MultiHandler
+	friends           &SteamFriends
+	user              &SteamUser
 	callback_handlers []CallbackHandler
 }
 
 // new_steamclient creates a new steamclient
 pub fn new_steamclient() &SteamClient {
-	s := &SteamClient {
+	s := &SteamClient{
 		encryption: &EncryptionHandler{}
 		multi_handler: &MultiHandler{}
 		friends: &SteamFriends{}
 		user: &SteamUser{}
 		steam_id: default_steamid
 	}
-
 	s.handlers << s
 	s.handlers << s.multi_handler
 	s.handlers << s.encryption
 	s.handlers << s.friends
 	s.handlers << s.user
-
 	for h in s.handlers {
 		h.initialise(mut s)
 	}
-
 	return s
 }
 
@@ -71,9 +65,7 @@ pub fn (mut s SteamClient) shutdown() ? {
 		s.connected = false
 		s.client.close()
 		s.dispatch_callback(DisconnectedCallback{})
-	
 	}
-
 	return none
 }
 
@@ -88,7 +80,6 @@ pub fn (mut s SteamClient) connect() ? {
 	}
 	cm := hardcoded_cm()
 	s.client = new_tcp_client(cm)?
-
 	s.connected = true
 }
 
@@ -112,19 +103,18 @@ pub fn (mut s SteamClient) frame() ? {
 
 // read_packet reads a complete packet from the network
 fn (mut s SteamClient) read_packet() ?Packet {
-	mut header_buffer := []byte{ len: int(sizeof(TcpHeader)) }
-	defer { header_buffer.free() }
+	mut header_buffer := []byte{len: int(sizeof(TcpHeader))}
+	defer {
+		header_buffer.free()
+	}
 	mut header := &TcpHeader(header_buffer.data)
-
 	s.client.read_into(header_buffer)?
-
-	mut body := []byte{ len: header.size }
+	mut body := []byte{len: header.size}
 	s.client.read_into(body)?
-
-	return s.encryption.decrypt_packet(Packet {header body})
+	return s.encryption.decrypt_packet(Packet{header, body})
 }
 
-// process_and_dispatch_packet processes a packet and then dispatches 
+// process_and_dispatch_packet processes a packet and then dispatches
 // the message that comes from it (if any)
 fn (mut s SteamClient) process_and_dispatch_packet(p Packet) ? {
 	if msg := s.process_packet(p) {
@@ -136,19 +126,14 @@ fn (mut s SteamClient) process_and_dispatch_packet(p Packet) ? {
 // process_packet processes the body of a packet and returns a message
 fn (mut s SteamClient) process_packet(p Packet) ?Message {
 	base_header := &MsgBaseHeader(p.body.data)
-
 	is_proto, msg := base_header.decompose()
-
 	println('$msg $is_proto')
-
 	mut source_job_id := u64(0)
 	mut target_job_id := u64(0)
 	mut msg_body := array{}
-
 	if !is_proto {
 		match msg {
-			.channel_encrypt_request,
-			.channel_encrypt_result {
+			.channel_encrypt_request, .channel_encrypt_result {
 				full_header := &MsgHeader(p.body.data)
 				source_job_id = full_header.source_job_id
 				target_job_id = full_header.target_job_id
@@ -158,15 +143,12 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 		}
 	} else {
 		full_header := &MsgHdrProtobuf(p.body.data)
-
 		if full_header.header_length > 0 {
-			header := proto.cmsgprotobufheader_unpack(
-				p.body[sizeof(MsgHdrProtobuf)..int(sizeof(MsgHdrProtobuf))+full_header.header_length])?
-
+			header := proto.cmsgprotobufheader_unpack(p.body[sizeof(MsgHdrProtobuf)..int(sizeof(MsgHdrProtobuf)) +
+				full_header.header_length])?
 			if header.has_steamid {
 				s.steam_id = steamid(header.steamid)
 			}
-
 			if header.has_client_sessionid {
 				s.session_id = header.client_sessionid
 			}
@@ -176,34 +158,24 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 			source_job_id = ~0
 			target_job_id = ~0
 		}
-
-		msg_body = p.body[int(sizeof(MsgHdrProtobuf))+full_header.header_length..].clone()
+		msg_body = p.body[int(sizeof(MsgHdrProtobuf)) + full_header.header_length..].clone()
 	}
-
-	return Message {
-		msg
-		source_job_id
-		target_job_id
-		msg_body
-	}
+	return Message{msg, source_job_id, target_job_id, msg_body}
 }
 
 // write_packet writes a packet to the CM
 fn (mut s SteamClient) write_packet(data []byte) ? {
-	mut p := Packet {
-		TcpHeader {	data.len }
-		data
-	}
+	mut p := Packet{TcpHeader{data.len}, data}
 	p = s.encryption.encrypt_packet(p)?
 	mut body := p.body
-	pad := []byte{len:8, init:0}
-	defer {pad.free()}
+	pad := []byte{len: 8, init: 0}
+	defer {
+		pad.free()
+	}
 	body.prepend(pad)
-
 	mut packet_header := &TcpHeader(body.data)
 	packet_header.size = p.header.size
 	packet_header.magic = 0x31305456 // VT01
-
 	s.client.write(body)?
 }
 
@@ -214,50 +186,41 @@ fn (mut s SteamClient) write_non_protobuf_message(m Message) ? {
 	}
 	// Prepend 20 bytes for msg header
 	mut body := m.body
-	pad := []byte{len:20}
+	pad := []byte{len: 20}
 	body.prepend_many(pad, int(sizeof(MsgHeader)))
-
 	mut message_header := &MsgHeader(body.data)
 	message_header.msg = m.msg
 	message_header.source_job_id = ~0
 	message_header.target_job_id = ~0
-
 	s.write_packet(body)?
 }
 
 // write_message_internal writes a Message to the CM
 fn (mut s SteamClient) write_message_internal(m Message) ? {
 	mut header := proto.CMsgProtoBufHeader{}
-
 	header.has_steamid = true
 	header.steamid = s.steam_id
-	
 	header.has_client_sessionid = true
 	header.client_sessionid = s.session_id
-
 	if m.target != 0 {
 		header.has_jobid_target = true
 		header.jobid_target = m.target
 	}
-
 	packed_header := header.pack()
-
 	mut full_message := []byte{len: int(sizeof(MsgHdrProtobuf))}
-	mut proto_header :=  &MsgHdrProtobuf(full_message.data)
+	mut proto_header := &MsgHdrProtobuf(full_message.data)
 	proto_header.msg = m.msg.make_proto()
 	proto_header.header_length = packed_header.len
-
 	// put the proto header after the normal header
 	full_message << packed_header
 	full_message << m.body
-
 	s.write_packet(full_message)
 }
 
 // write_message takes components of a message and builds a Message
 // for write_message_internal to deal with
 pub fn (mut s SteamClient) write_message(job u64, m Msg, body &Packable) ? {
-	s.write_message_internal(Message {
+	s.write_message_internal(Message{
 		target: job
 		msg: m
 		body: body.pack()
@@ -268,7 +231,6 @@ pub fn (mut s SteamClient) write_message(job u64, m Msg, body &Packable) ? {
 pub fn (mut s SteamClient) add_callback_handler(h CallbackHandler) ? {
 	s.callback_handlers << h
 }
-
 
 // dispatch_callback dispatches a callback to clients
 fn (mut s SteamClient) dispatch_callback(cb Callback) {
