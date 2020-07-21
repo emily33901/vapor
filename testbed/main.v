@@ -12,36 +12,78 @@ struct Secrets {
 	password string
 }
 
-fn pump (mut s vapor.SteamClient) {
-		s.connect()
+struct Testbed {
+mut:
+	secrets Secrets
+	s &vapor.SteamClient
+}
 
-		for {
-			s.frame() or {
-				panic('$errcode $err')
-			}
-			time.sleep_ms(1)
+fn new_testbed(secrets Secrets, s &vapor.SteamClient) &Testbed {
+	return &Testbed {
+		secrets, s
+	}
+}
+
+fn (mut t Testbed) main() ? {
+	// no need for ref here because t is already
+	// pointer
+	t.s.add_callback_handler(t)
+
+	t.s.connect()?
+
+	for {
+		t.s.frame() or {
+			panic('$errcode $err')
+		}
+		time.sleep_ms(1)
+	}
+}
+
+fn (mut t Testbed) handle_callback(cb vapor.Callback)? {
+	mut user := t.s.user()
+
+	match cb {
+		vapor.ConnectedCallback {
+			println('Connected!')
+			
+			user.logon(t.secrets.username, t.secrets.password)?
+		}
+		vapor.DisconnectedCallback {
+			println('Disconnected!')
+
+			// reconnect 🙃
+			t.s.connect()?
+		}
+		vapor.LoggedOnCallback {
+			go t.handle_logon(cb)
+		}
+		vapor.LoggedOffCallback {
+			println('Logged off!')
+		}
+		// else {
+		// 	println('Unknown callback')
+		// }
+	}
+}
+
+fn (mut t Testbed) handle_logon(cb &vapor.LoggedOnCallback) {
+	mut user := t.s.user()
+
+	if cb.result == .ok {
+		println('Logged on successfully!')
+		time.sleep_ms(5000)
+		// NOTE: you probably want to do something here :)
+		println('Logging off...')
+		user.logoff()
 	}
 }
 
 fn main() {
-	mut s := vapor.new_steamclient()
-	mut user := s.user()
-
-	go pump(mut s)
-
-	// wait for encrypted
-	for !s.connected() {
-		println('waiting for steam...')	
-		time.sleep_ms(1000)
-	}
-
 	ssecrets := os.read_file('secrets.json')?
 	secrets := json.decode(Secrets, ssecrets)?
+	
+	mut s := vapor.new_steamclient()
+	mut t := new_testbed(secrets, s)
 
-	user.logon(secrets.username, secrets.password)?
-
-	for {
-		// wait for stuff to happen i guess
-		time.sleep_ms(1000)
-	}
+	t.main()?
 }

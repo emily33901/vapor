@@ -2,7 +2,7 @@ module vapor
 
 #include "@VROOT/pack_helper.h"
 
-pub enum EUniverse {
+enum Universe {
 	invalid = 0
 	public = 1
 	beta = 2
@@ -12,7 +12,7 @@ pub enum EUniverse {
 	// max = 5
 }
 
-pub enum EChatEntryType {
+enum ChatEntryType {
 	invalid = 0
 	chat_msg = 1
 	typing = 2
@@ -26,7 +26,7 @@ pub enum EChatEntryType {
 	disconnected = 10
 }
 
-pub enum EPersonaState {
+enum PersonaState {
 	offline = 0
 	online = 1
 	busy = 2
@@ -37,7 +37,7 @@ pub enum EPersonaState {
 	// max = 7
 }
 
-pub enum EAccountType {
+enum AccountType {
 	invalid = 0
 	individual = 1
 	multiseat = 2
@@ -52,7 +52,7 @@ pub enum EAccountType {
 	max = 11
 }
 
-pub enum EFriendRelationship {
+enum FriendRelationship {
 	none_ = 0
 	blocked = 1
 	// pending_invitee = 2// obsolete - renamed to request_recipient
@@ -66,7 +66,7 @@ pub enum EFriendRelationship {
 	max = 8
 }
 
-pub enum EAccountFlags {
+enum AccountFlags {
 	normal_user = 0
 	persona_name_set = 1
 	unbannable = 2
@@ -91,7 +91,7 @@ pub enum EAccountFlags {
 	logon_extra_security_disabled = 1048576
 }
 
-pub enum EClanPermission {
+enum EClanPermission {
 	nobody = 0
 	owner = 1
 	officer = 2
@@ -100,7 +100,7 @@ pub enum EClanPermission {
 	moderator = 8
 }
 
-pub enum EChatPermission {
+enum EChatPermission {
 	close = 1
 	invite = 2
 	talk = 8
@@ -118,7 +118,7 @@ pub enum EChatPermission {
 	// mask = 1019
 }
 
-pub enum EFriendFlags {
+enum EFriendFlags {
 	none_ = 0
 	blocked = 1
 	friendship_requested = 2
@@ -133,7 +133,7 @@ pub enum EFriendFlags {
 	flag_all = 65535
 }
 
-pub enum EClientPersonaStateFlag {
+enum EClientPersonaStateFlag {
 	status = 1
 	player_name = 2
 	query_port = 4
@@ -148,7 +148,7 @@ pub enum EClientPersonaStateFlag {
 	facebook = 2048
 }
 
-pub enum EAppUsageEvent {
+enum EAppUsageEvent {
 	game_launch = 1
 	game_launch_trial = 2
 	media = 3
@@ -159,7 +159,7 @@ pub enum EAppUsageEvent {
 	game_launch_free_weekend = 8
 }
 
-pub enum ELicenseFlags {
+enum ELicenseFlags {
 	none_ = 0
 	renew = 0x01
 	renewal_failed = 0x02
@@ -171,7 +171,7 @@ pub enum ELicenseFlags {
 	imported_from_steam2 = 0x80
 }
 
-pub enum ELicenseType {
+enum ELicenseType {
 	no_license = 0
 	single_purchase = 1
 	single_purchase_limited_use = 2
@@ -181,7 +181,7 @@ pub enum ELicenseType {
 	recurring_option = 6
 }
 
-pub enum EPaymentMethod {
+enum EPaymentMethod {
 	none_ = 0
 	activation_code = 1
 	credit_card = 2
@@ -221,13 +221,13 @@ pub enum EPaymentMethod {
 	complimentary = 1024
 }
 
-pub enum EIntroducerRouting {
+enum EIntroducerRouting {
 	file_share = 0 // obsolete
 	p2pvoice_chat = 1
 	p2pnetworking = 2
 }
 
-pub enum EServerFlags {
+enum EServerFlags {
 	none_ = 0
 	active = 1
 	secure = 2
@@ -237,7 +237,7 @@ pub enum EServerFlags {
 	private = 32
 }
 
-pub enum EDenyReason {
+enum EDenyReason {
 	invalid_version = 1
 	generic = 2
 	not_logged_on = 3
@@ -255,7 +255,7 @@ pub enum EDenyReason {
 	steam_owner_left_guest_user = 15
 }
 
-pub enum EClanRank {
+enum EClanRank {
 	none_ = 0
 	owner = 1
 	officer = 2
@@ -263,7 +263,7 @@ pub enum EClanRank {
 	moderator = 4
 }
 
-pub enum EClanRelationship {
+enum EClanRelationship {
 	none_ = 0
 	blocked = 1
 	invited = 2
@@ -272,7 +272,7 @@ pub enum EClanRelationship {
 	kick_acknowledged = 5
 }
 
-pub enum EAuthSessionResponse {
+enum EAuthSessionResponse {
 	ok = 0
 	user_not_connected_to_steam = 1
 	no_license_or_expired = 2
@@ -284,7 +284,7 @@ pub enum EAuthSessionResponse {
 	auth_ticket_invalid = 8
 }
 
-pub enum EChatRoomEnterResponse {
+enum EChatRoomEnterResponse {
 	success = 1
 	doesnt_exist = 2
 	not_allowed = 3
@@ -301,19 +301,19 @@ pub enum EChatRoomEnterResponse {
 	rank_out_of_range = 14
 }
 
-pub enum EChatRoomType {
+enum EChatRoomType {
 	friend = 1
 	muc = 2
 	lobby = 3
 }
 
-pub enum EChatInfoType {
+enum EChatInfoType {
 	state_change = 1
 	info_update = 2
 	member_limit_change = 3
 }
 
-pub enum EChatAction {
+enum EChatAction {
 	invite_chat = 1
 	kick = 2
 	ban = 3
@@ -332,7 +332,7 @@ pub enum EChatAction {
 	set_unmoderated = 16
 }
 
-pub enum EChatActionResult {
+enum EChatActionResult {
 	success = 1
 	error = 2
 	not_permitted = 3
@@ -345,7 +345,7 @@ pub enum EChatActionResult {
 	voice_slots_full = 10
 }
 
-pub enum EAppInfoSection {
+enum EAppInfoSection {
 	unknown = 0
 	all = 1
 	// first = 2
@@ -366,7 +366,7 @@ pub enum EAppInfoSection {
 	max = 16
 }
 
-pub enum EContentDownloadSourceType {
+enum EContentDownloadSourceType {
 	invalid = 0
 	cs = 1
 	cdn = 2
@@ -376,7 +376,7 @@ pub enum EContentDownloadSourceType {
 	max = 5
 }
 
-pub enum EPlatformType {
+enum EPlatformType {
 	unknown = 0
 	win32 = 1
 	win64 = 2
@@ -386,7 +386,7 @@ pub enum EPlatformType {
 	max = 6
 }
 
-pub enum EOSType {
+enum EOSType {
 	unknown = -1
 	umq = -400
 	ps3 = -300
@@ -423,7 +423,7 @@ pub enum EOSType {
 	max = 24
 }
 
-pub enum EServerType {
+enum EServerType {
 	invalid = -1
 	// first = 0
 	shell = 0
@@ -495,7 +495,7 @@ pub enum EServerType {
 	max = 65
 }
 
-pub enum EBillingType {
+enum EBillingType {
 	no_cost = 0
 	bill_once_only = 1
 	bill_monthly = 2
@@ -508,7 +508,7 @@ pub enum EBillingType {
 	num_billing_types = 9
 }
 
-pub enum EActivationCodeClass {
+enum EActivationCodeClass {
 	won_cdkey = 0
 	valve_cdkey = 1
 	doom3cdkey = 2
@@ -519,7 +519,7 @@ pub enum EActivationCodeClass {
 	invalid = -1
 }
 
-pub enum EChatMemberStateChange {
+enum EChatMemberStateChange {
 	entered = 0x01
 	left = 0x02
 	disconnected = 0x04
@@ -527,7 +527,7 @@ pub enum EChatMemberStateChange {
 	banned = 0x10
 }
 
-pub enum ERegionCode {
+enum ERegionCode {
 	useast = 0x00
 	uswest = 0x01
 	south_america = 0x02
@@ -539,7 +539,7 @@ pub enum ERegionCode {
 	world = 0x8
 }
 
-pub enum ECurrencyCode {
+enum ECurrencyCode {
 	invalid = 0
 	usd = 1
 	gbp = 2
@@ -552,7 +552,7 @@ pub enum ECurrencyCode {
 	max = 10
 }
 
-pub enum EDepotFileFlag {
+enum EDepotFileFlag {
 	user_config = 1
 	versioned_user_config = 2
 	encrypted = 4
@@ -563,7 +563,7 @@ pub enum EDepotFileFlag {
 	custom_executable = 128
 }
 
-pub enum EWorkshopEnumerationType {
+enum EWorkshopEnumerationType {
 	ranked_by_vote = 0
 	recent = 1
 	trending = 2
@@ -573,18 +573,18 @@ pub enum EWorkshopEnumerationType {
 	recent_from_followed_users = 6
 }
 
-pub enum EPublishedFileVisibility {
+enum EPublishedFileVisibility {
 	public = 0
 	friends_only = 1
 	private = 2
 }
 
-pub enum EWorkshopFileAction {
+enum EWorkshopFileAction {
 	played = 0
 	completed = 1
 }
 
-pub enum EEconTradeResponse {
+enum EEconTradeResponse {
 	accepted = 0
 	declined = 1
 	// vac_banned_initiator = 2// obsolete - renamed to trade_banned_initiator
@@ -608,7 +608,7 @@ pub enum EEconTradeResponse {
 	initiator_steam_guard_duration = 23
 }
 
-pub enum EMarketingMessageFlags {
+enum EMarketingMessageFlags {
 	none_ = 0
 	high_priority = 1
 	platform_windows = 2
@@ -616,7 +616,7 @@ pub enum EMarketingMessageFlags {
 	platform_restrictions = 6
 }
 
-pub enum ENewsUpdateType {
+enum ENewsUpdateType {
 	app_news = 0
 	steam_ads = 1
 	steam_news = 2
@@ -624,7 +624,7 @@ pub enum ENewsUpdateType {
 	client_update = 4
 }
 
-pub enum ESystemIMType {
+enum ESystemIMType {
 	raw_text = 0
 	invalid_card = 1
 	recurring_purchase_failed = 2
@@ -638,14 +638,14 @@ pub enum ESystemIMType {
 	max = 10
 }
 
-pub enum EChatFlags {
+enum EChatFlags {
 	locked = 1
 	invisible_to_friends = 2
 	moderated = 4
 	unjoinable = 8
 }
 
-pub enum ERemoteStoragePlatform {
+enum ERemoteStoragePlatform {
 	none_ = 0
 	windows = 1
 	osx = 2
@@ -655,7 +655,7 @@ pub enum ERemoteStoragePlatform {
 	all = -1
 }
 
-pub enum EDRMBlobDownloadType {
+enum EDRMBlobDownloadType {
 	error = 0
 	file = 1
 	parts = 2
@@ -667,7 +667,7 @@ pub enum EDRMBlobDownloadType {
 	low_priority = 64
 }
 
-pub enum EDRMBlobDownloadErrorDetail {
+enum EDRMBlobDownloadErrorDetail {
 	none_ = 0
 	download_failed = 1
 	target_locked = 2
@@ -693,7 +693,7 @@ pub enum EDRMBlobDownloadErrorDetail {
 	next_base = 131072
 }
 
-pub enum EClientStat {
+enum EClientStat {
 	p2pconnections_udp = 0
 	p2pconnections_relay = 1
 	p2pgame_connections = 2
@@ -702,33 +702,33 @@ pub enum EClientStat {
 	max = 5
 }
 
-pub enum EClientStatAggregateMethod {
+enum EClientStatAggregateMethod {
 	latest_only = 0
 	sum = 1
 	event = 2
 	scalar = 3
 }
 
-pub enum ELeaderboardDataRequest {
+enum ELeaderboardDataRequest {
 	global = 0
 	global_around_user = 1
 	friends = 2
 	users = 3
 }
 
-pub enum ELeaderboardSortMethod {
+enum ELeaderboardSortMethod {
 	none_ = 0
 	ascending = 1
 	descending = 2
 }
 
-pub enum ELeaderboardUploadScoreMethod {
+enum ELeaderboardUploadScoreMethod {
 	none_ = 0
 	keep_best = 1
 	force_update = 2
 }
 
-pub enum EUdpPacketType {
+enum EUdpPacketType {
 	invalid = 0
 	challenge_req = 1
 	challenge = 2
@@ -740,38 +740,38 @@ pub enum EUdpPacketType {
 	// max = 8
 }
 
-pub struct MsgChannelEncryptRequest {
+struct MsgChannelEncryptRequest {
 	protocol_version u32
 	universe         u32
 }
 
-pub struct MsgChannelEncryptResponse {
+struct MsgChannelEncryptResponse {
 mut:
 	protocol_version u32
 	key_size         u32
 }
 
-pub struct MsgChannelEncryptResult {
+struct MsgChannelEncryptResult {
 	result u32
 }
 
-pub struct MsgHeader {
+struct MsgHeader {
 mut:
 	msg           u32
 	target_job_id u64
 	source_job_id u64
 }
 
-pub struct MsgBaseHeader {
+struct MsgBaseHeader {
 	msg u32
 }
 
-pub fn (h MsgBaseHeader) decompose() (bool, Msg) {
+fn (h MsgBaseHeader) decompose() (bool, Msg) {
 	return msg_is_proto(h.msg), raw_msg(h.msg)
 }
 
-pub struct MsgHdrProtobuf {
-pub mut:
+struct MsgHdrProtobuf {
+mut:
 	msg u32
 	header_length int
 }

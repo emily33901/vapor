@@ -26,8 +26,6 @@ struct EncryptionHandler {
 mut:
     s & SteamClient
 	session_key []byte
-
-pub mut:
     encrypted bool
 }
 
@@ -35,13 +33,23 @@ fn generate_iv() []byte {
     return array {data: util.time_seed_array(4).data, len: 16, element_size: 1, cap: 16}
 }
 
-pub fn (mut e EncryptionHandler) initialise(mut s SteamClient) ? {
-    e.s = s
+fn (mut e EncryptionHandler) initialise_internal() ? {
+    e.encrypted = false
     temp := util.time_seed_array(8)
     e.session_key = array{data:temp.data, len:32, cap:32, element_size:1}
 }
 
-pub fn (mut e EncryptionHandler) decrypt_packet(p Packet) ?Packet {
+fn (mut e EncryptionHandler) initialise(mut s SteamClient) ? {
+    e.s = s
+    e.initialise_internal()
+}
+
+fn (mut e EncryptionHandler) shutdown() ? {
+    // re-initialise ourselves
+    e.initialise_internal()
+}
+
+fn (mut e EncryptionHandler) decrypt_packet(p Packet) ?Packet {
     if !e.encrypted {
         return p
     }
@@ -66,7 +74,7 @@ pub fn (mut e EncryptionHandler) decrypt_packet(p Packet) ?Packet {
     }
 }
 
-pub fn (mut e EncryptionHandler) encrypt_packet(p Packet) ?Packet {
+fn (mut e EncryptionHandler) encrypt_packet(p Packet) ?Packet {
     if !e.encrypted {
         return p
     }
@@ -79,8 +87,10 @@ pub fn (mut e EncryptionHandler) encrypt_packet(p Packet) ?Packet {
     mut iv := generate_iv()
     
     // free the old packet body and the iv when we are finished with them
-    defer { p.body.free() }
-    defer { iv.free() }
+    defer { 
+        p.body.free() 
+        iv.free() 
+    }
     
     aes.ecb_encrypt_into(e.session_key, iv, mut output[..16])
     aes.cbc_encrypt_into(e.session_key, iv, mut @in, mut output[16..])
@@ -93,7 +103,7 @@ pub fn (mut e EncryptionHandler) encrypt_packet(p Packet) ?Packet {
     }
 }
 
-pub fn (mut e EncryptionHandler) handle_msg(msg Message) ? {
+fn (mut e EncryptionHandler) handle_msg(msg Message) ? {
     match msg.msg {
         .channel_encrypt_request {
             // 8 for header
@@ -124,6 +134,7 @@ pub fn (mut e EncryptionHandler) handle_msg(msg Message) ? {
 
             if m.result == 1 {
                 e.encrypted = true
+                e.s.dispatch_callback(ConnectedCallback{})
             }
         }
         else {}

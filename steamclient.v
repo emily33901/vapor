@@ -1,6 +1,5 @@
 module vapor
 
-import encoding.base64
 import proto
 
 struct TcpHeader {
@@ -25,26 +24,31 @@ struct Message {
 struct SteamClient {
 mut:
 	cm_addr string
+	connected bool
 	client TcpClient
 	handlers []MsgHandler
 
 	// Items needed for the header
 	session_id int
-	steam_id u64
+	steam_id SteamId
 
-	// Handlers
+	// Msg handlers
 	encryption &EncryptionHandler
 	multi_handler &MultiHandler
 	friends &SteamFriends
 	user &SteamUser
+
+	callback_handlers []CallbackHandler
 }
 
+// new_steamclient creates a new steamclient
 pub fn new_steamclient() &SteamClient {
 	s := &SteamClient {
 		encryption: &EncryptionHandler{}
 		multi_handler: &MultiHandler{}
 		friends: &SteamFriends{}
 		user: &SteamUser{}
+		steam_id: default_steamid
 	}
 
 	s.handlers << s
@@ -60,36 +64,59 @@ pub fn new_steamclient() &SteamClient {
 	return s
 }
 
+// shutdown shuts the current steamclient down and cleans up after it
 pub fn (mut s SteamClient) shutdown() ? {
+	if s.connected {
+		s.encryption.shutdown()?
+		s.connected = false
+		s.client.close()
+		s.dispatch_callback(DisconnectedCallback{})
+	
+	}
+
 	return none
 }
 
-pub fn (_ SteamClient) initialise(mut s SteamClient) ? {
+// initialise implements the msghandler interface
+fn (_ SteamClient) initialise(mut s SteamClient) ? {
 }
 
+// connect connects to a CM
 pub fn (mut s SteamClient) connect() ? {
+	if s.connected {
+		return none
+	}
 	cm := hardcoded_cm()
-	println('connecting to $cm')
 	s.client = new_tcp_client(cm)?
+
+	s.connected = true
 }
 
+// connected returns whether the client is connected to a CM
 pub fn (mut s SteamClient) connected() bool {
 	return s.encryption.encrypted == true
 }
 
+// frame lets the steamclient process any data that might be waiting for it
 pub fn (mut s SteamClient) frame() ? {
 	for {
 		if p := s.read_packet() {
 			s.process_and_dispatch_packet(p)?
 		} else {
+			// If we get here we got disconnected...
+			s.shutdown()?
 			break
 		}
 	}
 }
 
+// read_packet reads a complete packet from the network
 fn (mut s SteamClient) read_packet() ?Packet {
-	mut header := TcpHeader {}
-	tcpclient_read<TcpHeader>(mut s.client, mut header, sizeof(TcpHeader))
+	mut header_buffer := []byte{ len: int(sizeof(TcpHeader)) }
+	defer { header_buffer.free() }
+	mut header := &TcpHeader(header_buffer.data)
+
+	s.client.read_into(header_buffer)?
 
 	mut body := []byte{ len: header.size }
 	s.client.read_into(body)?
@@ -106,6 +133,7 @@ fn (mut s SteamClient) process_and_dispatch_packet(p Packet) ? {
 	}
 }
 
+// process_packet processes the body of a packet and returns a message
 fn (mut s SteamClient) process_packet(p Packet) ?Message {
 	base_header := &MsgBaseHeader(p.body.data)
 
@@ -136,7 +164,7 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 				p.body[sizeof(MsgHdrProtobuf)..int(sizeof(MsgHdrProtobuf))+full_header.header_length])?
 
 			if header.has_steamid {
-				s.steam_id = header.steamid
+				s.steam_id = steamid(header.steamid)
 			}
 
 			if header.has_client_sessionid {
@@ -160,15 +188,7 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 	}
 }
 
-fn (mut s SteamClient) dispatch(m Message) ? {
-	for h in s.handlers {
-		h.handle_msg(m)?
-	}
-}
-
-fn (mut s SteamClient) handle_msg(m Message) ? {
-}
-
+// write_packet writes a packet to the CM
 fn (mut s SteamClient) write_packet(data []byte) ? {
 	mut p := Packet {
 		TcpHeader {	data.len }
@@ -187,6 +207,7 @@ fn (mut s SteamClient) write_packet(data []byte) ? {
 	s.client.write(body)?
 }
 
+// write_non_protobuf_message writes a non-protobuf message to the CM
 fn (mut s SteamClient) write_non_protobuf_message(m Message) ? {
 	if m.msg != .channel_encrypt_response {
 		panic('This should only ever be called for channel_encrypt_response')
@@ -204,14 +225,15 @@ fn (mut s SteamClient) write_non_protobuf_message(m Message) ? {
 	s.write_packet(body)?
 }
 
+// write_message_internal writes a Message to the CM
 fn (mut s SteamClient) write_message_internal(m Message) ? {
 	mut header := proto.CMsgProtoBufHeader{}
 
 	header.has_steamid = true
-	header.steamid = 76561197960265728
+	header.steamid = s.steam_id
 	
 	header.has_client_sessionid = true
-	header.client_sessionid = int(s.session_id)
+	header.client_sessionid = s.session_id
 
 	if m.target != 0 {
 		header.has_jobid_target = true
@@ -232,6 +254,8 @@ fn (mut s SteamClient) write_message_internal(m Message) ? {
 	s.write_packet(full_message)
 }
 
+// write_message takes components of a message and builds a Message
+// for write_message_internal to deal with
 pub fn (mut s SteamClient) write_message(job u64, m Msg, body &Packable) ? {
 	s.write_message_internal(Message {
 		target: job
@@ -240,10 +264,42 @@ pub fn (mut s SteamClient) write_message(job u64, m Msg, body &Packable) ? {
 	})
 }
 
+// add_callback_handler adds a callback function
+pub fn (mut s SteamClient) add_callback_handler(h CallbackHandler) ? {
+	s.callback_handlers << h
+}
+
+
+// dispatch_callback dispatches a callback to clients
+fn (mut s SteamClient) dispatch_callback(cb Callback) {
+	for f in s.callback_handlers {
+		f.handle_callback(cb)
+	}
+}
+
+// add_msg_handler allows someone to add their own msg handler
+// and get direct access to messages sent from steam
+pub fn (mut s SteamClient) add_msg_handler(m MsgHandler) {
+	s.handlers << m
+}
+
+// dispatch dispatches a message to handlers to deal with
+fn (mut s SteamClient) dispatch(m Message) ? {
+	for h in s.handlers {
+		h.handle_msg(m)?
+	}
+}
+
+// handle_msg handles an incoming message
+fn (mut s SteamClient) handle_msg(m Message) ? {
+}
+
+// friends gets the friends module
 pub fn (s &SteamClient) friends() &SteamFriends {
 	return s.friends
 }
 
+// user gets the user module
 pub fn (s &SteamClient) user() &SteamUser {
 	return s.user
 }

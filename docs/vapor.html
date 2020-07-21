@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>vapor | vdoc</title>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+		
+	<link rel="stylesheet" href="doc.css" />
+	<link rel="stylesheet" href="normalize.css" />
+	</head>
+	<body>
+		<div id="page">
+			<header class="doc-nav hidden">
+				<div class="heading-container">
+					<div class="heading">
+						<input type="text" id="search" placeholder="Search...">
+						<div class="module">vapor</div>
+						<div class="toggle-version-container">
+							<span></span>
+							<div id="dark-mode-toggle" role="switch" aria-checked="false" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" class="light-icon" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="dark-icon" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M11.1,12.08C8.77,7.57,10.6,3.6,11.63,2.01C6.27,2.2,1.98,6.59,1.98,12c0,0.14,0.02,0.28,0.02,0.42 C2.62,12.15,3.29,12,4,12c1.66,0,3.18,0.83,4.1,2.15C9.77,14.63,11,16.17,11,18c0,1.52-0.87,2.83-2.12,3.51 c0.98,0.32,2.03,0.5,3.11,0.5c3.5,0,6.58-1.8,8.37-4.52C18,17.72,13.38,16.52,11.1,12.08z"/></g><path d="M7,16l-0.18,0C6.4,14.84,5.3,14,4,14c-1.66,0-3,1.34-3,3s1.34,3,3,3c0.62,0,2.49,0,3,0c1.1,0,2-0.9,2-2 C9,16.9,8.1,16,7,16z"/></g></g></svg></div>
+						</div>
+						<svg xmlns="http://www.w3.org/2000/svg" id="toggle-menu" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+					</div>
+				</div>
+				<nav class="content hidden">
+					<ul>
+						<li class="open"><a href="#new_steamclient">new_steamclient</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#steamid">steamid</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#CallbackHandler">CallbackHandler</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#">SteamClient</a>        <ul>
+<li><a href="#SteamClient.add_callback_handler">add_callback_handler</a></li>
+<li><a href="#SteamClient.add_msg_handler">add_msg_handler</a></li>
+<li><a href="#SteamClient.connect">connect</a></li>
+<li><a href="#SteamClient.connected">connected</a></li>
+<li><a href="#SteamClient.frame">frame</a></li>
+<li><a href="#SteamClient.friends">friends</a></li>
+<li><a href="#SteamClient.shutdown">shutdown</a></li>
+<li><a href="#SteamClient.user">user</a></li>
+<li><a href="#SteamClient.write_message">write_message</a></li>
+</ul>
+</li>
+<li class="open"><a href="#">SteamFriends</a>        <ul>
+<li><a href="#SteamFriends.handle_msg">handle_msg</a></li>
+<li><a href="#SteamFriends.initialise">initialise</a></li>
+</ul>
+</li>
+<li class="open"><a href="#">Msg</a>        <ul>
+<li><a href="#Msg.make_proto">make_proto</a></li>
+</ul>
+</li>
+<li class="open"><a href="#LoggedOffCallback">LoggedOffCallback</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#">SteamUser</a>        <ul>
+<li><a href="#SteamUser.logoff">logoff</a></li>
+<li><a href="#SteamUser.logon">logon</a></li>
+</ul>
+</li>
+<li class="open"><a href="#LoggedOnCallback">LoggedOnCallback</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#">MultiHandler</a>        <ul>
+<li><a href="#MultiHandler.handle_msg">handle_msg</a></li>
+<li><a href="#MultiHandler.initialise">initialise</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Callback">Callback</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#SteamId">SteamId</a>        <ul>
+<li><a href="#SteamId.id">id</a></li>
+<li><a href="#SteamId.instance">instance</a></li>
+<li><a href="#SteamId.set_type">set_type</a></li>
+<li><a href="#SteamId.set_universe">set_universe</a></li>
+<li><a href="#SteamId.type">type</a></li>
+<li><a href="#SteamId.universe">universe</a></li>
+</ul>
+</li>
+
+					</ul>
+				</nav>
+			</header>
+			<div class="doc-container">
+				<div class="doc-content">
+					<section id="vapor" class="doc-node">
+<div class="title"><h1>vapor</h1></div></section>
+
+<section id="new_steamclient" class="doc-node">
+<div class="title"><h2>new_steamclient <a href="#new_steamclient">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">new_steamclient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamClient</code></pre>
+<p>new_steamclient creates a new steamclient</p>
+</section>
+<section id="steamid" class="doc-node">
+<div class="title"><h2>steamid <a href="#steamid">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token function">steamid</span><span class="token punctuation">(</span>x <span class="token builtin">u64</span><span class="token punctuation">)</span> SteamId</code></pre>
+
+</section>
+<section id="CallbackHandler" class="doc-node">
+<div class="title"><h2>CallbackHandler <a href="#CallbackHandler">#</a></h2></div><pre class="signature"><code><span class="token keyword">interface</span> <span class="token symbol">CallbackHandler</span> <span class="token punctuation">{</span>
+	<span class="token function">handle_callback</span><span class="token punctuation">(</span>cb Callback<span class="token punctuation">)</span> ?
+<span class="token punctuation">}</span></code></pre>
+<p>CallbackHandler lets types handle callbacks</p>
+</section>
+<section id="SteamClient.user" class="doc-node">
+<div class="title"><h2>SteamClient.user <a href="#SteamClient.user">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamUser</code></pre>
+<p>user gets the user module</p>
+</section>
+<section id="SteamClient.connect" class="doc-node">
+<div class="title"><h2>SteamClient.connect <a href="#SteamClient.connect">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>connect connects to a CM</p>
+</section>
+<section id="SteamClient.connected" class="doc-node">
+<div class="title"><h2>SteamClient.connected <a href="#SteamClient.connected">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connected</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>connected returns whether the client is connected to a CM</p>
+</section>
+<section id="SteamClient.frame" class="doc-node">
+<div class="title"><h2>SteamClient.frame <a href="#SteamClient.frame">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">frame</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>frame lets the steamclient process any data that might be waiting for it</p>
+</section>
+<section id="SteamClient.friends" class="doc-node">
+<div class="title"><h2>SteamClient.friends <a href="#SteamClient.friends">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">friends</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamFriends</code></pre>
+<p>friends gets the friends module</p>
+</section>
+<section id="SteamFriends.handle_msg" class="doc-node">
+<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="MultiHandler.handle_msg" class="doc-node">
+<div class="title"><h2>MultiHandler.handle_msg <a href="#MultiHandler.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="SteamClient.add_msg_handler" class="doc-node">
+<div class="title"><h2>SteamClient.add_msg_handler <a href="#SteamClient.add_msg_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_msg_handler</span><span class="token punctuation">(</span>m MsgHandler<span class="token punctuation">)</span></code></pre>
+<p>add_msg_handler allows someone to add their own msg handler and get direct access to messages sent from steam</p>
+</section>
+<section id="SteamFriends.initialise" class="doc-node">
+<div class="title"><h2>SteamFriends.initialise <a href="#SteamFriends.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="MultiHandler.initialise" class="doc-node">
+<div class="title"><h2>MultiHandler.initialise <a href="#MultiHandler.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="SteamId.instance" class="doc-node">
+<div class="title"><h2>SteamId.instance <a href="#SteamId.instance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+
+</section>
+<section id="SteamId.universe" class="doc-node">
+<div class="title"><h2>SteamId.universe <a href="#SteamId.universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">universe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Universe</code></pre>
+<p>universe returns the steamids universe</p>
+</section>
+<section id="SteamId.type" class="doc-node">
+<div class="title"><h2>SteamId.type <a href="#SteamId.type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token keyword">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span> AccountType</code></pre>
+<p>@type returns the type</p>
+</section>
+<section id="SteamUser.logoff" class="doc-node">
+<div class="title"><h2>SteamUser.logoff <a href="#SteamUser.logoff">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logoff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>logoff logs off the currently logged on account</p>
+</section>
+<section id="SteamUser.logon" class="doc-node">
+<div class="title"><h2>SteamUser.logon <a href="#SteamUser.logon">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logon</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password <span class="token builtin">string</span><span class="token punctuation">)</span> ?</code></pre>
+<p>logon logs on with a username and password</p>
+</section>
+<section id="Msg.make_proto" class="doc-node">
+<div class="title"><h2>Msg.make_proto <a href="#Msg.make_proto">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>m Msg<span class="token punctuation">)</span> <span class="token function">make_proto</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+
+</section>
+<section id="SteamId.id" class="doc-node">
+<div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>id returns the account id</p>
+</section>
+<section id="SteamClient.shutdown" class="doc-node">
+<div class="title"><h2>SteamClient.shutdown <a href="#SteamClient.shutdown">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>shutdown shuts the current steamclient down and cleans up after it</p>
+</section>
+<section id="SteamClient.add_callback_handler" class="doc-node">
+<div class="title"><h2>SteamClient.add_callback_handler <a href="#SteamClient.add_callback_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_callback_handler</span><span class="token punctuation">(</span>h CallbackHandler<span class="token punctuation">)</span> ?</code></pre>
+<p>add_callback_handler adds a callback function</p>
+</section>
+<section id="SteamId.set_type" class="doc-node">
+<div class="title"><h2>SteamId.set_type <a href="#SteamId.set_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_type</span><span class="token punctuation">(</span>a AccountType<span class="token punctuation">)</span></code></pre>
+
+</section>
+<section id="SteamId.set_universe" class="doc-node">
+<div class="title"><h2>SteamId.set_universe <a href="#SteamId.set_universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_universe</span><span class="token punctuation">(</span>u Universe<span class="token punctuation">)</span></code></pre>
+
+</section>
+<section id="SteamClient.write_message" class="doc-node">
+<div class="title"><h2>SteamClient.write_message <a href="#SteamClient.write_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">write_message</span><span class="token punctuation">(</span>job <span class="token builtin">u64</span><span class="token punctuation">,</span> m Msg<span class="token punctuation">,</span> body <span class="token operator">&</span>Packable<span class="token punctuation">)</span> ?</code></pre>
+<p>write_message takes components of a message and builds a Message for write_message_internal to deal with</p>
+</section>
+<section id="SteamClient.add_callback_handler" class="doc-node">
+<div class="title"><h2>SteamClient.add_callback_handler <a href="#SteamClient.add_callback_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_callback_handler</span><span class="token punctuation">(</span>h CallbackHandler<span class="token punctuation">)</span> ?</code></pre>
+<p>add_callback_handler adds a callback function</p>
+</section>
+<section id="SteamClient.add_msg_handler" class="doc-node">
+<div class="title"><h2>SteamClient.add_msg_handler <a href="#SteamClient.add_msg_handler">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">add_msg_handler</span><span class="token punctuation">(</span>m MsgHandler<span class="token punctuation">)</span></code></pre>
+<p>add_msg_handler allows someone to add their own msg handler and get direct access to messages sent from steam</p>
+</section>
+<section id="SteamClient.connect" class="doc-node">
+<div class="title"><h2>SteamClient.connect <a href="#SteamClient.connect">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>connect connects to a CM</p>
+</section>
+<section id="SteamClient.connected" class="doc-node">
+<div class="title"><h2>SteamClient.connected <a href="#SteamClient.connected">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">connected</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>connected returns whether the client is connected to a CM</p>
+</section>
+<section id="SteamClient.frame" class="doc-node">
+<div class="title"><h2>SteamClient.frame <a href="#SteamClient.frame">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">frame</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>frame lets the steamclient process any data that might be waiting for it</p>
+</section>
+<section id="SteamClient.friends" class="doc-node">
+<div class="title"><h2>SteamClient.friends <a href="#SteamClient.friends">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">friends</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamFriends</code></pre>
+<p>friends gets the friends module</p>
+</section>
+<section id="SteamClient.shutdown" class="doc-node">
+<div class="title"><h2>SteamClient.shutdown <a href="#SteamClient.shutdown">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>shutdown shuts the current steamclient down and cleans up after it</p>
+</section>
+<section id="SteamClient.user" class="doc-node">
+<div class="title"><h2>SteamClient.user <a href="#SteamClient.user">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s <span class="token operator">&</span>SteamClient<span class="token punctuation">)</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>SteamUser</code></pre>
+<p>user gets the user module</p>
+</section>
+<section id="SteamClient.write_message" class="doc-node">
+<div class="title"><h2>SteamClient.write_message <a href="#SteamClient.write_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> <span class="token function">write_message</span><span class="token punctuation">(</span>job <span class="token builtin">u64</span><span class="token punctuation">,</span> m Msg<span class="token punctuation">,</span> body <span class="token operator">&</span>Packable<span class="token punctuation">)</span> ?</code></pre>
+<p>write_message takes components of a message and builds a Message for write_message_internal to deal with</p>
+</section>
+<section id="SteamFriends.handle_msg" class="doc-node">
+<div class="title"><h2>SteamFriends.handle_msg <a href="#SteamFriends.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="SteamFriends.initialise" class="doc-node">
+<div class="title"><h2>SteamFriends.initialise <a href="#SteamFriends.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> f SteamFriends<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="Msg.make_proto" class="doc-node">
+<div class="title"><h2>Msg.make_proto <a href="#Msg.make_proto">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>m Msg<span class="token punctuation">)</span> <span class="token function">make_proto</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+
+</section>
+<section id="LoggedOffCallback" class="doc-node">
+<div class="title"><h2>LoggedOffCallback <a href="#LoggedOffCallback">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">LoggedOffCallback</span> <span class="token punctuation">{</span>
+	result Result
+<span class="token punctuation">}</span></code></pre>
+
+</section>
+<section id="SteamUser.logoff" class="doc-node">
+<div class="title"><h2>SteamUser.logoff <a href="#SteamUser.logoff">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logoff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> ?</code></pre>
+<p>logoff logs off the currently logged on account</p>
+</section>
+<section id="SteamUser.logon" class="doc-node">
+<div class="title"><h2>SteamUser.logon <a href="#SteamUser.logon">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> user SteamUser<span class="token punctuation">)</span> <span class="token function">logon</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password <span class="token builtin">string</span><span class="token punctuation">)</span> ?</code></pre>
+<p>logon logs on with a username and password</p>
+</section>
+<section id="LoggedOnCallback" class="doc-node">
+<div class="title"><h2>LoggedOnCallback <a href="#LoggedOnCallback">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">LoggedOnCallback</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
+	result                          Result
+	extended_result                 Result
+	out_of_game_heartbeat_secs      <span class="token builtin">int</span>
+	in_game_heartbeat_secs          <span class="token builtin">int</span>
+	server_time                     time<span class="token punctuation">.</span>Time
+	account_flags                   AccountFlags
+	steamid                         SteamId
+	email_domain                    <span class="token builtin">string</span>
+	count_login_failures_to_migrate <span class="token builtin">int</span>
+	count_disconnects_to_migrate    <span class="token builtin">int</span>
+<span class="token punctuation">}</span></code></pre>
+
+</section>
+<section id="MultiHandler.handle_msg" class="doc-node">
+<div class="title"><h2>MultiHandler.handle_msg <a href="#MultiHandler.handle_msg">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">handle_msg</span><span class="token punctuation">(</span>m Message<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="MultiHandler.initialise" class="doc-node">
+<div class="title"><h2>MultiHandler.initialise <a href="#MultiHandler.initialise">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> h MultiHandler<span class="token punctuation">)</span> <span class="token function">initialise</span><span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamClient<span class="token punctuation">)</span> ?</code></pre>
+
+</section>
+<section id="Callback" class="doc-node">
+<div class="title"><h2>Callback <a href="#Callback">#</a></h2></div><pre class="signature"><code><span class="token keyword">type</span> Callback <span class="token operator">=</span> ConnectedCallback <span class="token operator">|</span> DisconnectedCallback <span class="token operator">|</span> LoggedOffCallback <span class="token operator">|</span> LoggedOnCallback</code></pre>
+<p>TODO maybe move to its own module Callback represents all the possible callbacks</p>
+</section>
+<section id="SteamId" class="doc-node">
+<div class="title"><h2>SteamId <a href="#SteamId">#</a></h2></div><pre class="signature"><code><span class="token keyword">type</span> SteamId <span class="token builtin">u64</span></code></pre>
+
+</section>
+<section id="SteamId.id" class="doc-node">
+<div class="title"><h2>SteamId.id <a href="#SteamId.id">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">id</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>id returns the account id</p>
+</section>
+<section id="SteamId.instance" class="doc-node">
+<div class="title"><h2>SteamId.instance <a href="#SteamId.instance">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+
+</section>
+<section id="SteamId.set_type" class="doc-node">
+<div class="title"><h2>SteamId.set_type <a href="#SteamId.set_type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_type</span><span class="token punctuation">(</span>a AccountType<span class="token punctuation">)</span></code></pre>
+
+</section>
+<section id="SteamId.set_universe" class="doc-node">
+<div class="title"><h2>SteamId.set_universe <a href="#SteamId.set_universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> s SteamId<span class="token punctuation">)</span> <span class="token function">set_universe</span><span class="token punctuation">(</span>u Universe<span class="token punctuation">)</span></code></pre>
+
+</section>
+<section id="SteamId.type" class="doc-node">
+<div class="title"><h2>SteamId.type <a href="#SteamId.type">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token keyword">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span> AccountType</code></pre>
+<p>@type returns the type</p>
+</section>
+<section id="SteamId.universe" class="doc-node">
+<div class="title"><h2>SteamId.universe <a href="#SteamId.universe">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span>s SteamId<span class="token punctuation">)</span> <span class="token function">universe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Universe</code></pre>
+<p>universe returns the steamids universe</p>
+</section>
+
+					<div class="footer">
+						Powered by vdoc. Generated on: 21 Jul 2020 10:43:51
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<script src="doc.js"></script>
+	</body>
+	</html>
