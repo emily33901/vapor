@@ -39,8 +39,8 @@ pub fn (s SteamId) universe() Universe {
 
 // set_universe sets the steamid's universe
 pub fn (mut s SteamId) set_universe(u Universe) {
-	// TODO unnecessary to coerce compiler
 	unsafe {
+		u64(*s) &= ~steamid_universe_mask
 		u64(*s) |= ((u64(u) << steamid_universe_shift) & steamid_universe_mask)
 	}
 }
@@ -52,8 +52,8 @@ pub fn (s SteamId) @type() AccountType {
 
 // set_type sets the steamid's type
 pub fn (mut s SteamId) set_type(a AccountType) {
-	// TODO unnecessary to coerce compiler
 	unsafe {
+		u64(*s) &= ~steamid_type_mask
 		u64(*s) |= ((u64(a) << steamid_type_shift) & steamid_type_mask)
 	}
 }
@@ -63,7 +63,21 @@ pub fn (s SteamId) instance() int {
 	return int((u64(s) & steamid_instance_mask) >> steamid_instance_shift)
 }
 
+pub fn (mut s SteamId) set_instance(i int) {
+	unsafe {
+		u64(*s) &= ~steamid_instance_mask
+		u64(*s) |= ((u64(i) << steamid_instance_shift) & steamid_instance_mask)
+	}
+}
+
 // id returns the account id
 pub fn (s SteamId) id() u32 {
 	return u32((u64(s) & steamid_id_mask) >> steamid_id_shift)
+}
+
+pub fn (mut s SteamId) set_id(i u32) {
+	unsafe {
+		u64(*s) &= ~steamid_id_mask
+		u64(*s) |= ((u64(i) << steamid_id_shift) & steamid_id_mask)
+	}
 }
