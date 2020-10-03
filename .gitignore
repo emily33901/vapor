@@ -10,3 +10,4 @@ fns.txt
 a.out
 .vscode/
 secrets.json
+.lite*
