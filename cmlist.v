@@ -1,6 +1,8 @@
 module vapor
 
 import rand
+import net.http
+import json
 
 const (
 	hardcoded_cm_list = [
@@ -109,4 +111,25 @@ const (
 
 fn hardcoded_cm() string {
 	return hardcoded_cm_list[rand.int_in_range(0, hardcoded_cm_list.len)]
+}
+
+struct CMListResponse {
+	serverlist []string
+}
+struct RemoteCMList {
+	response CMListResponse
+}
+
+fn random_cm() ?string {
+	resp := http.get("https://api.steampowered.com/ISteamDirectory/GetCMList/v1/?cellid=4") or {
+		return none
+	}
+
+	o := json.decode(RemoteCMList, resp.text) or {
+		return none
+	}
+
+	server_list := o.response.serverlist
+
+	return server_list[rand.int_in_range(0, server_list.len)]
 }

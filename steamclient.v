@@ -94,7 +94,8 @@ pub fn (mut s SteamClient) connect() ? {
 	if s.connected {
 		return none
 	}
-	cm := hardcoded_cm()
+	// cm := hardcoded_cm()
+	cm := random_cm()
 	s.client = new_tcp_client(cm)?
 	s.connected = true
 }
