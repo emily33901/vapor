@@ -1,9 +1,7 @@
 module vapor
 
-// TODO maybe move to its own module
 // Callback represents all the possible callbacks
-pub type Callback = ConnectedCallback | DisconnectedCallback | LoggedOffCallback | LoggedOnCallback
-	
+pub type Callback = ConnectedCallback | DisconnectedCallback | LoggedOffCallback | LoggedOnCallback | AccountInfoCallback
 
 // CallbackHandler lets types handle callbacks
 pub interface CallbackHandler {

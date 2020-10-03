@@ -48,3 +48,20 @@ fn (mut user SteamUser) handle_logged_off(msg proto.CMsgClientLoggedOff) {
 		result: Result(msg.eresult)
 	})
 }
+
+pub struct AccountInfoCallback {
+pub:
+	name string
+	country string
+	account_flags AccountFlags
+	authed_computers int
+}
+
+fn (mut user SteamUser) handle_account_info(msg proto.CMsgClientAccountInfo) {
+	user.s.dispatch_callback(AccountInfoCallback {
+		name: msg.persona_name
+		country: msg.ip_country
+		account_flags: msg.account_flags
+		authed_computers: msg.count_authed_computers
+	})
+}

@@ -1,7 +1,7 @@
 module vapor
 
 // SteamId represents a steamid
-pub type SteamId u64
+pub type SteamId = u64
 
 // default_steamid is the default
 // universe 1, type .individual, instance 1, id 0
@@ -40,8 +40,8 @@ pub fn (s SteamId) universe() Universe {
 // set_universe sets the steamid's universe
 pub fn (mut s SteamId) set_universe(u Universe) {
 	unsafe {
-		u64(*s) &= ~steamid_universe_mask
-		u64(*s) |= ((u64(u) << steamid_universe_shift) & steamid_universe_mask)
+		(*s) &= ~steamid_universe_mask
+		(*s) |= ((u64(u) << steamid_universe_shift) & steamid_universe_mask)
 	}
 }
 
@@ -53,8 +53,8 @@ pub fn (s SteamId) @type() AccountType {
 // set_type sets the steamid's type
 pub fn (mut s SteamId) set_type(a AccountType) {
 	unsafe {
-		u64(*s) &= ~steamid_type_mask
-		u64(*s) |= ((u64(a) << steamid_type_shift) & steamid_type_mask)
+		(*s) &= ~steamid_type_mask
+		(*s) |= ((u64(a) << steamid_type_shift) & steamid_type_mask)
 	}
 }
 
@@ -65,8 +65,8 @@ pub fn (s SteamId) instance() int {
 
 pub fn (mut s SteamId) set_instance(i int) {
 	unsafe {
-		u64(*s) &= ~steamid_instance_mask
-		u64(*s) |= ((u64(i) << steamid_instance_shift) & steamid_instance_mask)
+		(*s) &= ~steamid_instance_mask
+		(*s) |= ((u64(i) << steamid_instance_shift) & steamid_instance_mask)
 	}
 }
 
@@ -77,7 +77,7 @@ pub fn (s SteamId) id() u32 {
 
 pub fn (mut s SteamId) set_id(i u32) {
 	unsafe {
-		u64(*s) &= ~steamid_id_mask
-		u64(*s) |= ((u64(i) << steamid_id_shift) & steamid_id_mask)
+		(*s) &= ~steamid_id_mask
+		(*s) |= ((u64(i) << steamid_id_shift) & steamid_id_mask)
 	}
 }

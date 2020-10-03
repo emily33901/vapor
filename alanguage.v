@@ -66,6 +66,7 @@ enum FriendRelationship {
 	max = 8
 }
 
+[flag]
 enum AccountFlags {
 	normal_user = 0
 	persona_name_set = 1

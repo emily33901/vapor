@@ -39,13 +39,13 @@ fn (mut t Testbed) handle_callback(cb vapor.Callback) ? {
 		vapor.ConnectedCallback {
 			println('Connected!')
 			user.logon({
-				username: t.secrets.username, 
+				username: t.secrets.username,
 				password: t.secrets.password
 			})?
 		}
 		vapor.DisconnectedCallback {
 			println('Disconnected!')
-			// reconnect 🙃
+			// reconnect
 			t.s.connect()?
 		}
 		vapor.LoggedOnCallback {
@@ -53,6 +53,9 @@ fn (mut t Testbed) handle_callback(cb vapor.Callback) ? {
 		}
 		vapor.LoggedOffCallback {
 			println('Logged off!')
+		}
+		vapor.AccountInfoCallback {
+			println('You are logged in as "$cb.name" from "$cb.country"!')
 		}
 		// else {
 		// println('Unknown callback')

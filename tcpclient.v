@@ -1,6 +1,6 @@
 module vapor
 
-import emily33901.net
+import x.net
 import time
 
 struct TcpClient {
@@ -19,7 +19,7 @@ fn (mut c TcpClient) read_into(b []byte) ? {
 	mut read := 0
 	for read < len {
 		r := c.c.read_into(mut b[read..]) or {
-			if errcode != net.err_read_timed_out_code {
+			if errcode != net.err_timed_out_code {  
 				return error('Connection terminated $errcode $err')
 			}
 			continue

@@ -17,10 +17,13 @@ fn (mut user SteamUser) handle_msg(m Message) ? {
 			message := proto.cmsgclientlogonresponse_unpack(m.body)?
 			user.handle_logon_response(message)
 		}
+		.client_account_info {
+			message := proto.cmsgclientaccountinfo_unpack(m.body)?
+			user.handle_account_info(message)
+		}
 		else {}
 	}
 }
-
 
 // LogonConfig is the config passed to SteamUser.logon
 pub struct LogonConfig {
