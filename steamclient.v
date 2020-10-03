@@ -1,6 +1,8 @@
 module vapor
 
 import proto
+import util
+import time
 
 struct TcpHeader {
 mut:
@@ -26,15 +28,26 @@ mut:
 	cm_addr           string
 	connected         bool
 	client            TcpClient
-	handlers          []MsgHandler
-	// Items needed for the header
+
+	// Heartbeat and connection manangement
+	count_login_failures_to_migrate int
+	count_disconnects_to_migrate    int
+	in_game_heartbeat_secs int
+	out_of_game_heartbeat_secs int
+	heartbeat_fn &HeartbeatFn
+
+	// Data needed for the msg header
 	session_id        int
 	steam_id          SteamId
+
 	// Msg handlers
+	handlers          []MsgHandler
 	encryption        &EncryptionHandler
 	multi_handler     &MultiHandler
 	friends           &SteamFriends
 	user              &SteamUser
+
+	// Callback handlers
 	callback_handlers []CallbackHandler
 }
 
@@ -46,7 +59,9 @@ pub fn new_steamclient() &SteamClient {
 		friends: &SteamFriends{}
 		user: &SteamUser{}
 		steam_id: default_steamid
+		// heartbeat_fn: &HeartbeatFn{s}
 	}
+	s.heartbeat_fn = &HeartbeatFn{s}
 	s.handlers << s
 	s.handlers << s.multi_handler
 	s.handlers << s.encryption
@@ -55,6 +70,7 @@ pub fn new_steamclient() &SteamClient {
 	for h in s.handlers {
 		h.initialise(mut s)
 	}
+	s.callback_handlers << s
 	return s
 }
 
@@ -141,7 +157,6 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 				target_job_id = full_header.target_job_id
 				msg_body = p.body[sizeof(MsgHeader)..].clone()
 			}
-
 			else{}
 		}
 	} else {
@@ -164,6 +179,28 @@ fn (mut s SteamClient) process_packet(p Packet) ?Message {
 		msg_body = p.body[int(sizeof(MsgHdrProtobuf)) + full_header.header_length..].clone()
 	}
 	return Message{msg, source_job_id, target_job_id, msg_body}
+}
+
+// handle_callback lets SteamClient handle callbacks
+fn (mut s SteamClient) handle_callback(cb Callback) ? {
+	match cb {
+		LoggedOnCallback {
+			if cb.result != .ok {
+				// reconnect ourselves
+				s.shutdown()?
+			} else {
+				s.count_login_failures_to_migrate = cb.count_login_failures_to_migrate
+				s.count_disconnects_to_migrate = cb.count_disconnects_to_migrate
+
+				s.out_of_game_heartbeat_secs = cb.out_of_game_heartbeat_secs
+				s.in_game_heartbeat_secs = cb.in_game_heartbeat_secs
+
+				util.schedule_function(s.heartbeat_fn, time.Duration(s.out_of_game_heartbeat_secs * time.second))
+			}
+		}
+		else {
+		}
+	}
 }
 
 // write_packet writes a packet to the CM
