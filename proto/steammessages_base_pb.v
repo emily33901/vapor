@@ -70,14 +70,14 @@ fn zzz_vproto_internal_pack_eprotoclaneventtype_packed(e []EProtoClanEventType, 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_eprotoclaneventtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EProtoClanEventType) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EProtoClanEventType(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_eprotoclaneventtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EProtoClanEventType) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -121,14 +121,14 @@ fn zzz_vproto_internal_pack_partnereventnotificationtype_packed(e []PartnerEvent
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_partnereventnotificationtype(buf []byte, tag_wiretype vproto.WireType) ?(int, PartnerEventNotificationType) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, PartnerEventNotificationType(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_partnereventnotificationtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []PartnerEventNotificationType) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -195,8 +195,8 @@ pub fn zzz_vproto_internal_pack_cmsgipaddress(o CMsgIPAddress, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgipaddress(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgIPAddress) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgipaddress_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgipaddress_unpack(v) ?
 	return i, unpacked
 }
 
@@ -231,12 +231,12 @@ pub fn cmsgipaddressbucket_unpack(buf []byte) ?CMsgIPAddressBucket {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.original_ip_address = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bucket = v
 				i = ii
 			}
@@ -298,8 +298,8 @@ pub fn zzz_vproto_internal_pack_cmsgipaddressbucket(o CMsgIPAddressBucket, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgipaddressbucket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgIPAddressBucket) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgipaddressbucket_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgipaddressbucket_unpack(v) ?
 	return i, unpacked
 }
 
@@ -329,8 +329,8 @@ pub mut:
 	forward_to_sysid        []u32
 	cm_sysid                u32
 	wg_token                string
-	launcher_type           u32 = 0
-	realm                   u32 = 0
+	launcher_type           u32
+	realm                   u32
 }
 
 pub fn (o &CMsgProtoBufHeader) pack() []byte {
@@ -368,7 +368,7 @@ pub fn (o &CMsgProtoBufHeader) pack() []byte {
 	if o.token_source != u32(0) {
 		res << vproto.pack_uint32_field(o.token_source, 22)
 	}
-	if o.admin_spoofing_user != bool(0) {
+	if o.admin_spoofing_user != false {
 		res << vproto.pack_bool_field(o.admin_spoofing_user, 23)
 	}
 	if o.transport_error != int(0) {
@@ -389,7 +389,7 @@ pub fn (o &CMsgProtoBufHeader) pack() []byte {
 	if o.webapi_key_id != u32(0) {
 		res << vproto.pack_uint32_field(o.webapi_key_id, 25)
 	}
-	if o.is_from_external_source != bool(0) {
+	if o.is_from_external_source != false {
 		res << vproto.pack_bool_field(o.is_from_external_source, 26)
 	}
 	// [packed=false]
@@ -423,123 +423,123 @@ pub fn cmsgprotobufheader_unpack(buf []byte) ?CMsgProtoBufHeader {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_sessionid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_appid = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.jobid_source = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.jobid_target = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.target_job_name = v
 				i = ii
 			}
 			24 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.error_message = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.auth_account_flags = v
 				i = ii
 			}
 			22 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.token_source = v
 				i = ii
 			}
 			23 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.admin_spoofing_user = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.transport_error = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.messageid = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.publisher_group_id = v
 				i = ii
 			}
 			20 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sysid = v
 				i = ii
 			}
 			21 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.trace_tag = v
 				i = ii
 			}
 			25 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.webapi_key_id = v
 				i = ii
 			}
 			26 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_from_external_source = v
 				i = ii
 			}
 			27 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forward_to_sysid << v
 				i = ii
 			}
 			28 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cm_sysid = v
 				i = ii
 			}
 			30 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.wg_token = v
 				i = ii
 			}
 			31 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.launcher_type = v
 				i = ii
 			}
 			32 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.realm = v
 				i = ii
 			}
@@ -560,26 +560,16 @@ pub fn cmsgprotobufheader_unpack(buf []byte) ?CMsgProtoBufHeader {
 
 [inline]
 pub fn (a CMsgProtoBufHeader) eq(b CMsgProtoBufHeader) bool {
-	return true && a.steamid == b.steamid &&
-		a.client_sessionid == b.client_sessionid &&
-		a.routing_appid == b.routing_appid &&
-		a.jobid_source == b.jobid_source &&
-		a.jobid_target == b.jobid_target &&
-		a.target_job_name == b.target_job_name &&
-		a.seq_num == b.seq_num && a.eresult == b.eresult &&
-		a.error_message == b.error_message &&
-		a.auth_account_flags == b.auth_account_flags &&
-		a.token_source == b.token_source &&
-		a.admin_spoofing_user == b.admin_spoofing_user &&
-		a.transport_error == b.transport_error &&
-		a.messageid == b.messageid && a.publisher_group_id == b.publisher_group_id &&
-		a.sysid == b.sysid && a.trace_tag == b.trace_tag &&
-		a.webapi_key_id == b.webapi_key_id &&
-		a.is_from_external_source == b.is_from_external_source &&
-		a.forward_to_sysid == b.forward_to_sysid &&
-		a.cm_sysid == b.cm_sysid && a.wg_token == b.wg_token &&
-		a.launcher_type == b.launcher_type &&
-		a.realm == b.realm
+	return true && a.steamid == b.steamid && a.client_sessionid == b.client_sessionid &&
+		a.routing_appid == b.routing_appid && a.jobid_source == b.jobid_source && a.jobid_target == b.jobid_target &&
+		a.target_job_name == b.target_job_name && a.seq_num == b.seq_num && a.eresult == b.eresult &&
+		a.error_message == b.error_message && a.auth_account_flags == b.auth_account_flags &&
+		a.token_source == b.token_source && a.admin_spoofing_user == b.admin_spoofing_user &&
+		a.transport_error == b.transport_error && a.messageid == b.messageid && a.publisher_group_id ==
+		b.publisher_group_id && a.sysid == b.sysid && a.trace_tag == b.trace_tag && a.webapi_key_id ==
+		b.webapi_key_id && a.is_from_external_source == b.is_from_external_source && a.forward_to_sysid ==
+		b.forward_to_sysid && a.cm_sysid == b.cm_sysid && a.wg_token == b.wg_token && a.launcher_type ==
+		b.launcher_type && a.realm == b.realm
 }
 
 [inline]
@@ -620,8 +610,8 @@ pub fn zzz_vproto_internal_pack_cmsgprotobufheader(o CMsgProtoBufHeader, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgprotobufheader(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgProtoBufHeader) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgprotobufheader_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgprotobufheader_unpack(v) ?
 	return i, unpacked
 }
 
@@ -656,12 +646,12 @@ pub fn cmsgmulti_unpack(buf []byte) ?CMsgMulti {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.size_unzipped = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_body = v
 				i = ii
 			}
@@ -723,8 +713,8 @@ pub fn zzz_vproto_internal_pack_cmsgmulti(o CMsgMulti, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmulti(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMulti) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmulti_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmulti_unpack(v) ?
 	return i, unpacked
 }
 
@@ -755,7 +745,7 @@ pub fn cmsgprotobufwrapped_unpack(buf []byte) ?CMsgProtobufWrapped {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_body = v
 				i = ii
 			}
@@ -817,8 +807,8 @@ pub fn zzz_vproto_internal_pack_cmsgprotobufwrapped(o CMsgProtobufWrapped, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgprotobufwrapped(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgProtobufWrapped) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgprotobufwrapped_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgprotobufwrapped_unpack(v) ?
 	return i, unpacked
 }
 
@@ -873,37 +863,37 @@ pub fn cmsgauthticket_unpack(buf []byte) ?CMsgAuthTicket {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.estate = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gameid = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.h_steam_pipe = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket_crc = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket = v
 				i = ii
 			}
@@ -924,10 +914,9 @@ pub fn cmsgauthticket_unpack(buf []byte) ?CMsgAuthTicket {
 
 [inline]
 pub fn (a CMsgAuthTicket) eq(b CMsgAuthTicket) bool {
-	return true && a.estate == b.estate &&
-		a.eresult == b.eresult && a.steamid == b.steamid &&
-		a.gameid == b.gameid && a.h_steam_pipe == b.h_steam_pipe &&
-		a.ticket_crc == b.ticket_crc && a.ticket == b.ticket
+	return true && a.estate == b.estate && a.eresult == b.eresult && a.steamid == b.steamid &&
+		a.gameid == b.gameid && a.h_steam_pipe == b.h_steam_pipe && a.ticket_crc == b.ticket_crc &&
+		a.ticket == b.ticket
 }
 
 [inline]
@@ -968,8 +957,8 @@ pub fn zzz_vproto_internal_pack_cmsgauthticket(o CMsgAuthTicket, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgauthticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAuthTicket) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgauthticket_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgauthticket_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1008,16 +997,16 @@ pub fn (o &CCDDBAppDetailCommon) pack() []byte {
 	if o.logo_small != '' {
 		res << vproto.pack_string_field(o.logo_small, 5)
 	}
-	if o.tool != bool(0) {
+	if o.tool != false {
 		res << vproto.pack_bool_field(o.tool, 6)
 	}
-	if o.demo != bool(0) {
+	if o.demo != false {
 		res << vproto.pack_bool_field(o.demo, 7)
 	}
-	if o.media != bool(0) {
+	if o.media != false {
 		res << vproto.pack_bool_field(o.media, 8)
 	}
-	if o.community_visible_stats != bool(0) {
+	if o.community_visible_stats != false {
 		res << vproto.pack_bool_field(o.community_visible_stats, 9)
 	}
 	if o.friendly_name != '' {
@@ -1026,7 +1015,7 @@ pub fn (o &CCDDBAppDetailCommon) pack() []byte {
 	if o.propagation != '' {
 		res << vproto.pack_string_field(o.propagation, 11)
 	}
-	if o.has_adult_content != bool(0) {
+	if o.has_adult_content != false {
 		res << vproto.pack_bool_field(o.has_adult_content, 12)
 	}
 	return res
@@ -1044,62 +1033,62 @@ pub fn ccddbappdetailcommon_unpack(buf []byte) ?CCDDBAppDetailCommon {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logo = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logo_small = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tool = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.demo = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.media = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.community_visible_stats = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.friendly_name = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.propagation = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.has_adult_content = v
 				i = ii
 			}
@@ -1120,12 +1109,9 @@ pub fn ccddbappdetailcommon_unpack(buf []byte) ?CCDDBAppDetailCommon {
 
 [inline]
 pub fn (a CCDDBAppDetailCommon) eq(b CCDDBAppDetailCommon) bool {
-	return true && a.appid == b.appid &&
-		a.name == b.name && a.icon == b.icon &&
-		a.logo == b.logo && a.logo_small == b.logo_small &&
-		a.tool == b.tool && a.demo == b.demo &&
-		a.media == b.media && a.community_visible_stats == b.community_visible_stats &&
-		a.friendly_name == b.friendly_name &&
+	return true && a.appid == b.appid && a.name == b.name && a.icon == b.icon && a.logo == b.logo &&
+		a.logo_small == b.logo_small && a.tool == b.tool && a.demo == b.demo && a.media == b.media &&
+		a.community_visible_stats == b.community_visible_stats && a.friendly_name == b.friendly_name &&
 		a.propagation == b.propagation && a.has_adult_content == b.has_adult_content
 }
 
@@ -1167,8 +1153,8 @@ pub fn zzz_vproto_internal_pack_ccddbappdetailcommon(o CCDDBAppDetailCommon, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccddbappdetailcommon(buf []byte, tag_wiretype vproto.WireType) ?(int, CCDDBAppDetailCommon) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccddbappdetailcommon_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccddbappdetailcommon_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1196,52 +1182,52 @@ pub mut:
 
 pub fn (o &CMsgAppRights) pack() []byte {
 	mut res := []byte{}
-	if o.edit_info != bool(0) {
+	if o.edit_info != false {
 		res << vproto.pack_bool_field(o.edit_info, 1)
 	}
-	if o.publish != bool(0) {
+	if o.publish != false {
 		res << vproto.pack_bool_field(o.publish, 2)
 	}
-	if o.view_error_data != bool(0) {
+	if o.view_error_data != false {
 		res << vproto.pack_bool_field(o.view_error_data, 3)
 	}
-	if o.download != bool(0) {
+	if o.download != false {
 		res << vproto.pack_bool_field(o.download, 4)
 	}
-	if o.upload_cdkeys != bool(0) {
+	if o.upload_cdkeys != false {
 		res << vproto.pack_bool_field(o.upload_cdkeys, 5)
 	}
-	if o.generate_cdkeys != bool(0) {
+	if o.generate_cdkeys != false {
 		res << vproto.pack_bool_field(o.generate_cdkeys, 6)
 	}
-	if o.view_financials != bool(0) {
+	if o.view_financials != false {
 		res << vproto.pack_bool_field(o.view_financials, 7)
 	}
-	if o.manage_ceg != bool(0) {
+	if o.manage_ceg != false {
 		res << vproto.pack_bool_field(o.manage_ceg, 8)
 	}
-	if o.manage_signing != bool(0) {
+	if o.manage_signing != false {
 		res << vproto.pack_bool_field(o.manage_signing, 9)
 	}
-	if o.manage_cdkeys != bool(0) {
+	if o.manage_cdkeys != false {
 		res << vproto.pack_bool_field(o.manage_cdkeys, 10)
 	}
-	if o.edit_marketing != bool(0) {
+	if o.edit_marketing != false {
 		res << vproto.pack_bool_field(o.edit_marketing, 11)
 	}
-	if o.economy_support != bool(0) {
+	if o.economy_support != false {
 		res << vproto.pack_bool_field(o.economy_support, 12)
 	}
-	if o.economy_support_supervisor != bool(0) {
+	if o.economy_support_supervisor != false {
 		res << vproto.pack_bool_field(o.economy_support_supervisor, 13)
 	}
-	if o.manage_pricing != bool(0) {
+	if o.manage_pricing != false {
 		res << vproto.pack_bool_field(o.manage_pricing, 14)
 	}
-	if o.broadcast_live != bool(0) {
+	if o.broadcast_live != false {
 		res << vproto.pack_bool_field(o.broadcast_live, 15)
 	}
-	if o.view_marketing_traffic != bool(0) {
+	if o.view_marketing_traffic != false {
 		res << vproto.pack_bool_field(o.view_marketing_traffic, 16)
 	}
 	return res
@@ -1259,82 +1245,82 @@ pub fn cmsgapprights_unpack(buf []byte) ?CMsgAppRights {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.edit_info = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.publish = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.view_error_data = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.download = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_cdkeys = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.generate_cdkeys = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.view_financials = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manage_ceg = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manage_signing = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manage_cdkeys = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.edit_marketing = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.economy_support = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.economy_support_supervisor = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manage_pricing = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.broadcast_live = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.view_marketing_traffic = v
 				i = ii
 			}
@@ -1355,18 +1341,12 @@ pub fn cmsgapprights_unpack(buf []byte) ?CMsgAppRights {
 
 [inline]
 pub fn (a CMsgAppRights) eq(b CMsgAppRights) bool {
-	return true && a.edit_info == b.edit_info &&
-		a.publish == b.publish && a.view_error_data == b.view_error_data &&
-		a.download == b.download && a.upload_cdkeys == b.upload_cdkeys &&
-		a.generate_cdkeys == b.generate_cdkeys &&
-		a.view_financials == b.view_financials &&
-		a.manage_ceg == b.manage_ceg && a.manage_signing == b.manage_signing &&
-		a.manage_cdkeys == b.manage_cdkeys &&
-		a.edit_marketing == b.edit_marketing &&
-		a.economy_support == b.economy_support &&
-		a.economy_support_supervisor == b.economy_support_supervisor &&
-		a.manage_pricing == b.manage_pricing &&
-		a.broadcast_live == b.broadcast_live &&
+	return true && a.edit_info == b.edit_info && a.publish == b.publish && a.view_error_data ==
+		b.view_error_data && a.download == b.download && a.upload_cdkeys == b.upload_cdkeys &&
+		a.generate_cdkeys == b.generate_cdkeys && a.view_financials == b.view_financials && a.manage_ceg ==
+		b.manage_ceg && a.manage_signing == b.manage_signing && a.manage_cdkeys == b.manage_cdkeys &&
+		a.edit_marketing == b.edit_marketing && a.economy_support == b.economy_support && a.economy_support_supervisor ==
+		b.economy_support_supervisor && a.manage_pricing == b.manage_pricing && a.broadcast_live == b.broadcast_live &&
 		a.view_marketing_traffic == b.view_marketing_traffic
 }
 
@@ -1408,8 +1388,8 @@ pub fn zzz_vproto_internal_pack_cmsgapprights(o CMsgAppRights, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgapprights(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAppRights) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgapprights_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgapprights_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1438,22 +1418,22 @@ pub fn (o &CCuratorPreferences) pack() []byte {
 	if o.supported_languages != u32(0) {
 		res << vproto.pack_uint32_field(o.supported_languages, 1)
 	}
-	if o.platform_windows != bool(0) {
+	if o.platform_windows != false {
 		res << vproto.pack_bool_field(o.platform_windows, 2)
 	}
-	if o.platform_mac != bool(0) {
+	if o.platform_mac != false {
 		res << vproto.pack_bool_field(o.platform_mac, 3)
 	}
-	if o.platform_linux != bool(0) {
+	if o.platform_linux != false {
 		res << vproto.pack_bool_field(o.platform_linux, 4)
 	}
-	if o.vr_content != bool(0) {
+	if o.vr_content != false {
 		res << vproto.pack_bool_field(o.vr_content, 5)
 	}
-	if o.adult_content_violence != bool(0) {
+	if o.adult_content_violence != false {
 		res << vproto.pack_bool_field(o.adult_content_violence, 6)
 	}
-	if o.adult_content_sex != bool(0) {
+	if o.adult_content_sex != false {
 		res << vproto.pack_bool_field(o.adult_content_sex, 7)
 	}
 	if o.timestamp_updated != u32(0) {
@@ -1476,7 +1456,7 @@ pub fn (o &CCuratorPreferences) pack() []byte {
 	if o.discussion_url != '' {
 		res << vproto.pack_string_field(o.discussion_url, 13)
 	}
-	if o.show_broadcast != bool(0) {
+	if o.show_broadcast != false {
 		res << vproto.pack_bool_field(o.show_broadcast, 14)
 	}
 	return res
@@ -1494,74 +1474,74 @@ pub fn ccuratorpreferences_unpack(buf []byte) ?CCuratorPreferences {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.supported_languages = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.platform_windows = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.platform_mac = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.platform_linux = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vr_content = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.adult_content_violence = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.adult_content_sex = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_updated = v
 				i = ii
 			}
 			9 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tagids_curated << v
 				i = ii
 			}
 			10 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tagids_filtered << v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.website_title = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.website_url = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.discussion_url = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.show_broadcast = v
 				i = ii
 			}
@@ -1582,18 +1562,12 @@ pub fn ccuratorpreferences_unpack(buf []byte) ?CCuratorPreferences {
 
 [inline]
 pub fn (a CCuratorPreferences) eq(b CCuratorPreferences) bool {
-	return true && a.supported_languages == b.supported_languages &&
-		a.platform_windows == b.platform_windows &&
-		a.platform_mac == b.platform_mac &&
-		a.platform_linux == b.platform_linux &&
-		a.vr_content == b.vr_content && a.adult_content_violence == b.adult_content_violence &&
-		a.adult_content_sex == b.adult_content_sex &&
-		a.timestamp_updated == b.timestamp_updated &&
-		a.tagids_curated == b.tagids_curated &&
-		a.tagids_filtered == b.tagids_filtered &&
-		a.website_title == b.website_title &&
-		a.website_url == b.website_url && a.discussion_url == b.discussion_url &&
-		a.show_broadcast == b.show_broadcast
+	return true && a.supported_languages == b.supported_languages && a.platform_windows == b.platform_windows &&
+		a.platform_mac == b.platform_mac && a.platform_linux == b.platform_linux && a.vr_content == b.vr_content &&
+		a.adult_content_violence == b.adult_content_violence && a.adult_content_sex == b.adult_content_sex &&
+		a.timestamp_updated == b.timestamp_updated && a.tagids_curated == b.tagids_curated &&
+		a.tagids_filtered == b.tagids_filtered && a.website_title == b.website_title && a.website_url ==
+		b.website_url && a.discussion_url == b.discussion_url && a.show_broadcast == b.show_broadcast
 }
 
 [inline]
@@ -1634,8 +1608,8 @@ pub fn zzz_vproto_internal_pack_ccuratorpreferences(o CCuratorPreferences, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccuratorpreferences(buf []byte, tag_wiretype vproto.WireType) ?(int, CCuratorPreferences) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccuratorpreferences_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccuratorpreferences_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1670,12 +1644,12 @@ pub fn clocalizationtoken_unpack(buf []byte) ?CLocalizationToken {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.localized_string = v
 				i = ii
 			}
@@ -1737,8 +1711,8 @@ pub fn zzz_vproto_internal_pack_clocalizationtoken(o CLocalizationToken, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_clocalizationtoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CLocalizationToken) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := clocalizationtoken_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := clocalizationtoken_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1805,52 +1779,52 @@ pub fn cclaneventusernewstuple_unpack(buf []byte) ?CClanEventUserNewsTuple {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clanid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.event_gid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.announcement_gid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime_start = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime_end = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.priority_score = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.@type = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clamp_range_slot = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_last_modified = v
 				i = ii
 			}
@@ -1871,11 +1845,9 @@ pub fn cclaneventusernewstuple_unpack(buf []byte) ?CClanEventUserNewsTuple {
 
 [inline]
 pub fn (a CClanEventUserNewsTuple) eq(b CClanEventUserNewsTuple) bool {
-	return true && a.clanid == b.clanid &&
-		a.event_gid == b.event_gid && a.announcement_gid == b.announcement_gid &&
-		a.rtime_start == b.rtime_start && a.rtime_end == b.rtime_end &&
-		a.priority_score == b.priority_score &&
-		a.@type == b.@type && a.clamp_range_slot == b.clamp_range_slot &&
+	return true && a.clanid == b.clanid && a.event_gid == b.event_gid && a.announcement_gid ==
+		b.announcement_gid && a.rtime_start == b.rtime_start && a.rtime_end == b.rtime_end &&
+		a.priority_score == b.priority_score && a.@type == b.@type && a.clamp_range_slot == b.clamp_range_slot &&
 		a.appid == b.appid && a.rtime32_last_modified == b.rtime32_last_modified
 }
 
@@ -1917,8 +1889,8 @@ pub fn zzz_vproto_internal_pack_cclaneventusernewstuple(o CClanEventUserNewsTupl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cclaneventusernewstuple(buf []byte, tag_wiretype vproto.WireType) ?(int, CClanEventUserNewsTuple) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cclaneventusernewstuple_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cclaneventusernewstuple_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1962,23 +1934,23 @@ pub fn cclanmatcheventbyrange_unpack(buf []byte) ?CClanMatchEventByRange {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime_before = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime_after = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.qualified = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cclaneventusernewstuple(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cclaneventusernewstuple(cur_buf, tag_wiretype.wire_type) ?
 				res.events << v
 				i = ii
 			}
@@ -1999,8 +1971,8 @@ pub fn cclanmatcheventbyrange_unpack(buf []byte) ?CClanMatchEventByRange {
 
 [inline]
 pub fn (a CClanMatchEventByRange) eq(b CClanMatchEventByRange) bool {
-	return true && a.rtime_before == b.rtime_before &&
-		a.rtime_after == b.rtime_after && a.qualified == b.qualified && a.events.eq(b.events)
+	return true && a.rtime_before == b.rtime_before && a.rtime_after == b.rtime_after &&
+		a.qualified == b.qualified && a.events.eq(b.events)
 }
 
 [inline]
@@ -2041,8 +2013,8 @@ pub fn zzz_vproto_internal_pack_cclanmatcheventbyrange(o CClanMatchEventByRange,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cclanmatcheventbyrange(buf []byte, tag_wiretype vproto.WireType) ?(int, CClanMatchEventByRange) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cclanmatcheventbyrange_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cclanmatcheventbyrange_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2100,7 +2072,7 @@ pub fn (o &CCommunity_ClanAnnouncementInfo) pack() []byte {
 	if o.language != int(0) {
 		res << vproto.pack_int32_field(o.language, 10)
 	}
-	if o.hidden != bool(0) {
+	if o.hidden != false {
 		res << vproto.pack_bool_field(o.hidden, 11)
 	}
 	if o.forum_topic_id != u64(0) {
@@ -2130,78 +2102,78 @@ pub fn ccommunity_clanannouncementinfo_unpack(buf []byte) ?CCommunity_ClanAnnoun
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clanid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.posterid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.headline = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.posttime = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.updatetime = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.body = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.commentcount = v
 				i = ii
 			}
 			9 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tags << v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hidden = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forum_topic_id = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.event_gid = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.voteupcount = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.votedowncount = v
 				i = ii
 			}
@@ -2222,15 +2194,11 @@ pub fn ccommunity_clanannouncementinfo_unpack(buf []byte) ?CCommunity_ClanAnnoun
 
 [inline]
 pub fn (a CCommunity_ClanAnnouncementInfo) eq(b CCommunity_ClanAnnouncementInfo) bool {
-	return true && a.gid == b.gid &&
-		a.clanid == b.clanid && a.posterid == b.posterid &&
-		a.headline == b.headline && a.posttime == b.posttime &&
-		a.updatetime == b.updatetime && a.body == b.body &&
-		a.commentcount == b.commentcount &&
-		a.tags == b.tags && a.language == b.language &&
-		a.hidden == b.hidden && a.forum_topic_id == b.forum_topic_id &&
-		a.event_gid == b.event_gid && a.voteupcount == b.voteupcount &&
-		a.votedowncount == b.votedowncount
+	return true && a.gid == b.gid && a.clanid == b.clanid && a.posterid == b.posterid &&
+		a.headline == b.headline && a.posttime == b.posttime && a.updatetime == b.updatetime &&
+		a.body == b.body && a.commentcount == b.commentcount && a.tags == b.tags && a.language == b.language &&
+		a.hidden == b.hidden && a.forum_topic_id == b.forum_topic_id && a.event_gid == b.event_gid &&
+		a.voteupcount == b.voteupcount && a.votedowncount == b.votedowncount
 }
 
 [inline]
@@ -2271,8 +2239,8 @@ pub fn zzz_vproto_internal_pack_ccommunity_clanannouncementinfo(o CCommunity_Cla
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_clanannouncementinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_ClanAnnouncementInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_clanannouncementinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_clanannouncementinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2353,12 +2321,13 @@ pub fn (o &CClanEventData) pack() []byte {
 		res << vproto.pack_string_field(o.jsondata, 14)
 	}
 	if o.announcement_body.ne(zzz_vproto_internal_new_ccommunity_clanannouncementinfo()) {
-		res << zzz_vproto_internal_pack_ccommunity_clanannouncementinfo(o.announcement_body, 15)
+		res <<
+			zzz_vproto_internal_pack_ccommunity_clanannouncementinfo(o.announcement_body, 15)
 	}
-	if o.published != bool(0) {
+	if o.published != false {
 		res << vproto.pack_bool_field(o.published, 16)
 	}
-	if o.hidden != bool(0) {
+	if o.hidden != false {
 		res << vproto.pack_bool_field(o.hidden, 17)
 	}
 	if o.rtime32_visibility_start != u32(0) {
@@ -2403,133 +2372,133 @@ pub fn cclaneventdata_unpack(buf []byte) ?CClanEventData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clan_steamid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.event_name = v
 				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_eprotoclaneventtype(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_eprotoclaneventtype(cur_buf, tag_wiretype.wire_type) ?
 				res.event_type = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_address = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_password = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_start_time = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_end_time = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.comment_count = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.creator_steamid = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_update_steamid = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.event_notes = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.jsondata = v
 				i = ii
 			}
 			15 {
 				ii, v := zzz_vproto_internal_unpack_ccommunity_clanannouncementinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.announcement_body = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.published = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hidden = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_visibility_start = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_visibility_end = v
 				i = ii
 			}
 			20 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.broadcaster_accountid = v
 				i = ii
 			}
 			21 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.follower_count = v
 				i = ii
 			}
 			22 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ignore_count = v
 				i = ii
 			}
 			23 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forum_topic_id = v
 				i = ii
 			}
 			24 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_last_modified = v
 				i = ii
 			}
 			25 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.news_post_gid = v
 				i = ii
 			}
 			26 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime_mod_reviewed = v
 				i = ii
 			}
@@ -2550,27 +2519,16 @@ pub fn cclaneventdata_unpack(buf []byte) ?CClanEventData {
 
 [inline]
 pub fn (a CClanEventData) eq(b CClanEventData) bool {
-	return true && a.gid == b.gid &&
-		a.clan_steamid == b.clan_steamid &&
-		a.event_name == b.event_name && a.event_type == b.event_type &&
-		a.appid == b.appid && a.server_address == b.server_address &&
-		a.server_password == b.server_password &&
-		a.rtime32_start_time == b.rtime32_start_time &&
-		a.rtime32_end_time == b.rtime32_end_time &&
-		a.comment_count == b.comment_count &&
-		a.creator_steamid == b.creator_steamid &&
-		a.last_update_steamid == b.last_update_steamid &&
-		a.event_notes == b.event_notes &&
-		a.jsondata == b.jsondata && a.announcement_body.eq(b.announcement_body) &&
-		a.published == b.published && a.hidden == b.hidden &&
-		a.rtime32_visibility_start == b.rtime32_visibility_start &&
-		a.rtime32_visibility_end == b.rtime32_visibility_end &&
-		a.broadcaster_accountid == b.broadcaster_accountid &&
-		a.follower_count == b.follower_count &&
-		a.ignore_count == b.ignore_count &&
-		a.forum_topic_id == b.forum_topic_id &&
-		a.rtime32_last_modified == b.rtime32_last_modified &&
-		a.news_post_gid == b.news_post_gid &&
+	return true && a.gid == b.gid && a.clan_steamid == b.clan_steamid && a.event_name == b.event_name &&
+		a.event_type == b.event_type && a.appid == b.appid && a.server_address == b.server_address &&
+		a.server_password == b.server_password && a.rtime32_start_time == b.rtime32_start_time &&
+		a.rtime32_end_time == b.rtime32_end_time && a.comment_count == b.comment_count && a.creator_steamid ==
+		b.creator_steamid && a.last_update_steamid == b.last_update_steamid && a.event_notes == b.event_notes &&
+		a.jsondata == b.jsondata && a.announcement_body.eq(b.announcement_body) && a.published == b.published &&
+		a.hidden == b.hidden && a.rtime32_visibility_start == b.rtime32_visibility_start && a.rtime32_visibility_end ==
+		b.rtime32_visibility_end && a.broadcaster_accountid == b.broadcaster_accountid && a.follower_count ==
+		b.follower_count && a.ignore_count == b.ignore_count && a.forum_topic_id == b.forum_topic_id &&
+		a.rtime32_last_modified == b.rtime32_last_modified && a.news_post_gid == b.news_post_gid &&
 		a.rtime_mod_reviewed == b.rtime_mod_reviewed
 }
 
@@ -2612,8 +2570,8 @@ pub fn zzz_vproto_internal_pack_cclaneventdata(o CClanEventData, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cclaneventdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CClanEventData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cclaneventdata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cclaneventdata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2680,52 +2638,52 @@ pub fn cbilling_address_unpack(buf []byte) ?CBilling_Address {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.first_name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.address1 = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.address2 = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.city = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.us_state = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.country_code = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.postcode = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.zip_plus4 = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.phone = v
 				i = ii
 			}
@@ -2746,11 +2704,9 @@ pub fn cbilling_address_unpack(buf []byte) ?CBilling_Address {
 
 [inline]
 pub fn (a CBilling_Address) eq(b CBilling_Address) bool {
-	return true && a.first_name == b.first_name &&
-		a.last_name == b.last_name && a.address1 == b.address1 &&
-		a.address2 == b.address2 && a.city == b.city &&
-		a.us_state == b.us_state && a.country_code == b.country_code &&
-		a.postcode == b.postcode && a.zip_plus4 == b.zip_plus4 &&
+	return true && a.first_name == b.first_name && a.last_name == b.last_name && a.address1 ==
+		b.address1 && a.address2 == b.address2 && a.city == b.city && a.us_state == b.us_state &&
+		a.country_code == b.country_code && a.postcode == b.postcode && a.zip_plus4 == b.zip_plus4 &&
 		a.phone == b.phone
 }
 
@@ -2792,7 +2748,7 @@ pub fn zzz_vproto_internal_pack_cbilling_address(o CBilling_Address, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cbilling_address(buf []byte, tag_wiretype vproto.WireType) ?(int, CBilling_Address) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cbilling_address_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cbilling_address_unpack(v) ?
 	return i, unpacked
 }

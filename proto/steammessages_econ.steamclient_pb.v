@@ -12,7 +12,7 @@ pub mut:
 
 pub fn (o &CEcon_GetTradeOfferAccessToken_Request) pack() []byte {
 	mut res := []byte{}
-	if o.generate_new_token != bool(0) {
+	if o.generate_new_token != false {
 		res << vproto.pack_bool_field(o.generate_new_token, 1)
 	}
 	return res
@@ -30,7 +30,7 @@ pub fn cecon_gettradeofferaccesstoken_request_unpack(buf []byte) ?CEcon_GetTrade
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.generate_new_token = v
 				i = ii
 			}
@@ -92,8 +92,8 @@ pub fn zzz_vproto_internal_pack_cecon_gettradeofferaccesstoken_request(o CEcon_G
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_gettradeofferaccesstoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetTradeOfferAccessToken_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_gettradeofferaccesstoken_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_gettradeofferaccesstoken_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -124,7 +124,7 @@ pub fn cecon_gettradeofferaccesstoken_response_unpack(buf []byte) ?CEcon_GetTrad
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.trade_offer_access_token = v
 				i = ii
 			}
@@ -186,8 +186,8 @@ pub fn zzz_vproto_internal_pack_cecon_gettradeofferaccesstoken_response(o CEcon_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_gettradeofferaccesstoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetTradeOfferAccessToken_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_gettradeofferaccesstoken_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_gettradeofferaccesstoken_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -218,7 +218,7 @@ pub fn cecon_clientgetitemshopoverlayauthurl_request_unpack(buf []byte) ?CEcon_C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.return_url = v
 				i = ii
 			}
@@ -280,8 +280,8 @@ pub fn zzz_vproto_internal_pack_cecon_clientgetitemshopoverlayauthurl_request(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_clientgetitemshopoverlayauthurl_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_ClientGetItemShopOverlayAuthURL_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_clientgetitemshopoverlayauthurl_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_clientgetitemshopoverlayauthurl_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -312,7 +312,7 @@ pub fn cecon_clientgetitemshopoverlayauthurl_response_unpack(buf []byte) ?CEcon_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
@@ -374,8 +374,8 @@ pub fn zzz_vproto_internal_pack_cecon_clientgetitemshopoverlayauthurl_response(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_clientgetitemshopoverlayauthurl_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_ClientGetItemShopOverlayAuthURL_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_clientgetitemshopoverlayauthurl_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_clientgetitemshopoverlayauthurl_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -410,12 +410,12 @@ pub fn cecon_getassetclassinfo_request_class_unpack(buf []byte) ?CEcon_GetAssetC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.classid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.instanceid = v
 				i = ii
 			}
@@ -477,8 +477,8 @@ pub fn zzz_vproto_internal_pack_cecon_getassetclassinfo_request_class(o CEcon_Ge
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_getassetclassinfo_request_class(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetAssetClassInfo_Request_Class) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_getassetclassinfo_request_class_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_getassetclassinfo_request_class_unpack(v) ?
 	return i, unpacked
 }
 
@@ -518,19 +518,19 @@ pub fn cecon_getassetclassinfo_request_unpack(buf []byte) ?CEcon_GetAssetClassIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cecon_getassetclassinfo_request_class(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.classes << v
 				i = ii
 			}
@@ -592,8 +592,8 @@ pub fn zzz_vproto_internal_pack_cecon_getassetclassinfo_request(o CEcon_GetAsset
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_getassetclassinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetAssetClassInfo_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_getassetclassinfo_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_getassetclassinfo_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -636,22 +636,22 @@ pub fn ceconitem_descriptionline_unpack(buf []byte) ?CEconItem_DescriptionLine {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.@type = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.color = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.label = v
 				i = ii
 			}
@@ -672,9 +672,8 @@ pub fn ceconitem_descriptionline_unpack(buf []byte) ?CEconItem_DescriptionLine {
 
 [inline]
 pub fn (a CEconItem_DescriptionLine) eq(b CEconItem_DescriptionLine) bool {
-	return true && a.@type == b.@type &&
-		a.value == b.value && a.color == b.color &&
-		a.label == b.label
+	return true && a.@type == b.@type && a.value == b.value && a.color == b.color && a.label ==
+		b.label
 }
 
 [inline]
@@ -715,8 +714,8 @@ pub fn zzz_vproto_internal_pack_ceconitem_descriptionline(o CEconItem_Descriptio
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ceconitem_descriptionline(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_DescriptionLine) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitem_descriptionline_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ceconitem_descriptionline_unpack(v) ?
 	return i, unpacked
 }
 
@@ -751,12 +750,12 @@ pub fn ceconitem_action_unpack(buf []byte) ?CEconItem_Action {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.link = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
@@ -818,8 +817,8 @@ pub fn zzz_vproto_internal_pack_ceconitem_action(o CEconItem_Action, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ceconitem_action(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_Action) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitem_action_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ceconitem_action_unpack(v) ?
 	return i, unpacked
 }
 
@@ -870,7 +869,7 @@ pub fn (o &CEconItem_Description) pack() []byte {
 	if o.instanceid != u64(0) {
 		res << vproto.pack_uint64_field(o.instanceid, 3)
 	}
-	if o.currency != bool(0) {
+	if o.currency != false {
 		res << vproto.pack_bool_field(o.currency, 4)
 	}
 	if o.background_color != '' {
@@ -886,7 +885,7 @@ pub fn (o &CEconItem_Description) pack() []byte {
 	for _, x in o.descriptions {
 		res << zzz_vproto_internal_pack_ceconitem_descriptionline(x, 8)
 	}
-	if o.tradable != bool(0) {
+	if o.tradable != false {
 		res << vproto.pack_bool_field(o.tradable, 9)
 	}
 	// [packed=false]
@@ -933,7 +932,7 @@ pub fn (o &CEconItem_Description) pack() []byte {
 	for _, x in o.market_actions {
 		res << zzz_vproto_internal_pack_ceconitem_action(x, 21)
 	}
-	if o.commodity != bool(0) {
+	if o.commodity != false {
 		res << vproto.pack_bool_field(o.commodity, 22)
 	}
 	if o.market_tradable_restriction != int(0) {
@@ -942,7 +941,7 @@ pub fn (o &CEconItem_Description) pack() []byte {
 	if o.market_marketable_restriction != int(0) {
 		res << vproto.pack_int32_field(o.market_marketable_restriction, 24)
 	}
-	if o.marketable != bool(0) {
+	if o.marketable != false {
 		res << vproto.pack_bool_field(o.marketable, 25)
 	}
 	// [packed=false]
@@ -973,161 +972,161 @@ pub fn ceconitem_description_unpack(buf []byte) ?CEconItem_Description {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.classid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.instanceid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.currency = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.background_color = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon_url = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon_url_large = v
 				i = ii
 			}
 			8 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_ceconitem_descriptionline(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.descriptions << v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tradable = v
 				i = ii
 			}
 			10 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type) ?
 				res.actions << v
 				i = ii
 			}
 			11 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_ceconitem_descriptionline(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.owner_descriptions << v
 				i = ii
 			}
 			12 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type) ?
 				res.owner_actions << v
 				i = ii
 			}
 			13 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.fraudwarnings << v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name_color = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.@type = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_name = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_hash_name = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_fee = v
 				i = ii
 			}
 			28 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_fee_app = v
 				i = ii
 			}
 			20 {
-				ii, v := zzz_vproto_internal_unpack_ceconitem_description(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_description(cur_buf, tag_wiretype.wire_type) ?
 				res.contained_item = memdup(&v, int(sizeof(ceconitem_description)))
 				i = ii
 			}
 			21 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_action(cur_buf, tag_wiretype.wire_type) ?
 				res.market_actions << v
 				i = ii
 			}
 			22 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.commodity = v
 				i = ii
 			}
 			23 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_tradable_restriction = v
 				i = ii
 			}
 			24 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_marketable_restriction = v
 				i = ii
 			}
 			25 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.marketable = v
 				i = ii
 			}
 			26 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitem_tag(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_tag(cur_buf, tag_wiretype.wire_type) ?
 				res.tags << v
 				i = ii
 			}
 			27 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.item_expiration = v
 				i = ii
 			}
 			30 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_buy_country_restriction = v
 				i = ii
 			}
 			31 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.market_sell_country_restriction = v
 				i = ii
 			}
@@ -1148,25 +1147,18 @@ pub fn ceconitem_description_unpack(buf []byte) ?CEconItem_Description {
 
 [inline]
 pub fn (a CEconItem_Description) eq(b CEconItem_Description) bool {
-	return true && a.appid == b.appid &&
-		a.classid == b.classid && a.instanceid == b.instanceid &&
-		a.currency == b.currency && a.background_color == b.background_color &&
-		a.icon_url == b.icon_url &&
-		a.icon_url_large == b.icon_url_large && a.descriptions.eq(b.descriptions) &&
-		a.tradable == b.tradable && a.actions.eq(b.actions) && a.owner_descriptions.eq(b.owner_descriptions) &&
-		a.owner_actions.eq(b.owner_actions) &&
-		a.fraudwarnings == b.fraudwarnings &&
-		a.name == b.name && a.name_color == b.name_color &&
-		a.@type == b.@type && a.market_name == b.market_name &&
-		a.market_hash_name == b.market_hash_name &&
+	return true && a.appid == b.appid && a.classid == b.classid && a.instanceid == b.instanceid &&
+		a.currency == b.currency && a.background_color == b.background_color && a.icon_url == b.icon_url &&
+		a.icon_url_large == b.icon_url_large && a.descriptions.eq(b.descriptions) && a.tradable == b.tradable &&
+		a.actions.eq(b.actions) && a.owner_descriptions.eq(b.owner_descriptions) && a.owner_actions.eq(b.owner_actions) &&
+		a.fraudwarnings == b.fraudwarnings && a.name == b.name && a.name_color == b.name_color &&
+		a.@type == b.@type && a.market_name == b.market_name && a.market_hash_name == b.market_hash_name &&
 		a.market_fee == b.market_fee && a.market_fee_app == b.market_fee_app && a.contained_item.eq(b.contained_item) &&
-		a.market_actions.eq(b.market_actions) &&
-		a.commodity == b.commodity && a.market_tradable_restriction == b.market_tradable_restriction &&
-		a.market_marketable_restriction == b.market_marketable_restriction &&
-		a.marketable == b.marketable && a.tags.eq(b.tags) &&
-		a.item_expiration == b.item_expiration &&
-		a.market_buy_country_restriction == b.market_buy_country_restriction &&
-		a.market_sell_country_restriction == b.market_sell_country_restriction
+		a.market_actions.eq(b.market_actions) && a.commodity == b.commodity && a.market_tradable_restriction ==
+		b.market_tradable_restriction && a.market_marketable_restriction == b.market_marketable_restriction &&
+		a.marketable == b.marketable && a.tags.eq(b.tags) && a.item_expiration == b.item_expiration &&
+		a.market_buy_country_restriction == b.market_buy_country_restriction && a.market_sell_country_restriction ==
+		b.market_sell_country_restriction
 }
 
 [inline]
@@ -1207,8 +1199,8 @@ pub fn zzz_vproto_internal_pack_ceconitem_description(o CEconItem_Description, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ceconitem_description(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_Description) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitem_description_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ceconitem_description_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1259,32 +1251,32 @@ pub fn ceconitem_tag_unpack(buf []byte) ?CEconItem_Tag {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.category = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.internal_name = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.localized_category_name = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.localized_tag_name = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.color = v
 				i = ii
 			}
@@ -1305,10 +1297,8 @@ pub fn ceconitem_tag_unpack(buf []byte) ?CEconItem_Tag {
 
 [inline]
 pub fn (a CEconItem_Tag) eq(b CEconItem_Tag) bool {
-	return true && a.appid == b.appid &&
-		a.category == b.category && a.internal_name == b.internal_name &&
-		a.localized_category_name == b.localized_category_name &&
-		a.localized_tag_name == b.localized_tag_name &&
+	return true && a.appid == b.appid && a.category == b.category && a.internal_name == b.internal_name &&
+		a.localized_category_name == b.localized_category_name && a.localized_tag_name == b.localized_tag_name &&
 		a.color == b.color
 }
 
@@ -1350,8 +1340,8 @@ pub fn zzz_vproto_internal_pack_ceconitem_tag(o CEconItem_Tag, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ceconitem_tag(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconItem_Tag) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconitem_tag_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ceconitem_tag_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1384,7 +1374,7 @@ pub fn cecon_getassetclassinfo_response_unpack(buf []byte) ?CEcon_GetAssetClassI
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ceconitem_description(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ceconitem_description(cur_buf, tag_wiretype.wire_type) ?
 				res.descriptions << v
 				i = ii
 			}
@@ -1446,7 +1436,7 @@ pub fn zzz_vproto_internal_pack_cecon_getassetclassinfo_response(o CEcon_GetAsse
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cecon_getassetclassinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEcon_GetAssetClassInfo_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cecon_getassetclassinfo_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cecon_getassetclassinfo_response_unpack(v) ?
 	return i, unpacked
 }

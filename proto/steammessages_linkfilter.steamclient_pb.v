@@ -38,17 +38,17 @@ pub fn ccommunity_getlinkfilterhashprefixes_request_unpack(buf []byte) ?CCommuni
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hit_type = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.count = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.start = v
 				i = ii
 			}
@@ -110,8 +110,8 @@ pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashprefixes_request(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashprefixes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashPrefixes_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_getlinkfilterhashprefixes_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_getlinkfilterhashprefixes_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -144,7 +144,7 @@ pub fn ccommunity_getlinkfilterhashprefixes_response_unpack(buf []byte) ?CCommun
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hash_prefixes << v
 				i = ii
 			}
@@ -206,8 +206,8 @@ pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashprefixes_response(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashprefixes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashPrefixes_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_getlinkfilterhashprefixes_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_getlinkfilterhashprefixes_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -246,17 +246,17 @@ pub fn ccommunity_getlinkfilterhashes_request_unpack(buf []byte) ?CCommunity_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hit_type = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.count = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.start = v
 				i = ii
 			}
@@ -318,8 +318,8 @@ pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashes_request(o CCommun
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashes_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashes_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_getlinkfilterhashes_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_getlinkfilterhashes_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -352,7 +352,7 @@ pub fn ccommunity_getlinkfilterhashes_response_unpack(buf []byte) ?CCommunity_Ge
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hashes << v
 				i = ii
 			}
@@ -414,8 +414,8 @@ pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterhashes_response(o CCommu
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterhashes_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterHashes_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_getlinkfilterhashes_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_getlinkfilterhashes_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -446,7 +446,7 @@ pub fn ccommunity_getlinkfilterlistversion_request_unpack(buf []byte) ?CCommunit
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hit_type = v
 				i = ii
 			}
@@ -508,8 +508,8 @@ pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterlistversion_request(o CC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterlistversion_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterListVersion_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_getlinkfilterlistversion_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_getlinkfilterlistversion_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -544,12 +544,12 @@ pub fn ccommunity_getlinkfilterlistversion_response_unpack(buf []byte) ?CCommuni
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.version = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.count = v
 				i = ii
 			}
@@ -611,7 +611,7 @@ pub fn zzz_vproto_internal_pack_ccommunity_getlinkfilterlistversion_response(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccommunity_getlinkfilterlistversion_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCommunity_GetLinkFilterListVersion_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccommunity_getlinkfilterlistversion_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccommunity_getlinkfilterlistversion_response_unpack(v) ?
 	return i, unpacked
 }

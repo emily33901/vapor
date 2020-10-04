@@ -37,14 +37,14 @@ fn zzz_vproto_internal_pack_eprotoexecutionsite_packed(e []EProtoExecutionSite, 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_eprotoexecutionsite(buf []byte, tag_wiretype vproto.WireType) ?(int, EProtoExecutionSite) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EProtoExecutionSite(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_eprotoexecutionsite_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EProtoExecutionSite) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -111,7 +111,7 @@ pub fn zzz_vproto_internal_pack_noresponse(o NoResponse, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_noresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, NoResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := noresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := noresponse_unpack(v) ?
 	return i, unpacked
 }

@@ -62,47 +62,47 @@ pub fn cfileverification_signaturecheck_request_unpack(buf []byte) ?CFileVerific
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_size = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_timestamp = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_timestamp2 = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signature_result = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filename = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_package_version = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha1hash = v
 				i = ii
 			}
@@ -123,12 +123,9 @@ pub fn cfileverification_signaturecheck_request_unpack(buf []byte) ?CFileVerific
 
 [inline]
 pub fn (a CFileVerification_SignatureCheck_Request) eq(b CFileVerification_SignatureCheck_Request) bool {
-	return true && a.steamid == b.steamid &&
-		a.appid == b.appid && a.file_size == b.file_size &&
-		a.file_timestamp == b.file_timestamp &&
-		a.file_timestamp2 == b.file_timestamp2 &&
-		a.signature_result == b.signature_result &&
-		a.filename == b.filename && a.client_package_version == b.client_package_version &&
+	return true && a.steamid == b.steamid && a.appid == b.appid && a.file_size == b.file_size &&
+		a.file_timestamp == b.file_timestamp && a.file_timestamp2 == b.file_timestamp2 && a.signature_result ==
+		b.signature_result && a.filename == b.filename && a.client_package_version == b.client_package_version &&
 		a.sha1hash == b.sha1hash
 }
 
@@ -170,8 +167,8 @@ pub fn zzz_vproto_internal_pack_cfileverification_signaturecheck_request(o CFile
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfileverification_signaturecheck_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SignatureCheck_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverification_signaturecheck_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfileverification_signaturecheck_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -184,7 +181,7 @@ pub mut:
 
 pub fn (o &CFileVerification_SignatureCheck_Response) pack() []byte {
 	mut res := []byte{}
-	if o.deny_operation != bool(0) {
+	if o.deny_operation != false {
 		res << vproto.pack_bool_field(o.deny_operation, 1)
 	}
 	return res
@@ -202,7 +199,7 @@ pub fn cfileverification_signaturecheck_response_unpack(buf []byte) ?CFileVerifi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deny_operation = v
 				i = ii
 			}
@@ -264,8 +261,8 @@ pub fn zzz_vproto_internal_pack_cfileverification_signaturecheck_response(o CFil
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfileverification_signaturecheck_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SignatureCheck_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverification_signaturecheck_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfileverification_signaturecheck_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -312,27 +309,27 @@ pub fn cfileverification_steamservicecheck_request_unpack(buf []byte) ?CFileVeri
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.service_status = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_package_version = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.launcher_type = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.os_type = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.service_repair = v
 				i = ii
 			}
@@ -353,10 +350,8 @@ pub fn cfileverification_steamservicecheck_request_unpack(buf []byte) ?CFileVeri
 
 [inline]
 pub fn (a CFileVerification_SteamServiceCheck_Request) eq(b CFileVerification_SteamServiceCheck_Request) bool {
-	return true && a.service_status == b.service_status &&
-		a.client_package_version == b.client_package_version &&
-		a.launcher_type == b.launcher_type &&
-		a.os_type == b.os_type && a.service_repair == b.service_repair
+	return true && a.service_status == b.service_status && a.client_package_version == b.client_package_version &&
+		a.launcher_type == b.launcher_type && a.os_type == b.os_type && a.service_repair == b.service_repair
 }
 
 [inline]
@@ -397,8 +392,8 @@ pub fn zzz_vproto_internal_pack_cfileverification_steamservicecheck_request(o CF
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfileverification_steamservicecheck_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SteamServiceCheck_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverification_steamservicecheck_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfileverification_steamservicecheck_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -411,7 +406,7 @@ pub mut:
 
 pub fn (o &CFileVerification_SteamServiceCheck_Response) pack() []byte {
 	mut res := []byte{}
-	if o.attempt_repair != bool(0) {
+	if o.attempt_repair != false {
 		res << vproto.pack_bool_field(o.attempt_repair, 1)
 	}
 	return res
@@ -429,7 +424,7 @@ pub fn cfileverification_steamservicecheck_response_unpack(buf []byte) ?CFileVer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.attempt_repair = v
 				i = ii
 			}
@@ -491,7 +486,7 @@ pub fn zzz_vproto_internal_pack_cfileverification_steamservicecheck_response(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfileverification_steamservicecheck_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFileVerification_SteamServiceCheck_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfileverification_steamservicecheck_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfileverification_steamservicecheck_response_unpack(v) ?
 	return i, unpacked
 }

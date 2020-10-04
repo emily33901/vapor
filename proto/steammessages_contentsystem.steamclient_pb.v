@@ -10,7 +10,7 @@ pub mut:
 	cell_id        u32
 	max_servers    u32 = 20
 	ip_override    string
-	launcher_type  int = 0
+	launcher_type  int
 }
 
 pub fn (o &CContentServerDirectory_GetServersForSteamPipe_Request) pack() []byte {
@@ -42,22 +42,22 @@ pub fn ccontentserverdirectory_getserversforsteampipe_request_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cell_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_servers = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ip_override = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.launcher_type = v
 				i = ii
 			}
@@ -78,9 +78,8 @@ pub fn ccontentserverdirectory_getserversforsteampipe_request_unpack(buf []byte)
 
 [inline]
 pub fn (a CContentServerDirectory_GetServersForSteamPipe_Request) eq(b CContentServerDirectory_GetServersForSteamPipe_Request) bool {
-	return true && a.cell_id == b.cell_id &&
-		a.max_servers == b.max_servers && a.ip_override == b.ip_override &&
-		a.launcher_type == b.launcher_type
+	return true && a.cell_id == b.cell_id && a.max_servers == b.max_servers && a.ip_override ==
+		b.ip_override && a.launcher_type == b.launcher_type
 }
 
 [inline]
@@ -121,8 +120,8 @@ pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getserversforsteampipe_r
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getserversforsteampipe_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetServersForSteamPipe_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectory_getserversforsteampipe_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccontentserverdirectory_getserversforsteampipe_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -166,7 +165,7 @@ pub fn (o &CContentServerDirectory_ServerInfo) pack() []byte {
 	if o.num_entries_in_client_list != int(0) {
 		res << vproto.pack_int32_field(o.num_entries_in_client_list, 6)
 	}
-	if o.steam_china_only != bool(0) {
+	if o.steam_china_only != false {
 		res << vproto.pack_bool_field(o.steam_china_only, 7)
 	}
 	if o.host != '' {
@@ -175,7 +174,7 @@ pub fn (o &CContentServerDirectory_ServerInfo) pack() []byte {
 	if o.vhost != '' {
 		res << vproto.pack_string_field(o.vhost, 9)
 	}
-	if o.use_as_proxy != bool(0) {
+	if o.use_as_proxy != false {
 		res << vproto.pack_bool_field(o.use_as_proxy, 10)
 	}
 	if o.proxy_request_path_template != '' {
@@ -188,7 +187,7 @@ pub fn (o &CContentServerDirectory_ServerInfo) pack() []byte {
 	for _, x in o.allowed_app_ids {
 		res << vproto.pack_uint32_field(x, 13)
 	}
-	if o.preferred_server != bool(0) {
+	if o.preferred_server != false {
 		res << vproto.pack_bool_field(o.preferred_server, 14)
 	}
 	return res
@@ -206,73 +205,73 @@ pub fn ccontentserverdirectory_serverinfo_unpack(buf []byte) ?CContentServerDire
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.@type = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.source_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cell_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.load = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.weighted_load = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_entries_in_client_list = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_china_only = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.host = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vhost = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.use_as_proxy = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.proxy_request_path_template = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.https_support = v
 				i = ii
 			}
 			13 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.allowed_app_ids << v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.preferred_server = v
 				i = ii
 			}
@@ -293,17 +292,12 @@ pub fn ccontentserverdirectory_serverinfo_unpack(buf []byte) ?CContentServerDire
 
 [inline]
 pub fn (a CContentServerDirectory_ServerInfo) eq(b CContentServerDirectory_ServerInfo) bool {
-	return true && a.@type == b.@type &&
-		a.source_id == b.source_id && a.cell_id == b.cell_id &&
-		a.load == b.load && a.weighted_load == b.weighted_load &&
-		a.num_entries_in_client_list == b.num_entries_in_client_list &&
-		a.steam_china_only == b.steam_china_only &&
-		a.host == b.host && a.vhost == b.vhost &&
-		a.use_as_proxy == b.use_as_proxy &&
-		a.proxy_request_path_template == b.proxy_request_path_template &&
-		a.https_support == b.https_support &&
-		a.allowed_app_ids == b.allowed_app_ids &&
-		a.preferred_server == b.preferred_server
+	return true && a.@type == b.@type && a.source_id == b.source_id && a.cell_id == b.cell_id &&
+		a.load == b.load && a.weighted_load == b.weighted_load && a.num_entries_in_client_list == b.num_entries_in_client_list &&
+		a.steam_china_only == b.steam_china_only && a.host == b.host && a.vhost == b.vhost &&
+		a.use_as_proxy == b.use_as_proxy && a.proxy_request_path_template == b.proxy_request_path_template &&
+		a.https_support == b.https_support && a.allowed_app_ids == b.allowed_app_ids && a.preferred_server ==
+		b.preferred_server
 }
 
 [inline]
@@ -344,8 +338,8 @@ pub fn zzz_vproto_internal_pack_ccontentserverdirectory_serverinfo(o CContentSer
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_serverinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_ServerInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectory_serverinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccontentserverdirectory_serverinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -379,7 +373,7 @@ pub fn ccontentserverdirectory_getserversforsteampipe_response_unpack(buf []byte
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_ccontentserverdirectory_serverinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.servers << v
 				i = ii
 			}
@@ -441,8 +435,8 @@ pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getserversforsteampipe_r
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getserversforsteampipe_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetServersForSteamPipe_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectory_getserversforsteampipe_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccontentserverdirectory_getserversforsteampipe_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -485,22 +479,22 @@ pub fn ccontentserverdirectory_getdepotpatchinfo_request_unpack(buf []byte) ?CCo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.depotid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.source_manifestid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.target_manifestid = v
 				i = ii
 			}
@@ -521,8 +515,7 @@ pub fn ccontentserverdirectory_getdepotpatchinfo_request_unpack(buf []byte) ?CCo
 
 [inline]
 pub fn (a CContentServerDirectory_GetDepotPatchInfo_Request) eq(b CContentServerDirectory_GetDepotPatchInfo_Request) bool {
-	return true && a.appid == b.appid &&
-		a.depotid == b.depotid && a.source_manifestid == b.source_manifestid &&
+	return true && a.appid == b.appid && a.depotid == b.depotid && a.source_manifestid == b.source_manifestid &&
 		a.target_manifestid == b.target_manifestid
 }
 
@@ -564,8 +557,8 @@ pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getdepotpatchinfo_reques
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getdepotpatchinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetDepotPatchInfo_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectory_getdepotpatchinfo_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccontentserverdirectory_getdepotpatchinfo_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -578,7 +571,7 @@ pub mut:
 
 pub fn (o &CContentServerDirectory_GetDepotPatchInfo_Response) pack() []byte {
 	mut res := []byte{}
-	if o.is_available != bool(0) {
+	if o.is_available != false {
 		res << vproto.pack_bool_field(o.is_available, 1)
 	}
 	return res
@@ -596,7 +589,7 @@ pub fn ccontentserverdirectory_getdepotpatchinfo_response_unpack(buf []byte) ?CC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_available = v
 				i = ii
 			}
@@ -658,7 +651,7 @@ pub fn zzz_vproto_internal_pack_ccontentserverdirectory_getdepotpatchinfo_respon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccontentserverdirectory_getdepotpatchinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CContentServerDirectory_GetDepotPatchInfo_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccontentserverdirectory_getdepotpatchinfo_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccontentserverdirectory_getdepotpatchinfo_response_unpack(v) ?
 	return i, unpacked
 }

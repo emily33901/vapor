@@ -34,12 +34,12 @@ pub fn cparties_joinparty_request_unpack(buf []byte) ?CParties_JoinParty_Request
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -101,8 +101,8 @@ pub fn zzz_vproto_internal_pack_cparties_joinparty_request(o CParties_JoinParty_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_joinparty_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_JoinParty_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_joinparty_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_joinparty_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -137,12 +137,12 @@ pub fn cparties_joinparty_response_unpack(buf []byte) ?CParties_JoinParty_Respon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connect_string = v
 				i = ii
 			}
@@ -204,8 +204,8 @@ pub fn zzz_vproto_internal_pack_cparties_joinparty_response(o CParties_JoinParty
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_joinparty_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_JoinParty_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_joinparty_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_joinparty_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -240,12 +240,12 @@ pub fn cparties_beaconlocation_unpack(buf []byte) ?CParties_BeaconLocation {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.location_type = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.location_id = v
 				i = ii
 			}
@@ -307,8 +307,8 @@ pub fn zzz_vproto_internal_pack_cparties_beaconlocation(o CParties_BeaconLocatio
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_beaconlocation(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_BeaconLocation) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_beaconlocation_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_beaconlocation_unpack(v) ?
 	return i, unpacked
 }
 
@@ -356,28 +356,28 @@ pub fn cparties_createbeacon_request_unpack(buf []byte) ?CParties_CreateBeacon_R
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_open_slots = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cparties_beaconlocation(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cparties_beaconlocation(cur_buf, tag_wiretype.wire_type) ?
 				res.locations << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connect_string = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
@@ -398,10 +398,8 @@ pub fn cparties_createbeacon_request_unpack(buf []byte) ?CParties_CreateBeacon_R
 
 [inline]
 pub fn (a CParties_CreateBeacon_Request) eq(b CParties_CreateBeacon_Request) bool {
-	return true && a.appid == b.appid &&
-		a.num_open_slots == b.num_open_slots && a.locations.eq(b.locations) &&
-		a.connect_string == b.connect_string &&
-		a.metadata == b.metadata
+	return true && a.appid == b.appid && a.num_open_slots == b.num_open_slots && a.locations.eq(b.locations) &&
+		a.connect_string == b.connect_string && a.metadata == b.metadata
 }
 
 [inline]
@@ -442,8 +440,8 @@ pub fn zzz_vproto_internal_pack_cparties_createbeacon_request(o CParties_CreateB
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_createbeacon_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_CreateBeacon_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_createbeacon_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_createbeacon_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -474,7 +472,7 @@ pub fn cparties_createbeacon_response_unpack(buf []byte) ?CParties_CreateBeacon_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -536,8 +534,8 @@ pub fn zzz_vproto_internal_pack_cparties_createbeacon_response(o CParties_Create
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_createbeacon_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_CreateBeacon_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_createbeacon_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_createbeacon_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -572,12 +570,12 @@ pub fn cparties_onreservationcompleted_request_unpack(buf []byte) ?CParties_OnRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.user_steamid = v
 				i = ii
 			}
@@ -639,8 +637,8 @@ pub fn zzz_vproto_internal_pack_cparties_onreservationcompleted_request(o CParti
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_onreservationcompleted_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_OnReservationCompleted_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_onreservationcompleted_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_onreservationcompleted_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -671,7 +669,7 @@ pub fn cparties_onreservationcompleted_response_unpack(buf []byte) ?CParties_OnR
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -733,8 +731,8 @@ pub fn zzz_vproto_internal_pack_cparties_onreservationcompleted_response(o CPart
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_onreservationcompleted_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_OnReservationCompleted_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_onreservationcompleted_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_onreservationcompleted_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -769,12 +767,12 @@ pub fn cparties_cancelreservation_request_unpack(buf []byte) ?CParties_CancelRes
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.user_steamid = v
 				i = ii
 			}
@@ -836,8 +834,8 @@ pub fn zzz_vproto_internal_pack_cparties_cancelreservation_request(o CParties_Ca
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_cancelreservation_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_CancelReservation_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_cancelreservation_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_cancelreservation_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -868,7 +866,7 @@ pub fn cparties_cancelreservation_response_unpack(buf []byte) ?CParties_CancelRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -930,8 +928,8 @@ pub fn zzz_vproto_internal_pack_cparties_cancelreservation_response(o CParties_C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_cancelreservation_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_CancelReservation_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_cancelreservation_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_cancelreservation_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -966,12 +964,12 @@ pub fn cparties_changenumopenslots_request_unpack(buf []byte) ?CParties_ChangeNu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_open_slots = v
 				i = ii
 			}
@@ -1033,8 +1031,8 @@ pub fn zzz_vproto_internal_pack_cparties_changenumopenslots_request(o CParties_C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_changenumopenslots_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_ChangeNumOpenSlots_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_changenumopenslots_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_changenumopenslots_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1065,7 +1063,7 @@ pub fn cparties_changenumopenslots_response_unpack(buf []byte) ?CParties_ChangeN
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -1127,8 +1125,8 @@ pub fn zzz_vproto_internal_pack_cparties_changenumopenslots_response(o CParties_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_changenumopenslots_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_ChangeNumOpenSlots_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_changenumopenslots_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_changenumopenslots_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1159,7 +1157,7 @@ pub fn cparties_destroybeacon_request_unpack(buf []byte) ?CParties_DestroyBeacon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -1221,8 +1219,8 @@ pub fn zzz_vproto_internal_pack_cparties_destroybeacon_request(o CParties_Destro
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_destroybeacon_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_DestroyBeacon_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_destroybeacon_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_destroybeacon_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1253,7 +1251,7 @@ pub fn cparties_destroybeacon_response_unpack(buf []byte) ?CParties_DestroyBeaco
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.beacon_id = v
 				i = ii
 			}
@@ -1315,7 +1313,7 @@ pub fn zzz_vproto_internal_pack_cparties_destroybeacon_response(o CParties_Destr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cparties_destroybeacon_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CParties_DestroyBeacon_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cparties_destroybeacon_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cparties_destroybeacon_response_unpack(v) ?
 	return i, unpacked
 }

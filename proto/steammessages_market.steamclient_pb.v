@@ -30,7 +30,7 @@ pub fn ceconmarket_ismarketplaceallowed_request_unpack(buf []byte) ?CEconMarket_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.webcookie = v
 				i = ii
 			}
@@ -92,8 +92,8 @@ pub fn zzz_vproto_internal_pack_ceconmarket_ismarketplaceallowed_request(o CEcon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarket_IsMarketplaceAllowed_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconmarket_ismarketplaceallowed_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ceconmarket_ismarketplaceallowed_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -112,7 +112,7 @@ pub mut:
 
 pub fn (o &CEconMarket_IsMarketplaceAllowed_Response) pack() []byte {
 	mut res := []byte{}
-	if o.allowed != bool(0) {
+	if o.allowed != false {
 		res << vproto.pack_bool_field(o.allowed, 1)
 	}
 	if o.reason != u32(0) {
@@ -124,10 +124,10 @@ pub fn (o &CEconMarket_IsMarketplaceAllowed_Response) pack() []byte {
 	if o.steamguard_required_days != u32(0) {
 		res << vproto.pack_uint32_field(o.steamguard_required_days, 4)
 	}
-	if o.forms_requested != bool(0) {
+	if o.forms_requested != false {
 		res << vproto.pack_bool_field(o.forms_requested, 7)
 	}
-	if o.forms_require_verification != bool(0) {
+	if o.forms_require_verification != false {
 		res << vproto.pack_bool_field(o.forms_require_verification, 8)
 	}
 	if o.new_device_cooldown_days != u32(0) {
@@ -148,37 +148,37 @@ pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.allowed = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.reason = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.allowed_at_time = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamguard_required_days = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forms_requested = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forms_require_verification = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.new_device_cooldown_days = v
 				i = ii
 			}
@@ -199,12 +199,10 @@ pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket
 
 [inline]
 pub fn (a CEconMarket_IsMarketplaceAllowed_Response) eq(b CEconMarket_IsMarketplaceAllowed_Response) bool {
-	return true && a.allowed == b.allowed &&
-		a.reason == b.reason && a.allowed_at_time == b.allowed_at_time &&
-		a.steamguard_required_days == b.steamguard_required_days &&
-		a.forms_requested == b.forms_requested &&
-		a.forms_require_verification == b.forms_require_verification &&
-		a.new_device_cooldown_days == b.new_device_cooldown_days
+	return true && a.allowed == b.allowed && a.reason == b.reason && a.allowed_at_time == b.allowed_at_time &&
+		a.steamguard_required_days == b.steamguard_required_days && a.forms_requested == b.forms_requested &&
+		a.forms_require_verification == b.forms_require_verification && a.new_device_cooldown_days ==
+		b.new_device_cooldown_days
 }
 
 [inline]
@@ -245,7 +243,7 @@ pub fn zzz_vproto_internal_pack_ceconmarket_ismarketplaceallowed_response(o CEco
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ceconmarket_ismarketplaceallowed_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CEconMarket_IsMarketplaceAllowed_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ceconmarket_ismarketplaceallowed_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ceconmarket_ismarketplaceallowed_response_unpack(v) ?
 	return i, unpacked
 }

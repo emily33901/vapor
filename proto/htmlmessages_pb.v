@@ -38,14 +38,14 @@ fn zzz_vproto_internal_pack_ejsregistermethodtype_packed(e []EJSRegisterMethodTy
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_ejsregistermethodtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EJSRegisterMethodType) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EJSRegisterMethodType(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_ejsregistermethodtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EJSRegisterMethodType) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -93,22 +93,22 @@ pub fn cmsgkeyup_unpack(buf []byte) ?CMsgKeyUp {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.keycode = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.nativekeycode = v
 				i = ii
 			}
@@ -129,9 +129,8 @@ pub fn cmsgkeyup_unpack(buf []byte) ?CMsgKeyUp {
 
 [inline]
 pub fn (a CMsgKeyUp) eq(b CMsgKeyUp) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.keycode == b.keycode && a.modifiers == b.modifiers &&
-		a.nativekeycode == b.nativekeycode
+	return true && a.browser_handle == b.browser_handle && a.keycode == b.keycode && a.modifiers ==
+		b.modifiers && a.nativekeycode == b.nativekeycode
 }
 
 [inline]
@@ -172,8 +171,8 @@ pub fn zzz_vproto_internal_pack_cmsgkeyup(o CMsgKeyUp, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgkeyup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgKeyUp) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgkeyup_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgkeyup_unpack(v) ?
 	return i, unpacked
 }
 
@@ -199,7 +198,7 @@ pub fn (o &CMsgKeyDown) pack() []byte {
 	if o.modifiers != u32(0) {
 		res << vproto.pack_uint32_field(o.modifiers, 3)
 	}
-	if o.is_system_key != bool(0) {
+	if o.is_system_key != false {
 		res << vproto.pack_bool_field(o.is_system_key, 4)
 	}
 	if o.nativekeycode != u32(0) {
@@ -220,27 +219,27 @@ pub fn cmsgkeydown_unpack(buf []byte) ?CMsgKeyDown {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.keycode = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_system_key = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.nativekeycode = v
 				i = ii
 			}
@@ -261,10 +260,8 @@ pub fn cmsgkeydown_unpack(buf []byte) ?CMsgKeyDown {
 
 [inline]
 pub fn (a CMsgKeyDown) eq(b CMsgKeyDown) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.keycode == b.keycode && a.modifiers == b.modifiers &&
-		a.is_system_key == b.is_system_key &&
-		a.nativekeycode == b.nativekeycode
+	return true && a.browser_handle == b.browser_handle && a.keycode == b.keycode && a.modifiers ==
+		b.modifiers && a.is_system_key == b.is_system_key && a.nativekeycode == b.nativekeycode
 }
 
 [inline]
@@ -305,8 +302,8 @@ pub fn zzz_vproto_internal_pack_cmsgkeydown(o CMsgKeyDown, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgkeydown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgKeyDown) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgkeydown_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgkeydown_unpack(v) ?
 	return i, unpacked
 }
 
@@ -353,27 +350,27 @@ pub fn cmsgkeychar_unpack(buf []byte) ?CMsgKeyChar {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unichar = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.keycode = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.nativekeycode = v
 				i = ii
 			}
@@ -394,9 +391,8 @@ pub fn cmsgkeychar_unpack(buf []byte) ?CMsgKeyChar {
 
 [inline]
 pub fn (a CMsgKeyChar) eq(b CMsgKeyChar) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.unichar == b.unichar && a.modifiers == b.modifiers &&
-		a.keycode == b.keycode && a.nativekeycode == b.nativekeycode
+	return true && a.browser_handle == b.browser_handle && a.unichar == b.unichar && a.modifiers ==
+		b.modifiers && a.keycode == b.keycode && a.nativekeycode == b.nativekeycode
 }
 
 [inline]
@@ -437,8 +433,8 @@ pub fn zzz_vproto_internal_pack_cmsgkeychar(o CMsgKeyChar, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgkeychar(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgKeyChar) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgkeychar_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgkeychar_unpack(v) ?
 	return i, unpacked
 }
 
@@ -477,17 +473,17 @@ pub fn cmsgmousedown_unpack(buf []byte) ?CMsgMouseDown {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mouse_button = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
@@ -508,8 +504,7 @@ pub fn cmsgmousedown_unpack(buf []byte) ?CMsgMouseDown {
 
 [inline]
 pub fn (a CMsgMouseDown) eq(b CMsgMouseDown) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.mouse_button == b.mouse_button &&
+	return true && a.browser_handle == b.browser_handle && a.mouse_button == b.mouse_button &&
 		a.modifiers == b.modifiers
 }
 
@@ -551,8 +546,8 @@ pub fn zzz_vproto_internal_pack_cmsgmousedown(o CMsgMouseDown, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmousedown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMouseDown) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmousedown_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmousedown_unpack(v) ?
 	return i, unpacked
 }
 
@@ -579,7 +574,7 @@ pub fn (o &CMsgMouseUp) pack() []byte {
 	if o.modifiers != u32(0) {
 		res << vproto.pack_uint32_field(o.modifiers, 3)
 	}
-	if o.is_off_panel != bool(0) {
+	if o.is_off_panel != false {
 		res << vproto.pack_bool_field(o.is_off_panel, 4)
 	}
 	if o.x != int(0) {
@@ -603,32 +598,32 @@ pub fn cmsgmouseup_unpack(buf []byte) ?CMsgMouseUp {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mouse_button = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_off_panel = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
@@ -649,10 +644,8 @@ pub fn cmsgmouseup_unpack(buf []byte) ?CMsgMouseUp {
 
 [inline]
 pub fn (a CMsgMouseUp) eq(b CMsgMouseUp) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.mouse_button == b.mouse_button &&
-		a.modifiers == b.modifiers && a.is_off_panel == b.is_off_panel &&
-		a.x == b.x && a.y == b.y
+	return true && a.browser_handle == b.browser_handle && a.mouse_button == b.mouse_button &&
+		a.modifiers == b.modifiers && a.is_off_panel == b.is_off_panel && a.x == b.x && a.y == b.y
 }
 
 [inline]
@@ -693,8 +686,8 @@ pub fn zzz_vproto_internal_pack_cmsgmouseup(o CMsgMouseUp, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmouseup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMouseUp) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmouseup_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmouseup_unpack(v) ?
 	return i, unpacked
 }
 
@@ -733,17 +726,17 @@ pub fn cmsgmousedblclick_unpack(buf []byte) ?CMsgMouseDblClick {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mouse_button = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
@@ -764,8 +757,7 @@ pub fn cmsgmousedblclick_unpack(buf []byte) ?CMsgMouseDblClick {
 
 [inline]
 pub fn (a CMsgMouseDblClick) eq(b CMsgMouseDblClick) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.mouse_button == b.mouse_button &&
+	return true && a.browser_handle == b.browser_handle && a.mouse_button == b.mouse_button &&
 		a.modifiers == b.modifiers
 }
 
@@ -807,8 +799,8 @@ pub fn zzz_vproto_internal_pack_cmsgmousedblclick(o CMsgMouseDblClick, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmousedblclick(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMouseDblClick) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmousedblclick_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmousedblclick_unpack(v) ?
 	return i, unpacked
 }
 
@@ -851,22 +843,22 @@ pub fn cmsgmousewheel_unpack(buf []byte) ?CMsgMouseWheel {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deltax = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deltay = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
@@ -887,9 +879,8 @@ pub fn cmsgmousewheel_unpack(buf []byte) ?CMsgMouseWheel {
 
 [inline]
 pub fn (a CMsgMouseWheel) eq(b CMsgMouseWheel) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.deltax == b.deltax && a.deltay == b.deltay &&
-		a.modifiers == b.modifiers
+	return true && a.browser_handle == b.browser_handle && a.deltax == b.deltax && a.deltay ==
+		b.deltay && a.modifiers == b.modifiers
 }
 
 [inline]
@@ -930,8 +921,8 @@ pub fn zzz_vproto_internal_pack_cmsgmousewheel(o CMsgMouseWheel, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmousewheel(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMouseWheel) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmousewheel_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmousewheel_unpack(v) ?
 	return i, unpacked
 }
 
@@ -974,22 +965,22 @@ pub fn cmsgmousemove_unpack(buf []byte) ?CMsgMouseMove {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modifiers = v
 				i = ii
 			}
@@ -1010,8 +1001,8 @@ pub fn cmsgmousemove_unpack(buf []byte) ?CMsgMouseMove {
 
 [inline]
 pub fn (a CMsgMouseMove) eq(b CMsgMouseMove) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.x == b.x && a.y == b.y && a.modifiers == b.modifiers
+	return true && a.browser_handle == b.browser_handle && a.x == b.x && a.y == b.y &&
+		a.modifiers == b.modifiers
 }
 
 [inline]
@@ -1052,8 +1043,8 @@ pub fn zzz_vproto_internal_pack_cmsgmousemove(o CMsgMouseMove, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmousemove(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMouseMove) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmousemove_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmousemove_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1084,7 +1075,7 @@ pub fn cmsgmouseleave_unpack(buf []byte) ?CMsgMouseLeave {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -1146,8 +1137,8 @@ pub fn zzz_vproto_internal_pack_cmsgmouseleave(o CMsgMouseLeave, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmouseleave(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMouseLeave) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmouseleave_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmouseleave_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1161,15 +1152,15 @@ pub mut:
 	native_dropdowns          bool
 	dpi_scaling               f32
 	offscreen                 bool = true
-	initial_width             u32 = 0
-	initial_height            u32 = 0
+	initial_width             u32
+	initial_height            u32
 	window_icon               string
-	borderless                bool = false
+	borderless                bool
 	vroverlay_key             string
-	browser_type              u32 = 0
+	browser_type              u32
 	initial_top               int = -2147483648
 	initial_left              int = -2147483648
-	only_allow_trusted_popups bool = false
+	only_allow_trusted_popups bool
 	initial_url               string
 	hwnd_parent               u64
 }
@@ -1185,13 +1176,13 @@ pub fn (o &CMsgBrowserCreate) pack() []byte {
 	if o.user_css != '' {
 		res << vproto.pack_string_field(o.user_css, 5)
 	}
-	if o.native_dropdowns != bool(0) {
+	if o.native_dropdowns != false {
 		res << vproto.pack_bool_field(o.native_dropdowns, 6)
 	}
 	if o.dpi_scaling != f32(0) {
 		res << vproto.pack_float_field(o.dpi_scaling, 7)
 	}
-	if o.offscreen != bool(0) {
+	if o.offscreen != false {
 		res << vproto.pack_bool_field(o.offscreen, 8)
 	}
 	if o.initial_width != u32(0) {
@@ -1203,7 +1194,7 @@ pub fn (o &CMsgBrowserCreate) pack() []byte {
 	if o.window_icon != '' {
 		res << vproto.pack_string_field(o.window_icon, 11)
 	}
-	if o.borderless != bool(0) {
+	if o.borderless != false {
 		res << vproto.pack_bool_field(o.borderless, 12)
 	}
 	if o.vroverlay_key != '' {
@@ -1218,7 +1209,7 @@ pub fn (o &CMsgBrowserCreate) pack() []byte {
 	if o.initial_left != int(0) {
 		res << vproto.pack_int32_field(o.initial_left, 16)
 	}
-	if o.only_allow_trusted_popups != bool(0) {
+	if o.only_allow_trusted_popups != false {
 		res << vproto.pack_bool_field(o.only_allow_trusted_popups, 17)
 	}
 	if o.initial_url != '' {
@@ -1242,87 +1233,87 @@ pub fn cmsgbrowsercreate_unpack(buf []byte) ?CMsgBrowserCreate {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.useragent = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.user_css = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.native_dropdowns = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dpi_scaling = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.offscreen = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_width = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_height = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.window_icon = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.borderless = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vroverlay_key = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_type = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_top = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_left = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.only_allow_trusted_popups = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_url = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hwnd_parent = v
 				i = ii
 			}
@@ -1343,18 +1334,13 @@ pub fn cmsgbrowsercreate_unpack(buf []byte) ?CMsgBrowserCreate {
 
 [inline]
 pub fn (a CMsgBrowserCreate) eq(b CMsgBrowserCreate) bool {
-	return true && a.request_id == b.request_id &&
-		a.useragent == b.useragent && a.user_css == b.user_css &&
-		a.native_dropdowns == b.native_dropdowns &&
-		a.dpi_scaling == b.dpi_scaling && a.offscreen == b.offscreen &&
-		a.initial_width == b.initial_width &&
-		a.initial_height == b.initial_height &&
-		a.window_icon == b.window_icon && a.borderless == b.borderless &&
-		a.vroverlay_key == b.vroverlay_key &&
-		a.browser_type == b.browser_type &&
-		a.initial_top == b.initial_top && a.initial_left == b.initial_left &&
-		a.only_allow_trusted_popups == b.only_allow_trusted_popups &&
-		a.initial_url == b.initial_url && a.hwnd_parent == b.hwnd_parent
+	return true && a.request_id == b.request_id && a.useragent == b.useragent && a.user_css ==
+		b.user_css && a.native_dropdowns == b.native_dropdowns && a.dpi_scaling == b.dpi_scaling &&
+		a.offscreen == b.offscreen && a.initial_width == b.initial_width && a.initial_height == b.initial_height &&
+		a.window_icon == b.window_icon && a.borderless == b.borderless && a.vroverlay_key == b.vroverlay_key &&
+		a.browser_type == b.browser_type && a.initial_top == b.initial_top && a.initial_left == b.initial_left &&
+		a.only_allow_trusted_popups == b.only_allow_trusted_popups && a.initial_url == b.initial_url &&
+		a.hwnd_parent == b.hwnd_parent
 }
 
 [inline]
@@ -1395,8 +1381,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowsercreate(o CMsgBrowserCreate, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowsercreate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserCreate) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowsercreate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowsercreate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1431,12 +1417,12 @@ pub fn cmsgbrowsercreateresponse_unpack(buf []byte) ?CMsgBrowserCreateResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request_id = v
 				i = ii
 			}
@@ -1498,8 +1484,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowsercreateresponse(o CMsgBrowserCreateRes
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowsercreateresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserCreateResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowsercreateresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowsercreateresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1530,7 +1516,7 @@ pub fn cmsgbrowserremove_unpack(buf []byte) ?CMsgBrowserRemove {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -1592,8 +1578,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowserremove(o CMsgBrowserRemove, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowserremove(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserRemove) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowserremove_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowserremove_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1632,17 +1618,17 @@ pub fn cmsgsetlocalfilerequestmapping_additionalroute_unpack(buf []byte) ?CMsgSe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.relative_url = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.local_path = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.allowed_extensions = v
 				i = ii
 			}
@@ -1663,8 +1649,8 @@ pub fn cmsgsetlocalfilerequestmapping_additionalroute_unpack(buf []byte) ?CMsgSe
 
 [inline]
 pub fn (a CMsgSetLocalFileRequestMapping_AdditionalRoute) eq(b CMsgSetLocalFileRequestMapping_AdditionalRoute) bool {
-	return true && a.relative_url == b.relative_url &&
-		a.local_path == b.local_path && a.allowed_extensions == b.allowed_extensions
+	return true && a.relative_url == b.relative_url && a.local_path == b.local_path &&
+		a.allowed_extensions == b.allowed_extensions
 }
 
 [inline]
@@ -1705,8 +1691,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetlocalfilerequestmapping_additionalroute(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmapping_additionalroute(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetLocalFileRequestMapping_AdditionalRoute) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetlocalfilerequestmapping_additionalroute_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetlocalfilerequestmapping_additionalroute_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1733,7 +1719,8 @@ pub fn (o &CMsgSetLocalFileRequestMapping) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.routes {
-		res << zzz_vproto_internal_pack_cmsgsetlocalfilerequestmapping_additionalroute(x, 4)
+		res <<
+			zzz_vproto_internal_pack_cmsgsetlocalfilerequestmapping_additionalroute(x, 4)
 	}
 	return res
 }
@@ -1750,24 +1737,24 @@ pub fn cmsgsetlocalfilerequestmapping_unpack(buf []byte) ?CMsgSetLocalFileReques
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request_url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.default_local_path = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmapping_additionalroute(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.routes << v
 				i = ii
 			}
@@ -1788,8 +1775,7 @@ pub fn cmsgsetlocalfilerequestmapping_unpack(buf []byte) ?CMsgSetLocalFileReques
 
 [inline]
 pub fn (a CMsgSetLocalFileRequestMapping) eq(b CMsgSetLocalFileRequestMapping) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.request_url == b.request_url &&
+	return true && a.browser_handle == b.browser_handle && a.request_url == b.request_url &&
 		a.default_local_path == b.default_local_path && a.routes.eq(b.routes)
 }
 
@@ -1831,8 +1817,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetlocalfilerequestmapping(o CMsgSetLocalFil
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetlocalfilerequestmapping(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetLocalFileRequestMapping) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetlocalfilerequestmapping_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetlocalfilerequestmapping_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1891,42 +1877,42 @@ pub fn cmsgbrowsererrorstrings_unpack(buf []byte) ?CMsgBrowserErrorStrings {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.title = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.header = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cache_miss = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bad_url = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_problem = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.proxy_problem = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unknown = v
 				i = ii
 			}
@@ -1947,12 +1933,9 @@ pub fn cmsgbrowsererrorstrings_unpack(buf []byte) ?CMsgBrowserErrorStrings {
 
 [inline]
 pub fn (a CMsgBrowserErrorStrings) eq(b CMsgBrowserErrorStrings) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.title == b.title && a.header == b.header &&
-		a.cache_miss == b.cache_miss && a.bad_url == b.bad_url &&
-		a.connection_problem == b.connection_problem &&
-		a.proxy_problem == b.proxy_problem &&
-		a.unknown == b.unknown
+	return true && a.browser_handle == b.browser_handle && a.title == b.title && a.header == b.header &&
+		a.cache_miss == b.cache_miss && a.bad_url == b.bad_url && a.connection_problem == b.connection_problem &&
+		a.proxy_problem == b.proxy_problem && a.unknown == b.unknown
 }
 
 [inline]
@@ -1993,8 +1976,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowsererrorstrings(o CMsgBrowserErrorString
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowsererrorstrings(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserErrorStrings) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowsererrorstrings_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowsererrorstrings_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2033,17 +2016,17 @@ pub fn cmsgbrowsersize_unpack(buf []byte) ?CMsgBrowserSize {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
@@ -2064,8 +2047,7 @@ pub fn cmsgbrowsersize_unpack(buf []byte) ?CMsgBrowserSize {
 
 [inline]
 pub fn (a CMsgBrowserSize) eq(b CMsgBrowserSize) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.width == b.width && a.height == b.height
+	return true && a.browser_handle == b.browser_handle && a.width == b.width && a.height == b.height
 }
 
 [inline]
@@ -2106,8 +2088,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowsersize(o CMsgBrowserSize, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowsersize(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserSize) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowsersize_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowsersize_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2146,17 +2128,17 @@ pub fn cmsgbrowsersetminsize_unpack(buf []byte) ?CMsgBrowserSetMinSize {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
@@ -2177,8 +2159,7 @@ pub fn cmsgbrowsersetminsize_unpack(buf []byte) ?CMsgBrowserSetMinSize {
 
 [inline]
 pub fn (a CMsgBrowserSetMinSize) eq(b CMsgBrowserSetMinSize) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.width == b.width && a.height == b.height
+	return true && a.browser_handle == b.browser_handle && a.width == b.width && a.height == b.height
 }
 
 [inline]
@@ -2219,8 +2200,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowsersetminsize(o CMsgBrowserSetMinSize, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowsersetminsize(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserSetMinSize) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowsersetminsize_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowsersetminsize_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2267,27 +2248,27 @@ pub fn cmsgbrowserposition_unpack(buf []byte) ?CMsgBrowserPosition {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x_local = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y_local = v
 				i = ii
 			}
@@ -2308,9 +2289,8 @@ pub fn cmsgbrowserposition_unpack(buf []byte) ?CMsgBrowserPosition {
 
 [inline]
 pub fn (a CMsgBrowserPosition) eq(b CMsgBrowserPosition) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.x == b.x && a.y == b.y && a.x_local == b.x_local &&
-		a.y_local == b.y_local
+	return true && a.browser_handle == b.browser_handle && a.x == b.x && a.y == b.y &&
+		a.x_local == b.x_local && a.y_local == b.y_local
 }
 
 [inline]
@@ -2351,8 +2331,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowserposition(o CMsgBrowserPosition, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowserposition(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserPosition) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowserposition_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowserposition_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2399,27 +2379,27 @@ pub fn cmsgbrowserresized_unpack(buf []byte) ?CMsgBrowserResized {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
@@ -2440,9 +2420,8 @@ pub fn cmsgbrowserresized_unpack(buf []byte) ?CMsgBrowserResized {
 
 [inline]
 pub fn (a CMsgBrowserResized) eq(b CMsgBrowserResized) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.x == b.x && a.y == b.y && a.width == b.width &&
-		a.height == b.height
+	return true && a.browser_handle == b.browser_handle && a.x == b.x && a.y == b.y &&
+		a.width == b.width && a.height == b.height
 }
 
 [inline]
@@ -2483,8 +2462,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowserresized(o CMsgBrowserResized, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowserresized(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserResized) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowserresized_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowserresized_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2527,22 +2506,22 @@ pub fn cmsgposturl_unpack(buf []byte) ?CMsgPostURL {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.post = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pageserial = v
 				i = ii
 			}
@@ -2563,8 +2542,7 @@ pub fn cmsgposturl_unpack(buf []byte) ?CMsgPostURL {
 
 [inline]
 pub fn (a CMsgPostURL) eq(b CMsgPostURL) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.post == b.post &&
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.post == b.post &&
 		a.pageserial == b.pageserial
 }
 
@@ -2606,8 +2584,8 @@ pub fn zzz_vproto_internal_pack_cmsgposturl(o CMsgPostURL, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgposturl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPostURL) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgposturl_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgposturl_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2646,17 +2624,17 @@ pub fn cmsgaddheader_unpack(buf []byte) ?CMsgAddHeader {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.key = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
@@ -2718,8 +2696,8 @@ pub fn zzz_vproto_internal_pack_cmsgaddheader(o CMsgAddHeader, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgaddheader(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAddHeader) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgaddheader_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgaddheader_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2750,7 +2728,7 @@ pub fn cmsgstopload_unpack(buf []byte) ?CMsgStopLoad {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -2812,8 +2790,8 @@ pub fn zzz_vproto_internal_pack_cmsgstopload(o CMsgStopLoad, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgstopload(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgStopLoad) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgstopload_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgstopload_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2844,7 +2822,7 @@ pub fn cmsgreload_unpack(buf []byte) ?CMsgReload {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -2906,8 +2884,8 @@ pub fn zzz_vproto_internal_pack_cmsgreload(o CMsgReload, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgreload(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgReload) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgreload_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgreload_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2938,7 +2916,7 @@ pub fn cmsggoforward_unpack(buf []byte) ?CMsgGoForward {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3000,8 +2978,8 @@ pub fn zzz_vproto_internal_pack_cmsggoforward(o CMsgGoForward, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggoforward(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGoForward) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggoforward_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggoforward_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3032,7 +3010,7 @@ pub fn cmsggoback_unpack(buf []byte) ?CMsgGoBack {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3094,8 +3072,8 @@ pub fn zzz_vproto_internal_pack_cmsggoback(o CMsgGoBack, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggoback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGoBack) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggoback_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggoback_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3112,7 +3090,7 @@ pub fn (o &CMsgWasHidden) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.hidden != bool(0) {
+	if o.hidden != false {
 		res << vproto.pack_bool_field(o.hidden, 2)
 	}
 	return res
@@ -3130,12 +3108,12 @@ pub fn cmsgwashidden_unpack(buf []byte) ?CMsgWasHidden {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hidden = v
 				i = ii
 			}
@@ -3197,8 +3175,8 @@ pub fn zzz_vproto_internal_pack_cmsgwashidden(o CMsgWasHidden, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgwashidden(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgWasHidden) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgwashidden_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgwashidden_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3229,7 +3207,7 @@ pub fn cmsgclearhistory_unpack(buf []byte) ?CMsgClearHistory {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3291,8 +3269,8 @@ pub fn zzz_vproto_internal_pack_cmsgclearhistory(o CMsgClearHistory, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclearhistory(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClearHistory) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclearhistory_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclearhistory_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3323,7 +3301,7 @@ pub fn cmsgclearallbrowsingdata_unpack(buf []byte) ?CMsgClearAllBrowsingData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3385,8 +3363,8 @@ pub fn zzz_vproto_internal_pack_cmsgclearallbrowsingdata(o CMsgClearAllBrowsingD
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclearallbrowsingdata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClearAllBrowsingData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclearallbrowsingdata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclearallbrowsingdata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3417,7 +3395,7 @@ pub fn cmsgcopy_unpack(buf []byte) ?CMsgCopy {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3479,8 +3457,8 @@ pub fn zzz_vproto_internal_pack_cmsgcopy(o CMsgCopy, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgcopy(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgCopy) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgcopy_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgcopy_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3511,7 +3489,7 @@ pub fn cmsgpaste_unpack(buf []byte) ?CMsgPaste {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3573,8 +3551,8 @@ pub fn zzz_vproto_internal_pack_cmsgpaste(o CMsgPaste, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgpaste(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPaste) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgpaste_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgpaste_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3609,12 +3587,12 @@ pub fn cmsgexecutejavascript_unpack(buf []byte) ?CMsgExecuteJavaScript {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.script = v
 				i = ii
 			}
@@ -3676,8 +3654,8 @@ pub fn zzz_vproto_internal_pack_cmsgexecutejavascript(o CMsgExecuteJavaScript, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgexecutejavascript(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgExecuteJavaScript) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgexecutejavascript_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgexecutejavascript_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3694,7 +3672,7 @@ pub fn (o &CMsgSetFocus) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.focus != bool(0) {
+	if o.focus != false {
 		res << vproto.pack_bool_field(o.focus, 2)
 	}
 	return res
@@ -3712,12 +3690,12 @@ pub fn cmsgsetfocus_unpack(buf []byte) ?CMsgSetFocus {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.focus = v
 				i = ii
 			}
@@ -3779,8 +3757,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetfocus(o CMsgSetFocus, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetfocus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetFocus) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetfocus_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetfocus_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3811,7 +3789,7 @@ pub fn cmsghorizontalscrollbarsize_unpack(buf []byte) ?CMsgHorizontalScrollBarSi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -3873,8 +3851,8 @@ pub fn zzz_vproto_internal_pack_cmsghorizontalscrollbarsize(o CMsgHorizontalScro
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsghorizontalscrollbarsize(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgHorizontalScrollBarSize) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsghorizontalscrollbarsize_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsghorizontalscrollbarsize_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3904,7 +3882,7 @@ pub fn (o &CMsgHorizontalScrollBarSizeResponse) pack() []byte {
 	if o.zoom != f32(0) {
 		res << vproto.pack_float_field(o.zoom, 8)
 	}
-	if o.visible != bool(0) {
+	if o.visible != false {
 		res << vproto.pack_bool_field(o.visible, 9)
 	}
 	if o.page_size != u32(0) {
@@ -3925,32 +3903,32 @@ pub fn cmsghorizontalscrollbarsizeresponse_unpack(buf []byte) ?CMsgHorizontalScr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scroll_max = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scroll = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.zoom = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.visible = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.page_size = v
 				i = ii
 			}
@@ -3971,10 +3949,8 @@ pub fn cmsghorizontalscrollbarsizeresponse_unpack(buf []byte) ?CMsgHorizontalScr
 
 [inline]
 pub fn (a CMsgHorizontalScrollBarSizeResponse) eq(b CMsgHorizontalScrollBarSizeResponse) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.scroll_max == b.scroll_max && a.scroll == b.scroll &&
-		a.zoom == b.zoom && a.visible == b.visible &&
-		a.page_size == b.page_size
+	return true && a.browser_handle == b.browser_handle && a.scroll_max == b.scroll_max &&
+		a.scroll == b.scroll && a.zoom == b.zoom && a.visible == b.visible && a.page_size == b.page_size
 }
 
 [inline]
@@ -4015,8 +3991,8 @@ pub fn zzz_vproto_internal_pack_cmsghorizontalscrollbarsizeresponse(o CMsgHorizo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsghorizontalscrollbarsizeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgHorizontalScrollBarSizeResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsghorizontalscrollbarsizeresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsghorizontalscrollbarsizeresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4047,7 +4023,7 @@ pub fn cmsgverticalscrollbarsize_unpack(buf []byte) ?CMsgVerticalScrollBarSize {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -4109,8 +4085,8 @@ pub fn zzz_vproto_internal_pack_cmsgverticalscrollbarsize(o CMsgVerticalScrollBa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgverticalscrollbarsize(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgVerticalScrollBarSize) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgverticalscrollbarsize_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgverticalscrollbarsize_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4140,7 +4116,7 @@ pub fn (o &CMsgVerticalScrollBarSizeResponse) pack() []byte {
 	if o.zoom != f32(0) {
 		res << vproto.pack_float_field(o.zoom, 8)
 	}
-	if o.visible != bool(0) {
+	if o.visible != false {
 		res << vproto.pack_bool_field(o.visible, 9)
 	}
 	if o.page_size != u32(0) {
@@ -4161,32 +4137,32 @@ pub fn cmsgverticalscrollbarsizeresponse_unpack(buf []byte) ?CMsgVerticalScrollB
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scroll_max = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scroll = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.zoom = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.visible = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.page_size = v
 				i = ii
 			}
@@ -4207,10 +4183,8 @@ pub fn cmsgverticalscrollbarsizeresponse_unpack(buf []byte) ?CMsgVerticalScrollB
 
 [inline]
 pub fn (a CMsgVerticalScrollBarSizeResponse) eq(b CMsgVerticalScrollBarSizeResponse) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.scroll_max == b.scroll_max && a.scroll == b.scroll &&
-		a.zoom == b.zoom && a.visible == b.visible &&
-		a.page_size == b.page_size
+	return true && a.browser_handle == b.browser_handle && a.scroll_max == b.scroll_max &&
+		a.scroll == b.scroll && a.zoom == b.zoom && a.visible == b.visible && a.page_size == b.page_size
 }
 
 [inline]
@@ -4251,8 +4225,8 @@ pub fn zzz_vproto_internal_pack_cmsgverticalscrollbarsizeresponse(o CMsgVertical
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgverticalscrollbarsizeresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgVerticalScrollBarSizeResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgverticalscrollbarsizeresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgverticalscrollbarsizeresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4263,7 +4237,7 @@ pub mut:
 	browser_handle u32
 	find           string
 	infind         bool
-	reverse        bool = false
+	reverse        bool
 }
 
 pub fn (o &CMsgFind) pack() []byte {
@@ -4274,10 +4248,10 @@ pub fn (o &CMsgFind) pack() []byte {
 	if o.find != '' {
 		res << vproto.pack_string_field(o.find, 2)
 	}
-	if o.infind != bool(0) {
+	if o.infind != false {
 		res << vproto.pack_bool_field(o.infind, 3)
 	}
-	if o.reverse != bool(0) {
+	if o.reverse != false {
 		res << vproto.pack_bool_field(o.reverse, 4)
 	}
 	return res
@@ -4295,22 +4269,22 @@ pub fn cmsgfind_unpack(buf []byte) ?CMsgFind {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.find = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.infind = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.reverse = v
 				i = ii
 			}
@@ -4331,8 +4305,7 @@ pub fn cmsgfind_unpack(buf []byte) ?CMsgFind {
 
 [inline]
 pub fn (a CMsgFind) eq(b CMsgFind) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.find == b.find && a.infind == b.infind &&
+	return true && a.browser_handle == b.browser_handle && a.find == b.find && a.infind == b.infind &&
 		a.reverse == b.reverse
 }
 
@@ -4374,8 +4347,8 @@ pub fn zzz_vproto_internal_pack_cmsgfind(o CMsgFind, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfind(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFind) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfind_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfind_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4406,7 +4379,7 @@ pub fn cmsgstopfind_unpack(buf []byte) ?CMsgStopFind {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -4468,8 +4441,8 @@ pub fn zzz_vproto_internal_pack_cmsgstopfind(o CMsgStopFind, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgstopfind(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgStopFind) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgstopfind_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgstopfind_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4504,12 +4477,12 @@ pub fn cmsgsethorizontalscroll_unpack(buf []byte) ?CMsgSetHorizontalScroll {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scroll = v
 				i = ii
 			}
@@ -4571,8 +4544,8 @@ pub fn zzz_vproto_internal_pack_cmsgsethorizontalscroll(o CMsgSetHorizontalScrol
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsethorizontalscroll(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetHorizontalScroll) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsethorizontalscroll_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsethorizontalscroll_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4607,12 +4580,12 @@ pub fn cmsgsetverticalscroll_unpack(buf []byte) ?CMsgSetVerticalScroll {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scroll = v
 				i = ii
 			}
@@ -4674,8 +4647,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetverticalscroll(o CMsgSetVerticalScroll, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetverticalscroll(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetVerticalScroll) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetverticalscroll_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetverticalscroll_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4710,12 +4683,12 @@ pub fn cmsgsetzoomlevel_unpack(buf []byte) ?CMsgSetZoomLevel {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_double_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_double_field(cur_buf, tag_wiretype.wire_type) ?
 				res.zoom = v
 				i = ii
 			}
@@ -4777,8 +4750,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetzoomlevel(o CMsgSetZoomLevel, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetzoomlevel(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetZoomLevel) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetzoomlevel_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetzoomlevel_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4809,7 +4782,7 @@ pub fn cmsgviewsource_unpack(buf []byte) ?CMsgViewSource {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -4871,8 +4844,8 @@ pub fn zzz_vproto_internal_pack_cmsgviewsource(o CMsgViewSource, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgviewsource(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgViewSource) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgviewsource_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgviewsource_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4911,17 +4884,17 @@ pub fn cmsgbrowserready_unpack(buf []byte) ?CMsgBrowserReady {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vr_overlay_key = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hwnd_browser = v
 				i = ii
 			}
@@ -4942,8 +4915,7 @@ pub fn cmsgbrowserready_unpack(buf []byte) ?CMsgBrowserReady {
 
 [inline]
 pub fn (a CMsgBrowserReady) eq(b CMsgBrowserReady) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.vr_overlay_key == b.vr_overlay_key &&
+	return true && a.browser_handle == b.browser_handle && a.vr_overlay_key == b.vr_overlay_key &&
 		a.hwnd_browser == b.hwnd_browser
 }
 
@@ -4985,8 +4957,8 @@ pub fn zzz_vproto_internal_pack_cmsgbrowserready(o CMsgBrowserReady, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbrowserready(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBrowserReady) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbrowserready_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbrowserready_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5013,13 +4985,13 @@ pub fn (o &CMsgURLChanged) pack() []byte {
 	if o.postdata != '' {
 		res << vproto.pack_string_field(o.postdata, 3)
 	}
-	if o.bisredirect != bool(0) {
+	if o.bisredirect != false {
 		res << vproto.pack_bool_field(o.bisredirect, 4)
 	}
 	if o.pagetitle != '' {
 		res << vproto.pack_string_field(o.pagetitle, 5)
 	}
-	if o.bnewnavigation != bool(0) {
+	if o.bnewnavigation != false {
 		res << vproto.pack_bool_field(o.bnewnavigation, 6)
 	}
 	return res
@@ -5037,32 +5009,32 @@ pub fn cmsgurlchanged_unpack(buf []byte) ?CMsgURLChanged {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.postdata = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bisredirect = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pagetitle = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bnewnavigation = v
 				i = ii
 			}
@@ -5083,10 +5055,8 @@ pub fn cmsgurlchanged_unpack(buf []byte) ?CMsgURLChanged {
 
 [inline]
 pub fn (a CMsgURLChanged) eq(b CMsgURLChanged) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.postdata == b.postdata &&
-		a.bisredirect == b.bisredirect && a.pagetitle == b.pagetitle &&
-		a.bnewnavigation == b.bnewnavigation
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.postdata == b.postdata &&
+		a.bisredirect == b.bisredirect && a.pagetitle == b.pagetitle && a.bnewnavigation == b.bnewnavigation
 }
 
 [inline]
@@ -5127,8 +5097,8 @@ pub fn zzz_vproto_internal_pack_cmsgurlchanged(o CMsgURLChanged, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgurlchanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgURLChanged) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgurlchanged_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgurlchanged_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5163,12 +5133,12 @@ pub fn chtmlheader_unpack(buf []byte) ?CHTMLHeader {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.key = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
@@ -5230,8 +5200,8 @@ pub fn zzz_vproto_internal_pack_chtmlheader(o CHTMLHeader, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_chtmlheader(buf []byte, tag_wiretype vproto.WireType) ?(int, CHTMLHeader) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := chtmlheader_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := chtmlheader_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5239,21 +5209,21 @@ pub struct CHTMLPageSecurityInfo {
 mut:
 	unknown_fields []vproto.UnknownField
 pub mut:
-	bissecure      bool = false
-	bhascerterror  bool = false
+	bissecure      bool
+	bhascerterror  bool
 	issuername     string
 	certname       string
-	certexpiry     int = 0
-	ncertbits      int = 0
-	bisevcert      bool = false
+	certexpiry     int
+	ncertbits      int
+	bisevcert      bool
 }
 
 pub fn (o &CHTMLPageSecurityInfo) pack() []byte {
 	mut res := []byte{}
-	if o.bissecure != bool(0) {
+	if o.bissecure != false {
 		res << vproto.pack_bool_field(o.bissecure, 1)
 	}
-	if o.bhascerterror != bool(0) {
+	if o.bhascerterror != false {
 		res << vproto.pack_bool_field(o.bhascerterror, 2)
 	}
 	if o.issuername != '' {
@@ -5268,7 +5238,7 @@ pub fn (o &CHTMLPageSecurityInfo) pack() []byte {
 	if o.ncertbits != int(0) {
 		res << vproto.pack_int32_field(o.ncertbits, 6)
 	}
-	if o.bisevcert != bool(0) {
+	if o.bisevcert != false {
 		res << vproto.pack_bool_field(o.bisevcert, 7)
 	}
 	return res
@@ -5286,37 +5256,37 @@ pub fn chtmlpagesecurityinfo_unpack(buf []byte) ?CHTMLPageSecurityInfo {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bissecure = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bhascerterror = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.issuername = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.certname = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.certexpiry = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ncertbits = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bisevcert = v
 				i = ii
 			}
@@ -5337,11 +5307,9 @@ pub fn chtmlpagesecurityinfo_unpack(buf []byte) ?CHTMLPageSecurityInfo {
 
 [inline]
 pub fn (a CHTMLPageSecurityInfo) eq(b CHTMLPageSecurityInfo) bool {
-	return true && a.bissecure == b.bissecure &&
-		a.bhascerterror == b.bhascerterror &&
-		a.issuername == b.issuername && a.certname == b.certname &&
-		a.certexpiry == b.certexpiry && a.ncertbits == b.ncertbits &&
-		a.bisevcert == b.bisevcert
+	return true && a.bissecure == b.bissecure && a.bhascerterror == b.bhascerterror &&
+		a.issuername == b.issuername && a.certname == b.certname && a.certexpiry == b.certexpiry &&
+		a.ncertbits == b.ncertbits && a.bisevcert == b.bisevcert
 }
 
 [inline]
@@ -5382,8 +5350,8 @@ pub fn zzz_vproto_internal_pack_chtmlpagesecurityinfo(o CHTMLPageSecurityInfo, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_chtmlpagesecurityinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CHTMLPageSecurityInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := chtmlpagesecurityinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := chtmlpagesecurityinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5422,17 +5390,17 @@ pub fn cmsgfinishedrequest_unpack(buf []byte) ?CMsgFinishedRequest {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pagetitle = v
 				i = ii
 			}
@@ -5453,8 +5421,7 @@ pub fn cmsgfinishedrequest_unpack(buf []byte) ?CMsgFinishedRequest {
 
 [inline]
 pub fn (a CMsgFinishedRequest) eq(b CMsgFinishedRequest) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.pagetitle == b.pagetitle
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.pagetitle == b.pagetitle
 }
 
 [inline]
@@ -5495,8 +5462,8 @@ pub fn zzz_vproto_internal_pack_cmsgfinishedrequest(o CMsgFinishedRequest, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfinishedrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFinishedRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfinishedrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfinishedrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5540,23 +5507,23 @@ pub fn cmsgloadedrequest_unpack(buf []byte) ?CMsgLoadedRequest {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pagetitle = v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_chtmlheader(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_chtmlheader(cur_buf, tag_wiretype.wire_type) ?
 				res.headers << v
 				i = ii
 			}
@@ -5577,8 +5544,8 @@ pub fn cmsgloadedrequest_unpack(buf []byte) ?CMsgLoadedRequest {
 
 [inline]
 pub fn (a CMsgLoadedRequest) eq(b CMsgLoadedRequest) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.pagetitle == b.pagetitle && a.headers.eq(b.headers)
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.pagetitle == b.pagetitle &&
+		a.headers.eq(b.headers)
 }
 
 [inline]
@@ -5619,8 +5586,8 @@ pub fn zzz_vproto_internal_pack_cmsgloadedrequest(o CMsgLoadedRequest, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgloadedrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgLoadedRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgloadedrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgloadedrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5659,17 +5626,17 @@ pub fn cmsgpagesecurity_unpack(buf []byte) ?CMsgPageSecurity {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_chtmlpagesecurityinfo(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_chtmlpagesecurityinfo(cur_buf, tag_wiretype.wire_type) ?
 				res.security_info = v
 				i = ii
 			}
@@ -5690,8 +5657,7 @@ pub fn cmsgpagesecurity_unpack(buf []byte) ?CMsgPageSecurity {
 
 [inline]
 pub fn (a CMsgPageSecurity) eq(b CMsgPageSecurity) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.security_info.eq(b.security_info)
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.security_info.eq(b.security_info)
 }
 
 [inline]
@@ -5732,8 +5698,8 @@ pub fn zzz_vproto_internal_pack_cmsgpagesecurity(o CMsgPageSecurity, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgpagesecurity(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPageSecurity) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgpagesecurity_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgpagesecurity_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5762,7 +5728,7 @@ pub fn (o &CMsgStartRequest) pack() []byte {
 	if o.postdata != '' {
 		res << vproto.pack_string_field(o.postdata, 4)
 	}
-	if o.bisredirect != bool(0) {
+	if o.bisredirect != false {
 		res << vproto.pack_bool_field(o.bisredirect, 5)
 	}
 	return res
@@ -5780,27 +5746,27 @@ pub fn cmsgstartrequest_unpack(buf []byte) ?CMsgStartRequest {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.target = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.postdata = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bisredirect = v
 				i = ii
 			}
@@ -5821,8 +5787,7 @@ pub fn cmsgstartrequest_unpack(buf []byte) ?CMsgStartRequest {
 
 [inline]
 pub fn (a CMsgStartRequest) eq(b CMsgStartRequest) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.target == b.target &&
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.target == b.target &&
 		a.postdata == b.postdata && a.bisredirect == b.bisredirect
 }
 
@@ -5864,8 +5829,8 @@ pub fn zzz_vproto_internal_pack_cmsgstartrequest(o CMsgStartRequest, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgstartrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgStartRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgstartrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgstartrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5882,7 +5847,7 @@ pub fn (o &CMsgStartRequestResponse) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.ballow != bool(0) {
+	if o.ballow != false {
 		res << vproto.pack_bool_field(o.ballow, 2)
 	}
 	return res
@@ -5900,12 +5865,12 @@ pub fn cmsgstartrequestresponse_unpack(buf []byte) ?CMsgStartRequestResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ballow = v
 				i = ii
 			}
@@ -5967,8 +5932,8 @@ pub fn zzz_vproto_internal_pack_cmsgstartrequestresponse(o CMsgStartRequestRespo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgstartrequestresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgStartRequestResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgstartrequestresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgstartrequestresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5999,7 +5964,7 @@ pub fn cmsgshowpopup_unpack(buf []byte) ?CMsgShowPopup {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -6061,8 +6026,8 @@ pub fn zzz_vproto_internal_pack_cmsgshowpopup(o CMsgShowPopup, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgshowpopup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgShowPopup) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgshowpopup_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgshowpopup_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6093,7 +6058,7 @@ pub fn cmsghidepopup_unpack(buf []byte) ?CMsgHidePopup {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -6155,8 +6120,8 @@ pub fn zzz_vproto_internal_pack_cmsghidepopup(o CMsgHidePopup, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsghidepopup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgHidePopup) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsghidepopup_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsghidepopup_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6203,27 +6168,27 @@ pub fn cmsgsizepopup_unpack(buf []byte) ?CMsgSizePopup {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.wide = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tall = v
 				i = ii
 			}
@@ -6244,9 +6209,8 @@ pub fn cmsgsizepopup_unpack(buf []byte) ?CMsgSizePopup {
 
 [inline]
 pub fn (a CMsgSizePopup) eq(b CMsgSizePopup) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.x == b.x && a.y == b.y && a.wide == b.wide &&
-		a.tall == b.tall
+	return true && a.browser_handle == b.browser_handle && a.x == b.x && a.y == b.y &&
+		a.wide == b.wide && a.tall == b.tall
 }
 
 [inline]
@@ -6287,8 +6251,8 @@ pub fn zzz_vproto_internal_pack_cmsgsizepopup(o CMsgSizePopup, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsizepopup(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSizePopup) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsizepopup_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsizepopup_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6309,7 +6273,7 @@ pub fn (o &CMsgOpenNewTab) pack() []byte {
 	if o.url != '' {
 		res << vproto.pack_string_field(o.url, 2)
 	}
-	if o.bforeground != bool(0) {
+	if o.bforeground != false {
 		res << vproto.pack_bool_field(o.bforeground, 3)
 	}
 	return res
@@ -6327,17 +6291,17 @@ pub fn cmsgopennewtab_unpack(buf []byte) ?CMsgOpenNewTab {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bforeground = v
 				i = ii
 			}
@@ -6358,8 +6322,8 @@ pub fn cmsgopennewtab_unpack(buf []byte) ?CMsgOpenNewTab {
 
 [inline]
 pub fn (a CMsgOpenNewTab) eq(b CMsgOpenNewTab) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.bforeground == b.bforeground
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.bforeground ==
+		b.bforeground
 }
 
 [inline]
@@ -6400,8 +6364,8 @@ pub fn zzz_vproto_internal_pack_cmsgopennewtab(o CMsgOpenNewTab, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgopennewtab(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgOpenNewTab) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgopennewtab_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgopennewtab_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6442,7 +6406,7 @@ pub fn (o &CMsgPopupHTMLWindow) pack() []byte {
 	if o.popup_index != u32(0) {
 		res << vproto.pack_uint32_field(o.popup_index, 7)
 	}
-	if o.trusted_creator != bool(0) {
+	if o.trusted_creator != false {
 		res << vproto.pack_bool_field(o.trusted_creator, 8)
 	}
 	return res
@@ -6460,42 +6424,42 @@ pub fn cmsgpopuphtmlwindow_unpack(buf []byte) ?CMsgPopupHTMLWindow {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.wide = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tall = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.popup_index = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.trusted_creator = v
 				i = ii
 			}
@@ -6516,10 +6480,9 @@ pub fn cmsgpopuphtmlwindow_unpack(buf []byte) ?CMsgPopupHTMLWindow {
 
 [inline]
 pub fn (a CMsgPopupHTMLWindow) eq(b CMsgPopupHTMLWindow) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.x == b.x && a.y == b.y &&
-		a.wide == b.wide && a.tall == b.tall &&
-		a.popup_index == b.popup_index && a.trusted_creator == b.trusted_creator
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.x == b.x &&
+		a.y == b.y && a.wide == b.wide && a.tall == b.tall && a.popup_index == b.popup_index &&
+		a.trusted_creator == b.trusted_creator
 }
 
 [inline]
@@ -6560,8 +6523,8 @@ pub fn zzz_vproto_internal_pack_cmsgpopuphtmlwindow(o CMsgPopupHTMLWindow, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgpopuphtmlwindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPopupHTMLWindow) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgpopuphtmlwindow_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgpopuphtmlwindow_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6578,7 +6541,7 @@ pub fn (o &CMsgPopupHTMLWindowResponse) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.ballow != bool(0) {
+	if o.ballow != false {
 		res << vproto.pack_bool_field(o.ballow, 2)
 	}
 	return res
@@ -6596,12 +6559,12 @@ pub fn cmsgpopuphtmlwindowresponse_unpack(buf []byte) ?CMsgPopupHTMLWindowRespon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ballow = v
 				i = ii
 			}
@@ -6663,8 +6626,8 @@ pub fn zzz_vproto_internal_pack_cmsgpopuphtmlwindowresponse(o CMsgPopupHTMLWindo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgpopuphtmlwindowresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPopupHTMLWindowResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgpopuphtmlwindowresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgpopuphtmlwindowresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6699,12 +6662,12 @@ pub fn cmsgsethtmltitle_unpack(buf []byte) ?CMsgSetHTMLTitle {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.title = v
 				i = ii
 			}
@@ -6766,8 +6729,8 @@ pub fn zzz_vproto_internal_pack_cmsgsethtmltitle(o CMsgSetHTMLTitle, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsethtmltitle(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetHTMLTitle) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsethtmltitle_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsethtmltitle_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6802,12 +6765,12 @@ pub fn cmsgloadingresource_unpack(buf []byte) ?CMsgLoadingResource {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
@@ -6869,8 +6832,8 @@ pub fn zzz_vproto_internal_pack_cmsgloadingresource(o CMsgLoadingResource, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgloadingresource(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgLoadingResource) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgloadingresource_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgloadingresource_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6905,12 +6868,12 @@ pub fn cmsgstatustext_unpack(buf []byte) ?CMsgStatusText {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.text = v
 				i = ii
 			}
@@ -6972,8 +6935,8 @@ pub fn zzz_vproto_internal_pack_cmsgstatustext(o CMsgStatusText, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgstatustext(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgStatusText) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgstatustext_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgstatustext_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7028,37 +6991,37 @@ pub fn cmsgsetcursor_unpack(buf []byte) ?CMsgSetCursor {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cursor = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.custom_data = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.wide = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tall = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.xhotspot = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.yhotspot = v
 				i = ii
 			}
@@ -7079,10 +7042,9 @@ pub fn cmsgsetcursor_unpack(buf []byte) ?CMsgSetCursor {
 
 [inline]
 pub fn (a CMsgSetCursor) eq(b CMsgSetCursor) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.cursor == b.cursor && a.custom_data == b.custom_data &&
-		a.wide == b.wide && a.tall == b.tall &&
-		a.xhotspot == b.xhotspot && a.yhotspot == b.yhotspot
+	return true && a.browser_handle == b.browser_handle && a.cursor == b.cursor && a.custom_data ==
+		b.custom_data && a.wide == b.wide && a.tall == b.tall && a.xhotspot == b.xhotspot && a.yhotspot ==
+		b.yhotspot
 }
 
 [inline]
@@ -7123,8 +7085,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetcursor(o CMsgSetCursor, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetcursor(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetCursor) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetcursor_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetcursor_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7154,7 +7116,7 @@ pub fn (o &CMsgFileLoadDialog) pack() []byte {
 	for _, x in o.accept_types {
 		res << vproto.pack_string_field(x, 4)
 	}
-	if o.is_save != bool(0) {
+	if o.is_save != false {
 		res << vproto.pack_bool_field(o.is_save, 5)
 	}
 	return res
@@ -7172,28 +7134,28 @@ pub fn cmsgfileloaddialog_unpack(buf []byte) ?CMsgFileLoadDialog {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.title = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initialfile = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.accept_types << v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_save = v
 				i = ii
 			}
@@ -7214,10 +7176,8 @@ pub fn cmsgfileloaddialog_unpack(buf []byte) ?CMsgFileLoadDialog {
 
 [inline]
 pub fn (a CMsgFileLoadDialog) eq(b CMsgFileLoadDialog) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.title == b.title && a.initialfile == b.initialfile &&
-		a.accept_types == b.accept_types &&
-		a.is_save == b.is_save
+	return true && a.browser_handle == b.browser_handle && a.title == b.title && a.initialfile ==
+		b.initialfile && a.accept_types == b.accept_types && a.is_save == b.is_save
 }
 
 [inline]
@@ -7258,8 +7218,8 @@ pub fn zzz_vproto_internal_pack_cmsgfileloaddialog(o CMsgFileLoadDialog, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfileloaddialog(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFileLoadDialog) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfileloaddialog_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfileloaddialog_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7295,13 +7255,13 @@ pub fn cmsgfileloaddialogresponse_unpack(buf []byte) ?CMsgFileLoadDialogResponse
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.files << v
 				i = ii
 			}
@@ -7363,8 +7323,8 @@ pub fn zzz_vproto_internal_pack_cmsgfileloaddialogresponse(o CMsgFileLoadDialogR
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfileloaddialogresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFileLoadDialogResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfileloaddialogresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfileloaddialogresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7399,12 +7359,12 @@ pub fn cmsgshowtooltip_unpack(buf []byte) ?CMsgShowToolTip {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.text = v
 				i = ii
 			}
@@ -7466,8 +7426,8 @@ pub fn zzz_vproto_internal_pack_cmsgshowtooltip(o CMsgShowToolTip, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgshowtooltip(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgShowToolTip) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgshowtooltip_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgshowtooltip_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7502,12 +7462,12 @@ pub fn cmsgupdatetooltip_unpack(buf []byte) ?CMsgUpdateToolTip {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.text = v
 				i = ii
 			}
@@ -7569,8 +7529,8 @@ pub fn zzz_vproto_internal_pack_cmsgupdatetooltip(o CMsgUpdateToolTip, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgupdatetooltip(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgUpdateToolTip) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgupdatetooltip_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgupdatetooltip_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7601,7 +7561,7 @@ pub fn cmsghidetooltip_unpack(buf []byte) ?CMsgHideToolTip {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -7663,8 +7623,8 @@ pub fn zzz_vproto_internal_pack_cmsghidetooltip(o CMsgHideToolTip, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsghidetooltip(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgHideToolTip) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsghidetooltip_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsghidetooltip_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7703,17 +7663,17 @@ pub fn cmsgsearchresults_unpack(buf []byte) ?CMsgSearchResults {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.activematch = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.results = v
 				i = ii
 			}
@@ -7734,8 +7694,8 @@ pub fn cmsgsearchresults_unpack(buf []byte) ?CMsgSearchResults {
 
 [inline]
 pub fn (a CMsgSearchResults) eq(b CMsgSearchResults) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.activematch == b.activematch && a.results == b.results
+	return true && a.browser_handle == b.browser_handle && a.activematch == b.activematch &&
+		a.results == b.results
 }
 
 [inline]
@@ -7776,8 +7736,8 @@ pub fn zzz_vproto_internal_pack_cmsgsearchresults(o CMsgSearchResults, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsearchresults(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSearchResults) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsearchresults_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsearchresults_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7808,7 +7768,7 @@ pub fn cmsgclose_unpack(buf []byte) ?CMsgClose {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -7870,8 +7830,8 @@ pub fn zzz_vproto_internal_pack_cmsgclose(o CMsgClose, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclose(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClose) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclose_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclose_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7922,32 +7882,32 @@ pub fn cmsgsetsharedpaintbuffers_unpack(buf []byte) ?CMsgSetSharedPaintBuffers {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.wide = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tall = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.source_pid = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.source_handle = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.handle = v
 				i = ii
 			}
@@ -7968,10 +7928,8 @@ pub fn cmsgsetsharedpaintbuffers_unpack(buf []byte) ?CMsgSetSharedPaintBuffers {
 
 [inline]
 pub fn (a CMsgSetSharedPaintBuffers) eq(b CMsgSetSharedPaintBuffers) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.wide == b.wide && a.tall == b.tall &&
-		a.source_pid == b.source_pid && a.source_handle == b.source_handle &&
-		a.handle == b.handle
+	return true && a.browser_handle == b.browser_handle && a.wide == b.wide && a.tall == b.tall &&
+		a.source_pid == b.source_pid && a.source_handle == b.source_handle && a.handle == b.handle
 }
 
 [inline]
@@ -8012,8 +7970,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetsharedpaintbuffers(o CMsgSetSharedPaintBu
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetsharedpaintbuffers(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetSharedPaintBuffers) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetsharedpaintbuffers_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetsharedpaintbuffers_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8044,7 +8002,7 @@ pub fn cmsgacksharedpaintbuffers_unpack(buf []byte) ?CMsgAckSharedPaintBuffers {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -8106,8 +8064,8 @@ pub fn zzz_vproto_internal_pack_cmsgacksharedpaintbuffers(o CMsgAckSharedPaintBu
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgacksharedpaintbuffers(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAckSharedPaintBuffers) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgacksharedpaintbuffers_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgacksharedpaintbuffers_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8154,27 +8112,27 @@ pub fn cmsgneedspaint_unpack(buf []byte) ?CMsgNeedsPaint {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scrollx = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scrolly = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pagescale = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pageserial = v
 				i = ii
 			}
@@ -8195,9 +8153,8 @@ pub fn cmsgneedspaint_unpack(buf []byte) ?CMsgNeedsPaint {
 
 [inline]
 pub fn (a CMsgNeedsPaint) eq(b CMsgNeedsPaint) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.scrollx == b.scrollx && a.scrolly == b.scrolly &&
-		a.pagescale == b.pagescale && a.pageserial == b.pageserial
+	return true && a.browser_handle == b.browser_handle && a.scrollx == b.scrollx && a.scrolly ==
+		b.scrolly && a.pagescale == b.pagescale && a.pageserial == b.pageserial
 }
 
 [inline]
@@ -8238,8 +8195,8 @@ pub fn zzz_vproto_internal_pack_cmsgneedspaint(o CMsgNeedsPaint, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgneedspaint(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgNeedsPaint) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgneedspaint_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgneedspaint_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8249,10 +8206,10 @@ mut:
 pub mut:
 	browser_handle       u32
 	rgba                 u64
-	combobox_wide        u32 = 0
-	combobox_tall        u32 = 0
-	shared_memory_handle u64 = 0
-	shared_memory_size   u64 = 0
+	combobox_wide        u32
+	combobox_tall        u32
+	shared_memory_handle u64
+	shared_memory_size   u64
 }
 
 pub fn (o &CMsgComboNeedsPaint) pack() []byte {
@@ -8290,32 +8247,32 @@ pub fn cmsgcomboneedspaint_unpack(buf []byte) ?CMsgComboNeedsPaint {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rgba = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.combobox_wide = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.combobox_tall = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.shared_memory_handle = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.shared_memory_size = v
 				i = ii
 			}
@@ -8336,10 +8293,8 @@ pub fn cmsgcomboneedspaint_unpack(buf []byte) ?CMsgComboNeedsPaint {
 
 [inline]
 pub fn (a CMsgComboNeedsPaint) eq(b CMsgComboNeedsPaint) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.rgba == b.rgba && a.combobox_wide == b.combobox_wide &&
-		a.combobox_tall == b.combobox_tall &&
-		a.shared_memory_handle == b.shared_memory_handle &&
+	return true && a.browser_handle == b.browser_handle && a.rgba == b.rgba && a.combobox_wide ==
+		b.combobox_wide && a.combobox_tall == b.combobox_tall && a.shared_memory_handle == b.shared_memory_handle &&
 		a.shared_memory_size == b.shared_memory_size
 }
 
@@ -8381,8 +8336,8 @@ pub fn zzz_vproto_internal_pack_cmsgcomboneedspaint(o CMsgComboNeedsPaint, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgcomboneedspaint(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgComboNeedsPaint) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgcomboneedspaint_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgcomboneedspaint_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8441,42 +8396,42 @@ pub fn cmsgneedssharedtexturepaint_unpack(buf []byte) ?CMsgNeedsSharedTexturePai
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.share_handle = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scrollx = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scrolly = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pagescale = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pageserial = v
 				i = ii
 			}
@@ -8497,10 +8452,8 @@ pub fn cmsgneedssharedtexturepaint_unpack(buf []byte) ?CMsgNeedsSharedTexturePai
 
 [inline]
 pub fn (a CMsgNeedsSharedTexturePaint) eq(b CMsgNeedsSharedTexturePaint) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.share_handle == b.share_handle &&
-		a.width == b.width && a.height == b.height &&
-		a.scrollx == b.scrollx && a.scrolly == b.scrolly &&
+	return true && a.browser_handle == b.browser_handle && a.share_handle == b.share_handle &&
+		a.width == b.width && a.height == b.height && a.scrollx == b.scrollx && a.scrolly == b.scrolly &&
 		a.pagescale == b.pagescale && a.pageserial == b.pageserial
 }
 
@@ -8542,8 +8495,8 @@ pub fn zzz_vproto_internal_pack_cmsgneedssharedtexturepaint(o CMsgNeedsSharedTex
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgneedssharedtexturepaint(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgNeedsSharedTexturePaint) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgneedssharedtexturepaint_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgneedssharedtexturepaint_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8598,37 +8551,37 @@ pub fn cmsggameoverlaytexturepaint_unpack(buf []byte) ?CMsgGameOverlayTexturePai
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scrollx = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scrolly = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pagescale = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pageserial = v
 				i = ii
 			}
@@ -8649,10 +8602,9 @@ pub fn cmsggameoverlaytexturepaint_unpack(buf []byte) ?CMsgGameOverlayTexturePai
 
 [inline]
 pub fn (a CMsgGameOverlayTexturePaint) eq(b CMsgGameOverlayTexturePaint) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.width == b.width && a.height == b.height &&
-		a.scrollx == b.scrollx && a.scrolly == b.scrolly &&
-		a.pagescale == b.pagescale && a.pageserial == b.pageserial
+	return true && a.browser_handle == b.browser_handle && a.width == b.width && a.height == b.height &&
+		a.scrollx == b.scrollx && a.scrolly == b.scrolly && a.pagescale == b.pagescale && a.pageserial ==
+		b.pageserial
 }
 
 [inline]
@@ -8693,8 +8645,8 @@ pub fn zzz_vproto_internal_pack_cmsggameoverlaytexturepaint(o CMsgGameOverlayTex
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggameoverlaytexturepaint(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGameOverlayTexturePaint) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggameoverlaytexturepaint_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggameoverlaytexturepaint_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8725,7 +8677,7 @@ pub fn cmsggetzoom_unpack(buf []byte) ?CMsgGetZoom {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -8787,8 +8739,8 @@ pub fn zzz_vproto_internal_pack_cmsggetzoom(o CMsgGetZoom, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggetzoom(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetZoom) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggetzoom_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggetzoom_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8823,12 +8775,12 @@ pub fn cmsggetzoomresponse_unpack(buf []byte) ?CMsgGetZoomResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.zoom = v
 				i = ii
 			}
@@ -8890,8 +8842,8 @@ pub fn zzz_vproto_internal_pack_cmsggetzoomresponse(o CMsgGetZoomResponse, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggetzoomresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetZoomResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggetzoomresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggetzoomresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8930,17 +8882,17 @@ pub fn cmsglinkatposition_unpack(buf []byte) ?CMsgLinkAtPosition {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
@@ -9002,8 +8954,8 @@ pub fn zzz_vproto_internal_pack_cmsglinkatposition(o CMsgLinkAtPosition, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsglinkatposition(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgLinkAtPosition) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsglinkatposition_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsglinkatposition_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9033,10 +8985,10 @@ pub fn (o &CMsgLinkAtPositionResponse) pack() []byte {
 	if o.url != '' {
 		res << vproto.pack_string_field(o.url, 4)
 	}
-	if o.blivelink != bool(0) {
+	if o.blivelink != false {
 		res << vproto.pack_bool_field(o.blivelink, 5)
 	}
-	if o.binput != bool(0) {
+	if o.binput != false {
 		res << vproto.pack_bool_field(o.binput, 6)
 	}
 	return res
@@ -9054,32 +9006,32 @@ pub fn cmsglinkatpositionresponse_unpack(buf []byte) ?CMsgLinkAtPositionResponse
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.blivelink = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.binput = v
 				i = ii
 			}
@@ -9100,9 +9052,8 @@ pub fn cmsglinkatpositionresponse_unpack(buf []byte) ?CMsgLinkAtPositionResponse
 
 [inline]
 pub fn (a CMsgLinkAtPositionResponse) eq(b CMsgLinkAtPositionResponse) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.x == b.x && a.y == b.y && a.url == b.url &&
-		a.blivelink == b.blivelink && a.binput == b.binput
+	return true && a.browser_handle == b.browser_handle && a.x == b.x && a.y == b.y &&
+		a.url == b.url && a.blivelink == b.blivelink && a.binput == b.binput
 }
 
 [inline]
@@ -9143,8 +9094,8 @@ pub fn zzz_vproto_internal_pack_cmsglinkatpositionresponse(o CMsgLinkAtPositionR
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsglinkatpositionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgLinkAtPositionResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsglinkatpositionresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsglinkatpositionresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9183,17 +9134,17 @@ pub fn cmsgzoomtoelementatposition_unpack(buf []byte) ?CMsgZoomToElementAtPositi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
@@ -9255,8 +9206,8 @@ pub fn zzz_vproto_internal_pack_cmsgzoomtoelementatposition(o CMsgZoomToElementA
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgzoomtoelementatposition(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgZoomToElementAtPosition) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgzoomtoelementatposition_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgzoomtoelementatposition_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9295,17 +9246,17 @@ pub fn cmsgzoomtoelementatpositionresponse_unpack(buf []byte) ?CMsgZoomToElement
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scale = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.duration = v
 				i = ii
 			}
@@ -9326,8 +9277,8 @@ pub fn cmsgzoomtoelementatpositionresponse_unpack(buf []byte) ?CMsgZoomToElement
 
 [inline]
 pub fn (a CMsgZoomToElementAtPositionResponse) eq(b CMsgZoomToElementAtPositionResponse) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.scale == b.scale && a.duration == b.duration
+	return true && a.browser_handle == b.browser_handle && a.scale == b.scale && a.duration ==
+		b.duration
 }
 
 [inline]
@@ -9368,8 +9319,8 @@ pub fn zzz_vproto_internal_pack_cmsgzoomtoelementatpositionresponse(o CMsgZoomTo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgzoomtoelementatpositionresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgZoomToElementAtPositionResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgzoomtoelementatpositionresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgzoomtoelementatpositionresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9412,22 +9363,22 @@ pub fn cmsgscalepagetovalue_unpack(buf []byte) ?CMsgScalePageToValue {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scale = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
@@ -9448,8 +9399,7 @@ pub fn cmsgscalepagetovalue_unpack(buf []byte) ?CMsgScalePageToValue {
 
 [inline]
 pub fn (a CMsgScalePageToValue) eq(b CMsgScalePageToValue) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.scale == b.scale && a.x == b.x &&
+	return true && a.browser_handle == b.browser_handle && a.scale == b.scale && a.x == b.x &&
 		a.y == b.y
 }
 
@@ -9491,8 +9441,8 @@ pub fn zzz_vproto_internal_pack_cmsgscalepagetovalue(o CMsgScalePageToValue, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgscalepagetovalue(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgScalePageToValue) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgscalepagetovalue_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgscalepagetovalue_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9509,7 +9459,7 @@ pub fn (o &CMsgForcePopupsToDirectHWND) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.force_direct_hwnd_popups != bool(0) {
+	if o.force_direct_hwnd_popups != false {
 		res << vproto.pack_bool_field(o.force_direct_hwnd_popups, 2)
 	}
 	return res
@@ -9527,12 +9477,12 @@ pub fn cmsgforcepopupstodirecthwnd_unpack(buf []byte) ?CMsgForcePopupsToDirectHW
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.force_direct_hwnd_popups = v
 				i = ii
 			}
@@ -9553,8 +9503,7 @@ pub fn cmsgforcepopupstodirecthwnd_unpack(buf []byte) ?CMsgForcePopupsToDirectHW
 
 [inline]
 pub fn (a CMsgForcePopupsToDirectHWND) eq(b CMsgForcePopupsToDirectHWND) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.force_direct_hwnd_popups == b.force_direct_hwnd_popups
+	return true && a.browser_handle == b.browser_handle && a.force_direct_hwnd_popups == b.force_direct_hwnd_popups
 }
 
 [inline]
@@ -9595,8 +9544,8 @@ pub fn zzz_vproto_internal_pack_cmsgforcepopupstodirecthwnd(o CMsgForcePopupsToD
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgforcepopupstodirecthwnd(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgForcePopupsToDirectHWND) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgforcepopupstodirecthwnd_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgforcepopupstodirecthwnd_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9631,12 +9580,12 @@ pub fn cmsgscalepagetovalueresponse_unpack(buf []byte) ?CMsgScalePageToValueResp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.zoom = v
 				i = ii
 			}
@@ -9698,8 +9647,8 @@ pub fn zzz_vproto_internal_pack_cmsgscalepagetovalueresponse(o CMsgScalePageToVa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgscalepagetovalueresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgScalePageToValueResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgscalepagetovalueresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgscalepagetovalueresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9746,27 +9695,27 @@ pub fn cmsgsavepagetojpeg_unpack(buf []byte) ?CMsgSavePageToJPEG {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filename = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
@@ -9787,8 +9736,7 @@ pub fn cmsgsavepagetojpeg_unpack(buf []byte) ?CMsgSavePageToJPEG {
 
 [inline]
 pub fn (a CMsgSavePageToJPEG) eq(b CMsgSavePageToJPEG) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.filename == b.filename &&
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.filename == b.filename &&
 		a.width == b.width && a.height == b.height
 }
 
@@ -9830,8 +9778,8 @@ pub fn zzz_vproto_internal_pack_cmsgsavepagetojpeg(o CMsgSavePageToJPEG, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsavepagetojpeg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSavePageToJPEG) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsavepagetojpeg_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsavepagetojpeg_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9870,17 +9818,17 @@ pub fn cmsgsavepagetojpegresponse_unpack(buf []byte) ?CMsgSavePageToJPEGResponse
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filename = v
 				i = ii
 			}
@@ -9901,8 +9849,7 @@ pub fn cmsgsavepagetojpegresponse_unpack(buf []byte) ?CMsgSavePageToJPEGResponse
 
 [inline]
 pub fn (a CMsgSavePageToJPEGResponse) eq(b CMsgSavePageToJPEGResponse) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.filename == b.filename
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.filename == b.filename
 }
 
 [inline]
@@ -9943,8 +9890,8 @@ pub fn zzz_vproto_internal_pack_cmsgsavepagetojpegresponse(o CMsgSavePageToJPEGR
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsavepagetojpegresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSavePageToJPEGResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsavepagetojpegresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsavepagetojpegresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9979,12 +9926,12 @@ pub fn cmsgjsalert_unpack(buf []byte) ?CMsgJSAlert {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message = v
 				i = ii
 			}
@@ -10046,8 +9993,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsalert(o CMsgJSAlert, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsalert(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSAlert) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsalert_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsalert_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10082,12 +10029,12 @@ pub fn cmsgjsconfirm_unpack(buf []byte) ?CMsgJSConfirm {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message = v
 				i = ii
 			}
@@ -10149,8 +10096,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsconfirm(o CMsgJSConfirm, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsconfirm(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSConfirm) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsconfirm_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsconfirm_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10167,7 +10114,7 @@ pub fn (o &CMsgJSDialogResponse) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.result != bool(0) {
+	if o.result != false {
 		res << vproto.pack_bool_field(o.result, 2)
 	}
 	return res
@@ -10185,12 +10132,12 @@ pub fn cmsgjsdialogresponse_unpack(buf []byte) ?CMsgJSDialogResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.result = v
 				i = ii
 			}
@@ -10252,8 +10199,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsdialogresponse(o CMsgJSDialogResponse, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsdialogresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSDialogResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsdialogresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsdialogresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10271,10 +10218,10 @@ pub fn (o &CMsgCanGoBackAndForward) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.bgoback != bool(0) {
+	if o.bgoback != false {
 		res << vproto.pack_bool_field(o.bgoback, 2)
 	}
-	if o.bgoforward != bool(0) {
+	if o.bgoforward != false {
 		res << vproto.pack_bool_field(o.bgoforward, 3)
 	}
 	return res
@@ -10292,17 +10239,17 @@ pub fn cmsgcangobackandforward_unpack(buf []byte) ?CMsgCanGoBackAndForward {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bgoback = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bgoforward = v
 				i = ii
 			}
@@ -10323,8 +10270,8 @@ pub fn cmsgcangobackandforward_unpack(buf []byte) ?CMsgCanGoBackAndForward {
 
 [inline]
 pub fn (a CMsgCanGoBackAndForward) eq(b CMsgCanGoBackAndForward) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.bgoback == b.bgoback && a.bgoforward == b.bgoforward
+	return true && a.browser_handle == b.browser_handle && a.bgoback == b.bgoback && a.bgoforward ==
+		b.bgoforward
 }
 
 [inline]
@@ -10365,8 +10312,8 @@ pub fn zzz_vproto_internal_pack_cmsgcangobackandforward(o CMsgCanGoBackAndForwar
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgcangobackandforward(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgCanGoBackAndForward) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgcangobackandforward_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgcangobackandforward_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10405,17 +10352,17 @@ pub fn cmsgopensteamurl_unpack(buf []byte) ?CMsgOpenSteamURL {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.referrer = v
 				i = ii
 			}
@@ -10436,8 +10383,7 @@ pub fn cmsgopensteamurl_unpack(buf []byte) ?CMsgOpenSteamURL {
 
 [inline]
 pub fn (a CMsgOpenSteamURL) eq(b CMsgOpenSteamURL) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.url == b.url && a.referrer == b.referrer
+	return true && a.browser_handle == b.browser_handle && a.url == b.url && a.referrer == b.referrer
 }
 
 [inline]
@@ -10478,8 +10424,8 @@ pub fn zzz_vproto_internal_pack_cmsgopensteamurl(o CMsgOpenSteamURL, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgopensteamurl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgOpenSteamURL) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgopensteamurl_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgopensteamurl_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10513,10 +10459,10 @@ pub fn (o &CMsgSetCookie) pack() []byte {
 	if o.expires != u32(0) {
 		res << vproto.pack_uint32_field(o.expires, 5)
 	}
-	if o.secure != bool(0) {
+	if o.secure != false {
 		res << vproto.pack_bool_field(o.secure, 6)
 	}
-	if o.httponly != bool(0) {
+	if o.httponly != false {
 		res << vproto.pack_bool_field(o.httponly, 7)
 	}
 	return res
@@ -10534,37 +10480,37 @@ pub fn cmsgsetcookie_unpack(buf []byte) ?CMsgSetCookie {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.key = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.path = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.host = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.expires = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.secure = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.httponly = v
 				i = ii
 			}
@@ -10585,10 +10531,8 @@ pub fn cmsgsetcookie_unpack(buf []byte) ?CMsgSetCookie {
 
 [inline]
 pub fn (a CMsgSetCookie) eq(b CMsgSetCookie) bool {
-	return true && a.key == b.key &&
-		a.value == b.value && a.path == b.path &&
-		a.host == b.host && a.expires == b.expires &&
-		a.secure == b.secure && a.httponly == b.httponly
+	return true && a.key == b.key && a.value == b.value && a.path == b.path && a.host == b.host &&
+		a.expires == b.expires && a.secure == b.secure && a.httponly == b.httponly
 }
 
 [inline]
@@ -10629,8 +10573,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetcookie(o CMsgSetCookie, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetcookie(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetCookie) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetcookie_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetcookie_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10665,12 +10609,12 @@ pub fn cmsgsettargetframerate_unpack(buf []byte) ?CMsgSetTargetFrameRate {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ntargetframerate = v
 				i = ii
 			}
@@ -10732,8 +10676,8 @@ pub fn zzz_vproto_internal_pack_cmsgsettargetframerate(o CMsgSetTargetFrameRate,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsettargetframerate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetTargetFrameRate) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsettargetframerate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsettargetframerate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10764,7 +10708,7 @@ pub fn cmsgpauserepaint_unpack(buf []byte) ?CMsgPauseRepaint {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -10826,8 +10770,8 @@ pub fn zzz_vproto_internal_pack_cmsgpauserepaint(o CMsgPauseRepaint, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgpauserepaint(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPauseRepaint) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgpauserepaint_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgpauserepaint_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10858,7 +10802,7 @@ pub fn cmsgfullrepaint_unpack(buf []byte) ?CMsgFullRepaint {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -10920,8 +10864,8 @@ pub fn zzz_vproto_internal_pack_cmsgfullrepaint(o CMsgFullRepaint, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfullrepaint(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFullRepaint) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfullrepaint_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfullrepaint_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10952,7 +10896,7 @@ pub fn cmsgrequestfullscreen_unpack(buf []byte) ?CMsgRequestFullScreen {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -11014,8 +10958,8 @@ pub fn zzz_vproto_internal_pack_cmsgrequestfullscreen(o CMsgRequestFullScreen, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgrequestfullscreen(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgRequestFullScreen) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgrequestfullscreen_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgrequestfullscreen_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11046,7 +10990,7 @@ pub fn cmsgexitfullscreen_unpack(buf []byte) ?CMsgExitFullScreen {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -11108,8 +11052,8 @@ pub fn zzz_vproto_internal_pack_cmsgexitfullscreen(o CMsgExitFullScreen, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgexitfullscreen(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgExitFullScreen) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgexitfullscreen_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgexitfullscreen_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11140,7 +11084,7 @@ pub fn cmsgtogglefindinpagedialog_unpack(buf []byte) ?CMsgToggleFindInPageDialog
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -11202,8 +11146,8 @@ pub fn zzz_vproto_internal_pack_cmsgtogglefindinpagedialog(o CMsgToggleFindInPag
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtogglefindinpagedialog(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgToggleFindInPageDialog) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtogglefindinpagedialog_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtogglefindinpagedialog_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11234,7 +11178,7 @@ pub fn cmsgsetpidshuttingdown_unpack(buf []byte) ?CMsgSetPIDShuttingDown {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -11296,8 +11240,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetpidshuttingdown(o CMsgSetPIDShuttingDown,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetpidshuttingdown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetPIDShuttingDown) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetpidshuttingdown_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetpidshuttingdown_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11328,7 +11272,7 @@ pub fn cmsgdisablebackgroundthrottling_unpack(buf []byte) ?CMsgDisableBackground
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -11390,8 +11334,8 @@ pub fn zzz_vproto_internal_pack_cmsgdisablebackgroundthrottling(o CMsgDisableBac
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgdisablebackgroundthrottling(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgDisableBackgroundThrottling) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgdisablebackgroundthrottling_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgdisablebackgroundthrottling_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11422,7 +11366,7 @@ pub fn cmsgackpidshuttingdown_unpack(buf []byte) ?CMsgAckPIDShuttingDown {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -11484,8 +11428,8 @@ pub fn zzz_vproto_internal_pack_cmsgackpidshuttingdown(o CMsgAckPIDShuttingDown,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgackpidshuttingdown(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAckPIDShuttingDown) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgackpidshuttingdown_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgackpidshuttingdown_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11520,12 +11464,12 @@ pub fn cmsggetcookiesforurl_unpack(buf []byte) ?CMsgGetCookiesForURL {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
@@ -11587,8 +11531,8 @@ pub fn zzz_vproto_internal_pack_cmsggetcookiesforurl(o CMsgGetCookiesForURL, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggetcookiesforurl(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetCookiesForURL) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggetcookiesforurl_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggetcookiesforurl_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11631,22 +11575,22 @@ pub fn ccookie_unpack(buf []byte) ?CCookie {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.domain = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.path = v
 				i = ii
 			}
@@ -11667,9 +11611,8 @@ pub fn ccookie_unpack(buf []byte) ?CCookie {
 
 [inline]
 pub fn (a CCookie) eq(b CCookie) bool {
-	return true && a.name == b.name &&
-		a.value == b.value && a.domain == b.domain &&
-		a.path == b.path
+	return true && a.name == b.name && a.value == b.value && a.domain == b.domain && a.path ==
+		b.path
 }
 
 [inline]
@@ -11710,8 +11653,8 @@ pub fn zzz_vproto_internal_pack_ccookie(o CCookie, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccookie(buf []byte, tag_wiretype vproto.WireType) ?(int, CCookie) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccookie_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccookie_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11751,18 +11694,18 @@ pub fn cmsggetcookiesforurlresponse_unpack(buf []byte) ?CMsgGetCookiesForURLResp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_ccookie(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ccookie(cur_buf, tag_wiretype.wire_type) ?
 				res.cookies << v
 				i = ii
 			}
@@ -11824,8 +11767,8 @@ pub fn zzz_vproto_internal_pack_cmsggetcookiesforurlresponse(o CMsgGetCookiesFor
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggetcookiesforurlresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGetCookiesForURLResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggetcookiesforurlresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggetcookiesforurlresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11847,7 +11790,7 @@ pub fn (o &CMsgNodeHasFocus) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.binput != bool(0) {
+	if o.binput != false {
 		res << vproto.pack_bool_field(o.binput, 2)
 	}
 	if o.name != '' {
@@ -11859,7 +11802,7 @@ pub fn (o &CMsgNodeHasFocus) pack() []byte {
 	if o.searchbuttontext != '' {
 		res << vproto.pack_string_field(o.searchbuttontext, 5)
 	}
-	if o.bhasmultipleinputs != bool(0) {
+	if o.bhasmultipleinputs != false {
 		res << vproto.pack_bool_field(o.bhasmultipleinputs, 6)
 	}
 	if o.input_type != '' {
@@ -11880,37 +11823,37 @@ pub fn cmsgnodehasfocus_unpack(buf []byte) ?CMsgNodeHasFocus {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.binput = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.elementtagname = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.searchbuttontext = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bhasmultipleinputs = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_type = v
 				i = ii
 			}
@@ -11931,12 +11874,9 @@ pub fn cmsgnodehasfocus_unpack(buf []byte) ?CMsgNodeHasFocus {
 
 [inline]
 pub fn (a CMsgNodeHasFocus) eq(b CMsgNodeHasFocus) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.binput == b.binput && a.name == b.name &&
-		a.elementtagname == b.elementtagname &&
-		a.searchbuttontext == b.searchbuttontext &&
-		a.bhasmultipleinputs == b.bhasmultipleinputs &&
-		a.input_type == b.input_type
+	return true && a.browser_handle == b.browser_handle && a.binput == b.binput && a.name == b.name &&
+		a.elementtagname == b.elementtagname && a.searchbuttontext == b.searchbuttontext && a.bhasmultipleinputs ==
+		b.bhasmultipleinputs && a.input_type == b.input_type
 }
 
 [inline]
@@ -11977,8 +11917,8 @@ pub fn zzz_vproto_internal_pack_cmsgnodehasfocus(o CMsgNodeHasFocus, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgnodehasfocus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgNodeHasFocus) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgnodehasfocus_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgnodehasfocus_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12009,7 +11949,7 @@ pub fn cmsgzoomtofocusedelement_unpack(buf []byte) ?CMsgZoomToFocusedElement {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -12071,8 +12011,8 @@ pub fn zzz_vproto_internal_pack_cmsgzoomtofocusedelement(o CMsgZoomToFocusedElem
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgzoomtofocusedelement(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgZoomToFocusedElement) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgzoomtofocusedelement_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgzoomtofocusedelement_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12103,7 +12043,7 @@ pub fn cmsgclosefullscreenflashifopen_unpack(buf []byte) ?CMsgCloseFullScreenFla
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -12165,8 +12105,8 @@ pub fn zzz_vproto_internal_pack_cmsgclosefullscreenflashifopen(o CMsgCloseFullSc
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclosefullscreenflashifopen(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgCloseFullScreenFlashIfOpen) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclosefullscreenflashifopen_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclosefullscreenflashifopen_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12197,7 +12137,7 @@ pub fn cmsgpausefullscreenflashmovieifopen_unpack(buf []byte) ?CMsgPauseFullScre
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -12259,8 +12199,8 @@ pub fn zzz_vproto_internal_pack_cmsgpausefullscreenflashmovieifopen(o CMsgPauseF
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgpausefullscreenflashmovieifopen(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgPauseFullScreenFlashMovieIfOpen) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgpausefullscreenflashmovieifopen_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgpausefullscreenflashmovieifopen_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12291,7 +12231,7 @@ pub fn cmsgfocusednodetext_unpack(buf []byte) ?CMsgFocusedNodeText {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -12353,8 +12293,8 @@ pub fn zzz_vproto_internal_pack_cmsgfocusednodetext(o CMsgFocusedNodeText, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfocusednodetext(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFocusedNodeText) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfocusednodetext_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfocusednodetext_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12389,12 +12329,12 @@ pub fn cmsgfocusednodetextresponse_unpack(buf []byte) ?CMsgFocusedNodeTextRespon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
@@ -12456,8 +12396,8 @@ pub fn zzz_vproto_internal_pack_cmsgfocusednodetextresponse(o CMsgFocusedNodeTex
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgfocusednodetextresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgFocusedNodeTextResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgfocusednodetextresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgfocusednodetextresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12488,7 +12428,7 @@ pub fn cmsgbuildid_unpack(buf []byte) ?CMsgBuildID {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.build_id = v
 				i = ii
 			}
@@ -12550,8 +12490,8 @@ pub fn zzz_vproto_internal_pack_cmsgbuildid(o CMsgBuildID, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbuildid(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBuildID) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbuildid_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbuildid_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12582,7 +12522,7 @@ pub fn cmsgopendevtools_unpack(buf []byte) ?CMsgOpenDevTools {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -12644,8 +12584,8 @@ pub fn zzz_vproto_internal_pack_cmsgopendevtools(o CMsgOpenDevTools, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgopendevtools(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgOpenDevTools) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgopendevtools_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgopendevtools_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12676,7 +12616,7 @@ pub fn cmsgclosedevtools_unpack(buf []byte) ?CMsgCloseDevTools {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -12738,8 +12678,8 @@ pub fn zzz_vproto_internal_pack_cmsgclosedevtools(o CMsgCloseDevTools, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclosedevtools(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgCloseDevTools) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclosedevtools_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclosedevtools_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12774,12 +12714,12 @@ pub fn cmsgunlockh264_unpack(buf []byte) ?CMsgUnlockH264 {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unlock_code = v
 				i = ii
 			}
@@ -12841,8 +12781,8 @@ pub fn zzz_vproto_internal_pack_cmsgunlockh264(o CMsgUnlockH264, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgunlockh264(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgUnlockH264) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgunlockh264_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgunlockh264_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12913,57 +12853,57 @@ pub fn cmsgscreeninformationchanged_unpack(buf []byte) ?CMsgScreenInformationCha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.override_width = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.override_height = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.monitor_left = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.monitor_top = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.monitor_right = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.monitor_bottom = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.usable_left = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.usable_top = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.usable_right = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.usable_bottom = v
 				i = ii
 			}
@@ -12984,14 +12924,10 @@ pub fn cmsgscreeninformationchanged_unpack(buf []byte) ?CMsgScreenInformationCha
 
 [inline]
 pub fn (a CMsgScreenInformationChanged) eq(b CMsgScreenInformationChanged) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.override_width == b.override_width &&
-		a.override_height == b.override_height &&
-		a.monitor_left == b.monitor_left &&
-		a.monitor_top == b.monitor_top && a.monitor_right == b.monitor_right &&
-		a.monitor_bottom == b.monitor_bottom &&
-		a.usable_left == b.usable_left && a.usable_top == b.usable_top &&
-		a.usable_right == b.usable_right &&
+	return true && a.browser_handle == b.browser_handle && a.override_width == b.override_width &&
+		a.override_height == b.override_height && a.monitor_left == b.monitor_left && a.monitor_top ==
+		b.monitor_top && a.monitor_right == b.monitor_right && a.monitor_bottom == b.monitor_bottom &&
+		a.usable_left == b.usable_left && a.usable_top == b.usable_top && a.usable_right == b.usable_right &&
 		a.usable_bottom == b.usable_bottom
 }
 
@@ -13033,8 +12969,8 @@ pub fn zzz_vproto_internal_pack_cmsgscreeninformationchanged(o CMsgScreenInforma
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgscreeninformationchanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgScreenInformationChanged) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgscreeninformationchanged_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgscreeninformationchanged_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13065,7 +13001,7 @@ pub fn cmsgclearallcookies_unpack(buf []byte) ?CMsgClearAllCookies {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -13127,8 +13063,8 @@ pub fn zzz_vproto_internal_pack_cmsgclearallcookies(o CMsgClearAllCookies, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclearallcookies(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClearAllCookies) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclearallcookies_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclearallcookies_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13163,12 +13099,12 @@ pub fn cmsgscreendpi_unpack(buf []byte) ?CMsgScreenDPI {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dpi_scaling = v
 				i = ii
 			}
@@ -13230,8 +13166,8 @@ pub fn zzz_vproto_internal_pack_cmsgscreendpi(o CMsgScreenDPI, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgscreendpi(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgScreenDPI) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgscreendpi_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgscreendpi_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13264,7 +13200,7 @@ pub fn cmsgauthedsteamdomains_unpack(buf []byte) ?CMsgAuthedSteamDomains {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.domains << v
 				i = ii
 			}
@@ -13326,8 +13262,8 @@ pub fn zzz_vproto_internal_pack_cmsgauthedsteamdomains(o CMsgAuthedSteamDomains,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgauthedsteamdomains(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgAuthedSteamDomains) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgauthedsteamdomains_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgauthedsteamdomains_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13340,7 +13276,7 @@ pub mut:
 
 pub fn (o &CMsgSteamAuthNeeded) pack() []byte {
 	mut res := []byte{}
-	if o.filler != bool(0) {
+	if o.filler != false {
 		res << vproto.pack_bool_field(o.filler, 1)
 	}
 	return res
@@ -13358,7 +13294,7 @@ pub fn cmsgsteamauthneeded_unpack(buf []byte) ?CMsgSteamAuthNeeded {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filler = v
 				i = ii
 			}
@@ -13420,8 +13356,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamauthneeded(o CMsgSteamAuthNeeded, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamauthneeded(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamAuthNeeded) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamauthneeded_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamauthneeded_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13434,7 +13370,7 @@ pub mut:
 
 pub fn (o &CMsgSteamAuthCookiesSet) pack() []byte {
 	mut res := []byte{}
-	if o.success != bool(0) {
+	if o.success != false {
 		res << vproto.pack_bool_field(o.success, 1)
 	}
 	return res
@@ -13452,7 +13388,7 @@ pub fn cmsgsteamauthcookiesset_unpack(buf []byte) ?CMsgSteamAuthCookiesSet {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.success = v
 				i = ii
 			}
@@ -13514,8 +13450,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamauthcookiesset(o CMsgSteamAuthCookiesSe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamauthcookiesset(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamAuthCookiesSet) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamauthcookiesset_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamauthcookiesset_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13554,17 +13490,17 @@ pub fn cmsgjsregistermethod_unpack(buf []byte) ?CMsgJSRegisterMethod {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_ejsregistermethodtype(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ejsregistermethodtype(cur_buf, tag_wiretype.wire_type) ?
 				res.method_type = v
 				i = ii
 			}
@@ -13585,8 +13521,8 @@ pub fn cmsgjsregistermethod_unpack(buf []byte) ?CMsgJSRegisterMethod {
 
 [inline]
 pub fn (a CMsgJSRegisterMethod) eq(b CMsgJSRegisterMethod) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.name == b.name && a.method_type == b.method_type
+	return true && a.browser_handle == b.browser_handle && a.name == b.name && a.method_type ==
+		b.method_type
 }
 
 [inline]
@@ -13627,8 +13563,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsregistermethod(o CMsgJSRegisterMethod, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsregistermethod(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSRegisterMethod) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsregistermethod_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsregistermethod_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13663,12 +13599,12 @@ pub fn cjsmethodargument_unpack(buf []byte) ?CJSMethodArgument {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.json_data = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.function_handle = v
 				i = ii
 			}
@@ -13730,8 +13666,8 @@ pub fn zzz_vproto_internal_pack_cjsmethodargument(o CJSMethodArgument, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cjsmethodargument(buf []byte, tag_wiretype vproto.WireType) ?(int, CJSMethodArgument) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cjsmethodargument_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cjsmethodargument_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13766,12 +13702,12 @@ pub fn cmsgjsvalue_jsobjectproperty_unpack(buf []byte) ?CMsgJSValue_JSObjectProp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
@@ -13833,8 +13769,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsvalue_jsobjectproperty(o CMsgJSValue_JSObj
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsvalue_jsobjectproperty(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSValue_JSObjectProperty) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsvalue_jsobjectproperty_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsvalue_jsobjectproperty_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13856,7 +13792,7 @@ pub mut:
 
 pub fn (o &CMsgJSValue) pack() []byte {
 	mut res := []byte{}
-	if o.bool_value != bool(0) {
+	if o.bool_value != false {
 		res << vproto.pack_bool_field(o.bool_value, 1)
 	}
 	if o.int_value != int(0) {
@@ -13874,14 +13810,14 @@ pub fn (o &CMsgJSValue) pack() []byte {
 	if o.function_handle != u64(0) {
 		res << vproto.pack_uint64_field(o.function_handle, 6)
 	}
-	if o.is_array != bool(0) {
+	if o.is_array != false {
 		res << vproto.pack_bool_field(o.is_array, 8)
 	}
 	// [packed=false]
 	for _, x in o.array_values {
 		res << zzz_vproto_internal_pack_cmsgjsvalue(x, 9)
 	}
-	if o.is_object != bool(0) {
+	if o.is_object != false {
 		res << vproto.pack_bool_field(o.is_object, 10)
 	}
 	// [packed=false]
@@ -13903,55 +13839,55 @@ pub fn cmsgjsvalue_unpack(buf []byte) ?CMsgJSValue {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bool_value = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.int_value = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.uint_value = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_double_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_double_field(cur_buf, tag_wiretype.wire_type) ?
 				res.double_value = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.string_value = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.function_handle = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_array = v
 				i = ii
 			}
 			9 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type) ?
 				res.array_values << v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_object = v
 				i = ii
 			}
 			11 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue_jsobjectproperty(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.object_properties << v
 				i = ii
 			}
@@ -13972,12 +13908,9 @@ pub fn cmsgjsvalue_unpack(buf []byte) ?CMsgJSValue {
 
 [inline]
 pub fn (a CMsgJSValue) eq(b CMsgJSValue) bool {
-	return true && a.bool_value == b.bool_value &&
-		a.int_value == b.int_value && a.uint_value == b.uint_value &&
-		a.double_value == b.double_value &&
-		a.string_value == b.string_value &&
-		a.function_handle == b.function_handle &&
-		a.is_array == b.is_array && a.array_values.eq(b.array_values) &&
+	return true && a.bool_value == b.bool_value && a.int_value == b.int_value && a.uint_value ==
+		b.uint_value && a.double_value == b.double_value && a.string_value == b.string_value &&
+		a.function_handle == b.function_handle && a.is_array == b.is_array && a.array_values.eq(b.array_values) &&
 		a.is_object == b.is_object && a.object_properties.eq(b.object_properties)
 }
 
@@ -14019,8 +13952,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsvalue(o CMsgJSValue, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsvalue(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSValue) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsvalue_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsvalue_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14060,18 +13993,18 @@ pub fn cmsgjsmethodcall_unpack(buf []byte) ?CMsgJSMethodCall {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type) ?
 				res.arguments << v
 				i = ii
 			}
@@ -14092,8 +14025,7 @@ pub fn cmsgjsmethodcall_unpack(buf []byte) ?CMsgJSMethodCall {
 
 [inline]
 pub fn (a CMsgJSMethodCall) eq(b CMsgJSMethodCall) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.name == b.name && a.arguments.eq(b.arguments)
+	return true && a.browser_handle == b.browser_handle && a.name == b.name && a.arguments.eq(b.arguments)
 }
 
 [inline]
@@ -14134,8 +14066,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsmethodcall(o CMsgJSMethodCall, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsmethodcall(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSMethodCall) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsmethodcall_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsmethodcall_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14175,18 +14107,18 @@ pub fn cmsgjsexecutecallback_unpack(buf []byte) ?CMsgJSExecuteCallback {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.function_handle = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgjsvalue(cur_buf, tag_wiretype.wire_type) ?
 				res.arguments << v
 				i = ii
 			}
@@ -14207,8 +14139,8 @@ pub fn cmsgjsexecutecallback_unpack(buf []byte) ?CMsgJSExecuteCallback {
 
 [inline]
 pub fn (a CMsgJSExecuteCallback) eq(b CMsgJSExecuteCallback) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.function_handle == b.function_handle && a.arguments.eq(b.arguments)
+	return true && a.browser_handle == b.browser_handle && a.function_handle == b.function_handle &&
+		a.arguments.eq(b.arguments)
 }
 
 [inline]
@@ -14249,8 +14181,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsexecutecallback(o CMsgJSExecuteCallback, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsexecutecallback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSExecuteCallback) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsexecutecallback_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsexecutecallback_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14285,12 +14217,12 @@ pub fn cmsgjsreleasecallback_unpack(buf []byte) ?CMsgJSReleaseCallback {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.function_handle = v
 				i = ii
 			}
@@ -14352,8 +14284,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsreleasecallback(o CMsgJSReleaseCallback, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsreleasecallback(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSReleaseCallback) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsreleasecallback_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsreleasecallback_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14388,12 +14320,12 @@ pub fn cmsgjsraiseexception_unpack(buf []byte) ?CMsgJSRaiseException {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.exception = v
 				i = ii
 			}
@@ -14455,8 +14387,8 @@ pub fn zzz_vproto_internal_pack_cmsgjsraiseexception(o CMsgJSRaiseException, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjsraiseexception(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJSRaiseException) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjsraiseexception_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjsraiseexception_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14495,17 +14427,17 @@ pub fn cmsgloadlocalization_unpack(buf []byte) ?CMsgLoadLocalization {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.localization_path = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
@@ -14526,8 +14458,7 @@ pub fn cmsgloadlocalization_unpack(buf []byte) ?CMsgLoadLocalization {
 
 [inline]
 pub fn (a CMsgLoadLocalization) eq(b CMsgLoadLocalization) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.localization_path == b.localization_path &&
+	return true && a.browser_handle == b.browser_handle && a.localization_path == b.localization_path &&
 		a.language == b.language
 }
 
@@ -14569,8 +14500,8 @@ pub fn zzz_vproto_internal_pack_cmsgloadlocalization(o CMsgLoadLocalization, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgloadlocalization(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgLoadLocalization) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgloadlocalization_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgloadlocalization_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14609,17 +14540,17 @@ pub fn cmsgjumplistlink_unpack(buf []byte) ?CMsgJumpListLink {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.display_name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url_link = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon_path = v
 				i = ii
 			}
@@ -14640,8 +14571,8 @@ pub fn cmsgjumplistlink_unpack(buf []byte) ?CMsgJumpListLink {
 
 [inline]
 pub fn (a CMsgJumpListLink) eq(b CMsgJumpListLink) bool {
-	return true && a.display_name == b.display_name &&
-		a.url_link == b.url_link && a.icon_path == b.icon_path
+	return true && a.display_name == b.display_name && a.url_link == b.url_link && a.icon_path ==
+		b.icon_path
 }
 
 [inline]
@@ -14682,8 +14613,8 @@ pub fn zzz_vproto_internal_pack_cmsgjumplistlink(o CMsgJumpListLink, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjumplistlink(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgJumpListLink) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjumplistlink_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjumplistlink_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14726,22 +14657,22 @@ pub fn cmsgjumplistmruapp_unpack(buf []byte) ?CMSgJumpListMRUApp {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.display_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url_link = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon_path = v
 				i = ii
 			}
@@ -14762,9 +14693,8 @@ pub fn cmsgjumplistmruapp_unpack(buf []byte) ?CMSgJumpListMRUApp {
 
 [inline]
 pub fn (a CMSgJumpListMRUApp) eq(b CMSgJumpListMRUApp) bool {
-	return true && a.appid == b.appid &&
-		a.display_name == b.display_name &&
-		a.url_link == b.url_link && a.icon_path == b.icon_path
+	return true && a.appid == b.appid && a.display_name == b.display_name && a.url_link == b.url_link &&
+		a.icon_path == b.icon_path
 }
 
 [inline]
@@ -14805,8 +14735,8 @@ pub fn zzz_vproto_internal_pack_cmsgjumplistmruapp(o CMSgJumpListMRUApp, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgjumplistmruapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMSgJumpListMRUApp) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgjumplistmruapp_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgjumplistmruapp_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14851,24 +14781,24 @@ pub fn cmsgsetjumplist_unpack(buf []byte) ?CMsgSetJumpList {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_path = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mru_title = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgjumplistmruapp(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgjumplistmruapp(cur_buf, tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgjumplistlink(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgjumplistlink(cur_buf, tag_wiretype.wire_type) ?
 				res.links << v
 				i = ii
 			}
@@ -14889,8 +14819,8 @@ pub fn cmsgsetjumplist_unpack(buf []byte) ?CMsgSetJumpList {
 
 [inline]
 pub fn (a CMsgSetJumpList) eq(b CMsgSetJumpList) bool {
-	return true && a.steam_path == b.steam_path &&
-		a.mru_title == b.mru_title && a.apps.eq(b.apps) && a.links.eq(b.links)
+	return true && a.steam_path == b.steam_path && a.mru_title == b.mru_title && a.apps.eq(b.apps) &&
+		a.links.eq(b.links)
 }
 
 [inline]
@@ -14931,8 +14861,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetjumplist(o CMsgSetJumpList, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetjumplist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetJumpList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetjumplist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetjumplist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14968,13 +14898,13 @@ pub fn cmsgsetgameoverlaytargetpids_unpack(buf []byte) ?CMsgSetGameOverlayTarget
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.target_pid << v
 				i = ii
 			}
@@ -15036,8 +14966,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetgameoverlaytargetpids(o CMsgSetGameOverla
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetgameoverlaytargetpids(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetGameOverlayTargetPIDs) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetgameoverlaytargetpids_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetgameoverlaytargetpids_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15076,17 +15006,17 @@ pub fn cmsggameoverlaytargettextureid_unpack(buf []byte) ?CMsgGameOverlayTargetT
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.target_pid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.texture_handle = v
 				i = ii
 			}
@@ -15107,8 +15037,8 @@ pub fn cmsggameoverlaytargettextureid_unpack(buf []byte) ?CMsgGameOverlayTargetT
 
 [inline]
 pub fn (a CMsgGameOverlayTargetTextureID) eq(b CMsgGameOverlayTargetTextureID) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.target_pid == b.target_pid && a.texture_handle == b.texture_handle
+	return true && a.browser_handle == b.browser_handle && a.target_pid == b.target_pid &&
+		a.texture_handle == b.texture_handle
 }
 
 [inline]
@@ -15149,8 +15079,8 @@ pub fn zzz_vproto_internal_pack_cmsggameoverlaytargettextureid(o CMsgGameOverlay
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggameoverlaytargettextureid(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGameOverlayTargetTextureID) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggameoverlaytargettextureid_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggameoverlaytargettextureid_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15179,7 +15109,7 @@ pub fn (o &CMsgDraggableRegionsChanged_DraggableRects) pack() []byte {
 	if o.height != int(0) {
 		res << vproto.pack_int32_field(o.height, 4)
 	}
-	if o.draggable != bool(0) {
+	if o.draggable != false {
 		res << vproto.pack_bool_field(o.draggable, 5)
 	}
 	return res
@@ -15197,27 +15127,27 @@ pub fn cmsgdraggableregionschanged_draggablerects_unpack(buf []byte) ?CMsgDragga
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.draggable = v
 				i = ii
 			}
@@ -15238,9 +15168,8 @@ pub fn cmsgdraggableregionschanged_draggablerects_unpack(buf []byte) ?CMsgDragga
 
 [inline]
 pub fn (a CMsgDraggableRegionsChanged_DraggableRects) eq(b CMsgDraggableRegionsChanged_DraggableRects) bool {
-	return true && a.x == b.x &&
-		a.y == b.y && a.width == b.width &&
-		a.height == b.height && a.draggable == b.draggable
+	return true && a.x == b.x && a.y == b.y && a.width == b.width && a.height == b.height &&
+		a.draggable == b.draggable
 }
 
 [inline]
@@ -15281,8 +15210,8 @@ pub fn zzz_vproto_internal_pack_cmsgdraggableregionschanged_draggablerects(o CMs
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgdraggableregionschanged_draggablerects(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgDraggableRegionsChanged_DraggableRects) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgdraggableregionschanged_draggablerects_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgdraggableregionschanged_draggablerects_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15301,7 +15230,8 @@ pub fn (o &CMsgDraggableRegionsChanged) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.rects {
-		res << zzz_vproto_internal_pack_cmsgdraggableregionschanged_draggablerects(x, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgdraggableregionschanged_draggablerects(x, 2)
 	}
 	return res
 }
@@ -15318,14 +15248,14 @@ pub fn cmsgdraggableregionschanged_unpack(buf []byte) ?CMsgDraggableRegionsChang
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgdraggableregionschanged_draggablerects(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.rects << v
 				i = ii
 			}
@@ -15387,8 +15317,8 @@ pub fn zzz_vproto_internal_pack_cmsgdraggableregionschanged(o CMsgDraggableRegio
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgdraggableregionschanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgDraggableRegionsChanged) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgdraggableregionschanged_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgdraggableregionschanged_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15427,17 +15357,17 @@ pub fn cmsgresizegripchanged_unpack(buf []byte) ?CMsgResizeGripChanged {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
@@ -15458,8 +15388,7 @@ pub fn cmsgresizegripchanged_unpack(buf []byte) ?CMsgResizeGripChanged {
 
 [inline]
 pub fn (a CMsgResizeGripChanged) eq(b CMsgResizeGripChanged) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.width == b.width && a.height == b.height
+	return true && a.browser_handle == b.browser_handle && a.width == b.width && a.height == b.height
 }
 
 [inline]
@@ -15500,8 +15429,8 @@ pub fn zzz_vproto_internal_pack_cmsgresizegripchanged(o CMsgResizeGripChanged, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgresizegripchanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgResizeGripChanged) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgresizegripchanged_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgresizegripchanged_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15556,37 +15485,37 @@ pub fn cmsgsetwindowposition_unpack(buf []byte) ?CMsgSetWindowPosition {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.width = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.height = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.min_width = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.min_height = v
 				i = ii
 			}
@@ -15607,10 +15536,8 @@ pub fn cmsgsetwindowposition_unpack(buf []byte) ?CMsgSetWindowPosition {
 
 [inline]
 pub fn (a CMsgSetWindowPosition) eq(b CMsgSetWindowPosition) bool {
-	return true && a.browser_handle == b.browser_handle &&
-		a.x == b.x && a.y == b.y && a.width == b.width &&
-		a.height == b.height && a.min_width == b.min_width &&
-		a.min_height == b.min_height
+	return true && a.browser_handle == b.browser_handle && a.x == b.x && a.y == b.y &&
+		a.width == b.width && a.height == b.height && a.min_width == b.min_width && a.min_height == b.min_height
 }
 
 [inline]
@@ -15651,8 +15578,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetwindowposition(o CMsgSetWindowPosition, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetwindowposition(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetWindowPosition) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetwindowposition_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetwindowposition_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15683,7 +15610,7 @@ pub fn cmsgshowwindow_unpack(buf []byte) ?CMsgShowWindow {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -15745,8 +15672,8 @@ pub fn zzz_vproto_internal_pack_cmsgshowwindow(o CMsgShowWindow, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgshowwindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgShowWindow) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgshowwindow_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgshowwindow_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15777,7 +15704,7 @@ pub fn cmsghidewindow_unpack(buf []byte) ?CMsgHideWindow {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -15839,8 +15766,8 @@ pub fn zzz_vproto_internal_pack_cmsghidewindow(o CMsgHideWindow, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsghidewindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgHideWindow) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsghidewindow_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsghidewindow_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15871,7 +15798,7 @@ pub fn cmsgbringwindowtofront_unpack(buf []byte) ?CMsgBringWindowToFront {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -15933,8 +15860,8 @@ pub fn zzz_vproto_internal_pack_cmsgbringwindowtofront(o CMsgBringWindowToFront,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgbringwindowtofront(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgBringWindowToFront) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgbringwindowtofront_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgbringwindowtofront_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15965,7 +15892,7 @@ pub fn cmsgsetforegroundwindow_unpack(buf []byte) ?CMsgSetForegroundWindow {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -16027,8 +15954,8 @@ pub fn zzz_vproto_internal_pack_cmsgsetforegroundwindow(o CMsgSetForegroundWindo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsetforegroundwindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSetForegroundWindow) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsetforegroundwindow_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsetforegroundwindow_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16059,7 +15986,7 @@ pub fn cmsgmaximizerestorewindow_unpack(buf []byte) ?CMsgMaximizeRestoreWindow {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -16121,8 +16048,8 @@ pub fn zzz_vproto_internal_pack_cmsgmaximizerestorewindow(o CMsgMaximizeRestoreW
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgmaximizerestorewindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMaximizeRestoreWindow) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgmaximizerestorewindow_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgmaximizerestorewindow_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16153,7 +16080,7 @@ pub fn cmsgminimizewindow_unpack(buf []byte) ?CMsgMinimizeWindow {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -16215,8 +16142,8 @@ pub fn zzz_vproto_internal_pack_cmsgminimizewindow(o CMsgMinimizeWindow, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgminimizewindow(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgMinimizeWindow) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgminimizewindow_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgminimizewindow_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16247,7 +16174,7 @@ pub fn cmsgshowbrowsercontextmenu_unpack(buf []byte) ?CMsgShowBrowserContextMenu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -16309,8 +16236,8 @@ pub fn zzz_vproto_internal_pack_cmsgshowbrowsercontextmenu(o CMsgShowBrowserCont
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgshowbrowsercontextmenu(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgShowBrowserContextMenu) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgshowbrowsercontextmenu_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgshowbrowsercontextmenu_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16345,12 +16272,12 @@ pub fn cmsgimesetcomposition_unpack(buf []byte) ?CMsgImeSetComposition {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.text = v
 				i = ii
 			}
@@ -16412,8 +16339,8 @@ pub fn zzz_vproto_internal_pack_cmsgimesetcomposition(o CMsgImeSetComposition, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgimesetcomposition(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgImeSetComposition) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgimesetcomposition_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgimesetcomposition_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16448,12 +16375,12 @@ pub fn cmsgimecommittext_unpack(buf []byte) ?CMsgImeCommitText {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.text = v
 				i = ii
 			}
@@ -16515,8 +16442,8 @@ pub fn zzz_vproto_internal_pack_cmsgimecommittext(o CMsgImeCommitText, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgimecommittext(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgImeCommitText) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgimecommittext_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgimecommittext_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16547,7 +16474,7 @@ pub fn cmsgimecancelcomposition_unpack(buf []byte) ?CMsgImeCancelComposition {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
@@ -16609,8 +16536,8 @@ pub fn zzz_vproto_internal_pack_cmsgimecancelcomposition(o CMsgImeCancelComposit
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgimecancelcomposition(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgImeCancelComposition) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgimecancelcomposition_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgimecancelcomposition_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16649,17 +16576,17 @@ pub fn cmsgimecompositionrangechanged_unpack(buf []byte) ?CMsgImeCompositionRang
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
@@ -16721,8 +16648,8 @@ pub fn zzz_vproto_internal_pack_cmsgimecompositionrangechanged(o CMsgImeComposit
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgimecompositionrangechanged(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgImeCompositionRangeChanged) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgimecompositionrangechanged_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgimecompositionrangechanged_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16761,17 +16688,17 @@ pub fn cmsginspectelement_unpack(buf []byte) ?CMsgInspectElement {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y = v
 				i = ii
 			}
@@ -16833,8 +16760,8 @@ pub fn zzz_vproto_internal_pack_cmsginspectelement(o CMsgInspectElement, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsginspectelement(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgInspectElement) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsginspectelement_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsginspectelement_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16851,7 +16778,7 @@ pub fn (o &CMsgDisableF5) pack() []byte {
 	if o.browser_handle != u32(0) {
 		res << vproto.pack_uint32_field(o.browser_handle, 1)
 	}
-	if o.disable != bool(0) {
+	if o.disable != false {
 		res << vproto.pack_bool_field(o.disable, 2)
 	}
 	return res
@@ -16869,12 +16796,12 @@ pub fn cmsgdisablef5_unpack(buf []byte) ?CMsgDisableF5 {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.disable = v
 				i = ii
 			}
@@ -16936,8 +16863,8 @@ pub fn zzz_vproto_internal_pack_cmsgdisablef5(o CMsgDisableF5, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgdisablef5(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgDisableF5) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgdisablef5_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgdisablef5_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16972,12 +16899,12 @@ pub fn cmsgstartdownload_unpack(buf []byte) ?CMsgStartDownload {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.browser_handle = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
@@ -17039,7 +16966,7 @@ pub fn zzz_vproto_internal_pack_cmsgstartdownload(o CMsgStartDownload, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgstartdownload(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgStartDownload) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgstartdownload_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgstartdownload_unpack(v) ?
 	return i, unpacked
 }

@@ -38,17 +38,17 @@ pub fn ccredentials_testavailablepassword_request_unpack(buf []byte) ?CCredentia
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.password = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_digest_password = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.account_name = v
 				i = ii
 			}
@@ -69,8 +69,7 @@ pub fn ccredentials_testavailablepassword_request_unpack(buf []byte) ?CCredentia
 
 [inline]
 pub fn (a CCredentials_TestAvailablePassword_Request) eq(b CCredentials_TestAvailablePassword_Request) bool {
-	return true && a.password == b.password &&
-		a.sha_digest_password == b.sha_digest_password &&
+	return true && a.password == b.password && a.sha_digest_password == b.sha_digest_password &&
 		a.account_name == b.account_name
 }
 
@@ -112,8 +111,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_testavailablepassword_request(o CCr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_testavailablepassword_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_TestAvailablePassword_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_testavailablepassword_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_testavailablepassword_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -126,7 +125,7 @@ pub mut:
 
 pub fn (o &CCredentials_TestAvailablePassword_Response) pack() []byte {
 	mut res := []byte{}
-	if o.is_valid != bool(0) {
+	if o.is_valid != false {
 		res << vproto.pack_bool_field(o.is_valid, 3)
 	}
 	return res
@@ -144,7 +143,7 @@ pub fn ccredentials_testavailablepassword_response_unpack(buf []byte) ?CCredenti
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_valid = v
 				i = ii
 			}
@@ -206,8 +205,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_testavailablepassword_response(o CC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_testavailablepassword_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_TestAvailablePassword_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_testavailablepassword_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_testavailablepassword_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -223,7 +222,7 @@ pub mut:
 
 pub fn (o &CCredentials_GetSteamGuardDetails_Request) pack() []byte {
 	mut res := []byte{}
-	if o.include_new_authentications != bool(0) {
+	if o.include_new_authentications != false {
 		res << vproto.pack_bool_field(o.include_new_authentications, 1)
 	}
 	if o.webcookie != '' {
@@ -250,22 +249,22 @@ pub fn ccredentials_getsteamguarddetails_request_unpack(buf []byte) ?CCredential
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.include_new_authentications = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.webcookie = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_minimum_wanted = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ipaddress = v
 				i = ii
 			}
@@ -286,9 +285,8 @@ pub fn ccredentials_getsteamguarddetails_request_unpack(buf []byte) ?CCredential
 
 [inline]
 pub fn (a CCredentials_GetSteamGuardDetails_Request) eq(b CCredentials_GetSteamGuardDetails_Request) bool {
-	return true && a.include_new_authentications == b.include_new_authentications &&
-		a.webcookie == b.webcookie && a.timestamp_minimum_wanted == b.timestamp_minimum_wanted &&
-		a.ipaddress == b.ipaddress
+	return true && a.include_new_authentications == b.include_new_authentications && a.webcookie ==
+		b.webcookie && a.timestamp_minimum_wanted == b.timestamp_minimum_wanted && a.ipaddress == b.ipaddress
 }
 
 [inline]
@@ -329,8 +327,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_request(o CCre
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_getsteamguarddetails_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_getsteamguarddetails_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -352,7 +350,7 @@ pub fn (o &CCredentials_GetSteamGuardDetails_Response_NewAuthentication) pack() 
 	if o.timestamp_steamguard_enabled != u32(0) {
 		res << vproto.pack_32bit_field(o.timestamp_steamguard_enabled, 1)
 	}
-	if o.is_web_cookie != bool(0) {
+	if o.is_web_cookie != false {
 		res << vproto.pack_bool_field(o.is_web_cookie, 2)
 	}
 	if o.ipaddress != int(0) {
@@ -361,7 +359,7 @@ pub fn (o &CCredentials_GetSteamGuardDetails_Response_NewAuthentication) pack() 
 	if o.geoloc_info != '' {
 		res << vproto.pack_string_field(o.geoloc_info, 4)
 	}
-	if o.is_remembered != bool(0) {
+	if o.is_remembered != false {
 		res << vproto.pack_bool_field(o.is_remembered, 5)
 	}
 	if o.machine_name_user_supplied != '' {
@@ -385,37 +383,37 @@ pub fn ccredentials_getsteamguarddetails_response_newauthentication_unpack(buf [
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_steamguard_enabled = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_web_cookie = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ipaddress = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.geoloc_info = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_remembered = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.machine_name_user_supplied = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.status = v
 				i = ii
 			}
@@ -437,10 +435,8 @@ pub fn ccredentials_getsteamguarddetails_response_newauthentication_unpack(buf [
 [inline]
 pub fn (a CCredentials_GetSteamGuardDetails_Response_NewAuthentication) eq(b CCredentials_GetSteamGuardDetails_Response_NewAuthentication) bool {
 	return true && a.timestamp_steamguard_enabled == b.timestamp_steamguard_enabled &&
-		a.is_web_cookie == b.is_web_cookie &&
-		a.ipaddress == b.ipaddress && a.geoloc_info == b.geoloc_info &&
-		a.is_remembered == b.is_remembered &&
-		a.machine_name_user_supplied == b.machine_name_user_supplied &&
+		a.is_web_cookie == b.is_web_cookie && a.ipaddress == b.ipaddress && a.geoloc_info == b.geoloc_info &&
+		a.is_remembered == b.is_remembered && a.machine_name_user_supplied == b.machine_name_user_supplied &&
 		a.status == b.status
 }
 
@@ -482,8 +478,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_newau
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_newauthentication(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Response_NewAuthentication) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_getsteamguarddetails_response_newauthentication_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_getsteamguarddetails_response_newauthentication_unpack(v) ?
 	return i, unpacked
 }
 
@@ -512,16 +508,18 @@ pub fn (o &CCredentials_GetSteamGuardDetails_Response_SessionData) pack() []byte
 	if o.timestamp_machine_steamguard_enabled != u32(0) {
 		res << vproto.pack_32bit_field(o.timestamp_machine_steamguard_enabled, 3)
 	}
-	if o.authentication_exists_from_geoloc_before_mintime != bool(0) {
-		res << vproto.pack_bool_field(o.authentication_exists_from_geoloc_before_mintime, 4)
+	if o.authentication_exists_from_geoloc_before_mintime != false {
+		res <<
+			vproto.pack_bool_field(o.authentication_exists_from_geoloc_before_mintime, 4)
 	}
 	// [packed=false]
 	for _, x in o.newauthentication {
 		res <<
 			zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_newauthentication(x, 5)
 	}
-	if o.authentication_exists_from_same_ip_before_mintime != bool(0) {
-		res << vproto.pack_bool_field(o.authentication_exists_from_same_ip_before_mintime, 6)
+	if o.authentication_exists_from_same_ip_before_mintime != false {
+		res <<
+			vproto.pack_bool_field(o.authentication_exists_from_same_ip_before_mintime, 6)
 	}
 	if o.public_ipv4 != u32(0) {
 		res << vproto.pack_uint32_field(o.public_ipv4, 7)
@@ -544,44 +542,44 @@ pub fn ccredentials_getsteamguarddetails_response_sessiondata_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.machine_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.machine_name_userchosen = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_machine_steamguard_enabled = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.authentication_exists_from_geoloc_before_mintime = v
 				i = ii
 			}
 			5 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_newauthentication(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.newauthentication << v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.authentication_exists_from_same_ip_before_mintime = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ipv4 = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ip_address = v
 				i = ii
 			}
@@ -602,11 +600,9 @@ pub fn ccredentials_getsteamguarddetails_response_sessiondata_unpack(buf []byte)
 
 [inline]
 pub fn (a CCredentials_GetSteamGuardDetails_Response_SessionData) eq(b CCredentials_GetSteamGuardDetails_Response_SessionData) bool {
-	return true && a.machine_id == b.machine_id &&
-		a.machine_name_userchosen == b.machine_name_userchosen &&
-		a.timestamp_machine_steamguard_enabled == b.timestamp_machine_steamguard_enabled &&
-		a.authentication_exists_from_geoloc_before_mintime == b.authentication_exists_from_geoloc_before_mintime &&
-		a.newauthentication.eq(b.newauthentication) &&
+	return true && a.machine_id == b.machine_id && a.machine_name_userchosen == b.machine_name_userchosen &&
+		a.timestamp_machine_steamguard_enabled == b.timestamp_machine_steamguard_enabled && a.authentication_exists_from_geoloc_before_mintime ==
+		b.authentication_exists_from_geoloc_before_mintime && a.newauthentication.eq(b.newauthentication) &&
 		a.authentication_exists_from_same_ip_before_mintime == b.authentication_exists_from_same_ip_before_mintime &&
 		a.public_ipv4 == b.public_ipv4 && a.public_ip_address == b.public_ip_address
 }
@@ -649,8 +645,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_sessi
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_sessiondata(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Response_SessionData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_getsteamguarddetails_response_sessiondata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_getsteamguarddetails_response_sessiondata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -673,7 +669,7 @@ pub mut:
 
 pub fn (o &CCredentials_GetSteamGuardDetails_Response) pack() []byte {
 	mut res := []byte{}
-	if o.is_steamguard_enabled != bool(0) {
+	if o.is_steamguard_enabled != false {
 		res << vproto.pack_bool_field(o.is_steamguard_enabled, 1)
 	}
 	if o.timestamp_steamguard_enabled != u32(0) {
@@ -688,9 +684,10 @@ pub fn (o &CCredentials_GetSteamGuardDetails_Response) pack() []byte {
 		res << vproto.pack_string_field(o.deprecated_machine_name_userchosen, 4)
 	}
 	if o.deprecated_timestamp_machine_steamguard_enabled != u32(0) {
-		res << vproto.pack_32bit_field(o.deprecated_timestamp_machine_steamguard_enabled, 5)
+		res <<
+			vproto.pack_32bit_field(o.deprecated_timestamp_machine_steamguard_enabled, 5)
 	}
-	if o.deprecated_authentication_exists_from_geoloc_before_mintime != bool(0) {
+	if o.deprecated_authentication_exists_from_geoloc_before_mintime != false {
 		res <<
 			vproto.pack_bool_field(o.deprecated_authentication_exists_from_geoloc_before_mintime, 6)
 	}
@@ -702,13 +699,13 @@ pub fn (o &CCredentials_GetSteamGuardDetails_Response) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response_sessiondata(x, 8)
 	}
-	if o.is_twofactor_enabled != bool(0) {
+	if o.is_twofactor_enabled != false {
 		res << vproto.pack_bool_field(o.is_twofactor_enabled, 9)
 	}
 	if o.timestamp_twofactor_enabled != u32(0) {
 		res << vproto.pack_32bit_field(o.timestamp_twofactor_enabled, 10)
 	}
-	if o.is_phone_verified != bool(0) {
+	if o.is_phone_verified != false {
 		res << vproto.pack_bool_field(o.is_phone_verified, 11)
 	}
 	return res
@@ -726,61 +723,61 @@ pub fn ccredentials_getsteamguarddetails_response_unpack(buf []byte) ?CCredentia
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_steamguard_enabled = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_steamguard_enabled = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_newauthentication(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.deprecated_newauthentication << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_machine_name_userchosen = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_timestamp_machine_steamguard_enabled = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_authentication_exists_from_geoloc_before_mintime = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_machine_id = v
 				i = ii
 			}
 			8 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response_sessiondata(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.session_data << v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_twofactor_enabled = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_twofactor_enabled = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_phone_verified = v
 				i = ii
 			}
@@ -801,17 +798,14 @@ pub fn ccredentials_getsteamguarddetails_response_unpack(buf []byte) ?CCredentia
 
 [inline]
 pub fn (a CCredentials_GetSteamGuardDetails_Response) eq(b CCredentials_GetSteamGuardDetails_Response) bool {
-	return true && a.is_steamguard_enabled == b.is_steamguard_enabled &&
-		a.timestamp_steamguard_enabled == b.timestamp_steamguard_enabled &&
-		a.deprecated_newauthentication.eq(b.deprecated_newauthentication) &&
-		a.deprecated_machine_name_userchosen == b.deprecated_machine_name_userchosen &&
-		a.deprecated_timestamp_machine_steamguard_enabled == b.deprecated_timestamp_machine_steamguard_enabled &&
+	return true && a.is_steamguard_enabled == b.is_steamguard_enabled && a.timestamp_steamguard_enabled ==
+		b.timestamp_steamguard_enabled && a.deprecated_newauthentication.eq(b.deprecated_newauthentication) &&
+		a.deprecated_machine_name_userchosen == b.deprecated_machine_name_userchosen && a.deprecated_timestamp_machine_steamguard_enabled ==
+		b.deprecated_timestamp_machine_steamguard_enabled &&
 		a.deprecated_authentication_exists_from_geoloc_before_mintime ==
-		b.deprecated_authentication_exists_from_geoloc_before_mintime &&
-		a.deprecated_machine_id == b.deprecated_machine_id && a.session_data.eq(b.session_data) &&
-		a.is_twofactor_enabled == b.is_twofactor_enabled &&
-		a.timestamp_twofactor_enabled == b.timestamp_twofactor_enabled &&
-		a.is_phone_verified == b.is_phone_verified
+		b.deprecated_authentication_exists_from_geoloc_before_mintime && a.deprecated_machine_id == b.deprecated_machine_id &&
+		a.session_data.eq(b.session_data) && a.is_twofactor_enabled == b.is_twofactor_enabled &&
+		a.timestamp_twofactor_enabled == b.timestamp_twofactor_enabled && a.is_phone_verified == b.is_phone_verified
 }
 
 [inline]
@@ -852,8 +846,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_getsteamguarddetails_response(o CCr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_getsteamguarddetails_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetSteamGuardDetails_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_getsteamguarddetails_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_getsteamguarddetails_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -867,10 +861,10 @@ pub mut:
 
 pub fn (o &CCredentials_NewMachineNotificationDialog_Request) pack() []byte {
 	mut res := []byte{}
-	if o.is_approved != bool(0) {
+	if o.is_approved != false {
 		res << vproto.pack_bool_field(o.is_approved, 1)
 	}
-	if o.is_wizard_complete != bool(0) {
+	if o.is_wizard_complete != false {
 		res << vproto.pack_bool_field(o.is_wizard_complete, 2)
 	}
 	return res
@@ -888,12 +882,12 @@ pub fn ccredentials_newmachinenotificationdialog_request_unpack(buf []byte) ?CCr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_approved = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_wizard_complete = v
 				i = ii
 			}
@@ -955,8 +949,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_newmachinenotificationdialog_reques
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_newmachinenotificationdialog_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_NewMachineNotificationDialog_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_newmachinenotificationdialog_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_newmachinenotificationdialog_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1018,8 +1012,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_newmachinenotificationdialog_respon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_newmachinenotificationdialog_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_NewMachineNotificationDialog_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_newmachinenotificationdialog_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_newmachinenotificationdialog_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1050,7 +1044,7 @@ pub fn ccredentials_validateemailaddress_request_unpack(buf []byte) ?CCredential
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stoken = v
 				i = ii
 			}
@@ -1112,8 +1106,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_validateemailaddress_request(o CCre
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_validateemailaddress_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_ValidateEmailAddress_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_validateemailaddress_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_validateemailaddress_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1126,7 +1120,7 @@ pub mut:
 
 pub fn (o &CCredentials_ValidateEmailAddress_Response) pack() []byte {
 	mut res := []byte{}
-	if o.was_validated != bool(0) {
+	if o.was_validated != false {
 		res << vproto.pack_bool_field(o.was_validated, 1)
 	}
 	return res
@@ -1144,7 +1138,7 @@ pub fn ccredentials_validateemailaddress_response_unpack(buf []byte) ?CCredentia
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.was_validated = v
 				i = ii
 			}
@@ -1206,8 +1200,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_validateemailaddress_response(o CCr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_validateemailaddress_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_ValidateEmailAddress_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_validateemailaddress_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_validateemailaddress_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1242,12 +1236,12 @@ pub fn ccredentials_steamguardphishingreport_request_unpack(buf []byte) ?CCreden
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.param_string = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ipaddress_actual = v
 				i = ii
 			}
@@ -1309,8 +1303,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_steamguardphishingreport_request(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_steamguardphishingreport_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_SteamGuardPhishingReport_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_steamguardphishingreport_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_steamguardphishingreport_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1373,47 +1367,47 @@ pub fn ccredentials_steamguardphishingreport_response_unpack(buf []byte) ?CCrede
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ipaddress_loginattempt = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.countryname_loginattempt = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.statename_loginattempt = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cityname_loginattempt = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ipaddress_actual = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.countryname_actual = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.statename_actual = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cityname_actual = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamguard_code = v
 				i = ii
 			}
@@ -1434,15 +1428,11 @@ pub fn ccredentials_steamguardphishingreport_response_unpack(buf []byte) ?CCrede
 
 [inline]
 pub fn (a CCredentials_SteamGuardPhishingReport_Response) eq(b CCredentials_SteamGuardPhishingReport_Response) bool {
-	return true && a.ipaddress_loginattempt == b.ipaddress_loginattempt &&
-		a.countryname_loginattempt == b.countryname_loginattempt &&
-		a.statename_loginattempt == b.statename_loginattempt &&
-		a.cityname_loginattempt == b.cityname_loginattempt &&
-		a.ipaddress_actual == b.ipaddress_actual &&
-		a.countryname_actual == b.countryname_actual &&
-		a.statename_actual == b.statename_actual &&
-		a.cityname_actual == b.cityname_actual &&
-		a.steamguard_code == b.steamguard_code
+	return true && a.ipaddress_loginattempt == b.ipaddress_loginattempt && a.countryname_loginattempt ==
+		b.countryname_loginattempt && a.statename_loginattempt == b.statename_loginattempt &&
+		a.cityname_loginattempt == b.cityname_loginattempt && a.ipaddress_actual == b.ipaddress_actual &&
+		a.countryname_actual == b.countryname_actual && a.statename_actual == b.statename_actual &&
+		a.cityname_actual == b.cityname_actual && a.steamguard_code == b.steamguard_code
 }
 
 [inline]
@@ -1483,8 +1473,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_steamguardphishingreport_response(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_steamguardphishingreport_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_SteamGuardPhishingReport_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_steamguardphishingreport_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_steamguardphishingreport_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1497,7 +1487,7 @@ pub mut:
 
 pub fn (o &CCredentials_LastCredentialChangeTime_Request) pack() []byte {
 	mut res := []byte{}
-	if o.user_changes_only != bool(0) {
+	if o.user_changes_only != false {
 		res << vproto.pack_bool_field(o.user_changes_only, 1)
 	}
 	return res
@@ -1515,7 +1505,7 @@ pub fn ccredentials_lastcredentialchangetime_request_unpack(buf []byte) ?CCreden
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.user_changes_only = v
 				i = ii
 			}
@@ -1577,8 +1567,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_lastcredentialchangetime_request(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_lastcredentialchangetime_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_LastCredentialChangeTime_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_lastcredentialchangetime_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_lastcredentialchangetime_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1617,17 +1607,17 @@ pub fn ccredentials_lastcredentialchangetime_response_unpack(buf []byte) ?CCrede
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_last_password_change = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_last_email_change = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp_last_password_reset = v
 				i = ii
 			}
@@ -1649,8 +1639,8 @@ pub fn ccredentials_lastcredentialchangetime_response_unpack(buf []byte) ?CCrede
 [inline]
 pub fn (a CCredentials_LastCredentialChangeTime_Response) eq(b CCredentials_LastCredentialChangeTime_Response) bool {
 	return true && a.timestamp_last_password_change == b.timestamp_last_password_change &&
-		a.timestamp_last_email_change == b.timestamp_last_email_change &&
-		a.timestamp_last_password_reset == b.timestamp_last_password_reset
+		a.timestamp_last_email_change == b.timestamp_last_email_change && a.timestamp_last_password_reset ==
+		b.timestamp_last_password_reset
 }
 
 [inline]
@@ -1691,8 +1681,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_lastcredentialchangetime_response(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_lastcredentialchangetime_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_LastCredentialChangeTime_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_lastcredentialchangetime_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_lastcredentialchangetime_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1754,8 +1744,8 @@ pub fn zzz_vproto_internal_pack_ccredentials_getaccountauthsecret_request(o CCre
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_getaccountauthsecret_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetAccountAuthSecret_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_getaccountauthsecret_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_getaccountauthsecret_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1790,12 +1780,12 @@ pub fn ccredentials_getaccountauthsecret_response_unpack(buf []byte) ?CCredentia
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.secret_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.secret = v
 				i = ii
 			}
@@ -1857,7 +1847,7 @@ pub fn zzz_vproto_internal_pack_ccredentials_getaccountauthsecret_response(o CCr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ccredentials_getaccountauthsecret_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CCredentials_GetAccountAuthSecret_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ccredentials_getaccountauthsecret_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ccredentials_getaccountauthsecret_response_unpack(v) ?
 	return i, unpacked
 }

@@ -29,13 +29,13 @@ pub fn (o &CFriendMessages_GetRecentMessages_Request) pack() []byte {
 	if o.count != u32(0) {
 		res << vproto.pack_uint32_field(o.count, 3)
 	}
-	if o.most_recent_conversation != bool(0) {
+	if o.most_recent_conversation != false {
 		res << vproto.pack_bool_field(o.most_recent_conversation, 4)
 	}
 	if o.rtime32_start_time != u32(0) {
 		res << vproto.pack_32bit_field(o.rtime32_start_time, 5)
 	}
-	if o.bbcode_format != bool(0) {
+	if o.bbcode_format != false {
 		res << vproto.pack_bool_field(o.bbcode_format, 6)
 	}
 	if o.start_ordinal != u32(0) {
@@ -62,47 +62,47 @@ pub fn cfriendmessages_getrecentmessages_request_unpack(buf []byte) ?CFriendMess
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid1 = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid2 = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.count = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.most_recent_conversation = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_start_time = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bbcode_format = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.start_ordinal = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_last = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ordinal_last = v
 				i = ii
 			}
@@ -123,13 +123,10 @@ pub fn cfriendmessages_getrecentmessages_request_unpack(buf []byte) ?CFriendMess
 
 [inline]
 pub fn (a CFriendMessages_GetRecentMessages_Request) eq(b CFriendMessages_GetRecentMessages_Request) bool {
-	return true && a.steamid1 == b.steamid1 &&
-		a.steamid2 == b.steamid2 && a.count == b.count &&
-		a.most_recent_conversation == b.most_recent_conversation &&
-		a.rtime32_start_time == b.rtime32_start_time &&
-		a.bbcode_format == b.bbcode_format &&
-		a.start_ordinal == b.start_ordinal &&
-		a.time_last == b.time_last && a.ordinal_last == b.ordinal_last
+	return true && a.steamid1 == b.steamid1 && a.steamid2 == b.steamid2 && a.count == b.count &&
+		a.most_recent_conversation == b.most_recent_conversation && a.rtime32_start_time == b.rtime32_start_time &&
+		a.bbcode_format == b.bbcode_format && a.start_ordinal == b.start_ordinal && a.time_last == b.time_last &&
+		a.ordinal_last == b.ordinal_last
 }
 
 [inline]
@@ -170,8 +167,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_request(o CFri
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_GetRecentMessages_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_getrecentmessages_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_getrecentmessages_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -214,22 +211,22 @@ pub fn cfriendmessages_getrecentmessages_response_friendmessage_unpack(buf []byt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.accountid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ordinal = v
 				i = ii
 			}
@@ -250,8 +247,7 @@ pub fn cfriendmessages_getrecentmessages_response_friendmessage_unpack(buf []byt
 
 [inline]
 pub fn (a CFriendMessages_GetRecentMessages_Response_FriendMessage) eq(b CFriendMessages_GetRecentMessages_Response_FriendMessage) bool {
-	return true && a.accountid == b.accountid &&
-		a.timestamp == b.timestamp && a.message == b.message &&
+	return true && a.accountid == b.accountid && a.timestamp == b.timestamp && a.message == b.message &&
 		a.ordinal == b.ordinal
 }
 
@@ -293,8 +289,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_response_frien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response_friendmessage(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_GetRecentMessages_Response_FriendMessage) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_getrecentmessages_response_friendmessage_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_getrecentmessages_response_friendmessage_unpack(v) ?
 	return i, unpacked
 }
 
@@ -313,7 +309,7 @@ pub fn (o &CFriendMessages_GetRecentMessages_Response) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_response_friendmessage(x, 1)
 	}
-	if o.more_available != bool(0) {
+	if o.more_available != false {
 		res << vproto.pack_bool_field(o.more_available, 4)
 	}
 	return res
@@ -333,12 +329,12 @@ pub fn cfriendmessages_getrecentmessages_response_unpack(buf []byte) ?CFriendMes
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response_friendmessage(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.messages << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.more_available = v
 				i = ii
 			}
@@ -400,8 +396,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_getrecentmessages_response(o CFr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_getrecentmessages_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_GetRecentMessages_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_getrecentmessages_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_getrecentmessages_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -418,7 +414,7 @@ pub fn (o &CFriendsMessages_GetActiveMessageSessions_Request) pack() []byte {
 	if o.lastmessage_since != u32(0) {
 		res << vproto.pack_uint32_field(o.lastmessage_since, 1)
 	}
-	if o.only_sessions_with_messages != bool(0) {
+	if o.only_sessions_with_messages != false {
 		res << vproto.pack_bool_field(o.only_sessions_with_messages, 2)
 	}
 	return res
@@ -436,12 +432,12 @@ pub fn cfriendsmessages_getactivemessagesessions_request_unpack(buf []byte) ?CFr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lastmessage_since = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.only_sessions_with_messages = v
 				i = ii
 			}
@@ -462,8 +458,8 @@ pub fn cfriendsmessages_getactivemessagesessions_request_unpack(buf []byte) ?CFr
 
 [inline]
 pub fn (a CFriendsMessages_GetActiveMessageSessions_Request) eq(b CFriendsMessages_GetActiveMessageSessions_Request) bool {
-	return true && a.lastmessage_since == b.lastmessage_since &&
-		a.only_sessions_with_messages == b.only_sessions_with_messages
+	return true && a.lastmessage_since == b.lastmessage_since && a.only_sessions_with_messages ==
+		b.only_sessions_with_messages
 }
 
 [inline]
@@ -504,8 +500,8 @@ pub fn zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_reques
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendsMessages_GetActiveMessageSessions_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendsmessages_getactivemessagesessions_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendsmessages_getactivemessagesessions_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -548,22 +544,22 @@ pub fn cfriendsmessages_getactivemessagesessions_response_friendmessagesession_u
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.accountid_friend = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_message = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_view = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unread_message_count = v
 				i = ii
 			}
@@ -584,8 +580,7 @@ pub fn cfriendsmessages_getactivemessagesessions_response_friendmessagesession_u
 
 [inline]
 pub fn (a CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) eq(b CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) bool {
-	return true && a.accountid_friend == b.accountid_friend &&
-		a.last_message == b.last_message &&
+	return true && a.accountid_friend == b.accountid_friend && a.last_message == b.last_message &&
 		a.last_view == b.last_view && a.unread_message_count == b.unread_message_count
 }
 
@@ -627,8 +622,8 @@ pub fn zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_respon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_response_friendmessagesession(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendsMessages_GetActiveMessageSessions_Response_FriendMessageSession) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendsmessages_getactivemessagesessions_response_friendmessagesession_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendsmessages_getactivemessagesessions_response_friendmessagesession_unpack(v) ?
 	return i, unpacked
 }
 
@@ -667,12 +662,12 @@ pub fn cfriendsmessages_getactivemessagesessions_response_unpack(buf []byte) ?CF
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_response_friendmessagesession(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.message_sessions << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
@@ -734,8 +729,8 @@ pub fn zzz_vproto_internal_pack_cfriendsmessages_getactivemessagesessions_respon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendsmessages_getactivemessagesessions_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendsMessages_GetActiveMessageSessions_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendsmessages_getactivemessagesessions_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendsmessages_getactivemessagesessions_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -763,13 +758,13 @@ pub fn (o &CFriendMessages_SendMessage_Request) pack() []byte {
 	if o.message != '' {
 		res << vproto.pack_string_field(o.message, 3)
 	}
-	if o.contains_bbcode != bool(0) {
+	if o.contains_bbcode != false {
 		res << vproto.pack_bool_field(o.contains_bbcode, 4)
 	}
-	if o.echo_to_sender != bool(0) {
+	if o.echo_to_sender != false {
 		res << vproto.pack_bool_field(o.echo_to_sender, 5)
 	}
-	if o.low_priority != bool(0) {
+	if o.low_priority != false {
 		res << vproto.pack_bool_field(o.low_priority, 6)
 	}
 	if o.client_message_id != '' {
@@ -790,37 +785,37 @@ pub fn cfriendmessages_sendmessage_request_unpack(buf []byte) ?CFriendMessages_S
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chat_entry_type = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.contains_bbcode = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.echo_to_sender = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.low_priority = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_message_id = v
 				i = ii
 			}
@@ -841,12 +836,9 @@ pub fn cfriendmessages_sendmessage_request_unpack(buf []byte) ?CFriendMessages_S
 
 [inline]
 pub fn (a CFriendMessages_SendMessage_Request) eq(b CFriendMessages_SendMessage_Request) bool {
-	return true && a.steamid == b.steamid &&
-		a.chat_entry_type == b.chat_entry_type &&
-		a.message == b.message && a.contains_bbcode == b.contains_bbcode &&
-		a.echo_to_sender == b.echo_to_sender &&
-		a.low_priority == b.low_priority &&
-		a.client_message_id == b.client_message_id
+	return true && a.steamid == b.steamid && a.chat_entry_type == b.chat_entry_type &&
+		a.message == b.message && a.contains_bbcode == b.contains_bbcode && a.echo_to_sender == b.echo_to_sender &&
+		a.low_priority == b.low_priority && a.client_message_id == b.client_message_id
 }
 
 [inline]
@@ -887,8 +879,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_sendmessage_request(o CFriendMes
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_sendmessage_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_SendMessage_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_sendmessage_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_sendmessage_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -931,22 +923,22 @@ pub fn cfriendmessages_sendmessage_response_unpack(buf []byte) ?CFriendMessages_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modified_message = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_timestamp = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ordinal = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_without_bb_code = v
 				i = ii
 			}
@@ -967,8 +959,7 @@ pub fn cfriendmessages_sendmessage_response_unpack(buf []byte) ?CFriendMessages_
 
 [inline]
 pub fn (a CFriendMessages_SendMessage_Response) eq(b CFriendMessages_SendMessage_Response) bool {
-	return true && a.modified_message == b.modified_message &&
-		a.server_timestamp == b.server_timestamp &&
+	return true && a.modified_message == b.modified_message && a.server_timestamp == b.server_timestamp &&
 		a.ordinal == b.ordinal && a.message_without_bb_code == b.message_without_bb_code
 }
 
@@ -1010,8 +1001,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_sendmessage_response(o CFriendMe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_sendmessage_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_SendMessage_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_sendmessage_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_sendmessage_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1046,12 +1037,12 @@ pub fn cfriendmessages_ackmessage_notification_unpack(buf []byte) ?CFriendMessag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_partner = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
@@ -1113,8 +1104,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_ackmessage_notification(o CFrien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_ackmessage_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_AckMessage_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_ackmessage_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_ackmessage_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1145,7 +1136,7 @@ pub fn cfriendmessages_isinfriendsuibeta_request_unpack(buf []byte) ?CFriendMess
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -1207,8 +1198,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_isinfriendsuibeta_request(o CFri
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_isinfriendsuibeta_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_IsInFriendsUIBeta_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_isinfriendsuibeta_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_isinfriendsuibeta_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1222,10 +1213,10 @@ pub mut:
 
 pub fn (o &CFriendMessages_IsInFriendsUIBeta_Response) pack() []byte {
 	mut res := []byte{}
-	if o.online_in_friendsui != bool(0) {
+	if o.online_in_friendsui != false {
 		res << vproto.pack_bool_field(o.online_in_friendsui, 1)
 	}
-	if o.has_used_friendsui != bool(0) {
+	if o.has_used_friendsui != false {
 		res << vproto.pack_bool_field(o.has_used_friendsui, 2)
 	}
 	return res
@@ -1243,12 +1234,12 @@ pub fn cfriendmessages_isinfriendsuibeta_response_unpack(buf []byte) ?CFriendMes
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.online_in_friendsui = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.has_used_friendsui = v
 				i = ii
 			}
@@ -1269,8 +1260,7 @@ pub fn cfriendmessages_isinfriendsuibeta_response_unpack(buf []byte) ?CFriendMes
 
 [inline]
 pub fn (a CFriendMessages_IsInFriendsUIBeta_Response) eq(b CFriendMessages_IsInFriendsUIBeta_Response) bool {
-	return true && a.online_in_friendsui == b.online_in_friendsui &&
-		a.has_used_friendsui == b.has_used_friendsui
+	return true && a.online_in_friendsui == b.online_in_friendsui && a.has_used_friendsui == b.has_used_friendsui
 }
 
 [inline]
@@ -1311,8 +1301,8 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_isinfriendsuibeta_response(o CFr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_isinfriendsuibeta_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_IsInFriendsUIBeta_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_isinfriendsuibeta_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_isinfriendsuibeta_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1339,7 +1329,7 @@ pub fn (o &CFriendMessages_IncomingMessage_Notification) pack() []byte {
 	if o.chat_entry_type != int(0) {
 		res << vproto.pack_int32_field(o.chat_entry_type, 2)
 	}
-	if o.from_limited_account != bool(0) {
+	if o.from_limited_account != false {
 		res << vproto.pack_bool_field(o.from_limited_account, 3)
 	}
 	if o.message != '' {
@@ -1351,13 +1341,13 @@ pub fn (o &CFriendMessages_IncomingMessage_Notification) pack() []byte {
 	if o.ordinal != u32(0) {
 		res << vproto.pack_uint32_field(o.ordinal, 6)
 	}
-	if o.local_echo != bool(0) {
+	if o.local_echo != false {
 		res << vproto.pack_bool_field(o.local_echo, 7)
 	}
 	if o.message_no_bbcode != '' {
 		res << vproto.pack_string_field(o.message_no_bbcode, 8)
 	}
-	if o.low_priority != bool(0) {
+	if o.low_priority != false {
 		res << vproto.pack_bool_field(o.low_priority, 9)
 	}
 	return res
@@ -1375,47 +1365,47 @@ pub fn cfriendmessages_incomingmessage_notification_unpack(buf []byte) ?CFriendM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_friend = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chat_entry_type = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_limited_account = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rtime32_server_timestamp = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ordinal = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.local_echo = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_no_bbcode = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.low_priority = v
 				i = ii
 			}
@@ -1436,13 +1426,10 @@ pub fn cfriendmessages_incomingmessage_notification_unpack(buf []byte) ?CFriendM
 
 [inline]
 pub fn (a CFriendMessages_IncomingMessage_Notification) eq(b CFriendMessages_IncomingMessage_Notification) bool {
-	return true && a.steamid_friend == b.steamid_friend &&
-		a.chat_entry_type == b.chat_entry_type &&
-		a.from_limited_account == b.from_limited_account &&
-		a.message == b.message && a.rtime32_server_timestamp == b.rtime32_server_timestamp &&
-		a.ordinal == b.ordinal && a.local_echo == b.local_echo &&
-		a.message_no_bbcode == b.message_no_bbcode &&
-		a.low_priority == b.low_priority
+	return true && a.steamid_friend == b.steamid_friend && a.chat_entry_type == b.chat_entry_type &&
+		a.from_limited_account == b.from_limited_account && a.message == b.message && a.rtime32_server_timestamp ==
+		b.rtime32_server_timestamp && a.ordinal == b.ordinal && a.local_echo == b.local_echo &&
+		a.message_no_bbcode == b.message_no_bbcode && a.low_priority == b.low_priority
 }
 
 [inline]
@@ -1483,7 +1470,7 @@ pub fn zzz_vproto_internal_pack_cfriendmessages_incomingmessage_notification(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cfriendmessages_incomingmessage_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CFriendMessages_IncomingMessage_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cfriendmessages_incomingmessage_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cfriendmessages_incomingmessage_notification_unpack(v) ?
 	return i, unpacked
 }

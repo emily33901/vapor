@@ -38,14 +38,14 @@ fn zzz_vproto_internal_pack_einputmode_packed(e []EInputMode, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_einputmode(buf []byte, tag_wiretype vproto.WireType) ?(int, EInputMode) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EInputMode(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_einputmode_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EInputMode) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -90,14 +90,14 @@ fn zzz_vproto_internal_pack_emousemode_packed(e []EMouseMode, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emousemode(buf []byte, tag_wiretype vproto.WireType) ?(int, EMouseMode) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EMouseMode(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emousemode_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EMouseMode) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -174,14 +174,14 @@ fn zzz_vproto_internal_pack_econtrollerelementtype_packed(e []EControllerElement
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_econtrollerelementtype(buf []byte, tag_wiretype vproto.WireType) ?(int, EControllerElementType) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EControllerElementType(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_econtrollerelementtype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EControllerElementType) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -207,7 +207,7 @@ pub fn (o &CVirtualControllerElement) pack() []byte {
 	if o.@type != zzz_vproto_internal_new_econtrollerelementtype() {
 		res << zzz_vproto_internal_pack_econtrollerelementtype(o.@type, 1)
 	}
-	if o.visible != bool(0) {
+	if o.visible != false {
 		res << vproto.pack_bool_field(o.visible, 2)
 	}
 	if o.x_position != f32(0) {
@@ -237,32 +237,32 @@ pub fn cvirtualcontrollerelement_unpack(buf []byte) ?CVirtualControllerElement {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_econtrollerelementtype(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_econtrollerelementtype(cur_buf, tag_wiretype.wire_type) ?
 				res.@type = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.visible = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x_position = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y_position = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.x_scale = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.y_scale = v
 				i = ii
 			}
@@ -283,10 +283,8 @@ pub fn cvirtualcontrollerelement_unpack(buf []byte) ?CVirtualControllerElement {
 
 [inline]
 pub fn (a CVirtualControllerElement) eq(b CVirtualControllerElement) bool {
-	return true && a.@type == b.@type &&
-		a.visible == b.visible && a.x_position == b.x_position &&
-		a.y_position == b.y_position && a.x_scale == b.x_scale &&
-		a.y_scale == b.y_scale
+	return true && a.@type == b.@type && a.visible == b.visible && a.x_position == b.x_position &&
+		a.y_position == b.y_position && a.x_scale == b.x_scale && a.y_scale == b.y_scale
 }
 
 [inline]
@@ -327,8 +325,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerelement(o CVirtualControllerEl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerelement(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerElement) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerelement_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerelement_unpack(v) ?
 	return i, unpacked
 }
 
@@ -371,22 +369,22 @@ pub fn cvirtualcontrollercolor_unpack(buf []byte) ?CVirtualControllerColor {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.r = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.g = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.b = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.a = v
 				i = ii
 			}
@@ -448,8 +446,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollercolor(o CVirtualControllerColo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollercolor(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerColor) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollercolor_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollercolor_unpack(v) ?
 	return i, unpacked
 }
 
@@ -493,24 +491,24 @@ pub fn cvirtualcontrollerlayout_unpack(buf []byte) ?CVirtualControllerLayout {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.layout_version = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.actionset_id = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerelement(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.elements << v
 				i = ii
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollercolor(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollercolor(cur_buf, tag_wiretype.wire_type) ?
 				res.color = v
 				i = ii
 			}
@@ -531,8 +529,8 @@ pub fn cvirtualcontrollerlayout_unpack(buf []byte) ?CVirtualControllerLayout {
 
 [inline]
 pub fn (a CVirtualControllerLayout) eq(b CVirtualControllerLayout) bool {
-	return true && a.layout_version == b.layout_version &&
-		a.actionset_id == b.actionset_id && a.elements.eq(b.elements) && a.color.eq(b.color)
+	return true && a.layout_version == b.layout_version && a.actionset_id == b.actionset_id &&
+		a.elements.eq(b.elements) && a.color.eq(b.color)
 }
 
 [inline]
@@ -573,8 +571,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerlayout(o CVirtualControllerLay
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerlayout(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerLayout) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerlayout_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerlayout_unpack(v) ?
 	return i, unpacked
 }
 
@@ -586,9 +584,9 @@ pub mut:
 	input_mode           EInputMode = .k_einputmodecontroller
 	mouse_mode           EMouseMode = .k_emousemodeunknown
 	trackpad_sensitivity f32 = 1
-	pinch_zoom_enabled   bool = false
-	pinch_zoom_x         f32 = 0
-	pinch_zoom_y         f32 = 0
+	pinch_zoom_enabled   bool
+	pinch_zoom_x         f32
+	pinch_zoom_y         f32
 	pinch_zoom_scale     f32 = 1
 	shaken               bool
 	mouse_offscreen      bool
@@ -609,7 +607,7 @@ pub fn (o &CVirtualControllerLayouts) pack() []byte {
 	if o.trackpad_sensitivity != f32(0) {
 		res << vproto.pack_float_field(o.trackpad_sensitivity, 4)
 	}
-	if o.pinch_zoom_enabled != bool(0) {
+	if o.pinch_zoom_enabled != false {
 		res << vproto.pack_bool_field(o.pinch_zoom_enabled, 5)
 	}
 	if o.pinch_zoom_x != f32(0) {
@@ -621,10 +619,10 @@ pub fn (o &CVirtualControllerLayouts) pack() []byte {
 	if o.pinch_zoom_scale != f32(0) {
 		res << vproto.pack_float_field(o.pinch_zoom_scale, 8)
 	}
-	if o.shaken != bool(0) {
+	if o.shaken != false {
 		res << vproto.pack_bool_field(o.shaken, 9)
 	}
-	if o.mouse_offscreen != bool(0) {
+	if o.mouse_offscreen != false {
 		res << vproto.pack_bool_field(o.mouse_offscreen, 10)
 	}
 	return res
@@ -644,52 +642,52 @@ pub fn cvirtualcontrollerlayouts_unpack(buf []byte) ?CVirtualControllerLayouts {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerlayout(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.layouts << v
 				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_einputmode(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_einputmode(cur_buf, tag_wiretype.wire_type) ?
 				res.input_mode = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_emousemode(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_emousemode(cur_buf, tag_wiretype.wire_type) ?
 				res.mouse_mode = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.trackpad_sensitivity = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pinch_zoom_enabled = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pinch_zoom_x = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pinch_zoom_y = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pinch_zoom_scale = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.shaken = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mouse_offscreen = v
 				i = ii
 			}
@@ -710,14 +708,10 @@ pub fn cvirtualcontrollerlayouts_unpack(buf []byte) ?CVirtualControllerLayouts {
 
 [inline]
 pub fn (a CVirtualControllerLayouts) eq(b CVirtualControllerLayouts) bool {
-	return true && a.layouts.eq(b.layouts) &&
-		a.input_mode == b.input_mode && a.mouse_mode == b.mouse_mode &&
-		a.trackpad_sensitivity == b.trackpad_sensitivity &&
-		a.pinch_zoom_enabled == b.pinch_zoom_enabled &&
-		a.pinch_zoom_x == b.pinch_zoom_x &&
-		a.pinch_zoom_y == b.pinch_zoom_y &&
-		a.pinch_zoom_scale == b.pinch_zoom_scale &&
-		a.shaken == b.shaken && a.mouse_offscreen == b.mouse_offscreen
+	return true && a.layouts.eq(b.layouts) && a.input_mode == b.input_mode && a.mouse_mode ==
+		b.mouse_mode && a.trackpad_sensitivity == b.trackpad_sensitivity && a.pinch_zoom_enabled == b.pinch_zoom_enabled &&
+		a.pinch_zoom_x == b.pinch_zoom_x && a.pinch_zoom_y == b.pinch_zoom_y && a.pinch_zoom_scale ==
+		b.pinch_zoom_scale && a.shaken == b.shaken && a.mouse_offscreen == b.mouse_offscreen
 }
 
 [inline]
@@ -758,8 +752,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerlayouts(o CVirtualControllerLa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerlayouts(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerLayouts) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerlayouts_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerlayouts_unpack(v) ?
 	return i, unpacked
 }
 
@@ -816,7 +810,7 @@ pub fn (o &CVirtualControllerConfig_Control) pack() []byte {
 	if o.icon_background != '' {
 		res << vproto.pack_string_field(o.icon_background, 10)
 	}
-	if o.input_toggle != bool(0) {
+	if o.input_toggle != false {
 		res << vproto.pack_bool_field(o.input_toggle, 11)
 	}
 	if o.input_activate_stick_or_trackpad != int(0) {
@@ -846,77 +840,77 @@ pub fn cvirtualcontrollerconfig_control_unpack(buf []byte) ?CVirtualControllerCo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_source = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_mode = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_element = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.output_gamepad = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.output_keyboard = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.output_mouse = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon_foreground = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.icon_background = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_toggle = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_activate_stick_or_trackpad = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.activation_type = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.long_press_ms = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.double_press_ms = v
 				i = ii
 			}
@@ -937,19 +931,12 @@ pub fn cvirtualcontrollerconfig_control_unpack(buf []byte) ?CVirtualControllerCo
 
 [inline]
 pub fn (a CVirtualControllerConfig_Control) eq(b CVirtualControllerConfig_Control) bool {
-	return true && a.name == b.name &&
-		a.icon == b.icon && a.input_source == b.input_source &&
-		a.input_mode == b.input_mode && a.input_element == b.input_element &&
-		a.output_gamepad == b.output_gamepad &&
-		a.output_keyboard == b.output_keyboard &&
-		a.output_mouse == b.output_mouse &&
-		a.icon_foreground == b.icon_foreground &&
-		a.icon_background == b.icon_background &&
-		a.input_toggle == b.input_toggle &&
-		a.input_activate_stick_or_trackpad == b.input_activate_stick_or_trackpad &&
-		a.activation_type == b.activation_type &&
-		a.long_press_ms == b.long_press_ms &&
-		a.double_press_ms == b.double_press_ms
+	return true && a.name == b.name && a.icon == b.icon && a.input_source == b.input_source &&
+		a.input_mode == b.input_mode && a.input_element == b.input_element && a.output_gamepad == b.output_gamepad &&
+		a.output_keyboard == b.output_keyboard && a.output_mouse == b.output_mouse && a.icon_foreground ==
+		b.icon_foreground && a.icon_background == b.icon_background && a.input_toggle == b.input_toggle &&
+		a.input_activate_stick_or_trackpad == b.input_activate_stick_or_trackpad && a.activation_type ==
+		b.activation_type && a.long_press_ms == b.long_press_ms && a.double_press_ms == b.double_press_ms
 }
 
 [inline]
@@ -990,8 +977,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfig_control(o CVirtualContr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfig_control(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfig_Control) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerconfig_control_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerconfig_control_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1035,24 +1022,24 @@ pub fn cvirtualcontrollerconfig_actionset_unpack(buf []byte) ?CVirtualController
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.parent_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfig_control(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.controls << v
 				i = ii
 			}
@@ -1073,8 +1060,7 @@ pub fn cvirtualcontrollerconfig_actionset_unpack(buf []byte) ?CVirtualController
 
 [inline]
 pub fn (a CVirtualControllerConfig_ActionSet) eq(b CVirtualControllerConfig_ActionSet) bool {
-	return true && a.id == b.id &&
-		a.parent_id == b.parent_id && a.name == b.name && a.controls.eq(b.controls)
+	return true && a.id == b.id && a.parent_id == b.parent_id && a.name == b.name && a.controls.eq(b.controls)
 }
 
 [inline]
@@ -1115,8 +1101,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfig_actionset(o CVirtualCon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfig_actionset(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfig_ActionSet) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerconfig_actionset_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerconfig_actionset_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1156,19 +1142,19 @@ pub fn cvirtualcontrollerconfig_unpack(buf []byte) ?CVirtualControllerConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfig_actionset(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.actionsets << v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_emousemode(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_emousemode(cur_buf, tag_wiretype.wire_type) ?
 				res.default_mouse_mode = v
 				i = ii
 			}
@@ -1189,8 +1175,8 @@ pub fn cvirtualcontrollerconfig_unpack(buf []byte) ?CVirtualControllerConfig {
 
 [inline]
 pub fn (a CVirtualControllerConfig) eq(b CVirtualControllerConfig) bool {
-	return true && a.name == b.name && a.actionsets.eq(b.actionsets) &&
-		a.default_mouse_mode == b.default_mouse_mode
+	return true && a.name == b.name && a.actionsets.eq(b.actionsets) && a.default_mouse_mode ==
+		b.default_mouse_mode
 }
 
 [inline]
@@ -1231,8 +1217,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerconfig(o CVirtualControllerCon
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerConfig) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerconfig_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerconfig_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1283,34 +1269,34 @@ pub fn cvirtualcontrollerlayoutpackage_unpack(buf []byte) ?CVirtualControllerLay
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.creator = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_revision = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.saved_revision = v
 				i = ii
 			}
 			5 {
 				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerconfig(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.config = v
 				i = ii
 			}
 			6 {
 				ii, v := zzz_vproto_internal_unpack_cvirtualcontrollerlayouts(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.layouts = v
 				i = ii
 			}
@@ -1331,8 +1317,7 @@ pub fn cvirtualcontrollerlayoutpackage_unpack(buf []byte) ?CVirtualControllerLay
 
 [inline]
 pub fn (a CVirtualControllerLayoutPackage) eq(b CVirtualControllerLayoutPackage) bool {
-	return true && a.appid == b.appid &&
-		a.creator == b.creator && a.initial_revision == b.initial_revision &&
+	return true && a.appid == b.appid && a.creator == b.creator && a.initial_revision == b.initial_revision &&
 		a.saved_revision == b.saved_revision && a.config.eq(b.config) && a.layouts.eq(b.layouts)
 }
 
@@ -1374,8 +1359,8 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerlayoutpackage(o CVirtualContro
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerlayoutpackage(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerLayoutPackage) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerlayoutpackage_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerlayoutpackage_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1392,19 +1377,19 @@ pub mut:
 
 pub fn (o &CVirtualControllerGlobalConfig) pack() []byte {
 	mut res := []byte{}
-	if o.feedback_enabled != bool(0) {
+	if o.feedback_enabled != false {
 		res << vproto.pack_bool_field(o.feedback_enabled, 1)
 	}
-	if o.gyroscope_enabled != bool(0) {
+	if o.gyroscope_enabled != false {
 		res << vproto.pack_bool_field(o.gyroscope_enabled, 2)
 	}
-	if o.auto_fade_enabled != bool(0) {
+	if o.auto_fade_enabled != false {
 		res << vproto.pack_bool_field(o.auto_fade_enabled, 3)
 	}
-	if o.rumble_enabled != bool(0) {
+	if o.rumble_enabled != false {
 		res << vproto.pack_bool_field(o.rumble_enabled, 4)
 	}
-	if o.shake_fade_enabled != bool(0) {
+	if o.shake_fade_enabled != false {
 		res << vproto.pack_bool_field(o.shake_fade_enabled, 5)
 	}
 	return res
@@ -1422,27 +1407,27 @@ pub fn cvirtualcontrollerglobalconfig_unpack(buf []byte) ?CVirtualControllerGlob
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.feedback_enabled = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gyroscope_enabled = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.auto_fade_enabled = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rumble_enabled = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.shake_fade_enabled = v
 				i = ii
 			}
@@ -1463,10 +1448,8 @@ pub fn cvirtualcontrollerglobalconfig_unpack(buf []byte) ?CVirtualControllerGlob
 
 [inline]
 pub fn (a CVirtualControllerGlobalConfig) eq(b CVirtualControllerGlobalConfig) bool {
-	return true && a.feedback_enabled == b.feedback_enabled &&
-		a.gyroscope_enabled == b.gyroscope_enabled &&
-		a.auto_fade_enabled == b.auto_fade_enabled &&
-		a.rumble_enabled == b.rumble_enabled &&
+	return true && a.feedback_enabled == b.feedback_enabled && a.gyroscope_enabled == b.gyroscope_enabled &&
+		a.auto_fade_enabled == b.auto_fade_enabled && a.rumble_enabled == b.rumble_enabled &&
 		a.shake_fade_enabled == b.shake_fade_enabled
 }
 
@@ -1508,7 +1491,7 @@ pub fn zzz_vproto_internal_pack_cvirtualcontrollerglobalconfig(o CVirtualControl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cvirtualcontrollerglobalconfig(buf []byte, tag_wiretype vproto.WireType) ?(int, CVirtualControllerGlobalConfig) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cvirtualcontrollerglobalconfig_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cvirtualcontrollerglobalconfig_unpack(v) ?
 	return i, unpacked
 }

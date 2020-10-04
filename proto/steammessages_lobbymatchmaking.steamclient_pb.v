@@ -38,14 +38,14 @@ fn zzz_vproto_internal_pack_elobbystatus_packed(e []ELobbyStatus, num u32) []byt
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_elobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, ELobbyStatus) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, ELobbyStatus(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_elobbystatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ELobbyStatus) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -73,10 +73,10 @@ pub fn (o &LobbyMatchmakingLegacy_GetLobbyStatus_Request) pack() []byte {
 	if o.steamid_lobby != u64(0) {
 		res << vproto.pack_64bit_field(o.steamid_lobby, 2)
 	}
-	if o.claim_ownership != bool(0) {
+	if o.claim_ownership != false {
 		res << vproto.pack_bool_field(o.claim_ownership, 3)
 	}
-	if o.claim_membership != bool(0) {
+	if o.claim_membership != false {
 		res << vproto.pack_bool_field(o.claim_membership, 4)
 	}
 	if o.version_num != u32(0) {
@@ -97,27 +97,27 @@ pub fn lobbymatchmakinglegacy_getlobbystatus_request_unpack(buf []byte) ?LobbyMa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.claim_ownership = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.claim_membership = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.version_num = v
 				i = ii
 			}
@@ -138,11 +138,8 @@ pub fn lobbymatchmakinglegacy_getlobbystatus_request_unpack(buf []byte) ?LobbyMa
 
 [inline]
 pub fn (a LobbyMatchmakingLegacy_GetLobbyStatus_Request) eq(b LobbyMatchmakingLegacy_GetLobbyStatus_Request) bool {
-	return true && a.app_id == b.app_id &&
-		a.steamid_lobby == b.steamid_lobby &&
-		a.claim_ownership == b.claim_ownership &&
-		a.claim_membership == b.claim_membership &&
-		a.version_num == b.version_num
+	return true && a.app_id == b.app_id && a.steamid_lobby == b.steamid_lobby && a.claim_ownership ==
+		b.claim_ownership && a.claim_membership == b.claim_membership && a.version_num == b.version_num
 }
 
 [inline]
@@ -183,8 +180,8 @@ pub fn zzz_vproto_internal_pack_lobbymatchmakinglegacy_getlobbystatus_request(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_lobbymatchmakinglegacy_getlobbystatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, LobbyMatchmakingLegacy_GetLobbyStatus_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := lobbymatchmakinglegacy_getlobbystatus_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := lobbymatchmakinglegacy_getlobbystatus_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -223,17 +220,17 @@ pub fn lobbymatchmakinglegacy_getlobbystatus_response_unpack(buf []byte) ?LobbyM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_elobbystatus(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_elobbystatus(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_status = v
 				i = ii
 			}
@@ -254,9 +251,8 @@ pub fn lobbymatchmakinglegacy_getlobbystatus_response_unpack(buf []byte) ?LobbyM
 
 [inline]
 pub fn (a LobbyMatchmakingLegacy_GetLobbyStatus_Response) eq(b LobbyMatchmakingLegacy_GetLobbyStatus_Response) bool {
-	return true && a.app_id == b.app_id &&
-		a.steamid_lobby == b.steamid_lobby &&
-		a.lobby_status == b.lobby_status
+	return true && a.app_id == b.app_id && a.steamid_lobby == b.steamid_lobby && a.lobby_status ==
+		b.lobby_status
 }
 
 [inline]
@@ -297,7 +293,7 @@ pub fn zzz_vproto_internal_pack_lobbymatchmakinglegacy_getlobbystatus_response(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_lobbymatchmakinglegacy_getlobbystatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, LobbyMatchmakingLegacy_GetLobbyStatus_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := lobbymatchmakinglegacy_getlobbystatus_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := lobbymatchmakinglegacy_getlobbystatus_response_unpack(v) ?
 	return i, unpacked
 }

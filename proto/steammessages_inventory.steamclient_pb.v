@@ -34,12 +34,12 @@ pub fn cinventory_getinventory_request_unpack(buf []byte) ?CInventory_GetInvento
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -101,8 +101,8 @@ pub fn zzz_vproto_internal_pack_cinventory_getinventory_request(o CInventory_Get
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_getinventory_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetInventory_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_getinventory_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_getinventory_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -136,7 +136,7 @@ pub fn (o &CInventory_Response) pack() []byte {
 	if o.ticket != []byte{} {
 		res << vproto.pack_bytes_field(o.ticket, 5)
 	}
-	if o.replayed != bool(0) {
+	if o.replayed != false {
 		res << vproto.pack_bool_field(o.replayed, 6)
 	}
 	return res
@@ -154,33 +154,33 @@ pub fn cinventory_response_unpack(buf []byte) ?CInventory_Response {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.etag = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.removeditemids << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.item_json = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdef_json = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.replayed = v
 				i = ii
 			}
@@ -201,10 +201,8 @@ pub fn cinventory_response_unpack(buf []byte) ?CInventory_Response {
 
 [inline]
 pub fn (a CInventory_Response) eq(b CInventory_Response) bool {
-	return true && a.etag == b.etag &&
-		a.removeditemids == b.removeditemids &&
-		a.item_json == b.item_json && a.itemdef_json == b.itemdef_json &&
-		a.ticket == b.ticket && a.replayed == b.replayed
+	return true && a.etag == b.etag && a.removeditemids == b.removeditemids && a.item_json ==
+		b.item_json && a.itemdef_json == b.itemdef_json && a.ticket == b.ticket && a.replayed == b.replayed
 }
 
 [inline]
@@ -245,8 +243,8 @@ pub fn zzz_vproto_internal_pack_cinventory_response(o CInventory_Response, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -295,29 +293,29 @@ pub fn cinventory_exchangeitem_request_unpack(buf []byte) ?CInventory_ExchangeIt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.materialsitemid << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.materialsquantity << v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.outputitemdefid = v
 				i = ii
 			}
@@ -338,10 +336,8 @@ pub fn cinventory_exchangeitem_request_unpack(buf []byte) ?CInventory_ExchangeIt
 
 [inline]
 pub fn (a CInventory_ExchangeItem_Request) eq(b CInventory_ExchangeItem_Request) bool {
-	return true && a.appid == b.appid &&
-		a.steamid == b.steamid && a.materialsitemid == b.materialsitemid &&
-		a.materialsquantity == b.materialsquantity &&
-		a.outputitemdefid == b.outputitemdefid
+	return true && a.appid == b.appid && a.steamid == b.steamid && a.materialsitemid == b.materialsitemid &&
+		a.materialsquantity == b.materialsquantity && a.outputitemdefid == b.outputitemdefid
 }
 
 [inline]
@@ -382,8 +378,8 @@ pub fn zzz_vproto_internal_pack_cinventory_exchangeitem_request(o CInventory_Exc
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_exchangeitem_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_ExchangeItem_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_exchangeitem_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_exchangeitem_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -418,12 +414,12 @@ pub fn cinventory_geteligiblepromoitemdefids_request_unpack(buf []byte) ?CInvent
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -485,8 +481,8 @@ pub fn zzz_vproto_internal_pack_cinventory_geteligiblepromoitemdefids_request(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_geteligiblepromoitemdefids_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetEligiblePromoItemDefIDs_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_geteligiblepromoitemdefids_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_geteligiblepromoitemdefids_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -519,7 +515,7 @@ pub fn cinventory_geteligiblepromoitemdefids_response_unpack(buf []byte) ?CInven
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdefids << v
 				i = ii
 			}
@@ -581,8 +577,8 @@ pub fn zzz_vproto_internal_pack_cinventory_geteligiblepromoitemdefids_response(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_geteligiblepromoitemdefids_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetEligiblePromoItemDefIDs_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_geteligiblepromoitemdefids_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_geteligiblepromoitemdefids_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -597,7 +593,7 @@ pub mut:
 	notify            bool
 	requestid         u64
 	trade_restriction bool
-	is_purchase       bool = false
+	is_purchase       bool
 }
 
 pub fn (o &CInventory_AddItem_Request) pack() []byte {
@@ -616,16 +612,16 @@ pub fn (o &CInventory_AddItem_Request) pack() []byte {
 	if o.steamid != u64(0) {
 		res << vproto.pack_uint64_field(o.steamid, 4)
 	}
-	if o.notify != bool(0) {
+	if o.notify != false {
 		res << vproto.pack_bool_field(o.notify, 5)
 	}
 	if o.requestid != u64(0) {
 		res << vproto.pack_uint64_field(o.requestid, 6)
 	}
-	if o.trade_restriction != bool(0) {
+	if o.trade_restriction != false {
 		res << vproto.pack_bool_field(o.trade_restriction, 7)
 	}
-	if o.is_purchase != bool(0) {
+	if o.is_purchase != false {
 		res << vproto.pack_bool_field(o.is_purchase, 8)
 	}
 	return res
@@ -643,44 +639,44 @@ pub fn cinventory_additem_request_unpack(buf []byte) ?CInventory_AddItem_Request
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdefid << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itempropsjson << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.notify = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.requestid = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.trade_restriction = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_purchase = v
 				i = ii
 			}
@@ -701,11 +697,9 @@ pub fn cinventory_additem_request_unpack(buf []byte) ?CInventory_AddItem_Request
 
 [inline]
 pub fn (a CInventory_AddItem_Request) eq(b CInventory_AddItem_Request) bool {
-	return true && a.appid == b.appid &&
-		a.itemdefid == b.itemdefid && a.itempropsjson == b.itempropsjson &&
-		a.steamid == b.steamid && a.notify == b.notify &&
-		a.requestid == b.requestid && a.trade_restriction == b.trade_restriction &&
-		a.is_purchase == b.is_purchase
+	return true && a.appid == b.appid && a.itemdefid == b.itemdefid && a.itempropsjson == b.itempropsjson &&
+		a.steamid == b.steamid && a.notify == b.notify && a.requestid == b.requestid && a.trade_restriction ==
+		b.trade_restriction && a.is_purchase == b.is_purchase
 }
 
 [inline]
@@ -746,8 +740,8 @@ pub fn zzz_vproto_internal_pack_cinventory_additem_request(o CInventory_AddItem_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_additem_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_AddItem_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_additem_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_additem_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -769,13 +763,13 @@ pub fn (o &CInventory_ModifyItems_Request_ItemPropertyUpdate) pack() []byte {
 	if o.itemid != u64(0) {
 		res << vproto.pack_uint64_field(o.itemid, 1)
 	}
-	if o.remove_property != bool(0) {
+	if o.remove_property != false {
 		res << vproto.pack_bool_field(o.remove_property, 2)
 	}
 	if o.property_name != '' {
 		res << vproto.pack_string_field(o.property_name, 3)
 	}
-	if o.property_value_bool != bool(0) {
+	if o.property_value_bool != false {
 		res << vproto.pack_bool_field(o.property_value_bool, 4)
 	}
 	if o.property_value_int != i64(0) {
@@ -802,37 +796,37 @@ pub fn cinventory_modifyitems_request_itempropertyupdate_unpack(buf []byte) ?CIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.remove_property = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.property_name = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.property_value_bool = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.property_value_int = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.property_value_string = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.property_value_float = v
 				i = ii
 			}
@@ -853,13 +847,9 @@ pub fn cinventory_modifyitems_request_itempropertyupdate_unpack(buf []byte) ?CIn
 
 [inline]
 pub fn (a CInventory_ModifyItems_Request_ItemPropertyUpdate) eq(b CInventory_ModifyItems_Request_ItemPropertyUpdate) bool {
-	return true && a.itemid == b.itemid &&
-		a.remove_property == b.remove_property &&
-		a.property_name == b.property_name &&
-		a.property_value_bool == b.property_value_bool &&
-		a.property_value_int == b.property_value_int &&
-		a.property_value_string == b.property_value_string &&
-		a.property_value_float == b.property_value_float
+	return true && a.itemid == b.itemid && a.remove_property == b.remove_property && a.property_name ==
+		b.property_name && a.property_value_bool == b.property_value_bool && a.property_value_int == b.property_value_int &&
+		a.property_value_string == b.property_value_string && a.property_value_float == b.property_value_float
 }
 
 [inline]
@@ -900,8 +890,8 @@ pub fn zzz_vproto_internal_pack_cinventory_modifyitems_request_itempropertyupdat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_modifyitems_request_itempropertyupdate(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_ModifyItems_Request_ItemPropertyUpdate) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_modifyitems_request_itempropertyupdate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_modifyitems_request_itempropertyupdate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -925,7 +915,8 @@ pub fn (o &CInventory_ModifyItems_Request) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.updates {
-		res << zzz_vproto_internal_pack_cinventory_modifyitems_request_itempropertyupdate(x, 3)
+		res <<
+			zzz_vproto_internal_pack_cinventory_modifyitems_request_itempropertyupdate(x, 3)
 	}
 	if o.timestamp != u32(0) {
 		res << vproto.pack_uint32_field(o.timestamp, 4)
@@ -945,24 +936,24 @@ pub fn cinventory_modifyitems_request_unpack(buf []byte) ?CInventory_ModifyItems
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cinventory_modifyitems_request_itempropertyupdate(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.updates << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
@@ -983,8 +974,7 @@ pub fn cinventory_modifyitems_request_unpack(buf []byte) ?CInventory_ModifyItems
 
 [inline]
 pub fn (a CInventory_ModifyItems_Request) eq(b CInventory_ModifyItems_Request) bool {
-	return true && a.appid == b.appid &&
-		a.steamid == b.steamid && a.updates.eq(b.updates) &&
+	return true && a.appid == b.appid && a.steamid == b.steamid && a.updates.eq(b.updates) &&
 		a.timestamp == b.timestamp
 }
 
@@ -1026,8 +1016,8 @@ pub fn zzz_vproto_internal_pack_cinventory_modifyitems_request(o CInventory_Modi
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_modifyitems_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_ModifyItems_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_modifyitems_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_modifyitems_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1062,12 +1052,12 @@ pub fn cinventory_consumeplaytime_request_unpack(buf []byte) ?CInventory_Consume
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdefid = v
 				i = ii
 			}
@@ -1129,8 +1119,8 @@ pub fn zzz_vproto_internal_pack_cinventory_consumeplaytime_request(o CInventory_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_consumeplaytime_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_ConsumePlaytime_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_consumeplaytime_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_consumeplaytime_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1181,32 +1171,32 @@ pub fn cinventory_consumeitem_request_unpack(buf []byte) ?CInventory_ConsumeItem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.quantity = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.requestid = v
 				i = ii
 			}
@@ -1227,10 +1217,8 @@ pub fn cinventory_consumeitem_request_unpack(buf []byte) ?CInventory_ConsumeItem
 
 [inline]
 pub fn (a CInventory_ConsumeItem_Request) eq(b CInventory_ConsumeItem_Request) bool {
-	return true && a.appid == b.appid &&
-		a.itemid == b.itemid && a.quantity == b.quantity &&
-		a.timestamp == b.timestamp && a.steamid == b.steamid &&
-		a.requestid == b.requestid
+	return true && a.appid == b.appid && a.itemid == b.itemid && a.quantity == b.quantity &&
+		a.timestamp == b.timestamp && a.steamid == b.steamid && a.requestid == b.requestid
 }
 
 [inline]
@@ -1271,8 +1259,8 @@ pub fn zzz_vproto_internal_pack_cinventory_consumeitem_request(o CInventory_Cons
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_consumeitem_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_ConsumeItem_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_consumeitem_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_consumeitem_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1311,17 +1299,17 @@ pub fn cinventory_devsetnextdrop_request_unpack(buf []byte) ?CInventory_DevSetNe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdefid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.droptime = v
 				i = ii
 			}
@@ -1383,8 +1371,8 @@ pub fn zzz_vproto_internal_pack_cinventory_devsetnextdrop_request(o CInventory_D
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_devsetnextdrop_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_DevSetNextDrop_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_devsetnextdrop_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_devsetnextdrop_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1427,22 +1415,22 @@ pub fn cinventory_splititemstack_request_unpack(buf []byte) ?CInventory_SplitIte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.quantity = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -1463,8 +1451,7 @@ pub fn cinventory_splititemstack_request_unpack(buf []byte) ?CInventory_SplitIte
 
 [inline]
 pub fn (a CInventory_SplitItemStack_Request) eq(b CInventory_SplitItemStack_Request) bool {
-	return true && a.appid == b.appid &&
-		a.itemid == b.itemid && a.quantity == b.quantity &&
+	return true && a.appid == b.appid && a.itemid == b.itemid && a.quantity == b.quantity &&
 		a.steamid == b.steamid
 }
 
@@ -1506,8 +1493,8 @@ pub fn zzz_vproto_internal_pack_cinventory_splititemstack_request(o CInventory_S
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_splititemstack_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_SplitItemStack_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_splititemstack_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_splititemstack_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1554,27 +1541,27 @@ pub fn cinventory_combineitemstacks_request_unpack(buf []byte) ?CInventory_Combi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.fromitemid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.destitemid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.quantity = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -1595,8 +1582,7 @@ pub fn cinventory_combineitemstacks_request_unpack(buf []byte) ?CInventory_Combi
 
 [inline]
 pub fn (a CInventory_CombineItemStacks_Request) eq(b CInventory_CombineItemStacks_Request) bool {
-	return true && a.appid == b.appid &&
-		a.fromitemid == b.fromitemid && a.destitemid == b.destitemid &&
+	return true && a.appid == b.appid && a.fromitemid == b.fromitemid && a.destitemid == b.destitemid &&
 		a.quantity == b.quantity && a.steamid == b.steamid
 }
 
@@ -1638,8 +1624,8 @@ pub fn zzz_vproto_internal_pack_cinventory_combineitemstacks_request(o CInventor
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_combineitemstacks_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_CombineItemStacks_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_combineitemstacks_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_combineitemstacks_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1670,7 +1656,7 @@ pub fn cinventory_getitemdefmeta_request_unpack(buf []byte) ?CInventory_GetItemD
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -1732,8 +1718,8 @@ pub fn zzz_vproto_internal_pack_cinventory_getitemdefmeta_request(o CInventory_G
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_getitemdefmeta_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetItemDefMeta_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_getitemdefmeta_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_getitemdefmeta_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1768,12 +1754,12 @@ pub fn cinventory_getitemdefmeta_response_unpack(buf []byte) ?CInventory_GetItem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.modified = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.digest = v
 				i = ii
 			}
@@ -1835,8 +1821,8 @@ pub fn zzz_vproto_internal_pack_cinventory_getitemdefmeta_response(o CInventory_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_getitemdefmeta_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetItemDefMeta_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_getitemdefmeta_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_getitemdefmeta_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1898,8 +1884,8 @@ pub fn zzz_vproto_internal_pack_cinventory_getuserpurchaseinfo_request(o CInvent
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_getuserpurchaseinfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetUserPurchaseInfo_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_getuserpurchaseinfo_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_getuserpurchaseinfo_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1930,7 +1916,7 @@ pub fn cinventory_getuserpurchaseinfo_response_unpack(buf []byte) ?CInventory_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ecurrency = v
 				i = ii
 			}
@@ -1992,8 +1978,8 @@ pub fn zzz_vproto_internal_pack_cinventory_getuserpurchaseinfo_response(o CInven
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_getuserpurchaseinfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_GetUserPurchaseInfo_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_getuserpurchaseinfo_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_getuserpurchaseinfo_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2028,12 +2014,12 @@ pub fn cinventory_purchaseinit_request_lineitem_unpack(buf []byte) ?CInventory_P
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdefid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.quantity = v
 				i = ii
 			}
@@ -2095,8 +2081,8 @@ pub fn zzz_vproto_internal_pack_cinventory_purchaseinit_request_lineitem(o CInve
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_purchaseinit_request_lineitem(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_PurchaseInit_Request_LineItem) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_purchaseinit_request_lineitem_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_purchaseinit_request_lineitem_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2136,19 +2122,19 @@ pub fn cinventory_purchaseinit_request_unpack(buf []byte) ?CInventory_PurchaseIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cinventory_purchaseinit_request_lineitem(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.line_items << v
 				i = ii
 			}
@@ -2210,8 +2196,8 @@ pub fn zzz_vproto_internal_pack_cinventory_purchaseinit_request(o CInventory_Pur
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_purchaseinit_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_PurchaseInit_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_purchaseinit_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_purchaseinit_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2246,12 +2232,12 @@ pub fn cinventory_purchaseinit_response_unpack(buf []byte) ?CInventory_PurchaseI
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.orderid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.transid = v
 				i = ii
 			}
@@ -2313,8 +2299,8 @@ pub fn zzz_vproto_internal_pack_cinventory_purchaseinit_response(o CInventory_Pu
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_purchaseinit_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_PurchaseInit_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_purchaseinit_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_purchaseinit_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2353,17 +2339,17 @@ pub fn cinventory_purchasefinalize_request_unpack(buf []byte) ?CInventory_Purcha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.orderid = v
 				i = ii
 			}
@@ -2425,8 +2411,8 @@ pub fn zzz_vproto_internal_pack_cinventory_purchasefinalize_request(o CInventory
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_purchasefinalize_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_PurchaseFinalize_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_purchasefinalize_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_purchasefinalize_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2465,17 +2451,17 @@ pub fn cinventory_inspectitem_request_unpack(buf []byte) ?CInventory_InspectItem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemdefid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.itemid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tags = v
 				i = ii
 			}
@@ -2537,8 +2523,8 @@ pub fn zzz_vproto_internal_pack_cinventory_inspectitem_request(o CInventory_Insp
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventory_inspectitem_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventory_InspectItem_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventory_inspectitem_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventory_inspectitem_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2573,12 +2559,12 @@ pub fn cinventoryclient_newitems_notification_unpack(buf []byte) ?CInventoryClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cinventory_response(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cinventory_response(cur_buf, tag_wiretype.wire_type) ?
 				res.inventory_response = v
 				i = ii
 			}
@@ -2640,7 +2626,7 @@ pub fn zzz_vproto_internal_pack_cinventoryclient_newitems_notification(o CInvent
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cinventoryclient_newitems_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CInventoryClient_NewItems_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cinventoryclient_newitems_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cinventoryclient_newitems_notification_unpack(v) ?
 	return i, unpacked
 }

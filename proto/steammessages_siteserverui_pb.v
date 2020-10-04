@@ -24,7 +24,7 @@ pub fn (o &SiteServerUI_Login_Request) pack() []byte {
 	if o.steamguardcode != '' {
 		res << vproto.pack_string_field(o.steamguardcode, 3)
 	}
-	if o.remember_password != bool(0) {
+	if o.remember_password != false {
 		res << vproto.pack_bool_field(o.remember_password, 4)
 	}
 	return res
@@ -42,22 +42,22 @@ pub fn siteserverui_login_request_unpack(buf []byte) ?SiteServerUI_Login_Request
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.username = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.password = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamguardcode = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.remember_password = v
 				i = ii
 			}
@@ -78,9 +78,8 @@ pub fn siteserverui_login_request_unpack(buf []byte) ?SiteServerUI_Login_Request
 
 [inline]
 pub fn (a SiteServerUI_Login_Request) eq(b SiteServerUI_Login_Request) bool {
-	return true && a.username == b.username &&
-		a.password == b.password && a.steamguardcode == b.steamguardcode &&
-		a.remember_password == b.remember_password
+	return true && a.username == b.username && a.password == b.password && a.steamguardcode ==
+		b.steamguardcode && a.remember_password == b.remember_password
 }
 
 [inline]
@@ -121,8 +120,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_login_request(o SiteServerUI_Login_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_login_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Login_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_login_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_login_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -157,12 +156,12 @@ pub fn siteserverui_login_response_unpack(buf []byte) ?SiteServerUI_Login_Respon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_state = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_eresult = v
 				i = ii
 			}
@@ -224,8 +223,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_login_response(o SiteServerUI_Login
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_login_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Login_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_login_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_login_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -287,8 +286,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_loginstatus_request(o SiteServerUI_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_loginstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_LoginStatus_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_loginstatus_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_loginstatus_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -307,7 +306,7 @@ pub fn (o &SiteServerUI_LoginStatus_Response) pack() []byte {
 	if o.username != '' {
 		res << vproto.pack_string_field(o.username, 1)
 	}
-	if o.cached_credentials != bool(0) {
+	if o.cached_credentials != false {
 		res << vproto.pack_bool_field(o.cached_credentials, 2)
 	}
 	if o.logon_state != int(0) {
@@ -331,22 +330,22 @@ pub fn siteserverui_loginstatus_response_unpack(buf []byte) ?SiteServerUI_LoginS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.username = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cached_credentials = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_state = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_eresult = v
 				i = ii
 			}
@@ -367,8 +366,7 @@ pub fn siteserverui_loginstatus_response_unpack(buf []byte) ?SiteServerUI_LoginS
 
 [inline]
 pub fn (a SiteServerUI_LoginStatus_Response) eq(b SiteServerUI_LoginStatus_Response) bool {
-	return true && a.username == b.username &&
-		a.cached_credentials == b.cached_credentials &&
+	return true && a.username == b.username && a.cached_credentials == b.cached_credentials &&
 		a.logon_state == b.logon_state && a.logon_eresult == b.logon_eresult
 }
 
@@ -410,8 +408,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_loginstatus_response(o SiteServerUI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_loginstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_LoginStatus_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_loginstatus_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_loginstatus_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -473,8 +471,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_cancellogin_request(o SiteServerUI_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_cancellogin_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_CancelLogin_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_cancellogin_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_cancellogin_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -509,12 +507,12 @@ pub fn siteserverui_cancellogin_response_unpack(buf []byte) ?SiteServerUI_Cancel
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_state = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_eresult = v
 				i = ii
 			}
@@ -576,8 +574,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_cancellogin_response(o SiteServerUI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_cancellogin_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_CancelLogin_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_cancellogin_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_cancellogin_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -639,8 +637,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_logout_request(o SiteServerUI_Logou
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_logout_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Logout_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_logout_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_logout_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -675,12 +673,12 @@ pub fn siteserverui_logout_response_unpack(buf []byte) ?SiteServerUI_Logout_Resp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_state = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logout_eresult = v
 				i = ii
 			}
@@ -742,8 +740,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_logout_response(o SiteServerUI_Logo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_logout_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Logout_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_logout_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_logout_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -756,7 +754,7 @@ pub mut:
 
 pub fn (o &SiteServerUI_Quit_Request) pack() []byte {
 	mut res := []byte{}
-	if o.restart != bool(0) {
+	if o.restart != false {
 		res << vproto.pack_bool_field(o.restart, 1)
 	}
 	return res
@@ -774,7 +772,7 @@ pub fn siteserverui_quit_request_unpack(buf []byte) ?SiteServerUI_Quit_Request {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.restart = v
 				i = ii
 			}
@@ -836,8 +834,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_quit_request(o SiteServerUI_Quit_Re
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_quit_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Quit_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_quit_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_quit_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -899,8 +897,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_quit_response(o SiteServerUI_Quit_R
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_quit_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Quit_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_quit_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_quit_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -962,8 +960,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_status_request(o SiteServerUI_Statu
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_status_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Status_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_status_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_status_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -986,10 +984,10 @@ pub fn (o &SiteServerUI_Status_Response) pack() []byte {
 	if o.logon_eresult != int(0) {
 		res << vproto.pack_int32_field(o.logon_eresult, 2)
 	}
-	if o.connected != bool(0) {
+	if o.connected != false {
 		res << vproto.pack_bool_field(o.connected, 3)
 	}
-	if o.cache_enabled != bool(0) {
+	if o.cache_enabled != false {
 		res << vproto.pack_bool_field(o.cache_enabled, 4)
 	}
 	if o.acct_status != int(0) {
@@ -1010,27 +1008,27 @@ pub fn siteserverui_status_response_unpack(buf []byte) ?SiteServerUI_Status_Resp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_state = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.logon_eresult = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connected = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cache_enabled = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.acct_status = v
 				i = ii
 			}
@@ -1051,10 +1049,8 @@ pub fn siteserverui_status_response_unpack(buf []byte) ?SiteServerUI_Status_Resp
 
 [inline]
 pub fn (a SiteServerUI_Status_Response) eq(b SiteServerUI_Status_Response) bool {
-	return true && a.logon_state == b.logon_state &&
-		a.logon_eresult == b.logon_eresult &&
-		a.connected == b.connected && a.cache_enabled == b.cache_enabled &&
-		a.acct_status == b.acct_status
+	return true && a.logon_state == b.logon_state && a.logon_eresult == b.logon_eresult &&
+		a.connected == b.connected && a.cache_enabled == b.cache_enabled && a.acct_status == b.acct_status
 }
 
 [inline]
@@ -1095,8 +1091,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_status_response(o SiteServerUI_Stat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_status_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_Status_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_status_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_status_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1158,8 +1154,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_getlanguage_request(o SiteServerUI_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_getlanguage_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_GetLanguage_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_getlanguage_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_getlanguage_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1190,7 +1186,7 @@ pub fn siteserverui_getlanguage_response_unpack(buf []byte) ?SiteServerUI_GetLan
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
@@ -1252,8 +1248,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_getlanguage_response(o SiteServerUI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_getlanguage_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_GetLanguage_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_getlanguage_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_getlanguage_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1284,7 +1280,7 @@ pub fn siteserverui_setlanguage_request_unpack(buf []byte) ?SiteServerUI_SetLang
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.language = v
 				i = ii
 			}
@@ -1346,8 +1342,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_setlanguage_request(o SiteServerUI_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_setlanguage_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_SetLanguage_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_setlanguage_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_setlanguage_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1409,8 +1405,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_setlanguage_response(o SiteServerUI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_setlanguage_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_SetLanguage_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_setlanguage_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_setlanguage_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1472,8 +1468,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_clientstatus_request(o SiteServerUI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_clientstatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ClientStatus_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_clientstatus_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_clientstatus_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1495,7 +1491,7 @@ pub fn (o &SiteServerUI_ClientStatus_Response_ClientInfo) pack() []byte {
 	if o.hostname != '' {
 		res << vproto.pack_string_field(o.hostname, 2)
 	}
-	if o.connected != bool(0) {
+	if o.connected != false {
 		res << vproto.pack_bool_field(o.connected, 3)
 	}
 	if o.instance_id != u64(0) {
@@ -1516,22 +1512,22 @@ pub fn siteserverui_clientstatus_response_clientinfo_unpack(buf []byte) ?SiteSer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ip = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hostname = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connected = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.instance_id = v
 				i = ii
 			}
@@ -1552,8 +1548,7 @@ pub fn siteserverui_clientstatus_response_clientinfo_unpack(buf []byte) ?SiteSer
 
 [inline]
 pub fn (a SiteServerUI_ClientStatus_Response_ClientInfo) eq(b SiteServerUI_ClientStatus_Response_ClientInfo) bool {
-	return true && a.ip == b.ip &&
-		a.hostname == b.hostname && a.connected == b.connected &&
+	return true && a.ip == b.ip && a.hostname == b.hostname && a.connected == b.connected &&
 		a.instance_id == b.instance_id
 }
 
@@ -1595,8 +1590,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_clientstatus_response_clientinfo(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_clientstatus_response_clientinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ClientStatus_Response_ClientInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_clientstatus_response_clientinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_clientstatus_response_clientinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1659,47 +1654,47 @@ pub fn siteserverui_clientstatus_response_payment_unpack(buf []byte) ?SiteServer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.transid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.amount = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_created = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.purchase_status = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hostname = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.profile_url = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.avatar_url = v
 				i = ii
 			}
@@ -1720,12 +1715,9 @@ pub fn siteserverui_clientstatus_response_payment_unpack(buf []byte) ?SiteServer
 
 [inline]
 pub fn (a SiteServerUI_ClientStatus_Response_Payment) eq(b SiteServerUI_ClientStatus_Response_Payment) bool {
-	return true && a.transid == b.transid &&
-		a.steamid == b.steamid && a.amount == b.amount &&
-		a.time_created == b.time_created &&
-		a.purchase_status == b.purchase_status &&
-		a.hostname == b.hostname && a.persona_name == b.persona_name &&
-		a.profile_url == b.profile_url && a.avatar_url == b.avatar_url
+	return true && a.transid == b.transid && a.steamid == b.steamid && a.amount == b.amount &&
+		a.time_created == b.time_created && a.purchase_status == b.purchase_status && a.hostname == b.hostname &&
+		a.persona_name == b.persona_name && a.profile_url == b.profile_url && a.avatar_url == b.avatar_url
 }
 
 [inline]
@@ -1766,8 +1758,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_clientstatus_response_payment(o Sit
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_clientstatus_response_payment(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ClientStatus_Response_Payment) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_clientstatus_response_payment_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_clientstatus_response_payment_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1783,11 +1775,13 @@ pub fn (o &SiteServerUI_ClientStatus_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.clients {
-		res << zzz_vproto_internal_pack_siteserverui_clientstatus_response_clientinfo(x, 4)
+		res <<
+			zzz_vproto_internal_pack_siteserverui_clientstatus_response_clientinfo(x, 4)
 	}
 	// [packed=false]
 	for _, x in o.payments {
-		res << zzz_vproto_internal_pack_siteserverui_clientstatus_response_payment(x, 5)
+		res <<
+			zzz_vproto_internal_pack_siteserverui_clientstatus_response_payment(x, 5)
 	}
 	return res
 }
@@ -1806,14 +1800,14 @@ pub fn siteserverui_clientstatus_response_unpack(buf []byte) ?SiteServerUI_Clien
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_siteserverui_clientstatus_response_clientinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.clients << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_siteserverui_clientstatus_response_payment(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.payments << v
 				i = ii
 			}
@@ -1875,8 +1869,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_clientstatus_response(o SiteServerU
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_clientstatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ClientStatus_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_clientstatus_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_clientstatus_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1938,8 +1932,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_contentcachestatus_request(o SiteSe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_contentcachestatus_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ContentCacheStatus_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_contentcachestatus_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_contentcachestatus_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1961,7 +1955,7 @@ pub mut:
 
 pub fn (o &SiteServerUI_ContentCacheStatus_Response) pack() []byte {
 	mut res := []byte{}
-	if o.enabled != bool(0) {
+	if o.enabled != false {
 		res << vproto.pack_bool_field(o.enabled, 1)
 	}
 	if o.port != u32(0) {
@@ -1973,13 +1967,13 @@ pub fn (o &SiteServerUI_ContentCacheStatus_Response) pack() []byte {
 	if o.max_size_gb != u32(0) {
 		res << vproto.pack_uint32_field(o.max_size_gb, 4)
 	}
-	if o.p2p_enabled != bool(0) {
+	if o.p2p_enabled != false {
 		res << vproto.pack_bool_field(o.p2p_enabled, 5)
 	}
 	if o.explicit_ip_address != '' {
 		res << vproto.pack_string_field(o.explicit_ip_address, 9)
 	}
-	if o.external_process != bool(0) {
+	if o.external_process != false {
 		res << vproto.pack_bool_field(o.external_process, 10)
 	}
 	if o.current_size_gb != u32(0) {
@@ -2006,52 +2000,52 @@ pub fn siteserverui_contentcachestatus_response_unpack(buf []byte) ?SiteServerUI
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.enabled = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.port = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cache_location = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_size_gb = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.p2p_enabled = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.explicit_ip_address = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.external_process = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.current_size_gb = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.current_bw = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.total_bytes_served = v
 				i = ii
 			}
@@ -2072,12 +2066,9 @@ pub fn siteserverui_contentcachestatus_response_unpack(buf []byte) ?SiteServerUI
 
 [inline]
 pub fn (a SiteServerUI_ContentCacheStatus_Response) eq(b SiteServerUI_ContentCacheStatus_Response) bool {
-	return true && a.enabled == b.enabled &&
-		a.port == b.port && a.cache_location == b.cache_location &&
-		a.max_size_gb == b.max_size_gb && a.p2p_enabled == b.p2p_enabled &&
-		a.explicit_ip_address == b.explicit_ip_address &&
-		a.external_process == b.external_process &&
-		a.current_size_gb == b.current_size_gb &&
+	return true && a.enabled == b.enabled && a.port == b.port && a.cache_location == b.cache_location &&
+		a.max_size_gb == b.max_size_gb && a.p2p_enabled == b.p2p_enabled && a.explicit_ip_address == b.explicit_ip_address &&
+		a.external_process == b.external_process && a.current_size_gb == b.current_size_gb &&
 		a.current_bw == b.current_bw && a.total_bytes_served == b.total_bytes_served
 }
 
@@ -2119,8 +2110,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_contentcachestatus_response(o SiteS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_contentcachestatus_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ContentCacheStatus_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_contentcachestatus_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_contentcachestatus_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2139,7 +2130,7 @@ pub mut:
 
 pub fn (o &SiteServerUI_ContentCacheConfig_Request) pack() []byte {
 	mut res := []byte{}
-	if o.enabled != bool(0) {
+	if o.enabled != false {
 		res << vproto.pack_bool_field(o.enabled, 1)
 	}
 	if o.port != u32(0) {
@@ -2151,10 +2142,10 @@ pub fn (o &SiteServerUI_ContentCacheConfig_Request) pack() []byte {
 	if o.max_size_gb != u32(0) {
 		res << vproto.pack_uint32_field(o.max_size_gb, 4)
 	}
-	if o.p2p_enabled != bool(0) {
+	if o.p2p_enabled != false {
 		res << vproto.pack_bool_field(o.p2p_enabled, 5)
 	}
-	if o.external_process != bool(0) {
+	if o.external_process != false {
 		res << vproto.pack_bool_field(o.external_process, 6)
 	}
 	if o.explicit_ip_address != '' {
@@ -2175,37 +2166,37 @@ pub fn siteserverui_contentcacheconfig_request_unpack(buf []byte) ?SiteServerUI_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.enabled = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.port = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cache_location = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_size_gb = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.p2p_enabled = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.external_process = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.explicit_ip_address = v
 				i = ii
 			}
@@ -2226,10 +2217,8 @@ pub fn siteserverui_contentcacheconfig_request_unpack(buf []byte) ?SiteServerUI_
 
 [inline]
 pub fn (a SiteServerUI_ContentCacheConfig_Request) eq(b SiteServerUI_ContentCacheConfig_Request) bool {
-	return true && a.enabled == b.enabled &&
-		a.port == b.port && a.cache_location == b.cache_location &&
-		a.max_size_gb == b.max_size_gb && a.p2p_enabled == b.p2p_enabled &&
-		a.external_process == b.external_process &&
+	return true && a.enabled == b.enabled && a.port == b.port && a.cache_location == b.cache_location &&
+		a.max_size_gb == b.max_size_gb && a.p2p_enabled == b.p2p_enabled && a.external_process == b.external_process &&
 		a.explicit_ip_address == b.explicit_ip_address
 }
 
@@ -2271,8 +2260,8 @@ pub fn zzz_vproto_internal_pack_siteserverui_contentcacheconfig_request(o SiteSe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_contentcacheconfig_request(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ContentCacheConfig_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_contentcacheconfig_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_contentcacheconfig_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2334,7 +2323,7 @@ pub fn zzz_vproto_internal_pack_siteserverui_contentcacheconfig_response(o SiteS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_siteserverui_contentcacheconfig_response(buf []byte, tag_wiretype vproto.WireType) ?(int, SiteServerUI_ContentCacheConfig_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := siteserverui_contentcacheconfig_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := siteserverui_contentcacheconfig_response_unpack(v) ?
 	return i, unpacked
 }

@@ -30,7 +30,7 @@ pub fn cmsgtest_messagetoclient_request_unpack(buf []byte) ?CMsgTest_MessageToCl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.some_text = v
 				i = ii
 			}
@@ -92,8 +92,8 @@ pub fn zzz_vproto_internal_pack_cmsgtest_messagetoclient_request(o CMsgTest_Mess
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoclient_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToClient_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtest_messagetoclient_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtest_messagetoclient_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -124,7 +124,7 @@ pub fn cmsgtest_messagetoclient_response_unpack(buf []byte) ?CMsgTest_MessageToC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.some_text = v
 				i = ii
 			}
@@ -186,8 +186,8 @@ pub fn zzz_vproto_internal_pack_cmsgtest_messagetoclient_response(o CMsgTest_Mes
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoclient_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToClient_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtest_messagetoclient_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtest_messagetoclient_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -218,7 +218,7 @@ pub fn cmsgtest_notifyclient_notification_unpack(buf []byte) ?CMsgTest_NotifyCli
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.some_text = v
 				i = ii
 			}
@@ -280,8 +280,8 @@ pub fn zzz_vproto_internal_pack_cmsgtest_notifyclient_notification(o CMsgTest_No
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtest_notifyclient_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_NotifyClient_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtest_notifyclient_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtest_notifyclient_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -312,7 +312,7 @@ pub fn cmsgtest_messagetoserver_request_unpack(buf []byte) ?CMsgTest_MessageToSe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.some_text = v
 				i = ii
 			}
@@ -374,8 +374,8 @@ pub fn zzz_vproto_internal_pack_cmsgtest_messagetoserver_request(o CMsgTest_Mess
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoserver_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToServer_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtest_messagetoserver_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtest_messagetoserver_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -406,7 +406,7 @@ pub fn cmsgtest_messagetoserver_response_unpack(buf []byte) ?CMsgTest_MessageToS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.some_text = v
 				i = ii
 			}
@@ -468,8 +468,8 @@ pub fn zzz_vproto_internal_pack_cmsgtest_messagetoserver_response(o CMsgTest_Mes
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtest_messagetoserver_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_MessageToServer_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtest_messagetoserver_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtest_messagetoserver_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -500,7 +500,7 @@ pub fn cmsgtest_notifyserver_notification_unpack(buf []byte) ?CMsgTest_NotifySer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.some_text = v
 				i = ii
 			}
@@ -562,7 +562,7 @@ pub fn zzz_vproto_internal_pack_cmsgtest_notifyserver_notification(o CMsgTest_No
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgtest_notifyserver_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgTest_NotifyServer_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgtest_notifyserver_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgtest_notifyserver_notification_unpack(v) ?
 	return i, unpacked
 }

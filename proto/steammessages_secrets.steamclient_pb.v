@@ -35,14 +35,14 @@ fn zzz_vproto_internal_pack_ekeyescrowusage_packed(e []EKeyEscrowUsage, num u32)
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_ekeyescrowusage(buf []byte, tag_wiretype vproto.WireType) ?(int, EKeyEscrowUsage) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EKeyEscrowUsage(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_ekeyescrowusage_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EKeyEscrowUsage) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -90,22 +90,22 @@ pub fn ckeyescrow_request_unpack(buf []byte) ?CKeyEscrow_Request {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rsa_oaep_sha_ticket = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.password = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_ekeyescrowusage(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ekeyescrowusage(cur_buf, tag_wiretype.wire_type) ?
 				res.usage = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_name = v
 				i = ii
 			}
@@ -126,9 +126,8 @@ pub fn ckeyescrow_request_unpack(buf []byte) ?CKeyEscrow_Request {
 
 [inline]
 pub fn (a CKeyEscrow_Request) eq(b CKeyEscrow_Request) bool {
-	return true && a.rsa_oaep_sha_ticket == b.rsa_oaep_sha_ticket &&
-		a.password == b.password && a.usage == b.usage &&
-		a.device_name == b.device_name
+	return true && a.rsa_oaep_sha_ticket == b.rsa_oaep_sha_ticket && a.password == b.password &&
+		a.usage == b.usage && a.device_name == b.device_name
 }
 
 [inline]
@@ -169,8 +168,8 @@ pub fn zzz_vproto_internal_pack_ckeyescrow_request(o CKeyEscrow_Request, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ckeyescrow_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrow_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ckeyescrow_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ckeyescrow_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -233,47 +232,47 @@ pub fn ckeyescrow_ticket_unpack(buf []byte) ?CKeyEscrow_Ticket {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.password = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.identifier = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.payload = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_ekeyescrowusage(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ekeyescrowusage(cur_buf, tag_wiretype.wire_type) ?
 				res.usage = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_name = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_model = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_serial = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_provisioning_id = v
 				i = ii
 			}
@@ -294,12 +293,10 @@ pub fn ckeyescrow_ticket_unpack(buf []byte) ?CKeyEscrow_Ticket {
 
 [inline]
 pub fn (a CKeyEscrow_Ticket) eq(b CKeyEscrow_Ticket) bool {
-	return true && a.password == b.password &&
-		a.identifier == b.identifier && a.payload == b.payload &&
-		a.timestamp == b.timestamp && a.usage == b.usage &&
-		a.device_name == b.device_name && a.device_model == b.device_model &&
-		a.device_serial == b.device_serial &&
-		a.device_provisioning_id == b.device_provisioning_id
+	return true && a.password == b.password && a.identifier == b.identifier && a.payload == b.payload &&
+		a.timestamp == b.timestamp && a.usage == b.usage && a.device_name == b.device_name &&
+		a.device_model == b.device_model && a.device_serial == b.device_serial && a.device_provisioning_id ==
+		b.device_provisioning_id
 }
 
 [inline]
@@ -340,8 +337,8 @@ pub fn zzz_vproto_internal_pack_ckeyescrow_ticket(o CKeyEscrow_Ticket, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ckeyescrow_ticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrow_Ticket) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ckeyescrow_ticket_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ckeyescrow_ticket_unpack(v) ?
 	return i, unpacked
 }
 
@@ -372,7 +369,7 @@ pub fn ckeyescrow_response_unpack(buf []byte) ?CKeyEscrow_Response {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_ckeyescrow_ticket(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_ckeyescrow_ticket(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket = v
 				i = ii
 			}
@@ -434,7 +431,7 @@ pub fn zzz_vproto_internal_pack_ckeyescrow_response(o CKeyEscrow_Response, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_ckeyescrow_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CKeyEscrow_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := ckeyescrow_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := ckeyescrow_response_unpack(v) ?
 	return i, unpacked
 }

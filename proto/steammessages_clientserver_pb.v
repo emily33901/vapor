@@ -38,14 +38,14 @@ fn zzz_vproto_internal_pack_emmslobbystatus_packed(e []EMMSLobbyStatus, num u32)
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emmslobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, EMMSLobbyStatus) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EMMSLobbyStatus(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emmslobbystatus_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EMMSLobbyStatus) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -85,12 +85,12 @@ pub fn cmsgclientudsp2psessionstarted_unpack(buf []byte) ?CMsgClientUDSP2PSessio
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_remote = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -152,8 +152,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientudsp2psessionstarted(o CMsgClientUDSP2
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientudsp2psessionstarted(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUDSP2PSessionStarted) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientudsp2psessionstarted_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientudsp2psessionstarted_unpack(v) ?
 	return i, unpacked
 }
 
@@ -220,52 +220,52 @@ pub fn cmsgclientudsp2psessionended_unpack(buf []byte) ?CMsgClientUDSP2PSessionE
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_remote = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_length_sec = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_error = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.nattype = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_recv = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_sent = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_sent_relay = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_recv_relay = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_to_connect_ms = v
 				i = ii
 			}
@@ -286,13 +286,10 @@ pub fn cmsgclientudsp2psessionended_unpack(buf []byte) ?CMsgClientUDSP2PSessionE
 
 [inline]
 pub fn (a CMsgClientUDSP2PSessionEnded) eq(b CMsgClientUDSP2PSessionEnded) bool {
-	return true && a.steamid_remote == b.steamid_remote &&
-		a.appid == b.appid && a.session_length_sec == b.session_length_sec &&
-		a.session_error == b.session_error &&
-		a.nattype == b.nattype && a.bytes_recv == b.bytes_recv &&
-		a.bytes_sent == b.bytes_sent && a.bytes_sent_relay == b.bytes_sent_relay &&
-		a.bytes_recv_relay == b.bytes_recv_relay &&
-		a.time_to_connect_ms == b.time_to_connect_ms
+	return true && a.steamid_remote == b.steamid_remote && a.appid == b.appid && a.session_length_sec ==
+		b.session_length_sec && a.session_error == b.session_error && a.nattype == b.nattype &&
+		a.bytes_recv == b.bytes_recv && a.bytes_sent == b.bytes_sent && a.bytes_sent_relay == b.bytes_sent_relay &&
+		a.bytes_recv_relay == b.bytes_recv_relay && a.time_to_connect_ms == b.time_to_connect_ms
 }
 
 [inline]
@@ -333,8 +330,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientudsp2psessionended(o CMsgClientUDSP2PS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientudsp2psessionended(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUDSP2PSessionEnded) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientudsp2psessionended_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientudsp2psessionended_unpack(v) ?
 	return i, unpacked
 }
 
@@ -373,17 +370,17 @@ pub fn cmsgclientregisterauthticketwithcm_unpack(buf []byte) ?CMsgClientRegister
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.protocol_version = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_instance_id = v
 				i = ii
 			}
@@ -404,8 +401,8 @@ pub fn cmsgclientregisterauthticketwithcm_unpack(buf []byte) ?CMsgClientRegister
 
 [inline]
 pub fn (a CMsgClientRegisterAuthTicketWithCM) eq(b CMsgClientRegisterAuthTicketWithCM) bool {
-	return true && a.protocol_version == b.protocol_version &&
-		a.ticket == b.ticket && a.client_instance_id == b.client_instance_id
+	return true && a.protocol_version == b.protocol_version && a.ticket == b.ticket &&
+		a.client_instance_id == b.client_instance_id
 }
 
 [inline]
@@ -446,8 +443,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientregisterauthticketwithcm(o CMsgClientR
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientregisterauthticketwithcm(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRegisterAuthTicketWithCM) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientregisterauthticketwithcm_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientregisterauthticketwithcm_unpack(v) ?
 	return i, unpacked
 }
 
@@ -506,42 +503,42 @@ pub fn cmsgclientticketauthcomplete_unpack(buf []byte) ?CMsgClientTicketAuthComp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.estate = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eauth_session_response = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_ticket = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket_crc = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket_sequence = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.owner_steam_id = v
 				i = ii
 			}
@@ -562,12 +559,10 @@ pub fn cmsgclientticketauthcomplete_unpack(buf []byte) ?CMsgClientTicketAuthComp
 
 [inline]
 pub fn (a CMsgClientTicketAuthComplete) eq(b CMsgClientTicketAuthComplete) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.game_id == b.game_id && a.estate == b.estate &&
-		a.eauth_session_response == b.eauth_session_response &&
-		a.deprecated_ticket == b.deprecated_ticket &&
-		a.ticket_crc == b.ticket_crc && a.ticket_sequence == b.ticket_sequence &&
-		a.owner_steam_id == b.owner_steam_id
+	return true && a.steam_id == b.steam_id && a.game_id == b.game_id && a.estate == b.estate &&
+		a.eauth_session_response == b.eauth_session_response && a.deprecated_ticket == b.deprecated_ticket &&
+		a.ticket_crc == b.ticket_crc && a.ticket_sequence == b.ticket_sequence && a.owner_steam_id ==
+		b.owner_steam_id
 }
 
 [inline]
@@ -608,8 +603,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientticketauthcomplete(o CMsgClientTicketA
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientticketauthcomplete(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientTicketAuthComplete) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientticketauthcomplete_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientticketauthcomplete_unpack(v) ?
 	return i, unpacked
 }
 
@@ -656,24 +651,24 @@ pub fn cmsgclientcmlist_unpack(buf []byte) ?CMsgClientCMList {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cm_addresses << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cm_ports << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cm_websocket_addresses << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.percent_default_to_websocket = v
 				i = ii
 			}
@@ -694,9 +689,8 @@ pub fn cmsgclientcmlist_unpack(buf []byte) ?CMsgClientCMList {
 
 [inline]
 pub fn (a CMsgClientCMList) eq(b CMsgClientCMList) bool {
-	return true && a.cm_addresses == b.cm_addresses &&
-		a.cm_ports == b.cm_ports && a.cm_websocket_addresses == b.cm_websocket_addresses &&
-		a.percent_default_to_websocket == b.percent_default_to_websocket
+	return true && a.cm_addresses == b.cm_addresses && a.cm_ports == b.cm_ports && a.cm_websocket_addresses ==
+		b.cm_websocket_addresses && a.percent_default_to_websocket == b.percent_default_to_websocket
 }
 
 [inline]
@@ -737,8 +731,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientcmlist(o CMsgClientCMList, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientcmlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientCMList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientcmlist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientcmlist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -789,32 +783,32 @@ pub fn cmsgclientp2pconnectioninfo_unpack(buf []byte) ?CMsgClientP2PConnectionIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_dest = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_src = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.candidate = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id_src = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rendezvous = v
 				i = ii
 			}
@@ -835,10 +829,8 @@ pub fn cmsgclientp2pconnectioninfo_unpack(buf []byte) ?CMsgClientP2PConnectionIn
 
 [inline]
 pub fn (a CMsgClientP2PConnectionInfo) eq(b CMsgClientP2PConnectionInfo) bool {
-	return true && a.steam_id_dest == b.steam_id_dest &&
-		a.steam_id_src == b.steam_id_src &&
-		a.app_id == b.app_id && a.candidate == b.candidate &&
-		a.connection_id_src == b.connection_id_src &&
+	return true && a.steam_id_dest == b.steam_id_dest && a.steam_id_src == b.steam_id_src &&
+		a.app_id == b.app_id && a.candidate == b.candidate && a.connection_id_src == b.connection_id_src &&
 		a.rendezvous == b.rendezvous
 }
 
@@ -880,8 +872,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientp2pconnectioninfo(o CMsgClientP2PConne
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientp2pconnectioninfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientP2PConnectionInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientp2pconnectioninfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientp2pconnectioninfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -936,37 +928,37 @@ pub fn cmsgclientp2pconnectionfailinfo_unpack(buf []byte) ?CMsgClientP2PConnecti
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_dest = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_src = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ep2p_session_error = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id_dest = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.close_reason = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.close_message = v
 				i = ii
 			}
@@ -987,12 +979,9 @@ pub fn cmsgclientp2pconnectionfailinfo_unpack(buf []byte) ?CMsgClientP2PConnecti
 
 [inline]
 pub fn (a CMsgClientP2PConnectionFailInfo) eq(b CMsgClientP2PConnectionFailInfo) bool {
-	return true && a.steam_id_dest == b.steam_id_dest &&
-		a.steam_id_src == b.steam_id_src &&
-		a.app_id == b.app_id && a.ep2p_session_error == b.ep2p_session_error &&
-		a.connection_id_dest == b.connection_id_dest &&
-		a.close_reason == b.close_reason &&
-		a.close_message == b.close_message
+	return true && a.steam_id_dest == b.steam_id_dest && a.steam_id_src == b.steam_id_src &&
+		a.app_id == b.app_id && a.ep2p_session_error == b.ep2p_session_error && a.connection_id_dest ==
+		b.connection_id_dest && a.close_reason == b.close_reason && a.close_message == b.close_message
 }
 
 [inline]
@@ -1033,8 +1022,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientp2pconnectionfailinfo(o CMsgClientP2PC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientp2pconnectionfailinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientP2PConnectionFailInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientp2pconnectionfailinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientp2pconnectionfailinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1069,12 +1058,12 @@ pub fn cmsgclientnetworkingcertrequest_unpack(buf []byte) ?CMsgClientNetworkingC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.key_data = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -1136,8 +1125,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientnetworkingcertrequest(o CMsgClientNetw
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientnetworkingcertrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientNetworkingCertRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientnetworkingcertrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientnetworkingcertrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1176,17 +1165,17 @@ pub fn cmsgclientnetworkingcertreply_unpack(buf []byte) ?CMsgClientNetworkingCer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cert = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ca_key_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ca_signature = v
 				i = ii
 			}
@@ -1207,8 +1196,7 @@ pub fn cmsgclientnetworkingcertreply_unpack(buf []byte) ?CMsgClientNetworkingCer
 
 [inline]
 pub fn (a CMsgClientNetworkingCertReply) eq(b CMsgClientNetworkingCertReply) bool {
-	return true && a.cert == b.cert &&
-		a.ca_key_id == b.ca_key_id && a.ca_signature == b.ca_signature
+	return true && a.cert == b.cert && a.ca_key_id == b.ca_key_id && a.ca_signature == b.ca_signature
 }
 
 [inline]
@@ -1249,8 +1237,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientnetworkingcertreply(o CMsgClientNetwor
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientnetworkingcertreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientNetworkingCertReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientnetworkingcertreply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientnetworkingcertreply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1281,7 +1269,7 @@ pub fn cmsgclientnetworkingmobilecertrequest_unpack(buf []byte) ?CMsgClientNetwo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -1343,8 +1331,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientnetworkingmobilecertrequest(o CMsgClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientnetworkingmobilecertrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientNetworkingMobileCertRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientnetworkingmobilecertrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientnetworkingmobilecertrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1375,7 +1363,7 @@ pub fn cmsgclientnetworkingmobilecertreply_unpack(buf []byte) ?CMsgClientNetwork
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.encoded_cert = v
 				i = ii
 			}
@@ -1437,8 +1425,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientnetworkingmobilecertreply(o CMsgClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientnetworkingmobilecertreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientNetworkingMobileCertReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientnetworkingmobilecertreply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientnetworkingmobilecertreply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1469,7 +1457,7 @@ pub fn cmsgclientgetappownershipticket_unpack(buf []byte) ?CMsgClientGetAppOwner
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -1531,8 +1519,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetappownershipticket(o CMsgClientGetA
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetappownershipticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetAppOwnershipTicket) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetappownershipticket_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetappownershipticket_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1571,17 +1559,17 @@ pub fn cmsgclientgetappownershipticketresponse_unpack(buf []byte) ?CMsgClientGet
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket = v
 				i = ii
 			}
@@ -1643,8 +1631,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetappownershipticketresponse(o CMsgCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetappownershipticketresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetAppOwnershipTicketResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetappownershipticketresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetappownershipticketresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1675,7 +1663,7 @@ pub fn cmsgclientsessiontoken_unpack(buf []byte) ?CMsgClientSessionToken {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.token = v
 				i = ii
 			}
@@ -1737,8 +1725,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientsessiontoken(o CMsgClientSessionToken,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsessiontoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSessionToken) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientsessiontoken_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientsessiontoken_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1774,13 +1762,13 @@ pub fn cmsgclientgameconnecttokens_unpack(buf []byte) ?CMsgClientGameConnectToke
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_tokens_to_keep = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tokens << v
 				i = ii
 			}
@@ -1842,8 +1830,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgameconnecttokens(o CMsgClientGameConn
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgameconnecttokens(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGameConnectTokens) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgameconnecttokens_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgameconnecttokens_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1898,37 +1886,37 @@ pub fn cmsggsservertype_unpack(buf []byte) ?CMsgGSServerType {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id_served = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_game_ip_address = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_port = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_dir = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_version = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_query_port = v
 				i = ii
 			}
@@ -1949,11 +1937,9 @@ pub fn cmsggsservertype_unpack(buf []byte) ?CMsgGSServerType {
 
 [inline]
 pub fn (a CMsgGSServerType) eq(b CMsgGSServerType) bool {
-	return true && a.app_id_served == b.app_id_served &&
-		a.flags == b.flags && a.deprecated_game_ip_address == b.deprecated_game_ip_address &&
-		a.game_port == b.game_port && a.game_dir == b.game_dir &&
-		a.game_version == b.game_version &&
-		a.game_query_port == b.game_query_port
+	return true && a.app_id_served == b.app_id_served && a.flags == b.flags && a.deprecated_game_ip_address ==
+		b.deprecated_game_ip_address && a.game_port == b.game_port && a.game_dir == b.game_dir &&
+		a.game_version == b.game_version && a.game_query_port == b.game_query_port
 }
 
 [inline]
@@ -1994,8 +1980,8 @@ pub fn zzz_vproto_internal_pack_cmsggsservertype(o CMsgGSServerType, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsservertype(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSServerType) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsservertype_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsservertype_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2008,7 +1994,7 @@ pub mut:
 
 pub fn (o &CMsgGSStatusReply) pack() []byte {
 	mut res := []byte{}
-	if o.is_secure != bool(0) {
+	if o.is_secure != false {
 		res << vproto.pack_bool_field(o.is_secure, 1)
 	}
 	return res
@@ -2026,7 +2012,7 @@ pub fn cmsggsstatusreply_unpack(buf []byte) ?CMsgGSStatusReply {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_secure = v
 				i = ii
 			}
@@ -2088,8 +2074,8 @@ pub fn zzz_vproto_internal_pack_cmsggsstatusreply(o CMsgGSStatusReply, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsstatusreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSStatusReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsstatusreply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsstatusreply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2132,22 +2118,22 @@ pub fn cmsggsplayerlist_player_unpack(buf []byte) ?CMsgGSPlayerList_Player {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_public_ip = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.token = v
 				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ip = v
 				i = ii
 			}
@@ -2168,8 +2154,7 @@ pub fn cmsggsplayerlist_player_unpack(buf []byte) ?CMsgGSPlayerList_Player {
 
 [inline]
 pub fn (a CMsgGSPlayerList_Player) eq(b CMsgGSPlayerList_Player) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.deprecated_public_ip == b.deprecated_public_ip &&
+	return true && a.steam_id == b.steam_id && a.deprecated_public_ip == b.deprecated_public_ip &&
 		a.token == b.token && a.public_ip.eq(b.public_ip)
 }
 
@@ -2211,8 +2196,8 @@ pub fn zzz_vproto_internal_pack_cmsggsplayerlist_player(o CMsgGSPlayerList_Playe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsplayerlist_player(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSPlayerList_Player) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsplayerlist_player_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsplayerlist_player_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2245,7 +2230,7 @@ pub fn cmsggsplayerlist_unpack(buf []byte) ?CMsgGSPlayerList {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsggsplayerlist_player(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsggsplayerlist_player(cur_buf, tag_wiretype.wire_type) ?
 				res.players << v
 				i = ii
 			}
@@ -2307,8 +2292,8 @@ pub fn zzz_vproto_internal_pack_cmsggsplayerlist(o CMsgGSPlayerList, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsplayerlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSPlayerList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsplayerlist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsplayerlist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2351,22 +2336,22 @@ pub fn cmsggsuserplaying_unpack(buf []byte) ?CMsgGSUserPlaying {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_public_ip = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.token = v
 				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ip = v
 				i = ii
 			}
@@ -2387,8 +2372,7 @@ pub fn cmsggsuserplaying_unpack(buf []byte) ?CMsgGSUserPlaying {
 
 [inline]
 pub fn (a CMsgGSUserPlaying) eq(b CMsgGSUserPlaying) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.deprecated_public_ip == b.deprecated_public_ip &&
+	return true && a.steam_id == b.steam_id && a.deprecated_public_ip == b.deprecated_public_ip &&
 		a.token == b.token && a.public_ip.eq(b.public_ip)
 }
 
@@ -2430,8 +2414,8 @@ pub fn zzz_vproto_internal_pack_cmsggsuserplaying(o CMsgGSUserPlaying, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsuserplaying(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSUserPlaying) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsuserplaying_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsuserplaying_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2462,7 +2446,7 @@ pub fn cmsggsdisconnectnotice_unpack(buf []byte) ?CMsgGSDisconnectNotice {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
@@ -2524,8 +2508,8 @@ pub fn zzz_vproto_internal_pack_cmsggsdisconnectnotice(o CMsgGSDisconnectNotice,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsdisconnectnotice(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSDisconnectNotice) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsdisconnectnotice_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsdisconnectnotice_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2547,16 +2531,16 @@ pub mut:
 	owner_id                         u32
 	vr_hmd_vendor                    string
 	vr_hmd_model                     string
-	launch_option_type               u32 = 0
+	launch_option_type               u32
 	primary_controller_type          int = -1
 	primary_steam_controller_serial  string
-	total_steam_controller_count     u32 = 0
-	total_non_steam_controller_count u32 = 0
-	controller_workshop_file_id      u64 = 0
-	launch_source                    u32 = 0
+	total_steam_controller_count     u32
+	total_non_steam_controller_count u32
+	controller_workshop_file_id      u64
+	launch_source                    u32
 	vr_hmd_runtime                   u32
 	game_ip_address                  CMsgIPAddress
-	controller_connection_type       u32 = 0
+	controller_connection_type       u32
 }
 
 pub fn (o &CMsgClientGamesPlayed_GamePlayed) pack() []byte {
@@ -2573,7 +2557,7 @@ pub fn (o &CMsgClientGamesPlayed_GamePlayed) pack() []byte {
 	if o.game_port != u32(0) {
 		res << vproto.pack_uint32_field(o.game_port, 4)
 	}
-	if o.is_secure != bool(0) {
+	if o.is_secure != false {
 		res << vproto.pack_bool_field(o.is_secure, 5)
 	}
 	if o.token != []byte{} {
@@ -2648,122 +2632,122 @@ pub fn cmsgclientgamesplayed_gameplayed_unpack(buf []byte) ?CMsgClientGamesPlaye
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_gs = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_game_ip_address = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_port = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_secure = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.token = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_extra_info = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_data_blob = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.process_id = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.streaming_provider_id = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_flags = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.owner_id = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vr_hmd_vendor = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vr_hmd_model = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.launch_option_type = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.primary_controller_type = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.primary_steam_controller_serial = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.total_steam_controller_count = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.total_non_steam_controller_count = v
 				i = ii
 			}
 			20 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.controller_workshop_file_id = v
 				i = ii
 			}
 			21 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.launch_source = v
 				i = ii
 			}
 			22 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.vr_hmd_runtime = v
 				i = ii
 			}
 			23 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.game_ip_address = v
 				i = ii
 			}
 			24 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.controller_connection_type = v
 				i = ii
 			}
@@ -2784,23 +2768,16 @@ pub fn cmsgclientgamesplayed_gameplayed_unpack(buf []byte) ?CMsgClientGamesPlaye
 
 [inline]
 pub fn (a CMsgClientGamesPlayed_GamePlayed) eq(b CMsgClientGamesPlayed_GamePlayed) bool {
-	return true && a.steam_id_gs == b.steam_id_gs &&
-		a.game_id == b.game_id && a.deprecated_game_ip_address == b.deprecated_game_ip_address &&
-		a.game_port == b.game_port && a.is_secure == b.is_secure &&
-		a.token == b.token && a.game_extra_info == b.game_extra_info &&
-		a.game_data_blob == b.game_data_blob &&
+	return true && a.steam_id_gs == b.steam_id_gs && a.game_id == b.game_id && a.deprecated_game_ip_address ==
+		b.deprecated_game_ip_address && a.game_port == b.game_port && a.is_secure == b.is_secure &&
+		a.token == b.token && a.game_extra_info == b.game_extra_info && a.game_data_blob == b.game_data_blob &&
 		a.process_id == b.process_id && a.streaming_provider_id == b.streaming_provider_id &&
-		a.game_flags == b.game_flags && a.owner_id == b.owner_id &&
-		a.vr_hmd_vendor == b.vr_hmd_vendor &&
-		a.vr_hmd_model == b.vr_hmd_model &&
-		a.launch_option_type == b.launch_option_type &&
-		a.primary_controller_type == b.primary_controller_type &&
-		a.primary_steam_controller_serial == b.primary_steam_controller_serial &&
-		a.total_steam_controller_count == b.total_steam_controller_count &&
-		a.total_non_steam_controller_count == b.total_non_steam_controller_count &&
-		a.controller_workshop_file_id == b.controller_workshop_file_id &&
-		a.launch_source == b.launch_source &&
-		a.vr_hmd_runtime == b.vr_hmd_runtime && a.game_ip_address.eq(b.game_ip_address) &&
+		a.game_flags == b.game_flags && a.owner_id == b.owner_id && a.vr_hmd_vendor == b.vr_hmd_vendor &&
+		a.vr_hmd_model == b.vr_hmd_model && a.launch_option_type == b.launch_option_type && a.primary_controller_type ==
+		b.primary_controller_type && a.primary_steam_controller_serial == b.primary_steam_controller_serial &&
+		a.total_steam_controller_count == b.total_steam_controller_count && a.total_non_steam_controller_count ==
+		b.total_non_steam_controller_count && a.controller_workshop_file_id == b.controller_workshop_file_id &&
+		a.launch_source == b.launch_source && a.vr_hmd_runtime == b.vr_hmd_runtime && a.game_ip_address.eq(b.game_ip_address) &&
 		a.controller_connection_type == b.controller_connection_type
 }
 
@@ -2842,8 +2819,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgamesplayed_gameplayed(o CMsgClientGam
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgamesplayed_gameplayed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGamesPlayed_GamePlayed) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgamesplayed_gameplayed_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgamesplayed_gameplayed_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2885,17 +2862,17 @@ pub fn cmsgclientgamesplayed_unpack(buf []byte) ?CMsgClientGamesPlayed {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientgamesplayed_gameplayed(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.games_played << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_os_type = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cloud_gaming_platform = v
 				i = ii
 			}
@@ -2916,8 +2893,7 @@ pub fn cmsgclientgamesplayed_unpack(buf []byte) ?CMsgClientGamesPlayed {
 
 [inline]
 pub fn (a CMsgClientGamesPlayed) eq(b CMsgClientGamesPlayed) bool {
-	return true && a.games_played.eq(b.games_played) &&
-		a.client_os_type == b.client_os_type &&
+	return true && a.games_played.eq(b.games_played) && a.client_os_type == b.client_os_type &&
 		a.cloud_gaming_platform == b.cloud_gaming_platform
 }
 
@@ -2959,8 +2935,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgamesplayed(o CMsgClientGamesPlayed, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgamesplayed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGamesPlayed) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgamesplayed_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgamesplayed_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2995,12 +2971,12 @@ pub fn cmsggsapprove_unpack(buf []byte) ?CMsgGSApprove {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.owner_steam_id = v
 				i = ii
 			}
@@ -3062,8 +3038,8 @@ pub fn zzz_vproto_internal_pack_cmsggsapprove(o CMsgGSApprove, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsapprove(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSApprove) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsapprove_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsapprove_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3102,17 +3078,17 @@ pub fn cmsggsdeny_unpack(buf []byte) ?CMsgGSDeny {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.edeny_reason = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deny_string = v
 				i = ii
 			}
@@ -3133,9 +3109,8 @@ pub fn cmsggsdeny_unpack(buf []byte) ?CMsgGSDeny {
 
 [inline]
 pub fn (a CMsgGSDeny) eq(b CMsgGSDeny) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.edeny_reason == b.edeny_reason &&
-		a.deny_string == b.deny_string
+	return true && a.steam_id == b.steam_id && a.edeny_reason == b.edeny_reason && a.deny_string ==
+		b.deny_string
 }
 
 [inline]
@@ -3176,8 +3151,8 @@ pub fn zzz_vproto_internal_pack_cmsggsdeny(o CMsgGSDeny, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggsdeny(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSDeny) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggsdeny_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggsdeny_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3212,12 +3187,12 @@ pub fn cmsggskick_unpack(buf []byte) ?CMsgGSKick {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.edeny_reason = v
 				i = ii
 			}
@@ -3279,8 +3254,8 @@ pub fn zzz_vproto_internal_pack_cmsggskick(o CMsgGSKick, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsggskick(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgGSKick) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsggskick_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsggskick_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3333,34 +3308,34 @@ pub fn cmsgclientauthlist_unpack(buf []byte) ?CMsgClientAuthList {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tokens_left = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_request_seq = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_request_seq_from_server = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_cmsgauthticket(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgauthticket(cur_buf, tag_wiretype.wire_type) ?
 				res.tickets << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_ids << v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_sequence = v
 				i = ii
 			}
@@ -3381,8 +3356,7 @@ pub fn cmsgclientauthlist_unpack(buf []byte) ?CMsgClientAuthList {
 
 [inline]
 pub fn (a CMsgClientAuthList) eq(b CMsgClientAuthList) bool {
-	return true && a.tokens_left == b.tokens_left &&
-		a.last_request_seq == b.last_request_seq &&
+	return true && a.tokens_left == b.tokens_left && a.last_request_seq == b.last_request_seq &&
 		a.last_request_seq_from_server == b.last_request_seq_from_server && a.tickets.eq(b.tickets) &&
 		a.app_ids == b.app_ids && a.message_sequence == b.message_sequence
 }
@@ -3425,8 +3399,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientauthlist(o CMsgClientAuthList, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientauthlist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAuthList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientauthlist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientauthlist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3468,18 +3442,18 @@ pub fn cmsgclientauthlistack_unpack(buf []byte) ?CMsgClientAuthListAck {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket_crc << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_ids << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_sequence = v
 				i = ii
 			}
@@ -3500,8 +3474,8 @@ pub fn cmsgclientauthlistack_unpack(buf []byte) ?CMsgClientAuthListAck {
 
 [inline]
 pub fn (a CMsgClientAuthListAck) eq(b CMsgClientAuthListAck) bool {
-	return true && a.ticket_crc == b.ticket_crc &&
-		a.app_ids == b.app_ids && a.message_sequence == b.message_sequence
+	return true && a.ticket_crc == b.ticket_crc && a.app_ids == b.app_ids && a.message_sequence ==
+		b.message_sequence
 }
 
 [inline]
@@ -3542,8 +3516,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientauthlistack(o CMsgClientAuthListAck, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientauthlistack(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAuthListAck) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientauthlistack_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientauthlistack_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3642,92 +3616,92 @@ pub fn cmsgclientlicenselist_license_unpack(buf []byte) ?CMsgClientLicenseList_L
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.package_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_created = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_next_process = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.minute_limit = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.minutes_used = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.payment_method = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.purchase_country_code = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.license_type = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.territory_code = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.owner_id = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_period = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_time_unit = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.renewal_period = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.renewal_time_unit = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.access_token = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.master_package_id = v
 				i = ii
 			}
@@ -3748,22 +3722,14 @@ pub fn cmsgclientlicenselist_license_unpack(buf []byte) ?CMsgClientLicenseList_L
 
 [inline]
 pub fn (a CMsgClientLicenseList_License) eq(b CMsgClientLicenseList_License) bool {
-	return true && a.package_id == b.package_id &&
-		a.time_created == b.time_created &&
-		a.time_next_process == b.time_next_process &&
-		a.minute_limit == b.minute_limit &&
-		a.minutes_used == b.minutes_used &&
-		a.payment_method == b.payment_method &&
-		a.flags == b.flags && a.purchase_country_code == b.purchase_country_code &&
-		a.license_type == b.license_type &&
-		a.territory_code == b.territory_code &&
-		a.change_number == b.change_number &&
-		a.owner_id == b.owner_id && a.initial_period == b.initial_period &&
-		a.initial_time_unit == b.initial_time_unit &&
-		a.renewal_period == b.renewal_period &&
-		a.renewal_time_unit == b.renewal_time_unit &&
-		a.access_token == b.access_token &&
-		a.master_package_id == b.master_package_id
+	return true && a.package_id == b.package_id && a.time_created == b.time_created &&
+		a.time_next_process == b.time_next_process && a.minute_limit == b.minute_limit && a.minutes_used ==
+		b.minutes_used && a.payment_method == b.payment_method && a.flags == b.flags && a.purchase_country_code ==
+		b.purchase_country_code && a.license_type == b.license_type && a.territory_code == b.territory_code &&
+		a.change_number == b.change_number && a.owner_id == b.owner_id && a.initial_period == b.initial_period &&
+		a.initial_time_unit == b.initial_time_unit && a.renewal_period == b.renewal_period &&
+		a.renewal_time_unit == b.renewal_time_unit && a.access_token == b.access_token && a.master_package_id ==
+		b.master_package_id
 }
 
 [inline]
@@ -3804,8 +3770,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlicenselist_license(o CMsgClientLicens
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlicenselist_license(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLicenseList_License) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlicenselist_license_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlicenselist_license_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3841,14 +3807,14 @@ pub fn cmsgclientlicenselist_unpack(buf []byte) ?CMsgClientLicenseList {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientlicenselist_license(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.licenses << v
 				i = ii
 			}
@@ -3910,8 +3876,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlicenselist(o CMsgClientLicenseList, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlicenselist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLicenseList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlicenselist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlicenselist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3958,27 +3924,27 @@ pub fn cmsgclientlbssetscore_unpack(buf []byte) ?CMsgClientLBSSetScore {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.score = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.details = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_score_method = v
 				i = ii
 			}
@@ -3999,10 +3965,8 @@ pub fn cmsgclientlbssetscore_unpack(buf []byte) ?CMsgClientLBSSetScore {
 
 [inline]
 pub fn (a CMsgClientLBSSetScore) eq(b CMsgClientLBSSetScore) bool {
-	return true && a.app_id == b.app_id &&
-		a.leaderboard_id == b.leaderboard_id &&
-		a.score == b.score && a.details == b.details &&
-		a.upload_score_method == b.upload_score_method
+	return true && a.app_id == b.app_id && a.leaderboard_id == b.leaderboard_id && a.score ==
+		b.score && a.details == b.details && a.upload_score_method == b.upload_score_method
 }
 
 [inline]
@@ -4043,8 +4007,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbssetscore(o CMsgClientLBSSetScore, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbssetscore(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetScore) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbssetscore_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbssetscore_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4067,7 +4031,7 @@ pub fn (o &CMsgClientLBSSetScoreResponse) pack() []byte {
 	if o.leaderboard_entry_count != int(0) {
 		res << vproto.pack_int32_field(o.leaderboard_entry_count, 2)
 	}
-	if o.score_changed != bool(0) {
+	if o.score_changed != false {
 		res << vproto.pack_bool_field(o.score_changed, 3)
 	}
 	if o.global_rank_previous != int(0) {
@@ -4091,27 +4055,27 @@ pub fn cmsgclientlbssetscoreresponse_unpack(buf []byte) ?CMsgClientLBSSetScoreRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_entry_count = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.score_changed = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.global_rank_previous = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.global_rank_new = v
 				i = ii
 			}
@@ -4132,10 +4096,8 @@ pub fn cmsgclientlbssetscoreresponse_unpack(buf []byte) ?CMsgClientLBSSetScoreRe
 
 [inline]
 pub fn (a CMsgClientLBSSetScoreResponse) eq(b CMsgClientLBSSetScoreResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.leaderboard_entry_count == b.leaderboard_entry_count &&
-		a.score_changed == b.score_changed &&
-		a.global_rank_previous == b.global_rank_previous &&
+	return true && a.eresult == b.eresult && a.leaderboard_entry_count == b.leaderboard_entry_count &&
+		a.score_changed == b.score_changed && a.global_rank_previous == b.global_rank_previous &&
 		a.global_rank_new == b.global_rank_new
 }
 
@@ -4177,8 +4139,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbssetscoreresponse(o CMsgClientLBSSet
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbssetscoreresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetScoreResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbssetscoreresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbssetscoreresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4217,17 +4179,17 @@ pub fn cmsgclientlbssetugc_unpack(buf []byte) ?CMsgClientLBSSetUGC {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ugc_id = v
 				i = ii
 			}
@@ -4248,9 +4210,8 @@ pub fn cmsgclientlbssetugc_unpack(buf []byte) ?CMsgClientLBSSetUGC {
 
 [inline]
 pub fn (a CMsgClientLBSSetUGC) eq(b CMsgClientLBSSetUGC) bool {
-	return true && a.app_id == b.app_id &&
-		a.leaderboard_id == b.leaderboard_id &&
-		a.ugc_id == b.ugc_id
+	return true && a.app_id == b.app_id && a.leaderboard_id == b.leaderboard_id && a.ugc_id ==
+		b.ugc_id
 }
 
 [inline]
@@ -4291,8 +4252,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbssetugc(o CMsgClientLBSSetUGC, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbssetugc(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetUGC) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbssetugc_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbssetugc_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4323,7 +4284,7 @@ pub fn cmsgclientlbssetugcresponse_unpack(buf []byte) ?CMsgClientLBSSetUGCRespon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
@@ -4385,8 +4346,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbssetugcresponse(o CMsgClientLBSSetUG
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbssetugcresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSSetUGCResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbssetugcresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbssetugcresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4412,7 +4373,7 @@ pub fn (o &CMsgClientLBSFindOrCreateLB) pack() []byte {
 	if o.leaderboard_display_type != int(0) {
 		res << vproto.pack_int32_field(o.leaderboard_display_type, 3)
 	}
-	if o.create_if_not_found != bool(0) {
+	if o.create_if_not_found != false {
 		res << vproto.pack_bool_field(o.create_if_not_found, 4)
 	}
 	if o.leaderboard_name != '' {
@@ -4433,27 +4394,27 @@ pub fn cmsgclientlbsfindorcreatelb_unpack(buf []byte) ?CMsgClientLBSFindOrCreate
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_sort_method = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_display_type = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.create_if_not_found = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_name = v
 				i = ii
 			}
@@ -4474,10 +4435,8 @@ pub fn cmsgclientlbsfindorcreatelb_unpack(buf []byte) ?CMsgClientLBSFindOrCreate
 
 [inline]
 pub fn (a CMsgClientLBSFindOrCreateLB) eq(b CMsgClientLBSFindOrCreateLB) bool {
-	return true && a.app_id == b.app_id &&
-		a.leaderboard_sort_method == b.leaderboard_sort_method &&
-		a.leaderboard_display_type == b.leaderboard_display_type &&
-		a.create_if_not_found == b.create_if_not_found &&
+	return true && a.app_id == b.app_id && a.leaderboard_sort_method == b.leaderboard_sort_method &&
+		a.leaderboard_display_type == b.leaderboard_display_type && a.create_if_not_found == b.create_if_not_found &&
 		a.leaderboard_name == b.leaderboard_name
 }
 
@@ -4519,8 +4478,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbsfindorcreatelb(o CMsgClientLBSFindO
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbsfindorcreatelb(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSFindOrCreateLB) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbsfindorcreatelb_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbsfindorcreatelb_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4531,8 +4490,8 @@ pub mut:
 	eresult                  int = 2
 	leaderboard_id           int
 	leaderboard_entry_count  int
-	leaderboard_sort_method  int = 0
-	leaderboard_display_type int = 0
+	leaderboard_sort_method  int
+	leaderboard_display_type int
 	leaderboard_name         string
 }
 
@@ -4571,32 +4530,32 @@ pub fn cmsgclientlbsfindorcreatelbresponse_unpack(buf []byte) ?CMsgClientLBSFind
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_entry_count = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_sort_method = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_display_type = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_name = v
 				i = ii
 			}
@@ -4617,12 +4576,9 @@ pub fn cmsgclientlbsfindorcreatelbresponse_unpack(buf []byte) ?CMsgClientLBSFind
 
 [inline]
 pub fn (a CMsgClientLBSFindOrCreateLBResponse) eq(b CMsgClientLBSFindOrCreateLBResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.leaderboard_id == b.leaderboard_id &&
-		a.leaderboard_entry_count == b.leaderboard_entry_count &&
-		a.leaderboard_sort_method == b.leaderboard_sort_method &&
-		a.leaderboard_display_type == b.leaderboard_display_type &&
-		a.leaderboard_name == b.leaderboard_name
+	return true && a.eresult == b.eresult && a.leaderboard_id == b.leaderboard_id && a.leaderboard_entry_count ==
+		b.leaderboard_entry_count && a.leaderboard_sort_method == b.leaderboard_sort_method &&
+		a.leaderboard_display_type == b.leaderboard_display_type && a.leaderboard_name == b.leaderboard_name
 }
 
 [inline]
@@ -4663,8 +4619,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbsfindorcreatelbresponse(o CMsgClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbsfindorcreatelbresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSFindOrCreateLBResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbsfindorcreatelbresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbsfindorcreatelbresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4716,33 +4672,33 @@ pub fn cmsgclientlbsgetlbentries_unpack(buf []byte) ?CMsgClientLBSGetLBEntries {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.range_start = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.range_end = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_data_request = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamids << v
 				i = ii
 			}
@@ -4763,10 +4719,8 @@ pub fn cmsgclientlbsgetlbentries_unpack(buf []byte) ?CMsgClientLBSGetLBEntries {
 
 [inline]
 pub fn (a CMsgClientLBSGetLBEntries) eq(b CMsgClientLBSGetLBEntries) bool {
-	return true && a.app_id == b.app_id &&
-		a.leaderboard_id == b.leaderboard_id &&
-		a.range_start == b.range_start && a.range_end == b.range_end &&
-		a.leaderboard_data_request == b.leaderboard_data_request &&
+	return true && a.app_id == b.app_id && a.leaderboard_id == b.leaderboard_id && a.range_start ==
+		b.range_start && a.range_end == b.range_end && a.leaderboard_data_request == b.leaderboard_data_request &&
 		a.steamids == b.steamids
 }
 
@@ -4808,8 +4762,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentries(o CMsgClientLBSGetLBEn
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentries(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSGetLBEntries) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbsgetlbentries_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbsgetlbentries_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4856,27 +4810,27 @@ pub fn cmsgclientlbsgetlbentriesresponse_entry_unpack(buf []byte) ?CMsgClientLBS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_user = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.global_rank = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.score = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.details = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ugc_id = v
 				i = ii
 			}
@@ -4897,9 +4851,8 @@ pub fn cmsgclientlbsgetlbentriesresponse_entry_unpack(buf []byte) ?CMsgClientLBS
 
 [inline]
 pub fn (a CMsgClientLBSGetLBEntriesResponse_Entry) eq(b CMsgClientLBSGetLBEntriesResponse_Entry) bool {
-	return true && a.steam_id_user == b.steam_id_user &&
-		a.global_rank == b.global_rank && a.score == b.score &&
-		a.details == b.details && a.ugc_id == b.ugc_id
+	return true && a.steam_id_user == b.steam_id_user && a.global_rank == b.global_rank &&
+		a.score == b.score && a.details == b.details && a.ugc_id == b.ugc_id
 }
 
 [inline]
@@ -4940,8 +4893,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponse_entry(o CMsgCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse_entry(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSGetLBEntriesResponse_Entry) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbsgetlbentriesresponse_entry_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbsgetlbentriesresponse_entry_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4981,19 +4934,19 @@ pub fn cmsgclientlbsgetlbentriesresponse_unpack(buf []byte) ?CMsgClientLBSGetLBE
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leaderboard_entry_count = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse_entry(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.entries << v
 				i = ii
 			}
@@ -5014,8 +4967,8 @@ pub fn cmsgclientlbsgetlbentriesresponse_unpack(buf []byte) ?CMsgClientLBSGetLBE
 
 [inline]
 pub fn (a CMsgClientLBSGetLBEntriesResponse) eq(b CMsgClientLBSGetLBEntriesResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.leaderboard_entry_count == b.leaderboard_entry_count && a.entries.eq(b.entries)
+	return true && a.eresult == b.eresult && a.leaderboard_entry_count == b.leaderboard_entry_count &&
+		a.entries.eq(b.entries)
 }
 
 [inline]
@@ -5056,8 +5009,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientlbsgetlbentriesresponse(o CMsgClientLB
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientlbsgetlbentriesresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientLBSGetLBEntriesResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientlbsgetlbentriesresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientlbsgetlbentriesresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5096,17 +5049,17 @@ pub fn cmsgclientappminutesplayeddata_appminutesplayeddata_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forever = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_two_weeks = v
 				i = ii
 			}
@@ -5127,8 +5080,7 @@ pub fn cmsgclientappminutesplayeddata_appminutesplayeddata_unpack(buf []byte) ?C
 
 [inline]
 pub fn (a CMsgClientAppMinutesPlayedData_AppMinutesPlayedData) eq(b CMsgClientAppMinutesPlayedData_AppMinutesPlayedData) bool {
-	return true && a.app_id == b.app_id &&
-		a.forever == b.forever && a.last_two_weeks == b.last_two_weeks
+	return true && a.app_id == b.app_id && a.forever == b.forever && a.last_two_weeks == b.last_two_weeks
 }
 
 [inline]
@@ -5169,8 +5121,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappminutesplayeddata_appminutesplayedd
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappminutesplayeddata_appminutesplayeddata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppMinutesPlayedData_AppMinutesPlayedData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappminutesplayeddata_appminutesplayeddata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappminutesplayeddata_appminutesplayeddata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5185,7 +5137,8 @@ pub fn (o &CMsgClientAppMinutesPlayedData) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.minutes_played {
-		res << zzz_vproto_internal_pack_cmsgclientappminutesplayeddata_appminutesplayeddata(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientappminutesplayeddata_appminutesplayeddata(x, 1)
 	}
 	return res
 }
@@ -5204,7 +5157,7 @@ pub fn cmsgclientappminutesplayeddata_unpack(buf []byte) ?CMsgClientAppMinutesPl
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientappminutesplayeddata_appminutesplayeddata(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.minutes_played << v
 				i = ii
 			}
@@ -5266,8 +5219,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappminutesplayeddata(o CMsgClientAppMi
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappminutesplayeddata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppMinutesPlayedData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappminutesplayeddata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappminutesplayeddata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5283,17 +5236,18 @@ pub mut:
 
 pub fn (o &CMsgClientIsLimitedAccount) pack() []byte {
 	mut res := []byte{}
-	if o.bis_limited_account != bool(0) {
+	if o.bis_limited_account != false {
 		res << vproto.pack_bool_field(o.bis_limited_account, 1)
 	}
-	if o.bis_community_banned != bool(0) {
+	if o.bis_community_banned != false {
 		res << vproto.pack_bool_field(o.bis_community_banned, 2)
 	}
-	if o.bis_locked_account != bool(0) {
+	if o.bis_locked_account != false {
 		res << vproto.pack_bool_field(o.bis_locked_account, 3)
 	}
-	if o.bis_limited_account_allowed_to_invite_friends != bool(0) {
-		res << vproto.pack_bool_field(o.bis_limited_account_allowed_to_invite_friends, 4)
+	if o.bis_limited_account_allowed_to_invite_friends != false {
+		res <<
+			vproto.pack_bool_field(o.bis_limited_account_allowed_to_invite_friends, 4)
 	}
 	return res
 }
@@ -5310,22 +5264,22 @@ pub fn cmsgclientislimitedaccount_unpack(buf []byte) ?CMsgClientIsLimitedAccount
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bis_limited_account = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bis_community_banned = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bis_locked_account = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bis_limited_account_allowed_to_invite_friends = v
 				i = ii
 			}
@@ -5346,10 +5300,9 @@ pub fn cmsgclientislimitedaccount_unpack(buf []byte) ?CMsgClientIsLimitedAccount
 
 [inline]
 pub fn (a CMsgClientIsLimitedAccount) eq(b CMsgClientIsLimitedAccount) bool {
-	return true && a.bis_limited_account == b.bis_limited_account &&
-		a.bis_community_banned == b.bis_community_banned &&
-		a.bis_locked_account == b.bis_locked_account &&
-		a.bis_limited_account_allowed_to_invite_friends == b.bis_limited_account_allowed_to_invite_friends
+	return true && a.bis_limited_account == b.bis_limited_account && a.bis_community_banned ==
+		b.bis_community_banned && a.bis_locked_account == b.bis_locked_account && a.bis_limited_account_allowed_to_invite_friends ==
+		b.bis_limited_account_allowed_to_invite_friends
 }
 
 [inline]
@@ -5390,8 +5343,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientislimitedaccount(o CMsgClientIsLimited
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientislimitedaccount(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientIsLimitedAccount) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientislimitedaccount_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientislimitedaccount_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5426,12 +5379,12 @@ pub fn cmsgclientrequestedclientstats_statstosend_unpack(buf []byte) ?CMsgClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_stat = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_aggregate_method = v
 				i = ii
 			}
@@ -5452,8 +5405,7 @@ pub fn cmsgclientrequestedclientstats_statstosend_unpack(buf []byte) ?CMsgClient
 
 [inline]
 pub fn (a CMsgClientRequestedClientStats_StatsToSend) eq(b CMsgClientRequestedClientStats_StatsToSend) bool {
-	return true && a.client_stat == b.client_stat &&
-		a.stat_aggregate_method == b.stat_aggregate_method
+	return true && a.client_stat == b.client_stat && a.stat_aggregate_method == b.stat_aggregate_method
 }
 
 [inline]
@@ -5494,8 +5446,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientrequestedclientstats_statstosend(o CMs
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestedclientstats_statstosend(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestedClientStats_StatsToSend) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientrequestedclientstats_statstosend_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientrequestedclientstats_statstosend_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5510,7 +5462,8 @@ pub fn (o &CMsgClientRequestedClientStats) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.stats_to_send {
-		res << zzz_vproto_internal_pack_cmsgclientrequestedclientstats_statstosend(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientrequestedclientstats_statstosend(x, 1)
 	}
 	return res
 }
@@ -5529,7 +5482,7 @@ pub fn cmsgclientrequestedclientstats_unpack(buf []byte) ?CMsgClientRequestedCli
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientrequestedclientstats_statstosend(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats_to_send << v
 				i = ii
 			}
@@ -5591,8 +5544,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientrequestedclientstats(o CMsgClientReque
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestedclientstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestedClientStats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientrequestedclientstats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientrequestedclientstats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5643,32 +5596,32 @@ pub fn cmsgclientstat2_statdetail_unpack(buf []byte) ?CMsgClientStat2_StatDetail
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_stat = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ll_value = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_of_day = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cell_id = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.depot_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -5689,10 +5642,8 @@ pub fn cmsgclientstat2_statdetail_unpack(buf []byte) ?CMsgClientStat2_StatDetail
 
 [inline]
 pub fn (a CMsgClientStat2_StatDetail) eq(b CMsgClientStat2_StatDetail) bool {
-	return true && a.client_stat == b.client_stat &&
-		a.ll_value == b.ll_value && a.time_of_day == b.time_of_day &&
-		a.cell_id == b.cell_id && a.depot_id == b.depot_id &&
-		a.app_id == b.app_id
+	return true && a.client_stat == b.client_stat && a.ll_value == b.ll_value && a.time_of_day ==
+		b.time_of_day && a.cell_id == b.cell_id && a.depot_id == b.depot_id && a.app_id == b.app_id
 }
 
 [inline]
@@ -5733,8 +5684,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstat2_statdetail(o CMsgClientStat2_Sta
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstat2_statdetail(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStat2_StatDetail) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstat2_statdetail_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstat2_statdetail_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5768,7 +5719,7 @@ pub fn cmsgclientstat2_unpack(buf []byte) ?CMsgClientStat2 {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientstat2_statdetail(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stat_detail << v
 				i = ii
 			}
@@ -5830,8 +5781,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstat2(o CMsgClientStat2, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstat2(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStat2) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstat2_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstat2_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5850,7 +5801,7 @@ pub fn (o &CMsgClientMMSSetRatelimitPolicyOnClient) pack() []byte {
 	if o.app_id != u32(0) {
 		res << vproto.pack_uint32_field(o.app_id, 1)
 	}
-	if o.enable_rate_limits != bool(0) {
+	if o.enable_rate_limits != false {
 		res << vproto.pack_bool_field(o.enable_rate_limits, 2)
 	}
 	if o.seconds_per_message != int(0) {
@@ -5874,22 +5825,22 @@ pub fn cmsgclientmmssetratelimitpolicyonclient_unpack(buf []byte) ?CMsgClientMMS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.enable_rate_limits = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_per_message = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.milliseconds_per_data_update = v
 				i = ii
 			}
@@ -5910,10 +5861,8 @@ pub fn cmsgclientmmssetratelimitpolicyonclient_unpack(buf []byte) ?CMsgClientMMS
 
 [inline]
 pub fn (a CMsgClientMMSSetRatelimitPolicyOnClient) eq(b CMsgClientMMSSetRatelimitPolicyOnClient) bool {
-	return true && a.app_id == b.app_id &&
-		a.enable_rate_limits == b.enable_rate_limits &&
-		a.seconds_per_message == b.seconds_per_message &&
-		a.milliseconds_per_data_update == b.milliseconds_per_data_update
+	return true && a.app_id == b.app_id && a.enable_rate_limits == b.enable_rate_limits &&
+		a.seconds_per_message == b.seconds_per_message && a.milliseconds_per_data_update == b.milliseconds_per_data_update
 }
 
 [inline]
@@ -5954,8 +5903,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetratelimitpolicyonclient(o CMsgCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetratelimitpolicyonclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetRatelimitPolicyOnClient) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetratelimitpolicyonclient_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetratelimitpolicyonclient_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6018,47 +5967,47 @@ pub fn cmsgclientmmscreatelobby_unpack(buf []byte) ?CMsgClientMMSCreateLobby {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_members = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_type = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_flags = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cell_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_public_ip = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name_owner = v
 				i = ii
 			}
 			9 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ip = v
 				i = ii
 			}
@@ -6079,12 +6028,9 @@ pub fn cmsgclientmmscreatelobby_unpack(buf []byte) ?CMsgClientMMSCreateLobby {
 
 [inline]
 pub fn (a CMsgClientMMSCreateLobby) eq(b CMsgClientMMSCreateLobby) bool {
-	return true && a.app_id == b.app_id &&
-		a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
-		a.lobby_flags == b.lobby_flags && a.cell_id == b.cell_id &&
-		a.deprecated_public_ip == b.deprecated_public_ip &&
-		a.metadata == b.metadata &&
-		a.persona_name_owner == b.persona_name_owner && a.public_ip.eq(b.public_ip)
+	return true && a.app_id == b.app_id && a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
+		a.lobby_flags == b.lobby_flags && a.cell_id == b.cell_id && a.deprecated_public_ip == b.deprecated_public_ip &&
+		a.metadata == b.metadata && a.persona_name_owner == b.persona_name_owner && a.public_ip.eq(b.public_ip)
 }
 
 [inline]
@@ -6125,8 +6071,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmscreatelobby(o CMsgClientMMSCreateLo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmscreatelobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSCreateLobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmscreatelobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmscreatelobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6165,17 +6111,17 @@ pub fn cmsgclientmmscreatelobbyresponse_unpack(buf []byte) ?CMsgClientMMSCreateL
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
@@ -6196,9 +6142,8 @@ pub fn cmsgclientmmscreatelobbyresponse_unpack(buf []byte) ?CMsgClientMMSCreateL
 
 [inline]
 pub fn (a CMsgClientMMSCreateLobbyResponse) eq(b CMsgClientMMSCreateLobbyResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.eresult == b.eresult
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.eresult ==
+		b.eresult
 }
 
 [inline]
@@ -6239,8 +6184,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmscreatelobbyresponse(o CMsgClientMMS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmscreatelobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSCreateLobbyResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmscreatelobbyresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmscreatelobbyresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6279,17 +6224,17 @@ pub fn cmsgclientmmsjoinlobby_unpack(buf []byte) ?CMsgClientMMSJoinLobby {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name = v
 				i = ii
 			}
@@ -6310,9 +6255,8 @@ pub fn cmsgclientmmsjoinlobby_unpack(buf []byte) ?CMsgClientMMSJoinLobby {
 
 [inline]
 pub fn (a CMsgClientMMSJoinLobby) eq(b CMsgClientMMSJoinLobby) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.persona_name == b.persona_name
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.persona_name ==
+		b.persona_name
 }
 
 [inline]
@@ -6353,8 +6297,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobby(o CMsgClientMMSJoinLobby,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSJoinLobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsjoinlobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsjoinlobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6393,17 +6337,17 @@ pub fn cmsgclientmmsjoinlobbyresponse_member_unpack(buf []byte) ?CMsgClientMMSJo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
@@ -6424,9 +6368,8 @@ pub fn cmsgclientmmsjoinlobbyresponse_member_unpack(buf []byte) ?CMsgClientMMSJo
 
 [inline]
 pub fn (a CMsgClientMMSJoinLobbyResponse_Member) eq(b CMsgClientMMSJoinLobbyResponse_Member) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.persona_name == b.persona_name &&
-		a.metadata == b.metadata
+	return true && a.steam_id == b.steam_id && a.persona_name == b.persona_name && a.metadata ==
+		b.metadata
 }
 
 [inline]
@@ -6467,8 +6410,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponse_member(o CMsgClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse_member(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSJoinLobbyResponse_Member) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsjoinlobbyresponse_member_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsjoinlobbyresponse_member_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6532,49 +6475,49 @@ pub fn cmsgclientmmsjoinlobbyresponse_unpack(buf []byte) ?CMsgClientMMSJoinLobby
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chat_room_enter_response = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_members = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_type = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_flags = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_owner = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
 			9 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse_member(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.members << v
 				i = ii
 			}
@@ -6595,12 +6538,10 @@ pub fn cmsgclientmmsjoinlobbyresponse_unpack(buf []byte) ?CMsgClientMMSJoinLobby
 
 [inline]
 pub fn (a CMsgClientMMSJoinLobbyResponse) eq(b CMsgClientMMSJoinLobbyResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.chat_room_enter_response == b.chat_room_enter_response &&
-		a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
-		a.lobby_flags == b.lobby_flags && a.steam_id_owner == b.steam_id_owner &&
-		a.metadata == b.metadata && a.members.eq(b.members)
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.chat_room_enter_response ==
+		b.chat_room_enter_response && a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
+		a.lobby_flags == b.lobby_flags && a.steam_id_owner == b.steam_id_owner && a.metadata == b.metadata &&
+		a.members.eq(b.members)
 }
 
 [inline]
@@ -6641,8 +6582,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsjoinlobbyresponse(o CMsgClientMMSJo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsjoinlobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSJoinLobbyResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsjoinlobbyresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsjoinlobbyresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6677,12 +6618,12 @@ pub fn cmsgclientmmsleavelobby_unpack(buf []byte) ?CMsgClientMMSLeaveLobby {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
@@ -6744,8 +6685,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsleavelobby(o CMsgClientMMSLeaveLobb
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsleavelobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLeaveLobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsleavelobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsleavelobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6784,17 +6725,17 @@ pub fn cmsgclientmmsleavelobbyresponse_unpack(buf []byte) ?CMsgClientMMSLeaveLob
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
@@ -6815,9 +6756,8 @@ pub fn cmsgclientmmsleavelobbyresponse_unpack(buf []byte) ?CMsgClientMMSLeaveLob
 
 [inline]
 pub fn (a CMsgClientMMSLeaveLobbyResponse) eq(b CMsgClientMMSLeaveLobbyResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.eresult == b.eresult
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.eresult ==
+		b.eresult
 }
 
 [inline]
@@ -6858,8 +6798,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsleavelobbyresponse(o CMsgClientMMSL
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsleavelobbyresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLeaveLobbyResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsleavelobbyresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsleavelobbyresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6902,22 +6842,22 @@ pub fn cmsgclientmmsgetlobbylist_filter_unpack(buf []byte) ?CMsgClientMMSGetLobb
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.key = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.value = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.comparision = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filter_type = v
 				i = ii
 			}
@@ -6938,8 +6878,7 @@ pub fn cmsgclientmmsgetlobbylist_filter_unpack(buf []byte) ?CMsgClientMMSGetLobb
 
 [inline]
 pub fn (a CMsgClientMMSGetLobbyList_Filter) eq(b CMsgClientMMSGetLobbyList_Filter) bool {
-	return true && a.key == b.key &&
-		a.value == b.value && a.comparision == b.comparision &&
+	return true && a.key == b.key && a.value == b.value && a.comparision == b.comparision &&
 		a.filter_type == b.filter_type
 }
 
@@ -6981,8 +6920,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylist_filter(o CMsgClientMMS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist_filter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyList_Filter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbylist_filter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbylist_filter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7034,34 +6973,34 @@ pub fn cmsgclientmmsgetlobbylist_unpack(buf []byte) ?CMsgClientMMSGetLobbyList {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_lobbies_requested = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cell_id = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_public_ip = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist_filter(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.filters << v
 				i = ii
 			}
 			7 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ip = v
 				i = ii
 			}
@@ -7082,8 +7021,7 @@ pub fn cmsgclientmmsgetlobbylist_unpack(buf []byte) ?CMsgClientMMSGetLobbyList {
 
 [inline]
 pub fn (a CMsgClientMMSGetLobbyList) eq(b CMsgClientMMSGetLobbyList) bool {
-	return true && a.app_id == b.app_id &&
-		a.num_lobbies_requested == b.num_lobbies_requested &&
+	return true && a.app_id == b.app_id && a.num_lobbies_requested == b.num_lobbies_requested &&
 		a.cell_id == b.cell_id && a.deprecated_public_ip == b.deprecated_public_ip && a.filters.eq(b.filters) &&
 		a.public_ip.eq(b.public_ip)
 }
@@ -7126,8 +7064,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylist(o CMsgClientMMSGetLobb
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbylist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbylist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7186,42 +7124,42 @@ pub fn cmsgclientmmsgetlobbylistresponse_lobby_unpack(buf []byte) ?CMsgClientMMS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_members = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_type = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_flags = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_members = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.distance = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.weight = v
 				i = ii
 			}
@@ -7242,11 +7180,9 @@ pub fn cmsgclientmmsgetlobbylistresponse_lobby_unpack(buf []byte) ?CMsgClientMMS
 
 [inline]
 pub fn (a CMsgClientMMSGetLobbyListResponse_Lobby) eq(b CMsgClientMMSGetLobbyListResponse_Lobby) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
-		a.lobby_flags == b.lobby_flags && a.metadata == b.metadata &&
-		a.num_members == b.num_members && a.distance == b.distance &&
-		a.weight == b.weight
+	return true && a.steam_id == b.steam_id && a.max_members == b.max_members && a.lobby_type ==
+		b.lobby_type && a.lobby_flags == b.lobby_flags && a.metadata == b.metadata && a.num_members ==
+		b.num_members && a.distance == b.distance && a.weight == b.weight
 }
 
 [inline]
@@ -7287,8 +7223,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponse_lobby(o CMsgCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse_lobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyListResponse_Lobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbylistresponse_lobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbylistresponse_lobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7328,19 +7264,19 @@ pub fn cmsgclientmmsgetlobbylistresponse_unpack(buf []byte) ?CMsgClientMMSGetLob
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse_lobby(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.lobbies << v
 				i = ii
 			}
@@ -7402,8 +7338,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbylistresponse(o CMsgClientMM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbylistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyListResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbylistresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbylistresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7458,37 +7394,37 @@ pub fn cmsgclientmmssetlobbydata_unpack(buf []byte) ?CMsgClientMMSSetLobbyData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_member = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_members = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_type = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_flags = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
@@ -7509,10 +7445,8 @@ pub fn cmsgclientmmssetlobbydata_unpack(buf []byte) ?CMsgClientMMSSetLobbyData {
 
 [inline]
 pub fn (a CMsgClientMMSSetLobbyData) eq(b CMsgClientMMSSetLobbyData) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_member == b.steam_id_member &&
-		a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_member ==
+		b.steam_id_member && a.max_members == b.max_members && a.lobby_type == b.lobby_type &&
 		a.lobby_flags == b.lobby_flags && a.metadata == b.metadata
 }
 
@@ -7554,8 +7488,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbydata(o CMsgClientMMSSetLobb
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetlobbydata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetlobbydata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7594,17 +7528,17 @@ pub fn cmsgclientmmssetlobbydataresponse_unpack(buf []byte) ?CMsgClientMMSSetLob
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
@@ -7625,9 +7559,8 @@ pub fn cmsgclientmmssetlobbydataresponse_unpack(buf []byte) ?CMsgClientMMSSetLob
 
 [inline]
 pub fn (a CMsgClientMMSSetLobbyDataResponse) eq(b CMsgClientMMSSetLobbyDataResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.eresult == b.eresult
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.eresult ==
+		b.eresult
 }
 
 [inline]
@@ -7668,8 +7601,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbydataresponse(o CMsgClientMM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbydataresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyDataResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetlobbydataresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetlobbydataresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7704,12 +7637,12 @@ pub fn cmsgclientmmsgetlobbydata_unpack(buf []byte) ?CMsgClientMMSGetLobbyData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
@@ -7771,8 +7704,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbydata(o CMsgClientMMSGetLobb
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbydata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbydata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7811,17 +7744,17 @@ pub fn cmsgclientmmslobbydata_member_unpack(buf []byte) ?CMsgClientMMSLobbyData_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
@@ -7842,9 +7775,8 @@ pub fn cmsgclientmmslobbydata_member_unpack(buf []byte) ?CMsgClientMMSLobbyData_
 
 [inline]
 pub fn (a CMsgClientMMSLobbyData_Member) eq(b CMsgClientMMSLobbyData_Member) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.persona_name == b.persona_name &&
-		a.metadata == b.metadata
+	return true && a.steam_id == b.steam_id && a.persona_name == b.persona_name && a.metadata ==
+		b.metadata
 }
 
 [inline]
@@ -7885,8 +7817,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmslobbydata_member(o CMsgClientMMSLob
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbydata_member(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyData_Member) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmslobbydata_member_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmslobbydata_member_unpack(v) ?
 	return i, unpacked
 }
 
@@ -7940,7 +7872,7 @@ pub fn (o &CMsgClientMMSLobbyData) pack() []byte {
 	if o.lobby_cellid != u32(0) {
 		res << vproto.pack_uint32_field(o.lobby_cellid, 10)
 	}
-	if o.owner_should_accept_changes != bool(0) {
+	if o.owner_should_accept_changes != false {
 		res << vproto.pack_bool_field(o.owner_should_accept_changes, 11)
 	}
 	return res
@@ -7958,59 +7890,59 @@ pub fn cmsgclientmmslobbydata_unpack(buf []byte) ?CMsgClientMMSLobbyData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_members = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_members = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_type = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_flags = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_owner = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.metadata = v
 				i = ii
 			}
 			9 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientmmslobbydata_member(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.members << v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_cellid = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.owner_should_accept_changes = v
 				i = ii
 			}
@@ -8031,14 +7963,10 @@ pub fn cmsgclientmmslobbydata_unpack(buf []byte) ?CMsgClientMMSLobbyData {
 
 [inline]
 pub fn (a CMsgClientMMSLobbyData) eq(b CMsgClientMMSLobbyData) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.num_members == b.num_members && a.max_members == b.max_members &&
-		a.lobby_type == b.lobby_type && a.lobby_flags == b.lobby_flags &&
-		a.steam_id_owner == b.steam_id_owner &&
-		a.metadata == b.metadata && a.members.eq(b.members) &&
-		a.lobby_cellid == b.lobby_cellid &&
-		a.owner_should_accept_changes == b.owner_should_accept_changes
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.num_members ==
+		b.num_members && a.max_members == b.max_members && a.lobby_type == b.lobby_type && a.lobby_flags ==
+		b.lobby_flags && a.steam_id_owner == b.steam_id_owner && a.metadata == b.metadata && a.members.eq(b.members) &&
+		a.lobby_cellid == b.lobby_cellid && a.owner_should_accept_changes == b.owner_should_accept_changes
 }
 
 [inline]
@@ -8079,8 +8007,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmslobbydata(o CMsgClientMMSLobbyData,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbydata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmslobbydata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmslobbydata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8123,22 +8051,22 @@ pub fn cmsgclientmmssendlobbychatmsg_unpack(buf []byte) ?CMsgClientMMSSendLobbyC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_target = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_message = v
 				i = ii
 			}
@@ -8159,10 +8087,8 @@ pub fn cmsgclientmmssendlobbychatmsg_unpack(buf []byte) ?CMsgClientMMSSendLobbyC
 
 [inline]
 pub fn (a CMsgClientMMSSendLobbyChatMsg) eq(b CMsgClientMMSSendLobbyChatMsg) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_target == b.steam_id_target &&
-		a.lobby_message == b.lobby_message
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_target ==
+		b.steam_id_target && a.lobby_message == b.lobby_message
 }
 
 [inline]
@@ -8203,8 +8129,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssendlobbychatmsg(o CMsgClientMMSSen
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssendlobbychatmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSendLobbyChatMsg) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssendlobbychatmsg_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssendlobbychatmsg_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8247,22 +8173,22 @@ pub fn cmsgclientmmslobbychatmsg_unpack(buf []byte) ?CMsgClientMMSLobbyChatMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_sender = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_message = v
 				i = ii
 			}
@@ -8283,10 +8209,8 @@ pub fn cmsgclientmmslobbychatmsg_unpack(buf []byte) ?CMsgClientMMSLobbyChatMsg {
 
 [inline]
 pub fn (a CMsgClientMMSLobbyChatMsg) eq(b CMsgClientMMSLobbyChatMsg) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_sender == b.steam_id_sender &&
-		a.lobby_message == b.lobby_message
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_sender ==
+		b.steam_id_sender && a.lobby_message == b.lobby_message
 }
 
 [inline]
@@ -8327,8 +8251,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmslobbychatmsg(o CMsgClientMMSLobbyCh
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbychatmsg(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyChatMsg) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmslobbychatmsg_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmslobbychatmsg_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8367,17 +8291,17 @@ pub fn cmsgclientmmssetlobbyowner_unpack(buf []byte) ?CMsgClientMMSSetLobbyOwner
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_new_owner = v
 				i = ii
 			}
@@ -8398,9 +8322,8 @@ pub fn cmsgclientmmssetlobbyowner_unpack(buf []byte) ?CMsgClientMMSSetLobbyOwner
 
 [inline]
 pub fn (a CMsgClientMMSSetLobbyOwner) eq(b CMsgClientMMSSetLobbyOwner) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_new_owner == b.steam_id_new_owner
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_new_owner ==
+		b.steam_id_new_owner
 }
 
 [inline]
@@ -8441,8 +8364,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbyowner(o CMsgClientMMSSetLob
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbyowner(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyOwner) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetlobbyowner_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetlobbyowner_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8481,17 +8404,17 @@ pub fn cmsgclientmmssetlobbyownerresponse_unpack(buf []byte) ?CMsgClientMMSSetLo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
@@ -8512,9 +8435,8 @@ pub fn cmsgclientmmssetlobbyownerresponse_unpack(buf []byte) ?CMsgClientMMSSetLo
 
 [inline]
 pub fn (a CMsgClientMMSSetLobbyOwnerResponse) eq(b CMsgClientMMSSetLobbyOwnerResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.eresult == b.eresult
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.eresult ==
+		b.eresult
 }
 
 [inline]
@@ -8555,8 +8477,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbyownerresponse(o CMsgClientM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbyownerresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyOwnerResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetlobbyownerresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetlobbyownerresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8595,17 +8517,17 @@ pub fn cmsgclientmmssetlobbylinked_unpack(buf []byte) ?CMsgClientMMSSetLobbyLink
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby2 = v
 				i = ii
 			}
@@ -8626,9 +8548,8 @@ pub fn cmsgclientmmssetlobbylinked_unpack(buf []byte) ?CMsgClientMMSSetLobbyLink
 
 [inline]
 pub fn (a CMsgClientMMSSetLobbyLinked) eq(b CMsgClientMMSSetLobbyLinked) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_lobby2 == b.steam_id_lobby2
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_lobby2 ==
+		b.steam_id_lobby2
 }
 
 [inline]
@@ -8669,8 +8590,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbylinked(o CMsgClientMMSSetLo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbylinked(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyLinked) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetlobbylinked_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetlobbylinked_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8721,32 +8642,32 @@ pub fn cmsgclientmmssetlobbygameserver_unpack(buf []byte) ?CMsgClientMMSSetLobby
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_game_server_ip = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_server_port = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_server_steam_id = v
 				i = ii
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.game_server_ip = v
 				i = ii
 			}
@@ -8767,11 +8688,9 @@ pub fn cmsgclientmmssetlobbygameserver_unpack(buf []byte) ?CMsgClientMMSSetLobby
 
 [inline]
 pub fn (a CMsgClientMMSSetLobbyGameServer) eq(b CMsgClientMMSSetLobbyGameServer) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.deprecated_game_server_ip == b.deprecated_game_server_ip &&
-		a.game_server_port == b.game_server_port &&
-		a.game_server_steam_id == b.game_server_steam_id && a.game_server_ip.eq(b.game_server_ip)
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.deprecated_game_server_ip ==
+		b.deprecated_game_server_ip && a.game_server_port == b.game_server_port && a.game_server_steam_id ==
+		b.game_server_steam_id && a.game_server_ip.eq(b.game_server_ip)
 }
 
 [inline]
@@ -8812,8 +8731,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmssetlobbygameserver(o CMsgClientMMSS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmssetlobbygameserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSSetLobbyGameServer) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmssetlobbygameserver_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmssetlobbygameserver_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8864,32 +8783,32 @@ pub fn cmsgclientmmslobbygameserverset_unpack(buf []byte) ?CMsgClientMMSLobbyGam
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated_game_server_ip = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_server_port = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_server_steam_id = v
 				i = ii
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_cmsgipaddress(cur_buf, tag_wiretype.wire_type) ?
 				res.game_server_ip = v
 				i = ii
 			}
@@ -8910,11 +8829,9 @@ pub fn cmsgclientmmslobbygameserverset_unpack(buf []byte) ?CMsgClientMMSLobbyGam
 
 [inline]
 pub fn (a CMsgClientMMSLobbyGameServerSet) eq(b CMsgClientMMSLobbyGameServerSet) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.deprecated_game_server_ip == b.deprecated_game_server_ip &&
-		a.game_server_port == b.game_server_port &&
-		a.game_server_steam_id == b.game_server_steam_id && a.game_server_ip.eq(b.game_server_ip)
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.deprecated_game_server_ip ==
+		b.deprecated_game_server_ip && a.game_server_port == b.game_server_port && a.game_server_steam_id ==
+		b.game_server_steam_id && a.game_server_ip.eq(b.game_server_ip)
 }
 
 [inline]
@@ -8955,8 +8872,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmslobbygameserverset(o CMsgClientMMSL
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmslobbygameserverset(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSLobbyGameServerSet) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmslobbygameserverset_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmslobbygameserverset_unpack(v) ?
 	return i, unpacked
 }
 
@@ -8999,22 +8916,22 @@ pub fn cmsgclientmmsuserjoinedlobby_unpack(buf []byte) ?CMsgClientMMSUserJoinedL
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_user = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name = v
 				i = ii
 			}
@@ -9035,10 +8952,8 @@ pub fn cmsgclientmmsuserjoinedlobby_unpack(buf []byte) ?CMsgClientMMSUserJoinedL
 
 [inline]
 pub fn (a CMsgClientMMSUserJoinedLobby) eq(b CMsgClientMMSUserJoinedLobby) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_user == b.steam_id_user &&
-		a.persona_name == b.persona_name
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_user ==
+		b.steam_id_user && a.persona_name == b.persona_name
 }
 
 [inline]
@@ -9079,8 +8994,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsuserjoinedlobby(o CMsgClientMMSUser
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsuserjoinedlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSUserJoinedLobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsuserjoinedlobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsuserjoinedlobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9123,22 +9038,22 @@ pub fn cmsgclientmmsuserleftlobby_unpack(buf []byte) ?CMsgClientMMSUserLeftLobby
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_user = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.persona_name = v
 				i = ii
 			}
@@ -9159,10 +9074,8 @@ pub fn cmsgclientmmsuserleftlobby_unpack(buf []byte) ?CMsgClientMMSUserLeftLobby
 
 [inline]
 pub fn (a CMsgClientMMSUserLeftLobby) eq(b CMsgClientMMSUserLeftLobby) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_user == b.steam_id_user &&
-		a.persona_name == b.persona_name
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_user ==
+		b.steam_id_user && a.persona_name == b.persona_name
 }
 
 [inline]
@@ -9203,8 +9116,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsuserleftlobby(o CMsgClientMMSUserLe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsuserleftlobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSUserLeftLobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsuserleftlobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsuserleftlobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9243,17 +9156,17 @@ pub fn cmsgclientmmsinvitetolobby_unpack(buf []byte) ?CMsgClientMMSInviteToLobby
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_user_invited = v
 				i = ii
 			}
@@ -9274,9 +9187,8 @@ pub fn cmsgclientmmsinvitetolobby_unpack(buf []byte) ?CMsgClientMMSInviteToLobby
 
 [inline]
 pub fn (a CMsgClientMMSInviteToLobby) eq(b CMsgClientMMSInviteToLobby) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.steam_id_user_invited == b.steam_id_user_invited
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.steam_id_user_invited ==
+		b.steam_id_user_invited
 }
 
 [inline]
@@ -9317,8 +9229,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsinvitetolobby(o CMsgClientMMSInvite
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsinvitetolobby(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSInviteToLobby) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsinvitetolobby_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsinvitetolobby_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9340,10 +9252,10 @@ pub fn (o &CMsgClientMMSGetLobbyStatus) pack() []byte {
 	if o.steam_id_lobby != u64(0) {
 		res << vproto.pack_64bit_field(o.steam_id_lobby, 2)
 	}
-	if o.claim_membership != bool(0) {
+	if o.claim_membership != false {
 		res << vproto.pack_bool_field(o.claim_membership, 3)
 	}
-	if o.claim_ownership != bool(0) {
+	if o.claim_ownership != false {
 		res << vproto.pack_bool_field(o.claim_ownership, 4)
 	}
 	return res
@@ -9361,22 +9273,22 @@ pub fn cmsgclientmmsgetlobbystatus_unpack(buf []byte) ?CMsgClientMMSGetLobbyStat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.claim_membership = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.claim_ownership = v
 				i = ii
 			}
@@ -9397,10 +9309,8 @@ pub fn cmsgclientmmsgetlobbystatus_unpack(buf []byte) ?CMsgClientMMSGetLobbyStat
 
 [inline]
 pub fn (a CMsgClientMMSGetLobbyStatus) eq(b CMsgClientMMSGetLobbyStatus) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.claim_membership == b.claim_membership &&
-		a.claim_ownership == b.claim_ownership
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.claim_membership ==
+		b.claim_membership && a.claim_ownership == b.claim_ownership
 }
 
 [inline]
@@ -9441,8 +9351,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbystatus(o CMsgClientMMSGetLo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbystatus(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyStatus) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbystatus_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbystatus_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9481,17 +9391,17 @@ pub fn cmsgclientmmsgetlobbystatusresponse_unpack(buf []byte) ?CMsgClientMMSGetL
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_lobby = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_emmslobbystatus(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_emmslobbystatus(cur_buf, tag_wiretype.wire_type) ?
 				res.lobby_status = v
 				i = ii
 			}
@@ -9512,9 +9422,8 @@ pub fn cmsgclientmmsgetlobbystatusresponse_unpack(buf []byte) ?CMsgClientMMSGetL
 
 [inline]
 pub fn (a CMsgClientMMSGetLobbyStatusResponse) eq(b CMsgClientMMSGetLobbyStatusResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.steam_id_lobby == b.steam_id_lobby &&
-		a.lobby_status == b.lobby_status
+	return true && a.app_id == b.app_id && a.steam_id_lobby == b.steam_id_lobby && a.lobby_status ==
+		b.lobby_status
 }
 
 [inline]
@@ -9555,8 +9464,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientmmsgetlobbystatusresponse(o CMsgClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientmmsgetlobbystatusresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientMMSGetLobbyStatusResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientmmsgetlobbystatusresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientmmsgetlobbystatusresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9599,22 +9508,22 @@ pub fn cmsgclientinvitetogame_unpack(buf []byte) ?CMsgClientInviteToGame {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_dest = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_src = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connect_string = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.remote_play = v
 				i = ii
 			}
@@ -9635,10 +9544,8 @@ pub fn cmsgclientinvitetogame_unpack(buf []byte) ?CMsgClientInviteToGame {
 
 [inline]
 pub fn (a CMsgClientInviteToGame) eq(b CMsgClientInviteToGame) bool {
-	return true && a.steam_id_dest == b.steam_id_dest &&
-		a.steam_id_src == b.steam_id_src &&
-		a.connect_string == b.connect_string &&
-		a.remote_play == b.remote_play
+	return true && a.steam_id_dest == b.steam_id_dest && a.steam_id_src == b.steam_id_src &&
+		a.connect_string == b.connect_string && a.remote_play == b.remote_play
 }
 
 [inline]
@@ -9679,8 +9586,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientinvitetogame(o CMsgClientInviteToGame,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientinvitetogame(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientInviteToGame) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientinvitetogame_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientinvitetogame_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9735,37 +9642,37 @@ pub fn cmsgclientchatinvite_unpack(buf []byte) ?CMsgClientChatInvite {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_invited = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_chat = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_patron = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chatroom_type = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_friend_chat = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chat_name = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
@@ -9786,12 +9693,9 @@ pub fn cmsgclientchatinvite_unpack(buf []byte) ?CMsgClientChatInvite {
 
 [inline]
 pub fn (a CMsgClientChatInvite) eq(b CMsgClientChatInvite) bool {
-	return true && a.steam_id_invited == b.steam_id_invited &&
-		a.steam_id_chat == b.steam_id_chat &&
-		a.steam_id_patron == b.steam_id_patron &&
-		a.chatroom_type == b.chatroom_type &&
-		a.steam_id_friend_chat == b.steam_id_friend_chat &&
-		a.chat_name == b.chat_name && a.game_id == b.game_id
+	return true && a.steam_id_invited == b.steam_id_invited && a.steam_id_chat == b.steam_id_chat &&
+		a.steam_id_patron == b.steam_id_patron && a.chatroom_type == b.chatroom_type && a.steam_id_friend_chat ==
+		b.steam_id_friend_chat && a.chat_name == b.chat_name && a.game_id == b.game_id
 }
 
 [inline]
@@ -9832,8 +9736,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientchatinvite(o CMsgClientChatInvite, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientchatinvite(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientChatInvite) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientchatinvite_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientchatinvite_unpack(v) ?
 	return i, unpacked
 }
 
@@ -9888,37 +9792,37 @@ pub fn cmsgclientconnectionstats_stats_logon_unpack(buf []byte) ?CMsgClientConne
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connect_attempts = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connect_successes = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connect_failures = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connections_dropped = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_running = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.msec_tologonthistime = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.count_bad_cms = v
 				i = ii
 			}
@@ -9939,12 +9843,9 @@ pub fn cmsgclientconnectionstats_stats_logon_unpack(buf []byte) ?CMsgClientConne
 
 [inline]
 pub fn (a CMsgClientConnectionStats_Stats_Logon) eq(b CMsgClientConnectionStats_Stats_Logon) bool {
-	return true && a.connect_attempts == b.connect_attempts &&
-		a.connect_successes == b.connect_successes &&
-		a.connect_failures == b.connect_failures &&
-		a.connections_dropped == b.connections_dropped &&
-		a.seconds_running == b.seconds_running &&
-		a.msec_tologonthistime == b.msec_tologonthistime &&
+	return true && a.connect_attempts == b.connect_attempts && a.connect_successes == b.connect_successes &&
+		a.connect_failures == b.connect_failures && a.connections_dropped == b.connections_dropped &&
+		a.seconds_running == b.seconds_running && a.msec_tologonthistime == b.msec_tologonthistime &&
 		a.count_bad_cms == b.count_bad_cms
 }
 
@@ -9986,8 +9887,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_logon(o CMsgClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_logon(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats_Stats_Logon) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstats_stats_logon_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientconnectionstats_stats_logon_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10034,27 +9935,27 @@ pub fn cmsgclientconnectionstats_stats_udp_unpack(buf []byte) ?CMsgClientConnect
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pkts_sent = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_sent = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pkts_recv = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pkts_processed = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_recv = v
 				i = ii
 			}
@@ -10075,10 +9976,8 @@ pub fn cmsgclientconnectionstats_stats_udp_unpack(buf []byte) ?CMsgClientConnect
 
 [inline]
 pub fn (a CMsgClientConnectionStats_Stats_UDP) eq(b CMsgClientConnectionStats_Stats_UDP) bool {
-	return true && a.pkts_sent == b.pkts_sent &&
-		a.bytes_sent == b.bytes_sent && a.pkts_recv == b.pkts_recv &&
-		a.pkts_processed == b.pkts_processed &&
-		a.bytes_recv == b.bytes_recv
+	return true && a.pkts_sent == b.pkts_sent && a.bytes_sent == b.bytes_sent && a.pkts_recv ==
+		b.pkts_recv && a.pkts_processed == b.pkts_processed && a.bytes_recv == b.bytes_recv
 }
 
 [inline]
@@ -10119,8 +10018,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_udp(o CMsgClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_udp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats_Stats_UDP) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstats_stats_udp_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientconnectionstats_stats_udp_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10159,7 +10058,8 @@ pub fn (o &CMsgClientConnectionStats_Stats_VConn) pack() []byte {
 		res << vproto.pack_uint32_field(o.connections_tcp, 2)
 	}
 	if o.stats_udp.ne(zzz_vproto_internal_new_cmsgclientconnectionstats_stats_udp()) {
-		res << zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_udp(o.stats_udp, 3)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_udp(o.stats_udp, 3)
 	}
 	if o.pkts_abandoned != u64(0) {
 		res << vproto.pack_uint64_field(o.pkts_abandoned, 4)
@@ -10227,103 +10127,103 @@ pub fn cmsgclientconnectionstats_stats_vconn_unpack(buf []byte) ?CMsgClientConne
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connections_udp = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connections_tcp = v
 				i = ii
 			}
 			3 {
 				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_udp(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats_udp = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pkts_abandoned = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.conn_req_received = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pkts_resent = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.msgs_sent = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.msgs_sent_failed = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.msgs_recv = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.datagrams_sent = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.datagrams_recv = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bad_pkts_recv = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unknown_conn_pkts_recv = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.missed_pkts_recv = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dup_pkts_recv = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.failed_connect_challenges = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.micro_sec_avg_latency = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.micro_sec_min_latency = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.micro_sec_max_latency = v
 				i = ii
 			}
 			20 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mem_pool_msg_in_use = v
 				i = ii
 			}
@@ -10344,23 +10244,15 @@ pub fn cmsgclientconnectionstats_stats_vconn_unpack(buf []byte) ?CMsgClientConne
 
 [inline]
 pub fn (a CMsgClientConnectionStats_Stats_VConn) eq(b CMsgClientConnectionStats_Stats_VConn) bool {
-	return true && a.connections_udp == b.connections_udp &&
-		a.connections_tcp == b.connections_tcp && a.stats_udp.eq(b.stats_udp) &&
-		a.pkts_abandoned == b.pkts_abandoned &&
-		a.conn_req_received == b.conn_req_received &&
-		a.pkts_resent == b.pkts_resent && a.msgs_sent == b.msgs_sent &&
-		a.msgs_sent_failed == b.msgs_sent_failed &&
-		a.msgs_recv == b.msgs_recv && a.datagrams_sent == b.datagrams_sent &&
-		a.datagrams_recv == b.datagrams_recv &&
-		a.bad_pkts_recv == b.bad_pkts_recv &&
-		a.unknown_conn_pkts_recv == b.unknown_conn_pkts_recv &&
-		a.missed_pkts_recv == b.missed_pkts_recv &&
-		a.dup_pkts_recv == b.dup_pkts_recv &&
-		a.failed_connect_challenges == b.failed_connect_challenges &&
-		a.micro_sec_avg_latency == b.micro_sec_avg_latency &&
-		a.micro_sec_min_latency == b.micro_sec_min_latency &&
-		a.micro_sec_max_latency == b.micro_sec_max_latency &&
-		a.mem_pool_msg_in_use == b.mem_pool_msg_in_use
+	return true && a.connections_udp == b.connections_udp && a.connections_tcp == b.connections_tcp &&
+		a.stats_udp.eq(b.stats_udp) && a.pkts_abandoned == b.pkts_abandoned && a.conn_req_received ==
+		b.conn_req_received && a.pkts_resent == b.pkts_resent && a.msgs_sent == b.msgs_sent &&
+		a.msgs_sent_failed == b.msgs_sent_failed && a.msgs_recv == b.msgs_recv && a.datagrams_sent ==
+		b.datagrams_sent && a.datagrams_recv == b.datagrams_recv && a.bad_pkts_recv == b.bad_pkts_recv &&
+		a.unknown_conn_pkts_recv == b.unknown_conn_pkts_recv && a.missed_pkts_recv == b.missed_pkts_recv &&
+		a.dup_pkts_recv == b.dup_pkts_recv && a.failed_connect_challenges == b.failed_connect_challenges &&
+		a.micro_sec_avg_latency == b.micro_sec_avg_latency && a.micro_sec_min_latency == b.micro_sec_min_latency &&
+		a.micro_sec_max_latency == b.micro_sec_max_latency && a.mem_pool_msg_in_use == b.mem_pool_msg_in_use
 }
 
 [inline]
@@ -10401,8 +10293,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_vconn(o CMsgClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_vconn(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats_Stats_VConn) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstats_stats_vconn_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientconnectionstats_stats_vconn_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10417,10 +10309,12 @@ pub mut:
 pub fn (o &CMsgClientConnectionStats) pack() []byte {
 	mut res := []byte{}
 	if o.stats_logon.ne(zzz_vproto_internal_new_cmsgclientconnectionstats_stats_logon()) {
-		res << zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_logon(o.stats_logon, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_logon(o.stats_logon, 1)
 	}
 	if o.stats_vconn.ne(zzz_vproto_internal_new_cmsgclientconnectionstats_stats_vconn()) {
-		res << zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_vconn(o.stats_vconn, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientconnectionstats_stats_vconn(o.stats_vconn, 2)
 	}
 	return res
 }
@@ -10438,13 +10332,13 @@ pub fn cmsgclientconnectionstats_unpack(buf []byte) ?CMsgClientConnectionStats {
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_logon(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats_logon = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgclientconnectionstats_stats_vconn(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats_vconn = v
 				i = ii
 			}
@@ -10506,8 +10400,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientconnectionstats(o CMsgClientConnection
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientconnectionstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientConnectionStats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientconnectionstats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientconnectionstats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10524,7 +10418,7 @@ pub fn (o &CMsgClientServersAvailable_Server_Types_Available) pack() []byte {
 	if o.server != u32(0) {
 		res << vproto.pack_uint32_field(o.server, 1)
 	}
-	if o.changed != bool(0) {
+	if o.changed != false {
 		res << vproto.pack_bool_field(o.changed, 2)
 	}
 	return res
@@ -10542,12 +10436,12 @@ pub fn cmsgclientserversavailable_server_types_available_unpack(buf []byte) ?CMs
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.changed = v
 				i = ii
 			}
@@ -10609,8 +10503,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientserversavailable_server_types_availabl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientserversavailable_server_types_available(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientServersAvailable_Server_Types_Available) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientserversavailable_server_types_available_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientserversavailable_server_types_available_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10626,7 +10520,8 @@ pub fn (o &CMsgClientServersAvailable) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.server_types_available {
-		res << zzz_vproto_internal_pack_cmsgclientserversavailable_server_types_available(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientserversavailable_server_types_available(x, 1)
 	}
 	if o.server_type_for_auth_services != u32(0) {
 		res << vproto.pack_uint32_field(o.server_type_for_auth_services, 2)
@@ -10648,12 +10543,12 @@ pub fn cmsgclientserversavailable_unpack(buf []byte) ?CMsgClientServersAvailable
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientserversavailable_server_types_available(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.server_types_available << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_type_for_auth_services = v
 				i = ii
 			}
@@ -10674,8 +10569,8 @@ pub fn cmsgclientserversavailable_unpack(buf []byte) ?CMsgClientServersAvailable
 
 [inline]
 pub fn (a CMsgClientServersAvailable) eq(b CMsgClientServersAvailable) bool {
-	return true && a.server_types_available.eq(b.server_types_available) &&
-		a.server_type_for_auth_services == b.server_type_for_auth_services
+	return true && a.server_types_available.eq(b.server_types_available) && a.server_type_for_auth_services ==
+		b.server_type_for_auth_services
 }
 
 [inline]
@@ -10716,8 +10611,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientserversavailable(o CMsgClientServersAv
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientserversavailable(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientServersAvailable) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientserversavailable_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientserversavailable_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10760,22 +10655,22 @@ pub fn cmsgclientgetuserstats_unpack(buf []byte) ?CMsgClientGetUserStats {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_stats = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.schema_local_version = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id_for_user = v
 				i = ii
 			}
@@ -10796,9 +10691,8 @@ pub fn cmsgclientgetuserstats_unpack(buf []byte) ?CMsgClientGetUserStats {
 
 [inline]
 pub fn (a CMsgClientGetUserStats) eq(b CMsgClientGetUserStats) bool {
-	return true && a.game_id == b.game_id &&
-		a.crc_stats == b.crc_stats && a.schema_local_version == b.schema_local_version &&
-		a.steam_id_for_user == b.steam_id_for_user
+	return true && a.game_id == b.game_id && a.crc_stats == b.crc_stats && a.schema_local_version ==
+		b.schema_local_version && a.steam_id_for_user == b.steam_id_for_user
 }
 
 [inline]
@@ -10839,8 +10733,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetuserstats(o CMsgClientGetUserStats,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetuserstats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetuserstats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10875,12 +10769,12 @@ pub fn cmsgclientgetuserstatsresponse_stats_unpack(buf []byte) ?CMsgClientGetUse
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_value = v
 				i = ii
 			}
@@ -10942,8 +10836,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_stats(o CMsgClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponse_Stats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetuserstatsresponse_stats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetuserstatsresponse_stats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -10979,13 +10873,13 @@ pub fn cmsgclientgetuserstatsresponse_achievement_blocks_unpack(buf []byte) ?CMs
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.achievement_id = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unlock_time << v
 				i = ii
 			}
@@ -11047,8 +10941,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_achievement_block
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_achievement_blocks(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponse_Achievement_Blocks) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetuserstatsresponse_achievement_blocks_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetuserstatsresponse_achievement_blocks_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11084,7 +10978,8 @@ pub fn (o &CMsgClientGetUserStatsResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.achievement_blocks {
-		res << zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_achievement_blocks(x, 6)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse_achievement_blocks(x, 6)
 	}
 	return res
 }
@@ -11101,36 +10996,36 @@ pub fn cmsgclientgetuserstatsresponse_unpack(buf []byte) ?CMsgClientGetUserStats
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_stats = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.schema = v
 				i = ii
 			}
 			5 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_stats(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats << v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse_achievement_blocks(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.achievement_blocks << v
 				i = ii
 			}
@@ -11151,8 +11046,7 @@ pub fn cmsgclientgetuserstatsresponse_unpack(buf []byte) ?CMsgClientGetUserStats
 
 [inline]
 pub fn (a CMsgClientGetUserStatsResponse) eq(b CMsgClientGetUserStatsResponse) bool {
-	return true && a.game_id == b.game_id &&
-		a.eresult == b.eresult && a.crc_stats == b.crc_stats &&
+	return true && a.game_id == b.game_id && a.eresult == b.eresult && a.crc_stats == b.crc_stats &&
 		a.schema == b.schema && a.stats.eq(b.stats) && a.achievement_blocks.eq(b.achievement_blocks)
 }
 
@@ -11194,8 +11088,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetuserstatsresponse(o CMsgClientGetUs
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetuserstatsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetUserStatsResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetuserstatsresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetuserstatsresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11230,12 +11124,12 @@ pub fn cmsgclientstoreuserstatsresponse_stats_failed_validation_unpack(buf []byt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.reverted_stat_value = v
 				i = ii
 			}
@@ -11297,8 +11191,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponse_stats_failed_va
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponse_stats_failed_validation(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStatsResponse_Stats_Failed_Validation) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstatsresponse_stats_failed_validation_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstoreuserstatsresponse_stats_failed_validation_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11329,7 +11223,7 @@ pub fn (o &CMsgClientStoreUserStatsResponse) pack() []byte {
 		res <<
 			zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponse_stats_failed_validation(x, 4)
 	}
-	if o.stats_out_of_date != bool(0) {
+	if o.stats_out_of_date != false {
 		res << vproto.pack_bool_field(o.stats_out_of_date, 5)
 	}
 	return res
@@ -11347,29 +11241,29 @@ pub fn cmsgclientstoreuserstatsresponse_unpack(buf []byte) ?CMsgClientStoreUserS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_stats = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponse_stats_failed_validation(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats_failed_validation << v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stats_out_of_date = v
 				i = ii
 			}
@@ -11390,10 +11284,8 @@ pub fn cmsgclientstoreuserstatsresponse_unpack(buf []byte) ?CMsgClientStoreUserS
 
 [inline]
 pub fn (a CMsgClientStoreUserStatsResponse) eq(b CMsgClientStoreUserStatsResponse) bool {
-	return true && a.game_id == b.game_id &&
-		a.eresult == b.eresult &&
-		a.crc_stats == b.crc_stats && a.stats_failed_validation.eq(b.stats_failed_validation) &&
-		a.stats_out_of_date == b.stats_out_of_date
+	return true && a.game_id == b.game_id && a.eresult == b.eresult && a.crc_stats == b.crc_stats &&
+		a.stats_failed_validation.eq(b.stats_failed_validation) && a.stats_out_of_date == b.stats_out_of_date
 }
 
 [inline]
@@ -11434,8 +11326,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstatsresponse(o CMsgClientSto
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstatsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStatsResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstatsresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstoreuserstatsresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11470,12 +11362,12 @@ pub fn cmsgclientstoreuserstats2_stats_unpack(buf []byte) ?CMsgClientStoreUserSt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_value = v
 				i = ii
 			}
@@ -11537,8 +11429,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats2_stats(o CMsgClientStor
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats2_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats2_Stats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstats2_stats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstoreuserstats2_stats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11568,7 +11460,7 @@ pub fn (o &CMsgClientStoreUserStats2) pack() []byte {
 	if o.crc_stats != u32(0) {
 		res << vproto.pack_uint32_field(o.crc_stats, 4)
 	}
-	if o.explicit_reset != bool(0) {
+	if o.explicit_reset != false {
 		res << vproto.pack_bool_field(o.explicit_reset, 5)
 	}
 	// [packed=false]
@@ -11590,34 +11482,34 @@ pub fn cmsgclientstoreuserstats2_unpack(buf []byte) ?CMsgClientStoreUserStats2 {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.settor_steam_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.settee_steam_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_stats = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.explicit_reset = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstats2_stats(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats << v
 				i = ii
 			}
@@ -11638,10 +11530,9 @@ pub fn cmsgclientstoreuserstats2_unpack(buf []byte) ?CMsgClientStoreUserStats2 {
 
 [inline]
 pub fn (a CMsgClientStoreUserStats2) eq(b CMsgClientStoreUserStats2) bool {
-	return true && a.game_id == b.game_id &&
-		a.settor_steam_id == b.settor_steam_id &&
-		a.settee_steam_id == b.settee_steam_id &&
-		a.crc_stats == b.crc_stats && a.explicit_reset == b.explicit_reset && a.stats.eq(b.stats)
+	return true && a.game_id == b.game_id && a.settor_steam_id == b.settor_steam_id &&
+		a.settee_steam_id == b.settee_steam_id && a.crc_stats == b.crc_stats && a.explicit_reset == b.explicit_reset &&
+		a.stats.eq(b.stats)
 }
 
 [inline]
@@ -11682,8 +11573,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats2(o CMsgClientStoreUserS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats2(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats2) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstats2_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstoreuserstats2_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11718,12 +11609,12 @@ pub fn cmsgclientstatsupdated_updated_stats_unpack(buf []byte) ?CMsgClientStatsU
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_value = v
 				i = ii
 			}
@@ -11785,8 +11676,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstatsupdated_updated_stats(o CMsgClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstatsupdated_updated_stats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStatsUpdated_Updated_Stats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstatsupdated_updated_stats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstatsupdated_updated_stats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11830,24 +11721,24 @@ pub fn cmsgclientstatsupdated_unpack(buf []byte) ?CMsgClientStatsUpdated {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_stats = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientstatsupdated_updated_stats(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.updated_stats << v
 				i = ii
 			}
@@ -11868,8 +11759,8 @@ pub fn cmsgclientstatsupdated_unpack(buf []byte) ?CMsgClientStatsUpdated {
 
 [inline]
 pub fn (a CMsgClientStatsUpdated) eq(b CMsgClientStatsUpdated) bool {
-	return true && a.steam_id == b.steam_id &&
-		a.game_id == b.game_id && a.crc_stats == b.crc_stats && a.updated_stats.eq(b.updated_stats)
+	return true && a.steam_id == b.steam_id && a.game_id == b.game_id && a.crc_stats == b.crc_stats &&
+		a.updated_stats.eq(b.updated_stats)
 }
 
 [inline]
@@ -11910,8 +11801,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstatsupdated(o CMsgClientStatsUpdated,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstatsupdated(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStatsUpdated) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstatsupdated_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstatsupdated_unpack(v) ?
 	return i, unpacked
 }
 
@@ -11946,12 +11837,12 @@ pub fn cmsgclientstoreuserstats_stats_to_store_unpack(buf []byte) ?CMsgClientSto
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.stat_value = v
 				i = ii
 			}
@@ -12013,8 +11904,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats_stats_to_store(o CMsgCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats_stats_to_store(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats_Stats_To_Store) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstats_stats_to_store_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstoreuserstats_stats_to_store_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12032,7 +11923,7 @@ pub fn (o &CMsgClientStoreUserStats) pack() []byte {
 	if o.game_id != u64(0) {
 		res << vproto.pack_64bit_field(o.game_id, 1)
 	}
-	if o.explicit_reset != bool(0) {
+	if o.explicit_reset != false {
 		res << vproto.pack_bool_field(o.explicit_reset, 2)
 	}
 	// [packed=false]
@@ -12054,19 +11945,19 @@ pub fn cmsgclientstoreuserstats_unpack(buf []byte) ?CMsgClientStoreUserStats {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.explicit_reset = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientstoreuserstats_stats_to_store(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.stats_to_store << v
 				i = ii
 			}
@@ -12087,8 +11978,7 @@ pub fn cmsgclientstoreuserstats_unpack(buf []byte) ?CMsgClientStoreUserStats {
 
 [inline]
 pub fn (a CMsgClientStoreUserStats) eq(b CMsgClientStoreUserStats) bool {
-	return true && a.game_id == b.game_id &&
-		a.explicit_reset == b.explicit_reset && a.stats_to_store.eq(b.stats_to_store)
+	return true && a.game_id == b.game_id && a.explicit_reset == b.explicit_reset && a.stats_to_store.eq(b.stats_to_store)
 }
 
 [inline]
@@ -12129,8 +12019,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientstoreuserstats(o CMsgClientStoreUserSt
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientstoreuserstats(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientStoreUserStats) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientstoreuserstats_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientstoreuserstats_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12192,8 +12082,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientdetails(o CMsgClientGetClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientdetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientDetails) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientdetails_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientdetails_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12226,7 +12116,7 @@ pub fn cmsgclientreportoverlaydetourfailure_unpack(buf []byte) ?CMsgClientReport
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.failure_strings << v
 				i = ii
 			}
@@ -12288,8 +12178,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientreportoverlaydetourfailure(o CMsgClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientreportoverlaydetourfailure(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientReportOverlayDetourFailure) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientreportoverlaydetourfailure_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientreportoverlaydetourfailure_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12328,17 +12218,17 @@ pub fn cmsgclientgetclientdetailsresponse_game_unpack(buf []byte) ?CMsgClientGet
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.extra_info = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_running_sec = v
 				i = ii
 			}
@@ -12359,8 +12249,8 @@ pub fn cmsgclientgetclientdetailsresponse_game_unpack(buf []byte) ?CMsgClientGet
 
 [inline]
 pub fn (a CMsgClientGetClientDetailsResponse_Game) eq(b CMsgClientGetClientDetailsResponse_Game) bool {
-	return true && a.appid == b.appid &&
-		a.extra_info == b.extra_info && a.time_running_sec == b.time_running_sec
+	return true && a.appid == b.appid && a.extra_info == b.extra_info && a.time_running_sec ==
+		b.time_running_sec
 }
 
 [inline]
@@ -12401,8 +12291,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientdetailsresponse_game(o CMsgCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponse_game(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientDetailsResponse_Game) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientdetailsresponse_game_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientdetailsresponse_game_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12462,44 +12352,44 @@ pub fn cmsgclientgetclientdetailsresponse_unpack(buf []byte) ?CMsgClientGetClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.package_version = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.protocol_version = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.os = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.machine_name = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ip_public = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ip_private = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_available = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponse_game(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.games_running << v
 				i = ii
 			}
@@ -12520,11 +12410,9 @@ pub fn cmsgclientgetclientdetailsresponse_unpack(buf []byte) ?CMsgClientGetClien
 
 [inline]
 pub fn (a CMsgClientGetClientDetailsResponse) eq(b CMsgClientGetClientDetailsResponse) bool {
-	return true && a.package_version == b.package_version &&
-		a.protocol_version == b.protocol_version &&
-		a.os == b.os && a.machine_name == b.machine_name &&
-		a.ip_public == b.ip_public && a.ip_private == b.ip_private &&
-		a.bytes_available == b.bytes_available && a.games_running.eq(b.games_running)
+	return true && a.package_version == b.package_version && a.protocol_version == b.protocol_version &&
+		a.os == b.os && a.machine_name == b.machine_name && a.ip_public == b.ip_public && a.ip_private ==
+		b.ip_private && a.bytes_available == b.bytes_available && a.games_running.eq(b.games_running)
 }
 
 [inline]
@@ -12565,8 +12453,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientdetailsresponse(o CMsgClientG
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientdetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientDetailsResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientdetailsresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientdetailsresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12584,22 +12472,22 @@ pub mut:
 
 pub fn (o &CMsgClientGetClientAppList) pack() []byte {
 	mut res := []byte{}
-	if o.media != bool(0) {
+	if o.media != false {
 		res << vproto.pack_bool_field(o.media, 1)
 	}
-	if o.tools != bool(0) {
+	if o.tools != false {
 		res << vproto.pack_bool_field(o.tools, 2)
 	}
-	if o.games != bool(0) {
+	if o.games != false {
 		res << vproto.pack_bool_field(o.games, 3)
 	}
-	if o.only_installed != bool(0) {
+	if o.only_installed != false {
 		res << vproto.pack_bool_field(o.only_installed, 4)
 	}
-	if o.only_changing != bool(0) {
+	if o.only_changing != false {
 		res << vproto.pack_bool_field(o.only_changing, 5)
 	}
-	if o.comics != bool(0) {
+	if o.comics != false {
 		res << vproto.pack_bool_field(o.comics, 6)
 	}
 	return res
@@ -12617,32 +12505,32 @@ pub fn cmsgclientgetclientapplist_unpack(buf []byte) ?CMsgClientGetClientAppList
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.media = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tools = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.games = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.only_installed = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.only_changing = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.comics = v
 				i = ii
 			}
@@ -12663,11 +12551,8 @@ pub fn cmsgclientgetclientapplist_unpack(buf []byte) ?CMsgClientGetClientAppList
 
 [inline]
 pub fn (a CMsgClientGetClientAppList) eq(b CMsgClientGetClientAppList) bool {
-	return true && a.media == b.media &&
-		a.tools == b.tools && a.games == b.games &&
-		a.only_installed == b.only_installed &&
-		a.only_changing == b.only_changing &&
-		a.comics == b.comics
+	return true && a.media == b.media && a.tools == b.tools && a.games == b.games && a.only_installed ==
+		b.only_installed && a.only_changing == b.only_changing && a.comics == b.comics
 }
 
 [inline]
@@ -12708,8 +12593,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplist(o CMsgClientGetClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplist(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppList) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientapplist_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientapplist_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12726,7 +12611,7 @@ pub fn (o &CMsgClientGetClientAppListResponseApp_DLC) pack() []byte {
 	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.installed != bool(0) {
+	if o.installed != false {
 		res << vproto.pack_bool_field(o.installed, 2)
 	}
 	return res
@@ -12744,12 +12629,12 @@ pub fn cmsgclientgetclientapplistresponseapp_dlc_unpack(buf []byte) ?CMsgClientG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.installed = v
 				i = ii
 			}
@@ -12811,8 +12696,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp_dlc(o CMsg
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseapp_dlc(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponseApp_DLC) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientapplistresponseapp_dlc_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientapplistresponseapp_dlc_unpack(v) ?
 	return i, unpacked
 }
 
@@ -12848,13 +12733,13 @@ pub fn (o &CMsgClientGetClientAppListResponse_App) pack() []byte {
 	if o.app_type != '' {
 		res << vproto.pack_string_field(o.app_type, 10)
 	}
-	if o.favorite != bool(0) {
+	if o.favorite != false {
 		res << vproto.pack_bool_field(o.favorite, 3)
 	}
-	if o.installed != bool(0) {
+	if o.installed != false {
 		res << vproto.pack_bool_field(o.installed, 4)
 	}
-	if o.auto_update != bool(0) {
+	if o.auto_update != false {
 		res << vproto.pack_bool_field(o.auto_update, 5)
 	}
 	if o.bytes_downloaded != u64(0) {
@@ -12866,7 +12751,7 @@ pub fn (o &CMsgClientGetClientAppListResponse_App) pack() []byte {
 	if o.bytes_download_rate != u32(0) {
 		res << vproto.pack_uint32_field(o.bytes_download_rate, 8)
 	}
-	if o.download_paused != bool(0) {
+	if o.download_paused != false {
 		res << vproto.pack_bool_field(o.download_paused, 11)
 	}
 	if o.num_downloading != u32(0) {
@@ -12875,15 +12760,16 @@ pub fn (o &CMsgClientGetClientAppListResponse_App) pack() []byte {
 	if o.num_paused != u32(0) {
 		res << vproto.pack_uint32_field(o.num_paused, 13)
 	}
-	if o.changing != bool(0) {
+	if o.changing != false {
 		res << vproto.pack_bool_field(o.changing, 14)
 	}
-	if o.available_on_platform != bool(0) {
+	if o.available_on_platform != false {
 		res << vproto.pack_bool_field(o.available_on_platform, 15)
 	}
 	// [packed=false]
 	for _, x in o.dlcs {
-		res << zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp_dlc(x, 9)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientgetclientapplistresponseapp_dlc(x, 9)
 	}
 	return res
 }
@@ -12900,79 +12786,79 @@ pub fn cmsgclientgetclientapplistresponse_app_unpack(buf []byte) ?CMsgClientGetC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.category = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_type = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.favorite = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.installed = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.auto_update = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_downloaded = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_needed = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_download_rate = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.download_paused = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_downloading = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_paused = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.changing = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.available_on_platform = v
 				i = ii
 			}
 			9 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponseapp_dlc(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.dlcs << v
 				i = ii
 			}
@@ -12993,16 +12879,12 @@ pub fn cmsgclientgetclientapplistresponse_app_unpack(buf []byte) ?CMsgClientGetC
 
 [inline]
 pub fn (a CMsgClientGetClientAppListResponse_App) eq(b CMsgClientGetClientAppListResponse_App) bool {
-	return true && a.appid == b.appid &&
-		a.category == b.category && a.app_type == b.app_type &&
-		a.favorite == b.favorite && a.installed == b.installed &&
-		a.auto_update == b.auto_update && a.bytes_downloaded == b.bytes_downloaded &&
-		a.bytes_needed == b.bytes_needed &&
-		a.bytes_download_rate == b.bytes_download_rate &&
-		a.download_paused == b.download_paused &&
-		a.num_downloading == b.num_downloading &&
-		a.num_paused == b.num_paused && a.changing == b.changing &&
-		a.available_on_platform == b.available_on_platform && a.dlcs.eq(b.dlcs)
+	return true && a.appid == b.appid && a.category == b.category && a.app_type == b.app_type &&
+		a.favorite == b.favorite && a.installed == b.installed && a.auto_update == b.auto_update &&
+		a.bytes_downloaded == b.bytes_downloaded && a.bytes_needed == b.bytes_needed && a.bytes_download_rate ==
+		b.bytes_download_rate && a.download_paused == b.download_paused && a.num_downloading == b.num_downloading &&
+		a.num_paused == b.num_paused && a.changing == b.changing && a.available_on_platform == b.available_on_platform &&
+		a.dlcs.eq(b.dlcs)
 }
 
 [inline]
@@ -13043,8 +12925,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponse_app(o CMsgCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponse_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponse_App) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientapplistresponse_app_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientapplistresponse_app_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13082,12 +12964,12 @@ pub fn cmsgclientgetclientapplistresponse_unpack(buf []byte) ?CMsgClientGetClien
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponse_app(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bytes_available = v
 				i = ii
 			}
@@ -13149,8 +13031,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientgetclientapplistresponse(o CMsgClientG
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientgetclientapplistresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientGetClientAppListResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientgetclientapplistresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientgetclientapplistresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13181,7 +13063,7 @@ pub fn cmsgclientinstallclientapp_unpack(buf []byte) ?CMsgClientInstallClientApp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -13243,8 +13125,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientinstallclientapp(o CMsgClientInstallCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientinstallclientapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientInstallClientApp) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientinstallclientapp_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientinstallclientapp_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13275,7 +13157,7 @@ pub fn cmsgclientinstallclientappresponse_unpack(buf []byte) ?CMsgClientInstallC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.result = v
 				i = ii
 			}
@@ -13337,8 +13219,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientinstallclientappresponse(o CMsgClientI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientinstallclientappresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientInstallClientAppResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientinstallclientappresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientinstallclientappresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13369,7 +13251,7 @@ pub fn cmsgclientuninstallclientapp_unpack(buf []byte) ?CMsgClientUninstallClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -13431,8 +13313,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientuninstallclientapp(o CMsgClientUninsta
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientuninstallclientapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUninstallClientApp) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientuninstallclientapp_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientuninstallclientapp_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13463,7 +13345,7 @@ pub fn cmsgclientuninstallclientappresponse_unpack(buf []byte) ?CMsgClientUninst
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.result = v
 				i = ii
 			}
@@ -13525,8 +13407,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientuninstallclientappresponse(o CMsgClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientuninstallclientappresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUninstallClientAppResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientuninstallclientappresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientuninstallclientappresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13543,7 +13425,7 @@ pub fn (o &CMsgClientSetClientAppUpdateState) pack() []byte {
 	if o.appid != u32(0) {
 		res << vproto.pack_uint32_field(o.appid, 1)
 	}
-	if o.update != bool(0) {
+	if o.update != false {
 		res << vproto.pack_bool_field(o.update, 2)
 	}
 	return res
@@ -13561,12 +13443,12 @@ pub fn cmsgclientsetclientappupdatestate_unpack(buf []byte) ?CMsgClientSetClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.update = v
 				i = ii
 			}
@@ -13628,8 +13510,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientsetclientappupdatestate(o CMsgClientSe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsetclientappupdatestate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSetClientAppUpdateState) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientsetclientappupdatestate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientsetclientappupdatestate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13660,7 +13542,7 @@ pub fn cmsgclientsetclientappupdatestateresponse_unpack(buf []byte) ?CMsgClientS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.result = v
 				i = ii
 			}
@@ -13722,8 +13604,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientsetclientappupdatestateresponse(o CMsg
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientsetclientappupdatestateresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientSetClientAppUpdateStateResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientsetclientappupdatestateresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientsetclientappupdatestateresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13772,7 +13654,7 @@ pub fn (o &CMsgClientUFSUploadFileRequest) pack() []byte {
 	if o.cell_id != u32(0) {
 		res << vproto.pack_uint32_field(o.cell_id, 9)
 	}
-	if o.can_encrypt != bool(0) {
+	if o.can_encrypt != false {
 		res << vproto.pack_bool_field(o.can_encrypt, 10)
 	}
 	return res
@@ -13790,52 +13672,52 @@ pub fn cmsgclientufsuploadfilerequest_unpack(buf []byte) ?CMsgClientUFSUploadFil
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_size = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.raw_file_size = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_stamp = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.platforms_to_sync_deprecated = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.platforms_to_sync = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cell_id = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.can_encrypt = v
 				i = ii
 			}
@@ -13856,11 +13738,9 @@ pub fn cmsgclientufsuploadfilerequest_unpack(buf []byte) ?CMsgClientUFSUploadFil
 
 [inline]
 pub fn (a CMsgClientUFSUploadFileRequest) eq(b CMsgClientUFSUploadFileRequest) bool {
-	return true && a.app_id == b.app_id &&
-		a.file_size == b.file_size && a.raw_file_size == b.raw_file_size &&
-		a.sha_file == b.sha_file && a.time_stamp == b.time_stamp &&
-		a.file_name == b.file_name && a.platforms_to_sync_deprecated == b.platforms_to_sync_deprecated &&
-		a.platforms_to_sync == b.platforms_to_sync &&
+	return true && a.app_id == b.app_id && a.file_size == b.file_size && a.raw_file_size == b.raw_file_size &&
+		a.sha_file == b.sha_file && a.time_stamp == b.time_stamp && a.file_name == b.file_name &&
+		a.platforms_to_sync_deprecated == b.platforms_to_sync_deprecated && a.platforms_to_sync == b.platforms_to_sync &&
 		a.cell_id == b.cell_id && a.can_encrypt == b.can_encrypt
 }
 
@@ -13902,8 +13782,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfilerequest(o CMsgClientUFSUp
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadFileRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadfilerequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadfilerequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -13929,7 +13809,7 @@ pub fn (o &CMsgClientUFSUploadFileResponse) pack() []byte {
 	if o.sha_file != []byte{} {
 		res << vproto.pack_bytes_field(o.sha_file, 2)
 	}
-	if o.use_http != bool(0) {
+	if o.use_http != false {
 		res << vproto.pack_bool_field(o.use_http, 3)
 	}
 	if o.http_host != '' {
@@ -13941,10 +13821,10 @@ pub fn (o &CMsgClientUFSUploadFileResponse) pack() []byte {
 	if o.kv_headers != []byte{} {
 		res << vproto.pack_bytes_field(o.kv_headers, 6)
 	}
-	if o.use_https != bool(0) {
+	if o.use_https != false {
 		res << vproto.pack_bool_field(o.use_https, 7)
 	}
-	if o.encrypt_file != bool(0) {
+	if o.encrypt_file != false {
 		res << vproto.pack_bool_field(o.encrypt_file, 8)
 	}
 	return res
@@ -13962,42 +13842,42 @@ pub fn cmsgclientufsuploadfileresponse_unpack(buf []byte) ?CMsgClientUFSUploadFi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.use_http = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.http_host = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.http_url = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.kv_headers = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.use_https = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.encrypt_file = v
 				i = ii
 			}
@@ -14018,11 +13898,9 @@ pub fn cmsgclientufsuploadfileresponse_unpack(buf []byte) ?CMsgClientUFSUploadFi
 
 [inline]
 pub fn (a CMsgClientUFSUploadFileResponse) eq(b CMsgClientUFSUploadFileResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.sha_file == b.sha_file && a.use_http == b.use_http &&
-		a.http_host == b.http_host && a.http_url == b.http_url &&
-		a.kv_headers == b.kv_headers && a.use_https == b.use_https &&
-		a.encrypt_file == b.encrypt_file
+	return true && a.eresult == b.eresult && a.sha_file == b.sha_file && a.use_http == b.use_http &&
+		a.http_host == b.http_host && a.http_url == b.http_url && a.kv_headers == b.kv_headers &&
+		a.use_https == b.use_https && a.encrypt_file == b.encrypt_file
 }
 
 [inline]
@@ -14063,8 +13941,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfileresponse(o CMsgClientUFSU
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadFileResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadfileresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadfileresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14111,27 +13989,27 @@ pub fn cmsgclientufsuploadcommit_file_unpack(buf []byte) ?CMsgClientUFSUploadCom
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cub_file = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
@@ -14152,8 +14030,7 @@ pub fn cmsgclientufsuploadcommit_file_unpack(buf []byte) ?CMsgClientUFSUploadCom
 
 [inline]
 pub fn (a CMsgClientUFSUploadCommit_File) eq(b CMsgClientUFSUploadCommit_File) bool {
-	return true && a.eresult == b.eresult &&
-		a.app_id == b.app_id && a.sha_file == b.sha_file &&
+	return true && a.eresult == b.eresult && a.app_id == b.app_id && a.sha_file == b.sha_file &&
 		a.cub_file == b.cub_file && a.file_name == b.file_name
 }
 
@@ -14195,8 +14072,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommit_file(o CMsgClientUFSUp
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommit_file(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommit_File) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadcommit_file_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadcommit_file_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14230,7 +14107,7 @@ pub fn cmsgclientufsuploadcommit_unpack(buf []byte) ?CMsgClientUFSUploadCommit {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientufsuploadcommit_file(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.files << v
 				i = ii
 			}
@@ -14292,8 +14169,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommit(o CMsgClientUFSUploadC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommit(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommit) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadcommit_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadcommit_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14332,17 +14209,17 @@ pub fn cmsgclientufsuploadcommitresponse_file_unpack(buf []byte) ?CMsgClientUFSU
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
@@ -14404,8 +14281,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponse_file(o CMsgCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse_file(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommitResponse_File) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadcommitresponse_file_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadcommitresponse_file_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14439,7 +14316,7 @@ pub fn cmsgclientufsuploadcommitresponse_unpack(buf []byte) ?CMsgClientUFSUpload
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse_file(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.files << v
 				i = ii
 			}
@@ -14501,8 +14378,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadcommitresponse(o CMsgClientUF
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadcommitresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadCommitResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadcommitresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadcommitresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14541,17 +14418,17 @@ pub fn cmsgclientufsfilechunk_unpack(buf []byte) ?CMsgClientUFSFileChunk {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_start = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.data = v
 				i = ii
 			}
@@ -14613,8 +14490,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsfilechunk(o CMsgClientUFSFileChunk,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsfilechunk(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSFileChunk) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsfilechunk_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsfilechunk_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14676,8 +14553,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufstransferheartbeat(o CMsgClientUFSTr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufstransferheartbeat(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSTransferHeartbeat) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufstransferheartbeat_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufstransferheartbeat_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14712,12 +14589,12 @@ pub fn cmsgclientufsuploadfilefinished_unpack(buf []byte) ?CMsgClientUFSUploadFi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
@@ -14779,8 +14656,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsuploadfilefinished(o CMsgClientUFSU
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsuploadfilefinished(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSUploadFileFinished) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsuploadfilefinished_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsuploadfilefinished_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14801,7 +14678,7 @@ pub fn (o &CMsgClientUFSDeleteFileRequest) pack() []byte {
 	if o.file_name != '' {
 		res << vproto.pack_string_field(o.file_name, 2)
 	}
-	if o.is_explicit_delete != bool(0) {
+	if o.is_explicit_delete != false {
 		res << vproto.pack_bool_field(o.is_explicit_delete, 3)
 	}
 	return res
@@ -14819,17 +14696,17 @@ pub fn cmsgclientufsdeletefilerequest_unpack(buf []byte) ?CMsgClientUFSDeleteFil
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_explicit_delete = v
 				i = ii
 			}
@@ -14850,8 +14727,8 @@ pub fn cmsgclientufsdeletefilerequest_unpack(buf []byte) ?CMsgClientUFSDeleteFil
 
 [inline]
 pub fn (a CMsgClientUFSDeleteFileRequest) eq(b CMsgClientUFSDeleteFileRequest) bool {
-	return true && a.app_id == b.app_id &&
-		a.file_name == b.file_name && a.is_explicit_delete == b.is_explicit_delete
+	return true && a.app_id == b.app_id && a.file_name == b.file_name && a.is_explicit_delete ==
+		b.is_explicit_delete
 }
 
 [inline]
@@ -14892,8 +14769,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsdeletefilerequest(o CMsgClientUFSDe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsdeletefilerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDeleteFileRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsdeletefilerequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsdeletefilerequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -14928,12 +14805,12 @@ pub fn cmsgclientufsdeletefileresponse_unpack(buf []byte) ?CMsgClientUFSDeleteFi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
@@ -14995,8 +14872,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsdeletefileresponse(o CMsgClientUFSD
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsdeletefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDeleteFileResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsdeletefileresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsdeletefileresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15014,7 +14891,7 @@ pub fn (o &CMsgClientUFSGetFileListForApp) pack() []byte {
 	for _, x in o.apps_to_query {
 		res << vproto.pack_uint32_field(x, 1)
 	}
-	if o.send_path_prefixes != bool(0) {
+	if o.send_path_prefixes != false {
 		res << vproto.pack_bool_field(o.send_path_prefixes, 2)
 	}
 	return res
@@ -15033,12 +14910,12 @@ pub fn cmsgclientufsgetfilelistforapp_unpack(buf []byte) ?CMsgClientUFSGetFileLi
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.apps_to_query << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.send_path_prefixes = v
 				i = ii
 			}
@@ -15059,8 +14936,7 @@ pub fn cmsgclientufsgetfilelistforapp_unpack(buf []byte) ?CMsgClientUFSGetFileLi
 
 [inline]
 pub fn (a CMsgClientUFSGetFileListForApp) eq(b CMsgClientUFSGetFileListForApp) bool {
-	return true && a.apps_to_query == b.apps_to_query &&
-		a.send_path_prefixes == b.send_path_prefixes
+	return true && a.apps_to_query == b.apps_to_query && a.send_path_prefixes == b.send_path_prefixes
 }
 
 [inline]
@@ -15101,8 +14977,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforapp(o CMsgClientUFSGe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforapp(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetFileListForApp) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetfilelistforapp_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetfilelistforapp_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15137,7 +15013,7 @@ pub fn (o &CMsgClientUFSGetFileListForAppResponse_File) pack() []byte {
 	if o.raw_file_size != u32(0) {
 		res << vproto.pack_uint32_field(o.raw_file_size, 5)
 	}
-	if o.is_explicit_delete != bool(0) {
+	if o.is_explicit_delete != false {
 		res << vproto.pack_bool_field(o.is_explicit_delete, 6)
 	}
 	if o.platforms_to_sync != u32(0) {
@@ -15161,42 +15037,42 @@ pub fn cmsgclientufsgetfilelistforappresponse_file_unpack(buf []byte) ?CMsgClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_stamp = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.raw_file_size = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_explicit_delete = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.platforms_to_sync = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.path_prefix_index = v
 				i = ii
 			}
@@ -15217,12 +15093,9 @@ pub fn cmsgclientufsgetfilelistforappresponse_file_unpack(buf []byte) ?CMsgClien
 
 [inline]
 pub fn (a CMsgClientUFSGetFileListForAppResponse_File) eq(b CMsgClientUFSGetFileListForAppResponse_File) bool {
-	return true && a.app_id == b.app_id &&
-		a.file_name == b.file_name && a.sha_file == b.sha_file &&
-		a.time_stamp == b.time_stamp && a.raw_file_size == b.raw_file_size &&
-		a.is_explicit_delete == b.is_explicit_delete &&
-		a.platforms_to_sync == b.platforms_to_sync &&
-		a.path_prefix_index == b.path_prefix_index
+	return true && a.app_id == b.app_id && a.file_name == b.file_name && a.sha_file == b.sha_file &&
+		a.time_stamp == b.time_stamp && a.raw_file_size == b.raw_file_size && a.is_explicit_delete ==
+		b.is_explicit_delete && a.platforms_to_sync == b.platforms_to_sync && a.path_prefix_index == b.path_prefix_index
 }
 
 [inline]
@@ -15263,8 +15136,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse_file(o CM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse_file(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetFileListForAppResponse_File) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetfilelistforappresponse_file_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetfilelistforappresponse_file_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15280,7 +15153,8 @@ pub fn (o &CMsgClientUFSGetFileListForAppResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.files {
-		res << zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse_file(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse_file(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.path_prefixes {
@@ -15303,13 +15177,13 @@ pub fn cmsgclientufsgetfilelistforappresponse_unpack(buf []byte) ?CMsgClientUFSG
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse_file(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.files << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.path_prefixes << v
 				i = ii
 			}
@@ -15371,8 +15245,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetfilelistforappresponse(o CMsgCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetfilelistforappresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetFileListForAppResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetfilelistforappresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetfilelistforappresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15393,7 +15267,7 @@ pub fn (o &CMsgClientUFSDownloadRequest) pack() []byte {
 	if o.file_name != '' {
 		res << vproto.pack_string_field(o.file_name, 2)
 	}
-	if o.can_handle_http != bool(0) {
+	if o.can_handle_http != false {
 		res << vproto.pack_bool_field(o.can_handle_http, 3)
 	}
 	return res
@@ -15411,17 +15285,17 @@ pub fn cmsgclientufsdownloadrequest_unpack(buf []byte) ?CMsgClientUFSDownloadReq
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.can_handle_http = v
 				i = ii
 			}
@@ -15442,8 +15316,8 @@ pub fn cmsgclientufsdownloadrequest_unpack(buf []byte) ?CMsgClientUFSDownloadReq
 
 [inline]
 pub fn (a CMsgClientUFSDownloadRequest) eq(b CMsgClientUFSDownloadRequest) bool {
-	return true && a.app_id == b.app_id &&
-		a.file_name == b.file_name && a.can_handle_http == b.can_handle_http
+	return true && a.app_id == b.app_id && a.file_name == b.file_name && a.can_handle_http ==
+		b.can_handle_http
 }
 
 [inline]
@@ -15484,8 +15358,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsdownloadrequest(o CMsgClientUFSDown
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsdownloadrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDownloadRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsdownloadrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsdownloadrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15528,10 +15402,10 @@ pub fn (o &CMsgClientUFSDownloadResponse) pack() []byte {
 	if o.time_stamp != u64(0) {
 		res << vproto.pack_uint64_field(o.time_stamp, 6)
 	}
-	if o.is_explicit_delete != bool(0) {
+	if o.is_explicit_delete != false {
 		res << vproto.pack_bool_field(o.is_explicit_delete, 7)
 	}
-	if o.use_http != bool(0) {
+	if o.use_http != false {
 		res << vproto.pack_bool_field(o.use_http, 8)
 	}
 	if o.http_host != '' {
@@ -15543,10 +15417,10 @@ pub fn (o &CMsgClientUFSDownloadResponse) pack() []byte {
 	if o.kv_headers != []byte{} {
 		res << vproto.pack_bytes_field(o.kv_headers, 11)
 	}
-	if o.use_https != bool(0) {
+	if o.use_https != false {
 		res << vproto.pack_bool_field(o.use_https, 12)
 	}
-	if o.encrypted != bool(0) {
+	if o.encrypted != false {
 		res << vproto.pack_bool_field(o.encrypted, 13)
 	}
 	return res
@@ -15564,67 +15438,67 @@ pub fn cmsgclientufsdownloadresponse_unpack(buf []byte) ?CMsgClientUFSDownloadRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_size = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.raw_file_size = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_stamp = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_explicit_delete = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.use_http = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.http_host = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.http_url = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.kv_headers = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.use_https = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.encrypted = v
 				i = ii
 			}
@@ -15645,14 +15519,11 @@ pub fn cmsgclientufsdownloadresponse_unpack(buf []byte) ?CMsgClientUFSDownloadRe
 
 [inline]
 pub fn (a CMsgClientUFSDownloadResponse) eq(b CMsgClientUFSDownloadResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.app_id == b.app_id && a.file_size == b.file_size &&
-		a.raw_file_size == b.raw_file_size &&
-		a.sha_file == b.sha_file && a.time_stamp == b.time_stamp &&
-		a.is_explicit_delete == b.is_explicit_delete &&
-		a.use_http == b.use_http && a.http_host == b.http_host &&
-		a.http_url == b.http_url && a.kv_headers == b.kv_headers &&
-		a.use_https == b.use_https && a.encrypted == b.encrypted
+	return true && a.eresult == b.eresult && a.app_id == b.app_id && a.file_size == b.file_size &&
+		a.raw_file_size == b.raw_file_size && a.sha_file == b.sha_file && a.time_stamp == b.time_stamp &&
+		a.is_explicit_delete == b.is_explicit_delete && a.use_http == b.use_http && a.http_host == b.http_host &&
+		a.http_url == b.http_url && a.kv_headers == b.kv_headers && a.use_https == b.use_https &&
+		a.encrypted == b.encrypted
 }
 
 [inline]
@@ -15693,8 +15564,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsdownloadresponse(o CMsgClientUFSDow
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsdownloadresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSDownloadResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsdownloadresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsdownloadresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15734,18 +15605,18 @@ pub fn cmsgclientufsloginrequest_unpack(buf []byte) ?CMsgClientUFSLoginRequest {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.protocol_version = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.am_session_token = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
@@ -15766,8 +15637,7 @@ pub fn cmsgclientufsloginrequest_unpack(buf []byte) ?CMsgClientUFSLoginRequest {
 
 [inline]
 pub fn (a CMsgClientUFSLoginRequest) eq(b CMsgClientUFSLoginRequest) bool {
-	return true && a.protocol_version == b.protocol_version &&
-		a.am_session_token == b.am_session_token &&
+	return true && a.protocol_version == b.protocol_version && a.am_session_token == b.am_session_token &&
 		a.apps == b.apps
 }
 
@@ -15809,8 +15679,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsloginrequest(o CMsgClientUFSLoginRe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsloginrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSLoginRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsloginrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsloginrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15841,7 +15711,7 @@ pub fn cmsgclientufsloginresponse_unpack(buf []byte) ?CMsgClientUFSLoginResponse
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
@@ -15903,8 +15773,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsloginresponse(o CMsgClientUFSLoginR
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsloginresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSLoginResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsloginresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsloginresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -15939,12 +15809,12 @@ pub fn cmsgclientrequestencryptedappticket_unpack(buf []byte) ?CMsgClientRequest
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.userdata = v
 				i = ii
 			}
@@ -16006,8 +15876,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientrequestencryptedappticket(o CMsgClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestencryptedappticket(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestEncryptedAppTicket) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientrequestencryptedappticket_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientrequestencryptedappticket_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16046,17 +15916,17 @@ pub fn cmsgclientrequestencryptedappticketresponse_unpack(buf []byte) ?CMsgClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_encryptedappticket(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_encryptedappticket(cur_buf, tag_wiretype.wire_type) ?
 				res.encrypted_app_ticket = v
 				i = ii
 			}
@@ -16077,8 +15947,7 @@ pub fn cmsgclientrequestencryptedappticketresponse_unpack(buf []byte) ?CMsgClien
 
 [inline]
 pub fn (a CMsgClientRequestEncryptedAppTicketResponse) eq(b CMsgClientRequestEncryptedAppTicketResponse) bool {
-	return true && a.app_id == b.app_id &&
-		a.eresult == b.eresult && a.encrypted_app_ticket.eq(b.encrypted_app_ticket)
+	return true && a.app_id == b.app_id && a.eresult == b.eresult && a.encrypted_app_ticket.eq(b.encrypted_app_ticket)
 }
 
 [inline]
@@ -16119,8 +15988,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientrequestencryptedappticketresponse(o CM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientrequestencryptedappticketresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientRequestEncryptedAppTicketResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientrequestencryptedappticketresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientrequestencryptedappticketresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16138,7 +16007,7 @@ pub mut:
 
 pub fn (o &CMsgClientWalletInfoUpdate) pack() []byte {
 	mut res := []byte{}
-	if o.has_wallet != bool(0) {
+	if o.has_wallet != false {
 		res << vproto.pack_bool_field(o.has_wallet, 1)
 	}
 	if o.balance != int(0) {
@@ -16171,32 +16040,32 @@ pub fn cmsgclientwalletinfoupdate_unpack(buf []byte) ?CMsgClientWalletInfoUpdate
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.has_wallet = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.balance = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.currency = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.balance_delayed = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.balance64 = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.balance64_delayed = v
 				i = ii
 			}
@@ -16217,10 +16086,9 @@ pub fn cmsgclientwalletinfoupdate_unpack(buf []byte) ?CMsgClientWalletInfoUpdate
 
 [inline]
 pub fn (a CMsgClientWalletInfoUpdate) eq(b CMsgClientWalletInfoUpdate) bool {
-	return true && a.has_wallet == b.has_wallet &&
-		a.balance == b.balance && a.currency == b.currency &&
-		a.balance_delayed == b.balance_delayed &&
-		a.balance64 == b.balance64 && a.balance64_delayed == b.balance64_delayed
+	return true && a.has_wallet == b.has_wallet && a.balance == b.balance && a.currency == b.currency &&
+		a.balance_delayed == b.balance_delayed && a.balance64 == b.balance64 && a.balance64_delayed ==
+		b.balance64_delayed
 }
 
 [inline]
@@ -16261,8 +16129,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientwalletinfoupdate(o CMsgClientWalletInf
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientwalletinfoupdate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientWalletInfoUpdate) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientwalletinfoupdate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientwalletinfoupdate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16279,7 +16147,7 @@ pub fn (o &CMsgClientAppInfoUpdate) pack() []byte {
 	if o.last_changenumber != u32(0) {
 		res << vproto.pack_uint32_field(o.last_changenumber, 1)
 	}
-	if o.send_changelist != bool(0) {
+	if o.send_changelist != false {
 		res << vproto.pack_bool_field(o.send_changelist, 2)
 	}
 	return res
@@ -16297,12 +16165,12 @@ pub fn cmsgclientappinfoupdate_unpack(buf []byte) ?CMsgClientAppInfoUpdate {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.last_changenumber = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.send_changelist = v
 				i = ii
 			}
@@ -16323,8 +16191,7 @@ pub fn cmsgclientappinfoupdate_unpack(buf []byte) ?CMsgClientAppInfoUpdate {
 
 [inline]
 pub fn (a CMsgClientAppInfoUpdate) eq(b CMsgClientAppInfoUpdate) bool {
-	return true && a.last_changenumber == b.last_changenumber &&
-		a.send_changelist == b.send_changelist
+	return true && a.last_changenumber == b.last_changenumber && a.send_changelist == b.send_changelist
 }
 
 [inline]
@@ -16365,8 +16232,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinfoupdate(o CMsgClientAppInfoUpdat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinfoupdate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoUpdate) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinfoupdate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinfoupdate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16384,7 +16251,7 @@ pub fn (o &CMsgClientAppInfoChanges) pack() []byte {
 	if o.current_change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.current_change_number, 1)
 	}
-	if o.force_full_update != bool(0) {
+	if o.force_full_update != false {
 		res << vproto.pack_bool_field(o.force_full_update, 2)
 	}
 	// [packed=false]
@@ -16406,18 +16273,18 @@ pub fn cmsgclientappinfochanges_unpack(buf []byte) ?CMsgClientAppInfoChanges {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.current_change_number = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.force_full_update = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appids << v
 				i = ii
 			}
@@ -16438,9 +16305,8 @@ pub fn cmsgclientappinfochanges_unpack(buf []byte) ?CMsgClientAppInfoChanges {
 
 [inline]
 pub fn (a CMsgClientAppInfoChanges) eq(b CMsgClientAppInfoChanges) bool {
-	return true && a.current_change_number == b.current_change_number &&
-		a.force_full_update == b.force_full_update &&
-		a.appids == b.appids
+	return true && a.current_change_number == b.current_change_number && a.force_full_update ==
+		b.force_full_update && a.appids == b.appids
 }
 
 [inline]
@@ -16481,8 +16347,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinfochanges(o CMsgClientAppInfoChan
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinfochanges(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoChanges) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinfochanges_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinfochanges_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16522,18 +16388,18 @@ pub fn cmsgclientappinforequest_app_unpack(buf []byte) ?CMsgClientAppInfoRequest
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.section_flags = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.section_crc << v
 				i = ii
 			}
@@ -16554,9 +16420,8 @@ pub fn cmsgclientappinforequest_app_unpack(buf []byte) ?CMsgClientAppInfoRequest
 
 [inline]
 pub fn (a CMsgClientAppInfoRequest_App) eq(b CMsgClientAppInfoRequest_App) bool {
-	return true && a.app_id == b.app_id &&
-		a.section_flags == b.section_flags &&
-		a.section_crc == b.section_crc
+	return true && a.app_id == b.app_id && a.section_flags == b.section_flags && a.section_crc ==
+		b.section_crc
 }
 
 [inline]
@@ -16597,8 +16462,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinforequest_app(o CMsgClientAppInfo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinforequest_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoRequest_App) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforequest_app_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinforequest_app_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16607,7 +16472,7 @@ mut:
 	unknown_fields   []vproto.UnknownField
 pub mut:
 	apps             []CMsgClientAppInfoRequest_App
-	supports_batches bool = false
+	supports_batches bool
 }
 
 pub fn (o &CMsgClientAppInfoRequest) pack() []byte {
@@ -16616,7 +16481,7 @@ pub fn (o &CMsgClientAppInfoRequest) pack() []byte {
 	for _, x in o.apps {
 		res << zzz_vproto_internal_pack_cmsgclientappinforequest_app(x, 1)
 	}
-	if o.supports_batches != bool(0) {
+	if o.supports_batches != false {
 		res << vproto.pack_bool_field(o.supports_batches, 2)
 	}
 	return res
@@ -16636,12 +16501,12 @@ pub fn cmsgclientappinforequest_unpack(buf []byte) ?CMsgClientAppInfoRequest {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforequest_app(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.supports_batches = v
 				i = ii
 			}
@@ -16703,8 +16568,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinforequest(o CMsgClientAppInfoRequ
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinforequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16739,12 +16604,12 @@ pub fn cmsgclientappinforesponseapp_section_unpack(buf []byte) ?CMsgClientAppInf
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.section_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.section_kv = v
 				i = ii
 			}
@@ -16806,8 +16671,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinforesponseapp_section(o CMsgClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponseapp_section(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponseApp_Section) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforesponseapp_section_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinforesponseapp_section_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16847,19 +16712,19 @@ pub fn cmsgclientappinforesponse_app_unpack(buf []byte) ?CMsgClientAppInfoRespon
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforesponseapp_section(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.sections << v
 				i = ii
 			}
@@ -16880,8 +16745,7 @@ pub fn cmsgclientappinforesponse_app_unpack(buf []byte) ?CMsgClientAppInfoRespon
 
 [inline]
 pub fn (a CMsgClientAppInfoResponse_App) eq(b CMsgClientAppInfoResponse_App) bool {
-	return true && a.app_id == b.app_id &&
-		a.change_number == b.change_number && a.sections.eq(b.sections)
+	return true && a.app_id == b.app_id && a.change_number == b.change_number && a.sections.eq(b.sections)
 }
 
 [inline]
@@ -16922,8 +16786,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinforesponse_app(o CMsgClientAppInf
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponse_app(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponse_App) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforesponse_app_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinforesponse_app_unpack(v) ?
 	return i, unpacked
 }
 
@@ -16966,18 +16830,18 @@ pub fn cmsgclientappinforesponse_unpack(buf []byte) ?CMsgClientAppInfoResponse {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientappinforesponse_app(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.apps_unknown << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.apps_pending = v
 				i = ii
 			}
@@ -16998,9 +16862,8 @@ pub fn cmsgclientappinforesponse_unpack(buf []byte) ?CMsgClientAppInfoResponse {
 
 [inline]
 pub fn (a CMsgClientAppInfoResponse) eq(b CMsgClientAppInfoResponse) bool {
-	return true && a.apps.eq(b.apps) &&
-		a.apps_unknown == b.apps_unknown &&
-		a.apps_pending == b.apps_pending
+	return true && a.apps.eq(b.apps) && a.apps_unknown == b.apps_unknown && a.apps_pending ==
+		b.apps_pending
 }
 
 [inline]
@@ -17041,8 +16904,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientappinforesponse(o CMsgClientAppInfoRes
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientappinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAppInfoResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientappinforesponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientappinforesponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17060,7 +16923,7 @@ pub fn (o &CMsgClientPackageInfoRequest) pack() []byte {
 	for _, x in o.package_ids {
 		res << vproto.pack_uint32_field(x, 1)
 	}
-	if o.meta_data_only != bool(0) {
+	if o.meta_data_only != false {
 		res << vproto.pack_bool_field(o.meta_data_only, 2)
 	}
 	return res
@@ -17079,12 +16942,12 @@ pub fn cmsgclientpackageinforequest_unpack(buf []byte) ?CMsgClientPackageInfoReq
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.package_ids << v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.meta_data_only = v
 				i = ii
 			}
@@ -17146,8 +17009,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpackageinforequest(o CMsgClientPackage
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPackageInfoRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpackageinforequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpackageinforequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17190,22 +17053,22 @@ pub fn cmsgclientpackageinforesponse_package_unpack(buf []byte) ?CMsgClientPacka
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.package_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.buffer = v
 				i = ii
 			}
@@ -17226,8 +17089,7 @@ pub fn cmsgclientpackageinforesponse_package_unpack(buf []byte) ?CMsgClientPacka
 
 [inline]
 pub fn (a CMsgClientPackageInfoResponse_Package) eq(b CMsgClientPackageInfoResponse_Package) bool {
-	return true && a.package_id == b.package_id &&
-		a.change_number == b.change_number &&
+	return true && a.package_id == b.package_id && a.change_number == b.change_number &&
 		a.sha == b.sha && a.buffer == b.buffer
 }
 
@@ -17269,8 +17131,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpackageinforesponse_package(o CMsgClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforesponse_package(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPackageInfoResponse_Package) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpackageinforesponse_package_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpackageinforesponse_package_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17313,18 +17175,18 @@ pub fn cmsgclientpackageinforesponse_unpack(buf []byte) ?CMsgClientPackageInfoRe
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpackageinforesponse_package(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.packages << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packages_unknown << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packages_pending = v
 				i = ii
 			}
@@ -17345,8 +17207,7 @@ pub fn cmsgclientpackageinforesponse_unpack(buf []byte) ?CMsgClientPackageInfoRe
 
 [inline]
 pub fn (a CMsgClientPackageInfoResponse) eq(b CMsgClientPackageInfoResponse) bool {
-	return true && a.packages.eq(b.packages) &&
-		a.packages_unknown == b.packages_unknown &&
+	return true && a.packages.eq(b.packages) && a.packages_unknown == b.packages_unknown &&
 		a.packages_pending == b.packages_pending
 }
 
@@ -17388,8 +17249,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpackageinforesponse(o CMsgClientPackag
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpackageinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPackageInfoResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpackageinforesponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpackageinforesponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17409,10 +17270,10 @@ pub fn (o &CMsgClientPICSChangesSinceRequest) pack() []byte {
 	if o.since_change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.since_change_number, 1)
 	}
-	if o.send_app_info_changes != bool(0) {
+	if o.send_app_info_changes != false {
 		res << vproto.pack_bool_field(o.send_app_info_changes, 2)
 	}
-	if o.send_package_info_changes != bool(0) {
+	if o.send_package_info_changes != false {
 		res << vproto.pack_bool_field(o.send_package_info_changes, 3)
 	}
 	if o.num_app_info_cached != u32(0) {
@@ -17436,27 +17297,27 @@ pub fn cmsgclientpicschangessincerequest_unpack(buf []byte) ?CMsgClientPICSChang
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.since_change_number = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.send_app_info_changes = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.send_package_info_changes = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_app_info_cached = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_package_info_cached = v
 				i = ii
 			}
@@ -17477,11 +17338,9 @@ pub fn cmsgclientpicschangessincerequest_unpack(buf []byte) ?CMsgClientPICSChang
 
 [inline]
 pub fn (a CMsgClientPICSChangesSinceRequest) eq(b CMsgClientPICSChangesSinceRequest) bool {
-	return true && a.since_change_number == b.since_change_number &&
-		a.send_app_info_changes == b.send_app_info_changes &&
-		a.send_package_info_changes == b.send_package_info_changes &&
-		a.num_app_info_cached == b.num_app_info_cached &&
-		a.num_package_info_cached == b.num_package_info_cached
+	return true && a.since_change_number == b.since_change_number && a.send_app_info_changes ==
+		b.send_app_info_changes && a.send_package_info_changes == b.send_package_info_changes &&
+		a.num_app_info_cached == b.num_app_info_cached && a.num_package_info_cached == b.num_package_info_cached
 }
 
 [inline]
@@ -17522,8 +17381,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicschangessincerequest(o CMsgClientPI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessincerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicschangessincerequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicschangessincerequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17544,7 +17403,7 @@ pub fn (o &CMsgClientPICSChangesSinceResponse_PackageChange) pack() []byte {
 	if o.change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.change_number, 2)
 	}
-	if o.needs_token != bool(0) {
+	if o.needs_token != false {
 		res << vproto.pack_bool_field(o.needs_token, 3)
 	}
 	return res
@@ -17562,17 +17421,17 @@ pub fn cmsgclientpicschangessinceresponse_packagechange_unpack(buf []byte) ?CMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packageid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.needs_token = v
 				i = ii
 			}
@@ -17593,8 +17452,7 @@ pub fn cmsgclientpicschangessinceresponse_packagechange_unpack(buf []byte) ?CMsg
 
 [inline]
 pub fn (a CMsgClientPICSChangesSinceResponse_PackageChange) eq(b CMsgClientPICSChangesSinceResponse_PackageChange) bool {
-	return true && a.packageid == b.packageid &&
-		a.change_number == b.change_number &&
+	return true && a.packageid == b.packageid && a.change_number == b.change_number &&
 		a.needs_token == b.needs_token
 }
 
@@ -17636,8 +17494,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_packagechange
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_packagechange(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceResponse_PackageChange) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicschangessinceresponse_packagechange_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicschangessinceresponse_packagechange_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17658,7 +17516,7 @@ pub fn (o &CMsgClientPICSChangesSinceResponse_AppChange) pack() []byte {
 	if o.change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.change_number, 2)
 	}
-	if o.needs_token != bool(0) {
+	if o.needs_token != false {
 		res << vproto.pack_bool_field(o.needs_token, 3)
 	}
 	return res
@@ -17676,17 +17534,17 @@ pub fn cmsgclientpicschangessinceresponse_appchange_unpack(buf []byte) ?CMsgClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.needs_token = v
 				i = ii
 			}
@@ -17707,9 +17565,8 @@ pub fn cmsgclientpicschangessinceresponse_appchange_unpack(buf []byte) ?CMsgClie
 
 [inline]
 pub fn (a CMsgClientPICSChangesSinceResponse_AppChange) eq(b CMsgClientPICSChangesSinceResponse_AppChange) bool {
-	return true && a.appid == b.appid &&
-		a.change_number == b.change_number &&
-		a.needs_token == b.needs_token
+	return true && a.appid == b.appid && a.change_number == b.change_number && a.needs_token ==
+		b.needs_token
 }
 
 [inline]
@@ -17750,8 +17607,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_appchange(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_appchange(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceResponse_AppChange) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicschangessinceresponse_appchange_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicschangessinceresponse_appchange_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17776,21 +17633,23 @@ pub fn (o &CMsgClientPICSChangesSinceResponse) pack() []byte {
 	if o.since_change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.since_change_number, 2)
 	}
-	if o.force_full_update != bool(0) {
+	if o.force_full_update != false {
 		res << vproto.pack_bool_field(o.force_full_update, 3)
 	}
 	// [packed=false]
 	for _, x in o.package_changes {
-		res << zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_packagechange(x, 4)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_packagechange(x, 4)
 	}
 	// [packed=false]
 	for _, x in o.app_changes {
-		res << zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_appchange(x, 5)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse_appchange(x, 5)
 	}
-	if o.force_full_app_update != bool(0) {
+	if o.force_full_app_update != false {
 		res << vproto.pack_bool_field(o.force_full_app_update, 6)
 	}
-	if o.force_full_package_update != bool(0) {
+	if o.force_full_package_update != false {
 		res << vproto.pack_bool_field(o.force_full_package_update, 7)
 	}
 	return res
@@ -17808,41 +17667,41 @@ pub fn cmsgclientpicschangessinceresponse_unpack(buf []byte) ?CMsgClientPICSChan
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.current_change_number = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.since_change_number = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.force_full_update = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_packagechange(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.package_changes << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse_appchange(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.app_changes << v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.force_full_app_update = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.force_full_package_update = v
 				i = ii
 			}
@@ -17863,11 +17722,9 @@ pub fn cmsgclientpicschangessinceresponse_unpack(buf []byte) ?CMsgClientPICSChan
 
 [inline]
 pub fn (a CMsgClientPICSChangesSinceResponse) eq(b CMsgClientPICSChangesSinceResponse) bool {
-	return true && a.current_change_number == b.current_change_number &&
-		a.since_change_number == b.since_change_number &&
-		a.force_full_update == b.force_full_update && a.package_changes.eq(b.package_changes) &&
-		a.app_changes.eq(b.app_changes) &&
-		a.force_full_app_update == b.force_full_app_update &&
+	return true && a.current_change_number == b.current_change_number && a.since_change_number ==
+		b.since_change_number && a.force_full_update == b.force_full_update && a.package_changes.eq(b.package_changes) &&
+		a.app_changes.eq(b.app_changes) && a.force_full_app_update == b.force_full_app_update &&
 		a.force_full_package_update == b.force_full_package_update
 }
 
@@ -17909,8 +17766,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicschangessinceresponse(o CMsgClientP
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicschangessinceresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSChangesSinceResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicschangessinceresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicschangessinceresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -17931,7 +17788,7 @@ pub fn (o &CMsgClientPICSProductInfoRequest_AppInfo) pack() []byte {
 	if o.access_token != u64(0) {
 		res << vproto.pack_uint64_field(o.access_token, 2)
 	}
-	if o.only_public != bool(0) {
+	if o.only_public != false {
 		res << vproto.pack_bool_field(o.only_public, 3)
 	}
 	return res
@@ -17949,17 +17806,17 @@ pub fn cmsgclientpicsproductinforequest_appinfo_unpack(buf []byte) ?CMsgClientPI
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.access_token = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.only_public = v
 				i = ii
 			}
@@ -17980,9 +17837,8 @@ pub fn cmsgclientpicsproductinforequest_appinfo_unpack(buf []byte) ?CMsgClientPI
 
 [inline]
 pub fn (a CMsgClientPICSProductInfoRequest_AppInfo) eq(b CMsgClientPICSProductInfoRequest_AppInfo) bool {
-	return true && a.appid == b.appid &&
-		a.access_token == b.access_token &&
-		a.only_public == b.only_public
+	return true && a.appid == b.appid && a.access_token == b.access_token && a.only_public ==
+		b.only_public
 }
 
 [inline]
@@ -18023,8 +17879,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_appinfo(o CMsgC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_appinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoRequest_AppInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforequest_appinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsproductinforequest_appinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18059,12 +17915,12 @@ pub fn cmsgclientpicsproductinforequest_packageinfo_unpack(buf []byte) ?CMsgClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packageid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.access_token = v
 				i = ii
 			}
@@ -18126,8 +17982,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_packageinfo(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_packageinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoRequest_PackageInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforequest_packageinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsproductinforequest_packageinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18146,13 +18002,14 @@ pub fn (o &CMsgClientPICSProductInfoRequest) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.packages {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_packageinfo(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_packageinfo(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.apps {
 		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforequest_appinfo(x, 2)
 	}
-	if o.meta_data_only != bool(0) {
+	if o.meta_data_only != false {
 		res << vproto.pack_bool_field(o.meta_data_only, 3)
 	}
 	if o.num_prev_failed != u32(0) {
@@ -18178,29 +18035,29 @@ pub fn cmsgclientpicsproductinforequest_unpack(buf []byte) ?CMsgClientPICSProduc
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_packageinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.packages << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest_appinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.meta_data_only = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.num_prev_failed = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.supports_package_tokens = v
 				i = ii
 			}
@@ -18221,10 +18078,8 @@ pub fn cmsgclientpicsproductinforequest_unpack(buf []byte) ?CMsgClientPICSProduc
 
 [inline]
 pub fn (a CMsgClientPICSProductInfoRequest) eq(b CMsgClientPICSProductInfoRequest) bool {
-	return true && a.packages.eq(b.packages) && a.apps.eq(b.apps) &&
-		a.meta_data_only == b.meta_data_only &&
-		a.num_prev_failed == b.num_prev_failed &&
-		a.supports_package_tokens == b.supports_package_tokens
+	return true && a.packages.eq(b.packages) && a.apps.eq(b.apps) && a.meta_data_only == b.meta_data_only &&
+		a.num_prev_failed == b.num_prev_failed && a.supports_package_tokens == b.supports_package_tokens
 }
 
 [inline]
@@ -18265,8 +18120,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforequest(o CMsgClientPIC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsproductinforequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18291,7 +18146,7 @@ pub fn (o &CMsgClientPICSProductInfoResponse_AppInfo) pack() []byte {
 	if o.change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.change_number, 2)
 	}
-	if o.missing_token != bool(0) {
+	if o.missing_token != false {
 		res << vproto.pack_bool_field(o.missing_token, 3)
 	}
 	if o.sha != []byte{} {
@@ -18300,7 +18155,7 @@ pub fn (o &CMsgClientPICSProductInfoResponse_AppInfo) pack() []byte {
 	if o.buffer != []byte{} {
 		res << vproto.pack_bytes_field(o.buffer, 5)
 	}
-	if o.only_public != bool(0) {
+	if o.only_public != false {
 		res << vproto.pack_bool_field(o.only_public, 6)
 	}
 	if o.size != u32(0) {
@@ -18321,37 +18176,37 @@ pub fn cmsgclientpicsproductinforesponse_appinfo_unpack(buf []byte) ?CMsgClientP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.missing_token = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.buffer = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.only_public = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.size = v
 				i = ii
 			}
@@ -18372,11 +18227,9 @@ pub fn cmsgclientpicsproductinforesponse_appinfo_unpack(buf []byte) ?CMsgClientP
 
 [inline]
 pub fn (a CMsgClientPICSProductInfoResponse_AppInfo) eq(b CMsgClientPICSProductInfoResponse_AppInfo) bool {
-	return true && a.appid == b.appid &&
-		a.change_number == b.change_number &&
-		a.missing_token == b.missing_token &&
-		a.sha == b.sha && a.buffer == b.buffer &&
-		a.only_public == b.only_public && a.size == b.size
+	return true && a.appid == b.appid && a.change_number == b.change_number && a.missing_token ==
+		b.missing_token && a.sha == b.sha && a.buffer == b.buffer && a.only_public == b.only_public &&
+		a.size == b.size
 }
 
 [inline]
@@ -18417,8 +18270,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_appinfo(o CMsg
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_appinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoResponse_AppInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforesponse_appinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsproductinforesponse_appinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18442,7 +18295,7 @@ pub fn (o &CMsgClientPICSProductInfoResponse_PackageInfo) pack() []byte {
 	if o.change_number != u32(0) {
 		res << vproto.pack_uint32_field(o.change_number, 2)
 	}
-	if o.missing_token != bool(0) {
+	if o.missing_token != false {
 		res << vproto.pack_bool_field(o.missing_token, 3)
 	}
 	if o.sha != []byte{} {
@@ -18469,32 +18322,32 @@ pub fn cmsgclientpicsproductinforesponse_packageinfo_unpack(buf []byte) ?CMsgCli
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packageid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.change_number = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.missing_token = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.buffer = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.size = v
 				i = ii
 			}
@@ -18515,11 +18368,8 @@ pub fn cmsgclientpicsproductinforesponse_packageinfo_unpack(buf []byte) ?CMsgCli
 
 [inline]
 pub fn (a CMsgClientPICSProductInfoResponse_PackageInfo) eq(b CMsgClientPICSProductInfoResponse_PackageInfo) bool {
-	return true && a.packageid == b.packageid &&
-		a.change_number == b.change_number &&
-		a.missing_token == b.missing_token &&
-		a.sha == b.sha && a.buffer == b.buffer &&
-		a.size == b.size
+	return true && a.packageid == b.packageid && a.change_number == b.change_number &&
+		a.missing_token == b.missing_token && a.sha == b.sha && a.buffer == b.buffer && a.size == b.size
 }
 
 [inline]
@@ -18560,8 +18410,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_packageinfo(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_packageinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoResponse_PackageInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforesponse_packageinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsproductinforesponse_packageinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18583,7 +18433,8 @@ pub fn (o &CMsgClientPICSProductInfoResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.apps {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_appinfo(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_appinfo(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.unknown_appids {
@@ -18591,16 +18442,17 @@ pub fn (o &CMsgClientPICSProductInfoResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.packages {
-		res << zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_packageinfo(x, 3)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse_packageinfo(x, 3)
 	}
 	// [packed=false]
 	for _, x in o.unknown_packageids {
 		res << vproto.pack_uint32_field(x, 4)
 	}
-	if o.meta_data_only != bool(0) {
+	if o.meta_data_only != false {
 		res << vproto.pack_bool_field(o.meta_data_only, 5)
 	}
-	if o.response_pending != bool(0) {
+	if o.response_pending != false {
 		res << vproto.pack_bool_field(o.response_pending, 6)
 	}
 	if o.http_min_size != u32(0) {
@@ -18626,46 +18478,46 @@ pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPICSProdu
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_appinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.apps << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unknown_appids << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse_packageinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.packages << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unknown_packageids << v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.meta_data_only = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.response_pending = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.http_min_size = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.http_host = v
 				i = ii
 			}
@@ -18686,13 +18538,10 @@ pub fn cmsgclientpicsproductinforesponse_unpack(buf []byte) ?CMsgClientPICSProdu
 
 [inline]
 pub fn (a CMsgClientPICSProductInfoResponse) eq(b CMsgClientPICSProductInfoResponse) bool {
-	return true && a.apps.eq(b.apps) &&
-		a.unknown_appids == b.unknown_appids && a.packages.eq(b.packages) &&
-		a.unknown_packageids == b.unknown_packageids &&
-		a.meta_data_only == b.meta_data_only &&
-		a.response_pending == b.response_pending &&
-		a.http_min_size == b.http_min_size &&
-		a.http_host == b.http_host
+	return true && a.apps.eq(b.apps) && a.unknown_appids == b.unknown_appids && a.packages.eq(b.packages) &&
+		a.unknown_packageids == b.unknown_packageids && a.meta_data_only == b.meta_data_only &&
+		a.response_pending == b.response_pending && a.http_min_size == b.http_min_size && a.http_host ==
+		b.http_host
 }
 
 [inline]
@@ -18733,8 +18582,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsproductinforesponse(o CMsgClientPI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsproductinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSProductInfoResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsproductinforesponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsproductinforesponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18772,13 +18621,13 @@ pub fn cmsgclientpicsaccesstokenrequest_unpack(buf []byte) ?CMsgClientPICSAccess
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packageids << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appids << v
 				i = ii
 			}
@@ -18840,8 +18689,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenrequest(o CMsgClientPIC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsaccesstokenrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsaccesstokenrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18876,12 +18725,12 @@ pub fn cmsgclientpicsaccesstokenresponse_packagetoken_unpack(buf []byte) ?CMsgCl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packageid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.access_token = v
 				i = ii
 			}
@@ -18943,8 +18792,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_packagetoken(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_packagetoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenResponse_PackageToken) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsaccesstokenresponse_packagetoken_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsaccesstokenresponse_packagetoken_unpack(v) ?
 	return i, unpacked
 }
 
@@ -18979,12 +18828,12 @@ pub fn cmsgclientpicsaccesstokenresponse_apptoken_unpack(buf []byte) ?CMsgClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.access_token = v
 				i = ii
 			}
@@ -19046,8 +18895,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_apptoken(o CMs
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_apptoken(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenResponse_AppToken) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsaccesstokenresponse_apptoken_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsaccesstokenresponse_apptoken_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19065,7 +18914,8 @@ pub fn (o &CMsgClientPICSAccessTokenResponse) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.package_access_tokens {
-		res << zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_packagetoken(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_packagetoken(x, 1)
 	}
 	// [packed=false]
 	for _, x in o.package_denied_tokens {
@@ -19073,7 +18923,8 @@ pub fn (o &CMsgClientPICSAccessTokenResponse) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.app_access_tokens {
-		res << zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_apptoken(x, 3)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse_apptoken(x, 3)
 	}
 	// [packed=false]
 	for _, x in o.app_denied_tokens {
@@ -19096,26 +18947,26 @@ pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPICSAcces
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_packagetoken(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.package_access_tokens << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.package_denied_tokens << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse_apptoken(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.app_access_tokens << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_denied_tokens << v
 				i = ii
 			}
@@ -19136,9 +18987,9 @@ pub fn cmsgclientpicsaccesstokenresponse_unpack(buf []byte) ?CMsgClientPICSAcces
 
 [inline]
 pub fn (a CMsgClientPICSAccessTokenResponse) eq(b CMsgClientPICSAccessTokenResponse) bool {
-	return true && a.package_access_tokens.eq(b.package_access_tokens) &&
-		a.package_denied_tokens == b.package_denied_tokens && a.app_access_tokens.eq(b.app_access_tokens) &&
-		a.app_denied_tokens == b.app_denied_tokens
+	return true && a.package_access_tokens.eq(b.package_access_tokens) && a.package_denied_tokens ==
+		b.package_denied_tokens && a.app_access_tokens.eq(b.app_access_tokens) && a.app_denied_tokens ==
+		b.app_denied_tokens
 }
 
 [inline]
@@ -19179,8 +19030,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientpicsaccesstokenresponse(o CMsgClientPI
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientpicsaccesstokenresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientPICSAccessTokenResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientpicsaccesstokenresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientpicsaccesstokenresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19211,7 +19062,7 @@ pub fn cmsgclientufsgetugcdetails_unpack(buf []byte) ?CMsgClientUFSGetUGCDetails
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hcontent = v
 				i = ii
 			}
@@ -19273,8 +19124,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetugcdetails(o CMsgClientUFSGetUGC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetugcdetails(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetUGCDetails) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetugcdetails_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetugcdetails_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19337,47 +19188,47 @@ pub fn cmsgclientufsgetugcdetailsresponse_unpack(buf []byte) ?CMsgClientUFSGetUG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.url = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filename = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_creator = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_size = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.compressed_file_size = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.rangecheck_host = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_encoded_sha1 = v
 				i = ii
 			}
@@ -19398,11 +19249,9 @@ pub fn cmsgclientufsgetugcdetailsresponse_unpack(buf []byte) ?CMsgClientUFSGetUG
 
 [inline]
 pub fn (a CMsgClientUFSGetUGCDetailsResponse) eq(b CMsgClientUFSGetUGCDetailsResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.url == b.url && a.app_id == b.app_id &&
-		a.filename == b.filename && a.steamid_creator == b.steamid_creator &&
-		a.file_size == b.file_size && a.compressed_file_size == b.compressed_file_size &&
-		a.rangecheck_host == b.rangecheck_host &&
+	return true && a.eresult == b.eresult && a.url == b.url && a.app_id == b.app_id &&
+		a.filename == b.filename && a.steamid_creator == b.steamid_creator && a.file_size == b.file_size &&
+		a.compressed_file_size == b.compressed_file_size && a.rangecheck_host == b.rangecheck_host &&
 		a.file_encoded_sha1 == b.file_encoded_sha1
 }
 
@@ -19444,8 +19293,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetugcdetailsresponse(o CMsgClientU
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetugcdetailsresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetUGCDetailsResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetugcdetailsresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetugcdetailsresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19480,12 +19329,12 @@ pub fn cmsgclientufsgetsinglefileinfo_unpack(buf []byte) ?CMsgClientUFSGetSingle
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
@@ -19547,8 +19396,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetsinglefileinfo(o CMsgClientUFSGe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetsinglefileinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetSingleFileInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetsinglefileinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetsinglefileinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19585,7 +19434,7 @@ pub fn (o &CMsgClientUFSGetSingleFileInfoResponse) pack() []byte {
 	if o.raw_file_size != u32(0) {
 		res << vproto.pack_uint32_field(o.raw_file_size, 6)
 	}
-	if o.is_explicit_delete != bool(0) {
+	if o.is_explicit_delete != false {
 		res << vproto.pack_bool_field(o.is_explicit_delete, 7)
 	}
 	return res
@@ -19603,37 +19452,37 @@ pub fn cmsgclientufsgetsinglefileinforesponse_unpack(buf []byte) ?CMsgClientUFSG
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_file = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.time_stamp = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.raw_file_size = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_explicit_delete = v
 				i = ii
 			}
@@ -19654,10 +19503,8 @@ pub fn cmsgclientufsgetsinglefileinforesponse_unpack(buf []byte) ?CMsgClientUFSG
 
 [inline]
 pub fn (a CMsgClientUFSGetSingleFileInfoResponse) eq(b CMsgClientUFSGetSingleFileInfoResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.app_id == b.app_id && a.file_name == b.file_name &&
-		a.sha_file == b.sha_file && a.time_stamp == b.time_stamp &&
-		a.raw_file_size == b.raw_file_size &&
+	return true && a.eresult == b.eresult && a.app_id == b.app_id && a.file_name == b.file_name &&
+		a.sha_file == b.sha_file && a.time_stamp == b.time_stamp && a.raw_file_size == b.raw_file_size &&
 		a.is_explicit_delete == b.is_explicit_delete
 }
 
@@ -19699,8 +19546,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufsgetsinglefileinforesponse(o CMsgCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufsgetsinglefileinforesponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSGetSingleFileInfoResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufsgetsinglefileinforesponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufsgetsinglefileinforesponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19735,12 +19582,12 @@ pub fn cmsgclientufssharefile_unpack(buf []byte) ?CMsgClientUFSShareFile {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
@@ -19802,8 +19649,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufssharefile(o CMsgClientUFSShareFile,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufssharefile(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSShareFile) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufssharefile_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufssharefile_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19838,12 +19685,12 @@ pub fn cmsgclientufssharefileresponse_unpack(buf []byte) ?CMsgClientUFSShareFile
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.hcontent = v
 				i = ii
 			}
@@ -19905,8 +19752,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientufssharefileresponse(o CMsgClientUFSSh
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientufssharefileresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUFSShareFileResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientufssharefileresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientufssharefileresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -19937,7 +19784,7 @@ pub fn cmsgclientamgetclanofficers_unpack(buf []byte) ?CMsgClientAMGetClanOffice
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_clan = v
 				i = ii
 			}
@@ -19999,8 +19846,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetclanofficers(o CMsgClientAMGetCla
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetclanofficers(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetClanOfficers) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetclanofficers_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetclanofficers_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20039,17 +19886,17 @@ pub fn cmsgclientamgetclanofficersresponse_unpack(buf []byte) ?CMsgClientAMGetCl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_clan = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.officer_count = v
 				i = ii
 			}
@@ -20070,9 +19917,8 @@ pub fn cmsgclientamgetclanofficersresponse_unpack(buf []byte) ?CMsgClientAMGetCl
 
 [inline]
 pub fn (a CMsgClientAMGetClanOfficersResponse) eq(b CMsgClientAMGetClanOfficersResponse) bool {
-	return true && a.eresult == b.eresult &&
-		a.steamid_clan == b.steamid_clan &&
-		a.officer_count == b.officer_count
+	return true && a.eresult == b.eresult && a.steamid_clan == b.steamid_clan && a.officer_count ==
+		b.officer_count
 }
 
 [inline]
@@ -20113,8 +19959,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetclanofficersresponse(o CMsgClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetclanofficersresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetClanOfficersResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetclanofficersresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetclanofficersresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20145,7 +19991,7 @@ pub fn cmsgclientamgetpersonanamehistory_idinstance_unpack(buf []byte) ?CMsgClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -20207,8 +20053,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory_idinstance(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory_idinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistory_IdInstance) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistory_idinstance_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetpersonanamehistory_idinstance_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20227,7 +20073,8 @@ pub fn (o &CMsgClientAMGetPersonaNameHistory) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.ids {
-		res << zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory_idinstance(x, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory_idinstance(x, 2)
 	}
 	return res
 }
@@ -20244,14 +20091,14 @@ pub fn cmsgclientamgetpersonanamehistory_unpack(buf []byte) ?CMsgClientAMGetPers
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.id_count = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory_idinstance(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.ids << v
 				i = ii
 			}
@@ -20313,8 +20160,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistory(o CMsgClientAM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistory(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistory) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistory_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetpersonanamehistory_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20349,12 +20196,12 @@ pub fn cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance_u
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name_since = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
@@ -20416,8 +20263,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponsenametab
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistoryResponseNameTableInstance_NameInstance) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20458,19 +20305,19 @@ pub fn cmsgclientamgetpersonanamehistoryresponse_nametableinstance_unpack(buf []
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eresult = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponsenametableinstance_nameinstance(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.names << v
 				i = ii
 			}
@@ -20532,8 +20379,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponse_nameta
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse_nametableinstance(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistoryResponse_NameTableInstance) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistoryresponse_nametableinstance_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetpersonanamehistoryresponse_nametableinstance_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20568,7 +20415,7 @@ pub fn cmsgclientamgetpersonanamehistoryresponse_unpack(buf []byte) ?CMsgClientA
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse_nametableinstance(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.responses << v
 				i = ii
 			}
@@ -20630,8 +20477,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientamgetpersonanamehistoryresponse(o CMsg
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientamgetpersonanamehistoryresponse(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientAMGetPersonaNameHistoryResponse) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientamgetpersonanamehistoryresponse_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientamgetpersonanamehistoryresponse_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20666,12 +20513,12 @@ pub fn cmsgclientderegisterwithserver_unpack(buf []byte) ?CMsgClientDeregisterWi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.eservertype = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -20733,8 +20580,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientderegisterwithserver(o CMsgClientDereg
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientderegisterwithserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientDeregisterWithServer) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientderegisterwithserver_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientderegisterwithserver_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20769,12 +20616,12 @@ pub fn cmsgclientclanstate_nameinfo_unpack(buf []byte) ?CMsgClientClanState_Name
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clan_name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_avatar = v
 				i = ii
 			}
@@ -20836,8 +20683,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientclanstate_nameinfo(o CMsgClientClanSta
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientclanstate_nameinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState_NameInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstate_nameinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientclanstate_nameinfo_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20884,27 +20731,27 @@ pub fn cmsgclientclanstate_usercounts_unpack(buf []byte) ?CMsgClientClanState_Us
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.members = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.online = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chatting = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.in_game = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chat_room_members = v
 				i = ii
 			}
@@ -20925,8 +20772,7 @@ pub fn cmsgclientclanstate_usercounts_unpack(buf []byte) ?CMsgClientClanState_Us
 
 [inline]
 pub fn (a CMsgClientClanState_UserCounts) eq(b CMsgClientClanState_UserCounts) bool {
-	return true && a.members == b.members &&
-		a.online == b.online && a.chatting == b.chatting &&
+	return true && a.members == b.members && a.online == b.online && a.chatting == b.chatting &&
 		a.in_game == b.in_game && a.chat_room_members == b.chat_room_members
 }
 
@@ -20968,8 +20814,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientclanstate_usercounts(o CMsgClientClanS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientclanstate_usercounts(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState_UserCounts) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstate_usercounts_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientclanstate_usercounts_unpack(v) ?
 	return i, unpacked
 }
 
@@ -20998,7 +20844,7 @@ pub fn (o &CMsgClientClanState_Event) pack() []byte {
 	if o.game_id != u64(0) {
 		res << vproto.pack_64bit_field(o.game_id, 4)
 	}
-	if o.just_posted != bool(0) {
+	if o.just_posted != false {
 		res << vproto.pack_bool_field(o.just_posted, 5)
 	}
 	return res
@@ -21016,27 +20862,27 @@ pub fn cmsgclientclanstate_event_unpack(buf []byte) ?CMsgClientClanState_Event {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.event_time = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.headline = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.game_id = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.just_posted = v
 				i = ii
 			}
@@ -21057,8 +20903,7 @@ pub fn cmsgclientclanstate_event_unpack(buf []byte) ?CMsgClientClanState_Event {
 
 [inline]
 pub fn (a CMsgClientClanState_Event) eq(b CMsgClientClanState_Event) bool {
-	return true && a.gid == b.gid &&
-		a.event_time == b.event_time && a.headline == b.headline &&
+	return true && a.gid == b.gid && a.event_time == b.event_time && a.headline == b.headline &&
 		a.game_id == b.game_id && a.just_posted == b.just_posted
 }
 
@@ -21100,8 +20945,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientclanstate_event(o CMsgClientClanState_
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientclanstate_event(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState_Event) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstate_event_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientclanstate_event_unpack(v) ?
 	return i, unpacked
 }
 
@@ -21130,7 +20975,8 @@ pub fn (o &CMsgClientClanState) pack() []byte {
 		res << zzz_vproto_internal_pack_cmsgclientclanstate_nameinfo(o.name_info, 4)
 	}
 	if o.user_counts.ne(zzz_vproto_internal_new_cmsgclientclanstate_usercounts()) {
-		res << zzz_vproto_internal_pack_cmsgclientclanstate_usercounts(o.user_counts, 5)
+		res <<
+			zzz_vproto_internal_pack_cmsgclientclanstate_usercounts(o.user_counts, 5)
 	}
 	// [packed=false]
 	for _, x in o.events {
@@ -21140,7 +20986,7 @@ pub fn (o &CMsgClientClanState) pack() []byte {
 	for _, x in o.announcements {
 		res << zzz_vproto_internal_pack_cmsgclientclanstate_event(x, 7)
 	}
-	if o.chat_room_private != bool(0) {
+	if o.chat_room_private != false {
 		res << vproto.pack_bool_field(o.chat_room_private, 8)
 	}
 	return res
@@ -21158,43 +21004,43 @@ pub fn cmsgclientclanstate_unpack(buf []byte) ?CMsgClientClanState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid_clan = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clan_account_flags = v
 				i = ii
 			}
 			4 {
 				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_nameinfo(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.name_info = v
 				i = ii
 			}
 			5 {
 				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_usercounts(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.user_counts = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_event(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.events << v
 				i = ii
 			}
 			7 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgclientclanstate_event(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.announcements << v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chat_room_private = v
 				i = ii
 			}
@@ -21215,9 +21061,8 @@ pub fn cmsgclientclanstate_unpack(buf []byte) ?CMsgClientClanState {
 
 [inline]
 pub fn (a CMsgClientClanState) eq(b CMsgClientClanState) bool {
-	return true && a.steamid_clan == b.steamid_clan &&
-		a.clan_account_flags == b.clan_account_flags && a.name_info.eq(b.name_info) && a.user_counts.eq(b.user_counts) &&
-		a.events.eq(b.events) && a.announcements.eq(b.announcements) &&
+	return true && a.steamid_clan == b.steamid_clan && a.clan_account_flags == b.clan_account_flags &&
+		a.name_info.eq(b.name_info) && a.user_counts.eq(b.user_counts) && a.events.eq(b.events) && a.announcements.eq(b.announcements) &&
 		a.chat_room_private == b.chat_room_private
 }
 
@@ -21259,8 +21104,8 @@ pub fn zzz_vproto_internal_pack_cmsgclientclanstate(o CMsgClientClanState, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientclanstate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientClanState) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientclanstate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientclanstate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -21288,7 +21133,7 @@ pub fn (o &CMsgClientUnsignedInstallScript) pack() []byte {
 	if o.file_size != u32(0) {
 		res << vproto.pack_uint32_field(o.file_size, 3)
 	}
-	if o.signature_broken != bool(0) {
+	if o.signature_broken != false {
 		res << vproto.pack_bool_field(o.signature_broken, 4)
 	}
 	if o.depot_id != u32(0) {
@@ -21315,37 +21160,37 @@ pub fn cmsgclientunsignedinstallscript_unpack(buf []byte) ?CMsgClientUnsignedIns
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_size = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signature_broken = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.depot_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manifest_id = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_flags = v
 				i = ii
 			}
@@ -21366,10 +21211,8 @@ pub fn cmsgclientunsignedinstallscript_unpack(buf []byte) ?CMsgClientUnsignedIns
 
 [inline]
 pub fn (a CMsgClientUnsignedInstallScript) eq(b CMsgClientUnsignedInstallScript) bool {
-	return true && a.app_id == b.app_id &&
-		a.file_name == b.file_name && a.file_size == b.file_size &&
-		a.signature_broken == b.signature_broken &&
-		a.depot_id == b.depot_id && a.manifest_id == b.manifest_id &&
+	return true && a.app_id == b.app_id && a.file_name == b.file_name && a.file_size == b.file_size &&
+		a.signature_broken == b.signature_broken && a.depot_id == b.depot_id && a.manifest_id == b.manifest_id &&
 		a.file_flags == b.file_flags
 }
 
@@ -21411,7 +21254,7 @@ pub fn zzz_vproto_internal_pack_cmsgclientunsignedinstallscript(o CMsgClientUnsi
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgclientunsignedinstallscript(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgClientUnsignedInstallScript) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgclientunsignedinstallscript_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgclientunsignedinstallscript_unpack(v) ?
 	return i, unpacked
 }

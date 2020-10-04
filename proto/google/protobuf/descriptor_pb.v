@@ -32,7 +32,7 @@ pub fn filedescriptorset_unpack(buf []byte) ?FileDescriptorSet {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_filedescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_filedescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.file << v
 				i = ii
 			}
@@ -94,8 +94,8 @@ pub fn zzz_vproto_internal_pack_filedescriptorset(o FileDescriptorSet, num u32) 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_filedescriptorset(buf []byte, tag_wiretype vproto.WireType) ?(int, FileDescriptorSet) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := filedescriptorset_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := filedescriptorset_unpack(v) ?
 	return i, unpacked
 }
 
@@ -173,64 +173,64 @@ pub fn filedescriptorproto_unpack(buf []byte) ?FileDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.package = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dependency << v
 				i = ii
 			}
 			10 {
 				// [packed=false]
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.public_dependency << v
 				i = ii
 			}
 			11 {
 				// [packed=false]
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.weak_dependency << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_descriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_descriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.message_type << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_enumdescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_enumdescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.enum_type << v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_servicedescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_servicedescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.service << v
 				i = ii
 			}
 			7 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.extension << v
 				i = ii
 			}
 			8 {
-				ii, v := zzz_vproto_internal_unpack_fileoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_fileoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
 			9 {
-				ii, v := zzz_vproto_internal_unpack_sourcecodeinfo(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_sourcecodeinfo(cur_buf, tag_wiretype.wire_type) ?
 				res.source_code_info = v
 				i = ii
 			}
@@ -251,11 +251,10 @@ pub fn filedescriptorproto_unpack(buf []byte) ?FileDescriptorProto {
 
 [inline]
 pub fn (a FileDescriptorProto) eq(b FileDescriptorProto) bool {
-	return true && a.name == b.name &&
-		a.package == b.package && a.dependency == b.dependency &&
-		a.public_dependency == b.public_dependency &&
-		a.weak_dependency == b.weak_dependency && a.message_type.eq(b.message_type) && a.enum_type.eq(b.enum_type) &&
-		a.service.eq(b.service) && a.extension.eq(b.extension) && a.options.eq(b.options) && a.source_code_info.eq(b.source_code_info)
+	return true && a.name == b.name && a.package == b.package && a.dependency == b.dependency &&
+		a.public_dependency == b.public_dependency && a.weak_dependency == b.weak_dependency && a.message_type.eq(b.message_type) &&
+		a.enum_type.eq(b.enum_type) && a.service.eq(b.service) && a.extension.eq(b.extension) && a.options.eq(b.options) &&
+		a.source_code_info.eq(b.source_code_info)
 }
 
 [inline]
@@ -296,8 +295,8 @@ pub fn zzz_vproto_internal_pack_filedescriptorproto(o FileDescriptorProto, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_filedescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, FileDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := filedescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := filedescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
@@ -332,12 +331,12 @@ pub fn descriptorproto_extensionrange_unpack(buf []byte) ?DescriptorProto_Extens
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.start = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.end = v
 				i = ii
 			}
@@ -399,8 +398,8 @@ pub fn zzz_vproto_internal_pack_descriptorproto_extensionrange(o DescriptorProto
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_descriptorproto_extensionrange(buf []byte, tag_wiretype vproto.WireType) ?(int, DescriptorProto_ExtensionRange) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := descriptorproto_extensionrange_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := descriptorproto_extensionrange_unpack(v) ?
 	return i, unpacked
 }
 
@@ -465,49 +464,49 @@ pub fn descriptorproto_unpack(buf []byte) ?DescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.field << v
 				i = ii
 			}
 			6 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.extension << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_descriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_descriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.nested_type << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_enumdescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_enumdescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.enum_type << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_descriptorproto_extensionrange(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.extension_range << v
 				i = ii
 			}
 			8 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_oneofdescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_oneofdescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.oneof_decl << v
 				i = ii
 			}
 			7 {
-				ii, v := zzz_vproto_internal_unpack_messageoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_messageoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
@@ -528,9 +527,9 @@ pub fn descriptorproto_unpack(buf []byte) ?DescriptorProto {
 
 [inline]
 pub fn (a DescriptorProto) eq(b DescriptorProto) bool {
-	return true && a.name == b.name && a.field.eq(b.field) && a.extension.eq(b.extension) &&
-		a.nested_type.eq(b.nested_type) && a.enum_type.eq(b.enum_type) && a.extension_range.eq(b.extension_range) &&
-		a.oneof_decl.eq(b.oneof_decl) && a.options.eq(b.options)
+	return true && a.name == b.name && a.field.eq(b.field) && a.extension.eq(b.extension) && a.nested_type.eq(b.nested_type) &&
+		a.enum_type.eq(b.enum_type) && a.extension_range.eq(b.extension_range) && a.oneof_decl.eq(b.oneof_decl) &&
+		a.options.eq(b.options)
 }
 
 [inline]
@@ -571,12 +570,11 @@ pub fn zzz_vproto_internal_pack_descriptorproto(o DescriptorProto, num u32) []by
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_descriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, DescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := descriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := descriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
-[_allow_multiple_values]
 enum FieldDescriptorProto_Type {
 	type_double = 1
 	type_float = 2
@@ -625,14 +623,14 @@ fn zzz_vproto_internal_pack_fielddescriptorproto_type_packed(e []FieldDescriptor
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fielddescriptorproto_type(buf []byte, tag_wiretype vproto.WireType) ?(int, FieldDescriptorProto_Type) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, FieldDescriptorProto_Type(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fielddescriptorproto_type_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []FieldDescriptorProto_Type) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -641,7 +639,6 @@ fn zzz_vproto_internal_unpack_fielddescriptorproto_type_packed(buf []byte, tag_w
 	}
 }
 
-[_allow_multiple_values]
 enum FieldDescriptorProto_Label {
 	label_optional = 1
 	label_required = 2
@@ -675,14 +672,14 @@ fn zzz_vproto_internal_pack_fielddescriptorproto_label_packed(e []FieldDescripto
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fielddescriptorproto_label(buf []byte, tag_wiretype vproto.WireType) ?(int, FieldDescriptorProto_Label) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, FieldDescriptorProto_Label(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fielddescriptorproto_label_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []FieldDescriptorProto_Label) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -750,49 +747,49 @@ pub fn fielddescriptorproto_unpack(buf []byte) ?FieldDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.number = v
 				i = ii
 			}
 			4 {
 				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto_label(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.label = v
 				i = ii
 			}
 			5 {
 				ii, v := zzz_vproto_internal_unpack_fielddescriptorproto_type(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.@type = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.type_name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.extendee = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.default_value = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.oneof_index = v
 				i = ii
 			}
 			8 {
-				ii, v := zzz_vproto_internal_unpack_fieldoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_fieldoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
@@ -813,10 +810,8 @@ pub fn fielddescriptorproto_unpack(buf []byte) ?FieldDescriptorProto {
 
 [inline]
 pub fn (a FieldDescriptorProto) eq(b FieldDescriptorProto) bool {
-	return true && a.name == b.name &&
-		a.number == b.number && a.label == b.label &&
-		a.@type == b.@type && a.type_name == b.type_name &&
-		a.extendee == b.extendee && a.default_value == b.default_value &&
+	return true && a.name == b.name && a.number == b.number && a.label == b.label && a.@type ==
+		b.@type && a.type_name == b.type_name && a.extendee == b.extendee && a.default_value == b.default_value &&
 		a.oneof_index == b.oneof_index && a.options.eq(b.options)
 }
 
@@ -858,8 +853,8 @@ pub fn zzz_vproto_internal_pack_fielddescriptorproto(o FieldDescriptorProto, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_fielddescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, FieldDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := fielddescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := fielddescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
@@ -890,7 +885,7 @@ pub fn oneofdescriptorproto_unpack(buf []byte) ?OneofDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
@@ -952,8 +947,8 @@ pub fn zzz_vproto_internal_pack_oneofdescriptorproto(o OneofDescriptorProto, num
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_oneofdescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, OneofDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := oneofdescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := oneofdescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
@@ -993,19 +988,19 @@ pub fn enumdescriptorproto_unpack(buf []byte) ?EnumDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_enumvaluedescriptorproto(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.value << v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_enumoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_enumoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
@@ -1067,8 +1062,8 @@ pub fn zzz_vproto_internal_pack_enumdescriptorproto(o EnumDescriptorProto, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_enumdescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, EnumDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := enumdescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := enumdescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1107,17 +1102,17 @@ pub fn enumvaluedescriptorproto_unpack(buf []byte) ?EnumValueDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.number = v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_enumvalueoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_enumvalueoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
@@ -1179,8 +1174,8 @@ pub fn zzz_vproto_internal_pack_enumvaluedescriptorproto(o EnumValueDescriptorPr
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_enumvaluedescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, EnumValueDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := enumvaluedescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := enumvaluedescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1220,18 +1215,18 @@ pub fn servicedescriptorproto_unpack(buf []byte) ?ServiceDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_methoddescriptorproto(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_methoddescriptorproto(cur_buf, tag_wiretype.wire_type) ?
 				res.method << v
 				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_serviceoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_serviceoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
@@ -1293,8 +1288,8 @@ pub fn zzz_vproto_internal_pack_servicedescriptorproto(o ServiceDescriptorProto,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_servicedescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, ServiceDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := servicedescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := servicedescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1337,22 +1332,22 @@ pub fn methoddescriptorproto_unpack(buf []byte) ?MethodDescriptorProto {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.input_type = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.output_type = v
 				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_methodoptions(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_methodoptions(cur_buf, tag_wiretype.wire_type) ?
 				res.options = v
 				i = ii
 			}
@@ -1373,8 +1368,8 @@ pub fn methoddescriptorproto_unpack(buf []byte) ?MethodDescriptorProto {
 
 [inline]
 pub fn (a MethodDescriptorProto) eq(b MethodDescriptorProto) bool {
-	return true && a.name == b.name &&
-		a.input_type == b.input_type && a.output_type == b.output_type && a.options.eq(b.options)
+	return true && a.name == b.name && a.input_type == b.input_type && a.output_type == b.output_type &&
+		a.options.eq(b.options)
 }
 
 [inline]
@@ -1415,12 +1410,11 @@ pub fn zzz_vproto_internal_pack_methoddescriptorproto(o MethodDescriptorProto, n
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_methoddescriptorproto(buf []byte, tag_wiretype vproto.WireType) ?(int, MethodDescriptorProto) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := methoddescriptorproto_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := methoddescriptorproto_unpack(v) ?
 	return i, unpacked
 }
 
-[_allow_multiple_values]
 enum FileOptions_OptimizeMode {
 	speed = 1
 	code_size = 2
@@ -1454,14 +1448,14 @@ fn zzz_vproto_internal_pack_fileoptions_optimizemode_packed(e []FileOptions_Opti
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fileoptions_optimizemode(buf []byte, tag_wiretype vproto.WireType) ?(int, FileOptions_OptimizeMode) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, FileOptions_OptimizeMode(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fileoptions_optimizemode_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []FileOptions_OptimizeMode) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -1476,15 +1470,15 @@ mut:
 pub mut:
 	java_package                  string
 	java_outer_classname          string
-	java_multiple_files           bool = false
-	java_generate_equals_and_hash bool = false
-	java_string_check_utf8        bool = false
+	java_multiple_files           bool
+	java_generate_equals_and_hash bool
+	java_string_check_utf8        bool
 	optimize_for                  FileOptions_OptimizeMode = .speed
 	go_package                    string
-	cc_generic_services           bool = false
-	java_generic_services         bool = false
-	py_generic_services           bool = false
-	deprecated                    bool = false
+	cc_generic_services           bool
+	java_generic_services         bool
+	py_generic_services           bool
+	deprecated                    bool
 	uninterpreted_option          []UninterpretedOption
 }
 
@@ -1496,13 +1490,13 @@ pub fn (o &FileOptions) pack() []byte {
 	if o.java_outer_classname != '' {
 		res << vproto.pack_string_field(o.java_outer_classname, 8)
 	}
-	if o.java_multiple_files != bool(0) {
+	if o.java_multiple_files != false {
 		res << vproto.pack_bool_field(o.java_multiple_files, 10)
 	}
-	if o.java_generate_equals_and_hash != bool(0) {
+	if o.java_generate_equals_and_hash != false {
 		res << vproto.pack_bool_field(o.java_generate_equals_and_hash, 20)
 	}
-	if o.java_string_check_utf8 != bool(0) {
+	if o.java_string_check_utf8 != false {
 		res << vproto.pack_bool_field(o.java_string_check_utf8, 27)
 	}
 	if o.optimize_for != zzz_vproto_internal_new_fileoptions_optimizemode() {
@@ -1511,16 +1505,16 @@ pub fn (o &FileOptions) pack() []byte {
 	if o.go_package != '' {
 		res << vproto.pack_string_field(o.go_package, 11)
 	}
-	if o.cc_generic_services != bool(0) {
+	if o.cc_generic_services != false {
 		res << vproto.pack_bool_field(o.cc_generic_services, 16)
 	}
-	if o.java_generic_services != bool(0) {
+	if o.java_generic_services != false {
 		res << vproto.pack_bool_field(o.java_generic_services, 17)
 	}
-	if o.py_generic_services != bool(0) {
+	if o.py_generic_services != false {
 		res << vproto.pack_bool_field(o.py_generic_services, 18)
 	}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 23)
 	}
 	// [packed=false]
@@ -1542,64 +1536,64 @@ pub fn fileoptions_unpack(buf []byte) ?FileOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.java_package = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.java_outer_classname = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.java_multiple_files = v
 				i = ii
 			}
 			20 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.java_generate_equals_and_hash = v
 				i = ii
 			}
 			27 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.java_string_check_utf8 = v
 				i = ii
 			}
 			9 {
 				ii, v := zzz_vproto_internal_unpack_fileoptions_optimizemode(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.optimize_for = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.go_package = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cc_generic_services = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.java_generic_services = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.py_generic_services = v
 				i = ii
 			}
 			23 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -1620,16 +1614,12 @@ pub fn fileoptions_unpack(buf []byte) ?FileOptions {
 
 [inline]
 pub fn (a FileOptions) eq(b FileOptions) bool {
-	return true && a.java_package == b.java_package &&
-		a.java_outer_classname == b.java_outer_classname &&
-		a.java_multiple_files == b.java_multiple_files &&
-		a.java_generate_equals_and_hash == b.java_generate_equals_and_hash &&
-		a.java_string_check_utf8 == b.java_string_check_utf8 &&
-		a.optimize_for == b.optimize_for &&
-		a.go_package == b.go_package && a.cc_generic_services == b.cc_generic_services &&
-		a.java_generic_services == b.java_generic_services &&
-		a.py_generic_services == b.py_generic_services &&
-		a.deprecated == b.deprecated && a.uninterpreted_option.eq(b.uninterpreted_option)
+	return true && a.java_package == b.java_package && a.java_outer_classname == b.java_outer_classname &&
+		a.java_multiple_files == b.java_multiple_files && a.java_generate_equals_and_hash == b.java_generate_equals_and_hash &&
+		a.java_string_check_utf8 == b.java_string_check_utf8 && a.optimize_for == b.optimize_for &&
+		a.go_package == b.go_package && a.cc_generic_services == b.cc_generic_services && a.java_generic_services ==
+		b.java_generic_services && a.py_generic_services == b.py_generic_services && a.deprecated == b.deprecated &&
+		a.uninterpreted_option.eq(b.uninterpreted_option)
 }
 
 [inline]
@@ -1670,8 +1660,8 @@ pub fn zzz_vproto_internal_pack_fileoptions(o FileOptions, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_fileoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, FileOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := fileoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := fileoptions_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1679,21 +1669,21 @@ pub struct MessageOptions {
 mut:
 	unknown_fields                  []vproto.UnknownField
 pub mut:
-	message_set_wire_format         bool = false
-	no_standard_descriptor_accessor bool = false
-	deprecated                      bool = false
+	message_set_wire_format         bool
+	no_standard_descriptor_accessor bool
+	deprecated                      bool
 	uninterpreted_option            []UninterpretedOption
 }
 
 pub fn (o &MessageOptions) pack() []byte {
 	mut res := []byte{}
-	if o.message_set_wire_format != bool(0) {
+	if o.message_set_wire_format != false {
 		res << vproto.pack_bool_field(o.message_set_wire_format, 1)
 	}
-	if o.no_standard_descriptor_accessor != bool(0) {
+	if o.no_standard_descriptor_accessor != false {
 		res << vproto.pack_bool_field(o.no_standard_descriptor_accessor, 2)
 	}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 3)
 	}
 	// [packed=false]
@@ -1715,23 +1705,23 @@ pub fn messageoptions_unpack(buf []byte) ?MessageOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.message_set_wire_format = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.no_standard_descriptor_accessor = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -1752,9 +1742,8 @@ pub fn messageoptions_unpack(buf []byte) ?MessageOptions {
 
 [inline]
 pub fn (a MessageOptions) eq(b MessageOptions) bool {
-	return true && a.message_set_wire_format == b.message_set_wire_format &&
-		a.no_standard_descriptor_accessor == b.no_standard_descriptor_accessor &&
-		a.deprecated == b.deprecated && a.uninterpreted_option.eq(b.uninterpreted_option)
+	return true && a.message_set_wire_format == b.message_set_wire_format && a.no_standard_descriptor_accessor ==
+		b.no_standard_descriptor_accessor && a.deprecated == b.deprecated && a.uninterpreted_option.eq(b.uninterpreted_option)
 }
 
 [inline]
@@ -1795,12 +1784,11 @@ pub fn zzz_vproto_internal_pack_messageoptions(o MessageOptions, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_messageoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, MessageOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := messageoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := messageoptions_unpack(v) ?
 	return i, unpacked
 }
 
-[_allow_multiple_values]
 enum FieldOptions_CType {
 	string = 0
 	cord = 1
@@ -1834,14 +1822,14 @@ fn zzz_vproto_internal_pack_fieldoptions_ctype_packed(e []FieldOptions_CType, nu
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fieldoptions_ctype(buf []byte, tag_wiretype vproto.WireType) ?(int, FieldOptions_CType) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, FieldOptions_CType(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_fieldoptions_ctype_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []FieldOptions_CType) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -1856,10 +1844,10 @@ mut:
 pub mut:
 	ctype                FieldOptions_CType = .string
 	packed               bool
-	lazy                 bool = false
-	deprecated           bool = false
+	lazy                 bool
+	deprecated           bool
 	experimental_map_key string
-	weak                 bool = false
+	weak                 bool
 	uninterpreted_option []UninterpretedOption
 }
 
@@ -1868,19 +1856,19 @@ pub fn (o &FieldOptions) pack() []byte {
 	if o.ctype != zzz_vproto_internal_new_fieldoptions_ctype() {
 		res << zzz_vproto_internal_pack_fieldoptions_ctype(o.ctype, 1)
 	}
-	if o.packed != bool(0) {
+	if o.packed != false {
 		res << vproto.pack_bool_field(o.packed, 2)
 	}
-	if o.lazy != bool(0) {
+	if o.lazy != false {
 		res << vproto.pack_bool_field(o.lazy, 5)
 	}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 3)
 	}
 	if o.experimental_map_key != '' {
 		res << vproto.pack_string_field(o.experimental_map_key, 9)
 	}
-	if o.weak != bool(0) {
+	if o.weak != false {
 		res << vproto.pack_bool_field(o.weak, 10)
 	}
 	// [packed=false]
@@ -1902,38 +1890,38 @@ pub fn fieldoptions_unpack(buf []byte) ?FieldOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_fieldoptions_ctype(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_fieldoptions_ctype(cur_buf, tag_wiretype.wire_type) ?
 				res.ctype = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.packed = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.lazy = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.experimental_map_key = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.weak = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -1954,10 +1942,8 @@ pub fn fieldoptions_unpack(buf []byte) ?FieldOptions {
 
 [inline]
 pub fn (a FieldOptions) eq(b FieldOptions) bool {
-	return true && a.ctype == b.ctype &&
-		a.packed == b.packed && a.lazy == b.lazy &&
-		a.deprecated == b.deprecated && a.experimental_map_key == b.experimental_map_key &&
-		a.weak == b.weak && a.uninterpreted_option.eq(b.uninterpreted_option)
+	return true && a.ctype == b.ctype && a.packed == b.packed && a.lazy == b.lazy && a.deprecated ==
+		b.deprecated && a.experimental_map_key == b.experimental_map_key && a.weak == b.weak && a.uninterpreted_option.eq(b.uninterpreted_option)
 }
 
 [inline]
@@ -1998,8 +1984,8 @@ pub fn zzz_vproto_internal_pack_fieldoptions(o FieldOptions, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_fieldoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, FieldOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := fieldoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := fieldoptions_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2008,16 +1994,16 @@ mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
 	allow_alias          bool
-	deprecated           bool = false
+	deprecated           bool
 	uninterpreted_option []UninterpretedOption
 }
 
 pub fn (o &EnumOptions) pack() []byte {
 	mut res := []byte{}
-	if o.allow_alias != bool(0) {
+	if o.allow_alias != false {
 		res << vproto.pack_bool_field(o.allow_alias, 2)
 	}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 3)
 	}
 	// [packed=false]
@@ -2039,18 +2025,18 @@ pub fn enumoptions_unpack(buf []byte) ?EnumOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.allow_alias = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -2071,8 +2057,7 @@ pub fn enumoptions_unpack(buf []byte) ?EnumOptions {
 
 [inline]
 pub fn (a EnumOptions) eq(b EnumOptions) bool {
-	return true && a.allow_alias == b.allow_alias &&
-		a.deprecated == b.deprecated && a.uninterpreted_option.eq(b.uninterpreted_option)
+	return true && a.allow_alias == b.allow_alias && a.deprecated == b.deprecated && a.uninterpreted_option.eq(b.uninterpreted_option)
 }
 
 [inline]
@@ -2113,8 +2098,8 @@ pub fn zzz_vproto_internal_pack_enumoptions(o EnumOptions, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_enumoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, EnumOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := enumoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := enumoptions_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2122,13 +2107,13 @@ pub struct EnumValueOptions {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	deprecated           bool = false
+	deprecated           bool
 	uninterpreted_option []UninterpretedOption
 }
 
 pub fn (o &EnumValueOptions) pack() []byte {
 	mut res := []byte{}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 1)
 	}
 	// [packed=false]
@@ -2150,13 +2135,13 @@ pub fn enumvalueoptions_unpack(buf []byte) ?EnumValueOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -2218,8 +2203,8 @@ pub fn zzz_vproto_internal_pack_enumvalueoptions(o EnumValueOptions, num u32) []
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_enumvalueoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, EnumValueOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := enumvalueoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := enumvalueoptions_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2227,13 +2212,13 @@ pub struct ServiceOptions {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	deprecated           bool = false
+	deprecated           bool
 	uninterpreted_option []UninterpretedOption
 }
 
 pub fn (o &ServiceOptions) pack() []byte {
 	mut res := []byte{}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 33)
 	}
 	// [packed=false]
@@ -2255,13 +2240,13 @@ pub fn serviceoptions_unpack(buf []byte) ?ServiceOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			33 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -2323,8 +2308,8 @@ pub fn zzz_vproto_internal_pack_serviceoptions(o ServiceOptions, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_serviceoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, ServiceOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := serviceoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := serviceoptions_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2332,13 +2317,13 @@ pub struct MethodOptions {
 mut:
 	unknown_fields       []vproto.UnknownField
 pub mut:
-	deprecated           bool = false
+	deprecated           bool
 	uninterpreted_option []UninterpretedOption
 }
 
 pub fn (o &MethodOptions) pack() []byte {
 	mut res := []byte{}
-	if o.deprecated != bool(0) {
+	if o.deprecated != false {
 		res << vproto.pack_bool_field(o.deprecated, 33)
 	}
 	// [packed=false]
@@ -2360,13 +2345,13 @@ pub fn methodoptions_unpack(buf []byte) ?MethodOptions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			33 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.deprecated = v
 				i = ii
 			}
 			999 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_uninterpretedoption(cur_buf, tag_wiretype.wire_type) ?
 				res.uninterpreted_option << v
 				i = ii
 			}
@@ -2428,8 +2413,8 @@ pub fn zzz_vproto_internal_pack_methodoptions(o MethodOptions, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_methodoptions(buf []byte, tag_wiretype vproto.WireType) ?(int, MethodOptions) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := methodoptions_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := methodoptions_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2460,12 +2445,12 @@ pub fn uninterpretedoption_namepart_unpack(buf []byte) ?UninterpretedOption_Name
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name_part = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.is_extension = v
 				i = ii
 			}
@@ -2527,8 +2512,8 @@ pub fn zzz_vproto_internal_pack_uninterpretedoption_namepart(o UninterpretedOpti
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_uninterpretedoption_namepart(buf []byte, tag_wiretype vproto.WireType) ?(int, UninterpretedOption_NamePart) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := uninterpretedoption_namepart_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := uninterpretedoption_namepart_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2586,37 +2571,37 @@ pub fn uninterpretedoption_unpack(buf []byte) ?UninterpretedOption {
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_uninterpretedoption_namepart(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.name << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.identifier_value = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.positive_int_value = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.negative_int_value = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_double_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_double_field(cur_buf, tag_wiretype.wire_type) ?
 				res.double_value = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.string_value = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.aggregate_value = v
 				i = ii
 			}
@@ -2637,13 +2622,9 @@ pub fn uninterpretedoption_unpack(buf []byte) ?UninterpretedOption {
 
 [inline]
 pub fn (a UninterpretedOption) eq(b UninterpretedOption) bool {
-	return true && a.name.eq(b.name) &&
-		a.identifier_value == b.identifier_value &&
-		a.positive_int_value == b.positive_int_value &&
-		a.negative_int_value == b.negative_int_value &&
-		a.double_value == b.double_value &&
-		a.string_value == b.string_value &&
-		a.aggregate_value == b.aggregate_value
+	return true && a.name.eq(b.name) && a.identifier_value == b.identifier_value && a.positive_int_value ==
+		b.positive_int_value && a.negative_int_value == b.negative_int_value && a.double_value == b.double_value &&
+		a.string_value == b.string_value && a.aggregate_value == b.aggregate_value
 }
 
 [inline]
@@ -2684,8 +2665,8 @@ pub fn zzz_vproto_internal_pack_uninterpretedoption(o UninterpretedOption, num u
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_uninterpretedoption(buf []byte, tag_wiretype vproto.WireType) ?(int, UninterpretedOption) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := uninterpretedoption_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := uninterpretedoption_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2727,23 +2708,23 @@ pub fn sourcecodeinfo_location_unpack(buf []byte) ?SourceCodeInfo_Location {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=true]
-				ii, v := vproto.unpack_int32_field_packed(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field_packed(cur_buf, tag_wiretype.wire_type) ?
 				res.path << v
 				i = ii
 			}
 			2 {
 				// [packed=true]
-				ii, v := vproto.unpack_int32_field_packed(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field_packed(cur_buf, tag_wiretype.wire_type) ?
 				res.span << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.leading_comments = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.trailing_comments = v
 				i = ii
 			}
@@ -2764,8 +2745,7 @@ pub fn sourcecodeinfo_location_unpack(buf []byte) ?SourceCodeInfo_Location {
 
 [inline]
 pub fn (a SourceCodeInfo_Location) eq(b SourceCodeInfo_Location) bool {
-	return true && a.path == b.path &&
-		a.span == b.span && a.leading_comments == b.leading_comments &&
+	return true && a.path == b.path && a.span == b.span && a.leading_comments == b.leading_comments &&
 		a.trailing_comments == b.trailing_comments
 }
 
@@ -2807,8 +2787,8 @@ pub fn zzz_vproto_internal_pack_sourcecodeinfo_location(o SourceCodeInfo_Locatio
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_sourcecodeinfo_location(buf []byte, tag_wiretype vproto.WireType) ?(int, SourceCodeInfo_Location) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := sourcecodeinfo_location_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := sourcecodeinfo_location_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2841,7 +2821,7 @@ pub fn sourcecodeinfo_unpack(buf []byte) ?SourceCodeInfo {
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := zzz_vproto_internal_unpack_sourcecodeinfo_location(cur_buf, tag_wiretype.wire_type)?
+				ii, v := zzz_vproto_internal_unpack_sourcecodeinfo_location(cur_buf, tag_wiretype.wire_type) ?
 				res.location << v
 				i = ii
 			}
@@ -2903,7 +2883,7 @@ pub fn zzz_vproto_internal_pack_sourcecodeinfo(o SourceCodeInfo, num u32) []byte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_sourcecodeinfo(buf []byte, tag_wiretype vproto.WireType) ?(int, SourceCodeInfo) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := sourcecodeinfo_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := sourcecodeinfo_unpack(v) ?
 	return i, unpacked
 }

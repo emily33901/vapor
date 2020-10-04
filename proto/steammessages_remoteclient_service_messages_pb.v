@@ -61,8 +61,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_createsession_request(o CRemoteCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_createsession_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_CreateSession_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_createsession_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_createsession_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -97,12 +97,12 @@ pub fn cremoteclient_createsession_response_unpack(buf []byte) ?CRemoteClient_Cr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.euniverse = v
 				i = ii
 			}
@@ -164,8 +164,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_createsession_response(o CRemoteCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_createsession_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_CreateSession_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_createsession_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_createsession_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -196,7 +196,7 @@ pub fn cremoteclient_startpairing_request_unpack(buf []byte) ?CRemoteClient_Star
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
@@ -258,8 +258,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_startpairing_request(o CRemoteClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_startpairing_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_StartPairing_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_startpairing_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_startpairing_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -290,7 +290,7 @@ pub fn cremoteclient_startpairing_response_unpack(buf []byte) ?CRemoteClient_Sta
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pin = v
 				i = ii
 			}
@@ -352,8 +352,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_startpairing_response(o CRemoteCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_startpairing_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_StartPairing_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_startpairing_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_startpairing_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -392,17 +392,17 @@ pub fn cremoteclient_setpairinginfo_request_unpack(buf []byte) ?CRemoteClient_Se
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request = v
 				i = ii
 			}
@@ -423,8 +423,8 @@ pub fn cremoteclient_setpairinginfo_request_unpack(buf []byte) ?CRemoteClient_Se
 
 [inline]
 pub fn (a CRemoteClient_SetPairingInfo_Request) eq(b CRemoteClient_SetPairingInfo_Request) bool {
-	return true && a.session_id == b.session_id &&
-		a.device_id == b.device_id && a.request == b.request
+	return true && a.session_id == b.session_id && a.device_id == b.device_id && a.request ==
+		b.request
 }
 
 [inline]
@@ -465,8 +465,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_setpairinginfo_request(o CRemoteCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_setpairinginfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_SetPairingInfo_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_setpairinginfo_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_setpairinginfo_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -528,8 +528,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_setpairinginfo_response(o CRemoteC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_setpairinginfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_SetPairingInfo_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_setpairinginfo_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_setpairinginfo_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -560,7 +560,7 @@ pub fn cremoteclient_getpairinginfo_request_unpack(buf []byte) ?CRemoteClient_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pin = v
 				i = ii
 			}
@@ -622,8 +622,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_getpairinginfo_request(o CRemoteCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_getpairinginfo_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_GetPairingInfo_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_getpairinginfo_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_getpairinginfo_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -662,17 +662,17 @@ pub fn cremoteclient_getpairinginfo_response_unpack(buf []byte) ?CRemoteClient_G
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request = v
 				i = ii
 			}
@@ -693,8 +693,8 @@ pub fn cremoteclient_getpairinginfo_response_unpack(buf []byte) ?CRemoteClient_G
 
 [inline]
 pub fn (a CRemoteClient_GetPairingInfo_Response) eq(b CRemoteClient_GetPairingInfo_Response) bool {
-	return true && a.session_id == b.session_id &&
-		a.device_id == b.device_id && a.request == b.request
+	return true && a.session_id == b.session_id && a.device_id == b.device_id && a.request ==
+		b.request
 }
 
 [inline]
@@ -735,8 +735,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_getpairinginfo_response(o CRemoteC
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_getpairinginfo_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_GetPairingInfo_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_getpairinginfo_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_getpairinginfo_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -767,7 +767,7 @@ pub fn cremoteclient_cancelpairing_request_unpack(buf []byte) ?CRemoteClient_Can
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
@@ -829,8 +829,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_cancelpairing_request(o CRemoteCli
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_cancelpairing_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_CancelPairing_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_cancelpairing_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_cancelpairing_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -892,8 +892,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_cancelpairing_response(o CRemoteCl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_cancelpairing_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_CancelPairing_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_cancelpairing_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_cancelpairing_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -932,17 +932,17 @@ pub fn cremoteclient_registerstatusupdate_notification_unpack(buf []byte) ?CRemo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_id = v
 				i = ii
 			}
@@ -963,8 +963,7 @@ pub fn cremoteclient_registerstatusupdate_notification_unpack(buf []byte) ?CRemo
 
 [inline]
 pub fn (a CRemoteClient_RegisterStatusUpdate_Notification) eq(b CRemoteClient_RegisterStatusUpdate_Notification) bool {
-	return true && a.session_id == b.session_id &&
-		a.steamid == b.steamid && a.device_id == b.device_id
+	return true && a.session_id == b.session_id && a.steamid == b.steamid && a.device_id == b.device_id
 }
 
 [inline]
@@ -1005,8 +1004,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_registerstatusupdate_notification(
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_registerstatusupdate_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_RegisterStatusUpdate_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_registerstatusupdate_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_registerstatusupdate_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1041,12 +1040,12 @@ pub fn cremoteclient_unregisterstatusupdate_notification_unpack(buf []byte) ?CRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -1108,8 +1107,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_unregisterstatusupdate_notificatio
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_unregisterstatusupdate_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_UnregisterStatusUpdate_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_unregisterstatusupdate_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_unregisterstatusupdate_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1140,7 +1139,7 @@ pub fn cremoteclient_online_notification_unpack(buf []byte) ?CRemoteClient_Onlin
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -1202,8 +1201,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_online_notification(o CRemoteClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_online_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_Online_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_online_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_online_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1242,17 +1241,17 @@ pub fn cremoteclient_remotepacket_notification_unpack(buf []byte) ?CRemoteClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.payload = v
 				i = ii
 			}
@@ -1314,8 +1313,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_remotepacket_notification(o CRemot
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_remotepacket_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_RemotePacket_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_remotepacket_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_remotepacket_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1350,12 +1349,12 @@ pub fn cremoteclient_replypacket_notification_unpack(buf []byte) ?CRemoteClient_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.payload = v
 				i = ii
 			}
@@ -1417,8 +1416,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_replypacket_notification(o CRemote
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_replypacket_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_ReplyPacket_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_replypacket_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_replypacket_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1449,7 +1448,7 @@ pub fn cremoteclient_getreplies_request_unpack(buf []byte) ?CRemoteClient_GetRep
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_id = v
 				i = ii
 			}
@@ -1511,8 +1510,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_getreplies_request(o CRemoteClient
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_getreplies_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_GetReplies_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_getreplies_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_getreplies_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1545,7 +1544,7 @@ pub fn cremoteclient_getreplies_response_unpack(buf []byte) ?CRemoteClient_GetRe
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.payload << v
 				i = ii
 			}
@@ -1607,8 +1606,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_getreplies_response(o CRemoteClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_getreplies_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_GetReplies_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_getreplies_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_getreplies_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1643,12 +1642,12 @@ pub fn cremoteclient_allocateturnserver_request_unpack(buf []byte) ?CRemoteClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cellid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.credentials = v
 				i = ii
 			}
@@ -1710,8 +1709,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_allocateturnserver_request(o CRemo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_allocateturnserver_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_AllocateTURNServer_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_allocateturnserver_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_allocateturnserver_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1742,7 +1741,7 @@ pub fn cremoteclient_allocateturnserver_response_unpack(buf []byte) ?CRemoteClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.turn_server = v
 				i = ii
 			}
@@ -1804,8 +1803,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_allocateturnserver_response(o CRem
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_allocateturnserver_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_AllocateTURNServer_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_allocateturnserver_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_allocateturnserver_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1840,12 +1839,12 @@ pub fn cremoteclient_allocaterelayserver_request_unpack(buf []byte) ?CRemoteClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cellid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.credentials = v
 				i = ii
 			}
@@ -1907,8 +1906,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_allocaterelayserver_request(o CRem
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_allocaterelayserver_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_AllocateRelayServer_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_allocaterelayserver_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_allocaterelayserver_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1939,7 +1938,7 @@ pub fn cremoteclient_allocaterelayserver_response_unpack(buf []byte) ?CRemoteCli
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.relay_server = v
 				i = ii
 			}
@@ -2001,8 +2000,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_allocaterelayserver_response(o CRe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_allocaterelayserver_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_AllocateRelayServer_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_allocaterelayserver_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_allocaterelayserver_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2033,7 +2032,7 @@ pub fn cremoteclient_allocatesdr_request_unpack(buf []byte) ?CRemoteClient_Alloc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -2095,8 +2094,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_allocatesdr_request(o CRemoteClien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_allocatesdr_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_AllocateSDR_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_allocatesdr_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_allocatesdr_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2158,8 +2157,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_allocatesdr_response(o CRemoteClie
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_allocatesdr_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_AllocateSDR_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_allocatesdr_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_allocatesdr_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2198,17 +2197,17 @@ pub fn cremoteclient_steambroadcast_notification_unpack(buf []byte) ?CRemoteClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.clientid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.payload = v
 				i = ii
 			}
@@ -2270,8 +2269,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_steambroadcast_notification(o CRem
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_steambroadcast_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_SteamBroadcast_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_steambroadcast_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_steambroadcast_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2318,27 +2317,27 @@ pub fn cremoteclient_steamtosteam_notification_unpack(buf []byte) ?CRemoteClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.src_clientid = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dst_clientid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.secretid = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.encrypted_payload = v
 				i = ii
 			}
@@ -2359,10 +2358,8 @@ pub fn cremoteclient_steamtosteam_notification_unpack(buf []byte) ?CRemoteClient
 
 [inline]
 pub fn (a CRemoteClient_SteamToSteam_Notification) eq(b CRemoteClient_SteamToSteam_Notification) bool {
-	return true && a.steamid == b.steamid &&
-		a.src_clientid == b.src_clientid &&
-		a.dst_clientid == b.dst_clientid &&
-		a.secretid == b.secretid && a.encrypted_payload == b.encrypted_payload
+	return true && a.steamid == b.steamid && a.src_clientid == b.src_clientid && a.dst_clientid ==
+		b.dst_clientid && a.secretid == b.secretid && a.encrypted_payload == b.encrypted_payload
 }
 
 [inline]
@@ -2403,8 +2400,8 @@ pub fn zzz_vproto_internal_pack_cremoteclient_steamtosteam_notification(o CRemot
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteclient_steamtosteam_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemoteClient_SteamToSteam_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteclient_steamtosteam_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteclient_steamtosteam_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2447,22 +2444,22 @@ pub fn cremoteplay_sessionstarted_request_unpack(buf []byte) ?CRemotePlay_Sessio
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.host_account_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_account_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.device_form_factor = v
 				i = ii
 			}
@@ -2483,8 +2480,7 @@ pub fn cremoteplay_sessionstarted_request_unpack(buf []byte) ?CRemotePlay_Sessio
 
 [inline]
 pub fn (a CRemotePlay_SessionStarted_Request) eq(b CRemotePlay_SessionStarted_Request) bool {
-	return true && a.host_account_id == b.host_account_id &&
-		a.client_account_id == b.client_account_id &&
+	return true && a.host_account_id == b.host_account_id && a.client_account_id == b.client_account_id &&
 		a.appid == b.appid && a.device_form_factor == b.device_form_factor
 }
 
@@ -2526,8 +2522,8 @@ pub fn zzz_vproto_internal_pack_cremoteplay_sessionstarted_request(o CRemotePlay
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteplay_sessionstarted_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemotePlay_SessionStarted_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteplay_sessionstarted_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteplay_sessionstarted_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2558,7 +2554,7 @@ pub fn cremoteplay_sessionstarted_response_unpack(buf []byte) ?CRemotePlay_Sessi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.record_id = v
 				i = ii
 			}
@@ -2620,8 +2616,8 @@ pub fn zzz_vproto_internal_pack_cremoteplay_sessionstarted_response(o CRemotePla
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteplay_sessionstarted_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemotePlay_SessionStarted_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteplay_sessionstarted_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteplay_sessionstarted_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2640,13 +2636,13 @@ pub fn (o &CRemotePlay_SessionStopped_Notification) pack() []byte {
 	if o.record_id != u64(0) {
 		res << vproto.pack_64bit_field(o.record_id, 1)
 	}
-	if o.used_x264 != bool(0) {
+	if o.used_x264 != false {
 		res << vproto.pack_bool_field(o.used_x264, 2)
 	}
-	if o.used_h264 != bool(0) {
+	if o.used_h264 != false {
 		res << vproto.pack_bool_field(o.used_h264, 3)
 	}
-	if o.used_hevc != bool(0) {
+	if o.used_hevc != false {
 		res << vproto.pack_bool_field(o.used_hevc, 4)
 	}
 	return res
@@ -2664,22 +2660,22 @@ pub fn cremoteplay_sessionstopped_notification_unpack(buf []byte) ?CRemotePlay_S
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.record_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.used_x264 = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.used_h264 = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.used_hevc = v
 				i = ii
 			}
@@ -2700,9 +2696,8 @@ pub fn cremoteplay_sessionstopped_notification_unpack(buf []byte) ?CRemotePlay_S
 
 [inline]
 pub fn (a CRemotePlay_SessionStopped_Notification) eq(b CRemotePlay_SessionStopped_Notification) bool {
-	return true && a.record_id == b.record_id &&
-		a.used_x264 == b.used_x264 && a.used_h264 == b.used_h264 &&
-		a.used_hevc == b.used_hevc
+	return true && a.record_id == b.record_id && a.used_x264 == b.used_x264 && a.used_h264 ==
+		b.used_h264 && a.used_hevc == b.used_hevc
 }
 
 [inline]
@@ -2743,8 +2738,8 @@ pub fn zzz_vproto_internal_pack_cremoteplay_sessionstopped_notification(o CRemot
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteplay_sessionstopped_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemotePlay_SessionStopped_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteplay_sessionstopped_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteplay_sessionstopped_notification_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2779,12 +2774,12 @@ pub fn cremoteplaytogether_notification_controllerslots_unpack(buf []byte) ?CRem
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.slotid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -2846,8 +2841,8 @@ pub fn zzz_vproto_internal_pack_cremoteplaytogether_notification_controllerslots
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteplaytogether_notification_controllerslots(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemotePlayTogether_Notification_ControllerSlots) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteplaytogether_notification_controllerslots_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteplaytogether_notification_controllerslots_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2879,7 +2874,8 @@ pub fn (o &CRemotePlayTogether_Notification_GroupUpdated) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.controller_slots {
-		res << zzz_vproto_internal_pack_cremoteplaytogether_notification_controllerslots(x, 5)
+		res <<
+			zzz_vproto_internal_pack_cremoteplaytogether_notification_controllerslots(x, 5)
 	}
 	return res
 }
@@ -2896,30 +2892,30 @@ pub fn cremoteplaytogether_notification_groupupdated_unpack(buf []byte) ?CRemote
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.host_steamid = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.host_clientid = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.players << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.host_gameid = v
 				i = ii
 			}
 			5 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cremoteplaytogether_notification_controllerslots(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.controller_slots << v
 				i = ii
 			}
@@ -2940,10 +2936,8 @@ pub fn cremoteplaytogether_notification_groupupdated_unpack(buf []byte) ?CRemote
 
 [inline]
 pub fn (a CRemotePlayTogether_Notification_GroupUpdated) eq(b CRemotePlayTogether_Notification_GroupUpdated) bool {
-	return true && a.host_steamid == b.host_steamid &&
-		a.host_clientid == b.host_clientid &&
-		a.players == b.players &&
-		a.host_gameid == b.host_gameid && a.controller_slots.eq(b.controller_slots)
+	return true && a.host_steamid == b.host_steamid && a.host_clientid == b.host_clientid &&
+		a.players == b.players && a.host_gameid == b.host_gameid && a.controller_slots.eq(b.controller_slots)
 }
 
 [inline]
@@ -2984,8 +2978,8 @@ pub fn zzz_vproto_internal_pack_cremoteplaytogether_notification_groupupdated(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteplaytogether_notification_groupupdated(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemotePlayTogether_Notification_GroupUpdated) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteplaytogether_notification_groupupdated_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteplaytogether_notification_groupupdated_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3016,7 +3010,7 @@ pub fn cremoteplaytogether_notification_unpack(buf []byte) ?CRemotePlayTogether_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -3078,7 +3072,7 @@ pub fn zzz_vproto_internal_pack_cremoteplaytogether_notification(o CRemotePlayTo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cremoteplaytogether_notification(buf []byte, tag_wiretype vproto.WireType) ?(int, CRemotePlayTogether_Notification) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cremoteplaytogether_notification_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cremoteplaytogether_notification_unpack(v) ?
 	return i, unpacked
 }

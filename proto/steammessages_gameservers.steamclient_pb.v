@@ -34,12 +34,12 @@ pub fn cgameservers_getserverlist_request_unpack(buf []byte) ?CGameServers_GetSe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filter = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.limit = v
 				i = ii
 			}
@@ -101,8 +101,8 @@ pub fn zzz_vproto_internal_pack_cgameservers_getserverlist_request(o CGameServer
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_getserverlist_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerList_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_getserverlist_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_getserverlist_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -174,10 +174,10 @@ pub fn (o &CGameServers_GetServerList_Response_Server) pack() []byte {
 	if o.map != '' {
 		res << vproto.pack_string_field(o.map, 14)
 	}
-	if o.secure != bool(0) {
+	if o.secure != false {
 		res << vproto.pack_bool_field(o.secure, 15)
 	}
-	if o.dedicated != bool(0) {
+	if o.dedicated != false {
 		res << vproto.pack_bool_field(o.dedicated, 16)
 	}
 	if o.os != '' {
@@ -201,92 +201,92 @@ pub fn cgameservers_getserverlist_response_server_unpack(buf []byte) ?CGameServe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.addr = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gameport = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.specport = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.name = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gamedir = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.version = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.product = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.region = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.players = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.max_players = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.bots = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.map = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.secure = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dedicated = v
 				i = ii
 			}
 			17 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.os = v
 				i = ii
 			}
 			18 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gametype = v
 				i = ii
 			}
@@ -307,16 +307,11 @@ pub fn cgameservers_getserverlist_response_server_unpack(buf []byte) ?CGameServe
 
 [inline]
 pub fn (a CGameServers_GetServerList_Response_Server) eq(b CGameServers_GetServerList_Response_Server) bool {
-	return true && a.addr == b.addr &&
-		a.gameport == b.gameport && a.specport == b.specport &&
-		a.steamid == b.steamid && a.name == b.name &&
-		a.appid == b.appid && a.gamedir == b.gamedir &&
-		a.version == b.version && a.product == b.product &&
-		a.region == b.region && a.players == b.players &&
-		a.max_players == b.max_players && a.bots == b.bots &&
-		a.map == b.map && a.secure == b.secure &&
-		a.dedicated == b.dedicated && a.os == b.os &&
-		a.gametype == b.gametype
+	return true && a.addr == b.addr && a.gameport == b.gameport && a.specport == b.specport &&
+		a.steamid == b.steamid && a.name == b.name && a.appid == b.appid && a.gamedir == b.gamedir &&
+		a.version == b.version && a.product == b.product && a.region == b.region && a.players == b.players &&
+		a.max_players == b.max_players && a.bots == b.bots && a.map == b.map && a.secure == b.secure &&
+		a.dedicated == b.dedicated && a.os == b.os && a.gametype == b.gametype
 }
 
 [inline]
@@ -357,8 +352,8 @@ pub fn zzz_vproto_internal_pack_cgameservers_getserverlist_response_server(o CGa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_getserverlist_response_server(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerList_Response_Server) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_getserverlist_response_server_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_getserverlist_response_server_unpack(v) ?
 	return i, unpacked
 }
 
@@ -373,7 +368,8 @@ pub fn (o &CGameServers_GetServerList_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.servers {
-		res << zzz_vproto_internal_pack_cgameservers_getserverlist_response_server(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cgameservers_getserverlist_response_server(x, 1)
 	}
 	return res
 }
@@ -392,7 +388,7 @@ pub fn cgameservers_getserverlist_response_unpack(buf []byte) ?CGameServers_GetS
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cgameservers_getserverlist_response_server(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.servers << v
 				i = ii
 			}
@@ -454,8 +450,8 @@ pub fn zzz_vproto_internal_pack_cgameservers_getserverlist_response(o CGameServe
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_getserverlist_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerList_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_getserverlist_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_getserverlist_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -488,7 +484,7 @@ pub fn cgameservers_getserversteamidsbyip_request_unpack(buf []byte) ?CGameServe
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_ips << v
 				i = ii
 			}
@@ -550,8 +546,8 @@ pub fn zzz_vproto_internal_pack_cgameservers_getserversteamidsbyip_request(o CGa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_getserversteamidsbyip_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerSteamIDsByIP_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_getserversteamidsbyip_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_getserversteamidsbyip_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -586,12 +582,12 @@ pub fn cgameservers_ipswithsteamids_response_server_unpack(buf []byte) ?CGameSer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.addr = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.steamid = v
 				i = ii
 			}
@@ -653,8 +649,8 @@ pub fn zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response_server(o C
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_ipswithsteamids_response_server(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_IPsWithSteamIDs_Response_Server) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_ipswithsteamids_response_server_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_ipswithsteamids_response_server_unpack(v) ?
 	return i, unpacked
 }
 
@@ -669,7 +665,8 @@ pub fn (o &CGameServers_IPsWithSteamIDs_Response) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.servers {
-		res << zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response_server(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response_server(x, 1)
 	}
 	return res
 }
@@ -688,7 +685,7 @@ pub fn cgameservers_ipswithsteamids_response_unpack(buf []byte) ?CGameServers_IP
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cgameservers_ipswithsteamids_response_server(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.servers << v
 				i = ii
 			}
@@ -750,8 +747,8 @@ pub fn zzz_vproto_internal_pack_cgameservers_ipswithsteamids_response(o CGameSer
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_ipswithsteamids_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_IPsWithSteamIDs_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_ipswithsteamids_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_ipswithsteamids_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -784,7 +781,7 @@ pub fn cgameservers_getserveripsbysteamid_request_unpack(buf []byte) ?CGameServe
 		match tag_wiretype.tag {
 			1 {
 				// [packed=false]
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_steamids << v
 				i = ii
 			}
@@ -846,7 +843,7 @@ pub fn zzz_vproto_internal_pack_cgameservers_getserveripsbysteamid_request(o CGa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cgameservers_getserveripsbysteamid_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CGameServers_GetServerIPsBySteamID_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cgameservers_getserveripsbysteamid_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cgameservers_getserveripsbysteamid_request_unpack(v) ?
 	return i, unpacked
 }

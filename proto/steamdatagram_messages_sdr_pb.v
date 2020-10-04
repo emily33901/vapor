@@ -65,14 +65,14 @@ fn zzz_vproto_internal_pack_esteamdatagrammsgid_packed(e []ESteamDatagramMsgID, 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_esteamdatagrammsgid(buf []byte, tag_wiretype vproto.WireType) ?(int, ESteamDatagramMsgID) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, ESteamDatagramMsgID(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_esteamdatagrammsgid_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ESteamDatagramMsgID) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -116,17 +116,17 @@ pub fn cmsgsteamdatagramrouterpingreply_routeexception_unpack(buf []byte) ?CMsgS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.data_center_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.penalty = v
 				i = ii
 			}
@@ -147,8 +147,8 @@ pub fn cmsgsteamdatagramrouterpingreply_routeexception_unpack(buf []byte) ?CMsgS
 
 [inline]
 pub fn (a CMsgSteamDatagramRouterPingReply_RouteException) eq(b CMsgSteamDatagramRouterPingReply_RouteException) bool {
-	return true && a.data_center_id == b.data_center_id &&
-		a.flags == b.flags && a.penalty == b.penalty
+	return true && a.data_center_id == b.data_center_id && a.flags == b.flags && a.penalty ==
+		b.penalty
 }
 
 [inline]
@@ -189,8 +189,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrouterpingreply_routeexception(
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrouterpingreply_routeexception(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRouterPingReply_RouteException) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramrouterpingreply_routeexception_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramrouterpingreply_routeexception_unpack(v) ?
 	return i, unpacked
 }
 
@@ -239,7 +239,8 @@ pub fn (o &CMsgSteamDatagramRouterPingReply) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.route_exceptions {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramrouterpingreply_routeexception(x, 10)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramrouterpingreply_routeexception(x, 10)
 	}
 	return res
 }
@@ -256,56 +257,56 @@ pub fn cmsgsteamdatagramrouterpingreply_unpack(buf []byte) ?CMsgSteamDatagramRou
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_timestamp = v
 				i = ii
 			}
 			2 {
 				// [packed=true]
-				ii, v := vproto.unpack_32bit_field_packed(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field_packed(cur_buf, tag_wiretype.wire_type) ?
 				res.latency_datacenter_ids << v
 				i = ii
 			}
 			3 {
 				// [packed=true]
-				ii, v := vproto.unpack_uint32_field_packed(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field_packed(cur_buf, tag_wiretype.wire_type) ?
 				res.latency_ping_ms << v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.your_public_ip = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_time = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_cookie = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scoring_penalty_relay_cluster = v
 				i = ii
 			}
 			10 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramrouterpingreply_routeexception(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.route_exceptions << v
 				i = ii
 			}
@@ -326,14 +327,11 @@ pub fn cmsgsteamdatagramrouterpingreply_unpack(buf []byte) ?CMsgSteamDatagramRou
 
 [inline]
 pub fn (a CMsgSteamDatagramRouterPingReply) eq(b CMsgSteamDatagramRouterPingReply) bool {
-	return true && a.client_timestamp == b.client_timestamp &&
-		a.latency_datacenter_ids == b.latency_datacenter_ids &&
-		a.latency_ping_ms == b.latency_ping_ms &&
-		a.your_public_ip == b.your_public_ip &&
-		a.server_time == b.server_time && a.challenge == b.challenge &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown &&
-		a.client_cookie == b.client_cookie &&
-		a.scoring_penalty_relay_cluster == b.scoring_penalty_relay_cluster && a.route_exceptions.eq(b.route_exceptions)
+	return true && a.client_timestamp == b.client_timestamp && a.latency_datacenter_ids == b.latency_datacenter_ids &&
+		a.latency_ping_ms == b.latency_ping_ms && a.your_public_ip == b.your_public_ip && a.server_time ==
+		b.server_time && a.challenge == b.challenge && a.seconds_until_shutdown == b.seconds_until_shutdown &&
+		a.client_cookie == b.client_cookie && a.scoring_penalty_relay_cluster == b.scoring_penalty_relay_cluster &&
+		a.route_exceptions.eq(b.route_exceptions)
 }
 
 [inline]
@@ -374,8 +372,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrouterpingreply(o CMsgSteamData
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrouterpingreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRouterPingReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramrouterpingreply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramrouterpingreply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -418,22 +416,22 @@ pub fn cmsgsteamdatagramgameserverpingrequest_unpack(buf []byte) ?CMsgSteamDatag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.your_public_ip = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_time = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.router_timestamp = v
 				i = ii
 			}
@@ -454,9 +452,8 @@ pub fn cmsgsteamdatagramgameserverpingrequest_unpack(buf []byte) ?CMsgSteamDatag
 
 [inline]
 pub fn (a CMsgSteamDatagramGameserverPingRequest) eq(b CMsgSteamDatagramGameserverPingRequest) bool {
-	return true && a.your_public_ip == b.your_public_ip &&
-		a.server_time == b.server_time && a.challenge == b.challenge &&
-		a.router_timestamp == b.router_timestamp
+	return true && a.your_public_ip == b.your_public_ip && a.server_time == b.server_time &&
+		a.challenge == b.challenge && a.router_timestamp == b.router_timestamp
 }
 
 [inline]
@@ -497,8 +494,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserverpingrequest(o CMsgSte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserverpingrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameserverPingRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserverpingrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserverpingrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -533,12 +530,12 @@ pub fn cmsgsteamdatagramlegacygameserverpingreply_unpack(buf []byte) ?CMsgSteamD
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.router_timestamp = v
 				i = ii
 			}
 			99 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dummy_pad = v
 				i = ii
 			}
@@ -600,8 +597,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramlegacygameserverpingreply(o CMs
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramlegacygameserverpingreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramLegacyGameserverPingReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramlegacygameserverpingreply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramlegacygameserverpingreply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -648,27 +645,27 @@ pub fn cmsgsteamdatagramgameserverpingreply_signeddata_unpack(buf []byte) ?CMsgS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge_time = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.router_timestamp = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.data_center_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -689,10 +686,9 @@ pub fn cmsgsteamdatagramgameserverpingreply_signeddata_unpack(buf []byte) ?CMsgS
 
 [inline]
 pub fn (a CMsgSteamDatagramGameserverPingReply_SignedData) eq(b CMsgSteamDatagramGameserverPingReply_SignedData) bool {
-	return true && a.challenge_time == b.challenge_time &&
-		a.challenge == b.challenge && a.router_timestamp == b.router_timestamp &&
-		a.data_center_id == b.data_center_id &&
-		a.appid == b.appid
+	return true && a.challenge_time == b.challenge_time && a.challenge == b.challenge &&
+		a.router_timestamp == b.router_timestamp && a.data_center_id == b.data_center_id && a.appid ==
+		b.appid
 }
 
 [inline]
@@ -733,8 +729,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserverpingreply_signeddata(
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserverpingreply_signeddata(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameserverPingReply_SignedData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserverpingreply_signeddata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserverpingreply_signeddata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -774,17 +770,17 @@ pub fn cmsgsteamdatagramgameserverpingreply_unpack(buf []byte) ?CMsgSteamDatagra
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.cert = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signed_data = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signature = v
 				i = ii
 			}
@@ -846,8 +842,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserverpingreply(o CMsgSteam
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserverpingreply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameserverPingReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserverpingreply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserverpingreply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -894,27 +890,27 @@ pub fn cmsgsteamdatagramnosessionrelaytoclient_unpack(buf []byte) ?CMsgSteamData
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			7 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.your_public_ip = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_time = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
@@ -935,10 +931,8 @@ pub fn cmsgsteamdatagramnosessionrelaytoclient_unpack(buf []byte) ?CMsgSteamData
 
 [inline]
 pub fn (a CMsgSteamDatagramNoSessionRelayToClient) eq(b CMsgSteamDatagramNoSessionRelayToClient) bool {
-	return true && a.connection_id == b.connection_id &&
-		a.your_public_ip == b.your_public_ip &&
-		a.server_time == b.server_time && a.challenge == b.challenge &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown
+	return true && a.connection_id == b.connection_id && a.your_public_ip == b.your_public_ip &&
+		a.server_time == b.server_time && a.challenge == b.challenge && a.seconds_until_shutdown == b.seconds_until_shutdown
 }
 
 [inline]
@@ -979,8 +973,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramnosessionrelaytoclient(o CMsgSt
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramnosessionrelaytoclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramNoSessionRelayToClient) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramnosessionrelaytoclient_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramnosessionrelaytoclient_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1023,22 +1017,22 @@ pub fn cmsgsteamdatagramnosessionrelaytopeer_unpack(buf []byte) ?CMsgSteamDatagr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_relay_session_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_relay_session_id = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_connection_id = v
 				i = ii
 			}
 			99 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.kludge_pad = v
 				i = ii
 			}
@@ -1059,10 +1053,8 @@ pub fn cmsgsteamdatagramnosessionrelaytopeer_unpack(buf []byte) ?CMsgSteamDatagr
 
 [inline]
 pub fn (a CMsgSteamDatagramNoSessionRelayToPeer) eq(b CMsgSteamDatagramNoSessionRelayToPeer) bool {
-	return true && a.legacy_relay_session_id == b.legacy_relay_session_id &&
-		a.from_relay_session_id == b.from_relay_session_id &&
-		a.from_connection_id == b.from_connection_id &&
-		a.kludge_pad == b.kludge_pad
+	return true && a.legacy_relay_session_id == b.legacy_relay_session_id && a.from_relay_session_id ==
+		b.from_relay_session_id && a.from_connection_id == b.from_connection_id && a.kludge_pad == b.kludge_pad
 }
 
 [inline]
@@ -1103,8 +1095,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramnosessionrelaytopeer(o CMsgStea
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramnosessionrelaytopeer(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramNoSessionRelayToPeer) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramnosessionrelaytopeer_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramnosessionrelaytopeer_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1135,7 +1127,7 @@ pub fn cmsgsteamdatagramclientpingsamplerequest_unpack(buf []byte) ?CMsgSteamDat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
@@ -1197,8 +1189,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplerequest(o CMsgS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramclientpingsamplerequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramClientPingSampleRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramclientpingsamplerequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramclientpingsamplerequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1237,17 +1229,17 @@ pub fn cmsgsteamdatagramclientpingsamplereply_routingcluster_unpack(buf []byte) 
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.front_ping_ms = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.e2e_ping_ms = v
 				i = ii
 			}
@@ -1268,9 +1260,7 @@ pub fn cmsgsteamdatagramclientpingsamplereply_routingcluster_unpack(buf []byte) 
 
 [inline]
 pub fn (a CMsgSteamDatagramClientPingSampleReply_RoutingCluster) eq(b CMsgSteamDatagramClientPingSampleReply_RoutingCluster) bool {
-	return true && a.id == b.id &&
-		a.front_ping_ms == b.front_ping_ms &&
-		a.e2e_ping_ms == b.e2e_ping_ms
+	return true && a.id == b.id && a.front_ping_ms == b.front_ping_ms && a.e2e_ping_ms == b.e2e_ping_ms
 }
 
 [inline]
@@ -1311,8 +1301,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply_routingcl
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramclientpingsamplereply_routingcluster(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramClientPingSampleReply_RoutingCluster) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramclientpingsamplereply_routingcluster_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramclientpingsamplereply_routingcluster_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1351,17 +1341,17 @@ pub fn cmsgsteamdatagramclientpingsamplereply_datacenter_unpack(buf []byte) ?CMs
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.data_center_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.via_relay_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.e2e_ping_ms = v
 				i = ii
 			}
@@ -1382,8 +1372,7 @@ pub fn cmsgsteamdatagramclientpingsamplereply_datacenter_unpack(buf []byte) ?CMs
 
 [inline]
 pub fn (a CMsgSteamDatagramClientPingSampleReply_DataCenter) eq(b CMsgSteamDatagramClientPingSampleReply_DataCenter) bool {
-	return true && a.data_center_id == b.data_center_id &&
-		a.via_relay_id == b.via_relay_id &&
+	return true && a.data_center_id == b.data_center_id && a.via_relay_id == b.via_relay_id &&
 		a.e2e_ping_ms == b.e2e_ping_ms
 }
 
@@ -1425,8 +1414,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply_datacente
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramclientpingsamplereply_datacenter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramClientPingSampleReply_DataCenter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramclientpingsamplereply_datacenter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramclientpingsamplereply_datacenter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1446,11 +1435,13 @@ pub fn (o &CMsgSteamDatagramClientPingSampleReply) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.routing_clusters {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply_routingcluster(x, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply_routingcluster(x, 2)
 	}
 	// [packed=false]
 	for _, x in o.data_centers {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply_datacenter(x, 3)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply_datacenter(x, 3)
 	}
 	return res
 }
@@ -1467,21 +1458,21 @@ pub fn cmsgsteamdatagramclientpingsamplereply_unpack(buf []byte) ?CMsgSteamDatag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramclientpingsamplereply_routingcluster(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.routing_clusters << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramclientpingsamplereply_datacenter(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.data_centers << v
 				i = ii
 			}
@@ -1544,8 +1535,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramclientpingsamplereply(o CMsgSte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramclientpingsamplereply(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramClientPingSampleReply) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramclientpingsamplereply_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramclientpingsamplereply_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1588,22 +1579,22 @@ pub fn cmsgsteamdatagramclientswitchedprimary_routerquality_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.score = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.front_ping = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.back_ping = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_down = v
 				i = ii
 			}
@@ -1624,8 +1615,7 @@ pub fn cmsgsteamdatagramclientswitchedprimary_routerquality_unpack(buf []byte) ?
 
 [inline]
 pub fn (a CMsgSteamDatagramClientSwitchedPrimary_RouterQuality) eq(b CMsgSteamDatagramClientSwitchedPrimary_RouterQuality) bool {
-	return true && a.score == b.score &&
-		a.front_ping == b.front_ping && a.back_ping == b.back_ping &&
+	return true && a.score == b.score && a.front_ping == b.front_ping && a.back_ping == b.back_ping &&
 		a.seconds_until_down == b.seconds_until_down
 }
 
@@ -1667,8 +1657,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramclientswitchedprimary_routerqua
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramclientswitchedprimary_routerquality(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramClientSwitchedPrimary_RouterQuality) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramclientswitchedprimary_routerquality_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramclientswitchedprimary_routerquality_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1747,66 +1737,66 @@ pub fn cmsgsteamdatagramclientswitchedprimary_unpack(buf []byte) ?CMsgSteamDatag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_ip = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_port = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_router_cluster = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_active_time = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_active_packets_recv = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_dropped_reason = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gap_ms = v
 				i = ii
 			}
 			9 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramclientswitchedprimary_routerquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.from_quality_now = v
 				i = ii
 			}
 			10 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramclientswitchedprimary_routerquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.to_quality_now = v
 				i = ii
 			}
 			11 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramclientswitchedprimary_routerquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.from_quality_then = v
 				i = ii
 			}
 			12 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramclientswitchedprimary_routerquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.to_quality_then = v
 				i = ii
 			}
@@ -1827,12 +1817,9 @@ pub fn cmsgsteamdatagramclientswitchedprimary_unpack(buf []byte) ?CMsgSteamDatag
 
 [inline]
 pub fn (a CMsgSteamDatagramClientSwitchedPrimary) eq(b CMsgSteamDatagramClientSwitchedPrimary) bool {
-	return true && a.connection_id == b.connection_id &&
-		a.from_ip == b.from_ip && a.from_port == b.from_port &&
-		a.from_router_cluster == b.from_router_cluster &&
-		a.from_active_time == b.from_active_time &&
-		a.from_active_packets_recv == b.from_active_packets_recv &&
-		a.from_dropped_reason == b.from_dropped_reason &&
+	return true && a.connection_id == b.connection_id && a.from_ip == b.from_ip && a.from_port ==
+		b.from_port && a.from_router_cluster == b.from_router_cluster && a.from_active_time == b.from_active_time &&
+		a.from_active_packets_recv == b.from_active_packets_recv && a.from_dropped_reason == b.from_dropped_reason &&
 		a.gap_ms == b.gap_ms && a.from_quality_now.eq(b.from_quality_now) && a.to_quality_now.eq(b.to_quality_now) &&
 		a.from_quality_then.eq(b.from_quality_then) && a.to_quality_then.eq(b.to_quality_then)
 }
@@ -1875,8 +1862,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramclientswitchedprimary(o CMsgSte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramclientswitchedprimary(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramClientSwitchedPrimary) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramclientswitchedprimary_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramclientswitchedprimary_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1913,7 +1900,8 @@ pub fn (o &CMsgSteamDatagramConnectRequest) pack() []byte {
 		res << vproto.pack_uint32_field(o.gameserver_relay_session_id, 2)
 	}
 	if o.crypt.ne(zzz_vproto_internal_new_cmsgsteamdatagramsessioncryptinfosigned()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfosigned(o.crypt, 6)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfosigned(o.crypt, 6)
 	}
 	if o.cert.ne(zzz_vproto_internal_new_cmsgsteamdatagramcertificatesigned()) {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificatesigned(o.cert, 7)
@@ -1939,49 +1927,49 @@ pub fn cmsgsteamdatagramconnectrequest_unpack(buf []byte) ?CMsgSteamDatagramConn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.my_timestamp = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ping_est_ms = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.virtual_port = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gameserver_relay_session_id = v
 				i = ii
 			}
 			6 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfosigned(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.crypt = v
 				i = ii
 			}
 			7 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.cert = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_secret = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_client_steam_id = v
 				i = ii
 			}
@@ -2002,13 +1990,10 @@ pub fn cmsgsteamdatagramconnectrequest_unpack(buf []byte) ?CMsgSteamDatagramConn
 
 [inline]
 pub fn (a CMsgSteamDatagramConnectRequest) eq(b CMsgSteamDatagramConnectRequest) bool {
-	return true && a.connection_id == b.connection_id &&
-		a.my_timestamp == b.my_timestamp &&
-		a.ping_est_ms == b.ping_est_ms && a.virtual_port == b.virtual_port &&
-		a.gameserver_relay_session_id == b.gameserver_relay_session_id && a.crypt.eq(b.crypt) &&
-		a.cert.eq(b.cert) &&
-		a.routing_secret == b.routing_secret &&
-		a.legacy_client_steam_id == b.legacy_client_steam_id
+	return true && a.connection_id == b.connection_id && a.my_timestamp == b.my_timestamp &&
+		a.ping_est_ms == b.ping_est_ms && a.virtual_port == b.virtual_port && a.gameserver_relay_session_id ==
+		b.gameserver_relay_session_id && a.crypt.eq(b.crypt) && a.cert.eq(b.cert) && a.routing_secret ==
+		b.routing_secret && a.legacy_client_steam_id == b.legacy_client_steam_id
 }
 
 [inline]
@@ -2049,8 +2034,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectrequest(o CMsgSteamDatag
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2085,7 +2070,8 @@ pub fn (o &CMsgSteamDatagramConnectOK) pack() []byte {
 		res << vproto.pack_uint32_field(o.gameserver_relay_session_id, 2)
 	}
 	if o.crypt.ne(zzz_vproto_internal_new_cmsgsteamdatagramsessioncryptinfosigned()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfosigned(o.crypt, 5)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramsessioncryptinfosigned(o.crypt, 5)
 	}
 	if o.cert.ne(zzz_vproto_internal_new_cmsgsteamdatagramcertificatesigned()) {
 		res << zzz_vproto_internal_pack_cmsgsteamdatagramcertificatesigned(o.cert, 6)
@@ -2105,39 +2091,39 @@ pub fn cmsgsteamdatagramconnectok_unpack(buf []byte) ?CMsgSteamDatagramConnectOK
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_connection_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.your_timestamp = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.delay_time_usec = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gameserver_relay_session_id = v
 				i = ii
 			}
 			5 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfosigned(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.crypt = v
 				i = ii
 			}
 			6 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.cert = v
 				i = ii
 			}
@@ -2158,12 +2144,9 @@ pub fn cmsgsteamdatagramconnectok_unpack(buf []byte) ?CMsgSteamDatagramConnectOK
 
 [inline]
 pub fn (a CMsgSteamDatagramConnectOK) eq(b CMsgSteamDatagramConnectOK) bool {
-	return true && a.client_connection_id == b.client_connection_id &&
-		a.server_connection_id == b.server_connection_id &&
-		a.your_timestamp == b.your_timestamp &&
-		a.delay_time_usec == b.delay_time_usec &&
-		a.gameserver_relay_session_id == b.gameserver_relay_session_id && a.crypt.eq(b.crypt) &&
-		a.cert.eq(b.cert)
+	return true && a.client_connection_id == b.client_connection_id && a.server_connection_id ==
+		b.server_connection_id && a.your_timestamp == b.your_timestamp && a.delay_time_usec == b.delay_time_usec &&
+		a.gameserver_relay_session_id == b.gameserver_relay_session_id && a.crypt.eq(b.crypt) && a.cert.eq(b.cert)
 }
 
 [inline]
@@ -2204,8 +2187,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectok(o CMsgSteamDatagramCo
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectok(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectOK) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectok_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectok_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2264,42 +2247,42 @@ pub fn cmsgsteamnetworkingp2psdrroutingsummary_unpack(buf []byte) ?CMsgSteamNetw
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_ping = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_ping_front_local = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_ping_front_remote = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_score = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_pop_local = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.initial_pop_remote = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.negotiation_ms = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.selected_seconds = v
 				i = ii
 			}
@@ -2320,14 +2303,10 @@ pub fn cmsgsteamnetworkingp2psdrroutingsummary_unpack(buf []byte) ?CMsgSteamNetw
 
 [inline]
 pub fn (a CMsgSteamNetworkingP2PSDRRoutingSummary) eq(b CMsgSteamNetworkingP2PSDRRoutingSummary) bool {
-	return true && a.initial_ping == b.initial_ping &&
-		a.initial_ping_front_local == b.initial_ping_front_local &&
-		a.initial_ping_front_remote == b.initial_ping_front_remote &&
-		a.initial_score == b.initial_score &&
-		a.initial_pop_local == b.initial_pop_local &&
-		a.initial_pop_remote == b.initial_pop_remote &&
-		a.negotiation_ms == b.negotiation_ms &&
-		a.selected_seconds == b.selected_seconds
+	return true && a.initial_ping == b.initial_ping && a.initial_ping_front_local == b.initial_ping_front_local &&
+		a.initial_ping_front_remote == b.initial_ping_front_remote && a.initial_score == b.initial_score &&
+		a.initial_pop_local == b.initial_pop_local && a.initial_pop_remote == b.initial_pop_remote &&
+		a.negotiation_ms == b.negotiation_ms && a.selected_seconds == b.selected_seconds
 }
 
 [inline]
@@ -2368,8 +2347,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamnetworkingp2psdrroutingsummary(o CMsgSt
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamnetworkingp2psdrroutingsummary(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamNetworkingP2PSDRRoutingSummary) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamnetworkingp2psdrroutingsummary_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamnetworkingp2psdrroutingsummary_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2387,7 +2366,8 @@ pub fn (o &CMsgSteamDatagramP2PRoutingSummary) pack() []byte {
 		res << zzz_vproto_internal_pack_cmsgsteamnetworkingicesessionsummary(o.ice, 2)
 	}
 	if o.sdr.ne(zzz_vproto_internal_new_cmsgsteamnetworkingp2psdrroutingsummary()) {
-		res << zzz_vproto_internal_pack_cmsgsteamnetworkingp2psdrroutingsummary(o.sdr, 3)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamnetworkingp2psdrroutingsummary(o.sdr, 3)
 	}
 	return res
 }
@@ -2405,13 +2385,13 @@ pub fn cmsgsteamdatagramp2proutingsummary_unpack(buf []byte) ?CMsgSteamDatagramP
 		match tag_wiretype.tag {
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingicesessionsummary(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.ice = v
 				i = ii
 			}
 			3 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2psdrroutingsummary(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.sdr = v
 				i = ii
 			}
@@ -2473,8 +2453,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2proutingsummary(o CMsgSteamDa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutingsummary(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PRoutingSummary) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2proutingsummary_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2proutingsummary_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2512,14 +2492,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionclosed_erelaymode_packed(
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionclosed_erelaymode(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionClosed_ERelayMode) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionClosed_ERelayMode(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionclosed_erelaymode_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionClosed_ERelayMode) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -2599,17 +2579,19 @@ pub fn (o &CMsgSteamDatagramConnectionClosed) pack() []byte {
 	if o.routing_secret != u64(0) {
 		res << vproto.pack_64bit_field(o.routing_secret, 14)
 	}
-	if o.not_primary_session != bool(0) {
+	if o.not_primary_session != false {
 		res << vproto.pack_bool_field(o.not_primary_session, 16)
 	}
-	if o.not_primary_transport != bool(0) {
+	if o.not_primary_transport != false {
 		res << vproto.pack_bool_field(o.not_primary_transport, 19)
 	}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 17)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 17)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 18)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 18)
 	}
 	if o.p2p_routing_summary.ne(zzz_vproto_internal_new_cmsgsteamdatagramp2proutingsummary()) {
 		res <<
@@ -2630,102 +2612,102 @@ pub fn cmsgsteamdatagramconnectionclosed_unpack(buf []byte) ?CMsgSteamDatagramCo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			7 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.to_connection_id = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_connection_id = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_identity_string = v
 				i = ii
 			}
 			13 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingidentitylegacybinary(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.legacy_from_identity_binary = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_from_steam_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_gameserver_relay_session_id = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.to_relay_session_id = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_relay_session_id = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forward_target_relay_routing_token = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forward_target_revision = v
 				i = ii
 			}
 			4 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionclosed_erelaymode(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.relay_mode = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.debug = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.reason_code = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_secret = v
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.not_primary_session = v
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.not_primary_transport = v
 				i = ii
 			}
 			17 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			18 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			21 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutingsummary(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.p2p_routing_summary = v
 				i = ii
 			}
@@ -2746,21 +2728,16 @@ pub fn cmsgsteamdatagramconnectionclosed_unpack(buf []byte) ?CMsgSteamDatagramCo
 
 [inline]
 pub fn (a CMsgSteamDatagramConnectionClosed) eq(b CMsgSteamDatagramConnectionClosed) bool {
-	return true && a.to_connection_id == b.to_connection_id &&
-		a.from_connection_id == b.from_connection_id &&
+	return true && a.to_connection_id == b.to_connection_id && a.from_connection_id == b.from_connection_id &&
 		a.from_identity_string == b.from_identity_string &&
-		a.legacy_from_identity_binary.eq(b.legacy_from_identity_binary) &&
-		a.legacy_from_steam_id == b.legacy_from_steam_id &&
-		a.legacy_gameserver_relay_session_id == b.legacy_gameserver_relay_session_id &&
-		a.to_relay_session_id == b.to_relay_session_id &&
-		a.from_relay_session_id == b.from_relay_session_id &&
-		a.forward_target_relay_routing_token == b.forward_target_relay_routing_token &&
-		a.forward_target_revision == b.forward_target_revision &&
-		a.relay_mode == b.relay_mode && a.debug == b.debug &&
-		a.reason_code == b.reason_code && a.routing_secret == b.routing_secret &&
-		a.not_primary_session == b.not_primary_session &&
-		a.not_primary_transport == b.not_primary_transport && a.quality_relay.eq(b.quality_relay) &&
-		a.quality_e2e.eq(b.quality_e2e) && a.p2p_routing_summary.eq(b.p2p_routing_summary)
+		a.legacy_from_identity_binary.eq(b.legacy_from_identity_binary) && a.legacy_from_steam_id == b.legacy_from_steam_id &&
+		a.legacy_gameserver_relay_session_id == b.legacy_gameserver_relay_session_id && a.to_relay_session_id ==
+		b.to_relay_session_id && a.from_relay_session_id == b.from_relay_session_id && a.forward_target_relay_routing_token ==
+		b.forward_target_relay_routing_token && a.forward_target_revision == b.forward_target_revision &&
+		a.relay_mode == b.relay_mode && a.debug == b.debug && a.reason_code == b.reason_code &&
+		a.routing_secret == b.routing_secret && a.not_primary_session == b.not_primary_session &&
+		a.not_primary_transport == b.not_primary_transport && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
+		a.p2p_routing_summary.eq(b.p2p_routing_summary)
 }
 
 [inline]
@@ -2801,8 +2778,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionclosed(o CMsgSteamDat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionclosed(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionClosed) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionclosed_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionclosed_unpack(v) ?
 	return i, unpacked
 }
 
@@ -2850,20 +2827,22 @@ pub fn (o &CMsgSteamDatagramNoConnection) pack() []byte {
 	if o.legacy_from_steam_id != u64(0) {
 		res << vproto.pack_64bit_field(o.legacy_from_steam_id, 3)
 	}
-	if o.end_to_end != bool(0) {
+	if o.end_to_end != false {
 		res << vproto.pack_bool_field(o.end_to_end, 4)
 	}
-	if o.not_primary_session != bool(0) {
+	if o.not_primary_session != false {
 		res << vproto.pack_bool_field(o.not_primary_session, 12)
 	}
-	if o.not_primary_transport != bool(0) {
+	if o.not_primary_transport != false {
 		res << vproto.pack_bool_field(o.not_primary_transport, 15)
 	}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 13)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 13)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 14)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 14)
 	}
 	if o.p2p_routing_summary.ne(zzz_vproto_internal_new_cmsgsteamdatagramp2proutingsummary()) {
 		res <<
@@ -2890,80 +2869,80 @@ pub fn cmsgsteamdatagramnoconnection_unpack(buf []byte) ?CMsgSteamDatagramNoConn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.to_connection_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_connection_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_gameserver_relay_session_id = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.to_relay_session_id = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_relay_session_id = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_identity_string = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_from_steam_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.end_to_end = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.not_primary_session = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.not_primary_transport = v
 				i = ii
 			}
 			13 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			14 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			16 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutingsummary(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.p2p_routing_summary = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_secret = v
 				i = ii
 			}
 			1023 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dummy_pad = v
 				i = ii
 			}
@@ -2984,18 +2963,13 @@ pub fn cmsgsteamdatagramnoconnection_unpack(buf []byte) ?CMsgSteamDatagramNoConn
 
 [inline]
 pub fn (a CMsgSteamDatagramNoConnection) eq(b CMsgSteamDatagramNoConnection) bool {
-	return true && a.to_connection_id == b.to_connection_id &&
-		a.from_connection_id == b.from_connection_id &&
-		a.legacy_gameserver_relay_session_id == b.legacy_gameserver_relay_session_id &&
-		a.to_relay_session_id == b.to_relay_session_id &&
-		a.from_relay_session_id == b.from_relay_session_id &&
-		a.from_identity_string == b.from_identity_string &&
-		a.legacy_from_steam_id == b.legacy_from_steam_id &&
-		a.end_to_end == b.end_to_end && a.not_primary_session == b.not_primary_session &&
-		a.not_primary_transport == b.not_primary_transport && a.quality_relay.eq(b.quality_relay) &&
-		a.quality_e2e.eq(b.quality_e2e) && a.p2p_routing_summary.eq(b.p2p_routing_summary) &&
-		a.routing_secret == b.routing_secret &&
-		a.dummy_pad == b.dummy_pad
+	return true && a.to_connection_id == b.to_connection_id && a.from_connection_id == b.from_connection_id &&
+		a.legacy_gameserver_relay_session_id == b.legacy_gameserver_relay_session_id && a.to_relay_session_id ==
+		b.to_relay_session_id && a.from_relay_session_id == b.from_relay_session_id && a.from_identity_string ==
+		b.from_identity_string && a.legacy_from_steam_id == b.legacy_from_steam_id && a.end_to_end ==
+		b.end_to_end && a.not_primary_session == b.not_primary_session && a.not_primary_transport == b.not_primary_transport &&
+		a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) && a.p2p_routing_summary.eq(b.p2p_routing_summary) &&
+		a.routing_secret == b.routing_secret && a.dummy_pad == b.dummy_pad
 }
 
 [inline]
@@ -3036,8 +3010,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramnoconnection(o CMsgSteamDatagra
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramnoconnection(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramNoConnection) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramnoconnection_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramnoconnection_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3092,37 +3066,37 @@ pub fn cmsgsteamdatagramgameserversessionrequest_unpack(buf []byte) ?CMsgSteamDa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge_time = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_connection_id = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.network_config_version = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.protocol_version = v
 				i = ii
 			}
@@ -3143,12 +3117,9 @@ pub fn cmsgsteamdatagramgameserversessionrequest_unpack(buf []byte) ?CMsgSteamDa
 
 [inline]
 pub fn (a CMsgSteamDatagramGameserverSessionRequest) eq(b CMsgSteamDatagramGameserverSessionRequest) bool {
-	return true && a.ticket == b.ticket &&
-		a.challenge_time == b.challenge_time &&
-		a.challenge == b.challenge && a.client_connection_id == b.client_connection_id &&
-		a.server_connection_id == b.server_connection_id &&
-		a.network_config_version == b.network_config_version &&
-		a.protocol_version == b.protocol_version
+	return true && a.ticket == b.ticket && a.challenge_time == b.challenge_time && a.challenge ==
+		b.challenge && a.client_connection_id == b.client_connection_id && a.server_connection_id == b.server_connection_id &&
+		a.network_config_version == b.network_config_version && a.protocol_version == b.protocol_version
 }
 
 [inline]
@@ -3189,8 +3160,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserversessionrequest(o CMsg
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameserverSessionRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserversessionrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserversessionrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3241,32 +3212,32 @@ pub fn cmsgsteamdatagramgameserversessionestablished_unpack(buf []byte) ?CMsgSte
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gameserver_identity_string = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_r2c = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.dummy_legacy_identity_binary = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_gameserver_steamid = v
 				i = ii
 			}
@@ -3287,12 +3258,10 @@ pub fn cmsgsteamdatagramgameserversessionestablished_unpack(buf []byte) ?CMsgSte
 
 [inline]
 pub fn (a CMsgSteamDatagramGameserverSessionEstablished) eq(b CMsgSteamDatagramGameserverSessionEstablished) bool {
-	return true && a.connection_id == b.connection_id &&
-		a.gameserver_identity_string == b.gameserver_identity_string &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown &&
-		a.seq_num_r2c == b.seq_num_r2c &&
-		a.dummy_legacy_identity_binary == b.dummy_legacy_identity_binary &&
-		a.legacy_gameserver_steamid == b.legacy_gameserver_steamid
+	return true && a.connection_id == b.connection_id && a.gameserver_identity_string == b.gameserver_identity_string &&
+		a.seconds_until_shutdown == b.seconds_until_shutdown && a.seq_num_r2c == b.seq_num_r2c &&
+		a.dummy_legacy_identity_binary == b.dummy_legacy_identity_binary && a.legacy_gameserver_steamid ==
+		b.legacy_gameserver_steamid
 }
 
 [inline]
@@ -3333,8 +3302,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserversessionestablished(o 
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversessionestablished(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameserverSessionEstablished) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserversessionestablished_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserversessionestablished_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3373,14 +3342,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsclienttorouter_flags
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsclienttorouter_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsClientToRouter_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsClientToRouter_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsclienttorouter_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsClientToRouter_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -3406,10 +3375,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsClientToRouter) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	// [packed=false]
 	for _, x in o.ack_relay {
@@ -3447,45 +3418,45 @@ pub fn cmsgsteamdatagramconnectionstatsclienttorouter_unpack(buf []byte) ?CMsgSt
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			5 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_c2r = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
@@ -3507,9 +3478,9 @@ pub fn cmsgsteamdatagramconnectionstatsclienttorouter_unpack(buf []byte) ?CMsgSt
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsClientToRouter) eq(b CMsgSteamDatagramConnectionStatsClientToRouter) bool {
 	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags && a.client_connection_id == b.client_connection_id &&
-		a.seq_num_c2r == b.seq_num_c2r && a.seq_num_e2e == b.seq_num_e2e
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.client_connection_id == b.client_connection_id && a.seq_num_c2r == b.seq_num_c2r &&
+		a.seq_num_e2e == b.seq_num_e2e
 }
 
 [inline]
@@ -3550,8 +3521,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsclienttorouter(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsclienttorouter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsClientToRouter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsclienttorouter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsclienttorouter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3589,14 +3560,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsroutertoclient_flags
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsroutertoclient_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsRouterToClient_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsRouterToClient_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsroutertoclient_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsRouterToClient_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -3626,10 +3597,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsRouterToClient) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	if o.seconds_until_shutdown != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_until_shutdown, 6)
@@ -3679,65 +3652,65 @@ pub fn cmsgsteamdatagramconnectionstatsroutertoclient_unpack(buf []byte) ?CMsgSt
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.migrate_request_ip = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.migrate_request_port = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scoring_penalty_relay_cluster = v
 				i = ii
 			}
 			13 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			14 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_r2c = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
@@ -3759,13 +3732,11 @@ pub fn cmsgsteamdatagramconnectionstatsroutertoclient_unpack(buf []byte) ?CMsgSt
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsRouterToClient) eq(b CMsgSteamDatagramConnectionStatsRouterToClient) bool {
 	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown &&
-		a.migrate_request_ip == b.migrate_request_ip &&
-		a.migrate_request_port == b.migrate_request_port &&
-		a.scoring_penalty_relay_cluster == b.scoring_penalty_relay_cluster &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags && a.client_connection_id == b.client_connection_id &&
-		a.seq_num_r2c == b.seq_num_r2c && a.seq_num_e2e == b.seq_num_e2e
+		a.seconds_until_shutdown == b.seconds_until_shutdown && a.migrate_request_ip == b.migrate_request_ip &&
+		a.migrate_request_port == b.migrate_request_port && a.scoring_penalty_relay_cluster == b.scoring_penalty_relay_cluster &&
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.client_connection_id == b.client_connection_id && a.seq_num_r2c == b.seq_num_r2c &&
+		a.seq_num_e2e == b.seq_num_e2e
 }
 
 [inline]
@@ -3806,8 +3777,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsroutertoclient(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsroutertoclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsRouterToClient) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsroutertoclient_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsroutertoclient_unpack(v) ?
 	return i, unpacked
 }
 
@@ -3845,14 +3816,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsroutertoserver_flags
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsroutertoserver_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsRouterToServer_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsRouterToServer_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsroutertoserver_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsRouterToServer_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -3883,10 +3854,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsRouterToServer) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	// [packed=false]
 	for _, x in o.ack_relay {
@@ -3939,70 +3912,70 @@ pub fn cmsgsteamdatagramconnectionstatsroutertoserver_unpack(buf []byte) ?CMsgSt
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			10 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			11 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_r2s = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_identity_string = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_client_steam_id = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.relay_session_id = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_connection_id = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_secret = v
 				i = ii
 			}
@@ -4024,14 +3997,11 @@ pub fn cmsgsteamdatagramconnectionstatsroutertoserver_unpack(buf []byte) ?CMsgSt
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsRouterToServer) eq(b CMsgSteamDatagramConnectionStatsRouterToServer) bool {
 	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags && a.seq_num_r2s == b.seq_num_r2s &&
-		a.seq_num_e2e == b.seq_num_e2e && a.client_identity_string == b.client_identity_string &&
-		a.legacy_client_steam_id == b.legacy_client_steam_id &&
-		a.relay_session_id == b.relay_session_id &&
-		a.client_connection_id == b.client_connection_id &&
-		a.server_connection_id == b.server_connection_id &&
-		a.routing_secret == b.routing_secret
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.seq_num_r2s == b.seq_num_r2s && a.seq_num_e2e == b.seq_num_e2e && a.client_identity_string ==
+		b.client_identity_string && a.legacy_client_steam_id == b.legacy_client_steam_id && a.relay_session_id ==
+		b.relay_session_id && a.client_connection_id == b.client_connection_id && a.server_connection_id ==
+		b.server_connection_id && a.routing_secret == b.routing_secret
 }
 
 [inline]
@@ -4072,8 +4042,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsroutertoserver(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsroutertoserver(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsRouterToServer) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsroutertoserver_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsroutertoserver_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4111,14 +4081,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsservertorouter_flags
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsservertorouter_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsServerToRouter_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsServerToRouter_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsservertorouter_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsServerToRouter_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -4146,10 +4116,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsServerToRouter) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	// [packed=false]
 	for _, x in o.ack_relay {
@@ -4193,55 +4165,55 @@ pub fn cmsgsteamdatagramconnectionstatsservertorouter_unpack(buf []byte) ?CMsgSt
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			8 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			9 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_s2r = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.relay_session_id = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.server_connection_id = v
 				i = ii
 			}
@@ -4263,11 +4235,9 @@ pub fn cmsgsteamdatagramconnectionstatsservertorouter_unpack(buf []byte) ?CMsgSt
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsServerToRouter) eq(b CMsgSteamDatagramConnectionStatsServerToRouter) bool {
 	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags && a.seq_num_s2r == b.seq_num_s2r &&
-		a.seq_num_e2e == b.seq_num_e2e && a.relay_session_id == b.relay_session_id &&
-		a.client_connection_id == b.client_connection_id &&
-		a.server_connection_id == b.server_connection_id
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.seq_num_s2r == b.seq_num_s2r && a.seq_num_e2e == b.seq_num_e2e && a.relay_session_id == b.relay_session_id &&
+		a.client_connection_id == b.client_connection_id && a.server_connection_id == b.server_connection_id
 }
 
 [inline]
@@ -4308,8 +4278,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsservertorouter(o
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsservertorouter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsServerToRouter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsservertorouter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsservertorouter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4372,47 +4342,47 @@ pub fn cmsgsteamdatagramp2psessionrequestbody_unpack(buf []byte) ?CMsgSteamDatag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge_time = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.challenge = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.client_connection_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_peer_steam_id = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.peer_identity_string = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.peer_connection_id = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.protocol_version = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.network_config_version = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.public_ip = v
 				i = ii
 			}
@@ -4433,13 +4403,10 @@ pub fn cmsgsteamdatagramp2psessionrequestbody_unpack(buf []byte) ?CMsgSteamDatag
 
 [inline]
 pub fn (a CMsgSteamDatagramP2PSessionRequestBody) eq(b CMsgSteamDatagramP2PSessionRequestBody) bool {
-	return true && a.challenge_time == b.challenge_time &&
-		a.challenge == b.challenge && a.client_connection_id == b.client_connection_id &&
-		a.legacy_peer_steam_id == b.legacy_peer_steam_id &&
-		a.peer_identity_string == b.peer_identity_string &&
-		a.peer_connection_id == b.peer_connection_id &&
-		a.protocol_version == b.protocol_version &&
-		a.network_config_version == b.network_config_version &&
+	return true && a.challenge_time == b.challenge_time && a.challenge == b.challenge &&
+		a.client_connection_id == b.client_connection_id && a.legacy_peer_steam_id == b.legacy_peer_steam_id &&
+		a.peer_identity_string == b.peer_identity_string && a.peer_connection_id == b.peer_connection_id &&
+		a.protocol_version == b.protocol_version && a.network_config_version == b.network_config_version &&
 		a.public_ip == b.public_ip
 }
 
@@ -4481,8 +4448,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2psessionrequestbody(o CMsgSte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2psessionrequestbody(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PSessionRequestBody) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2psessionrequestbody_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2psessionrequestbody_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4522,17 +4489,17 @@ pub fn cmsgsteamdatagramp2psessionrequest_unpack(buf []byte) ?CMsgSteamDatagramP
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.cert = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.body = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signature = v
 				i = ii
 			}
@@ -4594,8 +4561,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2psessionrequest(o CMsgSteamDa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2psessionrequest(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PSessionRequest) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2psessionrequest_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2psessionrequest_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4638,22 +4605,22 @@ pub fn cmsgsteamdatagramp2psessionestablished_unpack(buf []byte) ?CMsgSteamDatag
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.relay_routing_token = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_r2c = v
 				i = ii
 			}
@@ -4674,10 +4641,8 @@ pub fn cmsgsteamdatagramp2psessionestablished_unpack(buf []byte) ?CMsgSteamDatag
 
 [inline]
 pub fn (a CMsgSteamDatagramP2PSessionEstablished) eq(b CMsgSteamDatagramP2PSessionEstablished) bool {
-	return true && a.connection_id == b.connection_id &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown &&
-		a.relay_routing_token == b.relay_routing_token &&
-		a.seq_num_r2c == b.seq_num_r2c
+	return true && a.connection_id == b.connection_id && a.seconds_until_shutdown == b.seconds_until_shutdown &&
+		a.relay_routing_token == b.relay_routing_token && a.seq_num_r2c == b.seq_num_r2c
 }
 
 [inline]
@@ -4718,8 +4683,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2psessionestablished(o CMsgSte
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2psessionestablished(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PSessionEstablished) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2psessionestablished_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2psessionestablished_unpack(v) ?
 	return i, unpacked
 }
 
@@ -4759,14 +4724,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsp2pclienttorouter_fl
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2pclienttorouter_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsP2PClientToRouter_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsP2PClientToRouter_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2pclienttorouter_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsP2PClientToRouter_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -4797,10 +4762,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsP2PClientToRouter) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	if o.p2p_routing_summary.ne(zzz_vproto_internal_new_cmsgsteamdatagramp2proutingsummary()) {
 		res <<
@@ -4854,71 +4821,71 @@ pub fn cmsgsteamdatagramconnectionstatsp2pclienttorouter_unpack(buf []byte) ?CMs
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			14 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutingsummary(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.p2p_routing_summary = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forward_target_relay_routing_token = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.forward_target_revision = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routes = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_peer_routes_revision = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_c2r = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
@@ -4939,15 +4906,11 @@ pub fn cmsgsteamdatagramconnectionstatsp2pclienttorouter_unpack(buf []byte) ?CMs
 
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsP2PClientToRouter) eq(b CMsgSteamDatagramConnectionStatsP2PClientToRouter) bool {
-	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.p2p_routing_summary.eq(b.p2p_routing_summary) &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags &&
-		a.forward_target_relay_routing_token == b.forward_target_relay_routing_token &&
-		a.forward_target_revision == b.forward_target_revision &&
-		a.routes == b.routes && a.ack_peer_routes_revision == b.ack_peer_routes_revision &&
-		a.connection_id == b.connection_id &&
-		a.seq_num_c2r == b.seq_num_c2r && a.seq_num_e2e == b.seq_num_e2e
+	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) && a.p2p_routing_summary.eq(b.p2p_routing_summary) &&
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.forward_target_relay_routing_token == b.forward_target_relay_routing_token && a.forward_target_revision ==
+		b.forward_target_revision && a.routes == b.routes && a.ack_peer_routes_revision == b.ack_peer_routes_revision &&
+		a.connection_id == b.connection_id && a.seq_num_c2r == b.seq_num_c2r && a.seq_num_e2e == b.seq_num_e2e
 }
 
 [inline]
@@ -4988,8 +4951,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsp2pclienttoroute
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2pclienttorouter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsP2PClientToRouter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsp2pclienttorouter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsp2pclienttorouter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5028,14 +4991,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsp2proutertoclient_fl
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2proutertoclient_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsP2PRouterToClient_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsP2PRouterToClient_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2proutertoclient_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsP2PRouterToClient_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -5068,10 +5031,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsP2PRouterToClient) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	if o.seconds_until_shutdown != u32(0) {
 		res << vproto.pack_uint32_field(o.seconds_until_shutdown, 3)
@@ -5130,80 +5095,80 @@ pub fn cmsgsteamdatagramconnectionstatsp2proutertoclient_unpack(buf []byte) ?CMs
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.migrate_request_ip = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.migrate_request_port = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.scoring_penalty_relay_cluster = v
 				i = ii
 			}
 			7 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			8 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_forward_target_revision = v
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routes = v
 				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_peer_routes_revision = v
 				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			14 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_r2c = v
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
@@ -5225,14 +5190,11 @@ pub fn cmsgsteamdatagramconnectionstatsp2proutertoclient_unpack(buf []byte) ?CMs
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsP2PRouterToClient) eq(b CMsgSteamDatagramConnectionStatsP2PRouterToClient) bool {
 	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown &&
-		a.migrate_request_ip == b.migrate_request_ip &&
-		a.migrate_request_port == b.migrate_request_port &&
-		a.scoring_penalty_relay_cluster == b.scoring_penalty_relay_cluster &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags && a.ack_forward_target_revision == b.ack_forward_target_revision &&
-		a.routes == b.routes && a.ack_peer_routes_revision == b.ack_peer_routes_revision &&
-		a.connection_id == b.connection_id &&
+		a.seconds_until_shutdown == b.seconds_until_shutdown && a.migrate_request_ip == b.migrate_request_ip &&
+		a.migrate_request_port == b.migrate_request_port && a.scoring_penalty_relay_cluster == b.scoring_penalty_relay_cluster &&
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.ack_forward_target_revision == b.ack_forward_target_revision && a.routes == b.routes &&
+		a.ack_peer_routes_revision == b.ack_peer_routes_revision && a.connection_id == b.connection_id &&
 		a.seq_num_r2c == b.seq_num_r2c && a.seq_num_e2e == b.seq_num_e2e
 }
 
@@ -5274,8 +5236,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsp2proutertoclien
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2proutertoclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsP2PRouterToClient) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsp2proutertoclient_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsp2proutertoclient_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5318,22 +5280,22 @@ pub fn cmsgsteamdatagramp2pbadrouteroutertoclient_unpack(buf []byte) ?CMsgSteamD
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.connection_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.failed_relay_routing_token = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_forward_target_revision = v
 				i = ii
 			}
 			99 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.kludge_pad = v
 				i = ii
 			}
@@ -5354,10 +5316,8 @@ pub fn cmsgsteamdatagramp2pbadrouteroutertoclient_unpack(buf []byte) ?CMsgSteamD
 
 [inline]
 pub fn (a CMsgSteamDatagramP2PBadRouteRouterToClient) eq(b CMsgSteamDatagramP2PBadRouteRouterToClient) bool {
-	return true && a.connection_id == b.connection_id &&
-		a.failed_relay_routing_token == b.failed_relay_routing_token &&
-		a.ack_forward_target_revision == b.ack_forward_target_revision &&
-		a.kludge_pad == b.kludge_pad
+	return true && a.connection_id == b.connection_id && a.failed_relay_routing_token == b.failed_relay_routing_token &&
+		a.ack_forward_target_revision == b.ack_forward_target_revision && a.kludge_pad == b.kludge_pad
 }
 
 [inline]
@@ -5398,8 +5358,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2pbadrouteroutertoclient(o CMs
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2pbadrouteroutertoclient(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PBadRouteRouterToClient) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2pbadrouteroutertoclient_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2pbadrouteroutertoclient_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5442,22 +5402,22 @@ pub fn cmsgsteamdatagramp2proutes_relaycluster_unpack(buf []byte) ?CMsgSteamData
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.pop_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ping_ms = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.score_penalty = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.session_relay_routing_token = v
 				i = ii
 			}
@@ -5478,8 +5438,7 @@ pub fn cmsgsteamdatagramp2proutes_relaycluster_unpack(buf []byte) ?CMsgSteamData
 
 [inline]
 pub fn (a CMsgSteamDatagramP2PRoutes_RelayCluster) eq(b CMsgSteamDatagramP2PRoutes_RelayCluster) bool {
-	return true && a.pop_id == b.pop_id &&
-		a.ping_ms == b.ping_ms && a.score_penalty == b.score_penalty &&
+	return true && a.pop_id == b.pop_id && a.ping_ms == b.ping_ms && a.score_penalty == b.score_penalty &&
 		a.session_relay_routing_token == b.session_relay_routing_token
 }
 
@@ -5521,8 +5480,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2proutes_relaycluster(o CMsgSt
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutes_relaycluster(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PRoutes_RelayCluster) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2proutes_relaycluster_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2proutes_relaycluster_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5561,17 +5520,17 @@ pub fn cmsgsteamdatagramp2proutes_route_unpack(buf []byte) ?CMsgSteamDatagramP2P
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.my_pop_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.your_pop_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.score = v
 				i = ii
 			}
@@ -5592,8 +5551,8 @@ pub fn cmsgsteamdatagramp2proutes_route_unpack(buf []byte) ?CMsgSteamDatagramP2P
 
 [inline]
 pub fn (a CMsgSteamDatagramP2PRoutes_Route) eq(b CMsgSteamDatagramP2PRoutes_Route) bool {
-	return true && a.my_pop_id == b.my_pop_id &&
-		a.your_pop_id == b.your_pop_id && a.score == b.score
+	return true && a.my_pop_id == b.my_pop_id && a.your_pop_id == b.your_pop_id && a.score ==
+		b.score
 }
 
 [inline]
@@ -5634,8 +5593,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2proutes_route(o CMsgSteamData
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutes_route(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PRoutes_Route) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2proutes_route_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2proutes_route_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5678,19 +5637,19 @@ pub fn cmsgsteamdatagramp2proutes_unpack(buf []byte) ?CMsgSteamDatagramP2PRoutes
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutes_relaycluster(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.relay_clusters << v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutes_route(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.routes << v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.revision = v
 				i = ii
 			}
@@ -5711,8 +5670,8 @@ pub fn cmsgsteamdatagramp2proutes_unpack(buf []byte) ?CMsgSteamDatagramP2PRoutes
 
 [inline]
 pub fn (a CMsgSteamDatagramP2PRoutes) eq(b CMsgSteamDatagramP2PRoutes) bool {
-	return true && a.relay_clusters.eq(b.relay_clusters) && a.routes.eq(b.routes) &&
-		a.revision == b.revision
+	return true && a.relay_clusters.eq(b.relay_clusters) && a.routes.eq(b.routes) && a.revision ==
+		b.revision
 }
 
 [inline]
@@ -5753,8 +5712,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramp2proutes(o CMsgSteamDatagramP2
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramp2proutes(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramP2PRoutes) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramp2proutes_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramp2proutes_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5789,12 +5748,12 @@ pub fn cmsgsteamdatagramgameserversample_unpack(buf []byte) ?CMsgSteamDatagramGa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ipv4 = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.port = v
 				i = ii
 			}
@@ -5856,8 +5815,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserversample(o CMsgSteamDat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversample(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameServerSample) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserversample_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserversample_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5893,14 +5852,14 @@ pub fn cmsgsteamdatagramgameserversampledatacenter_unpack(buf []byte) ?CMsgSteam
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.datacenter_id = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversample(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.servers << v
 				i = ii
 			}
@@ -5962,8 +5921,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramgameserversampledatacenter(o CM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversampledatacenter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramGameServerSampleDataCenter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramgameserversampledatacenter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramgameserversampledatacenter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -5998,7 +5957,8 @@ pub fn (o &CMsgSteamDatagramRelayToRelayPing) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.data_centers {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramgameserversampledatacenter(x, 6)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramgameserversampledatacenter(x, 6)
 	}
 	return res
 }
@@ -6015,34 +5975,34 @@ pub fn cmsgsteamdatagramrelaytorelayping_unpack(buf []byte) ?CMsgSteamDatagramRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request_timestamp = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.request_date = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.my_pop_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.your_pop_id = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.checksum = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversampledatacenter(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.data_centers << v
 				i = ii
 			}
@@ -6063,10 +6023,8 @@ pub fn cmsgsteamdatagramrelaytorelayping_unpack(buf []byte) ?CMsgSteamDatagramRe
 
 [inline]
 pub fn (a CMsgSteamDatagramRelayToRelayPing) eq(b CMsgSteamDatagramRelayToRelayPing) bool {
-	return true && a.request_timestamp == b.request_timestamp &&
-		a.request_date == b.request_date &&
-		a.my_pop_id == b.my_pop_id && a.your_pop_id == b.your_pop_id &&
-		a.checksum == b.checksum && a.data_centers.eq(b.data_centers)
+	return true && a.request_timestamp == b.request_timestamp && a.request_date == b.request_date &&
+		a.my_pop_id == b.my_pop_id && a.your_pop_id == b.your_pop_id && a.checksum == b.checksum && a.data_centers.eq(b.data_centers)
 }
 
 [inline]
@@ -6107,8 +6065,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrelaytorelayping(o CMsgSteamDat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrelaytorelayping(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRelayToRelayPing) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramrelaytorelayping_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramrelaytorelayping_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6143,12 +6101,12 @@ pub fn cmsgsteamdatagramdatacenterstate_server_unpack(buf []byte) ?CMsgSteamData
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.address = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ping_ms = v
 				i = ii
 			}
@@ -6210,8 +6168,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramdatacenterstate_server(o CMsgSt
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramdatacenterstate_server(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramDataCenterState_Server) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramdatacenterstate_server_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramdatacenterstate_server_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6252,21 +6210,21 @@ pub fn cmsgsteamdatagramdatacenterstate_datacenter_unpack(buf []byte) ?CMsgSteam
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.code = v
 				i = ii
 			}
 			2 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramdatacenterstate_server(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.server_sample << v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramdatacenterstate_server(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.relay_sample << v
 				i = ii
 			}
@@ -6328,8 +6286,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramdatacenterstate_datacenter(o CM
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramdatacenterstate_datacenter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramDataCenterState_DataCenter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramdatacenterstate_datacenter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramdatacenterstate_datacenter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6344,7 +6302,8 @@ pub fn (o &CMsgSteamDatagramDataCenterState) pack() []byte {
 	mut res := []byte{}
 	// [packed=false]
 	for _, x in o.data_centers {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramdatacenterstate_datacenter(x, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramdatacenterstate_datacenter(x, 1)
 	}
 	return res
 }
@@ -6363,7 +6322,7 @@ pub fn cmsgsteamdatagramdatacenterstate_unpack(buf []byte) ?CMsgSteamDatagramDat
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramdatacenterstate_datacenter(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.data_centers << v
 				i = ii
 			}
@@ -6425,8 +6384,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramdatacenterstate(o CMsgSteamData
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramdatacenterstate(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramDataCenterState) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramdatacenterstate_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramdatacenterstate_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6466,19 +6425,19 @@ pub fn cmsgsteamdatagramrouterhealth_datacenter_unpack(buf []byte) ?CMsgSteamDat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.datacenter_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.state = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramgameserversample(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.servers << v
 				i = ii
 			}
@@ -6499,8 +6458,7 @@ pub fn cmsgsteamdatagramrouterhealth_datacenter_unpack(buf []byte) ?CMsgSteamDat
 
 [inline]
 pub fn (a CMsgSteamDatagramRouterHealth_DataCenter) eq(b CMsgSteamDatagramRouterHealth_DataCenter) bool {
-	return true && a.datacenter_id == b.datacenter_id &&
-		a.state == b.state && a.servers.eq(b.servers)
+	return true && a.datacenter_id == b.datacenter_id && a.state == b.state && a.servers.eq(b.servers)
 }
 
 [inline]
@@ -6541,8 +6499,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrouterhealth_datacenter(o CMsgS
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrouterhealth_datacenter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRouterHealth_DataCenter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramrouterhealth_datacenter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramrouterhealth_datacenter_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6610,54 +6568,54 @@ pub fn cmsgsteamdatagramrouterhealth_unpack(buf []byte) ?CMsgSteamDatagramRouter
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cpu_load = v
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cpu_load_raw = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.active_sessions = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.data_pkts_sec = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.other_pkts_sec = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seconds_until_shutdown = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cpu_cost_per_user = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cpu_cost_per_packet = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramrouterhealth_datacenter(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.data_centers << v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.magic = v
 				i = ii
 			}
@@ -6678,13 +6636,9 @@ pub fn cmsgsteamdatagramrouterhealth_unpack(buf []byte) ?CMsgSteamDatagramRouter
 
 [inline]
 pub fn (a CMsgSteamDatagramRouterHealth) eq(b CMsgSteamDatagramRouterHealth) bool {
-	return true && a.cpu_load == b.cpu_load &&
-		a.cpu_load_raw == b.cpu_load_raw &&
-		a.active_sessions == b.active_sessions &&
-		a.data_pkts_sec == b.data_pkts_sec &&
-		a.other_pkts_sec == b.other_pkts_sec &&
-		a.seconds_until_shutdown == b.seconds_until_shutdown &&
-		a.cpu_cost_per_user == b.cpu_cost_per_user &&
+	return true && a.cpu_load == b.cpu_load && a.cpu_load_raw == b.cpu_load_raw && a.active_sessions ==
+		b.active_sessions && a.data_pkts_sec == b.data_pkts_sec && a.other_pkts_sec == b.other_pkts_sec &&
+		a.seconds_until_shutdown == b.seconds_until_shutdown && a.cpu_cost_per_user == b.cpu_cost_per_user &&
 		a.cpu_cost_per_packet == b.cpu_cost_per_packet && a.data_centers.eq(b.data_centers) &&
 		a.magic == b.magic
 }
@@ -6727,8 +6681,8 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramrouterhealth(o CMsgSteamDatagra
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramrouterhealth(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramRouterHealth) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramrouterhealth_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramrouterhealth_unpack(v) ?
 	return i, unpacked
 }
 
@@ -6767,14 +6721,14 @@ fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsp2proutertorouter_fl
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2proutertorouter_flags(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsP2PRouterToRouter_Flags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, CMsgSteamDatagramConnectionStatsP2PRouterToRouter_Flags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2proutertorouter_flags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []CMsgSteamDatagramConnectionStatsP2PRouterToRouter_Flags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -6804,10 +6758,12 @@ pub mut:
 pub fn (o &CMsgSteamDatagramConnectionStatsP2PRouterToRouter) pack() []byte {
 	mut res := []byte{}
 	if o.quality_relay.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_relay, 1)
 	}
 	if o.quality_e2e.ne(zzz_vproto_internal_new_cmsgsteamdatagramconnectionquality()) {
-		res << zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
+		res <<
+			zzz_vproto_internal_pack_cmsgsteamdatagramconnectionquality(o.quality_e2e, 2)
 	}
 	// [packed=false]
 	for _, x in o.ack_relay {
@@ -6857,65 +6813,65 @@ pub fn cmsgsteamdatagramconnectionstatsp2proutertorouter_unpack(buf []byte) ?CMs
 		match tag_wiretype.tag {
 			1 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_relay = v
 				i = ii
 			}
 			2 {
 				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionquality(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.quality_e2e = v
 				i = ii
 			}
 			3 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_relay << v
 				i = ii
 			}
 			4 {
 				// [packed=false]
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.legacy_ack_e2e << v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_forward_target_revision = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routes = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ack_peer_routes_revision = v
 				i = ii
 			}
 			26 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_r2r = v
 				i = ii
 			}
 			27 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.seq_num_e2e = v
 				i = ii
 			}
 			22 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.from_relay_session_id = v
 				i = ii
 			}
 			25 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.to_relay_session_id = v
 				i = ii
 			}
@@ -6937,11 +6893,10 @@ pub fn cmsgsteamdatagramconnectionstatsp2proutertorouter_unpack(buf []byte) ?CMs
 [inline]
 pub fn (a CMsgSteamDatagramConnectionStatsP2PRouterToRouter) eq(b CMsgSteamDatagramConnectionStatsP2PRouterToRouter) bool {
 	return true && a.quality_relay.eq(b.quality_relay) && a.quality_e2e.eq(b.quality_e2e) &&
-		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e &&
-		a.flags == b.flags && a.ack_forward_target_revision == b.ack_forward_target_revision &&
-		a.routes == b.routes && a.ack_peer_routes_revision == b.ack_peer_routes_revision &&
-		a.seq_num_r2r == b.seq_num_r2r && a.seq_num_e2e == b.seq_num_e2e &&
-		a.from_relay_session_id == b.from_relay_session_id &&
+		a.ack_relay == b.ack_relay && a.legacy_ack_e2e == b.legacy_ack_e2e && a.flags == b.flags &&
+		a.ack_forward_target_revision == b.ack_forward_target_revision && a.routes == b.routes &&
+		a.ack_peer_routes_revision == b.ack_peer_routes_revision && a.seq_num_r2r == b.seq_num_r2r &&
+		a.seq_num_e2e == b.seq_num_e2e && a.from_relay_session_id == b.from_relay_session_id &&
 		a.to_relay_session_id == b.to_relay_session_id
 }
 
@@ -6983,7 +6938,7 @@ pub fn zzz_vproto_internal_pack_cmsgsteamdatagramconnectionstatsp2proutertoroute
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cmsgsteamdatagramconnectionstatsp2proutertorouter(buf []byte, tag_wiretype vproto.WireType) ?(int, CMsgSteamDatagramConnectionStatsP2PRouterToRouter) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cmsgsteamdatagramconnectionstatsp2proutertorouter_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cmsgsteamdatagramconnectionstatsp2proutertorouter_unpack(v) ?
 	return i, unpacked
 }

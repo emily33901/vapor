@@ -1532,14 +1532,14 @@ fn zzz_vproto_internal_pack_emsg_packed(e []EMsg, num u32) []byte {
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emsg(buf []byte, tag_wiretype vproto.WireType) ?(int, EMsg) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EMsg(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emsg_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EMsg) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -1593,14 +1593,14 @@ fn zzz_vproto_internal_pack_eclientpersonastateflag_packed(e []EClientPersonaSta
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_eclientpersonastateflag(buf []byte, tag_wiretype vproto.WireType) ?(int, EClientPersonaStateFlag) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EClientPersonaStateFlag(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_eclientpersonastateflag_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EClientPersonaStateFlag) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -1645,14 +1645,14 @@ fn zzz_vproto_internal_pack_emsgclanaccountflags_packed(e []EMsgClanAccountFlags
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emsgclanaccountflags(buf []byte, tag_wiretype vproto.WireType) ?(int, EMsgClanAccountFlags) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EMsgClanAccountFlags(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_emsgclanaccountflags_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EMsgClanAccountFlags) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -1702,14 +1702,14 @@ fn zzz_vproto_internal_pack_esteamreviewscore_packed(e []ESteamReviewScore, num 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_esteamreviewscore(buf []byte, tag_wiretype vproto.WireType) ?(int, ESteamReviewScore) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, ESteamReviewScore(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_esteamreviewscore_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []ESteamReviewScore) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len

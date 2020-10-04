@@ -36,14 +36,14 @@ fn zzz_vproto_internal_pack_econtentdeltachunkdatalocation_packed(e []EContentDe
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_econtentdeltachunkdatalocation(buf []byte, tag_wiretype vproto.WireType) ?(int, EContentDeltaChunkDataLocation) {
-	i, v := vproto.unpack_int32_field(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field(buf, tag_wiretype) ?
 	return i, EContentDeltaChunkDataLocation(v)
 }
 
 // FOR INTERNAL USE ONLY
 [inline]
 fn zzz_vproto_internal_unpack_econtentdeltachunkdatalocation_packed(buf []byte, tag_wiretype vproto.WireType) ?(int, []EContentDeltaChunkDataLocation) {
-	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype)?
+	i, v := vproto.unpack_int32_field_packed(buf, tag_wiretype) ?
 	return i, array{
 		data: v.data
 		len: v.len
@@ -95,27 +95,27 @@ pub fn contentmanifestpayloadfilemapping_chunkdata_unpack(buf []byte) ?ContentMa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.offset = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cb_original = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cb_compressed = v
 				i = ii
 			}
@@ -136,9 +136,8 @@ pub fn contentmanifestpayloadfilemapping_chunkdata_unpack(buf []byte) ?ContentMa
 
 [inline]
 pub fn (a ContentManifestPayloadFileMapping_ChunkData) eq(b ContentManifestPayloadFileMapping_ChunkData) bool {
-	return true && a.sha == b.sha &&
-		a.crc == b.crc && a.offset == b.offset &&
-		a.cb_original == b.cb_original && a.cb_compressed == b.cb_compressed
+	return true && a.sha == b.sha && a.crc == b.crc && a.offset == b.offset && a.cb_original ==
+		b.cb_original && a.cb_compressed == b.cb_compressed
 }
 
 [inline]
@@ -179,8 +178,8 @@ pub fn zzz_vproto_internal_pack_contentmanifestpayloadfilemapping_chunkdata(o Co
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentmanifestpayloadfilemapping_chunkdata(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayloadFileMapping_ChunkData) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestpayloadfilemapping_chunkdata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentmanifestpayloadfilemapping_chunkdata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -216,7 +215,8 @@ pub fn (o &ContentManifestPayload_FileMapping) pack() []byte {
 	}
 	// [packed=false]
 	for _, x in o.chunks {
-		res << zzz_vproto_internal_pack_contentmanifestpayloadfilemapping_chunkdata(x, 6)
+		res <<
+			zzz_vproto_internal_pack_contentmanifestpayloadfilemapping_chunkdata(x, 6)
 	}
 	if o.linktarget != '' {
 		res << vproto.pack_string_field(o.linktarget, 7)
@@ -236,39 +236,39 @@ pub fn contentmanifestpayload_filemapping_unpack(buf []byte) ?ContentManifestPay
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filename = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.size = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_filename = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_content = v
 				i = ii
 			}
 			6 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_contentmanifestpayloadfilemapping_chunkdata(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.chunks << v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.linktarget = v
 				i = ii
 			}
@@ -289,10 +289,8 @@ pub fn contentmanifestpayload_filemapping_unpack(buf []byte) ?ContentManifestPay
 
 [inline]
 pub fn (a ContentManifestPayload_FileMapping) eq(b ContentManifestPayload_FileMapping) bool {
-	return true && a.filename == b.filename &&
-		a.size == b.size && a.flags == b.flags &&
-		a.sha_filename == b.sha_filename &&
-		a.sha_content == b.sha_content && a.chunks.eq(b.chunks) &&
+	return true && a.filename == b.filename && a.size == b.size && a.flags == b.flags &&
+		a.sha_filename == b.sha_filename && a.sha_content == b.sha_content && a.chunks.eq(b.chunks) &&
 		a.linktarget == b.linktarget
 }
 
@@ -334,8 +332,8 @@ pub fn zzz_vproto_internal_pack_contentmanifestpayload_filemapping(o ContentMani
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentmanifestpayload_filemapping(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayload_FileMapping) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestpayload_filemapping_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentmanifestpayload_filemapping_unpack(v) ?
 	return i, unpacked
 }
 
@@ -369,7 +367,7 @@ pub fn contentmanifestpayload_unpack(buf []byte) ?ContentManifestPayload {
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_contentmanifestpayload_filemapping(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.mappings << v
 				i = ii
 			}
@@ -431,8 +429,8 @@ pub fn zzz_vproto_internal_pack_contentmanifestpayload(o ContentManifestPayload,
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentmanifestpayload(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestPayload) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestpayload_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentmanifestpayload_unpack(v) ?
 	return i, unpacked
 }
 
@@ -462,7 +460,7 @@ pub fn (o &ContentManifestMetadata) pack() []byte {
 	if o.creation_time != u32(0) {
 		res << vproto.pack_uint32_field(o.creation_time, 3)
 	}
-	if o.filenames_encrypted != bool(0) {
+	if o.filenames_encrypted != false {
 		res << vproto.pack_bool_field(o.filenames_encrypted, 4)
 	}
 	if o.cb_disk_original != u64(0) {
@@ -495,47 +493,47 @@ pub fn contentmanifestmetadata_unpack(buf []byte) ?ContentManifestMetadata {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.depot_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.gid_manifest = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.creation_time = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filenames_encrypted = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cb_disk_original = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cb_disk_compressed = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.unique_chunks = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_encrypted = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_clear = v
 				i = ii
 			}
@@ -556,15 +554,10 @@ pub fn contentmanifestmetadata_unpack(buf []byte) ?ContentManifestMetadata {
 
 [inline]
 pub fn (a ContentManifestMetadata) eq(b ContentManifestMetadata) bool {
-	return true && a.depot_id == b.depot_id &&
-		a.gid_manifest == b.gid_manifest &&
-		a.creation_time == b.creation_time &&
-		a.filenames_encrypted == b.filenames_encrypted &&
-		a.cb_disk_original == b.cb_disk_original &&
-		a.cb_disk_compressed == b.cb_disk_compressed &&
-		a.unique_chunks == b.unique_chunks &&
-		a.crc_encrypted == b.crc_encrypted &&
-		a.crc_clear == b.crc_clear
+	return true && a.depot_id == b.depot_id && a.gid_manifest == b.gid_manifest && a.creation_time ==
+		b.creation_time && a.filenames_encrypted == b.filenames_encrypted && a.cb_disk_original == b.cb_disk_original &&
+		a.cb_disk_compressed == b.cb_disk_compressed && a.unique_chunks == b.unique_chunks &&
+		a.crc_encrypted == b.crc_encrypted && a.crc_clear == b.crc_clear
 }
 
 [inline]
@@ -605,8 +598,8 @@ pub fn zzz_vproto_internal_pack_contentmanifestmetadata(o ContentManifestMetadat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentmanifestmetadata(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestMetadata) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestmetadata_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentmanifestmetadata_unpack(v) ?
 	return i, unpacked
 }
 
@@ -637,7 +630,7 @@ pub fn contentmanifestsignature_unpack(buf []byte) ?ContentManifestSignature {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signature = v
 				i = ii
 			}
@@ -699,8 +692,8 @@ pub fn zzz_vproto_internal_pack_contentmanifestsignature(o ContentManifestSignat
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentmanifestsignature(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentManifestSignature) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentmanifestsignature_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentmanifestsignature_unpack(v) ?
 	return i, unpacked
 }
 
@@ -751,32 +744,32 @@ pub fn contentdeltachunks_deltachunk_unpack(buf []byte) ?ContentDeltaChunks_Delt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_source = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.sha_target = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.size_original = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.patch_method = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.chunk = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.size_delta = v
 				i = ii
 			}
@@ -797,10 +790,8 @@ pub fn contentdeltachunks_deltachunk_unpack(buf []byte) ?ContentDeltaChunks_Delt
 
 [inline]
 pub fn (a ContentDeltaChunks_DeltaChunk) eq(b ContentDeltaChunks_DeltaChunk) bool {
-	return true && a.sha_source == b.sha_source &&
-		a.sha_target == b.sha_target && a.size_original == b.size_original &&
-		a.patch_method == b.patch_method &&
-		a.chunk == b.chunk && a.size_delta == b.size_delta
+	return true && a.sha_source == b.sha_source && a.sha_target == b.sha_target && a.size_original ==
+		b.size_original && a.patch_method == b.patch_method && a.chunk == b.chunk && a.size_delta == b.size_delta
 }
 
 [inline]
@@ -841,8 +832,8 @@ pub fn zzz_vproto_internal_pack_contentdeltachunks_deltachunk(o ContentDeltaChun
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentdeltachunks_deltachunk(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentDeltaChunks_DeltaChunk) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentdeltachunks_deltachunk_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentdeltachunks_deltachunk_unpack(v) ?
 	return i, unpacked
 }
 
@@ -873,7 +864,8 @@ pub fn (o &ContentDeltaChunks) pack() []byte {
 		res << zzz_vproto_internal_pack_contentdeltachunks_deltachunk(x, 4)
 	}
 	if o.chunk_data_location != zzz_vproto_internal_new_econtentdeltachunkdatalocation() {
-		res << zzz_vproto_internal_pack_econtentdeltachunkdatalocation(o.chunk_data_location, 5)
+		res <<
+			zzz_vproto_internal_pack_econtentdeltachunkdatalocation(o.chunk_data_location, 5)
 	}
 	return res
 }
@@ -890,30 +882,30 @@ pub fn contentdeltachunks_unpack(buf []byte) ?ContentDeltaChunks {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.depot_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manifest_id_source = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manifest_id_target = v
 				i = ii
 			}
 			4 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_contentdeltachunks_deltachunk(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.deltachunks << v
 				i = ii
 			}
 			5 {
 				ii, v := zzz_vproto_internal_unpack_econtentdeltachunkdatalocation(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.chunk_data_location = v
 				i = ii
 			}
@@ -934,10 +926,9 @@ pub fn contentdeltachunks_unpack(buf []byte) ?ContentDeltaChunks {
 
 [inline]
 pub fn (a ContentDeltaChunks) eq(b ContentDeltaChunks) bool {
-	return true && a.depot_id == b.depot_id &&
-		a.manifest_id_source == b.manifest_id_source &&
-		a.manifest_id_target == b.manifest_id_target && a.deltachunks.eq(b.deltachunks) &&
-		a.chunk_data_location == b.chunk_data_location
+	return true && a.depot_id == b.depot_id && a.manifest_id_source == b.manifest_id_source &&
+		a.manifest_id_target == b.manifest_id_target && a.deltachunks.eq(b.deltachunks) && a.chunk_data_location ==
+		b.chunk_data_location
 }
 
 [inline]
@@ -978,7 +969,7 @@ pub fn zzz_vproto_internal_pack_contentdeltachunks(o ContentDeltaChunks, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_contentdeltachunks(buf []byte, tag_wiretype vproto.WireType) ?(int, ContentDeltaChunks) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := contentdeltachunks_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := contentdeltachunks_unpack(v) ?
 	return i, unpacked
 }

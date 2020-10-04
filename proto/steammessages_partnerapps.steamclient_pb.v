@@ -34,12 +34,12 @@ pub fn cpartnerapps_requestuploadtoken_request_unpack(buf []byte) ?CPartnerApps_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.filename = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.appid = v
 				i = ii
 			}
@@ -101,8 +101,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_requestuploadtoken_request(o CPartn
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_requestuploadtoken_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_RequestUploadToken_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_requestuploadtoken_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_requestuploadtoken_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -141,17 +141,17 @@ pub fn cpartnerapps_requestuploadtoken_response_unpack(buf []byte) ?CPartnerApps
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_token = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.location = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_id = v
 				i = ii
 			}
@@ -172,8 +172,8 @@ pub fn cpartnerapps_requestuploadtoken_response_unpack(buf []byte) ?CPartnerApps
 
 [inline]
 pub fn (a CPartnerApps_RequestUploadToken_Response) eq(b CPartnerApps_RequestUploadToken_Response) bool {
-	return true && a.upload_token == b.upload_token &&
-		a.location == b.location && a.routing_id == b.routing_id
+	return true && a.upload_token == b.upload_token && a.location == b.location && a.routing_id ==
+		b.routing_id
 }
 
 [inline]
@@ -214,8 +214,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_requestuploadtoken_response(o CPart
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_requestuploadtoken_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_RequestUploadToken_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_requestuploadtoken_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_requestuploadtoken_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -254,17 +254,17 @@ pub fn cpartnerapps_finishupload_request_unpack(buf []byte) ?CPartnerApps_Finish
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_token = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -285,8 +285,8 @@ pub fn cpartnerapps_finishupload_request_unpack(buf []byte) ?CPartnerApps_Finish
 
 [inline]
 pub fn (a CPartnerApps_FinishUpload_Request) eq(b CPartnerApps_FinishUpload_Request) bool {
-	return true && a.upload_token == b.upload_token &&
-		a.routing_id == b.routing_id && a.app_id == b.app_id
+	return true && a.upload_token == b.upload_token && a.routing_id == b.routing_id &&
+		a.app_id == b.app_id
 }
 
 [inline]
@@ -327,8 +327,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishupload_request(o CPartnerApps
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishupload_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUpload_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishupload_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishupload_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -359,7 +359,7 @@ pub fn cpartnerapps_finishuploadkvsign_response_unpack(buf []byte) ?CPartnerApps
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.signed_installscript = v
 				i = ii
 			}
@@ -421,8 +421,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploadkvsign_response(o CPart
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploadkvsign_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadKVSign_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishuploadkvsign_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishuploadkvsign_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -469,27 +469,27 @@ pub fn cpartnerapps_finishuploadlegacydrm_request_unpack(buf []byte) ?CPartnerAp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_token = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.tool_name = v
 				i = ii
 			}
@@ -510,9 +510,8 @@ pub fn cpartnerapps_finishuploadlegacydrm_request_unpack(buf []byte) ?CPartnerAp
 
 [inline]
 pub fn (a CPartnerApps_FinishUploadLegacyDRM_Request) eq(b CPartnerApps_FinishUploadLegacyDRM_Request) bool {
-	return true && a.upload_token == b.upload_token &&
-		a.routing_id == b.routing_id && a.app_id == b.app_id &&
-		a.flags == b.flags && a.tool_name == b.tool_name
+	return true && a.upload_token == b.upload_token && a.routing_id == b.routing_id &&
+		a.app_id == b.app_id && a.flags == b.flags && a.tool_name == b.tool_name
 }
 
 [inline]
@@ -553,8 +552,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploadlegacydrm_request(o CPa
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploadlegacydrm_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadLegacyDRM_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishuploadlegacydrm_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishuploadlegacydrm_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -585,7 +584,7 @@ pub fn cpartnerapps_finishuploadlegacydrm_response_unpack(buf []byte) ?CPartnerA
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_id = v
 				i = ii
 			}
@@ -647,8 +646,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploadlegacydrm_response(o CP
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploadlegacydrm_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadLegacyDRM_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishuploadlegacydrm_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishuploadlegacydrm_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -710,8 +709,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishupload_response(o CPartnerApp
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishupload_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUpload_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishupload_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishupload_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -758,27 +757,27 @@ pub fn cpartnerapps_finishuploaddepot_request_unpack(buf []byte) ?CPartnerApps_F
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_token = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.depot_id = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.build_flags = v
 				i = ii
 			}
@@ -799,9 +798,8 @@ pub fn cpartnerapps_finishuploaddepot_request_unpack(buf []byte) ?CPartnerApps_F
 
 [inline]
 pub fn (a CPartnerApps_FinishUploadDepot_Request) eq(b CPartnerApps_FinishUploadDepot_Request) bool {
-	return true && a.upload_token == b.upload_token &&
-		a.routing_id == b.routing_id && a.app_id == b.app_id &&
-		a.depot_id == b.depot_id && a.build_flags == b.build_flags
+	return true && a.upload_token == b.upload_token && a.routing_id == b.routing_id &&
+		a.app_id == b.app_id && a.depot_id == b.depot_id && a.build_flags == b.build_flags
 }
 
 [inline]
@@ -842,8 +840,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploaddepot_request(o CPartne
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploaddepot_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadDepot_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishuploaddepot_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishuploaddepot_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -905,8 +903,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finishuploaddepot_response(o CPartn
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finishuploaddepot_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FinishUploadDepot_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finishuploaddepot_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finishuploaddepot_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -941,12 +939,12 @@ pub fn cpartnerapps_getdepotbuildresult_request_unpack(buf []byte) ?CPartnerApps
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.upload_token = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.routing_id = v
 				i = ii
 			}
@@ -1008,8 +1006,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_getdepotbuildresult_request(o CPart
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_getdepotbuildresult_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_GetDepotBuildResult_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_getdepotbuildresult_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_getdepotbuildresult_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1044,12 +1042,12 @@ pub fn cpartnerapps_getdepotbuildresult_response_unpack(buf []byte) ?CPartnerApp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 				res.manifest_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.error_msg = v
 				i = ii
 			}
@@ -1111,8 +1109,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_getdepotbuildresult_response(o CPar
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_getdepotbuildresult_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_GetDepotBuildResult_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_getdepotbuildresult_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_getdepotbuildresult_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1143,7 +1141,7 @@ pub fn cpartnerapps_finddrmuploads_request_unpack(buf []byte) ?CPartnerApps_Find
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -1205,8 +1203,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finddrmuploads_request(o CPartnerAp
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finddrmuploads_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FindDRMUploads_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finddrmuploads_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finddrmuploads_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1265,42 +1263,42 @@ pub fn cpartnerapps_existingdrmupload_unpack(buf []byte) ?CPartnerApps_ExistingD
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.actor_id = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.supplied_name = v
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.flags = v
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.mod_type = v
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 				res.timestamp = v
 				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.orig_file_id = v
 				i = ii
 			}
@@ -1321,10 +1319,8 @@ pub fn cpartnerapps_existingdrmupload_unpack(buf []byte) ?CPartnerApps_ExistingD
 
 [inline]
 pub fn (a CPartnerApps_ExistingDRMUpload) eq(b CPartnerApps_ExistingDRMUpload) bool {
-	return true && a.file_id == b.file_id &&
-		a.app_id == b.app_id && a.actor_id == b.actor_id &&
-		a.supplied_name == b.supplied_name &&
-		a.flags == b.flags && a.mod_type == b.mod_type &&
+	return true && a.file_id == b.file_id && a.app_id == b.app_id && a.actor_id == b.actor_id &&
+		a.supplied_name == b.supplied_name && a.flags == b.flags && a.mod_type == b.mod_type &&
 		a.timestamp == b.timestamp && a.orig_file_id == b.orig_file_id
 }
 
@@ -1366,8 +1362,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_existingdrmupload(o CPartnerApps_Ex
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_existingdrmupload(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_ExistingDRMUpload) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_existingdrmupload_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_existingdrmupload_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1401,7 +1397,7 @@ pub fn cpartnerapps_finddrmuploads_response_unpack(buf []byte) ?CPartnerApps_Fin
 			1 {
 				// [packed=false]
 				ii, v := zzz_vproto_internal_unpack_cpartnerapps_existingdrmupload(cur_buf,
-					tag_wiretype.wire_type)?
+					tag_wiretype.wire_type) ?
 				res.uploads << v
 				i = ii
 			}
@@ -1463,8 +1459,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_finddrmuploads_response(o CPartnerA
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_finddrmuploads_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_FindDRMUploads_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_finddrmuploads_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_finddrmuploads_response_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1499,12 +1495,12 @@ pub fn cpartnerapps_download_request_unpack(buf []byte) ?CPartnerApps_Download_R
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.file_id = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -1566,8 +1562,8 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_download_request(o CPartnerApps_Dow
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_download_request(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_Download_Request) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_download_request_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_download_request_unpack(v) ?
 	return i, unpacked
 }
 
@@ -1602,12 +1598,12 @@ pub fn cpartnerapps_download_response_unpack(buf []byte) ?CPartnerApps_Download_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 				res.download_url = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.app_id = v
 				i = ii
 			}
@@ -1669,7 +1665,7 @@ pub fn zzz_vproto_internal_pack_cpartnerapps_download_response(o CPartnerApps_Do
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_cpartnerapps_download_response(buf []byte, tag_wiretype vproto.WireType) ?(int, CPartnerApps_Download_Response) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := cpartnerapps_download_response_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := cpartnerapps_download_response_unpack(v) ?
 	return i, unpacked
 }

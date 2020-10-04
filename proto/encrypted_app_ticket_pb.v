@@ -46,27 +46,27 @@ pub fn encryptedappticket_unpack(buf []byte) ?EncryptedAppTicket {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.ticket_version_no = v
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.crc_encryptedticket = v
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cb_encrypteduserdata = v
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 				res.cb_encrypted_appownershipticket = v
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type)?
+				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 				res.encrypted_ticket = v
 				i = ii
 			}
@@ -87,10 +87,8 @@ pub fn encryptedappticket_unpack(buf []byte) ?EncryptedAppTicket {
 
 [inline]
 pub fn (a EncryptedAppTicket) eq(b EncryptedAppTicket) bool {
-	return true && a.ticket_version_no == b.ticket_version_no &&
-		a.crc_encryptedticket == b.crc_encryptedticket &&
-		a.cb_encrypteduserdata == b.cb_encrypteduserdata &&
-		a.cb_encrypted_appownershipticket == b.cb_encrypted_appownershipticket &&
+	return true && a.ticket_version_no == b.ticket_version_no && a.crc_encryptedticket == b.crc_encryptedticket &&
+		a.cb_encrypteduserdata == b.cb_encrypteduserdata && a.cb_encrypted_appownershipticket == b.cb_encrypted_appownershipticket &&
 		a.encrypted_ticket == b.encrypted_ticket
 }
 
@@ -132,7 +130,7 @@ pub fn zzz_vproto_internal_pack_encryptedappticket(o EncryptedAppTicket, num u32
 // FOR INTERNAL USE ONLY
 [inline]
 pub fn zzz_vproto_internal_unpack_encryptedappticket(buf []byte, tag_wiretype vproto.WireType) ?(int, EncryptedAppTicket) {
-	i, v := vproto.unpack_message_field(buf, tag_wiretype)?
-	mut unpacked := encryptedappticket_unpack(v)?
+	i, v := vproto.unpack_message_field(buf, tag_wiretype) ?
+	mut unpacked := encryptedappticket_unpack(v) ?
 	return i, unpacked
 }
