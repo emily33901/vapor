@@ -31,53 +31,57 @@ pub fn steamid(x u64) SteamId {
 	return SteamId(x)
 }
 
+pub fn (s SteamId) u64() u64 {
+	return u64(s)
+} 
+
 // universe returns the steamid's universe
 pub fn (s SteamId) universe() Universe {
-	return Universe((u64(s) & steamid_universe_mask) >> steamid_universe_shift)
-	// return int(byte(u64(s) >> 56))
+	return Universe((s & steamid_universe_mask) >> steamid_universe_shift)
+	// return int(byte(s >> 56))
 }
 
 // set_universe sets the steamid's universe
-pub fn (mut s SteamId) set_universe(u Universe) {
-	unsafe {
-		(*s) &= ~steamid_universe_mask
-		(*s) |= ((u64(u) << steamid_universe_shift) & steamid_universe_mask)
-	}
+pub fn (mut s SteamId) set_universe(uni Universe) {
+	mut u := s.u64()
+	u &= ~steamid_universe_mask
+	u |= ((u64(uni) << steamid_universe_shift) & steamid_universe_mask)
+	s = u
 }
 
 // @type returns the steamid's type
 pub fn (s SteamId) @type() AccountType {
-	return AccountType((u64(s) & steamid_type_mask) >> steamid_type_shift)
+	return AccountType((s & steamid_type_mask) >> steamid_type_shift)
 }
 
 // set_type sets the steamid's type
 pub fn (mut s SteamId) set_type(a AccountType) {
-	unsafe {
-		(*s) &= ~steamid_type_mask
-		(*s) |= ((u64(a) << steamid_type_shift) & steamid_type_mask)
-	}
+	mut u := s.u64()
+	u &= ~steamid_type_mask
+	u |= ((u64(a) << steamid_type_shift) & steamid_type_mask)
+	s = u
 }
 
 // instance returns the steamid's instance
 pub fn (s SteamId) instance() int {
-	return int((u64(s) & steamid_instance_mask) >> steamid_instance_shift)
+	return int((s & steamid_instance_mask) >> steamid_instance_shift)
 }
 
 pub fn (mut s SteamId) set_instance(i int) {
-	unsafe {
-		(*s) &= ~steamid_instance_mask
-		(*s) |= ((u64(i) << steamid_instance_shift) & steamid_instance_mask)
-	}
+	mut u := s.u64()
+	u &= ~steamid_instance_mask
+	u |= ((u64(i) << steamid_instance_shift) & steamid_instance_mask)
+	s = u
 }
 
 // id returns the account id
 pub fn (s SteamId) id() u32 {
-	return u32((u64(s) & steamid_id_mask) >> steamid_id_shift)
+	return u32((s & steamid_id_mask) >> steamid_id_shift)
 }
 
 pub fn (mut s SteamId) set_id(i u32) {
-	unsafe {
-		(*s) &= ~steamid_id_mask
-		(*s) |= ((u64(i) << steamid_id_shift) & steamid_id_mask)
-	}
+	mut u := s.u64()
+	u &= ~steamid_id_mask
+	u |= ((u64(i) << steamid_id_shift) & steamid_id_mask)
+	s = u
 }

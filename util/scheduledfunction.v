@@ -8,7 +8,7 @@ pub interface Scheduled {
 }
 
 fn scheduled_function_runner(s Scheduled, d time.Duration) {
-	time.sleep_ms(d.milliseconds())
+	time.sleep_ms(int(d.milliseconds()))
 	for {
 		new_delay := s.run() or {
 			// TODO This will swallow errors but that would
@@ -16,7 +16,7 @@ fn scheduled_function_runner(s Scheduled, d time.Duration) {
 			// so I think its fine
 			break
 		}
-		time.sleep_ms(new_delay.milliseconds())
+		time.sleep_ms(int(new_delay.milliseconds()))
 	}
 }
 

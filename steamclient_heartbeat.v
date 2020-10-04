@@ -4,6 +4,7 @@ import proto
 import time
 
 struct HeartbeatFn {
+mut:
 	s &SteamClient
 }
 

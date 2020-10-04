@@ -4,6 +4,10 @@ import proto
 import util
 import time
 
+const (
+	tcpheader_magic = 0x31305456
+)
+
 struct TcpHeader {
 mut:
 	size  int
@@ -53,7 +57,7 @@ mut:
 
 // new_steamclient creates a new steamclient
 pub fn new_steamclient() &SteamClient {
-	s := &SteamClient{
+	mut s := &SteamClient{
 		encryption: &EncryptionHandler{}
 		multi_handler: &MultiHandler{}
 		friends: &SteamFriends{}
@@ -94,14 +98,16 @@ pub fn (mut s SteamClient) connect() ? {
 	if s.connected {
 		return none
 	}
-	// cm := hardcoded_cm()
-	cm := random_cm()
+	cm := hardcoded_cm()
+	// cm := random_cm() or {
+	// 	return error('Unable to find a valid cm')
+	// }
 	s.client = new_tcp_client(cm)?
 	s.connected = true
 }
 
 // connected returns whether the client is connected to a CM
-pub fn (mut s SteamClient) connected() bool {
+pub fn (s SteamClient) connected() bool {
 	return s.encryption.encrypted == true
 }
 
@@ -124,12 +130,14 @@ pub fn (mut s SteamClient) frame() ? {
 fn (mut s SteamClient) read_packet() ?Packet {
 	mut header_buffer := []byte{len: int(sizeof(TcpHeader))}
 	defer {
-		header_buffer.free()
+		unsafe {
+			header_buffer.free()
+		}
 	}
 	mut header := &TcpHeader(header_buffer.data)
-	s.client.read_into(header_buffer)?
+	s.client.read_into(mut header_buffer)?
 	mut body := []byte{len: header.size}
-	s.client.read_into(body)?
+	s.client.read_into(mut body)?
 	return s.encryption.decrypt_packet(Packet{header, body})
 }
 
@@ -138,7 +146,9 @@ fn (mut s SteamClient) read_packet() ?Packet {
 fn (mut s SteamClient) process_and_dispatch_packet(p Packet) ? {
 	if msg := s.process_packet(p) {
 		s.dispatch(msg)?
-		msg.body.free()
+		unsafe {
+			msg.body.free()
+		}
 	}
 }
 
@@ -206,12 +216,14 @@ fn (mut s SteamClient) handle_callback(cb Callback) ? {
 
 // write_packet writes a packet to the CM
 fn (mut s SteamClient) write_packet(data []byte) ? {
-	mut p := Packet{TcpHeader{data.len}, data}
+	mut p := Packet{TcpHeader{data.len, tcpheader_magic}, data}
 	p = s.encryption.encrypt_packet(p)?
 	mut body := p.body
 	pad := []byte{len: 8, init: 0}
 	defer {
-		pad.free()
+		unsafe {
+			pad.free()
+		}
 	}
 	body.prepend(pad)
 	mut packet_header := &TcpHeader(body.data)

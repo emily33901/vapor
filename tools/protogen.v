@@ -23,7 +23,7 @@ fn format_file(path string) {
 
 fn main() {
 	println('Generating protobufs...')
-	exe_file := find_abs_path_of_executable(os.executable())?
+	exe_file := os.find_abs_path_of_executable(os.executable())?
 	exe_path := exe_file.all_before_last(os.path_separator)
 	println('exe path is $exe_path')
 	protobufs_location := os.real_path('$exe_path/../resources/protobufs/steam/')

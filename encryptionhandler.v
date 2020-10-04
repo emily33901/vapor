@@ -51,10 +51,10 @@ fn (mut e EncryptionHandler) decrypt_packet(p Packet) ?Packet {
 	mut iv := []byte{len: 16}
 	// free the old packet body and the iv when we are finished with them
 	defer {
-		p.body.free()
-	}
-	defer {
-		iv.free()
+		unsafe {
+			p.body.free()
+			iv.free()
+		}
 	}
 	aes.ecb_decrypt_into(e.session_key, p.body[..16], mut iv)
 	mut output := []byte{len: p.body.len - 16}
@@ -78,8 +78,10 @@ fn (mut e EncryptionHandler) encrypt_packet(p Packet) ?Packet {
 	mut iv := generate_iv()
 	// free the old packet body and the iv when we are finished with them
 	defer {
-		p.body.free()
-		iv.free()
+		unsafe {
+			p.body.free()
+			iv.free()
+		}
 	}
 	aes.ecb_encrypt_into(e.session_key, iv, mut output[..16])
 	aes.cbc_encrypt_into(e.session_key, iv, mut @in, mut output[16..])
