@@ -68,28 +68,28 @@ enum FriendRelationship {
 
 [flag]
 enum AccountFlags {
-	normal_user = 0
-	persona_name_set = 1
-	unbannable = 2
-	password_set = 4
-	support = 8
-	admin = 16
-	supervisor = 32
-	app_editor = 64
-	hwidset = 128
-	personal_qaset = 256
-	vac_beta = 512
-	debug = 1024
-	disabled = 2048
-	limited_user = 4096
-	limited_user_force = 8192
-	email_validated = 16384
-	marketing_treatment = 32768
-	ogginvite_opt_out = 65536
-	force_password_change = 131072
-	force_email_verification = 262144
-	logon_extra_security = 524288
-	logon_extra_security_disabled = 1048576
+	normal_user
+	persona_name_set
+	unbannable
+	password_set
+	support
+	admin
+	supervisor
+	app_editor
+	hwidset
+	personal_qaset
+	vac_beta
+	debug
+	disabled
+	limited_user
+	limited_user_force
+	email_validated
+	marketing_treatment
+	ogginvite_opt_out
+	force_password_change
+	force_email_verification
+	logon_extra_security
+	logon_extra_security_disabled
 }
 
 enum EClanPermission {

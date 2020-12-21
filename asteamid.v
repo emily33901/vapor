@@ -46,7 +46,7 @@ pub fn (mut s SteamId) set_universe(uni Universe) {
 	mut u := s.u64()
 	u &= ~steamid_universe_mask
 	u |= ((u64(uni) << steamid_universe_shift) & steamid_universe_mask)
-	s = u
+	unsafe { *s = u }
 }
 
 // @type returns the steamid's type
@@ -59,7 +59,7 @@ pub fn (mut s SteamId) set_type(a AccountType) {
 	mut u := s.u64()
 	u &= ~steamid_type_mask
 	u |= ((u64(a) << steamid_type_shift) & steamid_type_mask)
-	s = u
+	unsafe { *s = u }
 }
 
 // instance returns the steamid's instance
@@ -71,7 +71,7 @@ pub fn (mut s SteamId) set_instance(i int) {
 	mut u := s.u64()
 	u &= ~steamid_instance_mask
 	u |= ((u64(i) << steamid_instance_shift) & steamid_instance_mask)
-	s = u
+	unsafe { *s = u }
 }
 
 // id returns the account id
@@ -83,5 +83,5 @@ pub fn (mut s SteamId) set_id(i u32) {
 	mut u := s.u64()
 	u &= ~steamid_id_mask
 	u |= ((u64(i) << steamid_id_shift) & steamid_id_mask)
-	s = u
+	unsafe { *s = u }
 }

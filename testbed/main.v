@@ -45,6 +45,9 @@ fn (mut t Testbed) handle_callback(cb vapor.Callback) ? {
 		}
 		vapor.DisconnectedCallback {
 			println('Disconnected!')
+			// sleep some time so that we dont choke the network
+			// and get time banned
+			time.sleep_ms(5000)
 			// reconnect
 			t.s.connect()?
 		}
@@ -63,7 +66,7 @@ fn (mut t Testbed) handle_callback(cb vapor.Callback) ? {
 	}
 }
 
-fn (mut t Testbed) handle_logon(cb &vapor.LoggedOnCallback) {
+fn (mut t Testbed) handle_logon(cb vapor.LoggedOnCallback) {
 	mut user := t.s.user()
 	if cb.result == .ok {
 		println('Logged on successfully!')

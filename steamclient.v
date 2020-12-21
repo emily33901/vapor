@@ -135,9 +135,9 @@ fn (mut s SteamClient) read_packet() ?Packet {
 		}
 	}
 	mut header := &TcpHeader(header_buffer.data)
-	s.client.read_into(mut header_buffer)?
+	s.client.read(mut header_buffer)?
 	mut body := []byte{len: header.size}
-	s.client.read_into(mut body)?
+	s.client.read(mut body)?
 	return s.encryption.decrypt_packet(Packet{header, body})
 }
 
