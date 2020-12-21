@@ -30,9 +30,7 @@ pub fn ceconmarket_ismarketplaceallowed_request_unpack(buf []byte) ?CEconMarket_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.webcookie = v
-				i = ii
+				i, res.webcookie = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -148,39 +146,28 @@ pub fn ceconmarket_ismarketplaceallowed_response_unpack(buf []byte) ?CEconMarket
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.allowed = v
-				i = ii
+				i, res.allowed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.reason = v
-				i = ii
+				i, res.reason = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.allowed_at_time = v
-				i = ii
+				i, res.allowed_at_time = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamguard_required_days = v
-				i = ii
+				i, res.steamguard_required_days = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.forms_requested = v
-				i = ii
+				i, res.forms_requested = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.forms_require_verification = v
-				i = ii
+				i, res.forms_require_verification = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.new_device_cooldown_days = v
-				i = ii
+				i, res.new_device_cooldown_days = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

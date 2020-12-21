@@ -30,9 +30,7 @@ pub fn ctimedtrial_gettimeremaining_request_unpack(buf []byte) ?CTimedTrial_GetT
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -128,14 +126,10 @@ pub fn ctimedtrial_gettimeremaining_response_unpack(buf []byte) ?CTimedTrial_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_played = v
-				i = ii
+				i, res.seconds_played = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_allowed = v
-				i = ii
+				i, res.seconds_allowed = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -231,14 +225,10 @@ pub fn ctimedtrial_recordplaytime_request_unpack(buf []byte) ?CTimedTrial_Record
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_played = v
-				i = ii
+				i, res.seconds_played = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -334,14 +324,10 @@ pub fn ctimedtrial_recordplaytime_response_unpack(buf []byte) ?CTimedTrial_Recor
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_played = v
-				i = ii
+				i, res.seconds_played = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_allowed = v
-				i = ii
+				i, res.seconds_allowed = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -433,9 +419,7 @@ pub fn ctimedtrial_resetplaytime_request_unpack(buf []byte) ?CTimedTrial_ResetPl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -531,14 +515,10 @@ pub fn ctimedtrial_resetplaytime_response_unpack(buf []byte) ?CTimedTrial_ResetP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_played = v
-				i = ii
+				i, res.seconds_played = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_allowed = v
-				i = ii
+				i, res.seconds_allowed = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

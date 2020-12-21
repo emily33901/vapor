@@ -30,9 +30,7 @@ pub fn ccloud_getuploadserverinfo_request_unpack(buf []byte) ?CCloud_GetUploadSe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -124,9 +122,7 @@ pub fn ccloud_getuploadserverinfo_response_unpack(buf []byte) ?CCloud_GetUploadS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_url = v
-				i = ii
+				i, res.server_url = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -249,29 +245,19 @@ pub fn ccloud_beginhttpupload_request_unpack(buf []byte) ?CCloud_BeginHTTPUpload
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_size = v
-				i = ii
+				i, res.file_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_sha = v
-				i = ii
+				i, res.file_sha = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.is_public = v
-				i = ii
+				i, res.is_public = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
 				// [packed=false]
@@ -387,14 +373,10 @@ pub fn ccloud_beginhttpupload_response_httpheaders_unpack(buf []byte) ?CCloud_Be
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -508,29 +490,19 @@ pub fn ccloud_beginhttpupload_response_unpack(buf []byte) ?CCloud_BeginHTTPUploa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ugcid = v
-				i = ii
+				i, res.ugcid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_host = v
-				i = ii
+				i, res.url_host = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_path = v
-				i = ii
+				i, res.url_path = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.use_https = v
-				i = ii
+				i, res.use_https = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
 				// [packed=false]
@@ -642,24 +614,16 @@ pub fn ccloud_commithttpupload_request_unpack(buf []byte) ?CCloud_CommitHTTPUplo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.transfer_succeeded = v
-				i = ii
+				i, res.transfer_succeeded = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_sha = v
-				i = ii
+				i, res.file_sha = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -752,9 +716,7 @@ pub fn ccloud_commithttpupload_response_unpack(buf []byte) ?CCloud_CommitHTTPUpl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_committed = v
-				i = ii
+				i, res.file_committed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -850,14 +812,10 @@ pub fn ccloud_getfiledetails_request_unpack(buf []byte) ?CCloud_GetFileDetails_R
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ugcid = v
-				i = ii
+				i, res.ugcid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -986,44 +944,28 @@ pub fn ccloud_userfile_unpack(buf []byte) ?CCloud_UserFile {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ugcid = v
-				i = ii
+				i, res.ugcid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_size = v
-				i = ii
+				i, res.file_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url = v
-				i = ii
+				i, res.url = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_creator = v
-				i = ii
+				i, res.steamid_creator = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.flags = v
-				i = ii
+				i, res.flags = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
 				// [packed=false]
@@ -1032,9 +974,7 @@ pub fn ccloud_userfile_unpack(buf []byte) ?CCloud_UserFile {
 				i = ii
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_sha = v
-				i = ii
+				i, res.file_sha = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1129,9 +1069,7 @@ pub fn ccloud_getfiledetails_response_unpack(buf []byte) ?CCloud_GetFileDetails_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_ccloud_userfile(cur_buf, tag_wiretype.wire_type) ?
-				res.details = v
-				i = ii
+				i, res.details = zzz_vproto_internal_unpack_ccloud_userfile(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1235,24 +1173,16 @@ pub fn ccloud_enumerateuserfiles_request_unpack(buf []byte) ?CCloud_EnumerateUse
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.extended_details = v
-				i = ii
+				i, res.extended_details = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.count = v
-				i = ii
+				i, res.count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.start_index = v
-				i = ii
+				i, res.start_index = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1356,9 +1286,7 @@ pub fn ccloud_enumerateuserfiles_response_unpack(buf []byte) ?CCloud_EnumerateUs
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.total_files = v
-				i = ii
+				i, res.total_files = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1454,14 +1382,10 @@ pub fn ccloud_delete_request_unpack(buf []byte) ?CCloud_Delete_Request {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1683,14 +1607,10 @@ pub fn ccloud_getclientencryptionkey_response_unpack(buf []byte) ?CCloud_GetClie
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key = v
-				i = ii
+				i, res.key = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.crc = v
-				i = ii
+				i, res.crc = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1806,39 +1726,25 @@ pub fn ccloud_cdnreport_notification_unpack(buf []byte) ?CCloud_CDNReport_Notifi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url = v
-				i = ii
+				i, res.url = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.success = v
-				i = ii
+				i, res.success = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.http_status_code = v
-				i = ii
+				i, res.http_status_code = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.expected_bytes = v
-				i = ii
+				i, res.expected_bytes = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.received_bytes = v
-				i = ii
+				i, res.received_bytes = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.duration = v
-				i = ii
+				i, res.duration = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1976,64 +1882,40 @@ pub fn ccloud_externalstoragetransferreport_notification_unpack(buf []byte) ?CCl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.host = v
-				i = ii
+				i, res.host = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.path = v
-				i = ii
+				i, res.path = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.is_upload = v
-				i = ii
+				i, res.is_upload = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.success = v
-				i = ii
+				i, res.success = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.http_status_code = v
-				i = ii
+				i, res.http_status_code = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bytes_expected = v
-				i = ii
+				i, res.bytes_expected = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bytes_actual = v
-				i = ii
+				i, res.bytes_actual = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.duration_ms = v
-				i = ii
+				i, res.duration_ms = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cellid = v
-				i = ii
+				i, res.cellid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.proxied = v
-				i = ii
+				i, res.proxied = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ipv6_local = v
-				i = ii
+				i, res.ipv6_local = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ipv6_remote = v
-				i = ii
+				i, res.ipv6_remote = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2168,59 +2050,37 @@ pub fn ccloud_clientbeginfileupload_request_unpack(buf []byte) ?CCloud_ClientBeg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_size = v
-				i = ii
+				i, res.file_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.raw_file_size = v
-				i = ii
+				i, res.raw_file_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_sha = v
-				i = ii
+				i, res.file_sha = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_stamp = v
-				i = ii
+				i, res.time_stamp = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.platforms_to_sync = v
-				i = ii
+				i, res.platforms_to_sync = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cell_id = v
-				i = ii
+				i, res.cell_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_encrypt = v
-				i = ii
+				i, res.can_encrypt = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.is_shared_file = v
-				i = ii
+				i, res.is_shared_file = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.realm = v
-				i = ii
+				i, res.realm = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2319,14 +2179,10 @@ pub fn clientcloudfileuploadblockdetails_httpheaders_unpack(buf []byte) ?ClientC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2452,24 +2308,16 @@ pub fn clientcloudfileuploadblockdetails_unpack(buf []byte) ?ClientCloudFileUplo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_host = v
-				i = ii
+				i, res.url_host = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_path = v
-				i = ii
+				i, res.url_path = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.use_https = v
-				i = ii
+				i, res.use_https = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.http_method = v
-				i = ii
+				i, res.http_method = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
 				// [packed=false]
@@ -2479,24 +2327,16 @@ pub fn clientcloudfileuploadblockdetails_unpack(buf []byte) ?ClientCloudFileUplo
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.block_offset = v
-				i = ii
+				i, res.block_offset = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.block_length = v
-				i = ii
+				i, res.block_length = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.explicit_body_data = v
-				i = ii
+				i, res.explicit_body_data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.may_parallelize = v
-				i = ii
+				i, res.may_parallelize = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2596,9 +2436,7 @@ pub fn ccloud_clientbeginfileupload_response_unpack(buf []byte) ?CCloud_ClientBe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.encrypt_file = v
-				i = ii
+				i, res.encrypt_file = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -2709,24 +2547,16 @@ pub fn ccloud_clientcommitfileupload_request_unpack(buf []byte) ?CCloud_ClientCo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.transfer_succeeded = v
-				i = ii
+				i, res.transfer_succeeded = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_sha = v
-				i = ii
+				i, res.file_sha = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2819,9 +2649,7 @@ pub fn ccloud_clientcommitfileupload_response_unpack(buf []byte) ?CCloud_ClientC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_committed = v
-				i = ii
+				i, res.file_committed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2921,19 +2749,13 @@ pub fn ccloud_clientfiledownload_request_unpack(buf []byte) ?CCloud_ClientFileDo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.realm = v
-				i = ii
+				i, res.realm = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3029,14 +2851,10 @@ pub fn ccloud_clientfiledownload_response_httpheaders_unpack(buf []byte) ?CCloud
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3170,49 +2988,31 @@ pub fn ccloud_clientfiledownload_response_unpack(buf []byte) ?CCloud_ClientFileD
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.file_size = v
-				i = ii
+				i, res.file_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.raw_file_size = v
-				i = ii
+				i, res.raw_file_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sha_file = v
-				i = ii
+				i, res.sha_file = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_stamp = v
-				i = ii
+				i, res.time_stamp = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.is_explicit_delete = v
-				i = ii
+				i, res.is_explicit_delete = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_host = v
-				i = ii
+				i, res.url_host = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_path = v
-				i = ii
+				i, res.url_path = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.use_https = v
-				i = ii
+				i, res.use_https = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
 				// [packed=false]
@@ -3222,9 +3022,7 @@ pub fn ccloud_clientfiledownload_response_unpack(buf []byte) ?CCloud_ClientFileD
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.encrypted = v
-				i = ii
+				i, res.encrypted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3327,19 +3125,13 @@ pub fn ccloud_clientdeletefile_request_unpack(buf []byte) ?CCloud_ClientDeleteFi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filename = v
-				i = ii
+				i, res.filename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.is_explicit_delete = v
-				i = ii
+				i, res.is_explicit_delete = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3498,14 +3290,10 @@ pub fn ccloud_clientconflictresolution_notification_unpack(buf []byte) ?CCloud_C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chose_local_files = v
-				i = ii
+				i, res.chose_local_files = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3668,19 +3456,13 @@ pub fn ccloud_enumerateuserapps_response_apps_unpack(buf []byte) ?CCloud_Enumera
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.totalcount = v
-				i = ii
+				i, res.totalcount = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.totalsize = v
-				i = ii
+				i, res.totalsize = vproto.unpack_int64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

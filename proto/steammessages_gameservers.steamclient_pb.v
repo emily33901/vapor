@@ -34,14 +34,10 @@ pub fn cgameservers_getserverlist_request_unpack(buf []byte) ?CGameServers_GetSe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.filter = v
-				i = ii
+				i, res.filter = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.limit = v
-				i = ii
+				i, res.limit = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -201,94 +197,58 @@ pub fn cgameservers_getserverlist_response_server_unpack(buf []byte) ?CGameServe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.addr = v
-				i = ii
+				i, res.addr = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gameport = v
-				i = ii
+				i, res.gameport = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.specport = v
-				i = ii
+				i, res.specport = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gamedir = v
-				i = ii
+				i, res.gamedir = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.version = v
-				i = ii
+				i, res.version = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.product = v
-				i = ii
+				i, res.product = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.region = v
-				i = ii
+				i, res.region = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.players = v
-				i = ii
+				i, res.players = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.max_players = v
-				i = ii
+				i, res.max_players = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bots = v
-				i = ii
+				i, res.bots = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.map = v
-				i = ii
+				i, res.map = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.secure = v
-				i = ii
+				i, res.secure = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.dedicated = v
-				i = ii
+				i, res.dedicated = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.os = v
-				i = ii
+				i, res.os = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			18 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gametype = v
-				i = ii
+				i, res.gametype = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -582,14 +542,10 @@ pub fn cgameservers_ipswithsteamids_response_server_unpack(buf []byte) ?CGameSer
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.addr = v
-				i = ii
+				i, res.addr = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

@@ -85,14 +85,10 @@ pub fn caccounthardware_registersteamcontroller_request_unpack(buf []byte) ?CAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_code = v
-				i = ii
+				i, res.controller_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -251,14 +247,10 @@ pub fn caccounthardware_completesteamcontrollerregistration_request_unpack(buf [
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_code = v
-				i = ii
+				i, res.controller_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -417,14 +409,10 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_request_unpack(buf []byt
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_code = v
-				i = ii
+				i, res.controller_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -520,14 +508,10 @@ pub fn caccounthardware_queryaccountsregisteredtoserial_accounts_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.registration_complete = v
-				i = ii
+				i, res.registration_complete = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -725,19 +709,13 @@ pub fn caccounthardware_steamcontrollersetconfig_controllerconfig_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appidorname = v
-				i = ii
+				i, res.appidorname = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.publishedfileid = v
-				i = ii
+				i, res.publishedfileid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.templatename = v
-				i = ii
+				i, res.templatename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -852,19 +830,13 @@ pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_code = v
-				i = ii
+				i, res.controller_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
 				// [packed=false]
@@ -874,14 +846,10 @@ pub fn caccounthardware_steamcontrollersetconfig_request_unpack(buf []byte) ?CAc
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_type = v
-				i = ii
+				i, res.controller_type = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.only_for_this_serial = v
-				i = ii
+				i, res.only_for_this_serial = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1058,34 +1026,22 @@ pub fn caccounthardware_steamcontrollergetconfig_request_unpack(buf []byte) ?CAc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_code = v
-				i = ii
+				i, res.controller_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appidorname = v
-				i = ii
+				i, res.appidorname = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_type = v
-				i = ii
+				i, res.controller_type = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.only_for_this_serial = v
-				i = ii
+				i, res.only_for_this_serial = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1191,24 +1147,16 @@ pub fn caccounthardware_steamcontrollergetconfig_controllerconfig_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appidorname = v
-				i = ii
+				i, res.appidorname = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.publishedfileid = v
-				i = ii
+				i, res.publishedfileid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.templatename = v
-				i = ii
+				i, res.templatename = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1407,19 +1355,13 @@ pub fn caccounthardware_deregistersteamcontroller_request_unpack(buf []byte) ?CA
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_code = v
-				i = ii
+				i, res.controller_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1583,19 +1525,13 @@ pub fn caccounthardware_setpersonalizationfile_request_unpack(buf []byte) ?CAcco
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.publishedfileid = v
-				i = ii
+				i, res.publishedfileid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1755,14 +1691,10 @@ pub fn caccounthardware_getpersonalizationfile_request_unpack(buf []byte) ?CAcco
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1854,9 +1786,7 @@ pub fn caccounthardware_getpersonalizationfile_response_unpack(buf []byte) ?CAcc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.publishedfileid = v
-				i = ii
+				i, res.publishedfileid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1952,14 +1882,10 @@ pub fn caccounthardware_vrcompatibilitycheck_request_pair_unpack(buf []byte) ?CA
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key = v
-				i = ii
+				i, res.key = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2057,9 +1983,7 @@ pub fn caccounthardware_vrcompatibilitycheck_request_unpack(buf []byte) ?CAccoun
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.product_name = v
-				i = ii
+				i, res.product_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -2162,14 +2086,10 @@ pub fn caccounthardware_vrcompatibilitycheck_response_pair_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key = v
-				i = ii
+				i, res.key = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2269,19 +2189,13 @@ pub fn caccounthardware_vrcompatibilitycheck_response_componentdisplay_unpack(bu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.image = v
-				i = ii
+				i, res.image = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2500,29 +2414,22 @@ pub fn caccounthardware_registervalveindexcomponent_request_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serial_number = v
-				i = ii
+				i, res.serial_number = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.manufacturer_serial_number = v
-				i = ii
+				i, res.manufacturer_serial_number = vproto.unpack_string_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.component_code = v
-				i = ii
+				i, res.component_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_evalveindexcomponent(cur_buf, tag_wiretype.wire_type) ?
-				res.component_type = v
-				i = ii
+				i, res.component_type = zzz_vproto_internal_unpack_evalveindexcomponent(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.estimated_time_registered = v
-				i = ii
+				i, res.estimated_time_registered = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

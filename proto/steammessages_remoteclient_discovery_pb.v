@@ -434,30 +434,20 @@ pub fn cmsgremoteclientbroadcastheader_unpack(buf []byte) ?CMsgRemoteClientBroad
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.client_id = v
-				i = ii
+				i, res.client_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_eremoteclientbroadcastmsg(cur_buf,
+				i, res.msg_type = zzz_vproto_internal_unpack_eremoteclientbroadcastmsg(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.msg_type = v
-				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.instance_id = v
-				i = ii
+				i, res.instance_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_id = v
-				i = ii
+				i, res.device_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_token = v
-				i = ii
+				i, res.device_token = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -554,14 +544,10 @@ pub fn cmsgremoteclientbroadcaststatus_user_unpack(buf []byte) ?CMsgRemoteClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.auth_key_id = v
-				i = ii
+				i, res.auth_key_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -732,39 +718,25 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.version = v
-				i = ii
+				i, res.version = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.min_version = v
-				i = ii
+				i, res.min_version = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.connect_port = v
-				i = ii
+				i, res.connect_port = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hostname = v
-				i = ii
+				i, res.hostname = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enabled_services = v
-				i = ii
+				i, res.enabled_services = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ostype = v
-				i = ii
+				i, res.ostype = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.is64bit = v
-				i = ii
+				i, res.is64bit = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
 				// [packed=false]
@@ -774,24 +746,16 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.euniverse = v
-				i = ii
+				i, res.euniverse = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.screen_locked = v
-				i = ii
+				i, res.screen_locked = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.games_running = v
-				i = ii
+				i, res.games_running = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			15 {
 				// [packed=false]
@@ -800,24 +764,16 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.download_lan_peer_group = v
-				i = ii
+				i, res.download_lan_peer_group = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.broadcasting_active = v
-				i = ii
+				i, res.broadcasting_active = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			18 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.vr_active = v
-				i = ii
+				i, res.vr_active = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			19 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.content_cache_port = v
-				i = ii
+				i, res.content_cache_port = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			20 {
 				// [packed=false]
@@ -826,14 +782,10 @@ pub fn cmsgremoteclientbroadcaststatus_unpack(buf []byte) ?CMsgRemoteClientBroad
 				i = ii
 			}
 			21 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.public_ip_address = v
-				i = ii
+				i, res.public_ip_address = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			22 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.remoteplay_active = v
-				i = ii
+				i, res.remoteplay_active = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -937,9 +889,7 @@ pub fn cmsgremoteclientbroadcastdiscovery_unpack(buf []byte) ?CMsgRemoteClientBr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seq_num = v
-				i = ii
+				i, res.seq_num = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -1167,50 +1117,32 @@ pub fn cmsgremotedeviceauthorizationrequest_ckeyescrow_ticket_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.password = v
-				i = ii
+				i, res.password = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.identifier = v
-				i = ii
+				i, res.identifier = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.payload = v
-				i = ii
+				i, res.payload = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage(cur_buf,
+				i, res.usage = zzz_vproto_internal_unpack_cmsgremotedeviceauthorizationrequest_ekeyescrowusage(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.usage = v
-				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_name = v
-				i = ii
+				i, res.device_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_model = v
-				i = ii
+				i, res.device_model = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_serial = v
-				i = ii
+				i, res.device_serial = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_provisioning_id = v
-				i = ii
+				i, res.device_provisioning_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1357,19 +1289,13 @@ pub fn cmsgremotedeviceauthorizationrequest_unpack(buf []byte) ?CMsgRemoteDevice
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_token = v
-				i = ii
+				i, res.device_token = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_name = v
-				i = ii
+				i, res.device_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.encrypted_request = v
-				i = ii
+				i, res.encrypted_request = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1527,15 +1453,11 @@ pub fn cmsgremotedeviceauthorizationresponse_unpack(buf []byte) ?CMsgRemoteDevic
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_eremotedeviceauthorizationresult(cur_buf,
+				i, res.result = zzz_vproto_internal_unpack_eremotedeviceauthorizationresult(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.result = v
-				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1631,14 +1553,10 @@ pub fn cmsgremotedevicestreamingrequest_reservedgamepad_unpack(buf []byte) ?CMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_type = v
-				i = ii
+				i, res.controller_type = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_subtype = v
-				i = ii
+				i, res.controller_subtype = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1807,69 +1725,43 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.request_id = v
-				i = ii
+				i, res.request_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_resolution_x = v
-				i = ii
+				i, res.maximum_resolution_x = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_resolution_y = v
-				i = ii
+				i, res.maximum_resolution_y = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.audio_channel_count = v
-				i = ii
+				i, res.audio_channel_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_version = v
-				i = ii
+				i, res.device_version = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.stream_desktop = v
-				i = ii
+				i, res.stream_desktop = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_token = v
-				i = ii
+				i, res.device_token = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.pin = v
-				i = ii
+				i, res.pin = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_video_streaming = v
-				i = ii
+				i, res.enable_video_streaming = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_audio_streaming = v
-				i = ii
+				i, res.enable_audio_streaming = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_input_streaming = v
-				i = ii
+				i, res.enable_input_streaming = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.network_test = v
-				i = ii
+				i, res.network_test = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.client_id = v
-				i = ii
+				i, res.client_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
 				// [packed=false]
@@ -1878,19 +1770,14 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 				i = ii
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.restricted = v
-				i = ii
+				i, res.restricted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			16 {
-				ii, v := zzz_vproto_internal_unpack_estreamdeviceformfactor(cur_buf, tag_wiretype.wire_type) ?
-				res.form_factor = v
-				i = ii
+				i, res.form_factor = zzz_vproto_internal_unpack_estreamdeviceformfactor(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gamepad_count = v
-				i = ii
+				i, res.gamepad_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			18 {
 				// [packed=false]
@@ -1900,14 +1787,11 @@ pub fn cmsgremotedevicestreamingrequest_unpack(buf []byte) ?CMsgRemoteDeviceStre
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gameid = v
-				i = ii
+				i, res.gameid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			20 {
-				ii, v := zzz_vproto_internal_unpack_estreaminterface(cur_buf, tag_wiretype.wire_type) ?
-				res.stream_interface = v
-				i = ii
+				i, res.stream_interface = zzz_vproto_internal_unpack_estreaminterface(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2004,9 +1888,7 @@ pub fn cmsgremotedevicestreamingcancelrequest_unpack(buf []byte) ?CMsgRemoteDevi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.request_id = v
-				i = ii
+				i, res.request_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2100,14 +1982,10 @@ pub fn cmsgremotedevicestreamingprogress_unpack(buf []byte) ?CMsgRemoteDeviceStr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.request_id = v
-				i = ii
+				i, res.request_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.progress = v
-				i = ii
+				i, res.progress = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2219,40 +2097,27 @@ pub fn cmsgremotedevicestreamingresponse_unpack(buf []byte) ?CMsgRemoteDeviceStr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.request_id = v
-				i = ii
+				i, res.request_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_eremotedevicestreamingresult(cur_buf,
+				i, res.result = zzz_vproto_internal_unpack_eremotedevicestreamingresult(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.result = v
-				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.port = v
-				i = ii
+				i, res.port = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.encrypted_session_key = v
-				i = ii
+				i, res.encrypted_session_key = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_estreamtransport(cur_buf, tag_wiretype.wire_type) ?
-				res.transport = v
-				i = ii
+				i, res.transport = zzz_vproto_internal_unpack_estreamtransport(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.relay_server = v
-				i = ii
+				i, res.relay_server = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cert = v
-				i = ii
+				i, res.cert = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2348,14 +2213,10 @@ pub fn cmsgremotedeviceproofrequest_unpack(buf []byte) ?CMsgRemoteDeviceProofReq
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.challenge = v
-				i = ii
+				i, res.challenge = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.request_id = v
-				i = ii
+				i, res.request_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2449,14 +2310,10 @@ pub fn cmsgremotedeviceproofresponse_unpack(buf []byte) ?CMsgRemoteDeviceProofRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.response = v
-				i = ii
+				i, res.response = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.request_id = v
-				i = ii
+				i, res.request_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2552,14 +2409,10 @@ pub fn cmsgremotedevicestreamtransportsignal_unpack(buf []byte) ?CMsgRemoteDevic
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.token = v
-				i = ii
+				i, res.token = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.payload = v
-				i = ii
+				i, res.payload = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

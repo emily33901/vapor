@@ -97,29 +97,19 @@ pub fn lobbymatchmakinglegacy_getlobbystatus_request_unpack(buf []byte) ?LobbyMa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.app_id = v
-				i = ii
+				i, res.app_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_lobby = v
-				i = ii
+				i, res.steamid_lobby = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.claim_ownership = v
-				i = ii
+				i, res.claim_ownership = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.claim_membership = v
-				i = ii
+				i, res.claim_membership = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.version_num = v
-				i = ii
+				i, res.version_num = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -220,19 +210,14 @@ pub fn lobbymatchmakinglegacy_getlobbystatus_response_unpack(buf []byte) ?LobbyM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.app_id = v
-				i = ii
+				i, res.app_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_lobby = v
-				i = ii
+				i, res.steamid_lobby = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_elobbystatus(cur_buf, tag_wiretype.wire_type) ?
-				res.lobby_status = v
-				i = ii
+				i, res.lobby_status = zzz_vproto_internal_unpack_elobbystatus(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

@@ -42,24 +42,16 @@ pub fn ccontentbuilder_initdepotbuild_request_unpack(buf []byte) ?CContentBuilde
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depotid = v
-				i = ii
+				i, res.depotid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.workshop_itemid = v
-				i = ii
+				i, res.workshop_itemid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.for_local_cs = v
-				i = ii
+				i, res.for_local_cs = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -192,59 +184,42 @@ pub fn ccontentbuilder_initdepotbuild_response_unpack(buf []byte) ?CContentBuild
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.baseline_manifestid = v
-				i = ii
+				i, res.baseline_manifestid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chunk_size = v
-				i = ii
+				i, res.chunk_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.aes_key = v
-				i = ii
+				i, res.aes_key = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rsa_key = v
-				i = ii
+				i, res.rsa_key = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.url_host = v
-				i = ii
+				i, res.url_host = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offset_detection_enabled = v
-				i = ii
+				i, res.offset_detection_enabled = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offset_detection_min_clean_chunk = v
-				i = ii
+				i, res.offset_detection_min_clean_chunk = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offset_detection_blast_radius_pre = v
-				i = ii
+				i, res.offset_detection_blast_radius_pre = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offset_detection_blast_radius_post = v
-				i = ii
+				i, res.offset_detection_blast_radius_post = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offset_detection_max_distance_pre = v
-				i = ii
+				i, res.offset_detection_max_distance_pre = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offset_detection_max_distance_post = v
-				i = ii
+				i, res.offset_detection_max_distance_post = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -361,34 +336,22 @@ pub fn ccontentbuilder_startdepotupload_request_unpack(buf []byte) ?CContentBuil
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depotid = v
-				i = ii
+				i, res.depotid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.workshop_itemid = v
-				i = ii
+				i, res.workshop_itemid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.for_local_cs = v
-				i = ii
+				i, res.for_local_cs = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.baseline_manifestid = v
-				i = ii
+				i, res.baseline_manifestid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.manifest_size = v
-				i = ii
+				i, res.manifest_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -482,9 +445,7 @@ pub fn ccontentbuilder_startdepotupload_response_unpack(buf []byte) ?CContentBui
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depot_build_handle = v
-				i = ii
+				i, res.depot_build_handle = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -580,14 +541,10 @@ pub fn ccontentbuilder_getmissingdepotchunks_request_unpack(buf []byte) ?CConten
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depot_build_handle = v
-				i = ii
+				i, res.depot_build_handle = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -679,9 +636,7 @@ pub fn ccontentbuilder_getmissingdepotchunks_response_chunks_unpack(buf []byte) 
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sha = v
-				i = ii
+				i, res.sha = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -790,14 +745,10 @@ pub fn ccontentbuilder_getmissingdepotchunks_response_unpack(buf []byte) ?CConte
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.total_missing_chunks = v
-				i = ii
+				i, res.total_missing_chunks = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.total_missing_bytes = v
-				i = ii
+				i, res.total_missing_bytes = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -894,14 +845,10 @@ pub fn ccontentbuilder_finishdepotupload_request_unpack(buf []byte) ?CContentBui
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depot_build_handle = v
-				i = ii
+				i, res.depot_build_handle = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -997,14 +944,10 @@ pub fn ccontentbuilder_finishdepotupload_response_unpack(buf []byte) ?CContentBu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.manifestid = v
-				i = ii
+				i, res.manifestid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.prev_reused = v
-				i = ii
+				i, res.prev_reused = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1100,14 +1043,10 @@ pub fn ccontentbuilder_commitappbuild_request_depots_unpack(buf []byte) ?CConten
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depotid = v
-				i = ii
+				i, res.depotid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.manifestid = v
-				i = ii
+				i, res.manifestid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1213,9 +1152,7 @@ pub fn ccontentbuilder_commitappbuild_request_unpack(buf []byte) ?CContentBuilde
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -1225,14 +1162,10 @@ pub fn ccontentbuilder_commitappbuild_request_unpack(buf []byte) ?CContentBuilde
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.build_notes = v
-				i = ii
+				i, res.build_notes = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.live_branch = v
-				i = ii
+				i, res.live_branch = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1325,9 +1258,7 @@ pub fn ccontentbuilder_commitappbuild_response_unpack(buf []byte) ?CContentBuild
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.buildid = v
-				i = ii
+				i, res.buildid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1427,19 +1358,13 @@ pub fn ccontentbuilder_signinstallscript_request_unpack(buf []byte) ?CContentBui
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depotid = v
-				i = ii
+				i, res.depotid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.install_script = v
-				i = ii
+				i, res.install_script = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1531,9 +1456,7 @@ pub fn ccontentbuilder_signinstallscript_response_unpack(buf []byte) ?CContentBu
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.signed_install_script = v
-				i = ii
+				i, res.signed_install_script = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

@@ -449,19 +449,13 @@ pub fn cchatroom_createchatroomgroup_request_unpack(buf []byte) ?CChatRoom_Creat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_partner = v
-				i = ii
+				i, res.steamid_partner = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_invited = v
-				i = ii
+				i, res.steamid_invited = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
 				// [packed=false]
@@ -470,14 +464,12 @@ pub fn cchatroom_createchatroomgroup_request_unpack(buf []byte) ?CChatRoom_Creat
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_accountid = v
-				i = ii
+				i, res.watching_broadcast_accountid = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_channel_id = v
-				i = ii
+				i, res.watching_broadcast_channel_id = vproto.unpack_uint64_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -579,19 +571,13 @@ pub fn cchatrole_unpack(buf []byte) ?CChatRole {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -727,64 +713,43 @@ pub fn cchatroleactions_unpack(buf []byte) ?CChatRoleActions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_create_rename_delete_channel = v
-				i = ii
+				i, res.can_create_rename_delete_channel = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_kick = v
-				i = ii
+				i, res.can_kick = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_ban = v
-				i = ii
+				i, res.can_ban = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_invite = v
-				i = ii
+				i, res.can_invite = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_change_tagline_avatar_name = v
-				i = ii
+				i, res.can_change_tagline_avatar_name = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_chat = v
-				i = ii
+				i, res.can_chat = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_view_history = v
-				i = ii
+				i, res.can_view_history = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_change_group_roles = v
-				i = ii
+				i, res.can_change_group_roles = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_change_user_roles = v
-				i = ii
+				i, res.can_change_user_roles = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_mention_all = v
-				i = ii
+				i, res.can_mention_all = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.can_set_watching_broadcast = v
-				i = ii
+				i, res.can_set_watching_broadcast = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -893,24 +858,16 @@ pub fn cchatpartybeacon_unpack(buf []byte) ?CChatPartyBeacon {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.app_id = v
-				i = ii
+				i, res.app_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_owner = v
-				i = ii
+				i, res.steamid_owner = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.beacon_id = v
-				i = ii
+				i, res.beacon_id = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.game_metadata = v
-				i = ii
+				i, res.game_metadata = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1062,44 +1019,28 @@ pub fn cchatroomgroupheaderstate_unpack(buf []byte) ?CChatRoomGroupHeaderState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_name = v
-				i = ii
+				i, res.chat_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.clanid = v
-				i = ii
+				i, res.clanid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid_owner = v
-				i = ii
+				i, res.accountid_owner = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			21 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			15 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.tagline = v
-				i = ii
+				i, res.tagline = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			16 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.avatar_sha = v
-				i = ii
+				i, res.avatar_sha = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.default_role_id = v
-				i = ii
+				i, res.default_role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			18 {
 				// [packed=false]
@@ -1114,9 +1055,8 @@ pub fn cchatroomgroupheaderstate_unpack(buf []byte) ?CChatRoomGroupHeaderState {
 				i = ii
 			}
 			20 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_accountid = v
-				i = ii
+				i, res.watching_broadcast_accountid = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			22 {
 				// [packed=false]
@@ -1125,19 +1065,14 @@ pub fn cchatroomgroupheaderstate_unpack(buf []byte) ?CChatRoomGroupHeaderState {
 				i = ii
 			}
 			23 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_channel_id = v
-				i = ii
+				i, res.watching_broadcast_channel_id = vproto.unpack_uint64_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			24 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.active_minigame_id = v
-				i = ii
+				i, res.active_minigame_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			25 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.avatar_ugc_url = v
-				i = ii
+				i, res.avatar_ugc_url = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1252,24 +1187,17 @@ pub fn cchatroommember_unpack(buf []byte) ?CChatRoomMember {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_echatroomjoinstate(cur_buf, tag_wiretype.wire_type) ?
-				res.state = v
-				i = ii
+				i, res.state = zzz_vproto_internal_unpack_echatroomjoinstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_echatroomgrouprank(cur_buf, tag_wiretype.wire_type) ?
-				res.rank = v
-				i = ii
+				i, res.rank = zzz_vproto_internal_unpack_echatroomgrouprank(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_kick_expire = v
-				i = ii
+				i, res.time_kick_expire = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
 				// [packed=false]
@@ -1397,19 +1325,13 @@ pub fn cchatroomstate_unpack(buf []byte) ?CChatRoomState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_name = v
-				i = ii
+				i, res.chat_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_allowed = v
-				i = ii
+				i, res.voice_allowed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
 				// [packed=false]
@@ -1418,24 +1340,16 @@ pub fn cchatroomstate_unpack(buf []byte) ?CChatRoomState {
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_last_message = v
-				i = ii
+				i, res.time_last_message = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sort_order = v
-				i = ii
+				i, res.sort_order = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.last_message = v
-				i = ii
+				i, res.last_message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid_last_message = v
-				i = ii
+				i, res.accountid_last_message = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1549,10 +1463,8 @@ pub fn cchatroomgroupstate_unpack(buf []byte) ?CChatRoomGroupState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroomgroupheaderstate(cur_buf,
+				i, res.header_state = zzz_vproto_internal_unpack_cchatroomgroupheaderstate(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.header_state = v
-				i = ii
 			}
 			2 {
 				// [packed=false]
@@ -1561,9 +1473,7 @@ pub fn cchatroomgroupstate_unpack(buf []byte) ?CChatRoomGroupState {
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.default_chat_id = v
-				i = ii
+				i, res.default_chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
 				// [packed=false]
@@ -1698,46 +1608,30 @@ pub fn cuserchatroomstate_unpack(buf []byte) ?CUserChatRoomState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_joined = v
-				i = ii
+				i, res.time_joined = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_last_ack = v
-				i = ii
+				i, res.time_last_ack = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.desktop_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.desktop_notification_level = v
-				i = ii
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.mobile_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.mobile_notification_level = v
-				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_last_mention = v
-				i = ii
+				i, res.time_last_mention = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.unread_indicator_muted = v
-				i = ii
+				i, res.unread_indicator_muted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_first_unread = v
-				i = ii
+				i, res.time_first_unread = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1859,14 +1753,10 @@ pub fn cuserchatroomgroupstate_unpack(buf []byte) ?CUserChatRoomGroupState {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_joined = v
-				i = ii
+				i, res.time_joined = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -1875,26 +1765,18 @@ pub fn cuserchatroomgroupstate_unpack(buf []byte) ?CUserChatRoomGroupState {
 				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.desktop_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.desktop_notification_level = v
-				i = ii
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.mobile_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.mobile_notification_level = v
-				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_last_group_ack = v
-				i = ii
+				i, res.time_last_group_ack = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.unread_indicator_muted = v
-				i = ii
+				i, res.unread_indicator_muted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1997,19 +1879,15 @@ pub fn cchatroom_createchatroomgroup_response_unpack(buf []byte) ?CChatRoom_Crea
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.state = v
-				i = ii
+				i, res.state = zzz_vproto_internal_unpack_cchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.user_chat_state = v
-				i = ii
+				i, res.user_chat_state = zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2105,14 +1983,10 @@ pub fn cchatroom_savechatroomgroup_request_unpack(buf []byte) ?CChatRoom_SaveCha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2271,14 +2145,10 @@ pub fn cchatroom_renamechatroomgroup_request_unpack(buf []byte) ?CChatRoom_Renam
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2370,9 +2240,7 @@ pub fn cchatroom_renamechatroomgroup_response_unpack(buf []byte) ?CChatRoom_Rena
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2468,14 +2336,10 @@ pub fn cchatroom_setchatroomgrouptagline_request_unpack(buf []byte) ?CChatRoom_S
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.tagline = v
-				i = ii
+				i, res.tagline = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2634,14 +2498,10 @@ pub fn cchatroom_setchatroomgroupavatar_request_unpack(buf []byte) ?CChatRoom_Se
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.avatar_sha = v
-				i = ii
+				i, res.avatar_sha = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2804,19 +2664,15 @@ pub fn cchatroom_setchatroomgroupwatchingbroadcast_request_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_accountid = v
-				i = ii
+				i, res.watching_broadcast_accountid = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_channel_id = v
-				i = ii
+				i, res.watching_broadcast_channel_id = vproto.unpack_uint64_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2976,14 +2832,10 @@ pub fn cchatroom_joinminigameforchatroomgroup_request_unpack(buf []byte) ?CChatR
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3075,9 +2927,7 @@ pub fn cchatroom_joinminigameforchatroomgroup_response_unpack(buf []byte) ?CChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.minigame_id = v
-				i = ii
+				i, res.minigame_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3177,19 +3027,13 @@ pub fn cchatroom_endminigameforchatroomgroup_request_unpack(buf []byte) ?CChatRo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.minigame_id = v
-				i = ii
+				i, res.minigame_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3353,19 +3197,13 @@ pub fn cchatroom_muteuser_request_unpack(buf []byte) ?CChatRoom_MuteUser_Request
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.expiration = v
-				i = ii
+				i, res.expiration = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3529,19 +3367,13 @@ pub fn cchatroom_kickuser_request_unpack(buf []byte) ?CChatRoom_KickUser_Request
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.expiration = v
-				i = ii
+				i, res.expiration = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3705,19 +3537,13 @@ pub fn cchatroom_setuserbanstate_request_unpack(buf []byte) ?CChatRoom_SetUserBa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ban_state = v
-				i = ii
+				i, res.ban_state = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3877,14 +3703,10 @@ pub fn cchatroom_revokeinvite_request_unpack(buf []byte) ?CChatRoom_RevokeInvite
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4043,14 +3865,10 @@ pub fn cchatroom_createrole_request_unpack(buf []byte) ?CChatRoom_CreateRole_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4142,9 +3960,8 @@ pub fn cchatroom_createrole_response_unpack(buf []byte) ?CChatRoom_CreateRole_Re
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cchatroleactions(cur_buf, tag_wiretype.wire_type) ?
-				res.actions = v
-				i = ii
+				i, res.actions = zzz_vproto_internal_unpack_cchatroleactions(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4236,9 +4053,7 @@ pub fn cchatroom_getroles_request_unpack(buf []byte) ?CChatRoom_GetRoles_Request
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4434,19 +4249,13 @@ pub fn cchatroom_renamerole_request_unpack(buf []byte) ?CChatRoom_RenameRole_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4609,19 +4418,13 @@ pub fn cchatroom_reorderrole_request_unpack(buf []byte) ?CChatRoom_ReorderRole_R
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4781,14 +4584,10 @@ pub fn cchatroom_deleterole_request_unpack(buf []byte) ?CChatRoom_DeleteRole_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4947,14 +4746,10 @@ pub fn cchatroom_getroleactions_request_unpack(buf []byte) ?CChatRoom_GetRoleAct
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5150,19 +4945,14 @@ pub fn cchatroom_replaceroleactions_request_unpack(buf []byte) ?CChatRoom_Replac
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_cchatroleactions(cur_buf, tag_wiretype.wire_type) ?
-				res.actions = v
-				i = ii
+				i, res.actions = zzz_vproto_internal_unpack_cchatroleactions(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5325,19 +5115,13 @@ pub fn cchatroom_addroletouser_request_unpack(buf []byte) ?CChatRoom_AddRoleToUs
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5497,14 +5281,10 @@ pub fn cchatroom_getrolesforuser_request_unpack(buf []byte) ?CChatRoom_GetRolesF
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5700,19 +5480,13 @@ pub fn cchatroom_deleterolefromuser_request_unpack(buf []byte) ?CChatRoom_Delete
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.role_id = v
-				i = ii
+				i, res.role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5876,19 +5650,13 @@ pub fn cchatroom_joinchatroomgroup_request_unpack(buf []byte) ?CChatRoom_JoinCha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.invite_code = v
-				i = ii
+				i, res.invite_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5993,24 +5761,18 @@ pub fn cchatroom_joinchatroomgroup_response_unpack(buf []byte) ?CChatRoom_JoinCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.state = v
-				i = ii
+				i, res.state = zzz_vproto_internal_unpack_cchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.user_chat_state = v
-				i = ii
+				i, res.user_chat_state = zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.join_chat_id = v
-				i = ii
+				i, res.join_chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_expire = v
-				i = ii
+				i, res.time_expire = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6115,24 +5877,16 @@ pub fn cchatroom_invitefriendtochatroomgroup_request_unpack(buf []byte) ?CChatRo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.skip_friendsui_check = v
-				i = ii
+				i, res.skip_friendsui_check = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6288,9 +6042,7 @@ pub fn cchatroom_leavechatroomgroup_request_unpack(buf []byte) ?CChatRoom_LeaveC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6453,19 +6205,13 @@ pub fn cchatroom_createchatroom_request_unpack(buf []byte) ?CChatRoom_CreateChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.allow_voice = v
-				i = ii
+				i, res.allow_voice = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6558,9 +6304,8 @@ pub fn cchatroom_createchatroom_response_unpack(buf []byte) ?CChatRoom_CreateCha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroomstate(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_room = v
-				i = ii
+				i, res.chat_room = zzz_vproto_internal_unpack_cchatroomstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6656,14 +6401,10 @@ pub fn cchatroom_deletechatroom_request_unpack(buf []byte) ?CChatRoom_DeleteChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6826,19 +6567,13 @@ pub fn cchatroom_renamechatroom_request_unpack(buf []byte) ?CChatRoom_RenameChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7001,19 +6736,13 @@ pub fn cchatroom_reorderchatroom_request_unpack(buf []byte) ?CChatRoom_ReorderCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.move_after_chat_id = v
-				i = ii
+				i, res.move_after_chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7181,24 +6910,16 @@ pub fn cchatroom_sendchatmessage_request_unpack(buf []byte) ?CChatRoom_SendChatM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message = v
-				i = ii
+				i, res.message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.echo_to_sender = v
-				i = ii
+				i, res.echo_to_sender = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7303,24 +7024,16 @@ pub fn cchatroom_sendchatmessage_response_unpack(buf []byte) ?CChatRoom_SendChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.modified_message = v
-				i = ii
+				i, res.modified_message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_timestamp = v
-				i = ii
+				i, res.server_timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message_without_bb_code = v
-				i = ii
+				i, res.message_without_bb_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7417,14 +7130,10 @@ pub fn cchatroom_joinvoicechat_request_unpack(buf []byte) ?CChatRoom_JoinVoiceCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7516,9 +7225,7 @@ pub fn cchatroom_joinvoicechat_response_unpack(buf []byte) ?CChatRoom_JoinVoiceC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_chatid = v
-				i = ii
+				i, res.voice_chatid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7614,14 +7321,10 @@ pub fn cchatroom_leavevoicechat_request_unpack(buf []byte) ?CChatRoom_LeaveVoice
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7800,39 +7503,25 @@ pub fn cchatroom_getmessagehistory_request_unpack(buf []byte) ?CChatRoom_GetMess
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.last_time = v
-				i = ii
+				i, res.last_time = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.last_ordinal = v
-				i = ii
+				i, res.last_ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.start_time = v
-				i = ii
+				i, res.start_time = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.start_ordinal = v
-				i = ii
+				i, res.start_ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.max_count = v
-				i = ii
+				i, res.max_count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7934,19 +7623,14 @@ pub fn servermessage_unpack(buf []byte) ?ServerMessage {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_echatroomservermessage(cur_buf, tag_wiretype.wire_type) ?
-				res.message = v
-				i = ii
+				i, res.message = zzz_vproto_internal_unpack_echatroomservermessage(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.string_param = v
-				i = ii
+				i, res.string_param = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid_param = v
-				i = ii
+				i, res.accountid_param = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8059,34 +7743,23 @@ pub fn cchatroom_getmessagehistory_response_chatmessage_unpack(buf []byte) ?CCha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sender = v
-				i = ii
+				i, res.sender = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_timestamp = v
-				i = ii
+				i, res.server_timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message = v
-				i = ii
+				i, res.message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_servermessage(cur_buf, tag_wiretype.wire_type) ?
-				res.server_message = v
-				i = ii
+				i, res.server_message = zzz_vproto_internal_unpack_servermessage(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.deleted = v
-				i = ii
+				i, res.deleted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8193,9 +7866,7 @@ pub fn cchatroom_getmessagehistory_response_unpack(buf []byte) ?CChatRoom_GetMes
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.more_available = v
-				i = ii
+				i, res.more_available = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8435,29 +8106,20 @@ pub fn cchatroom_getchatroomgroupsummary_response_unpack(buf []byte) ?CChatRoom_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_name = v
-				i = ii
+				i, res.chat_group_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.active_member_count = v
-				i = ii
+				i, res.active_member_count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.active_voice_member_count = v
-				i = ii
+				i, res.active_voice_member_count = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.default_chat_id = v
-				i = ii
+				i, res.default_chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
 				// [packed=false]
@@ -8466,19 +8128,13 @@ pub fn cchatroom_getchatroomgroupsummary_response_unpack(buf []byte) ?CChatRoom_
 				i = ii
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.clanid = v
-				i = ii
+				i, res.clanid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_tagline = v
-				i = ii
+				i, res.chat_group_tagline = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid_owner = v
-				i = ii
+				i, res.accountid_owner = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
 				// [packed=false]
@@ -8487,19 +8143,13 @@ pub fn cchatroom_getchatroomgroupsummary_response_unpack(buf []byte) ?CChatRoom_
 				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_avatar_sha = v
-				i = ii
+				i, res.chat_group_avatar_sha = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := zzz_vproto_internal_unpack_echatroomgrouprank(cur_buf, tag_wiretype.wire_type) ?
-				res.rank = v
-				i = ii
+				i, res.rank = zzz_vproto_internal_unpack_echatroomgrouprank(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.default_role_id = v
-				i = ii
+				i, res.default_role_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
 				// [packed=false]
@@ -8514,14 +8164,11 @@ pub fn cchatroom_getchatroomgroupsummary_response_unpack(buf []byte) ?CChatRoom_
 				i = ii
 			}
 			16 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_accountid = v
-				i = ii
+				i, res.watching_broadcast_accountid = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			18 {
 				// [packed=false]
@@ -8530,19 +8177,14 @@ pub fn cchatroom_getchatroomgroupsummary_response_unpack(buf []byte) ?CChatRoom_
 				i = ii
 			}
 			19 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.watching_broadcast_channel_id = v
-				i = ii
+				i, res.watching_broadcast_channel_id = vproto.unpack_uint64_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			20 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.active_minigame_id = v
-				i = ii
+				i, res.active_minigame_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			21 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.avatar_ugc_url = v
-				i = ii
+				i, res.avatar_ugc_url = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8648,15 +8290,12 @@ pub fn cchatroomsummarypair_unpack(buf []byte) ?CChatRoomSummaryPair {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.user_chat_group_state = v
-				i = ii
+				i, res.user_chat_group_state = zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
+				i, res.group_summary = zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.group_summary = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8844,9 +8483,7 @@ pub fn cchatroom_getchatroomgroupstate_request_unpack(buf []byte) ?CChatRoom_Get
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8938,9 +8575,8 @@ pub fn cchatroom_getchatroomgroupstate_response_unpack(buf []byte) ?CChatRoom_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.state = v
-				i = ii
+				i, res.state = zzz_vproto_internal_unpack_cchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9032,9 +8668,7 @@ pub fn cchatroom_getchatroomgroupsummary_request_unpack(buf []byte) ?CChatRoom_G
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9130,14 +8764,10 @@ pub fn cchatroom_setappchatroomgroupforceactive_request_unpack(buf []byte) ?CCha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.requesting_app_id = v
-				i = ii
+				i, res.requesting_app_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9234,9 +8864,7 @@ pub fn cchatroom_setappchatroomgroupforceactive_response_unpack(buf []byte) ?CCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.result = v
-				i = ii
+				i, res.result = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -9338,14 +8966,10 @@ pub fn cchatroom_setappchatroomgroupstopforceactive_notification_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.requesting_app_id = v
-				i = ii
+				i, res.requesting_app_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9445,19 +9069,13 @@ pub fn cchatroom_ackchatmessage_notification_unpack(buf []byte) ?CChatRoom_AckCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9558,19 +9176,13 @@ pub fn cchatroom_createinvitelink_request_unpack(buf []byte) ?CChatRoom_CreateIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_valid = v
-				i = ii
+				i, res.seconds_valid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9667,14 +9279,10 @@ pub fn cchatroom_createinvitelink_response_unpack(buf []byte) ?CChatRoom_CreateI
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.invite_code = v
-				i = ii
+				i, res.invite_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_valid = v
-				i = ii
+				i, res.seconds_valid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9766,9 +9374,7 @@ pub fn cchatroom_getinvitelinkinfo_request_unpack(buf []byte) ?CChatRoom_GetInvi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.invite_code = v
-				i = ii
+				i, res.invite_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9886,40 +9492,27 @@ pub fn cchatroom_getinvitelinkinfo_response_unpack(buf []byte) ?CChatRoom_GetInv
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_sender = v
-				i = ii
+				i, res.steamid_sender = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_expires = v
-				i = ii
+				i, res.time_expires = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
+				i, res.group_summary = zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.group_summary = v
-				i = ii
 			}
 			9 {
-				ii, v := zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.user_chat_group_state = v
-				i = ii
+				i, res.user_chat_group_state = zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_kick_expire = v
-				i = ii
+				i, res.time_kick_expire = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.banned = v
-				i = ii
+				i, res.banned = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10025,24 +9618,16 @@ pub fn cchatroom_getinviteinfo_request_unpack(buf []byte) ?CChatRoom_GetInviteIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_invitee = v
-				i = ii
+				i, res.steamid_invitee = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.invite_code = v
-				i = ii
+				i, res.invite_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10144,20 +9729,14 @@ pub fn cchatroom_getinviteinfo_response_unpack(buf []byte) ?CChatRoom_GetInviteI
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
+				i, res.group_summary = zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.group_summary = v
-				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_kick_expire = v
-				i = ii
+				i, res.time_kick_expire = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.banned = v
-				i = ii
+				i, res.banned = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10250,9 +9829,7 @@ pub fn cchatroom_getinvitelinksforgroup_request_unpack(buf []byte) ?CChatRoom_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10356,24 +9933,16 @@ pub fn cchatroom_getinvitelinksforgroup_response_linkinfo_unpack(buf []byte) ?CC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.invite_code = v
-				i = ii
+				i, res.invite_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_creator = v
-				i = ii
+				i, res.steamid_creator = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_expires = v
-				i = ii
+				i, res.time_expires = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10564,9 +10133,7 @@ pub fn cchatroom_getbanlist_request_unpack(buf []byte) ?CChatRoom_GetBanList_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10670,24 +10237,16 @@ pub fn cchatroom_getbanlist_response_baninfo_unpack(buf []byte) ?CChatRoom_GetBa
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid_actor = v
-				i = ii
+				i, res.accountid_actor = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_banned = v
-				i = ii
+				i, res.time_banned = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ban_reason = v
-				i = ii
+				i, res.ban_reason = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10877,9 +10436,7 @@ pub fn cchatroom_getinvitelist_request_unpack(buf []byte) ?CChatRoom_GetInviteLi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10979,19 +10536,13 @@ pub fn cchatroomgroupinvite_unpack(buf []byte) ?CChatRoomGroupInvite {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid_actor = v
-				i = ii
+				i, res.accountid_actor = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_invited = v
-				i = ii
+				i, res.time_invited = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -11184,14 +10735,10 @@ pub fn cchatroom_deleteinvitelink_request_unpack(buf []byte) ?CChatRoom_DeleteIn
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.invite_code = v
-				i = ii
+				i, res.invite_code = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -11368,9 +10915,8 @@ pub fn cchatroom_setsessionactivechatroomgroups_request_unpack(buf []byte) ?CCha
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.virtualize_members_threshold = v
-				i = ii
+				i, res.virtualize_members_threshold = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -11580,21 +11126,15 @@ pub fn cchatroom_setuserchatgrouppreferences_request_chatgrouppreferences_unpack
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.desktop_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.desktop_notification_level = v
-				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.mobile_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.mobile_notification_level = v
-				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.unread_indicator_muted = v
-				i = ii
+				i, res.unread_indicator_muted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -11701,26 +11241,18 @@ pub fn cchatroom_setuserchatgrouppreferences_request_chatroompreferences_unpack(
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.desktop_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.desktop_notification_level = v
-				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
+				i, res.mobile_notification_level = zzz_vproto_internal_unpack_echatroomnotificationlevel(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.mobile_notification_level = v
-				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.unread_indicator_muted = v
-				i = ii
+				i, res.unread_indicator_muted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -11824,15 +11356,11 @@ pub fn cchatroom_setuserchatgrouppreferences_request_unpack(buf []byte) ?CChatRo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cchatroom_setuserchatgrouppreferences_request_chatgrouppreferences(cur_buf,
+				i, res.chat_group_preferences = zzz_vproto_internal_unpack_cchatroom_setuserchatgrouppreferences_request_chatgrouppreferences(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.chat_group_preferences = v
-				i = ii
 			}
 			3 {
 				// [packed=false]
@@ -11999,14 +11527,10 @@ pub fn cchatroom_deletechatmessages_request_message_unpack(buf []byte) ?CChatRoo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_timestamp = v
-				i = ii
+				i, res.server_timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -12108,14 +11632,10 @@ pub fn cchatroom_deletechatmessages_request_unpack(buf []byte) ?CChatRoom_Delete
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -12307,34 +11827,22 @@ pub fn cchatroom_updatememberlistview_notification_unpack(buf []byte) ?CChatRoom
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.view_id = v
-				i = ii
+				i, res.view_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.start = v
-				i = ii
+				i, res.start = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.end = v
-				i = ii
+				i, res.end = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.client_changenumber = v
-				i = ii
+				i, res.client_changenumber = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.delete_view = v
-				i = ii
+				i, res.delete_view = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
 				// [packed=false]
@@ -12453,24 +11961,16 @@ pub fn cchatroom_searchmembers_request_unpack(buf []byte) ?CChatRoom_SearchMembe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.search_id = v
-				i = ii
+				i, res.search_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.search_text = v
-				i = ii
+				i, res.search_text = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.max_results = v
-				i = ii
+				i, res.max_results = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -12567,15 +12067,11 @@ pub fn cchatroom_searchmembers_response_membermatch_unpack(buf []byte) ?CChatRoo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpersonastate_friend(cur_buf,
+				i, res.persona = zzz_vproto_internal_unpack_cmsgclientpersonastate_friend(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.persona = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -12680,9 +12176,7 @@ pub fn cchatroom_searchmembers_response_unpack(buf []byte) ?CChatRoom_SearchMemb
 				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.status_flags = v
-				i = ii
+				i, res.status_flags = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -12778,14 +12272,10 @@ pub fn cclanchatrooms_getclanchatroominfo_request_unpack(buf []byte) ?CClanChatR
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.autocreate = v
-				i = ii
+				i, res.autocreate = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -12878,10 +12368,8 @@ pub fn cclanchatrooms_getclanchatroominfo_response_unpack(buf []byte) ?CClanChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
+				i, res.chat_group_summary = zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.chat_group_summary = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -12977,14 +12465,10 @@ pub fn cclanchatrooms_setclanchatroomprivate_request_unpack(buf []byte) ?CClanCh
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_room_private = v
-				i = ii
+				i, res.chat_room_private = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -13076,9 +12560,7 @@ pub fn cclanchatrooms_setclanchatroomprivate_response_unpack(buf []byte) ?CClanC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_room_private = v
-				i = ii
+				i, res.chat_room_private = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -13179,14 +12661,10 @@ pub fn cchatmentions_unpack(buf []byte) ?CChatMentions {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.mention_all = v
-				i = ii
+				i, res.mention_all = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.mention_here = v
-				i = ii
+				i, res.mention_here = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -13321,54 +12799,35 @@ pub fn cchatroom_incomingchatmessage_notification_unpack(buf []byte) ?CChatRoom_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_sender = v
-				i = ii
+				i, res.steamid_sender = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message = v
-				i = ii
+				i, res.message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cchatmentions(cur_buf, tag_wiretype.wire_type) ?
-				res.mentions = v
-				i = ii
+				i, res.mentions = zzz_vproto_internal_unpack_cchatmentions(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := zzz_vproto_internal_unpack_servermessage(cur_buf, tag_wiretype.wire_type) ?
-				res.server_message = v
-				i = ii
+				i, res.server_message = zzz_vproto_internal_unpack_servermessage(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message_no_bbcode = v
-				i = ii
+				i, res.message_no_bbcode = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_name = v
-				i = ii
+				i, res.chat_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -13471,19 +12930,13 @@ pub fn cchatroom_chatmessagemodified_notification_chatmessage_unpack(buf []byte)
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_timestamp = v
-				i = ii
+				i, res.server_timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ordinal = v
-				i = ii
+				i, res.ordinal = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.deleted = v
-				i = ii
+				i, res.deleted = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -13586,14 +13039,10 @@ pub fn cchatroom_chatmessagemodified_notification_unpack(buf []byte) ?CChatRoom_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -13700,20 +13149,14 @@ pub fn cchatroom_memberstatechange_notification_unpack(buf []byte) ?CChatRoom_Me
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cchatroommember(cur_buf, tag_wiretype.wire_type) ?
-				res.member = v
-				i = ii
+				i, res.member = zzz_vproto_internal_unpack_cchatroommember(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_echatroommemberstatechange(cur_buf,
+				i, res.change = zzz_vproto_internal_unpack_echatroommemberstatechange(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.change = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -13806,10 +13249,8 @@ pub fn cchatroom_chatroomheaderstate_notification_unpack(buf []byte) ?CChatRoom_
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cchatroomgroupheaderstate(cur_buf,
+				i, res.header_state = zzz_vproto_internal_unpack_cchatroomgroupheaderstate(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.header_state = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -13910,14 +13351,10 @@ pub fn cchatroom_chatroomgrouproomschange_notification_unpack(buf []byte) ?CChat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.default_chat_id = v
-				i = ii
+				i, res.default_chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -14020,14 +13457,10 @@ pub fn cchatroom_notifyshouldrejoinchatroomvoicechat_notification_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_id = v
-				i = ii
+				i, res.chat_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -14133,26 +13566,19 @@ pub fn chatroomclient_notifychatgroupuserstatechanged_notification_unpack(buf []
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf, tag_wiretype.wire_type) ?
-				res.user_chat_group_state = v
-				i = ii
+				i, res.user_chat_group_state = zzz_vproto_internal_unpack_cuserchatroomgroupstate(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
+				i, res.group_summary = zzz_vproto_internal_unpack_cchatroom_getchatroomgroupsummary_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.group_summary = v
-				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_echatroommemberstatechange(cur_buf,
+				i, res.user_action = zzz_vproto_internal_unpack_echatroommemberstatechange(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.user_action = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -14357,29 +13783,19 @@ pub fn cchatroommemberlistview_unpack(buf []byte) ?CChatRoomMemberListView {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.start = v
-				i = ii
+				i, res.start = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.end = v
-				i = ii
+				i, res.end = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.total_count = v
-				i = ii
+				i, res.total_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.client_changenumber = v
-				i = ii
+				i, res.client_changenumber = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_changenumber = v
-				i = ii
+				i, res.server_changenumber = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -14480,19 +13896,13 @@ pub fn cchatroommembersummarycounts_unpack(buf []byte) ?CChatRoomMemberSummaryCo
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ingame = v
-				i = ii
+				i, res.ingame = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.online = v
-				i = ii
+				i, res.online = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offline = v
-				i = ii
+				i, res.offline = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -14592,20 +14002,14 @@ pub fn cchatroomclient_memberlistviewupdated_notification_memberlistviewentry_un
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rank = v
-				i = ii
+				i, res.rank = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cmsgclientpersonastate_friend(cur_buf,
+				i, res.persona = zzz_vproto_internal_unpack_cmsgclientpersonastate_friend(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.persona = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -14725,19 +14129,14 @@ pub fn cchatroomclient_memberlistviewupdated_notification_unpack(buf []byte) ?CC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_group_id = v
-				i = ii
+				i, res.chat_group_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.view_id = v
-				i = ii
+				i, res.view_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cchatroommemberlistview(cur_buf, tag_wiretype.wire_type) ?
-				res.view = v
-				i = ii
+				i, res.view = zzz_vproto_internal_unpack_cchatroommemberlistview(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
 				// [packed=false]
@@ -14747,15 +14146,11 @@ pub fn cchatroomclient_memberlistviewupdated_notification_unpack(buf []byte) ?CC
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.status_flags = v
-				i = ii
+				i, res.status_flags = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cchatroommembersummarycounts(cur_buf,
+				i, res.member_summary = zzz_vproto_internal_unpack_cchatroommembersummarycounts(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.member_summary = v
-				i = ii
 			}
 			7 {
 				// [packed=false]
@@ -14952,129 +14347,87 @@ pub fn cchatusability_clientusabilitymetrics_notification_settings_unpack(buf []
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.notifications_show_ingame = v
-				i = ii
+				i, res.notifications_show_ingame = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.notifications_show_online = v
-				i = ii
+				i, res.notifications_show_online = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.notifications_show_message = v
-				i = ii
+				i, res.notifications_show_message = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.notifications_events_and_announcements = v
-				i = ii
+				i, res.notifications_events_and_announcements = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sounds_play_ingame = v
-				i = ii
+				i, res.sounds_play_ingame = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sounds_play_online = v
-				i = ii
+				i, res.sounds_play_online = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sounds_play_message = v
-				i = ii
+				i, res.sounds_play_message = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sounds_events_and_announcements = v
-				i = ii
+				i, res.sounds_events_and_announcements = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.always_new_chat_window = v
-				i = ii
+				i, res.always_new_chat_window = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.force_alphabetic_friend_sorting = v
-				i = ii
+				i, res.force_alphabetic_friend_sorting = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_flash_mode = v
-				i = ii
+				i, res.chat_flash_mode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.remember_open_chats = v
-				i = ii
+				i, res.remember_open_chats = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.compact_quick_access = v
-				i = ii
+				i, res.compact_quick_access = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.compact_friends_list = v
-				i = ii
+				i, res.compact_friends_list = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.notifications_show_chat_room_notification = v
-				i = ii
+				i, res.notifications_show_chat_room_notification = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sounds_play_chat_room_notification = v
-				i = ii
+				i, res.sounds_play_chat_room_notification = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hide_offline_friends_in_tag_groups = v
-				i = ii
+				i, res.hide_offline_friends_in_tag_groups = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			18 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hide_categorized_friends = v
-				i = ii
+				i, res.hide_categorized_friends = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			19 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.categorize_in_game_friends_by_game = v
-				i = ii
+				i, res.categorize_in_game_friends_by_game = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			20 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_font_size = v
-				i = ii
+				i, res.chat_font_size = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			21 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.use24hour_clock = v
-				i = ii
+				i, res.use24hour_clock = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			22 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.do_not_disturb_mode = v
-				i = ii
+				i, res.do_not_disturb_mode = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			23 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.disable_embed_inlining = v
-				i = ii
+				i, res.disable_embed_inlining = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			24 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sign_into_friends = v
-				i = ii
+				i, res.sign_into_friends = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			25 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.animated_avatars = v
-				i = ii
+				i, res.animated_avatars = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -15220,59 +14573,41 @@ pub fn cchatusability_clientusabilitymetrics_notification_voicesettings_unpack(b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_input_gain = v
-				i = ii
+				i, res.voice_input_gain = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_output_gain = v
-				i = ii
+				i, res.voice_output_gain = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.noise_gate_level = v
-				i = ii
+				i, res.noise_gate_level = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_use_echo_cancellation = v
-				i = ii
+				i, res.voice_use_echo_cancellation = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_use_noise_cancellation = v
-				i = ii
+				i, res.voice_use_noise_cancellation = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.voice_use_auto_gain_control = v
-				i = ii
+				i, res.voice_use_auto_gain_control = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.selected_non_default_mic = v
-				i = ii
+				i, res.selected_non_default_mic = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.selected_non_default_output = v
-				i = ii
+				i, res.selected_non_default_output = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.push_to_talk_enabled = v
-				i = ii
+				i, res.push_to_talk_enabled = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.push_to_mute_enabled = v
-				i = ii
+				i, res.push_to_mute_enabled = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.play_ptt_sounds = v
-				i = ii
+				i, res.play_ptt_sounds = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -15385,29 +14720,19 @@ pub fn cchatusability_clientusabilitymetrics_notificationuistate_categorycollaps
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.in_game_collapsed = v
-				i = ii
+				i, res.in_game_collapsed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.online_collapsed = v
-				i = ii
+				i, res.online_collapsed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.offline_collapsed = v
-				i = ii
+				i, res.offline_collapsed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.game_groups_collapsed = v
-				i = ii
+				i, res.game_groups_collapsed = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.categories_collapsed = v
-				i = ii
+				i, res.categories_collapsed = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -15562,85 +14887,56 @@ pub fn cchatusability_clientusabilitymetrics_notification_uistate_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_list_height = v
-				i = ii
+				i, res.friends_list_height = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_list_width = v
-				i = ii
+				i, res.friends_list_width = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_list_docked = v
-				i = ii
+				i, res.friends_list_docked = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_list_collapsed = v
-				i = ii
+				i, res.friends_list_collapsed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_list_group_chats_height = v
-				i = ii
+				i, res.friends_list_group_chats_height = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_list_visible = v
-				i = ii
+				i, res.friends_list_visible = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_popups_opened = v
-				i = ii
+				i, res.chat_popups_opened = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.group_chat_tabs_opened = v
-				i = ii
+				i, res.group_chat_tabs_opened = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friend_chat_tabs_opened = v
-				i = ii
+				i, res.friend_chat_tabs_opened = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_window_width = v
-				i = ii
+				i, res.chat_window_width = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.chat_window_height = v
-				i = ii
+				i, res.chat_window_height = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notificationuistate_categorycollapsestate(cur_buf,
+				i, res.category_collapse = zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notificationuistate_categorycollapsestate(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.category_collapse = v
-				i = ii
 			}
 			13 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.group_chat_left_col_collapsed = v
-				i = ii
+				i, res.group_chat_left_col_collapsed = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			14 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.group_chat_right_col_collapsed = v
-				i = ii
+				i, res.group_chat_right_col_collapsed = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.in_one_on_one_voice_chat = v
-				i = ii
+				i, res.in_one_on_one_voice_chat = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			16 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.in_group_voice_chat = v
-				i = ii
+				i, res.in_group_voice_chat = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -15776,54 +15072,37 @@ pub fn cchatusability_clientusabilitymetrics_notification_metrics_unpack(buf []b
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_count = v
-				i = ii
+				i, res.friends_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_category_count = v
-				i = ii
+				i, res.friends_category_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_categorized_count = v
-				i = ii
+				i, res.friends_categorized_count = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_online_count = v
-				i = ii
+				i, res.friends_online_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_in_game_count = v
-				i = ii
+				i, res.friends_in_game_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_in_game_singleton_count = v
-				i = ii
+				i, res.friends_in_game_singleton_count = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.game_group_count = v
-				i = ii
+				i, res.game_group_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.friends_favorite_count = v
-				i = ii
+				i, res.friends_favorite_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.group_chat_count = v
-				i = ii
+				i, res.group_chat_count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.group_chat_favorite_count = v
-				i = ii
+				i, res.group_chat_favorite_count = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -15951,48 +15230,32 @@ pub fn cchatusability_clientusabilitymetrics_notification_unpack(buf []byte) ?CC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.metrics_run_id = v
-				i = ii
+				i, res.metrics_run_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.client_build = v
-				i = ii
+				i, res.client_build = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.metrics_version = v
-				i = ii
+				i, res.metrics_version = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.in_web = v
-				i = ii
+				i, res.in_web = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_settings(cur_buf,
+				i, res.settings = zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_settings(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.settings = v
-				i = ii
 			}
 			11 {
-				ii, v := zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_voicesettings(cur_buf,
+				i, res.voice_settings = zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_voicesettings(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.voice_settings = v
-				i = ii
 			}
 			12 {
-				ii, v := zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_uistate(cur_buf,
+				i, res.ui_state = zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_uistate(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.ui_state = v
-				i = ii
 			}
 			13 {
-				ii, v := zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_metrics(cur_buf,
+				i, res.metrics = zzz_vproto_internal_unpack_cchatusability_clientusabilitymetrics_notification_metrics(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.metrics = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -16086,9 +15349,7 @@ pub fn cchatusability_requestclientusabilitymetrics_notification_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.metrics_run_id = v
-				i = ii
+				i, res.metrics_run_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

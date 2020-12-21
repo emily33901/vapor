@@ -1321,14 +1321,10 @@ pub fn cdiscoverypingrequest_unpack(buf []byte) ?CDiscoveryPingRequest {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sequence = v
-				i = ii
+				i, res.sequence = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packet_size_requested = v
-				i = ii
+				i, res.packet_size_requested = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1424,14 +1420,10 @@ pub fn cdiscoverypingresponse_unpack(buf []byte) ?CDiscoveryPingResponse {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sequence = v
-				i = ii
+				i, res.sequence = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packet_size_received = v
-				i = ii
+				i, res.packet_size_received = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1523,9 +1515,7 @@ pub fn cstreamingclienthandshakeinfo_unpack(buf []byte) ?CStreamingClientHandsha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.network_test = v
-				i = ii
+				i, res.network_test = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1615,10 +1605,8 @@ pub fn cclienthandshakemsg_unpack(buf []byte) ?CClientHandshakeMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstreamingclienthandshakeinfo(cur_buf,
+				i, res.info = zzz_vproto_internal_unpack_cstreamingclienthandshakeinfo(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.info = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1710,9 +1698,7 @@ pub fn cstreamingserverhandshakeinfo_unpack(buf []byte) ?CStreamingServerHandsha
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.mtu = v
-				i = ii
+				i, res.mtu = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1802,10 +1788,8 @@ pub fn cserverhandshakemsg_unpack(buf []byte) ?CServerHandshakeMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstreamingserverhandshakeinfo(cur_buf,
+				i, res.info = zzz_vproto_internal_unpack_cstreamingserverhandshakeinfo(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.info = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1901,14 +1885,10 @@ pub fn cauthenticationrequestmsg_unpack(buf []byte) ?CAuthenticationRequestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.token = v
-				i = ii
+				i, res.token = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreamversion(cur_buf, tag_wiretype.wire_type) ?
-				res.version = v
-				i = ii
+				i, res.version = zzz_vproto_internal_unpack_estreamversion(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2055,15 +2035,11 @@ pub fn cauthenticationresponsemsg_unpack(buf []byte) ?CAuthenticationResponseMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult(cur_buf,
+				i, res.result = zzz_vproto_internal_unpack_cauthenticationresponsemsg_authenticationresult(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.result = v
-				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreamversion(cur_buf, tag_wiretype.wire_type) ?
-				res.version = v
-				i = ii
+				i, res.version = zzz_vproto_internal_unpack_estreamversion(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2234,29 +2210,19 @@ pub fn cstartnetworktestmsg_unpack(buf []byte) ?CStartNetworkTestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frames = v
-				i = ii
+				i, res.frames = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.framerate = v
-				i = ii
+				i, res.framerate = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bitrate_kbps = v
-				i = ii
+				i, res.bitrate_kbps = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.burst_bitrate_kbps = v
-				i = ii
+				i, res.burst_bitrate_kbps = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bandwidth_test = v
-				i = ii
+				i, res.bandwidth_test = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2361,29 +2327,20 @@ pub fn cstreamvideomode_unpack(buf []byte) ?CStreamVideoMode {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.width = v
-				i = ii
+				i, res.width = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.height = v
-				i = ii
+				i, res.height = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.refresh_rate = v
-				i = ii
+				i, res.refresh_rate = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.refresh_rate_numerator = v
-				i = ii
+				i, res.refresh_rate_numerator = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.refresh_rate_denominator = v
-				i = ii
+				i, res.refresh_rate_denominator = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2516,59 +2473,42 @@ pub fn cstreamingclientcaps_unpack(buf []byte) ?CStreamingClientCaps {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.system_info = v
-				i = ii
+				i, res.system_info = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.system_can_suspend = v
-				i = ii
+				i, res.system_can_suspend = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_decode_bitrate_kbps = v
-				i = ii
+				i, res.maximum_decode_bitrate_kbps = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_burst_bitrate_kbps = v
-				i = ii
+				i, res.maximum_burst_bitrate_kbps = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.supports_video_hevc = v
-				i = ii
+				i, res.supports_video_hevc = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.disable_steam_store = v
-				i = ii
+				i, res.disable_steam_store = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.disable_client_cursor = v
-				i = ii
+				i, res.disable_client_cursor = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.disable_intel_hardware_encoding = v
-				i = ii
+				i, res.disable_intel_hardware_encoding = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.disable_amd_hardware_encoding = v
-				i = ii
+				i, res.disable_amd_hardware_encoding = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.disable_nvidia_hardware_encoding = v
-				i = ii
+				i, res.disable_nvidia_hardware_encoding = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.form_factor = v
-				i = ii
+				i, res.form_factor = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2733,95 +2673,65 @@ pub fn cstreamingclientconfig_unpack(buf []byte) ?CStreamingClientConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_estreamqualitypreference(cur_buf,
+				i, res.quality = zzz_vproto_internal_unpack_estreamqualitypreference(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.quality = v
-				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_resolution_x = v
-				i = ii
+				i, res.maximum_resolution_x = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_resolution_y = v
-				i = ii
+				i, res.maximum_resolution_y = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_framerate_numerator = v
-				i = ii
+				i, res.maximum_framerate_numerator = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_framerate_denominator = v
-				i = ii
+				i, res.maximum_framerate_denominator = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.maximum_bitrate_kbps = v
-				i = ii
+				i, res.maximum_bitrate_kbps = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_hardware_decoding = v
-				i = ii
+				i, res.enable_hardware_decoding = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_performance_overlay = v
-				i = ii
+				i, res.enable_performance_overlay = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_video_streaming = v
-				i = ii
+				i, res.enable_video_streaming = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_audio_streaming = v
-				i = ii
+				i, res.enable_audio_streaming = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_input_streaming = v
-				i = ii
+				i, res.enable_input_streaming = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.audio_channels = v
-				i = ii
+				i, res.audio_channels = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_video_hevc = v
-				i = ii
+				i, res.enable_video_hevc = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			14 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_performance_icons = v
-				i = ii
+				i, res.enable_performance_icons = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			15 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_microphone_streaming = v
-				i = ii
+				i, res.enable_microphone_streaming = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			16 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.controller_overlay_hotkey = v
-				i = ii
+				i, res.controller_overlay_hotkey = vproto.unpack_string_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_touch_controller = v
-				i = ii
+				i, res.enable_touch_controller = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			18 {
-				ii, v := zzz_vproto_internal_unpack_estreamp2pscope(cur_buf, tag_wiretype.wire_type) ?
-				res.p2p_scope = v
-				i = ii
+				i, res.p2p_scope = zzz_vproto_internal_unpack_estreamp2pscope(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2955,50 +2865,37 @@ pub fn cstreamingserverconfig_unpack(buf []byte) ?CStreamingServerConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.change_desktop_resolution = v
-				i = ii
+				i, res.change_desktop_resolution = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.dynamically_adjust_resolution = v
-				i = ii
+				i, res.dynamically_adjust_resolution = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_capture_nvfbc = v
-				i = ii
+				i, res.enable_capture_nvfbc = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_hardware_encoding_nvidia = v
-				i = ii
+				i, res.enable_hardware_encoding_nvidia = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_hardware_encoding_amd = v
-				i = ii
+				i, res.enable_hardware_encoding_amd = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_hardware_encoding_intel = v
-				i = ii
+				i, res.enable_hardware_encoding_intel = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.software_encoding_threads = v
-				i = ii
+				i, res.software_encoding_threads = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_traffic_priority = v
-				i = ii
+				i, res.enable_traffic_priority = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := zzz_vproto_internal_unpack_estreamhostplayaudiopreference(cur_buf,
+				i, res.host_play_audio = zzz_vproto_internal_unpack_estreamhostplayaudiopreference(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.host_play_audio = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3116,19 +3013,15 @@ pub fn cnegotiatedconfig_unpack(buf []byte) ?CNegotiatedConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.reliable_data = v
-				i = ii
+				i, res.reliable_data = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreamaudiocodec(cur_buf, tag_wiretype.wire_type) ?
-				res.selected_audio_codec = v
-				i = ii
+				i, res.selected_audio_codec = zzz_vproto_internal_unpack_estreamaudiocodec(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_estreamvideocodec(cur_buf, tag_wiretype.wire_type) ?
-				res.selected_video_codec = v
-				i = ii
+				i, res.selected_video_codec = zzz_vproto_internal_unpack_estreamvideocodec(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
 				// [packed=false]
@@ -3137,14 +3030,10 @@ pub fn cnegotiatedconfig_unpack(buf []byte) ?CNegotiatedConfig {
 				i = ii
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_remote_hid = v
-				i = ii
+				i, res.enable_remote_hid = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enable_touch_input = v
-				i = ii
+				i, res.enable_touch_input = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3256,9 +3145,7 @@ pub fn cnegotiationinitmsg_unpack(buf []byte) ?CNegotiationInitMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.reliable_data = v
-				i = ii
+				i, res.reliable_data = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -3273,14 +3160,10 @@ pub fn cnegotiationinitmsg_unpack(buf []byte) ?CNegotiationInitMsg {
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.supports_remote_hid = v
-				i = ii
+				i, res.supports_remote_hid = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.supports_touch_input = v
-				i = ii
+				i, res.supports_touch_input = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3382,19 +3265,16 @@ pub fn cnegotiationsetconfigmsg_unpack(buf []byte) ?CNegotiationSetConfigMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cnegotiatedconfig(cur_buf, tag_wiretype.wire_type) ?
-				res.config = v
-				i = ii
+				i, res.config = zzz_vproto_internal_unpack_cnegotiatedconfig(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cstreamingclientconfig(cur_buf, tag_wiretype.wire_type) ?
-				res.streaming_client_config = v
-				i = ii
+				i, res.streaming_client_config = zzz_vproto_internal_unpack_cstreamingclientconfig(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cstreamingclientcaps(cur_buf, tag_wiretype.wire_type) ?
-				res.streaming_client_caps = v
-				i = ii
+				i, res.streaming_client_caps = zzz_vproto_internal_unpack_cstreamingclientcaps(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3564,29 +3444,19 @@ pub fn cstartaudiodatamsg_unpack(buf []byte) ?CStartAudioDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.channel = v
-				i = ii
+				i, res.channel = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_estreamaudiocodec(cur_buf, tag_wiretype.wire_type) ?
-				res.codec = v
-				i = ii
+				i, res.codec = zzz_vproto_internal_unpack_estreamaudiocodec(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.codec_data = v
-				i = ii
+				i, res.codec_data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frequency = v
-				i = ii
+				i, res.frequency = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.channels = v
-				i = ii
+				i, res.channels = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3756,29 +3626,19 @@ pub fn cstartvideodatamsg_unpack(buf []byte) ?CStartVideoDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.channel = v
-				i = ii
+				i, res.channel = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreamvideocodec(cur_buf, tag_wiretype.wire_type) ?
-				res.codec = v
-				i = ii
+				i, res.codec = zzz_vproto_internal_unpack_estreamvideocodec(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.codec_data = v
-				i = ii
+				i, res.codec_data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.width = v
-				i = ii
+				i, res.width = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.height = v
-				i = ii
+				i, res.height = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -3938,14 +3798,11 @@ pub fn crecordedinput_unpack(buf []byte) ?CRecordedInput {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_estreamcontrolmessage(cur_buf, tag_wiretype.wire_type) ?
-				res.@type = v
-				i = ii
+				i, res.@type = zzz_vproto_internal_unpack_estreamcontrolmessage(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4135,14 +3992,10 @@ pub fn cinputlatencytestmsg_unpack(buf []byte) ?CInputLatencyTestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.color = v
-				i = ii
+				i, res.color = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4246,24 +4099,16 @@ pub fn cinputtouchfingerdownmsg_unpack(buf []byte) ?CInputTouchFingerDownMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.fingerid = v
-				i = ii
+				i, res.fingerid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.x_normalized = v
-				i = ii
+				i, res.x_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.y_normalized = v
-				i = ii
+				i, res.y_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4368,24 +4213,16 @@ pub fn cinputtouchfingermotionmsg_unpack(buf []byte) ?CInputTouchFingerMotionMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.fingerid = v
-				i = ii
+				i, res.fingerid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.x_normalized = v
-				i = ii
+				i, res.x_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.y_normalized = v
-				i = ii
+				i, res.y_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4490,24 +4327,16 @@ pub fn cinputtouchfingerupmsg_unpack(buf []byte) ?CInputTouchFingerUpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.fingerid = v
-				i = ii
+				i, res.fingerid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.x_normalized = v
-				i = ii
+				i, res.x_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.y_normalized = v
-				i = ii
+				i, res.y_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4616,29 +4445,19 @@ pub fn cinputmousemotionmsg_unpack(buf []byte) ?CInputMouseMotionMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.x_normalized = v
-				i = ii
+				i, res.x_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.y_normalized = v
-				i = ii
+				i, res.y_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.dx = v
-				i = ii
+				i, res.dx = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.dy = v
-				i = ii
+				i, res.dy = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4733,15 +4552,11 @@ pub fn cinputmousewheelmsg_unpack(buf []byte) ?CInputMouseWheelMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreammousewheeldirection(cur_buf,
+				i, res.direction = zzz_vproto_internal_unpack_estreammousewheeldirection(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.direction = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4835,14 +4650,11 @@ pub fn cinputmousedownmsg_unpack(buf []byte) ?CInputMouseDownMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreammousebutton(cur_buf, tag_wiretype.wire_type) ?
-				res.button = v
-				i = ii
+				i, res.button = zzz_vproto_internal_unpack_estreammousebutton(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -4936,14 +4748,11 @@ pub fn cinputmouseupmsg_unpack(buf []byte) ?CInputMouseUpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_estreammousebutton(cur_buf, tag_wiretype.wire_type) ?
-				res.button = v
-				i = ii
+				i, res.button = zzz_vproto_internal_unpack_estreammousebutton(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5037,14 +4846,10 @@ pub fn cinputkeydownmsg_unpack(buf []byte) ?CInputKeyDownMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.scancode = v
-				i = ii
+				i, res.scancode = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5138,14 +4943,10 @@ pub fn cinputkeyupmsg_unpack(buf []byte) ?CInputKeyUpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.scancode = v
-				i = ii
+				i, res.scancode = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5239,14 +5040,10 @@ pub fn cinputtextmsg_unpack(buf []byte) ?CInputTextMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.text_utf8 = v
-				i = ii
+				i, res.text_utf8 = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5338,9 +5135,7 @@ pub fn csettitlemsg_unpack(buf []byte) ?CSetTitleMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.text = v
-				i = ii
+				i, res.text = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5436,14 +5231,10 @@ pub fn csetcapturesizemsg_unpack(buf []byte) ?CSetCaptureSizeMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.width = v
-				i = ii
+				i, res.width = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.height = v
-				i = ii
+				i, res.height = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5543,19 +5334,13 @@ pub fn cseticonmsg_unpack(buf []byte) ?CSetIconMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.width = v
-				i = ii
+				i, res.width = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.height = v
-				i = ii
+				i, res.height = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.image = v
-				i = ii
+				i, res.image = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5655,19 +5440,13 @@ pub fn csetflashstatemsg_unpack(buf []byte) ?CSetFlashStateMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.flags = v
-				i = ii
+				i, res.flags = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.count = v
-				i = ii
+				i, res.count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timeout_ms = v
-				i = ii
+				i, res.timeout_ms = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5763,14 +5542,10 @@ pub fn cshowcursormsg_unpack(buf []byte) ?CShowCursorMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.x_normalized = v
-				i = ii
+				i, res.x_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.y_normalized = v
-				i = ii
+				i, res.y_normalized = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -5923,9 +5698,7 @@ pub fn csetcursormsg_unpack(buf []byte) ?CSetCursorMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cursor_id = v
-				i = ii
+				i, res.cursor_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6015,9 +5788,7 @@ pub fn cgetcursorimagemsg_unpack(buf []byte) ?CGetCursorImageMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cursor_id = v
-				i = ii
+				i, res.cursor_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6127,34 +5898,22 @@ pub fn csetcursorimagemsg_unpack(buf []byte) ?CSetCursorImageMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cursor_id = v
-				i = ii
+				i, res.cursor_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.width = v
-				i = ii
+				i, res.width = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.height = v
-				i = ii
+				i, res.height = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hot_x = v
-				i = ii
+				i, res.hot_x = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hot_y = v
-				i = ii
+				i, res.hot_y = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.image = v
-				i = ii
+				i, res.image = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6251,14 +6010,10 @@ pub fn cvideodecoderinfomsg_unpack(buf []byte) ?CVideoDecoderInfoMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.info = v
-				i = ii
+				i, res.info = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.threads = v
-				i = ii
+				i, res.threads = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6350,9 +6105,7 @@ pub fn cvideoencoderinfomsg_unpack(buf []byte) ?CVideoEncoderInfoMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.info = v
-				i = ii
+				i, res.info = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6759,9 +6512,7 @@ pub fn csetcapslockmsg_unpack(buf []byte) ?CSetCapslockMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.pressed = v
-				i = ii
+				i, res.pressed = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -6885,49 +6636,32 @@ pub fn cstreamingkeymapentry_unpack(buf []byte) ?CStreamingKeymapEntry {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.scancode = v
-				i = ii
+				i, res.scancode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.normal_keycode = v
-				i = ii
+				i, res.normal_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.shift_keycode = v
-				i = ii
+				i, res.shift_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.capslock_keycode = v
-				i = ii
+				i, res.capslock_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.shift_capslock_keycode = v
-				i = ii
+				i, res.shift_capslock_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.altgr_keycode = v
-				i = ii
+				i, res.altgr_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.altgr_shift_keycode = v
-				i = ii
+				i, res.altgr_shift_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.altgr_capslock_keycode = v
-				i = ii
+				i, res.altgr_capslock_keycode = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.altgr_shift_capslock_keycode = v
-				i = ii
+				i, res.altgr_shift_capslock_keycode = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7118,9 +6852,7 @@ pub fn csetkeymapmsg_unpack(buf []byte) ?CSetKeymapMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstreamingkeymap(cur_buf, tag_wiretype.wire_type) ?
-				res.keymap = v
-				i = ii
+				i, res.keymap = zzz_vproto_internal_unpack_cstreamingkeymap(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7336,9 +7068,7 @@ pub fn cdeletecursormsg_unpack(buf []byte) ?CDeleteCursorMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cursor_id = v
-				i = ii
+				i, res.cursor_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7428,9 +7158,8 @@ pub fn csetstreamingclientconfig_unpack(buf []byte) ?CSetStreamingClientConfig {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstreamingclientconfig(cur_buf, tag_wiretype.wire_type) ?
-				res.config = v
-				i = ii
+				i, res.config = zzz_vproto_internal_unpack_cstreamingclientconfig(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7520,9 +7249,7 @@ pub fn csetqosmsg_unpack(buf []byte) ?CSetQoSMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.use_qos = v
-				i = ii
+				i, res.use_qos = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7624,24 +7351,16 @@ pub fn csettargetframeratemsg_unpack(buf []byte) ?CSetTargetFramerateMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.framerate = v
-				i = ii
+				i, res.framerate = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.reasons = v
-				i = ii
+				i, res.reasons = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.framerate_numerator = v
-				i = ii
+				i, res.framerate_numerator = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.framerate_denominator = v
-				i = ii
+				i, res.framerate_denominator = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7732,9 +7451,7 @@ pub fn csettargetbitratemsg_unpack(buf []byte) ?CSetTargetBitrateMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bitrate = v
-				i = ii
+				i, res.bitrate = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7824,9 +7541,7 @@ pub fn coverlayenabledmsg_unpack(buf []byte) ?COverlayEnabledMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enabled = v
-				i = ii
+				i, res.enabled = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -7918,9 +7633,7 @@ pub fn csetgammarampmsg_unpack(buf []byte) ?CSetGammaRampMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gamma_ramp = v
-				i = ii
+				i, res.gamma_ramp = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8020,19 +7733,14 @@ pub fn csetactivitymsg_unpack(buf []byte) ?CSetActivityMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_estreamactivity(cur_buf, tag_wiretype.wire_type) ?
-				res.activity = v
-				i = ii
+				i, res.activity = zzz_vproto_internal_unpack_estreamactivity(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.gameid = v
-				i = ii
+				i, res.gameid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8187,9 +7895,7 @@ pub fn cvirtualhererequestmsg_unpack(buf []byte) ?CVirtualHereRequestMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hostname = v
-				i = ii
+				i, res.hostname = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8281,9 +7987,7 @@ pub fn cvirtualherereadymsg_unpack(buf []byte) ?CVirtualHereReadyMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.licensed_device_count = v
-				i = ii
+				i, res.licensed_device_count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8375,9 +8079,7 @@ pub fn cvirtualheresharedevicemsg_unpack(buf []byte) ?CVirtualHereShareDeviceMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.device_address = v
-				i = ii
+				i, res.device_address = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8469,9 +8171,7 @@ pub fn csetspectatormodemsg_unpack(buf []byte) ?CSetSpectatorModeMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.enabled = v
-				i = ii
+				i, res.enabled = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8563,9 +8263,7 @@ pub fn cremotehidmsg_unpack(buf []byte) ?CRemoteHIDMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.data = v
-				i = ii
+				i, res.data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8665,19 +8363,13 @@ pub fn ctouchconfigactivemsg_unpack(buf []byte) ?CTouchConfigActiveMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.revision = v
-				i = ii
+				i, res.revision = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.creator = v
-				i = ii
+				i, res.creator = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8769,9 +8461,7 @@ pub fn cgettouchconfigdatamsg_unpack(buf []byte) ?CGetTouchConfigDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8879,29 +8569,19 @@ pub fn csettouchconfigdatamsg_unpack(buf []byte) ?CSetTouchConfigDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.revision = v
-				i = ii
+				i, res.revision = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.data = v
-				i = ii
+				i, res.data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.layout = v
-				i = ii
+				i, res.layout = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.creator = v
-				i = ii
+				i, res.creator = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -8998,14 +8678,10 @@ pub fn csavetouchconfiglayoutmsg_unpack(buf []byte) ?CSaveTouchConfigLayoutMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.layout = v
-				i = ii
+				i, res.layout = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9101,14 +8777,10 @@ pub fn ctouchactionsetactivemsg_unpack(buf []byte) ?CTouchActionSetActiveMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.actionset_id = v
-				i = ii
+				i, res.actionset_id = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9204,14 +8876,10 @@ pub fn ctouchactionsetlayeraddedmsg_unpack(buf []byte) ?CTouchActionSetLayerAdde
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.actionset_id = v
-				i = ii
+				i, res.actionset_id = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9307,14 +8975,10 @@ pub fn ctouchactionsetlayerremovedmsg_unpack(buf []byte) ?CTouchActionSetLayerRe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.actionset_id = v
-				i = ii
+				i, res.actionset_id = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9410,14 +9074,10 @@ pub fn cgettouchicondatamsg_unpack(buf []byte) ?CGetTouchIconDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.icon = v
-				i = ii
+				i, res.icon = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9517,19 +9177,13 @@ pub fn csettouchicondatamsg_unpack(buf []byte) ?CSetTouchIconDataMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.icon = v
-				i = ii
+				i, res.icon = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.data = v
-				i = ii
+				i, res.data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9723,19 +9377,13 @@ pub fn caudioformat_unpack(buf []byte) ?CAudioFormat {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_eaudioformat(cur_buf, tag_wiretype.wire_type) ?
-				res.format = v
-				i = ii
+				i, res.format = zzz_vproto_internal_unpack_eaudioformat(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frequency = v
-				i = ii
+				i, res.frequency = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.channels = v
-				i = ii
+				i, res.channels = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9833,19 +9481,13 @@ pub fn cvideoformat_unpack(buf []byte) ?CVideoFormat {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_evideoformat(cur_buf, tag_wiretype.wire_type) ?
-				res.format = v
-				i = ii
+				i, res.format = zzz_vproto_internal_unpack_evideoformat(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.width = v
-				i = ii
+				i, res.width = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.height = v
-				i = ii
+				i, res.height = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -9937,14 +9579,11 @@ pub fn cframeevent_unpack(buf []byte) ?CFrameEvent {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_estreamframeevent(cur_buf, tag_wiretype.wire_type) ?
-				res.event_id = v
-				i = ii
+				i, res.event_id = zzz_vproto_internal_unpack_estreamframeevent(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp = v
-				i = ii
+				i, res.timestamp = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10077,14 +9716,10 @@ pub fn cframestats_unpack(buf []byte) ?CFrameStats {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frame_id = v
-				i = ii
+				i, res.frame_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.input_mark = v
-				i = ii
+				i, res.input_mark = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -10093,49 +9728,32 @@ pub fn cframestats_unpack(buf []byte) ?CFrameStats {
 				i = ii
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_estreamframeresult(cur_buf, tag_wiretype.wire_type) ?
-				res.result = v
-				i = ii
+				i, res.result = zzz_vproto_internal_unpack_estreamframeresult(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frame_start_delta = v
-				i = ii
+				i, res.frame_start_delta = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frame_display_delta = v
-				i = ii
+				i, res.frame_display_delta = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_time = v
-				i = ii
+				i, res.ping_time = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.server_bitrate = v
-				i = ii
+				i, res.server_bitrate = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.client_bitrate = v
-				i = ii
+				i, res.client_bitrate = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.link_bandwidth = v
-				i = ii
+				i, res.link_bandwidth = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packet_loss = v
-				i = ii
+				i, res.packet_loss = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frame_size = v
-				i = ii
+				i, res.frame_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10237,24 +9855,17 @@ pub fn cframestataccumulatedvalue_unpack(buf []byte) ?CFrameStatAccumulatedValue
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_eframeaccumulatedstat(cur_buf, tag_wiretype.wire_type) ?
-				res.stat_type = v
-				i = ii
+				i, res.stat_type = zzz_vproto_internal_unpack_eframeaccumulatedstat(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.count = v
-				i = ii
+				i, res.count = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.average = v
-				i = ii
+				i, res.average = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.stddev = v
-				i = ii
+				i, res.stddev = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10357,9 +9968,8 @@ pub fn cframestatslistmsg_unpack(buf []byte) ?CFrameStatsListMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_estreamingdatatype(cur_buf, tag_wiretype.wire_type) ?
-				res.data_type = v
-				i = ii
+				i, res.data_type = zzz_vproto_internal_unpack_estreamingdatatype(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -10375,9 +9985,7 @@ pub fn cframestatslistmsg_unpack(buf []byte) ?CFrameStatsListMsg {
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.latest_frame_id = v
-				i = ii
+				i, res.latest_frame_id = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10478,19 +10086,13 @@ pub fn cstreamingsessionstats_unpack(buf []byte) ?CStreamingSessionStats {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.frame_loss_percentage = v
-				i = ii
+				i, res.frame_loss_percentage = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.average_network_time_ms = v
-				i = ii
+				i, res.average_network_time_ms = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
-				res.stddev_network_time_ms = v
-				i = ii
+				i, res.stddev_network_time_ms = vproto.unpack_float_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10583,9 +10185,7 @@ pub fn cdebugdumpmsg_unpack(buf []byte) ?CDebugDumpMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.screenshot = v
-				i = ii
+				i, res.screenshot = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10681,14 +10281,10 @@ pub fn clogmsg_unpack(buf []byte) ?CLogMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.@type = v
-				i = ii
+				i, res.@type = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message = v
-				i = ii
+				i, res.message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10784,14 +10380,10 @@ pub fn cloguploadmsg_unpack(buf []byte) ?CLogUploadMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_elogfiletype(cur_buf, tag_wiretype.wire_type) ?
-				res.@type = v
-				i = ii
+				i, res.@type = zzz_vproto_internal_unpack_elogfiletype(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.data = v
-				i = ii
+				i, res.data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -10891,19 +10483,13 @@ pub fn ctransportsignalmsgwebrtcmessage_candidate_unpack(buf []byte) ?CTransport
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sdp_mid = v
-				i = ii
+				i, res.sdp_mid = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sdp_mline_index = v
-				i = ii
+				i, res.sdp_mline_index = vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.candidate = v
-				i = ii
+				i, res.candidate = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -11064,10 +10650,8 @@ pub fn ctransportsignalmsg_unpack(buf []byte) ?CTransportSignalMsg {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_ctransportsignalmsg_webrtcmessage(cur_buf,
+				i, res.webrtc = zzz_vproto_internal_unpack_ctransportsignalmsg_webrtcmessage(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.webrtc = v
-				i = ii
 			}
 			2 {
 				// [packed=false]

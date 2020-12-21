@@ -85,14 +85,10 @@ pub fn cstar_keyvaluequery_unpack(buf []byte) ?CSTAR_KeyValueQuery {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key = v
-				i = ii
+				i, res.key = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -189,9 +185,7 @@ pub fn cstar_glyphqueryparams_unpack(buf []byte) ?CSTAR_GlyphQueryParams {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bundle_id = v
-				i = ii
+				i, res.bundle_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -293,14 +287,12 @@ pub fn cstar_readglyphdata_request_unpack(buf []byte) ?CSTAR_ReadGlyphData_Reque
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstar_glyphqueryparams(cur_buf, tag_wiretype.wire_type) ?
-				res.query_params = v
-				i = ii
+				i, res.query_params = zzz_vproto_internal_unpack_cstar_glyphqueryparams(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.last_modified_time_lower_limit = v
-				i = ii
+				i, res.last_modified_time_lower_limit = vproto.unpack_string_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -400,19 +392,13 @@ pub fn cstar_glyphdata_unpack(buf []byte) ?CSTAR_GlyphData {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.glyph_guid = v
-				i = ii
+				i, res.glyph_guid = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.glyph_last_modified = v
-				i = ii
+				i, res.glyph_last_modified = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.glyph_json_data = v
-				i = ii
+				i, res.glyph_json_data = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -510,9 +496,7 @@ pub fn cstar_writeglyphdata_request_unpack(buf []byte) ?CSTAR_WriteGlyphData_Req
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bundle_id = v
-				i = ii
+				i, res.bundle_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -616,16 +600,12 @@ pub fn cstar_request_unpack(buf []byte) ?CSTAR_Request {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstar_readglyphdata_request(cur_buf,
+				i, res.read_glyph_data = zzz_vproto_internal_unpack_cstar_readglyphdata_request(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.read_glyph_data = v
-				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cstar_writeglyphdata_request(cur_buf,
+				i, res.write_glyph_data = zzz_vproto_internal_unpack_cstar_writeglyphdata_request(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.write_glyph_data = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -722,9 +702,7 @@ pub fn cstar_readglyphdata_response_unpack(buf []byte) ?CSTAR_ReadGlyphData_Resp
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.bundle_id = v
-				i = ii
+				i, res.bundle_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -924,16 +902,12 @@ pub fn cstar_response_unpack(buf []byte) ?CSTAR_Response {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstar_readglyphdata_response(cur_buf,
+				i, res.read_glyph_data = zzz_vproto_internal_unpack_cstar_readglyphdata_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.read_glyph_data = v
-				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cstar_writeglyphdata_response(cur_buf,
+				i, res.write_glyph_data = zzz_vproto_internal_unpack_cstar_writeglyphdata_response(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.write_glyph_data = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

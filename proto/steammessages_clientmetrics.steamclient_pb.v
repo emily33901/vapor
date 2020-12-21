@@ -134,14 +134,11 @@ pub fn cclientmetrics_appinterfacecreation_unpack(buf []byte) ?CClientMetrics_Ap
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.raw_version = v
-				i = ii
+				i, res.raw_version = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.requested_interface_type = v
-				i = ii
+				i, res.requested_interface_type = vproto.unpack_string_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -241,19 +238,13 @@ pub fn cclientmetrics_appinterfacemethodcounts_unpack(buf []byte) ?CClientMetric
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.interface_name = v
-				i = ii
+				i, res.interface_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.method_name = v
-				i = ii
+				i, res.method_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.call_count = v
-				i = ii
+				i, res.call_count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -360,9 +351,7 @@ pub fn cclientmetrics_appinterfacestats_notification_unpack(buf []byte) ?CClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.game_id = v
-				i = ii
+				i, res.game_id = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -379,9 +368,7 @@ pub fn cclientmetrics_appinterfacestats_notification_unpack(buf []byte) ?CClient
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.session_length_seconds = v
-				i = ii
+				i, res.session_length_seconds = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -478,14 +465,10 @@ pub fn cclientmetrics_ipv6connectivity_result_unpack(buf []byte) ?CClientMetrics
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.protocol_tested = v
-				i = ii
+				i, res.protocol_tested = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.connectivity_state = v
-				i = ii
+				i, res.connectivity_state = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -586,9 +569,7 @@ pub fn cclientmetrics_ipv6connectivity_notification_unpack(buf []byte) ?CClientM
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cell_id = v
-				i = ii
+				i, res.cell_id = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -598,9 +579,7 @@ pub fn cclientmetrics_ipv6connectivity_notification_unpack(buf []byte) ?CClientM
 				i = ii
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.private_ip_is_rfc6598 = v
-				i = ii
+				i, res.private_ip_is_rfc6598 = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -717,39 +696,26 @@ pub fn cclientmetrics_steampipeworkstats_operation_unpack(buf []byte) ?CClientMe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_esteampipeoperationtype(cur_buf, tag_wiretype.wire_type) ?
-				res.@type = v
-				i = ii
+				i, res.@type = zzz_vproto_internal_unpack_esteampipeoperationtype(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.num_ops = v
-				i = ii
+				i, res.num_ops = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.num_bytes = v
-				i = ii
+				i, res.num_bytes = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.busy_time_ms = v
-				i = ii
+				i, res.busy_time_ms = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.idle_time_ms = v
-				i = ii
+				i, res.idle_time_ms = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sum_run_time_ms = v
-				i = ii
+				i, res.sum_run_time_ms = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sum_wait_time_ms = v
-				i = ii
+				i, res.sum_wait_time_ms = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -857,19 +823,14 @@ pub fn cclientmetrics_steampipeworkstats_notification_unpack(buf []byte) ?CClien
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.depotid = v
-				i = ii
+				i, res.depotid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_esteampipeworktype(cur_buf, tag_wiretype.wire_type) ?
-				res.work_type = v
-				i = ii
+				i, res.work_type = zzz_vproto_internal_unpack_esteampipeworktype(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			4 {
 				// [packed=false]
@@ -977,19 +938,13 @@ pub fn cclientmetrics_reportclienterror_notification_error_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.identifier = v
-				i = ii
+				i, res.identifier = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.message = v
-				i = ii
+				i, res.message = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.count = v
-				i = ii
+				i, res.count = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1091,14 +1046,10 @@ pub fn cclientmetrics_reportclienterror_notification_unpack(buf []byte) ?CClient
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.product = v
-				i = ii
+				i, res.product = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.version = v
-				i = ii
+				i, res.version = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]

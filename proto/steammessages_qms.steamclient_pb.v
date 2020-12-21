@@ -140,9 +140,7 @@ pub fn gamesearchparam_unpack(buf []byte) ?GameSearchParam {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key_name = v
-				i = ii
+				i, res.key_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -265,14 +263,11 @@ pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatch
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_egamesearchaction(cur_buf, tag_wiretype.wire_type) ?
-				res.action = v
-				i = ii
+				i, res.action = zzz_vproto_internal_unpack_egamesearchaction(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -281,24 +276,16 @@ pub fn cqueuedmatchmaking_searchforgame_request_unpack(buf []byte) ?CQueuedMatch
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.player_min = v
-				i = ii
+				i, res.player_min = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.player_max = v
-				i = ii
+				i, res.player_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamidlobby = v
-				i = ii
+				i, res.steamidlobby = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.searchid = v
-				i = ii
+				i, res.searchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -436,64 +423,41 @@ pub fn cqueuedmatchmaking_searchforgame_response_unpack(buf []byte) ?CQueuedMatc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_egamesearchresult(cur_buf, tag_wiretype.wire_type) ?
-				res.gamesearchresult = v
-				i = ii
+				i, res.gamesearchresult = zzz_vproto_internal_unpack_egamesearchresult(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.searchid = v
-				i = ii
+				i, res.searchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.seconds_time_estimate = v
-				i = ii
+				i, res.seconds_time_estimate = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.poll_frequency = v
-				i = ii
+				i, res.poll_frequency = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.count_searching = v
-				i = ii
+				i, res.count_searching = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.players_in_match = v
-				i = ii
+				i, res.players_in_match = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.players_accepted = v
-				i = ii
+				i, res.players_accepted = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.connect_string = v
-				i = ii
+				i, res.connect_string = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamidhost = v
-				i = ii
+				i, res.steamidhost = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rtime_match_made = v
-				i = ii
+				i, res.rtime_match_made = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rtime_now = v
-				i = ii
+				i, res.rtime_now = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid_canceled_search = v
-				i = ii
+				i, res.steamid_canceled_search = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -619,14 +583,11 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?C
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_egamesearchaction(cur_buf, tag_wiretype.wire_type) ?
-				res.action = v
-				i = ii
+				i, res.action = zzz_vproto_internal_unpack_egamesearchaction(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -635,29 +596,19 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_request_unpack(buf []byte) ?C
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.player_min = v
-				i = ii
+				i, res.player_min = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.player_max = v
-				i = ii
+				i, res.player_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.player_max_team_size = v
-				i = ii
+				i, res.player_max_team_size = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.connection_string = v
-				i = ii
+				i, res.connection_string = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.searchid = v
-				i = ii
+				i, res.searchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -764,14 +715,11 @@ pub fn playerfound_unpack(buf []byte) ?PlayerFound {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_egamesearchaction(cur_buf, tag_wiretype.wire_type) ?
-				res.action = v
-				i = ii
+				i, res.action = zzz_vproto_internal_unpack_egamesearchaction(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -780,9 +728,7 @@ pub fn playerfound_unpack(buf []byte) ?PlayerFound {
 				i = ii
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.team_number = v
-				i = ii
+				i, res.team_number = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -900,24 +846,17 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_egamesearchresult(cur_buf, tag_wiretype.wire_type) ?
-				res.gamesearchresult = v
-				i = ii
+				i, res.gamesearchresult = zzz_vproto_internal_unpack_egamesearchresult(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.searchid = v
-				i = ii
+				i, res.searchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.poll_frequency = v
-				i = ii
+				i, res.poll_frequency = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.matchid = v
-				i = ii
+				i, res.matchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
 				// [packed=false]
@@ -926,14 +865,10 @@ pub fn cqueuedmatchmakinggamehost_searchforplayers_response_unpack(buf []byte) ?
 				i = ii
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rtime_match_made = v
-				i = ii
+				i, res.rtime_match_made = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rtime_now = v
-				i = ii
+				i, res.rtime_now = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1031,14 +966,10 @@ pub fn playerresult_unpack(buf []byte) ?PlayerResult {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steamid = v
-				i = ii
+				i, res.steamid = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.value = v
-				i = ii
+				i, res.value = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1139,14 +1070,10 @@ pub fn cqueuedmatchmakinggamehost_submitplayerresult_request_unpack(buf []byte) 
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.matchid = v
-				i = ii
+				i, res.matchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
 				// [packed=false]
@@ -1311,14 +1238,10 @@ pub fn cqueuedmatchmakinggamehost_endgame_request_unpack(buf []byte) ?CQueuedMat
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.appid = v
-				i = ii
+				i, res.appid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.matchid = v
-				i = ii
+				i, res.matchid = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

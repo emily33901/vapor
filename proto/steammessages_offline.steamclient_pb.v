@@ -30,9 +30,7 @@ pub fn coffline_getofflinelogonticket_request_unpack(buf []byte) ?COffline_GetOf
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.priority = v
-				i = ii
+				i, res.priority = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -128,14 +126,10 @@ pub fn coffline_getofflinelogonticket_response_unpack(buf []byte) ?COffline_GetO
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.serialized_ticket = v
-				i = ii
+				i, res.serialized_ticket = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.signature = v
-				i = ii
+				i, res.signature = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -294,14 +288,10 @@ pub fn coffline_offlinelogonticket_unpack(buf []byte) ?COffline_OfflineLogonTick
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.accountid = v
-				i = ii
+				i, res.accountid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rtime32_creation_time = v
-				i = ii
+				i, res.rtime32_creation_time = vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -393,10 +383,8 @@ pub fn coffline_getunsignedofflinelogonticket_response_unpack(buf []byte) ?COffl
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_coffline_offlinelogonticket(cur_buf,
+				i, res.ticket = zzz_vproto_internal_unpack_coffline_offlinelogonticket(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.ticket = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

@@ -147,25 +147,17 @@ pub fn cmsgsteamdatagramsessioncryptinfo_unpack(buf []byte) ?CMsgSteamDatagramSe
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfo_ekeytype(cur_buf,
+				i, res.key_type = zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfo_ekeytype(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.key_type = v
-				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key_data = v
-				i = ii
+				i, res.key_data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.nonce = v
-				i = ii
+				i, res.nonce = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.protocol_version = v
-				i = ii
+				i, res.protocol_version = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
 				// [packed=false]
@@ -269,14 +261,10 @@ pub fn cmsgsteamdatagramsessioncryptinfosigned_unpack(buf []byte) ?CMsgSteamData
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.info = v
-				i = ii
+				i, res.info = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.signature = v
-				i = ii
+				i, res.signature = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -372,14 +360,10 @@ pub fn cmsgsteamdatagramdiagnostic_unpack(buf []byte) ?CMsgSteamDatagramDiagnost
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.severity = v
-				i = ii
+				i, res.severity = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.text = v
-				i = ii
+				i, res.text = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -499,44 +483,29 @@ pub fn cmsgsteamdatagramlinkinstantaneousstats_unpack(buf []byte) ?CMsgSteamData
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.out_packets_per_sec_x10 = v
-				i = ii
+				i, res.out_packets_per_sec_x10 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.out_bytes_per_sec = v
-				i = ii
+				i, res.out_bytes_per_sec = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.in_packets_per_sec_x10 = v
-				i = ii
+				i, res.in_packets_per_sec_x10 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.in_bytes_per_sec = v
-				i = ii
+				i, res.in_bytes_per_sec = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_ms = v
-				i = ii
+				i, res.ping_ms = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_dropped_pct = v
-				i = ii
+				i, res.packets_dropped_pct = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_weird_sequence_pct = v
-				i = ii
+				i, res.packets_weird_sequence_pct = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.peak_jitter_usec = v
-				i = ii
+				i, res.peak_jitter_usec = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -911,359 +880,219 @@ pub fn cmsgsteamdatagramlinklifetimestats_unpack(buf []byte) ?CMsgSteamDatagramL
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.connected_seconds = v
-				i = ii
+				i, res.connected_seconds = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_sent = v
-				i = ii
+				i, res.packets_sent = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.kb_sent = v
-				i = ii
+				i, res.kb_sent = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_recv = v
-				i = ii
+				i, res.packets_recv = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.kb_recv = v
-				i = ii
+				i, res.kb_recv = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_recv_sequenced = v
-				i = ii
+				i, res.packets_recv_sequenced = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_recv_dropped = v
-				i = ii
+				i, res.packets_recv_dropped = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_recv_out_of_order = v
-				i = ii
+				i, res.packets_recv_out_of_order = vproto.unpack_uint64_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_recv_duplicate = v
-				i = ii
+				i, res.packets_recv_duplicate = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
-				res.packets_recv_lurch = v
-				i = ii
+				i, res.packets_recv_lurch = vproto.unpack_uint64_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			21 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_100 = v
-				i = ii
+				i, res.quality_histogram_100 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			22 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_99 = v
-				i = ii
+				i, res.quality_histogram_99 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			23 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_97 = v
-				i = ii
+				i, res.quality_histogram_97 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			24 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_95 = v
-				i = ii
+				i, res.quality_histogram_95 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			25 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_90 = v
-				i = ii
+				i, res.quality_histogram_90 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			26 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_75 = v
-				i = ii
+				i, res.quality_histogram_75 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			27 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_50 = v
-				i = ii
+				i, res.quality_histogram_50 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			28 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_1 = v
-				i = ii
+				i, res.quality_histogram_1 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			29 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_histogram_dead = v
-				i = ii
+				i, res.quality_histogram_dead = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			30 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_ntile_2nd = v
-				i = ii
+				i, res.quality_ntile_2nd = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			31 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_ntile_5th = v
-				i = ii
+				i, res.quality_ntile_5th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			32 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_ntile_25th = v
-				i = ii
+				i, res.quality_ntile_25th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			33 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.quality_ntile_50th = v
-				i = ii
+				i, res.quality_ntile_50th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			41 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_25 = v
-				i = ii
+				i, res.ping_histogram_25 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			42 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_50 = v
-				i = ii
+				i, res.ping_histogram_50 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			43 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_75 = v
-				i = ii
+				i, res.ping_histogram_75 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			44 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_100 = v
-				i = ii
+				i, res.ping_histogram_100 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			45 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_125 = v
-				i = ii
+				i, res.ping_histogram_125 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			46 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_150 = v
-				i = ii
+				i, res.ping_histogram_150 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			47 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_200 = v
-				i = ii
+				i, res.ping_histogram_200 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			48 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_300 = v
-				i = ii
+				i, res.ping_histogram_300 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			49 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_histogram_max = v
-				i = ii
+				i, res.ping_histogram_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			50 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_ntile_5th = v
-				i = ii
+				i, res.ping_ntile_5th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			51 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_ntile_50th = v
-				i = ii
+				i, res.ping_ntile_50th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			52 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_ntile_75th = v
-				i = ii
+				i, res.ping_ntile_75th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			53 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_ntile_95th = v
-				i = ii
+				i, res.ping_ntile_95th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			54 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ping_ntile_98th = v
-				i = ii
+				i, res.ping_ntile_98th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			61 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.jitter_histogram_negligible = v
-				i = ii
+				i, res.jitter_histogram_negligible = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			62 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.jitter_histogram_1 = v
-				i = ii
+				i, res.jitter_histogram_1 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			63 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.jitter_histogram_2 = v
-				i = ii
+				i, res.jitter_histogram_2 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			64 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.jitter_histogram_5 = v
-				i = ii
+				i, res.jitter_histogram_5 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			65 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.jitter_histogram_10 = v
-				i = ii
+				i, res.jitter_histogram_10 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			66 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.jitter_histogram_20 = v
-				i = ii
+				i, res.jitter_histogram_20 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			67 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_max = v
-				i = ii
+				i, res.txspeed_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			68 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_16 = v
-				i = ii
+				i, res.txspeed_histogram_16 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			69 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_32 = v
-				i = ii
+				i, res.txspeed_histogram_32 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			70 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_64 = v
-				i = ii
+				i, res.txspeed_histogram_64 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			71 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_128 = v
-				i = ii
+				i, res.txspeed_histogram_128 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			72 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_256 = v
-				i = ii
+				i, res.txspeed_histogram_256 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			73 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_512 = v
-				i = ii
+				i, res.txspeed_histogram_512 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			74 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_1024 = v
-				i = ii
+				i, res.txspeed_histogram_1024 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			75 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_histogram_max = v
-				i = ii
+				i, res.txspeed_histogram_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			76 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_ntile_5th = v
-				i = ii
+				i, res.txspeed_ntile_5th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			77 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_ntile_50th = v
-				i = ii
+				i, res.txspeed_ntile_50th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			78 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_ntile_75th = v
-				i = ii
+				i, res.txspeed_ntile_75th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			79 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_ntile_95th = v
-				i = ii
+				i, res.txspeed_ntile_95th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			80 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.txspeed_ntile_98th = v
-				i = ii
+				i, res.txspeed_ntile_98th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			81 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_max = v
-				i = ii
+				i, res.rxspeed_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			82 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_16 = v
-				i = ii
+				i, res.rxspeed_histogram_16 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			83 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_32 = v
-				i = ii
+				i, res.rxspeed_histogram_32 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			84 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_64 = v
-				i = ii
+				i, res.rxspeed_histogram_64 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			85 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_128 = v
-				i = ii
+				i, res.rxspeed_histogram_128 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			86 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_256 = v
-				i = ii
+				i, res.rxspeed_histogram_256 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			87 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_512 = v
-				i = ii
+				i, res.rxspeed_histogram_512 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			88 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_1024 = v
-				i = ii
+				i, res.rxspeed_histogram_1024 = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			89 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_histogram_max = v
-				i = ii
+				i, res.rxspeed_histogram_max = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			90 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_ntile_5th = v
-				i = ii
+				i, res.rxspeed_ntile_5th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			91 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_ntile_50th = v
-				i = ii
+				i, res.rxspeed_ntile_50th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			92 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_ntile_75th = v
-				i = ii
+				i, res.rxspeed_ntile_75th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			93 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_ntile_95th = v
-				i = ii
+				i, res.rxspeed_ntile_95th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			94 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.rxspeed_ntile_98th = v
-				i = ii
+				i, res.rxspeed_ntile_98th = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1282,41 +1111,7 @@ pub fn cmsgsteamdatagramlinklifetimestats_unpack(buf []byte) ?CMsgSteamDatagramL
 
 [inline]
 pub fn (a CMsgSteamDatagramLinkLifetimeStats) eq(b CMsgSteamDatagramLinkLifetimeStats) bool {
-	return true && a.connected_seconds == b.connected_seconds && a.packets_sent == b.packets_sent &&
-		a.kb_sent == b.kb_sent && a.packets_recv == b.packets_recv && a.kb_recv == b.kb_recv &&
-		a.packets_recv_sequenced == b.packets_recv_sequenced && a.packets_recv_dropped == b.packets_recv_dropped &&
-		a.packets_recv_out_of_order == b.packets_recv_out_of_order && a.packets_recv_duplicate == b.packets_recv_duplicate &&
-		a.packets_recv_lurch == b.packets_recv_lurch && a.quality_histogram_100 == b.quality_histogram_100 &&
-		a.quality_histogram_99 == b.quality_histogram_99 && a.quality_histogram_97 == b.quality_histogram_97 &&
-		a.quality_histogram_95 == b.quality_histogram_95 && a.quality_histogram_90 == b.quality_histogram_90 &&
-		a.quality_histogram_75 == b.quality_histogram_75 && a.quality_histogram_50 == b.quality_histogram_50 &&
-		a.quality_histogram_1 == b.quality_histogram_1 && a.quality_histogram_dead == b.quality_histogram_dead &&
-		a.quality_ntile_2nd == b.quality_ntile_2nd && a.quality_ntile_5th == b.quality_ntile_5th &&
-		a.quality_ntile_25th == b.quality_ntile_25th && a.quality_ntile_50th == b.quality_ntile_50th &&
-		a.ping_histogram_25 == b.ping_histogram_25 && a.ping_histogram_50 == b.ping_histogram_50 &&
-		a.ping_histogram_75 == b.ping_histogram_75 && a.ping_histogram_100 == b.ping_histogram_100 &&
-		a.ping_histogram_125 == b.ping_histogram_125 && a.ping_histogram_150 == b.ping_histogram_150 &&
-		a.ping_histogram_200 == b.ping_histogram_200 && a.ping_histogram_300 == b.ping_histogram_300 &&
-		a.ping_histogram_max == b.ping_histogram_max && a.ping_ntile_5th == b.ping_ntile_5th &&
-		a.ping_ntile_50th == b.ping_ntile_50th && a.ping_ntile_75th == b.ping_ntile_75th && a.ping_ntile_95th ==
-		b.ping_ntile_95th && a.ping_ntile_98th == b.ping_ntile_98th && a.jitter_histogram_negligible ==
-		b.jitter_histogram_negligible && a.jitter_histogram_1 == b.jitter_histogram_1 && a.jitter_histogram_2 ==
-		b.jitter_histogram_2 && a.jitter_histogram_5 == b.jitter_histogram_5 && a.jitter_histogram_10 ==
-		b.jitter_histogram_10 && a.jitter_histogram_20 == b.jitter_histogram_20 && a.txspeed_max == b.txspeed_max &&
-		a.txspeed_histogram_16 == b.txspeed_histogram_16 && a.txspeed_histogram_32 == b.txspeed_histogram_32 &&
-		a.txspeed_histogram_64 == b.txspeed_histogram_64 && a.txspeed_histogram_128 == b.txspeed_histogram_128 &&
-		a.txspeed_histogram_256 == b.txspeed_histogram_256 && a.txspeed_histogram_512 == b.txspeed_histogram_512 &&
-		a.txspeed_histogram_1024 == b.txspeed_histogram_1024 && a.txspeed_histogram_max == b.txspeed_histogram_max &&
-		a.txspeed_ntile_5th == b.txspeed_ntile_5th && a.txspeed_ntile_50th == b.txspeed_ntile_50th &&
-		a.txspeed_ntile_75th == b.txspeed_ntile_75th && a.txspeed_ntile_95th == b.txspeed_ntile_95th &&
-		a.txspeed_ntile_98th == b.txspeed_ntile_98th && a.rxspeed_max == b.rxspeed_max && a.rxspeed_histogram_16 ==
-		b.rxspeed_histogram_16 && a.rxspeed_histogram_32 == b.rxspeed_histogram_32 && a.rxspeed_histogram_64 ==
-		b.rxspeed_histogram_64 && a.rxspeed_histogram_128 == b.rxspeed_histogram_128 && a.rxspeed_histogram_256 ==
-		b.rxspeed_histogram_256 && a.rxspeed_histogram_512 == b.rxspeed_histogram_512 && a.rxspeed_histogram_1024 ==
-		b.rxspeed_histogram_1024 && a.rxspeed_histogram_max == b.rxspeed_histogram_max && a.rxspeed_ntile_5th ==
-		b.rxspeed_ntile_5th && a.rxspeed_ntile_50th == b.rxspeed_ntile_50th && a.rxspeed_ntile_75th ==
-		b.rxspeed_ntile_75th && a.rxspeed_ntile_95th == b.rxspeed_ntile_95th && a.rxspeed_ntile_98th ==
-		b.rxspeed_ntile_98th
+	return false
 }
 
 [inline]
@@ -1395,16 +1190,12 @@ pub fn cmsgsteamdatagramconnectionquality_unpack(buf []byte) ?CMsgSteamDatagramC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramlinkinstantaneousstats(cur_buf,
+				i, res.instantaneous = zzz_vproto_internal_unpack_cmsgsteamdatagramlinkinstantaneousstats(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.instantaneous = v
-				i = ii
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramlinklifetimestats(cur_buf,
+				i, res.lifetime = zzz_vproto_internal_unpack_cmsgsteamdatagramlinklifetimestats(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.lifetime = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1496,9 +1287,7 @@ pub fn cmsgicerendezvous_auth_unpack(buf []byte) ?CMsgICERendezvous_Auth {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.pwd_frag = v
-				i = ii
+				i, res.pwd_frag = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1590,9 +1379,7 @@ pub fn cmsgicerendezvous_candidate_unpack(buf []byte) ?CMsgICERendezvous_Candida
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.candidate = v
-				i = ii
+				i, res.candidate = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1689,15 +1476,12 @@ pub fn cmsgicerendezvous_unpack(buf []byte) ?CMsgICERendezvous {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvous_auth(cur_buf, tag_wiretype.wire_type) ?
-				res.auth = v
-				i = ii
+				i, res.auth = zzz_vproto_internal_unpack_cmsgicerendezvous_auth(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvous_candidate(cur_buf,
+				i, res.add_candidate = zzz_vproto_internal_unpack_cmsgicerendezvous_candidate(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.add_candidate = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1798,21 +1582,15 @@ pub fn cmsgsteamnetworkingp2prendezvous_connectrequest_unpack(buf []byte) ?CMsgS
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfosigned(cur_buf,
+				i, res.crypt = zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfosigned(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.crypt = v
-				i = ii
 			}
 			7 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
+				i, res.cert = zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.cert = v
-				i = ii
 			}
 			9 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.virtual_port = v
-				i = ii
+				i, res.virtual_port = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1909,16 +1687,12 @@ pub fn cmsgsteamnetworkingp2prendezvous_connectok_unpack(buf []byte) ?CMsgSteamN
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			5 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfosigned(cur_buf,
+				i, res.crypt = zzz_vproto_internal_unpack_cmsgsteamdatagramsessioncryptinfosigned(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.crypt = v
-				i = ii
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
+				i, res.cert = zzz_vproto_internal_unpack_cmsgsteamdatagramcertificatesigned(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.cert = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2014,14 +1788,10 @@ pub fn cmsgsteamnetworkingp2prendezvous_connectionclosed_unpack(buf []byte) ?CMs
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			5 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.debug = v
-				i = ii
+				i, res.debug = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.reason_code = v
-				i = ii
+				i, res.reason_code = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2113,9 +1883,7 @@ pub fn cmsgsteamnetworkingp2prendezvous_reliablemessage_unpack(buf []byte) ?CMsg
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgicerendezvous(cur_buf, tag_wiretype.wire_type) ?
-				res.ice = v
-				i = ii
+				i, res.ice = zzz_vproto_internal_unpack_cmsgicerendezvous(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -2260,67 +2028,44 @@ pub fn cmsgsteamnetworkingp2prendezvous_unpack(buf []byte) ?CMsgSteamNetworkingP
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			8 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.from_identity = v
-				i = ii
+				i, res.from_identity = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.from_connection_id = v
-				i = ii
+				i, res.from_connection_id = vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.to_identity = v
-				i = ii
+				i, res.to_identity = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			1 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.to_connection_id = v
-				i = ii
+				i, res.to_connection_id = vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.sdr_routes = v
-				i = ii
+				i, res.sdr_routes = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ack_peer_routes_revision = v
-				i = ii
+				i, res.ack_peer_routes_revision = vproto.unpack_uint32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ice_enabled = v
-				i = ii
+				i, res.ice_enabled = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectrequest(cur_buf,
+				i, res.connect_request = zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectrequest(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.connect_request = v
-				i = ii
 			}
 			5 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectok(cur_buf,
+				i, res.connect_ok = zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectok(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.connect_ok = v
-				i = ii
 			}
 			6 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectionclosed(cur_buf,
+				i, res.connection_closed = zzz_vproto_internal_unpack_cmsgsteamnetworkingp2prendezvous_connectionclosed(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.connection_closed = v
-				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ack_reliable_msg = v
-				i = ii
+				i, res.ack_reliable_msg = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.first_reliable_msg = v
-				i = ii
+				i, res.first_reliable_msg = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			13 {
 				// [packed=false]
@@ -2451,44 +2196,28 @@ pub fn cmsgsteamnetworkingicesessionsummary_unpack(buf []byte) ?CMsgSteamNetwork
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			7 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.failure_reason_code = v
-				i = ii
+				i, res.failure_reason_code = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.local_candidate_types = v
-				i = ii
+				i, res.local_candidate_types = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.remote_candidate_types = v
-				i = ii
+				i, res.remote_candidate_types = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.initial_route_kind = v
-				i = ii
+				i, res.initial_route_kind = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.initial_ping = v
-				i = ii
+				i, res.initial_ping = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.initial_score = v
-				i = ii
+				i, res.initial_score = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.negotiation_ms = v
-				i = ii
+				i, res.negotiation_ms = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			12 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.selected_seconds = v
-				i = ii
+				i, res.selected_seconds = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

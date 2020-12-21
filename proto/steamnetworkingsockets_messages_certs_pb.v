@@ -46,29 +46,19 @@ pub fn cmsgsteamnetworkingidentitylegacybinary_unpack(buf []byte) ?CMsgSteamNetw
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			16 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.steam_id = v
-				i = ii
+				i, res.steam_id = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			17 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.xbox_pairwise_id = v
-				i = ii
+				i, res.xbox_pairwise_id = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.generic_bytes = v
-				i = ii
+				i, res.generic_bytes = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.generic_string = v
-				i = ii
+				i, res.generic_string = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ipv6_and_port = v
-				i = ii
+				i, res.ipv6_and_port = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -247,31 +237,21 @@ pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertifi
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype(cur_buf,
+				i, res.key_type = zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate_ekeytype(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.key_type = v
-				i = ii
 			}
 			2 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.key_data = v
-				i = ii
+				i, res.key_data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.legacy_steam_id = v
-				i = ii
+				i, res.legacy_steam_id = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			11 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamnetworkingidentitylegacybinary(cur_buf,
+				i, res.legacy_identity_binary = zzz_vproto_internal_unpack_cmsgsteamnetworkingidentitylegacybinary(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.legacy_identity_binary = v
-				i = ii
 			}
 			12 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.identity_string = v
-				i = ii
+				i, res.identity_string = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
 				// [packed=false]
@@ -280,14 +260,10 @@ pub fn cmsgsteamdatagramcertificate_unpack(buf []byte) ?CMsgSteamDatagramCertifi
 				i = ii
 			}
 			8 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_created = v
-				i = ii
+				i, res.time_created = vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.time_expiry = v
-				i = ii
+				i, res.time_expiry = vproto.unpack_32bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
 				// [packed=false]
@@ -400,24 +376,16 @@ pub fn cmsgsteamdatagramcertificatesigned_unpack(buf []byte) ?CMsgSteamDatagramC
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			4 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.cert = v
-				i = ii
+				i, res.cert = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ca_key_id = v
-				i = ii
+				i, res.ca_key_id = vproto.unpack_64bit_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.ca_signature = v
-				i = ii
+				i, res.ca_signature = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			1 {
-				ii, v := vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
-				res.private_key_data = v
-				i = ii
+				i, res.private_key_data = vproto.unpack_bytes_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -510,10 +478,8 @@ pub fn cmsgsteamdatagramcertificaterequest_unpack(buf []byte) ?CMsgSteamDatagram
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate(cur_buf,
+				i, res.cert = zzz_vproto_internal_unpack_cmsgsteamdatagramcertificate(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.cert = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)

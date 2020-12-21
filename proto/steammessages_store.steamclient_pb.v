@@ -85,9 +85,7 @@ pub fn cstore_getlocalizednamefortags_request_unpack(buf []byte) ?CStore_GetLoca
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.language = v
-				i = ii
+				i, res.language = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
 				// [packed=false]
@@ -193,19 +191,13 @@ pub fn cstore_getlocalizednamefortags_response_tag_unpack(buf []byte) ?CStore_Ge
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.tagid = v
-				i = ii
+				i, res.tagid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.english_name = v
-				i = ii
+				i, res.english_name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -500,60 +492,40 @@ pub fn cstore_userpreferences_unpack(buf []byte) ?CStore_UserPreferences {
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.primary_language = v
-				i = ii
+				i, res.primary_language = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.secondary_languages = v
-				i = ii
+				i, res.secondary_languages = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.platform_windows = v
-				i = ii
+				i, res.platform_windows = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			4 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.platform_mac = v
-				i = ii
+				i, res.platform_mac = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			5 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.platform_linux = v
-				i = ii
+				i, res.platform_linux = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			6 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hide_adult_content_violence = v
-				i = ii
+				i, res.hide_adult_content_violence = vproto.unpack_bool_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			7 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hide_adult_content_sex = v
-				i = ii
+				i, res.hide_adult_content_sex = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			8 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp_updated = v
-				i = ii
+				i, res.timestamp_updated = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			9 {
-				ii, v := vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
-				res.hide_store_broadcast = v
-				i = ii
+				i, res.hide_store_broadcast = vproto.unpack_bool_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			10 {
-				ii, v := zzz_vproto_internal_unpack_euserreviewscorepreference(cur_buf,
+				i, res.review_score_preference = zzz_vproto_internal_unpack_euserreviewscorepreference(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.review_score_preference = v
-				i = ii
 			}
 			11 {
-				ii, v := vproto.unpack_int32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp_content_descriptor_preferences_updated = v
-				i = ii
+				i, res.timestamp_content_descriptor_preferences_updated = vproto.unpack_int32_field(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -658,19 +630,13 @@ pub fn cstore_usertagpreferences_tag_unpack(buf []byte) ?CStore_UserTagPreferenc
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.tagid = v
-				i = ii
+				i, res.tagid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
-				res.name = v
-				i = ii
+				i, res.name = vproto.unpack_string_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			3 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp_added = v
-				i = ii
+				i, res.timestamp_added = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -863,14 +829,10 @@ pub fn cstore_usercontentdescriptorpreferences_contentdescriptor_unpack(buf []by
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.content_descriptorid = v
-				i = ii
+				i, res.content_descriptorid = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
-				res.timestamp_added = v
-				i = ii
+				i, res.timestamp_added = vproto.unpack_uint32_field(cur_buf, tag_wiretype.wire_type) ?
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1070,21 +1032,16 @@ pub fn cstore_getstorepreferences_response_unpack(buf []byte) ?CStore_GetStorePr
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstore_userpreferences(cur_buf, tag_wiretype.wire_type) ?
-				res.preferences = v
-				i = ii
+				i, res.preferences = zzz_vproto_internal_unpack_cstore_userpreferences(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cstore_usertagpreferences(cur_buf,
+				i, res.tag_preferences = zzz_vproto_internal_unpack_cstore_usertagpreferences(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.tag_preferences = v
-				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(cur_buf,
+				i, res.content_descriptor_preferences = zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.content_descriptor_preferences = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
@@ -1187,21 +1144,16 @@ pub fn cstore_storepreferenceschanged_notification_unpack(buf []byte) ?CStore_St
 		cur_buf := buf_before_wire_type[tag_wiretype.consumed..]
 		match tag_wiretype.tag {
 			1 {
-				ii, v := zzz_vproto_internal_unpack_cstore_userpreferences(cur_buf, tag_wiretype.wire_type) ?
-				res.preferences = v
-				i = ii
+				i, res.preferences = zzz_vproto_internal_unpack_cstore_userpreferences(cur_buf,
+					tag_wiretype.wire_type) ?
 			}
 			2 {
-				ii, v := zzz_vproto_internal_unpack_cstore_usertagpreferences(cur_buf,
+				i, res.tag_preferences = zzz_vproto_internal_unpack_cstore_usertagpreferences(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.tag_preferences = v
-				i = ii
 			}
 			3 {
-				ii, v := zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(cur_buf,
+				i, res.content_descriptor_preferences = zzz_vproto_internal_unpack_cstore_usercontentdescriptorpreferences(cur_buf,
 					tag_wiretype.wire_type) ?
-				res.content_descriptor_preferences = v
-				i = ii
 			}
 			else {
 				ii, v := vproto.unpack_unknown_field(cur_buf, tag_wiretype.wire_type)
